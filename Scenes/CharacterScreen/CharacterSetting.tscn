@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://d23vm7fpygfv7"]
+
+[ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
+[ext_resource type="Texture2D" uid="uid://btm2e68554iqc" path="res://Assets/RedProfile.png" id="2_ryxwn"]
+[ext_resource type="Texture2D" uid="uid://gnradcgoak5f" path="res://Assets/BlueProfile.png" id="3_0pijp"]
+[ext_resource type="Texture2D" uid="uid://ibk1kh2e3x7d" path="res://Assets/YellowProfile.png" id="4_sjs2y"]
+[ext_resource type="Texture2D" uid="uid://cyo4mwfreyb12" path="res://Assets/GreenProfile.png" id="5_b3uqs"]
+
+[node name="CharacterSetting" type="Control"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5if0m")
+skin = 3
+red = ExtResource("2_ryxwn")
+blue = ExtResource("3_0pijp")
+yellow = ExtResource("4_sjs2y")
+green = ExtResource("5_b3uqs")
+
+[node name="Settings" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Preview" type="TextureRect" parent="Settings"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_ryxwn")
+stretch_mode = 2
+
+[node name="TextEdit" type="LineEdit" parent="Settings"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+placeholder_text = "Name"
+max_length = 15
+
+[node name="Controller" type="OptionButton" parent="Settings"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="Settings"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="AddCharacter" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -15.5
+offset_right = 59.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Add Character"
+
+[connection signal="pressed" from="Settings/Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="pressed" from="AddCharacter" to="." method="_on_AddCharacter_pressed"]

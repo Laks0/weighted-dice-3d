@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://do8bj7ibxb71l"]
+
+[ext_resource type="Script" path="res://Scenes/BettingScreen/Leaderboard.gd" id="1_hulim"]
+
+[node name="Leaderboard" type="RichTextLabel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+bbcode_enabled = true
+script = ExtResource("1_hulim")

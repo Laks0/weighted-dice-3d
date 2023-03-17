@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq54i4r3w1hj4"]
+
+[ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
+[ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
+
+[node name="CharacterScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70uiy")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -182.0
+offset_right = 322.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="TomiSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Tomi"
+skin = 0
+
+[node name="FranciscoSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Francisco"
+skin = 1
+
+[node name="PedroSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Pedro"
+skin = 2
+
+[node name="JaviSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Javi"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -15.5
+offset_right = 23.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
