@@ -21,6 +21,23 @@ var ungrabbable := false
 @export var invincibleAfterHurtTime: float = 3.0
 @export var invincibleAfterPushTime: float = 0.2
 
+var sprite : AnimatedSprite3D
+
+func _ready():
+	match player.id:
+		PlayerHandler.Skins.BLUE:
+			sprite = $FranciscoSprite
+		PlayerHandler.Skins.RED:
+			sprite = $TomiSprite
+		PlayerHandler.Skins.YELLOW:
+			sprite = $PedroSprite
+		PlayerHandler.Skins.GREEN:
+			sprite = $JaviSprite
+	
+	sprite.visible = true
+	
+	super._ready()
+
 func _process(_delta):
 	invincible = !$HurtTime.is_stopped()
 	
@@ -35,7 +52,7 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	$TomiSprite.modulate = color
+	sprite.modulate = color
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
@@ -59,6 +76,28 @@ func _physics_process(delta):
 	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
 	
 	move_and_slide()
+	
+	# Animaciones
+	match vecToDir(dir):
+		Cardinal.N:
+			sprite.animation = "RunningUp"
+		Cardinal.E:
+			sprite.animation = "RunningRight"
+		Cardinal.W:
+			sprite.animation = "RunningLeft"
+		Cardinal.S:
+			sprite.animation = "RunningDown"
+	
+	if dir == Vector2.ZERO:
+		sprite.animation = "Idle"
+	
+	if not unclampedVelocity.is_zero_approx():
+		sprite.animation = "Pushed"
+		sprite.frame = vecToDir(unclampedVelocity)
+	
+	if grabbing:
+		sprite.animation = "Grabbing"
+		sprite.frame = vecToDir(grabDir)
 
 func canBeGrabbed() -> bool:
 	return not invincible
@@ -82,7 +121,9 @@ func stun():
 	$StunCooldown.start()
 	stunned = true
 
-func vecToDir(vector : Vector2):
+enum Cardinal {E, NE, N, NW, W, SW, S, SE}
+
+func vecToDir(vector : Vector2) -> Cardinal:
 	var angle = -vector.angle()
 	if angle < 0:
 		angle += 2*PI

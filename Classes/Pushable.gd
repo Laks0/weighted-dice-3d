@@ -4,7 +4,7 @@ class_name Pushable
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
 
-@export var maxPushForce : int = 15 # La fuerza máxima a la que _es empujado_
+@export var maxPushForce : int = 20 # La fuerza máxima a la que _es empujado_
 
 var grabbing   := false
 var grabbed    := false
