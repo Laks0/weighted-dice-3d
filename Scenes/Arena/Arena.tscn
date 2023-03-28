@@ -1,11 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=12 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="1_akum6"]
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://drwj1b3nwd2q3" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
+[ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
+[ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
+rough = true
+bounce = 0.89
+absorbent = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kbgdt"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k0j23"]
+size = Vector2(12, 7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w427e"]
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("1_sld7k")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -15,10 +29,14 @@ script = ExtResource("1_txoyd")
 monigoteResource = ExtResource("1_akum6")
 
 [node name="Floor" type="StaticBody3D" parent="."]
-visible = false
+physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_k0j23")
+surface_material_override/0 = SubResource("StandardMaterial3D_w427e")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 visible = false
@@ -39,20 +57,24 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.92792, 0, 0.228143)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0613439, 0)
-pixel_size = 0.02
-axis = 1
-texture_filter = 0
-texture = ExtResource("1_sld7k")
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979222, 0, -0.979222, 0.202787, 0, 8.439, 2.143)
 fov = 47.0
 
 [node name="Die" parent="." instance=ExtResource("2_gkaff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 1.71003, -0.143847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
+inertia = Vector3(1, 1, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.131322, 0.99134, 0, -0.99134, 0.131322, 0, 29.3884, 3.43122)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 29.388, 0)
+light_indirect_energy = 1.093
+shadow_enabled = true
+shadow_opacity = 0.72
+shadow_blur = 2.578
 metadata/_edit_lock_ = true
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="OliveRollEffect" parent="Effects" instance=ExtResource("5_ed70i")]
+
+[node name="ChipsAreDownEffect" parent="Effects" instance=ExtResource("6_x3vxf")]

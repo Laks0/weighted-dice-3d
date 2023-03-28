@@ -863,33 +863,33 @@ region = Rect2(160, 64, 32, 32)
 atlas = ExtResource("1_cxoe5")
 region = Rect2(192, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1t8y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubitf"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(224, 96, 32, 32)
+region = Rect2(224, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uxok4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kox5"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(256, 96, 32, 32)
+region = Rect2(256, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11s06"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqmya"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(288, 96, 32, 32)
+region = Rect2(288, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6eicr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l5mj"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(320, 96, 32, 32)
+region = Rect2(320, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hq68b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2f8t"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(352, 96, 32, 32)
+region = Rect2(352, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1uxlt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd7qw"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(384, 96, 32, 32)
+region = Rect2(384, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ea2d1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7owql"]
 atlas = ExtResource("1_cxoe5")
-region = Rect2(416, 96, 32, 32)
+region = Rect2(416, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tlxl0"]
 animations = [{
@@ -1039,25 +1039,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c1t8y")
+"texture": SubResource("AtlasTexture_ubitf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uxok4")
+"texture": SubResource("AtlasTexture_2kox5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_11s06")
+"texture": SubResource("AtlasTexture_eqmya")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6eicr")
+"texture": SubResource("AtlasTexture_5l5mj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hq68b")
+"texture": SubResource("AtlasTexture_n2f8t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1uxlt")
+"texture": SubResource("AtlasTexture_hd7qw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ea2d1")
+"texture": SubResource("AtlasTexture_7owql")
 }],
 "loop": true,
 "name": &"RunningUp",
@@ -1422,7 +1422,7 @@ radius = 0.094
 height = 0.563633
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
-height = 0.11157
+height = 0.194
 radius = 0.629883
 
 [node name="Monigote" type="CharacterBody3D"]
@@ -1458,7 +1458,7 @@ billboard = 1
 alpha_cut = 3
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_tlxl0")
-animation = &"Grabbing"
+animation = &"RunningUp"
 autoplay = "Idle"
 
 [node name="JaviSprite" type="AnimatedSprite3D" parent="."]
@@ -1476,8 +1476,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="StunCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="."]
 

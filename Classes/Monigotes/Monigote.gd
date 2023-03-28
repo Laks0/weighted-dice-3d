@@ -53,6 +53,10 @@ func _process(_delta):
 		push()
 	
 	sprite.modulate = color
+	if invincible:
+		sprite.modulate.a = .7
+	else:
+		sprite.modulate.a = 1
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
@@ -113,6 +117,22 @@ func onPushed(dir : Vector2, factor : float):
 	unclampedVelocity += dir * factor * maxPushForce
 	
 	super.onPushed(dir, factor)
+
+func knockback(vel : Vector2):
+	unclampedVelocity += vel
+
+func hurt():
+	if invincible:
+		return
+	
+	health -= 1
+	$HurtTime.start()
+	
+	if health <= 0:
+		die()
+
+func die():
+	queue_free()
 
 func stun():
 	if !$StunCooldown.is_stopped():

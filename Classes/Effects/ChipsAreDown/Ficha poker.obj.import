@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bgkdtpi8edf8s"
+path="res://.godot/imported/Ficha poker.obj-85b8b2077028731d8fc185067e0596cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Ficha poker.obj-85b8b2077028731d8fc185067e0596cc.mesh"]
+
+source_file="res://Classes/Effects/ChipsAreDown/Ficha poker.obj"
+dest_files=["res://.godot/imported/Ficha poker.obj-85b8b2077028731d8fc185067e0596cc.mesh", "res://.godot/imported/Ficha poker.obj-85b8b2077028731d8fc185067e0596cc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

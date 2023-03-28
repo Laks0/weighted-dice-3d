@@ -21,11 +21,20 @@ BetHandler="*res://Autoload/BetHandler.gd"
 Controllers="*res://Autoload/Controllers.gd"
 PlayerHandler="*res://Autoload/PlayerHandler.gd"
 PowerupHandler="*res://Autoload/PowerupHandler.gd"
+Globals="*res://Autoload/Globals.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
+[editor]
+
+script/templates_search_path="res://addons/xsm/templates/"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/xsm/plugin.cfg")
 
 [input]
 

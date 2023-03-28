@@ -1,8 +1,9 @@
 extends Node3D
+class_name Arena
 
 @export var monigoteResource : PackedScene
 
-@onready var effects : Array
+@onready var effects : Array = $Effects.get_children()
 
 # Active effect va de 0 a 5
 var activeEffect   : int = -1
@@ -18,10 +19,15 @@ func _ready():
 		var monigote := monigoteResource.instantiate() as Monigote
 		
 		monigote.player   = player
-		monigote.position = Vector3((monigotesAlive+1) -5, 0, -1)
+		monigote.position = Vector3((monigotesAlive+1) -5, Globals.SPRITE_HEIGHT, -1)
 		
 		monigotesAlive += 1
 		add_child(monigote)
+	
+	for e in effects:
+		e.create(self)
+	
+	effects[1].start()
 
 func _process(delta):
 	gameTime += delta
@@ -29,6 +35,9 @@ func _process(delta):
 
 	if activeEffect != -1:
 		effects[activeEffect].update(delta)
+	
+	if Input.is_action_just_pressed("ui_left"):
+		effects[activeEffect].end()
 
 func startEffect(n : int):
 	if activeEffect != -1:

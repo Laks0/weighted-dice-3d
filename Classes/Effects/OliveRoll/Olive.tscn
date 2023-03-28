@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://8l23xyx2htpf"]
+
+[ext_resource type="Script" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
+[ext_resource type="Texture2D" uid="uid://466i7kvr7oj7" path="res://Classes/Effects/OliveRoll/aceituna.png" id="2_8r2dk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f1p1"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b0jk"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpdvv"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0x6c"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2o3w"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u656v"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umol7"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qqdk"]
+atlas = ExtResource("2_8r2dk")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l4hj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f1p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b0jk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpdvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0x6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2o3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u656v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umol7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qqdk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t7spw"]
+radius = 0.0919599
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e8vk1"]
+radius = 0.196796
+
+[node name="Olive" type="CharacterBody3D"]
+script = ExtResource("1_yhn61")
+maxPushForce = 30
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.02
+billboard = 1
+alpha_cut = 3
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_l4hj2")
+frame = 1
+frame_progress = 0.52876
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t7spw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_e8vk1")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
