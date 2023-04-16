@@ -27,7 +27,7 @@ func _ready():
 	for e in effects:
 		e.create(self)
 	
-	effects[1].start()
+	$Die.prepareArrow = $PrepareArrow
 
 func _process(delta):
 	gameTime += delta
@@ -35,9 +35,6 @@ func _process(delta):
 
 	if activeEffect != -1:
 		effects[activeEffect].update(delta)
-	
-	if Input.is_action_just_pressed("ui_left"):
-		effects[activeEffect].end()
 
 func startEffect(n : int):
 	if activeEffect != -1:
@@ -45,6 +42,18 @@ func startEffect(n : int):
 
 	activeEffect = n - 1
 	effects[activeEffect].start()
+
+func getLivingMonigotes() -> Array[Monigote]:
+	var monigotes : Array[Monigote] = []
+	for child in get_children():
+		if child is Monigote and child.health > 0:
+			monigotes.append(child)
+	
+	return monigotes
+
+func getRandomMonigote() -> Monigote:
+	var monigotes := getLivingMonigotes()
+	return monigotes[randi() % len(monigotes)]
 
 func onMonigoteDeath():
 	monigotesAlive -= 1

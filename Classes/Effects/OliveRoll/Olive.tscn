@@ -74,6 +74,8 @@ radius = 0.0919599
 radius = 0.196796
 
 [node name="Olive" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_yhn61")
 maxPushForce = 30
 
@@ -90,6 +92,7 @@ frame_progress = 0.52876
 shape = SubResource("SphereShape3D_t7spw")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_e8vk1")

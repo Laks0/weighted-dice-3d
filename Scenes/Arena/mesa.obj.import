@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://0am65n0l6hyj"
+path="res://.godot/imported/mesa.obj-e4864bae9676acf0188b83d9376ff780.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mesa.obj-e4864bae9676acf0188b83d9376ff780.mesh"]
+
+source_file="res://Scenes/Arena/mesa.obj"
+dest_files=["res://.godot/imported/mesa.obj-e4864bae9676acf0188b83d9376ff780.mesh", "res://.godot/imported/mesa.obj-e4864bae9676acf0188b83d9376ff780.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

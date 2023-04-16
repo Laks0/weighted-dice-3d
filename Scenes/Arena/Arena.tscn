@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=19 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="1_akum6"]
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://drwj1b3nwd2q3" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
+[ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="7_7ki2k"]
+[ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -21,25 +23,74 @@ size = Vector2(12, 7)
 albedo_color = Color(1, 1, 1, 0)
 albedo_texture = ExtResource("1_sld7k")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np6ri"]
+albedo_texture = ExtResource("1_sld7k")
+uv1_scale = Vector3(-3.937, -3.937, -3.937)
+uv1_offset = Vector3(0.453, -0.013, 0)
+point_size = 128.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wruqs"]
+data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
+
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bchx"]
+atlas = ExtResource("8_renas")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2pnj"]
+atlas = ExtResource("8_renas")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2qvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bchx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2pnj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 monigoteResource = ExtResource("1_akum6")
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
+collision_layer = 4
+collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+visible = false
 mesh = SubResource("PlaneMesh_k0j23")
 surface_material_override/0 = SubResource("StandardMaterial3D_w427e")
 
+[node name="Mesa" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+material_override = SubResource("StandardMaterial3D_np6ri")
+gi_mode = 0
+mesh = ExtResource("7_7ki2k")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+visible = false
+shape = SubResource("ConcavePolygonShape3D_wruqs")
+
 [node name="Walls" type="StaticBody3D" parent="."]
 visible = false
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.17999)
@@ -63,15 +114,23 @@ fov = 47.0
 
 [node name="Die" parent="." instance=ExtResource("2_gkaff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
-inertia = Vector3(1, 1, 1)
+
+[node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
+visible = false
+centered = false
+offset = Vector2(-64, 32)
+modulate = Color(1, 1, 1, 0.396078)
+axis = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_i2qvo")
+autoplay = "default"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 29.388, 0)
-light_indirect_energy = 1.093
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 31.1542, 0)
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
-metadata/_edit_lock_ = true
 
 [node name="Effects" type="Node" parent="."]
 

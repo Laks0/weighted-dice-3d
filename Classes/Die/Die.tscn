@@ -1,23 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://drwj1b3nwd2q3"]
+[gd_scene load_steps=14 format=3 uid="uid://drwj1b3nwd2q3"]
 
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="1_6r326"]
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
+[ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine.gd" id="3_orssd"]
+[ext_resource type="Script" path="res://addons/xsm/state_loop.gd" id="5_rj2a1"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine/WaitForFloor.gd" id="6_fujtl"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine/Prepare.gd" id="7_td75r"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine/Burst.gd" id="8_30tr1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lf240"]
 friction = 0.65
-bounce = 0.6
+bounce = 0.8
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5v7i0"]
 points = PackedVector3Array(-0.893276, -0.985924, -0.862587, 0.893277, 0.985925, 0.862588, 0.893276, 0.985924, -0.862587, -0.955132, 0.955132, -0.862669, -0.955132, -0.862669, 0.955132, 0.955132, -0.955132, 0.862669, 0.924803, -0.924803, -0.955707, -0.92482, 0.92482, 0.955725, 0.955132, 0.862669, 0.955132, -0.893273, 0.862583, -0.98592, 0.985896, 0.862562, -0.893444, -0.955132, -0.862669, -0.955132, 0.862561, -0.893443, 0.985895, -0.862558, -0.985891, 0.89344, 0.862559, 0.89344, -0.985892, -0.985896, 0.893444, 0.862562, -0.893276, 0.985924, 0.862587, 0.893273, -0.98592, -0.862583, -0.985896, -0.893444, -0.862562, -0.862559, -0.89344, -0.985892, 0.985896, -0.862562, 0.893444, 0.985892, -0.89344, -0.862559, -0.862561, 0.893443, 0.985895, -0.862562, 0.985896, -0.893444, -0.985895, -0.893443, 0.862561, -0.985895, 0.862561, -0.893443, 0.985937, 0.893288, 0.862405, 0.862562, 0.893444, 0.985896, -0.862562, -0.893444, 0.985896, 0.862561, -0.985895, 0.893443, 0.893273, -0.862583, -0.98592, 0.862669, 0.955132, 0.955132)
 
+[sub_resource type="Animation" id="Animation_qrc6i"]
+resource_name = "Rotate1"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(1, 1, -0.707107, 0, 0, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i73pv"]
+_data = {
+"Rotate1": SubResource("Animation_qrc6i")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2hqq"]
+size = Vector3(0.916434, 0.87252, 0.9176)
+
 [node name="Die" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_lf240")
 max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_qjoqg")
-rotations = PackedVector3Array(90, 0, 0, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -90, -90, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -26,3 +50,65 @@ mesh = ExtResource("1_6r326")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_5v7i0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i73pv")
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_orssd")
+history_size = 0
+disabled = false
+debug_mode = false
+target_path = NodePath("..")
+timed = false
+next_state = NodePath("")
+
+[node name="RandomAttack" type="Node" parent="StateMachine"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
+[node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
+script = ExtResource("5_rj2a1")
+loop_mode = 1
+exit_state = NodePath("")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
+[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Bursts"]
+script = ExtResource("6_fujtl")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 3.0
+on_timer_finished = 0
+next_state = NodePath(".")
+
+[node name="Prepare" type="Node" parent="StateMachine/RandomAttack/Bursts"]
+script = ExtResource("7_td75r")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 1.0
+on_timer_finished = 0
+next_state = NodePath("../Wait")
+
+[node name="Burst" type="Node" parent="StateMachine/RandomAttack/Bursts"]
+script = ExtResource("8_30tr1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_c2hqq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

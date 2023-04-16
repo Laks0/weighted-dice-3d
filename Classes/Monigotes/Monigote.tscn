@@ -1426,13 +1426,13 @@ height = 0.194
 radius = 0.629883
 
 [node name="Monigote" type="CharacterBody3D"]
+collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
 
 [node name="TomiSprite" type="AnimatedSprite3D" parent="."]
-visible = false
 pixel_size = 0.04
 billboard = 1
 alpha_cut = 3
@@ -1473,6 +1473,7 @@ autoplay = "Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]
@@ -1483,6 +1484,8 @@ one_shot = true
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="."]
+visible = false
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
 shape = SubResource("CylinderShape3D_scrbw")
