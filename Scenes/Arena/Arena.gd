@@ -28,6 +28,7 @@ func _ready():
 		e.create(self)
 	
 	$Die.prepareArrow = $PrepareArrow
+	$Die.rolled.connect(startEffect)
 
 func _process(delta):
 	gameTime += delta
@@ -39,9 +40,11 @@ func _process(delta):
 func startEffect(n : int):
 	if activeEffect != -1:
 		effects[activeEffect].end()
-
-	activeEffect = n - 1
+	
+	activeEffect = n
 	effects[activeEffect].start()
+	
+	$HUD.effectStarted(effects[activeEffect].effectName)
 
 func getLivingMonigotes() -> Array[Monigote]:
 	var monigotes : Array[Monigote] = []

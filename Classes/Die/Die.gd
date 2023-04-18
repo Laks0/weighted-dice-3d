@@ -1,12 +1,16 @@
 extends RigidBody3D
 class_name Die
 
+signal rolled(n)
+
 var prepareArrow : AnimatedSprite3D
+
+@export var rotations : Array[Vector3]
 
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()
-	apply_torque_impulse(torque * 30)
+	apply_torque_impulse(torque * 10)
 
 func onFloor() -> bool:
 	for body in get_colliding_bodies():

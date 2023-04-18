@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmyacifxq8ln1"]
+
+[ext_resource type="Script" path="res://Classes/HUD/HUD.gd" id="1_4kvx0"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4kvx0")
+
+[node name="EffectName" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.5
+offset_top = 56.0
+offset_right = 47.5
+offset_bottom = 82.0
+grow_horizontal = 2
+text = "Effect Name"
+horizontal_alignment = 1
