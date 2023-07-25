@@ -1,6 +1,8 @@
 extends Pushable
 class_name Monigote
 
+signal died
+
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var FRICTION     : float = 35
@@ -16,7 +18,6 @@ var stunned := false
 var health : int = 2
 
 var invincible  := false
-var ungrabbable := false
 
 @export var invincibleAfterHurtTime: float = 3.0
 @export var invincibleAfterPushTime: float = 0.2
@@ -132,6 +133,7 @@ func hurt():
 		die()
 
 func die():
+	emit_signal("died")
 	queue_free()
 
 func stun():
@@ -140,6 +142,10 @@ func stun():
 	
 	$StunCooldown.start()
 	stunned = true
+
+func makeInvincible():
+	$HurtTime.one_shot = false
+	$HurtTime.start()
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 

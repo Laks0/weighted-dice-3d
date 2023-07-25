@@ -1,5 +1,7 @@
 extends Node
 
+@onready var monigoteResource := preload("res://Classes/Monigotes/Monigote.tscn")
+
 enum Skins {RED, BLUE, YELLOW, GREEN}
 
 class Player:
@@ -45,7 +47,7 @@ class Player:
 		powersUsed += 1
 		usingPower = true
 
-var players = []
+var players : Array[Player] = []
 
 func createPlayer(controller : int, id : int, _name : String):
 	var MAX_PLAYERS = 4
@@ -53,6 +55,21 @@ func createPlayer(controller : int, id : int, _name : String):
 		return
 
 	players.append(Player.new(_name, controller, id))
+
+func instantiatePlayers(parent) -> Array[Monigote]:
+	var i = 0
+	var monigotes : Array[Monigote]
+	for player in getPlayersAlive():
+		var monigote := monigoteResource.instantiate() as Monigote
+		
+		monigote.player   = player
+		monigote.position = Vector3((i+1) -5, Globals.SPRITE_HEIGHT, -1)
+		
+		monigotes.append(monigote)
+		parent.add_child(monigote)
+		i += 1
+	
+	return monigotes
 
 func getPlayerById(id : int) -> Player:
 	for p in players:
@@ -92,6 +109,9 @@ func amountOfPlayersLeft() -> int:
 	return left
 
 var firstToDie : int = -1
+
+func getPlayersAlive() -> Array[Player]:
+	return players.filter(func(p : Player): return p.isStillPlaying())
 
 func deleteAllPlayers():
 	players = []

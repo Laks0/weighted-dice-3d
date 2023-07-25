@@ -1,61 +1,118 @@
-[gd_scene load_steps=3 format=3 uid="uid://nas8e0effwvx"]
+[gd_scene load_steps=10 format=3 uid="uid://gp5xh0l2lpbv"]
 
-[ext_resource type="Script" path="res://Scenes/BettingScreen/BettingScreen.gd" id="1_lubrc"]
-[ext_resource type="PackedScene" uid="uid://co07hehp6l43k" path="res://Scenes/BettingScreen/BettingSetting.tscn" id="2_bb2ab"]
+[ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_1uqt4"]
+[ext_resource type="Script" path="res://Scenes/BettingScreen/BettingScreen.gd" id="1_4jx4r"]
+[ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_ixa5d"]
+[ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="4_65qka"]
 
-[node name="BettingScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_lubrc")
-settingScene = ExtResource("2_bb2ab")
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ocxbq"]
+rough = true
+bounce = 0.89
+absorbent = true
 
-[node name="CurrentBet" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -13.5
-offset_top = 24.0
-offset_right = 13.5
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Bet"
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_05q8l"]
 
-[node name="Round" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -39.5
-offset_right = 39.5
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Round 0/3"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr78n"]
+albedo_texture = ExtResource("1_1uqt4")
+uv1_scale = Vector3(-3.937, -3.937, -3.937)
+uv1_offset = Vector3(0.453, -0.013, 0)
+point_size = 128.0
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 0
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.013
-offset_left = -20.5
-offset_top = 97.0
-offset_right = 20.5
-offset_bottom = 20.0
-focus_mode = 0
-text = "Start"
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h5hyw"]
+data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 81.0
-offset_top = 134.0
-offset_right = -81.0
-offset_bottom = -200.0
-alignment = 1
+[sub_resource type="BoxShape3D" id="BoxShape3D_kf1lm"]
+size = Vector3(0.717893, 1, 1.26517)
 
-[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[node name="BettingScreen" type="Node3D"]
+script = ExtResource("1_4jx4r")
+monigoteResource = ExtResource("4_65qka")
+
+[node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_ocxbq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_05q8l")
+
+[node name="Mesa" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+material_override = SubResource("StandardMaterial3D_cr78n")
+gi_mode = 0
+mesh = ExtResource("2_ixa5d")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+visible = false
+shape = SubResource("ConcavePolygonShape3D_h5hyw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979222, 0, -0.979222, 0.202787, 0, 8.439, 2.143)
+fov = 47.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 31.1542, 0)
+shadow_enabled = true
+shadow_opacity = 0.72
+shadow_blur = 2.578
+
+[node name="Labels" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.52284, 0.0781466, -2.10776)
+
+[node name="Label3D2" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.7778, 0.0781466, -2.10776)
+
+[node name="Label3D3" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.01471, 0.0781466, -2.10776)
+
+[node name="Label3D4" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.266702, 0.0781466, -2.10776)
+
+[node name="Label3D5" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.486017, 0.0781466, -2.10776)
+
+[node name="Label3D6" type="Label3D" parent="Labels"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.24486, 0.0781466, -2.10776)
+
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54402, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D"]
+shape = SubResource("BoxShape3D_kf1lm")
+
+[node name="Area3D2" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77008, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D2"]
+shape = SubResource("BoxShape3D_kf1lm")
+
+[node name="Area3D3" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D3"]
+shape = SubResource("BoxShape3D_kf1lm")
+
+[node name="Area3D4" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.267459, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D4"]
+shape = SubResource("BoxShape3D_kf1lm")
+
+[node name="Area3D5" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492904, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D5"]
+shape = SubResource("BoxShape3D_kf1lm")
+
+[node name="Area3D6" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25634, 0, -1.62503)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D6"]
+shape = SubResource("BoxShape3D_kf1lm")

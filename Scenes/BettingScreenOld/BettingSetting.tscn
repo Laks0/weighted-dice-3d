@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://co07hehp6l43k"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://Scenes/BettingScreen/BettingSetting.gd" id="1_hbc33"]
+[ext_resource type="Script" path="res://Scenes/BettingScreenOld/BettingSetting.gd" id="1_hbc33"]
 
 [node name="BettingSetting" type="Control" groups=["Setting"]]
 custom_minimum_size = Vector2(250, 0)

@@ -1,7 +1,7 @@
 extends Node
 class_name Effect
 
-@export var effectName : String = "Effect"
+var effectName : String
 
 var arena : Arena
 

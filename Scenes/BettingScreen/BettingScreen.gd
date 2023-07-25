@@ -1,36 +1,24 @@
-extends Control
+extends Node3D
 
-@export var settingScene: PackedScene
+@export var monigoteResource : PackedScene
+
+var candidatePlayers : Array
+var monigotes : Array[Monigote]
 
 func _ready():
-	BetHandler.nextRound()
-
-	if BetHandler.currentRound > BetHandler.MAX_ROUNDS or PlayerHandler.amountOfPlayersLeft() <= 1:
-#		get_tree().change_scene_to_file("res://Escenas/EndScreen/EndScreen.tscn")
-		print("Fin")
-
-	$Round.text = "Round " + str(BetHandler.currentRound) + "/" + str(BetHandler.MAX_ROUNDS)
-	BetHandler.startRandomBet()
-	$CurrentBet.text = BetHandler.getCurrentBetName()
+	BetHandler.startRound()
+	var candidates : Array = BetHandler.getCandidates()
 	
-	for player in PlayerHandler.players:
-		if !player.isStillPlaying():
-			continue
-		
-		var settingInstance = settingScene.instantiate()
-		settingInstance.player = player
-		
-		$HBoxContainer.add_child(settingInstance)
-
-func _process(_delta):
-	# Acción de usar el power
-	for player in PlayerHandler.players:
-		var controllAction = Controllers.controllers[player.inputController]["grab"]
-		if Input.is_action_just_pressed(controllAction):
-			player.usePower()
-
-func _on_Start_pressed():
-	for betSetting in $HBoxContainer.get_children():
-		betSetting.player.setBet(betSetting.bet, betSetting.candidate)
+	var labels = $Labels.get_children()
 	
-	get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
+	# Por ahora asumo que siempre son jugadores
+	# Agarra las ids y las transforma en el objeto Player
+	candidatePlayers = candidates.map(func (id : int): return PlayerHandler.getPlayerById(id))
+	
+	for i in len(candidatePlayers):
+		labels[i].text = candidatePlayers[i].name
+		labels[i].modulate = candidatePlayers[i].color
+	
+	monigotes = PlayerHandler.instantiatePlayers(self)
+	for m in monigotes:
+		m.makeInvincible()

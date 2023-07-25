@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://do8bj7ibxb71l"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://Scenes/BettingScreen/Leaderboard.gd" id="1_hulim"]
+[ext_resource type="Script" path="res://Scenes/BettingScreenOld/Leaderboard.gd" id="1_hulim"]
 
 [node name="Leaderboard" type="RichTextLabel"]
 anchors_preset = 8
