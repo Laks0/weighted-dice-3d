@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_1uqt4"]
 [ext_resource type="Script" path="res://Scenes/BettingScreen/BettingScreen.gd" id="1_4jx4r"]
+[ext_resource type="PackedScene" uid="uid://d18stawu3u81s" path="res://Classes/BettingChip/BettingChip.tscn" id="2_5r27g"]
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_ixa5d"]
-[ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="4_65qka"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ocxbq"]
 rough = true
@@ -26,7 +26,7 @@ size = Vector3(0.717893, 1, 1.26517)
 
 [node name="BettingScreen" type="Node3D"]
 script = ExtResource("1_4jx4r")
-monigoteResource = ExtResource("4_65qka")
+chipResource = ExtResource("2_5r27g")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 collision_layer = 4

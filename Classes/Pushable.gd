@@ -56,7 +56,7 @@ func push():
 
 func onGrabbing():
 	# Determina la fuerza dependiendo del tiempo
-	var t = (maxGrabTime - timer.time_left) / maxGrabTime # Para que vaya del 0 al 1
+	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
 	pushFactor = (pow(t, 3) * 4/5 + .2) # t³ * 4/5 + .2
 	grabBody.color = Color(1, 1-pushFactor, 1-pushFactor)
 	
@@ -64,5 +64,5 @@ func onGrabbing():
 	var dir3d := Vector3(grabDir.x, 0, grabDir.y)
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
-	var newPosition = position + dir3d.normalized() * grabDistance
+	var newPosition = position + dir3d.normalized() * grabBody.grabDistance
 	grabBody.position = newPosition
