@@ -16,6 +16,7 @@ func onPushed(dir : Vector2, factor : float):
 	var velocity2d = maxPushForce * dir * factor
 	velocity = Vector3(velocity2d.x, 0, velocity2d.y)
 
-func _physics_process(_delta):
-	velocity = lerp(velocity, Vector3.ZERO, .1)
+func _physics_process(delta):
+	velocity = lerp(velocity, Vector3.ZERO, .12)
+	super(delta)
 	move_and_slide()

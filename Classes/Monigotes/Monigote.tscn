@@ -1422,7 +1422,6 @@ radius = 0.094
 height = 0.563633
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
-height = 0.194
 radius = 0.629883
 
 [node name="Monigote" type="CharacterBody3D"]
@@ -1481,7 +1480,6 @@ one_shot = true
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="."]
-visible = false
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]

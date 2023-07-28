@@ -60,6 +60,7 @@ collision_mask = 7
 script = ExtResource("1_spth3")
 grabDistance = 0.36
 maxPushForce = 30
+affectedByGravity = true
 
 [node name="FichaPoker" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

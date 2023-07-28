@@ -6,6 +6,8 @@ class_name Pushable
 
 @export var maxPushForce : int = 20 # La fuerza máxima a la que _es empujado_
 
+@export var affectedByGravity : bool = false
+
 var grabbing   := false
 var grabbed    := false
 var grabDir    := Vector2.RIGHT
@@ -53,6 +55,14 @@ func push():
 	timer.stop()
 	
 	grabBody.onPushed(grabDir, pushFactor)
+
+func _physics_process(delta):
+	if grabbed:
+		return
+	
+	var nonYVel = Vector2(velocity.x, velocity.z)
+	if nonYVel.length() < maxPushForce/2 and affectedByGravity:
+		velocity.y = -1
 
 func onGrabbing():
 	# Determina la fuerza dependiendo del tiempo
