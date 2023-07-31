@@ -3,7 +3,7 @@ extends Node3D
 @export var chipResource : PackedScene
 @export var betBoothResource : PackedScene
 
-var booths : Array[BetBooth]
+var _booths : Array[BetBooth]
 
 var _boothSeparation = 2
 
@@ -17,7 +17,7 @@ func _ready():
 		var booth : BetBooth = betBoothResource.instantiate()
 		booth.candidate = c
 		booth.position = startingPos + Vector3.RIGHT * _boothSeparation * i
-		booths.append(booth)
+		_booths.append(booth)
 		add_child(booth)
 		i += 1
 	
@@ -38,6 +38,7 @@ func _setupChips():
 		
 		i += 1
 
-func _getBoothStartingPosition(n : int) -> Vector3:
+## La posición del primer booth dado n candidatos y separación _boothSeparation
+func _getBoothStartingPosition(n : float) -> Vector3:
 	var x = - _boothSeparation * (n-1) / 2
 	return Vector3(x, 0, -2.5)

@@ -36,6 +36,12 @@ func onGrabbed():
 func onPushed(dir : Vector2, factor : float):
 	grabbed = false
 	color = Color.WHITE
+	
+	# Permite colisionar con el que lo agarró devuelta
+	# IMPORTANTE: esto significa que los pushables no pueden tener excepciones
+	# de colisión
+	for e in get_collision_exceptions():
+		remove_collision_exception_with(e)
 
 func startGrab(body : Pushable):
 	if not canGrab():
@@ -69,6 +75,9 @@ func onGrabbing():
 	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
 	pushFactor = (pow(t, 3) * 4/5 + .2) # t³ * 4/5 + .2
 	grabBody.color = Color(1, 1-pushFactor, 1-pushFactor)
+	
+	# Prohibe al cuerpo colisionar con el que lo agarra
+	grabBody.add_collision_exception_with(self)
 	
 	# Pone el cuerpo agarrado a grabDistance de distancia en la dirección de grabDir
 	var dir3d := Vector3(grabDir.x, 0, grabDir.y)
