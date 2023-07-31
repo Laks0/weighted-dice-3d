@@ -4,7 +4,7 @@ class_name Pushable
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
 
-@export var maxPushForce : int = 20 # La fuerza máxima a la que _es empujado_
+@export var maxPushForce : float = 20 ## La fuerza máxima a la que _es empujado_
 
 @export var affectedByGravity : bool = false
 
@@ -24,7 +24,7 @@ func _ready():
 	
 	timer.connect("timeout", Callable(self, "push"))
 
-func canBeGrabbed() -> bool:
+func canBeGrabbed(_grabber) -> bool:
 	return true
 
 func canGrab() -> bool:
@@ -33,7 +33,7 @@ func canGrab() -> bool:
 func onGrabbed():
 	grabbed = true
 
-func onPushed(dir : Vector2, factor : float):
+func onPushed(_dir : Vector2, _factor : float):
 	grabbed = false
 	color = Color.WHITE
 	
@@ -43,11 +43,12 @@ func onPushed(dir : Vector2, factor : float):
 	for e in get_collision_exceptions():
 		remove_collision_exception_with(e)
 
-func startGrab(body : Pushable):
+## Devuelve si el grab fue exitoso o no
+func startGrab(body : Pushable) -> bool:
 	if not canGrab():
-		return
-	if not body.canBeGrabbed():
-		return
+		return false
+	if not body.canBeGrabbed(self):
+		return false
 	
 	grabbing = true
 	
@@ -55,6 +56,7 @@ func startGrab(body : Pushable):
 	
 	grabBody = body
 	body.onGrabbed()
+	return true
 
 func push():
 	grabbing = false
@@ -66,9 +68,8 @@ func _physics_process(delta):
 	if grabbed:
 		return
 	
-	var nonYVel = Vector2(velocity.x, velocity.z)
-	if nonYVel.length() < maxPushForce/2 and affectedByGravity:
-		velocity.y = -1
+	if affectedByGravity:
+		velocity.y -= 5 * delta
 
 func onGrabbing():
 	# Determina la fuerza dependiendo del tiempo

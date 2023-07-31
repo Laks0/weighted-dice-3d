@@ -73,7 +73,7 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_h5hyw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 2.143)
+transform = Transform3D(1, 0, 0, 0, 0.177085, 0.984196, 0, -0.984196, 0.177085, 0, 8.439, 1.758)
 fov = 47.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

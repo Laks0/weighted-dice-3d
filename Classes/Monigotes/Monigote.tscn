@@ -1430,6 +1430,15 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
+MAX_SPEED = null
+ACCELERATION = null
+FRICTION = null
+invincibleAfterHurtTime = null
+invincibleAfterPushTime = null
+maxGrabTime = null
+grabDistance = null
+maxPushForce = null
+affectedByGravity = null
 
 [node name="TomiSprite" type="AnimatedSprite3D" parent="."]
 visible = false

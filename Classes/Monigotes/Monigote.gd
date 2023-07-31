@@ -47,7 +47,9 @@ func _process(_delta):
 			if not body is Pushable or body == self:
 				continue
 			
-			startGrab(body)
+			var success : bool = startGrab(body)
+			if !success:
+				continue
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
@@ -104,7 +106,7 @@ func _physics_process(delta):
 		sprite.animation = "Grabbing"
 		sprite.frame = vecToDir(grabDir)
 
-func canBeGrabbed() -> bool:
+func canBeGrabbed(_grabber) -> bool:
 	return not invincible
 
 func onGrabbing():
