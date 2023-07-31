@@ -68,5 +68,5 @@ func endGame():
 #	var lastStanding : Monigote = get_tree().get_nodes_in_group("Monigote")[0]
 	BetHandler.settleBet()
 	
-	get_tree().change_scene_to_file("res://Escenas/BettingScreen/BettingScreen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
 

@@ -9,8 +9,7 @@ class Player:
 	var name : String
 	var inputController : int
 	var bank : int = 10
-	var betAmount : int = 0
-	var bettingOn
+	var bets : Dictionary
 	var color : Color
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
@@ -33,9 +32,8 @@ class Player:
 		elif id == Skins.GREEN:
 			color = Color(0,1,0)
 
-	func setBet(amount : int, expect : int):
-		betAmount = amount
-		bettingOn = expect
+	func setBet(amount : int, candidate : int):
+		bets[candidate] = amount
 	
 	func isStillPlaying() -> bool:
 		return bank >= BetHandler.getMinimunBet()
@@ -58,12 +56,13 @@ func createPlayer(controller : int, id : int, _name : String):
 
 func instantiatePlayers(parent) -> Array[Monigote]:
 	var i = 0
+	@warning_ignore("unassigned_variable")
 	var monigotes : Array[Monigote]
 	for player in getPlayersAlive():
 		var monigote := monigoteResource.instantiate() as Monigote
 		
 		monigote.player   = player
-		monigote.position = Vector3((i+1) -5, Globals.SPRITE_HEIGHT, -1)
+		monigote.position = Vector3((i+1) -5, Globals.SPRITE_HEIGHT, 1)
 		
 		monigotes.append(monigote)
 		parent.add_child(monigote)

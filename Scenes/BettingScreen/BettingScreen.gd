@@ -2,6 +2,7 @@ extends Node3D
 
 @export var chipResource : PackedScene
 @export var betBoothResource : PackedScene
+@export var arenaScene : PackedScene
 
 var _booths : Array[BetBooth]
 
@@ -29,12 +30,26 @@ func _ready():
 
 func _setupChips():
 	var i = 0
-	for p in PlayerHandler.getPlayersAlive():
-		var pos = Vector3(i * 2, .4, 2)
-		var chip : BettingChip = chipResource.instantiate()
-		chip.setPlayer(p)
-		chip.position = pos
-		add_child(chip)
+	var players := PlayerHandler.getPlayersAlive()
+	var startPos = _getBoothStartingPosition(len(players)) + Vector3.BACK * 4.5
+	for p in players:
+		var j = 0
+		var pos = startPos + Vector3.RIGHT * 2 * i # La posición de las fichas
+		
+		# La label con el número de fichas
+		var label = Label3D.new()
+		label.text = str(p.bank)
+		label.modulate = p.color
+		label.position = pos + Vector3.BACK * .5 + Vector3.UP * .2
+		label.billboard = true
+		add_child(label)
+		
+		for b in p.bank:
+			var chip : BettingChip = chipResource.instantiate()
+			chip.setPlayer(p)
+			chip.position = pos + Vector3(0, j * .1, 0)
+			add_child(chip)
+			j += 1
 		
 		i += 1
 
@@ -42,3 +57,23 @@ func _setupChips():
 func _getBoothStartingPosition(n : float) -> Vector3:
 	var x = - _boothSeparation * (n-1) / 2
 	return Vector3(x, 0, -2.5)
+
+var _playersReady : int = 0
+
+func _startGame():
+	for player in PlayerHandler.getPlayersAlive():
+		for booth in _booths:
+			player.setBet(booth.getChips(player.id), booth.candidate)
+	
+	get_tree().change_scene_to_packed(arenaScene)
+
+func onPlayerReady(body):
+	if body is Monigote:
+		_playersReady += 1
+	
+	if _playersReady == PlayerHandler.amountOfPlayersLeft():
+		_startGame()
+
+func onPlayerUnready(body):
+	if body is Monigote:
+		_playersReady -= 1
