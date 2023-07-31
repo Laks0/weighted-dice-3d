@@ -1,15 +1,18 @@
 extends Pushable
 class_name BettingChip
 
-var player : PlayerHandler.Player
+var _player : PlayerHandler.Player
 
 func setPlayer(p : PlayerHandler.Player):
-	player = p
+	_player = p
 	# Super específico a como es la mesh de la ficha. (DEBUG)
 	var material := StandardMaterial3D.new()
 	material.albedo_color = p.color
 	$FichaPoker.set_surface_override_material(0, material)
 	$FichaPoker.set_surface_override_material(2, material)
+
+func getPlayerId() -> int:
+	return _player.id
 
 func onPushed(dir : Vector2, factor : float):
 	super(dir, factor)

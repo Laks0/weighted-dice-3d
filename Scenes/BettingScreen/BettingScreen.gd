@@ -1,28 +1,33 @@
 extends Node3D
 
 @export var chipResource : PackedScene
+@export var betBoothResource : PackedScene
 
-var candidatePlayers : Array
-var monigotes : Array[Monigote]
+var booths : Array[BetBooth]
+
+var _boothSeparation = 2
 
 func _ready():
 	BetHandler.startRound()
 	var candidates : Array = BetHandler.getCandidates()
 	
-	var labels = $Labels.get_children()
+	var startingPos = _getBoothStartingPosition(len(candidates))
+	var i = 0
+	for c in candidates:
+		var booth : BetBooth = betBoothResource.instantiate()
+		booth.candidate = c
+		booth.position = startingPos + Vector3.RIGHT * _boothSeparation * i
+		booths.append(booth)
+		add_child(booth)
+		i += 1
 	
-	# Por ahora asumo que siempre son jugadores
-	# Agarra las ids y las transforma en el objeto Player
-	candidatePlayers = candidates.map(func (id : int): return PlayerHandler.getPlayerById(id))
-	
-	for i in len(candidatePlayers):
-		labels[i].text = candidatePlayers[i].name
-		labels[i].modulate = candidatePlayers[i].color
-	
-	monigotes = PlayerHandler.instantiatePlayers(self)
+	var monigotes := PlayerHandler.instantiatePlayers(self)
 	for m in monigotes:
 		m.makeInvincible()
 	
+	_setupChips()
+
+func _setupChips():
 	var i = 0
 	for p in PlayerHandler.getPlayersAlive():
 		var pos = Vector3(i * 2, .4, 2)
@@ -32,3 +37,7 @@ func _ready():
 		add_child(chip)
 		
 		i += 1
+
+func _getBoothStartingPosition(n : int) -> Vector3:
+	var x = - _boothSeparation * (n-1) / 2
+	return Vector3(x, 0, -2.5)

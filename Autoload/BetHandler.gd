@@ -25,8 +25,7 @@ func startRound() -> void:
 	currentBet = bets.pick_random()
 
 func getCandidates():
-	var allPlayers = PlayerHandler.getPlayersAlive() \
-		.map(func(p : PlayerHandler.Player): return p.id)
+	var allPlayers = PlayerHandler.getPlayersAliveById()
 	
 	match currentBet.betType:
 		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:

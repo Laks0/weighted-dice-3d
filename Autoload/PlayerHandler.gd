@@ -113,6 +113,9 @@ var firstToDie : int = -1
 func getPlayersAlive() -> Array[Player]:
 	return players.filter(func(p : Player): return p.isStillPlaying())
 
+func getPlayersAliveById() -> Array:
+	return getPlayersAlive().map(func(p: Player): return p.id)
+
 func deleteAllPlayers():
 	players = []
 

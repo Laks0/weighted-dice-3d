@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/BettingScreen/BettingScreen.gd" id="1_4jx4r"]
 [ext_resource type="PackedScene" uid="uid://d18stawu3u81s" path="res://Classes/BettingChip/BettingChip.tscn" id="2_5r27g"]
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_ixa5d"]
+[ext_resource type="PackedScene" uid="uid://cr1bm4whotu40" path="res://Scenes/BettingScreen/BetBooth.tscn" id="5_8u4g1"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j3d4r"]
 plane = Plane(0, 0, 1, 0)
@@ -24,12 +25,10 @@ point_size = 128.0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h5hyw"]
 data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kf1lm"]
-size = Vector3(0.717893, 1, 1.26517)
-
 [node name="BettingScreen" type="Node3D"]
 script = ExtResource("1_4jx4r")
 chipResource = ExtResource("2_5r27g")
+betBoothResource = ExtResource("5_8u4g1")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 visible = false
@@ -82,61 +81,3 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.1
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
-
-[node name="Labels" type="Node3D" parent="."]
-
-[node name="Label3D" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.52284, 0.0781466, -2.10776)
-
-[node name="Label3D2" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.7778, 0.0781466, -2.10776)
-
-[node name="Label3D3" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.01471, 0.0781466, -2.10776)
-
-[node name="Label3D4" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.266702, 0.0781466, -2.10776)
-
-[node name="Label3D5" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.486017, 0.0781466, -2.10776)
-
-[node name="Label3D6" type="Label3D" parent="Labels"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.24486, 0.0781466, -2.10776)
-
-[node name="Areas" type="Node3D" parent="."]
-
-[node name="Area3D" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54402, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D"]
-shape = SubResource("BoxShape3D_kf1lm")
-
-[node name="Area3D2" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77008, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D2"]
-shape = SubResource("BoxShape3D_kf1lm")
-
-[node name="Area3D3" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0233, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D3"]
-shape = SubResource("BoxShape3D_kf1lm")
-
-[node name="Area3D4" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.267459, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D4"]
-shape = SubResource("BoxShape3D_kf1lm")
-
-[node name="Area3D5" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492904, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D5"]
-shape = SubResource("BoxShape3D_kf1lm")
-
-[node name="Area3D6" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25634, 0, -1.62503)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D6"]
-shape = SubResource("BoxShape3D_kf1lm")
