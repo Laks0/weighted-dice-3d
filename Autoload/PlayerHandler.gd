@@ -35,6 +35,9 @@ class Player:
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
 	
+	func getAmountBettedOn(candidate : int):
+		return bets[candidate]
+	
 	func isStillPlaying() -> bool:
 		return bank >= BetHandler.getMinimunBet()
 

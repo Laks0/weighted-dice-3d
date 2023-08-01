@@ -6,6 +6,7 @@ const firstToDie := preload("res://Autoload/Bets/FirstToDie.gd")
 
 var currentBet : Bet
 
+@warning_ignore("shadowed_global_identifier")
 var round : int = 0
 
 func _ready():
@@ -13,12 +14,14 @@ func _ready():
 		firstToDie.new()
 	]
 
+## Empieza la ronda de arena
 func startGame(arena : Arena):
 	if currentBet == null:
 		startRound()
 	
 	currentBet.startGame(arena)
 
+## Empieza la ronda de apuestas
 func startRound() -> void:
 	round += 1
 	
@@ -42,8 +45,19 @@ func canBet(playerId : int, candidate) -> bool:
 func getMinimunBet():
 	return round * 2
 
-func settleBet() -> void:
+## Determina el resultado de la apuesta y premia/castiga a los jugadores
+func settleBet(winnerId : int) -> void:
 	currentBet.settle()
+	
+	for player in PlayerHandler.getPlayersAlive():
+		for candidate in getCandidates():
+			var odds = 2 # DEBUG la apuesta siempre se duplica
+			player.bank -= player.getAmountBettedOn(candidate)
+			if (hasWon(candidate)):
+				player.bank += player.getAmountBettedOn(candidate) * odds
+		
+		if player.id == winnerId:
+			player.bank += round * 2
 
 func hasWon(res) -> bool:
 	return currentBet.hasWon(res)

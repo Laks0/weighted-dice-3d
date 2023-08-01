@@ -62,11 +62,11 @@ func onMonigoteDeath(mon : Monigote):
 		firstToDie = mon.player.id
 	
 	if monigotesAlive <= 1:
-		endGame()
+		endGame(getLivingMonigotes()[0].player.id)
 
-func endGame():
+func endGame(winnerId : int):
 #	var lastStanding : Monigote = get_tree().get_nodes_in_group("Monigote")[0]
-	BetHandler.settleBet()
+	BetHandler.settleBet(winnerId)
 	
 	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
 
