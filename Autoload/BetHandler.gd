@@ -3,6 +3,7 @@ extends Node
 var bets : Array[Bet]
 
 const firstToDie := preload("res://Autoload/Bets/FirstToDie.gd")
+const mostGrabs := preload("res://Autoload/Bets/MostGrabs.gd")
 
 var currentBet : Bet
 
@@ -11,7 +12,8 @@ var round : int = 0
 
 func _ready():
 	bets = [
-		firstToDie.new()
+		firstToDie.new(),
+		mostGrabs.new(),
 	]
 
 ## Empieza la ronda de arena

@@ -11,10 +11,12 @@ var monigotesAlive : int = 0
 
 var gameTime : float = 0
 
+var monigotes : Array[Monigote]
+
 var firstToDie : int = -1
 
 func _ready():
-	var monigotes := PlayerHandler.instantiatePlayers(self)
+	monigotes = PlayerHandler.instantiatePlayers(self)
 	monigotesAlive = len(monigotes)
 	
 	for m in monigotes:
@@ -44,12 +46,7 @@ func startEffect(n : int):
 	$HUD.effectStarted(effects[activeEffect].effectName)
 
 func getLivingMonigotes() -> Array[Monigote]:
-	var monigotes : Array[Monigote] = []
-	for child in get_children():
-		if child is Monigote and child.health > 0:
-			monigotes.append(child)
-	
-	return monigotes
+	return monigotes.filter(func (mon : Monigote): return mon.health > 0)
 
 func getRandomMonigote() -> Monigote:
 	var monigotes := getLivingMonigotes()
@@ -65,7 +62,6 @@ func onMonigoteDeath(mon : Monigote):
 		endGame(getLivingMonigotes()[0].player.id)
 
 func endGame(winnerId : int):
-#	var lastStanding : Monigote = get_tree().get_nodes_in_group("Monigote")[0]
 	BetHandler.settleBet(winnerId)
 	
 	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")

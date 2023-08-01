@@ -24,6 +24,8 @@ var invincible  := false
 
 var sprite : AnimatedSprite3D
 
+var grabs : int = 0 ## Cantidad de veces que aggaró a alguien. Para MostGrabs
+
 func _ready():
 	match player.id:
 		PlayerHandler.Skins.BLUE:
@@ -50,13 +52,15 @@ func _process(_delta):
 			var success : bool = startGrab(body)
 			if !success:
 				continue
+			if body is Monigote:
+				grabs += 1
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
 	sprite.modulate = color
-	if invincible:
+	if invincible and $HurtTime.one_shot:
 		sprite.modulate.a = .7
 	else:
 		sprite.modulate.a = 1
