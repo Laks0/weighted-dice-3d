@@ -59,3 +59,7 @@ shape = SubResource("BoxShape3D_410r7")
 [node name="Name" type="Label3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0.158735, -1.78189)
 text = "Candidate"
+
+[node name="Odds" type="Label3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 1.89892e-08, 0.158735, -1.9991)
+text = "Candidate"

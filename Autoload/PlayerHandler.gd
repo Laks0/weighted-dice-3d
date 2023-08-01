@@ -83,9 +83,11 @@ func getPlayerById(id : int) -> Player:
 func getPlayerByIndex(index : int) -> Player:
 	return players[index]
 
+## Devuelve una lista con los jugadores ordenados de mayor a menor cantidad de fichas
 func getPlayersInOrder() -> Array:
 	var list = []
 	
+	# Selection sort
 	for _i in range(len(players)):
 		var maxBank = -100
 		for p in players:

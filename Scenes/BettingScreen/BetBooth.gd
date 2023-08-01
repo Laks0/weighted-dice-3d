@@ -8,6 +8,8 @@ func _ready():
 	var player : PlayerHandler.Player = PlayerHandler.getPlayerById(candidate)
 	$Name.text = player.name
 	$Name.modulate = player.color
+	
+	$Odds.text = "x" + str(BetHandler.getCandidateOdds(candidate))
 
 ## La cantidad de fichas que puso un jugador dado en el candidato del booth
 func getChips(playerId : int) -> int:

@@ -22,3 +22,6 @@ func settle():
 
 func hasWon(candidate) -> bool:
 	return candidate in _result
+
+func getCandidateOdds(_candidate) -> int:
+	return 2

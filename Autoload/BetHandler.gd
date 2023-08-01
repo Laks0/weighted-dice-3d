@@ -7,7 +7,6 @@ const mostGrabs := preload("res://Autoload/Bets/MostGrabs.gd")
 
 var currentBet : Bet
 
-@warning_ignore("shadowed_global_identifier")
 var round : int = 0
 
 func _ready():
@@ -41,6 +40,9 @@ func getCandidates():
 	
 	return []
 
+func getCandidateOdds(candidate) -> int:
+	return currentBet.getCandidateOdds(candidate)
+
 func canBet(playerId : int, candidate) -> bool:
 	if currentBet.betType == Bet.BetType.EXCLUDE_SELF:
 		return candidate != playerId
@@ -56,7 +58,7 @@ func settleBet(winnerId : int) -> void:
 	
 	for player in PlayerHandler.getPlayersAlive():
 		for candidate in getCandidates():
-			var odds = 2 # DEBUG la apuesta siempre se duplica
+			var odds = getCandidateOdds(candidate)
 			player.bank -= player.getAmountBettedOn(candidate)
 			if (hasWon(candidate)):
 				player.bank += player.getAmountBettedOn(candidate) * odds
