@@ -8,7 +8,7 @@ class Player:
 	var id : int
 	var name : String
 	var inputController : int
-	var bank : int = 10
+	var bank : int = 5
 	var bets : Dictionary
 	var color : Color
 	

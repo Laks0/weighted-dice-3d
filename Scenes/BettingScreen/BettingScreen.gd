@@ -10,6 +10,7 @@ var _boothSeparation = 2
 
 func _ready():
 	BetHandler.startRound()
+	$BetName.text = BetHandler.getBetName()
 	var candidates : Array = BetHandler.getCandidates()
 	
 	var startingPos = _getBoothStartingPosition(len(candidates))

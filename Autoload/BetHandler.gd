@@ -27,6 +27,9 @@ func startRound() -> void:
 	
 	currentBet = bets.pick_random()
 
+func getBetName() -> String:
+	return currentBet.betName
+
 func getCandidates():
 	var allPlayers = PlayerHandler.getPlayersAliveById()
 	
