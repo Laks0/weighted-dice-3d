@@ -4,10 +4,8 @@ class_name BetBooth
 var candidate : int = 0
 
 func _ready():
-	# DEBUG. Por ahora asumo que todos los candidatos son jugadores
-	var player : PlayerHandler.Player = PlayerHandler.getPlayerById(candidate)
-	$Name.text = player.name
-	$Name.modulate = player.color
+	$Name.text = BetHandler.getCandidateName(candidate)
+	$Name.modulate = BetHandler.getCandidateColor(candidate)
 	
 	$Odds.text = "x" + str(BetHandler.getCandidateOdds(candidate))
 

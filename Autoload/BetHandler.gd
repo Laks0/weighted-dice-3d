@@ -40,6 +40,20 @@ func getCandidates():
 	
 	return []
 
+func getCandidateName(candidate) -> String:
+	match currentBet.betType:
+		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
+			return PlayerHandler.getPlayerById(candidate).name
+	
+	return str(candidate)
+
+func getCandidateColor(candidate) -> Color:
+	match currentBet.betType:
+		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
+			return PlayerHandler.getPlayerById(candidate).color
+	
+	return Color.WHITE
+
 func getCandidateOdds(candidate) -> int:
 	return currentBet.getCandidateOdds(candidate)
 
