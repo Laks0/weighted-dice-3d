@@ -3,7 +3,8 @@ extends Node
 var bets : Array[Bet]
 
 const firstToDie := preload("res://Autoload/Bets/FirstToDie.gd")
-const mostGrabs := preload("res://Autoload/Bets/MostGrabs.gd")
+const mostGrabs  := preload("res://Autoload/Bets/MostGrabs.gd")
+const gameTime   := preload("res://Autoload/Bets/GameTime.gd")
 
 var currentBet : Bet
 
@@ -13,6 +14,7 @@ func _ready():
 	bets = [
 		firstToDie.new(),
 		mostGrabs.new(),
+		gameTime.new(),
 	]
 
 ## Empieza la ronda de arena
@@ -32,27 +34,13 @@ func getBetName() -> String:
 	return currentBet.betName
 
 func getCandidates():
-	var allPlayers = PlayerHandler.getPlayersAliveById()
-	
-	match currentBet.betType:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
-			return allPlayers
-	
-	return []
+	return Bet.getCandidates(currentBet.betType)
 
 func getCandidateName(candidate) -> String:
-	match currentBet.betType:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
-			return PlayerHandler.getPlayerById(candidate).name
-	
-	return str(candidate)
+	return Bet.getCandidateName(currentBet.betType, candidate)
 
 func getCandidateColor(candidate) -> Color:
-	match currentBet.betType:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
-			return PlayerHandler.getPlayerById(candidate).color
-	
-	return Color.WHITE
+	return Bet.getCandidateColor(currentBet.betType, candidate)
 
 func getCandidateOdds(candidate) -> int:
 	return currentBet.getCandidateOdds(candidate)
