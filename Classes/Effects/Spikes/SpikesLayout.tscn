@@ -1,0 +1,211 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1wca58rqkpw7"]
+
+[ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_cs62o"]
+[ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_mve7x"]
+[ext_resource type="PackedScene" uid="uid://o4qvulj5o50g" path="res://Classes/Effects/Spikes/Spike.tscn" id="3_6fsq6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yw8jq"]
+rough = true
+bounce = 0.89
+absorbent = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wi70p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vggan"]
+albedo_texture = ExtResource("1_cs62o")
+uv1_scale = Vector3(-3.937, -3.937, -3.937)
+uv1_offset = Vector3(0.453, -0.013, 0)
+point_size = 128.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eg8a4"]
+data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
+
+[node name="SpikesLayout" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_yw8jq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_wi70p")
+
+[node name="Mesa" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+material_override = SubResource("StandardMaterial3D_vggan")
+gi_mode = 0
+mesh = ExtResource("2_mve7x")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
+visible = false
+shape = SubResource("ConcavePolygonShape3D_eg8a4")
+
+[node name="Right" type="Node3D" parent="."]
+
+[node name="Spike" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike2" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Left" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Spike" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike2" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Up" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.160539, 0, 2.42191)
+
+[node name="Spike" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike14" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.1)
+
+[node name="Spike15" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.7)
+
+[node name="Spike16" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 4.3)
+
+[node name="Spike2" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Spike11" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -3.5)
+
+[node name="Spike12" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.1)
+
+[node name="Spike13" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
+
+[node name="Down" type="Node3D" parent="."]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 0, 0, -2.503)
+
+[node name="Spike" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike14" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.1)
+
+[node name="Spike15" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.7)
+
+[node name="Spike16" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 4.3)
+
+[node name="Spike2" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Spike11" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -3.5)
+
+[node name="Spike12" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.1)
+
+[node name="Spike13" parent="Down" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)

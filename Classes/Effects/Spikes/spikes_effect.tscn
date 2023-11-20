@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx1tfik0chsfl"]
+
+[ext_resource type="Script" path="res://Classes/Effects/Spikes/SpikesEffect.gd" id="1_ogj0k"]
+
+[node name="SpikesEffect" type="Node"]
+script = ExtResource("1_ogj0k")

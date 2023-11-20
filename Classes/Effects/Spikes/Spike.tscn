@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://o4qvulj5o50g"]
+
+[ext_resource type="Script" path="res://Classes/Effects/Spikes/Spike.gd" id="1_67m2x"]
+[ext_resource type="ArrayMesh" uid="uid://cdqda0rjvg455" path="res://Classes/Effects/Spikes/conoMesh.obj" id="2_vsrml"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oet0w"]
+radius = 0.297207
+height = 1.03967
+
+[node name="Spike" type="StaticBody3D"]
+script = ExtResource("1_67m2x")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.45, 0)
+mesh = ExtResource("2_vsrml")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35359, 0)
+shape = SubResource("CapsuleShape3D_oet0w")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

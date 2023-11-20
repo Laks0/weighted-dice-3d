@@ -69,6 +69,7 @@ collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_ocxbq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 visible = false
 shape = SubResource("WorldBoundaryShape3D_05q8l")
 
@@ -105,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.1462
 text = "READY"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ReadyArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1374, 0.0916281, 0.779888)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1374, 0.0678512, 0.779888)
 transparency = 0.77
 mesh = SubResource("PlaneMesh_4chkg")
 

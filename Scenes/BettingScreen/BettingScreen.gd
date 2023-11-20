@@ -41,7 +41,7 @@ func _setupChips():
 		var label = Label3D.new()
 		label.text = str(p.bank)
 		label.modulate = p.color
-		label.position = pos + Vector3.BACK * .5 + Vector3.UP * .2
+		label.position = pos + Vector3.BACK * .5 + Vector3.UP * 1
 		label.billboard = true
 		add_child(label)
 		

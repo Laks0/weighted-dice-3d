@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cdqda0rjvg455"
+path="res://.godot/imported/conoMesh.obj-549a670bb8aa47fa75fd7c9e9c0c500e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/conoMesh.obj-549a670bb8aa47fa75fd7c9e9c0c500e.mesh"]
+
+source_file="res://Classes/Effects/Spikes/conoMesh.obj"
+dest_files=["res://.godot/imported/conoMesh.obj-549a670bb8aa47fa75fd7c9e9c0c500e.mesh", "res://.godot/imported/conoMesh.obj-549a670bb8aa47fa75fd7c9e9c0c500e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -62,6 +62,8 @@ func _process(_delta):
 	sprite.modulate = color
 	if invincible and $HurtTime.one_shot:
 		sprite.modulate.a = .7
+	elif stunned:
+		sprite.modulate = Color.DARK_GRAY
 	else:
 		sprite.modulate.a = 1
 
@@ -71,6 +73,9 @@ func _physics_process(delta):
 	if grabbing:
 		dir = Vector2.ZERO
 		onGrabbing()
+	
+	if stunned:
+		dir = Vector2.ZERO
 	
 	moveVelocity += ACCELERATION * dir * delta
 	moveVelocity = moveVelocity.limit_length(MAX_SPEED)

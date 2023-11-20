@@ -58,6 +58,7 @@ radius = 1.0
 [node name="BettingChip" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 7
+slide_on_ceiling = false
 script = ExtResource("1_spth3")
 maxGrabTime = null
 grabDistance = 0.5
