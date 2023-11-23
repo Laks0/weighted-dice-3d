@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=4 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://Classes/HUD/DefaultTheme.tres" id="1_o0boa"]
 
 [node name="CharacterScreen" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
 
 [node name="GridContainer" type="GridContainer" parent="."]

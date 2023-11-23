@@ -6,7 +6,7 @@
 [node name="ChipsAreDownEffect" type="Node"]
 script = ExtResource("1_ar7g5")
 chipResource = ExtResource("2_asn4i")
-effectName = "Chips are down"
+effectName = "Chips Are Down"
 
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 0.6

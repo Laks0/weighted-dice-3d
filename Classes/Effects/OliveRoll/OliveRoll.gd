@@ -2,10 +2,10 @@ extends Effect
 
 @export var oliveResource : PackedScene
 
-const OLIVE_AMMOUNT = 5
+const OLIVE_AMOUNT = 5
 
 func start():
-	for _i in range(OLIVE_AMMOUNT):
+	for _i in range(OLIVE_AMOUNT):
 		var pos := Globals.getRandomArenaPosition()
 		
 		var olive = oliveResource.instantiate()

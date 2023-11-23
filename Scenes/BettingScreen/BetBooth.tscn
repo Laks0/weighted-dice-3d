@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr1bm4whotu40"]
+[gd_scene load_steps=9 format=3 uid="uid://cr1bm4whotu40"]
 
 [ext_resource type="Script" path="res://Scenes/BettingScreen/BetBooth.gd" id="1_mdepd"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_yykp4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gj3mh"]
 albedo_color = Color(0.541176, 0.223529, 0, 1)
@@ -59,7 +60,9 @@ shape = SubResource("BoxShape3D_410r7")
 [node name="Name" type="Label3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0.158735, -1.78189)
 text = "Candidate"
+font = ExtResource("2_yykp4")
 
 [node name="Odds" type="Label3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 1.89892e-08, 0.158735, -1.9991)
 text = "Candidate"
+font = ExtResource("2_yykp4")
