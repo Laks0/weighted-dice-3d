@@ -1,47 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1wca58rqkpw7"]
+[gd_scene load_steps=2 format=3 uid="uid://d1wca58rqkpw7"]
 
-[ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_cs62o"]
-[ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_mve7x"]
 [ext_resource type="PackedScene" uid="uid://o4qvulj5o50g" path="res://Classes/Effects/Spikes/Spike.tscn" id="3_6fsq6"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yw8jq"]
-rough = true
-bounce = 0.89
-absorbent = true
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wi70p"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vggan"]
-albedo_texture = ExtResource("1_cs62o")
-uv1_scale = Vector3(-3.937, -3.937, -3.937)
-uv1_offset = Vector3(0.453, -0.013, 0)
-point_size = 128.0
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eg8a4"]
-data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
-
 [node name="SpikesLayout" type="Node3D"]
-
-[node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
-collision_layer = 4
-collision_mask = 4
-physics_material_override = SubResource("PhysicsMaterial_yw8jq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-visible = false
-shape = SubResource("WorldBoundaryShape3D_wi70p")
-
-[node name="Mesa" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
-material_override = SubResource("StandardMaterial3D_vggan")
-gi_mode = 0
-mesh = ExtResource("2_mve7x")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
-visible = false
-shape = SubResource("ConcavePolygonShape3D_eg8a4")
 
 [node name="Right" type="Node3D" parent="."]
 

@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbg4fcgpv31yt"]
+
+[ext_resource type="Script" path="res://Classes/Effects/FullHouse/FullHouseEffect.gd" id="1_3hme3"]
+[ext_resource type="PackedScene" uid="uid://cbr1kxsjhj32d" path="res://Classes/Effects/FullHouse/Card.tscn" id="2_kkwc2"]
+
+[sub_resource type="Animation" id="Animation_08o78"]
+resource_name = "BottomUp"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [Vector3(-4, 0, 4.5), Vector3(0, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(0, 0, 4.5), Vector3(0, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(4, 0, 4.5), Vector3(0, 0, -1)],
+"method": &"createCard"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_o864y"]
+resource_name = "TopDown"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [Vector3(-4, 0, -4.5), Vector3(0, 0, 1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(0, 0, -4.5), Vector3(0, 0, 1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(4, 0, -4.5), Vector3(0, 0, 1)],
+"method": &"createCard"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_au5ns"]
+resource_name = "SEtoNW"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector3(7, 0, 4.5), Vector3(-1, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(7, 0, 1), Vector3(-1, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(4, 0, 4.5), Vector3(-1, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(1, 0, 4.5), Vector3(-1, 0, -1)],
+"method": &"createCard"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rihy"]
+_data = {
+"BottomUp": SubResource("Animation_08o78"),
+"SEtoNW": SubResource("Animation_au5ns"),
+"TopDown": SubResource("Animation_o864y")
+}
+
+[node name="FullHouseEffect" type="Node"]
+script = ExtResource("1_3hme3")
+CardScene = ExtResource("2_kkwc2")
+effectName = "Full House"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3rihy")
+}
