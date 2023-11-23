@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=21 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="1_akum6"]
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="8_ycw3d"]
 [ext_resource type="PackedScene" uid="uid://d1wca58rqkpw7" path="res://Classes/Effects/Spikes/SpikesLayout.tscn" id="9_r8rts"]
+[ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -133,3 +134,5 @@ SpikesLayout = ExtResource("9_r8rts")
 [node name="OliveRollEffect" parent="Effects" instance=ExtResource("5_ed70i")]
 
 [node name="ChipsAreDownEffect" parent="Effects" instance=ExtResource("6_x3vxf")]
+
+[node name="MindTheGapEffect" parent="Effects" instance=ExtResource("12_yk85d")]

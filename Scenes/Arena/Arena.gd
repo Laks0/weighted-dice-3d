@@ -5,6 +5,9 @@ class_name Arena
 
 @onready var effects : Array = $Effects.get_children()
 
+const WIDTH = 11
+const HEIGHT = 6
+
 # Active effect va de 0 a 5
 var activeEffect   : int = -1
 var monigotesAlive : int = 0
@@ -45,11 +48,11 @@ func startEffect(n : int):
 	
 	$HUD.effectStarted(effects[activeEffect].effectName)
 
+# Esta función queda Legacy pero sigue teniendo sentido como un getter
 func getLivingMonigotes() -> Array[Monigote]:
-	return monigotes.filter(func (mon : Monigote): return mon.health > 0)
+	return monigotes
 
 func getRandomMonigote() -> Monigote:
-	var monigotes := getLivingMonigotes()
 	return monigotes[randi() % len(monigotes)]
 
 func onMonigoteDeath(mon : Monigote):
@@ -58,8 +61,10 @@ func onMonigoteDeath(mon : Monigote):
 	if firstToDie == -1:
 		firstToDie = mon.player.id
 	
+	monigotes.erase(mon)
+	
 	if monigotesAlive <= 1:
-		endGame(getLivingMonigotes()[0].player.id)
+		endGame(monigotes[0].player.id)
 
 func endGame(winnerId : int):
 	BetHandler.settleBet(winnerId)

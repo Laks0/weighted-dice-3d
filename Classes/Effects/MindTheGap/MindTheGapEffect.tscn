@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs1h7cfuyhx81"]
+
+[ext_resource type="Script" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.gd" id="1_1xma8"]
+[ext_resource type="PackedScene" uid="uid://6k85bif87r1q" path="res://Classes/Effects/MindTheGap/Gap.tscn" id="2_bnwej"]
+
+[node name="MindTheGapEffect" type="Node"]
+script = ExtResource("1_1xma8")
+GapScene = ExtResource("2_bnwej")
