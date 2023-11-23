@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=21 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
@@ -9,6 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="7_7ki2k"]
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="8_ycw3d"]
+[ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="12_ob7p2"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
 [ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
 
@@ -135,3 +136,5 @@ shadow_blur = 2.578
 [node name="MindTheGapEffect" parent="Effects" instance=ExtResource("12_yk85d")]
 
 [node name="FullHouseEffect" parent="Effects" instance=ExtResource("12_v5pfw")]
+
+[node name="AllInEffect" parent="Effects" instance=ExtResource("12_ob7p2")]

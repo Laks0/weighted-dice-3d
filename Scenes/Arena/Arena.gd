@@ -32,6 +32,8 @@ func _ready():
 	$Die.rolled.connect(startEffect)
 	
 	BetHandler.startGame(self)
+	
+	startEffect(5)
 
 func _process(delta):
 	gameTime += delta
@@ -71,3 +73,5 @@ func endGame(winnerId : int):
 	
 	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
 
+func getMainLight() -> DirectionalLight3D:
+	return $DirectionalLight3D

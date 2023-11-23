@@ -1424,7 +1424,7 @@ height = 0.563633
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
 radius = 0.629883
 
-[node name="Monigote" type="CharacterBody3D"]
+[node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true

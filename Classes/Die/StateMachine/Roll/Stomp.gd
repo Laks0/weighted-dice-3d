@@ -4,7 +4,7 @@ var result : int
 var die : Die
 
 func _on_enter(_args):
-	result = randi() % 5 # TODO: Cambiar a 6 cuando estén los 6 efectos
+	result = randi() % 6
 	
 	die = target as Die
 	

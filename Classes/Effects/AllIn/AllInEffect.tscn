@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://1vq3q5rv3j3a"]
+
+[ext_resource type="Script" path="res://Classes/Effects/AllIn/AllInEffect.gd" id="1_pbkt0"]
+[ext_resource type="PackedScene" uid="uid://culfgpoe3bjxa" path="res://Classes/Effects/AllIn/Portal.tscn" id="2_d8hlu"]
+
+[node name="AllInEffect" type="Node"]
+script = ExtResource("1_pbkt0")
+PortalScene = ExtResource("2_d8hlu")
+effectName = "ALL IN!"
