@@ -134,8 +134,18 @@ shape = SubResource("CapsuleShape3D_ihlre")
 transform = Transform3D(1, 0, 0, 0, 0.999263, -0.0383878, 0, 0.0383878, 0.999263, 0, 1.06463, 0)
 light_color = Color(0.917647, 0, 1, 1)
 light_energy = 7.818
+light_indirect_energy = 16.0
 light_specular = 15.409
+shadow_enabled = true
 spot_range = 8.816
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537069, 0)
+light_color = Color(0.917647, 0, 1, 1)
+light_energy = 7.391
+light_indirect_energy = 2.16
+omni_range = 3.55398
+omni_attenuation = 0.183011
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]

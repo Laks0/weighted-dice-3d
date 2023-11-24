@@ -32,6 +32,8 @@ func _ready():
 	%Die.rolled.connect(startEffect)
 	
 	BetHandler.startGame(self)
+	
+	startEffect(5)
 
 func _process(delta):
 	gameTime += delta
