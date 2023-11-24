@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmyacifxq8ln1"]
 
 [ext_resource type="Script" path="res://Classes/HUD/HUD.gd" id="1_4kvx0"]
-[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://Classes/HUD/DefaultTheme.tres" id="2_yj5an"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="2_yj5an"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3

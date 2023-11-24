@@ -18,6 +18,10 @@ class Player:
 	var powersUsed : int  = 0
 	var usingPower : bool = false
 	
+	# Variables para visualizar cambios en el leaderboard
+	var oldBank : int
+	var oldRank : int
+	
 	func _init(_name : String,_inputController :int = Controllers.KB,_id : int = Skins.RED):
 		name = _name
 		inputController = _inputController

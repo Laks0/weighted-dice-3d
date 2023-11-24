@@ -28,8 +28,8 @@ func _ready():
 	for e in effects:
 		e.create(self)
 	
-	$Die.prepareArrow = $PrepareArrow
-	$Die.rolled.connect(startEffect)
+	%Die.prepareArrow = $PrepareArrow
+	%Die.rolled.connect(startEffect)
 	
 	BetHandler.startGame(self)
 
@@ -69,7 +69,7 @@ func onMonigoteDeath(mon : Monigote):
 func endGame(winnerId : int):
 	BetHandler.settleBet(winnerId)
 	
-	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/RoundEnd/RoundEnd.tscn")
 
 func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D

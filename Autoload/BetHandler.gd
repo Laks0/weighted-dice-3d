@@ -10,6 +10,8 @@ var currentBet : Bet
 
 var round : int = 0
 
+var lastWinner : int = 0
+
 func _ready():
 	bets = [
 		firstToDie.new(),
@@ -52,10 +54,19 @@ func canBet(playerId : int, candidate) -> bool:
 	return true
 
 func getMinimunBet():
-	return round * 2
+	return 1 #round * 2
 
 ## Determina el resultado de la apuesta y premia/castiga a los jugadores
 func settleBet(winnerId : int) -> void:
+	lastWinner = winnerId
+	
+	# Guarda valores viejos
+	var ranks = PlayerHandler.getPlayersInOrder()
+	for i in range(ranks.size()):
+		ranks[i].oldRank = i + 1
+		ranks[i].oldBank = ranks[i].bank
+	
+	# Settle
 	currentBet.settle()
 	
 	for player in PlayerHandler.getPlayersAlive():

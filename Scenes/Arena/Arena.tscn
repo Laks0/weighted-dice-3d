@@ -101,12 +101,13 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.92792, 0, 0.228143)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
+[node name="Die" parent="." instance=ExtResource("2_gkaff")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
 fov = 47.0
-
-[node name="Die" parent="." instance=ExtResource("2_gkaff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
 
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)

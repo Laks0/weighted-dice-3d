@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj2yxnrkaeac6"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_vd3te"]
+[ext_resource type="Script" path="res://Scenes/RoundEnd/LeaderboardEntry.gd" id="2_my8oa"]
+[ext_resource type="Texture2D" uid="uid://btlocalvkhirw" path="res://Scenes/RoundEnd/ArrowUp.png" id="3_ic7qm"]
+[ext_resource type="Texture2D" uid="uid://7pjgevdp2127" path="res://Scenes/RoundEnd/ArrowDown.png" id="4_vc51b"]
+[ext_resource type="Texture2D" uid="uid://da7w8tjvwidpv" path="res://Scenes/RoundEnd/Line.png" id="5_a6tbk"]
+
+[node name="LeaderboardEntry" type="HBoxContainer"]
+offset_right = 74.0
+offset_bottom = 27.0
+theme = ExtResource("1_vd3te")
+alignment = 1
+script = ExtResource("2_my8oa")
+up = ExtResource("3_ic7qm")
+down = ExtResource("4_vc51b")
+nil = ExtResource("5_a6tbk")
+
+[node name="Pos" type="Label" parent="."]
+layout_mode = 2
+text = "1. "
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Nombre"
+
+[node name="Separator" type="Label" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Bank" type="Label" parent="."]
+layout_mode = 2
+text = "0
+"
+
+[node name="Change" type="Label" parent="."]
+layout_mode = 2
+text = "(+-x)"
+
+[node name="Trend" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_ic7qm")
