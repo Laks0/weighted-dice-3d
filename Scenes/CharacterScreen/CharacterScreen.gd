@@ -4,6 +4,7 @@ func _ready():
 	randomize()
 
 func _on_start_pressed():
+	PlayerHandler.deleteAllPlayers()
 	for c in $GridContainer.get_children():
 		if !c.added:
 			continue

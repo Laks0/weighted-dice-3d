@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
-[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://Classes/HUD/DefaultTheme.tres" id="1_o0boa"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_o0boa"]
 
 [node name="CharacterScreen" type="Control"]
 layout_mode = 3

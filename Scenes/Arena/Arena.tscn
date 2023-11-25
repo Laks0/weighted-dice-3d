@@ -57,8 +57,6 @@ animations = [{
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 
-[node name="HUD" parent="." instance=ExtResource("3_uqwnq")]
-
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 collision_layer = 4
 collision_mask = 4
@@ -109,6 +107,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.1438
 transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
 fov = 47.0
 
+[node name="Effects" type="Node" parent="."]
+
+[node name="SpikesEffect" parent="Effects" instance=ExtResource("8_ycw3d")]
+
+[node name="OliveRollEffect" parent="Effects" instance=ExtResource("5_ed70i")]
+
+[node name="ChipsAreDownEffect" parent="Effects" instance=ExtResource("6_x3vxf")]
+
+[node name="MindTheGapEffect" parent="Effects" instance=ExtResource("12_yk85d")]
+
+[node name="FullHouseEffect" parent="Effects" instance=ExtResource("12_v5pfw")]
+
+[node name="AllInEffect" parent="Effects" instance=ExtResource("12_ob7p2")]
+
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
 visible = false
@@ -126,16 +138,4 @@ shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
 
-[node name="Effects" type="Node" parent="."]
-
-[node name="SpikesEffect" parent="Effects" instance=ExtResource("8_ycw3d")]
-
-[node name="OliveRollEffect" parent="Effects" instance=ExtResource("5_ed70i")]
-
-[node name="ChipsAreDownEffect" parent="Effects" instance=ExtResource("6_x3vxf")]
-
-[node name="MindTheGapEffect" parent="Effects" instance=ExtResource("12_yk85d")]
-
-[node name="FullHouseEffect" parent="Effects" instance=ExtResource("12_v5pfw")]
-
-[node name="AllInEffect" parent="Effects" instance=ExtResource("12_ob7p2")]
+[node name="HUD" parent="." instance=ExtResource("3_uqwnq")]

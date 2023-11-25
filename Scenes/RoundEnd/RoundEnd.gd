@@ -2,10 +2,19 @@ extends Control
 
 @export var LeaderboardEntryScene : PackedScene
 
+var gameEnded := false
+
 func _ready():
-	$Title.text = "ROUND " + str(BetHandler.round)
+	if BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() <= 1:
+		gameEnded = true
+		$Title.text = "GAME SETTLED"
+		$Title.modulate = Color.ORANGE
+		$NextRound.text = "Play again"
+	else:
+		$Title.text = "ROUND " + str(BetHandler.round)
+	
 	var winner := PlayerHandler.getPlayerById(BetHandler.lastWinner)
-	$Winner.text = "Winner: " + winner.name
+	$Winner.text = "Round winner: " + winner.name
 	$Winner.modulate = winner.color
 	
 	var board = PlayerHandler.getPlayersInOrder()
@@ -20,4 +29,7 @@ func _process(_delta):
 		_on_next_round_pressed()
 
 func _on_next_round_pressed():
-	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
+	if gameEnded:
+		get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")

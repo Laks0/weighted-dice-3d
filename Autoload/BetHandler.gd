@@ -9,6 +9,7 @@ const gameTime   := preload("res://Autoload/Bets/GameTime.gd")
 var currentBet : Bet
 
 var round : int = 0
+var roundAmount : int = 3
 
 var lastWinner : int = 0
 
