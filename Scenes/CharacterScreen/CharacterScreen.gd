@@ -2,9 +2,10 @@ extends Control
 
 func _ready():
 	randomize()
+	PlayerHandler.deleteAllPlayers()
+	BetHandler.round = 0
 
 func _on_start_pressed():
-	PlayerHandler.deleteAllPlayers()
 	for c in $GridContainer.get_children():
 		if !c.added:
 			continue

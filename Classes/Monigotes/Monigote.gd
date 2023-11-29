@@ -6,7 +6,7 @@ signal died
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var FRICTION     : float = 35
-@export var GRABBING_SPEED_FACTOR : float = .1
+@export var GRABBING_SPEED_FACTOR : float = .05
 
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
 @onready var controller : int = player.inputController
