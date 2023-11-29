@@ -6,6 +6,7 @@ signal died
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var FRICTION     : float = 35
+@export var GRABBING_SPEED_FACTOR : float = .1
 
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
 @onready var controller : int = player.inputController
@@ -69,16 +70,17 @@ func _process(_delta):
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
-
+	
+	var accFactor := 1.0
 	if grabbing:
-		dir = Vector2.ZERO
+		accFactor = GRABBING_SPEED_FACTOR
 		onGrabbing()
 	
 	if stunned:
-		dir = Vector2.ZERO
+		accFactor = 0
 	
-	moveVelocity += ACCELERATION * dir * delta
-	moveVelocity = moveVelocity.limit_length(MAX_SPEED)
+	moveVelocity += ACCELERATION * dir * delta * accFactor
+	moveVelocity = moveVelocity.limit_length(MAX_SPEED * (GRABBING_SPEED_FACTOR if grabbing else 1))
 	
 	unclampedVelocity = unclampedVelocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
