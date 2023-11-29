@@ -17,7 +17,7 @@ func _ready():
 	nameEditor.text = defaultName
 	$Settings/Controller.add_item("Keyboard", 0)
 	for c in Input.get_connected_joypads():
-		$Settings/Controller.add_item("Gamepad " + str(c), 2)
+		$Settings/Controller.add_item("Gamepad " + str(c), c + 2)
 	$Settings/Controller.add_item("Keyboard alt", 1)
 	
 	if skin == PlayerHandler.Skins.RED:
