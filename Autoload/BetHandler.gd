@@ -8,6 +8,7 @@ const gameTime   := preload("res://Autoload/Bets/GameTime.gd")
 
 var currentBet : Bet
 
+@warning_ignore("shadowed_global_identifier")
 var round : int = 0
 var roundAmount : int = 3
 

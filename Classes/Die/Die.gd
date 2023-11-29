@@ -18,7 +18,7 @@ func onFloor() -> bool:
 			return true
 	return false
 
-func _process(delta):
+func _process(_delta):
 	if prepareArrow.visible:
 		prepareArrow.position = position
 

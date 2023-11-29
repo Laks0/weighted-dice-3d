@@ -80,7 +80,7 @@ func _physics_process(delta):
 		accFactor = 0
 	
 	moveVelocity += ACCELERATION * dir * delta * accFactor
-	moveVelocity = moveVelocity.limit_length(MAX_SPEED * (GRABBING_SPEED_FACTOR if grabbing else 1))
+	moveVelocity = moveVelocity.limit_length(MAX_SPEED * (GRABBING_SPEED_FACTOR if grabbing else 1.0))
 	
 	unclampedVelocity = unclampedVelocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	

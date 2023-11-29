@@ -9,12 +9,10 @@ func _ready():
 	look_at(position + dir)
 	$Warning.position = Vector3.FORWARD * 2.5
 	
-	var arena : Arena
-	var finalPos : Vector3
 	positionTween.tween_property(self, "position", 
-		Vector3(position.x + arena.WIDTH * dir.x, 
-			position.y, 
-			position.y + arena.HEIGHT * dir.z), 
+		Vector3(position.x + Arena.WIDTH * dir.x, 
+			position.y,
+			position.y + Arena.HEIGHT * dir.z), 
 		2)
 	positionTween.set_ease(Tween.EASE_IN)
 	positionTween.stop()
@@ -43,6 +41,6 @@ func _on_body_entered(body):
 	var mon := body as Monigote
 	
 	var knockSpeed = 15
-	var dir = position.direction_to(mon.position)
-	mon.knockback(Vector2(dir.x, dir.z).normalized() * knockSpeed)
+	var knockDir = position.direction_to(mon.position)
+	mon.knockback(Vector2(knockDir.x, knockDir.z).normalized() * knockSpeed)
 	mon.hurt()

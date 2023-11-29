@@ -12,7 +12,9 @@ func start():
 		var gap : Gap = GapScene.instantiate()
 		gaps.append(gap)
 		
+		@warning_ignore("integer_division")
 		var x = randf_range(-arena.WIDTH/2, arena.WIDTH/2)
+		@warning_ignore("integer_division")
 		var z = randf_range(-arena.HEIGHT/2, arena.HEIGHT/2)
 		
 		gap.position = Vector3(x, Globals.SPRITE_HEIGHT, z)

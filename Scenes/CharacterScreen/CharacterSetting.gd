@@ -36,7 +36,7 @@ func _ready():
 func getControllerAmount() -> int:
 	return len(Input.get_connected_joypads()) + 1
 
-func _process(delta):
+func _process(_delta):
 	controller = $Settings/Controller.get_item_id($Settings/Controller.selected)
 	$Settings.visible = added
 	$AddCharacter.visible = !added
