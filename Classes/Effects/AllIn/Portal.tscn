@@ -121,6 +121,7 @@ script = ExtResource("1_8x0fw")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0)
+layers = 2
 shaded = true
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_eqw54")
@@ -132,6 +133,7 @@ shape = SubResource("CapsuleShape3D_ihlre")
 
 [node name="Spotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999263, -0.0383878, 0, 0.0383878, 0.999263, 0, 1.06463, 0)
+layers = 3
 light_color = Color(0.917647, 0, 1, 1)
 light_energy = 7.818
 light_indirect_energy = 16.0
@@ -141,6 +143,7 @@ spot_range = 8.816
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537069, 0)
+layers = 3
 light_color = Color(0.917647, 0, 1, 1)
 light_energy = 7.391
 light_indirect_energy = 2.16

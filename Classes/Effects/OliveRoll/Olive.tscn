@@ -80,8 +80,10 @@ script = ExtResource("1_yhn61")
 maxPushForce = 30
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+layers = 2
 pixel_size = 0.02
 billboard = 1
+shaded = true
 alpha_cut = 3
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_l4hj2")

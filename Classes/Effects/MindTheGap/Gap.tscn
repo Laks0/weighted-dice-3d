@@ -65,6 +65,7 @@ script = ExtResource("1_uhis5")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+layers = 2
 axis = 1
 shaded = true
 texture_filter = 0

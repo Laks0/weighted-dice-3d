@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/BettingScreen/BettingScreen.gd" id="1_4jx4r"]
 [ext_resource type="PackedScene" uid="uid://d18stawu3u81s" path="res://Classes/BettingChip/BettingChip.tscn" id="2_5r27g"]
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="2_ixa5d"]
-[ext_resource type="PackedScene" uid="uid://bpdrpg3p4qn3t" path="res://Scenes/Arena/Arena.tscn" id="4_iyqa3"]
+[ext_resource type="PackedScene" uid="uid://csr517ks82sen" path="res://Scenes/Arena/Arena2d.tscn" id="4_gh3p2"]
 [ext_resource type="PackedScene" uid="uid://cr1bm4whotu40" path="res://Scenes/BettingScreen/BetBooth.tscn" id="5_8u4g1"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="7_tpqcw"]
 
@@ -41,7 +41,7 @@ size = Vector2(1, 2.5)
 script = ExtResource("1_4jx4r")
 chipResource = ExtResource("2_5r27g")
 betBoothResource = ExtResource("5_8u4g1")
-arenaScene = ExtResource("4_iyqa3")
+arenaScene = ExtResource("4_gh3p2")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 visible = false

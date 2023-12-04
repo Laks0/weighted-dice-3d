@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://dmyacifxq8ln1" path="res://Classes/HUD/HUD.tscn" id="3_uqwnq"]
+[ext_resource type="Shader" path="res://Outline.gdshader" id="5_d4gs2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="7_7ki2k"]
@@ -31,6 +32,19 @@ data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.1
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_iyrfc"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iepa4"]
+render_priority = 0
+shader = ExtResource("5_d4gs2")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = false
+shader_parameter/shadow_strength = 0.5
+shader_parameter/highlight_strength = 1.0
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bchx"]
 atlas = ExtResource("8_renas")
@@ -105,7 +119,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.1438
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
+cull_mask = 1048573
+current = true
 fov = 47.0
+
+[node name="OutlineMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)
+mesh = SubResource("QuadMesh_iyrfc")
+surface_material_override/0 = SubResource("ShaderMaterial_iepa4")
 
 [node name="Effects" type="Node" parent="."]
 
@@ -123,7 +144,7 @@ fov = 47.0
 
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
-visible = false
+layers = 2
 centered = false
 offset = Vector2(-64, 32)
 modulate = Color(1, 1, 1, 0.396078)
@@ -134,8 +155,38 @@ autoplay = "default"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 31.1542, 0)
+layers = 3
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
 
 [node name="HUD" parent="." instance=ExtResource("3_uqwnq")]
+
+[node name="HiResViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+
+[node name="HiResCamera" type="Camera3D" parent="HiResViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
+cull_mask = 1048574
+fov = 47.0
+
+[node name="FullViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+
+[node name="FullCamera" type="Camera3D" parent="FullViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
+fov = 47.0
+
+[node name="LowResViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+
+[node name="LowResCamera" type="Camera3D" parent="LowResViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
+cull_mask = 1048573
+fov = 47.0

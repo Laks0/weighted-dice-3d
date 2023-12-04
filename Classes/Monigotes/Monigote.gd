@@ -43,7 +43,7 @@ func _ready():
 	super._ready()
 
 func _process(_delta):
-	invincible = !$HurtTime.is_stopped()
+	invincible = true#!$HurtTime.is_stopped()
 	
 	if Input.is_action_just_pressed(actions.grab):
 		for body in $GrabArea.get_overlapping_bodies():
@@ -62,7 +62,7 @@ func _process(_delta):
 	
 	sprite.modulate = color
 	if invincible and $HurtTime.one_shot:
-		sprite.modulate.a = .7
+		sprite.modulate.a = 1#.7
 	elif stunned:
 		sprite.modulate = Color.DARK_GRAY
 	else:

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Weighted Dice"
 run/main_scene="res://Scenes/CharacterScreen/CharacterScreen.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -206,6 +206,13 @@ grab_kb2={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_1="Pixelated 3d"
+3d_render/layer_2="HiRes sprites"
+2d_physics/layer_1="a"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.1991, 0.33, 0.1056, 1)

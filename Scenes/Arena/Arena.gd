@@ -73,3 +73,12 @@ func endGame(winnerId : int):
 
 func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D
+
+func getHiResTexture() -> ViewportTexture:
+	return $HiResViewport.get_texture()
+
+func getLowResTexture() -> ViewportTexture:
+	return $LowResViewport.get_texture()
+
+func getFullTexture() -> ViewportTexture:
+	return $FullViewport.get_texture()
