@@ -8,8 +8,9 @@ void fragment() {
 	vec4 fullColor = texture(fullTexture, UV).rgba;
 	vec4 lowColor = texture(lowTexture, UV).rgba;
 	if (fullColor != lowColor) {
-		COLOR = fullColor;
-		COLOR.a = alpha;
+		if (alpha == 1.0) {
+			COLOR = fullColor;
+		}
 	} else {
 		COLOR.a = .0;
 	}
