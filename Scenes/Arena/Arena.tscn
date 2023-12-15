@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=23 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
-[ext_resource type="PackedScene" uid="uid://dmyacifxq8ln1" path="res://Classes/HUD/HUD.tscn" id="3_uqwnq"]
 [ext_resource type="Shader" path="res://Outline.gdshader" id="5_d4gs2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
@@ -160,8 +159,6 @@ layers = 3
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
-
-[node name="HUD" parent="." instance=ExtResource("3_uqwnq")]
 
 [node name="HiResViewport" type="SubViewport" parent="."]
 transparent_bg = true

@@ -24,5 +24,6 @@ offset_right = 47.5
 offset_bottom = 82.0
 grow_horizontal = 2
 theme = ExtResource("2_yj5an")
+theme_override_font_sizes/font_size = 72
 text = "Effect Name"
 horizontal_alignment = 1

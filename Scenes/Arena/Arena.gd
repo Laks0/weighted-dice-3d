@@ -1,6 +1,8 @@
 extends Node3D
 class_name Arena
 
+signal effectStarted(effect)
+
 @export var monigoteResource : PackedScene
 
 @onready var effects : Array = $Effects.get_children()
@@ -46,7 +48,7 @@ func startEffect(n : int):
 	activeEffect = n
 	effects[activeEffect].start()
 	
-	$HUD.effectStarted(effects[activeEffect].effectName)
+	emit_signal("effectStarted", effects[activeEffect])
 
 # Esta función queda Legacy pero sigue teniendo sentido como un getter
 func getLivingMonigotes() -> Array[Monigote]:

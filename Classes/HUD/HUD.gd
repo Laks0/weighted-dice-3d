@@ -1,7 +1,13 @@
 extends Control
+class_name ArenaHUD
 
-func effectStarted(effectName : String):
-	$EffectName.text = effectName
+@export var arena : Arena
+
+func _ready():
+	arena.connect("effectStarted", effectStarted)
+
+func effectStarted(effect : Effect):
+	$EffectName.text = effect.effectName
 	
 	var tween = create_tween()
 	tween.tween_property($EffectName, "modulate", Color.WHITE, .5)

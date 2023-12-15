@@ -7,3 +7,4 @@
 script = ExtResource("1_ogj0k")
 SpikesLayout = ExtResource("2_5s6py")
 effectName = "Spikes"
+effectId = 4

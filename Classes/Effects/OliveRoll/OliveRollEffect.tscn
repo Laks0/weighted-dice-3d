@@ -6,3 +6,5 @@
 [node name="OliveRollEffect" type="Node"]
 script = ExtResource("1_lk4lc")
 oliveResource = ExtResource("2_2dm25")
+effectName = "Olive Roll"
+effectId = 2
