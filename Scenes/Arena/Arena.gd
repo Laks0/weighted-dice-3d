@@ -63,8 +63,10 @@ func onMonigoteDeath(mon : Monigote):
 	
 	monigotes.erase(mon)
 	
-	if monigotesAlive <= 1:
+	if monigotesAlive == 1:
 		endGame(monigotes[0].player.id)
+	if monigotesAlive == 0:
+		endGame(mon.player.id)
 
 func endGame(winnerId : int):
 	BetHandler.settleBet(winnerId)
