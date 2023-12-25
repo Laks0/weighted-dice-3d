@@ -1,4 +1,5 @@
 extends Bet
+class_name GameTimeBet
 
 func _init():
 	betName = "Game Time"

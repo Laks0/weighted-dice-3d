@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://j7x1x7sqdegx"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_6ndpw"]
+[ext_resource type="Script" path="res://Classes/HUD/MostGrabsHUD/PlayerGrabsDisplay.gd" id="2_6cdam"]
+
+[node name="PlayerGrabsDisplay" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6ndpw")
+alignment = 1
+script = ExtResource("2_6cdam")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_6ndpw")
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Grabs" type="Label" parent="."]
+layout_mode = 2
+text = "Grabs: 0"
+horizontal_alignment = 1

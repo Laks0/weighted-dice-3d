@@ -5,6 +5,10 @@ class_name ArenaHUD
 
 func _ready():
 	arena.connect("effectStarted", effectStarted)
+	
+	if BetHandler.currentBet is MostGragsBet:
+		$MostGrabsDisplay.start(arena)
+		$MostGrabsDisplay.visible = true
 
 func effectStarted(effect : Effect):
 	$EffectName.text = effect.effectName

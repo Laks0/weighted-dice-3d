@@ -1,4 +1,5 @@
 extends Bet
+class_name FirstToDieBet
 
 func _init():
 	betName = "First to die"

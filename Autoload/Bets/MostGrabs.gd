@@ -1,4 +1,5 @@
 extends Bet
+class_name MostGragsBet
 
 func _init():
 	betName = "Most Grabs"
