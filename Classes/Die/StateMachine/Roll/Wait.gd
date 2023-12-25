@@ -12,6 +12,10 @@ func _on_update(_delta):
 		die.axis_lock_angular_y = false
 		die.axis_lock_angular_z = false
 		
+		var particles : GPUParticles3D = die.get_node("StompParticles")
+		particles.rotation = -die.rotation
+		particles.emitting = true
+		
 		die.emit_signal("rolled", result)
 		
 		get_parent().change_state("RandomAttack")

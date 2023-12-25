@@ -188,3 +188,7 @@ size = Vector2i(1280, 720)
 transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
 cull_mask = 1048573
 fov = 47.0
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
+size = Vector3(11.5972, 2, 6.95972)
