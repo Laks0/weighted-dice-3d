@@ -7,6 +7,9 @@ var prepareArrow : AnimatedSprite3D
 
 @export var rotations : Array[Vector3]
 
+## La velocidad mínima que necesita el dado para poder herir a un monigote
+@export var minMovementToHurt : float = .1
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()
@@ -29,6 +32,9 @@ func _getRandomMonigoteDirection() -> Vector2:
 	return Vector2(dir3d.x, dir3d.z)
 
 func _on_area_3d_body_entered(body):
+	if linear_velocity.length() < minMovementToHurt:
+		return
+	
 	if body is Monigote:
 		body.hurt()
 		body.knockback(Vector2(linear_velocity.x, linear_velocity.z) * 2)
