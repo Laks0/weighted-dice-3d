@@ -23,22 +23,24 @@ var invincible  := false
 @export var invincibleAfterHurtTime: float = 3.0
 @export var invincibleAfterPushTime: float = 0.2
 
-var sprite : AnimatedSprite3D
+@export var skins : Dictionary
 
 var grabs : int = 0 ## Cantidad de veces que aggaró a alguien. Para MostGrabs
 
 func _ready():
+	# El id del objeto player determina la skin que usa el monigote.
+	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
+	# Para agregar una nueva skin hace falta agregarla al enum de
+	# PlayerHandler.Skins y también al diccionario de Monigote
 	match player.id:
 		PlayerHandler.Skins.BLUE:
-			sprite = $FranciscoSprite
+			$AnimatedSprite.sprite_frames = skins.get("Blue")
 		PlayerHandler.Skins.RED:
-			sprite = $TomiSprite
+			$AnimatedSprite.sprite_frames = skins.get("Red")
 		PlayerHandler.Skins.YELLOW:
-			sprite = $PedroSprite
+			$AnimatedSprite.sprite_frames = skins.get("Yellow")
 		PlayerHandler.Skins.GREEN:
-			sprite = $JaviSprite
-	
-	sprite.visible = true
+			$AnimatedSprite.sprite_frames = skins.get("Green")
 	
 	super._ready()
 
@@ -60,13 +62,13 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	sprite.modulate = color
+	$AnimatedSprite.modulate = color
 	if invincible and $HurtTime.one_shot:
-		sprite.modulate.a = .7
+		$AnimatedSprite.modulate.a = .7
 	elif stunned:
-		sprite.modulate = Color.DARK_GRAY
+		$AnimatedSprite.modulate = Color.DARK_GRAY
 	else:
-		sprite.modulate.a = 1
+		$AnimatedSprite.modulate.a = 1
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
@@ -98,24 +100,24 @@ func _physics_process(delta):
 	# Animaciones
 	match vecToDir(dir):
 		Cardinal.N:
-			sprite.animation = "RunningUp"
+			$AnimatedSprite.animation = "RunningUp"
 		Cardinal.E:
-			sprite.animation = "RunningRight"
+			$AnimatedSprite.animation = "RunningRight"
 		Cardinal.W:
-			sprite.animation = "RunningLeft"
+			$AnimatedSprite.animation = "RunningLeft"
 		Cardinal.S:
-			sprite.animation = "RunningDown"
+			$AnimatedSprite.animation = "RunningDown"
 	
 	if dir == Vector2.ZERO:
-		sprite.animation = "Idle"
+		$AnimatedSprite.animation = "Idle"
 	
 	if not unclampedVelocity.is_zero_approx():
-		sprite.animation = "Pushed"
-		sprite.frame = vecToDir(unclampedVelocity)
+		$AnimatedSprite.animation = "Pushed"
+		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
 	
 	if grabbing:
-		sprite.animation = "Grabbing"
-		sprite.frame = vecToDir(grabDir)
+		$AnimatedSprite.animation = "Grabbing"
+		$AnimatedSprite.frame = vecToDir(grabDir)
 
 func canBeGrabbed(_grabber) -> bool:
 	return not invincible

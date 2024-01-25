@@ -13,10 +13,6 @@ class Player:
 	var color : Color
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
-
-	const MAX_POWERS : int  = 2
-	var powersUsed : int  = 0
-	var usingPower : bool = false
 	
 	# Variables para visualizar cambios en el leaderboard
 	var oldBank : int
@@ -35,7 +31,7 @@ class Player:
 			color = Color(1,1,0)
 		elif id == Skins.GREEN:
 			color = Color(0,1,0)
-
+	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
 	
@@ -44,13 +40,6 @@ class Player:
 	
 	func isStillPlaying() -> bool:
 		return bank >= BetHandler.getMinimunBet()
-
-	func usePower():
-		if powersUsed >= MAX_POWERS:
-			return
-
-		powersUsed += 1
-		usingPower = true
 
 var players : Array[Player] = []
 
