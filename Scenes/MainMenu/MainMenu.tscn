@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3dw1evsv1xx2"]
+[gd_scene load_steps=4 format=3 uid="uid://b3dw1evsv1xx2"]
 
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_lokk3"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/MainMenu.gd" id="2_osvw6"]
+[ext_resource type="PackedScene" uid="uid://cq54i4r3w1hj4" path="res://Scenes/CharacterScreen/CharacterScreen.tscn" id="3_1vcer"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -10,6 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_lokk3")
+script = ExtResource("2_osvw6")
+startScene = ExtResource("3_1vcer")
 
 [node name="GameName" type="Label" parent="."]
 layout_mode = 1
@@ -30,29 +34,19 @@ MUY LIVIANOS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="HBoxContainer" parent="."]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -77.5
-offset_top = -216.0
-offset_right = 77.5
-offset_bottom = -184.0
+offset_left = -29.0
+offset_top = -256.0
+offset_right = 29.0
+offset_bottom = -224.0
 grow_horizontal = 2
 grow_vertical = 0
-alignment = 1
+text = "Vamo"
 
-[node name="3Player" type="Button" parent="StartButton"]
-layout_mode = 2
-text = "DE A 3"
-
-[node name="4Player" type="Button" parent="StartButton"]
-layout_mode = 2
-text = "DE A 4"
-
-[node name="5Player" type="Button" parent="StartButton"]
-layout_mode = 2
-text = "DE A 5"
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

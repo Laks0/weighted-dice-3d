@@ -33,7 +33,7 @@ billboard = 1
 shaded = true
 texture_filter = 0
 render_priority = 10
-animation = &"Grabbing"
+animation = &""
 autoplay = "Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
