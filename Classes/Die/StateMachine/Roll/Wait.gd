@@ -1,3 +1,4 @@
+@tool
 extends State
 
 var result : int

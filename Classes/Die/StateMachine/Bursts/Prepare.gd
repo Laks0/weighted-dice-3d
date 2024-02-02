@@ -12,7 +12,7 @@ func _on_enter(_args):
 	target.prepareArrow.rotation.y = angle + OFFSET
 
 func _state_timeout():
-	change_state("Burst", direction)
+	change_to_next(direction)
 
 func _on_exit(_args):
 	target.prepareArrow.visible = false

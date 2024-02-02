@@ -15,9 +15,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 @tool
+@icon("res://addons/xsm/icons/state_regions.png")
 extends State
 class_name StateRegions
-@icon("res://addons/xsm/icons/state_regions.png")
+
 
 # StateRegions has all its children active or inactive at the same time
 

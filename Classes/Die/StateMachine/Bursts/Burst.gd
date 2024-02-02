@@ -1,3 +1,4 @@
+@tool
 extends State
 
 func _on_enter(dir : Vector2):
@@ -5,4 +6,4 @@ func _on_enter(dir : Vector2):
 	
 	die.throw(Vector3(dir.x * 200, 0, dir.y * 200))
 	
-	change_state("Wait")
+	change_to_next()

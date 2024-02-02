@@ -1,3 +1,4 @@
+@tool
 extends StateLoop
 
 const MAX_BURSTS = 3
