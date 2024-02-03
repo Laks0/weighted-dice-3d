@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=9 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Autoload/MonigoteSkins/RedFrames.tres" id="2_u2bhy"]
 [ext_resource type="SpriteFrames" uid="uid://bpol0b7jqb23h" path="res://Autoload/MonigoteSkins/BlueFrames.tres" id="3_0bwyl"]
 [ext_resource type="SpriteFrames" uid="uid://b11arb6b3rmrh" path="res://Autoload/MonigoteSkins/GreenFrames.tres" id="4_60ab0"]
 [ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Autoload/MonigoteSkins/YellowFrames.tres" id="5_7qj1l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2si7b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.094
@@ -33,8 +35,7 @@ billboard = 1
 shaded = true
 texture_filter = 0
 render_priority = 10
-animation = &""
-autoplay = "Idle"
+sprite_frames = SubResource("SpriteFrames_2si7b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
