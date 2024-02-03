@@ -3,8 +3,6 @@ class_name Arena
 
 signal effectStarted(effect)
 
-@export var monigoteResource : PackedScene
-
 @onready var effects : Array = $Effects.get_children()
 
 const WIDTH = 11

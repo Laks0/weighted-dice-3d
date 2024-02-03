@@ -275,13 +275,13 @@ func _init_status_active() -> void:
 			break
 	_after_enter(null)
 
-
-func _exit_tree() -> void:
-	var node_pos = get_index()
-	if node_pos > 0:
-		var prev_node = get_parent().get_child(node_pos-1)
-		if prev_node is State and prev_node.next_state == NodePath("../%s" % name):
-			prev_node.next_state = next_state
+# BUG: Cuando se cierra una escena todos los subestados tienen el next del último
+#func _exit_tree() -> void:
+	#var node_pos = get_index()
+	#if node_pos > 0:
+		#var prev_node = get_parent().get_child(node_pos-1)
+		#if prev_node is State and prev_node.next_state == NodePath("../%s" % name):
+			#prev_node.next_state = next_state
 
 
 func _get_configuration_warning() -> String:

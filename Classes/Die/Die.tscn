@@ -99,7 +99,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Roll")
+next_state = NodePath(".")
 
 [node name="PickRandom" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("5_b5ovt")
