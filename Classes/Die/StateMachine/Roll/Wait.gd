@@ -7,16 +7,18 @@ func _on_enter(res) :
 	result = res
 
 func _on_update(_delta):
-	var die := target as Die
-	if die.onFloor():
-		die.axis_lock_angular_x = false
-		die.axis_lock_angular_y = false
-		die.axis_lock_angular_z = false
+	if target.onFloor():
+		target.axis_lock_angular_x = false
+		target.axis_lock_angular_y = false
+		target.axis_lock_angular_z = false
 		
-		var particles : GPUParticles3D = die.get_node("StompParticles")
-		particles.rotation = -die.rotation
+		var particles : GPUParticles3D = target.get_node("StompParticles")
+		# Hace que las partículas apunten hacia abajo, ignorando la rotación del dado
+		particles.rotation = -target.rotation
+		particles.rotation.y = 0
+		
 		particles.emitting = true
 		
-		die.emit_signal("rolled", result)
+		target.emit_signal("rolled", result)
 		
 		get_parent().change_state("RandomAttack")
