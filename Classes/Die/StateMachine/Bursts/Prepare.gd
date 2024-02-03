@@ -4,6 +4,7 @@ extends State
 var direction : Vector2
 
 func _on_enter(_args):
+	get_parent().bursts += 1
 	target.prepareArrow.visible = true
 	
 	direction = target._getRandomMonigoteDirection()
