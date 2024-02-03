@@ -207,14 +207,16 @@ func _ready() -> void:
 
 	# In editor only
 	else:
+		# Elimino esta parte porque estaba causando bugs
+		
 		# Deal with the next_state of the previous state
 		# If you want to avoid setting an empty next_state, set it to itself in the inspector
-		var node_pos = get_index()
-		if node_pos > 0:
-			var prev_node = get_parent().get_child(node_pos-1)
-			if prev_node is State and (prev_node.next_state.is_empty() 
-			or prev_node.next_state == "../%s" % prev_node.name):
-				prev_node.next_state = "../%s" % name
+		#var node_pos = get_index()
+		#if node_pos > 0:
+			#var prev_node = get_parent().get_child(node_pos-1)
+			#if prev_node is State and (prev_node.next_state.is_empty() 
+			#or prev_node.next_state == "../%s" % prev_node.name):
+				#prev_node.next_state = "../%s" % name
 
 		# Deal with script changes issues:
 		script_changed.connect(_on_script_changed)
