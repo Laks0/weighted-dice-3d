@@ -71,8 +71,10 @@ collision_mask = 7
 shape = SubResource("CylinderShape3D_scrbw")
 
 [node name="DeathParticles" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 15
 lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 visibility_aabb = AABB(-1.00047, -0.858382, -0.988018, 2.00094, 1.71676, 1.97604)
 process_material = SubResource("ParticleProcessMaterial_7joh5")

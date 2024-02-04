@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=22 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="1_6r326"]
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine.gd" id="3_orssd"]
 [ext_resource type="Script" path="res://addons/xsm/state_rand.gd" id="4_m8stm"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/PickRandom.gd" id="5_b5ovt"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/BurstsAttack.gd" id="5_qe015"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Stomp.gd" id="6_krck5"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/Prepare.gd" id="7_3cl3o"]
@@ -89,7 +88,11 @@ next_state = NodePath("")
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {}
+priorities = {
+"Bursts": 1,
+"Jumps": 1,
+"PickRandom": 1
+}
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -97,12 +100,14 @@ timed = false
 next_state = NodePath(".")
 
 [node name="PickRandom" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("5_b5ovt")
+script = ExtResource("3_67t0h")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
-timed = false
-next_state = NodePath("../../Roll")
+timed = true
+waiting_time = 0.1
+on_timer_finished = 2
+next_state = NodePath("")
 
 [node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("5_qe015")
