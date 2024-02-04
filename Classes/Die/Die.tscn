@@ -59,7 +59,6 @@ albedo_color = Color(0.054902, 0.54902, 0, 1)
 material = SubResource("StandardMaterial3D_bmhk7")
 
 [node name="Die" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 4
 mass = 10.0
@@ -90,11 +89,7 @@ next_state = NodePath("")
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {
-"Bursts": 1,
-"Jumps": 1,
-"PickRandom": 1
-}
+priorities = {}
 disabled = false
 debug_mode = false
 target_path = NodePath("")

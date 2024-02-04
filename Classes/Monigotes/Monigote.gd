@@ -149,7 +149,11 @@ func hurt():
 
 func die():
 	emit_signal("died")
-	queue_free()
+	
+	$AnimatedSprite.visible = false
+	$DeathParticles.emitting = true
+	
+	$DeathParticles.connect("finished", queue_free)
 
 func stun():
 	if !$StunCooldown.is_stopped():

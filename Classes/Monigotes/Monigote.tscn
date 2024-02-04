@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=12 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Autoload/MonigoteSkins/RedFrames.tres" id="2_u2bhy"]
 [ext_resource type="SpriteFrames" uid="uid://bpol0b7jqb23h" path="res://Autoload/MonigoteSkins/BlueFrames.tres" id="3_0bwyl"]
 [ext_resource type="SpriteFrames" uid="uid://b11arb6b3rmrh" path="res://Autoload/MonigoteSkins/GreenFrames.tres" id="4_60ab0"]
 [ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Autoload/MonigoteSkins/YellowFrames.tres" id="5_7qj1l"]
+[ext_resource type="Script" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
+[ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2si7b"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwvu5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.094
@@ -14,6 +16,19 @@ height = 0.563633
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
 radius = 0.629883
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7joh5"]
+particle_flag_rotate_y = true
+angle_min = -93.5
+angle_max = 187.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_min = 0.3
+scale_max = 0.4
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.13
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -35,7 +50,7 @@ billboard = 1
 shaded = true
 texture_filter = 0
 render_priority = 10
-sprite_frames = SubResource("SpriteFrames_2si7b")
+sprite_frames = SubResource("SpriteFrames_fwvu5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
@@ -54,5 +69,15 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
 shape = SubResource("CylinderShape3D_scrbw")
+
+[node name="DeathParticles" type="GPUParticles3D" parent="."]
+amount = 15
+lifetime = 0.5
+explosiveness = 1.0
+visibility_aabb = AABB(-1.00047, -0.858382, -0.988018, 2.00094, 1.71676, 1.97604)
+process_material = SubResource("ParticleProcessMaterial_7joh5")
+draw_pass_1 = ExtResource("6_jppmt")
+script = ExtResource("6_f2n3y")
+mesh = ExtResource("6_jppmt")
 
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
