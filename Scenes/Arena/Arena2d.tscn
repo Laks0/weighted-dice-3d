@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://csr517ks82sen"]
+[gd_scene load_steps=8 format=3 uid="uid://csr517ks82sen"]
 
 [ext_resource type="Shader" path="res://Scenes/Arena/Arena2d.gdshader" id="1_2d4xw"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena2d.gd" id="1_77ke4"]
 [ext_resource type="PackedScene" uid="uid://bpdrpg3p4qn3t" path="res://Scenes/Arena/Arena.tscn" id="1_cvxfn"]
 [ext_resource type="PackedScene" uid="uid://dmyacifxq8ln1" path="res://Classes/HUD/HUD.tscn" id="2_mhr00"]
+[ext_resource type="Script" path="res://Scenes/Arena/EndGameAnimation.gd" id="5_3sniq"]
+[ext_resource type="PackedScene" uid="uid://x6hvhmpe0mb8" path="res://Scenes/RoundEnd/RoundEnd.tscn" id="6_5toah"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmagg"]
 shader = ExtResource("1_2d4xw")
@@ -17,7 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_77ke4")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="LowResContainer" type="SubViewportContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,17 +30,18 @@ grow_vertical = 2
 stretch = true
 stretch_shrink = 4
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="LowResViewport" type="SubViewport" parent="LowResContainer"]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="Arena" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_cvxfn")]
+[node name="Arena" parent="LowResContainer/LowResViewport" instance=ExtResource("1_cvxfn")]
 unique_name_in_owner = true
 
 [node name="HiResTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_fmagg")
 layout_mode = 1
 anchors_preset = 15
@@ -47,5 +51,41 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HUD" parent="." node_paths=PackedStringArray("arena") instance=ExtResource("2_mhr00")]
+unique_name_in_owner = true
 layout_mode = 1
-arena = NodePath("../SubViewportContainer/SubViewport/Arena")
+arena = NodePath("../LowResContainer/LowResViewport/Arena")
+
+[node name="EndGameAnimation" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_3sniq")
+
+[node name="Background" type="TextureRect" parent="EndGameAnimation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="RoundEnd" parent="EndGameAnimation" instance=ExtResource("6_5toah")]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -733.0
+grow_horizontal = 0
+
+[node name="WinnerPoint" type="ReferenceRect" parent="EndGameAnimation"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 343.0
+offset_right = 383.0
+offset_bottom = 351.0
+border_width = 5.0

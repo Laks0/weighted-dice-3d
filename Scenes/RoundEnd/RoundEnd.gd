@@ -4,7 +4,7 @@ extends Control
 
 var gameEnded := false
 
-func _ready():
+func setupBoard():
 	if BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() <= 1:
 		gameEnded = true
 		$Title.text = "GAME SETTLED"
@@ -24,11 +24,8 @@ func _ready():
 		entry.setup(player, i+1)
 		$Leaderboard.add_child(entry)
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		_on_next_round_pressed()
-
 func _on_next_round_pressed():
+	get_tree().paused = false
 	if gameEnded:
 		get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")
 	else:

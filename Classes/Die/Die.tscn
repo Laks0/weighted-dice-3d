@@ -88,11 +88,7 @@ next_state = NodePath("")
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {
-"Bursts": 1,
-"Jumps": 1,
-"PickRandom": 1
-}
+priorities = {}
 disabled = false
 debug_mode = false
 target_path = NodePath("")

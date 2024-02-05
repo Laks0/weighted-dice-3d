@@ -2,6 +2,7 @@ extends Node3D
 class_name Arena
 
 signal effectStarted(effect)
+signal gameEnded(winner) # winner : Monigote
 
 @onready var effects : Array = $Effects.get_children()
 
@@ -64,14 +65,11 @@ func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
 	if monigotesAlive == 1:
-		endGame(monigotes[0].player.id)
+		await get_tree().create_timer(.8).timeout
+		emit_signal("gameEnded", monigotes[0])
 	if monigotesAlive == 0:
-		endGame(mon.player.id)
-
-func endGame(winnerId : int):
-	BetHandler.settleBet(winnerId)
-	
-	get_tree().change_scene_to_file("res://Scenes/RoundEnd/RoundEnd.tscn")
+		await get_tree().create_timer(.8).timeout
+		emit_signal("gameEnded", mon)
 
 func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D
@@ -84,3 +82,7 @@ func getLowResTexture() -> ViewportTexture:
 
 func getFullTexture() -> ViewportTexture:
 	return $FullViewport.get_texture()
+
+## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
+func getScreenPos(pos3d : Vector3) -> Vector2:
+	return $Camera3D.unproject_position(pos3d)

@@ -69,6 +69,10 @@ func _process(_delta):
 		$AnimatedSprite.modulate = Color.DARK_GRAY
 	else:
 		$AnimatedSprite.modulate.a = 1
+	
+	# DEBUG
+	if Input.is_action_just_pressed("die"):
+		emit_signal("died")
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
