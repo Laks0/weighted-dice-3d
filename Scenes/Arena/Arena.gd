@@ -65,10 +65,8 @@ func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
 	if monigotesAlive == 1:
-		await get_tree().create_timer(.8).timeout
 		emit_signal("gameEnded", monigotes[0])
 	if monigotesAlive == 0:
-		await get_tree().create_timer(.8).timeout
 		emit_signal("gameEnded", mon)
 
 func getMainLight() -> DirectionalLight3D:
