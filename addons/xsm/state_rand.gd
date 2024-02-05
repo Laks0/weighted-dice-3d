@@ -104,6 +104,10 @@ func change_to_next_substate():
 	for c in priorities.keys():
 		for i in priorities[c]:
 			rand_array.append(c)
+	
+	if rand_array.size() == 0:
+		return
+	
 	var rand_idx = randi() % rand_array.size()
 	var _st =  change_state_node_force(get_node_or_null(rand_array[rand_idx]))
 
