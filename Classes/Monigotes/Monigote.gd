@@ -70,6 +70,8 @@ func _process(_delta):
 	else:
 		$AnimatedSprite.modulate.a = 1
 	
+	position.y = Globals.SPRITE_HEIGHT
+	
 	# DEBUG
 	if Input.is_action_just_pressed("die"):
 		emit_signal("died")
@@ -104,19 +106,19 @@ func _physics_process(delta):
 	# Animaciones
 	match vecToDir(dir):
 		Cardinal.N:
-			$AnimatedSprite.animation = "RunningUp"
+			$AnimatedSprite.play("RunningUp")
 		Cardinal.E:
-			$AnimatedSprite.animation = "RunningRight"
+			$AnimatedSprite.play("RunningRight")
 		Cardinal.W:
-			$AnimatedSprite.animation = "RunningLeft"
+			$AnimatedSprite.play("RunningLeft")
 		Cardinal.S:
-			$AnimatedSprite.animation = "RunningDown"
+			$AnimatedSprite.play("RunningDown")
 	
 	if dir == Vector2.ZERO:
 		$AnimatedSprite.animation = "Idle"
 	
 	if not unclampedVelocity.is_zero_approx():
-		$AnimatedSprite.animation = "Pushed"
+		$AnimatedSprite.play("Pushed")
 		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
 	
 	if grabbing:

@@ -28,3 +28,6 @@ func _physics_process(delta):
 	velocity = lerp(velocity, Vector3.ZERO, .12)
 	super(delta)
 	move_and_slide()
+	
+	if position.y > .8:
+		position.y = .8
