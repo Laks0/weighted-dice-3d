@@ -73,14 +73,14 @@ func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D
 
 func getHiResTexture() -> ViewportTexture:
-	return $HiResViewport.get_texture()
+	return $MultipleResCamera.getHiResTexture()
 
 func getLowResTexture() -> ViewportTexture:
-	return $LowResViewport.get_texture()
+	return $MultipleResCamera.getLowResTexture()
 
 func getFullTexture() -> ViewportTexture:
-	return $FullViewport.get_texture()
+	return $MultipleResCamera.getFullTexture()
 
 ## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
 func getScreenPos(pos3d : Vector3) -> Vector2:
-	return $Camera3D.unproject_position(pos3d)
+	return $MultipleResCamera.unproject_position(pos3d)

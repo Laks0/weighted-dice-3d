@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="Shader" path="res://Outline.gdshader" id="5_d4gs2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
+[ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
 [ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="7_7ki2k"]
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
@@ -116,11 +117,8 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
-cull_mask = 1048573
-current = true
-fov = 47.0
+[node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
+transform = Transform3D(1, 0, 0, 0, 0.190809, 0.981627, 0, -0.981627, 0.190809, 0, 8.5, 2)
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)
@@ -159,35 +157,6 @@ layers = 3
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
-
-[node name="HiResViewport" type="SubViewport" parent="."]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1280, 720)
-
-[node name="HiResCamera" type="Camera3D" parent="HiResViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
-cull_mask = 1048574
-fov = 47.0
-
-[node name="FullViewport" type="SubViewport" parent="."]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1280, 720)
-
-[node name="FullCamera" type="Camera3D" parent="FullViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
-fov = 47.0
-
-[node name="LowResViewport" type="SubViewport" parent="."]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1280, 720)
-
-[node name="LowResCamera" type="Camera3D" parent="LowResViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.202787, 0.979223, 0, -0.979223, 0.202787, 0, 8.439, 1.998)
-cull_mask = 1048573
-fov = 47.0
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
