@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbg4fcgpv31yt"]
+[gd_scene load_steps=8 format=3 uid="uid://bbg4fcgpv31yt"]
 
 [ext_resource type="Script" path="res://Classes/Effects/FullHouse/FullHouseEffect.gd" id="1_3hme3"]
 [ext_resource type="PackedScene" uid="uid://cbr1kxsjhj32d" path="res://Classes/Effects/FullHouse/Card.tscn" id="2_kkwc2"]
@@ -23,6 +23,33 @@ tracks/0/keys = {
 "method": &"createCard"
 }, {
 "args": [Vector3(4, 0, 4.5), Vector3(0, 0, -1)],
+"method": &"createCard"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g31iu"]
+resource_name = "CrissCross"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [Vector3(-7, 0, 4.5), Vector3(1, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(7, 0, 4.5), Vector3(-1, 0, -1)],
+"method": &"createCard"
+}, {
+"args": [Vector3(-7, 0, 0), Vector3(1, 0, 0)],
+"method": &"createCard"
+}, {
+"args": [Vector3(7, 0, 0), Vector3(-1, 0, 0)],
 "method": &"createCard"
 }]
 }
@@ -81,6 +108,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rihy"]
 _data = {
 "BottomUp": SubResource("Animation_08o78"),
+"CrissCross": SubResource("Animation_g31iu"),
 "SEtoNW": SubResource("Animation_au5ns"),
 "TopDown": SubResource("Animation_o864y")
 }

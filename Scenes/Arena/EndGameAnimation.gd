@@ -4,13 +4,21 @@ extends Control
 ## Tiempo entre que alguien gana y se frena el juego
 @export var deadTime : float = .8
 
+# Si estamos esperando al tiempo muerto entre el final de la partida y la animación
+var waiting := false
+
 func startAnimation(winner: Monigote):
+	# Si ya está un timer activo, no hacemos todo devuelta
+	if waiting:
+		return
+
 	# Hay que tener esta información apenas termina el juego por si se muere el
 	# monigote ganador en el tiempo hasta la animación
 	var winnerPos = winner.position
 	var winnerId = winner.player.id
 	
 	%HUD.visible = false
+	waiting = true
 	await get_tree().create_timer(deadTime).timeout
 	get_tree().paused = true
 	

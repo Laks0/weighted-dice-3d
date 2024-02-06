@@ -59,6 +59,9 @@ func startGrab(body : Pushable) -> bool:
 	return true
 
 func push():
+	if (not grabbing) or (not is_instance_valid(grabBody)):
+		return
+	
 	grabbing = false
 	timer.stop()
 	
@@ -72,6 +75,9 @@ func _physics_process(delta):
 		velocity.y -= 20 * delta
 
 func onGrabbing():
+	if not is_instance_valid(grabBody):
+		return
+	
 	# Determina la fuerza dependiendo del tiempo
 	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
 	pushFactor = (pow(t, 3) * 4/5 + .2) # t³ * 4/5 + .2
