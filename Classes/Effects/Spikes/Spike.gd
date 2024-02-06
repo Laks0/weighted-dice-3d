@@ -6,4 +6,3 @@ func _on_area_3d_body_entered(body):
 		var mon = body as Monigote
 		mon.stun()
 		mon.knockback(-Vector2(mon.velocity.x, mon.velocity.z)*2)
-		

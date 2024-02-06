@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Classes/Effects/Spikes/Spike.gd" id="1_67m2x"]
 [ext_resource type="ArrayMesh" uid="uid://cdqda0rjvg455" path="res://Classes/Effects/Spikes/conoMesh.obj" id="2_vsrml"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_txgb0"]
-points = PackedVector3Array(-0.6, -0.92, 0, -0.588489, -0.92, -0.11711, -0.588489, -0.92, 0.116993, 0, 0.92, 0, -0.554424, -0.92, -0.22964, -0.554424, -0.92, 0.229522, 0.6, -0.92, 0, 0.588371, -0.92, -0.11711, 0.554307, -0.92, -0.22964, 0.498865, -0.92, -0.333359, 0.424158, -0.92, -0.424276, 0.333242, -0.92, -0.498982, 0.229522, -0.92, -0.554424, 0.116993, -0.92, -0.588489, 0, -0.92, -0.6, -0.11711, -0.92, -0.588489, -0.22964, -0.92, -0.554424, -0.333359, -0.92, -0.498982, -0.424276, -0.92, -0.424276, -0.498982, -0.92, -0.333359, -0.498982, -0.92, 0.333242, -0.424276, -0.92, 0.424158, -0.333359, -0.92, 0.498865, -0.22964, -0.92, 0.554307, -0.11711, -0.92, 0.588371, 0, -0.92, 0.6, 0.116993, -0.92, 0.588371, 0.229522, -0.92, 0.554307, 0.333242, -0.92, 0.498865, 0.424158, -0.92, 0.424158, 0.498865, -0.92, 0.333242, 0.554307, -0.92, 0.229522, 0.588371, -0.92, 0.116993)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ib7xm"]
+size = Vector3(0.70874, 0.611298, 0.744141)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oet0w"]
 radius = 0.297207
@@ -18,8 +18,8 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.45, 0)
 mesh = ExtResource("2_vsrml")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.45, 0)
-shape = SubResource("ConvexPolygonShape3D_txgb0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000488281, 0.291885, 0.0125732)
+shape = SubResource("BoxShape3D_ib7xm")
 
 [node name="Area3D" type="Area3D" parent="."]
 

@@ -29,5 +29,6 @@ func _physics_process(delta):
 	super(delta)
 	move_and_slide()
 	
+	# Parche para que no vuelen
 	if position.y > .8:
 		position.y = .8
