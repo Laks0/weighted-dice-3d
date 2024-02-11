@@ -1,11 +1,11 @@
 extends Bet
-class_name MostGrabsBet
+class_name LeastGrabsBet
 
 var grabs : Dictionary
-var maxGrabs : int = 0
+var minGrabs : int = 10000
 
 func _init():
-	betName = "Most Grabs"
+	betName = "Least Grabs"
 	betType = BetType.ALL_PLAYERS
 
 func startGame(arena : Arena):
@@ -16,11 +16,11 @@ func startGame(arena : Arena):
 
 func registerGrabs(monigote: Monigote):
 	grabs[monigote.player.id] = monigote.grabs
-	maxGrabs = max(monigote.grabs, maxGrabs)
+	minGrabs = min(monigote.grabs, minGrabs)
 
 func settle():
 	for mon : Monigote in _arena.getLivingMonigotes():
 		registerGrabs(mon)
 	
 	_result = PlayerHandler.getPlayersAliveById()\
-		.filter(func(id: int): return grabs[id] == maxGrabs)
+		.filter(func(id: int): return grabs[id] == minGrabs)

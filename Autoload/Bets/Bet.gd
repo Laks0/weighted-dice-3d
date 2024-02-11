@@ -20,11 +20,12 @@ var betType : BetType
 ## El nombre a mostrar en texto
 var betName : String
 
-func init():
-	pass
-
+## Se llama al final del ready de la arena
 func startGame(arena : Arena):
 	_arena = arena
+
+func update(delta):
+	pass
 
 func settle():
 	pass

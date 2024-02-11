@@ -17,8 +17,6 @@ var gameTime : float = 0
 
 var monigotes : Array[Monigote]
 
-var firstToDie : int = -1
-
 func _ready():
 	monigotes = PlayerHandler.instantiatePlayers(self)
 	monigotesAlive = len(monigotes)
@@ -58,9 +56,6 @@ func getRandomMonigote() -> Monigote:
 
 func onMonigoteDeath(mon : Monigote):
 	monigotesAlive -= 1
-	
-	if firstToDie == -1:
-		firstToDie = mon.player.id
 	
 	monigotes.erase(mon)
 	

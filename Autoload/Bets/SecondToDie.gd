@@ -1,11 +1,13 @@
 extends Bet
-class_name SecondToDieBet
+class_name FirstToDieBet
 
 var dead : int = 0
 
 func _init():
-	betName = "First to die"
+	betName = "Second to die"
 	betType = BetType.EXCLUDE_SELF
+	
+	_result = 0
 
 func hasWon(candidate : int) -> bool:
 	return candidate == _result
@@ -23,7 +25,7 @@ func startGame(arena : Arena):
 	super(arena)
 
 func monigoteDied(monigote : Monigote):
-	if dead == 0:
+	if dead == 1:
 		_result = monigote.player.id
 	print_debug(_result)
 	dead += 1
