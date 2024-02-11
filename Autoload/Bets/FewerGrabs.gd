@@ -1,11 +1,11 @@
 extends Bet
-class_name LeastGrabsBet
+class_name FewerGrabsBet
 
 var grabs : Dictionary
 var minGrabs : int = 10000
 
 func _init():
-	betName = "Least Grabs"
+	betName = "Fewer Grabs"
 	betType = BetType.ALL_PLAYERS
 
 func startGame(arena : Arena):
