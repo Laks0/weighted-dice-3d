@@ -62,10 +62,6 @@ func _getBoothStartingPosition(n : float) -> Vector3:
 var _playersReady : int = 0
 
 func _startGame():
-	for player in PlayerHandler.getPlayersAlive():
-		for booth in _booths:
-			player.setBet(booth.getChips(player.id), booth.candidate)
-	
 	get_tree().change_scene_to_packed(arenaScene)
 
 func onPlayerReady(body):
@@ -78,3 +74,8 @@ func onPlayerReady(body):
 func onPlayerUnready(body):
 	if body is Monigote:
 		_playersReady -= 1
+
+func _process(_delta):
+	for player in PlayerHandler.getPlayersAlive():
+		for booth in _booths:
+			player.setBet(booth.getChips(player.id), booth.candidate)

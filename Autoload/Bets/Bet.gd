@@ -1,6 +1,12 @@
 extends Node
 class_name Bet
 
+## Clase base para todas las apuestas
+## La comunicación entre las apuestas y los datos de la arena tienen que ser
+## hechos con la mínima intervención posible en cualquier objeto que no sea
+## la propia apuesta.
+## Cualquier script en res://Autoload/Bets se carga como una apuesta
+
 enum BetType {
 	EXCLUDE_SELF,
 	ALL_PLAYERS,
@@ -9,7 +15,9 @@ enum BetType {
 
 var _arena   : Arena
 var _result
+## El tipo de candidatos que toma la apuesta
 var betType : BetType
+## El nombre a mostrar en texto
 var betName : String
 
 func init():

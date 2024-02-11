@@ -6,7 +6,8 @@ var candidate : int = 0
 func _ready():
 	$Name.text = BetHandler.getCandidateName(candidate)
 	$Name.modulate = BetHandler.getCandidateColor(candidate)
-	
+
+func _process(_delta):
 	$Odds.text = "x" + str(BetHandler.getCandidateOdds(candidate))
 
 ## La cantidad de fichas que puso un jugador dado en el candidato del booth

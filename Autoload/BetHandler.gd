@@ -1,10 +1,10 @@
 extends Node
 
-var bets : Array[Bet]
+## Al principio de cada ronda se tiene que llamar startRound()
+## settleBet() reparte las apuestas una vez determinado el candidato ganador
+## se tiene que llamar mientras la arena sigue viva porque usa información de ahí
 
-const firstToDie := preload("res://Autoload/Bets/FirstToDie.gd")
-const mostGrabs  := preload("res://Autoload/Bets/MostGrabs.gd")
-const gameTime   := preload("res://Autoload/Bets/GameTime.gd")
+var bets : Array[Bet]
 
 var currentBet : Bet
 
@@ -14,12 +14,14 @@ var roundAmount : int = 3
 
 var lastWinner : int = 0
 
+# Automáticamente usa todas las apuestas en betPath
 func _ready():
-	bets = [
-		firstToDie.new(),
-		mostGrabs.new(),
-		gameTime.new(),
-	]
+	var betPath := "res://Autoload/Bets/"
+	for fileName in DirAccess.get_files_at(betPath):
+		if fileName == "Bet.gd":
+			continue
+		
+		bets.append(load(betPath+fileName).new())
 
 ## Empieza la ronda de arena
 func startGame(arena : Arena):
