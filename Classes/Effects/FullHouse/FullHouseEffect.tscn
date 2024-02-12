@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g31iu"]
 resource_name = "CrissCross"
-length = 4.0
+length = 6.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true

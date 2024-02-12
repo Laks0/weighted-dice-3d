@@ -10,7 +10,7 @@ func _ready():
 	$Warning.position = Vector3.FORWARD * 2.5
 	
 	positionTween.tween_property(self, "position", 
-		Vector3(position.x + Arena.WIDTH * dir.x, 
+		Vector3(position.x + (Arena.WIDTH + 2) * dir.x, 
 			position.y,
 			position.y + Arena.HEIGHT * dir.z), 
 		2)

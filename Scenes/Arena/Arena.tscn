@@ -161,3 +161,15 @@ shadow_blur = 2.578
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
 size = Vector3(11.5972, 2, 6.95972)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46868, 4.21255, -1.51627)
+light_color = Color(0, 0.784314, 1, 1)
+light_energy = 16.0
+omni_range = 9.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.64365, 0.855901, -1.51627)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_range = 4.90094
