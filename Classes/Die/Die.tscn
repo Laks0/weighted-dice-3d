@@ -85,14 +85,50 @@ target_path = NodePath("..")
 timed = false
 next_state = NodePath("")
 
+[node name="Roll" type="Node" parent="StateMachine"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath(".")
+
+[node name="WaitForFloor" type="Node" parent="StateMachine/Roll"]
+script = ExtResource("7_x8flh")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Jump")
+
+[node name="Jump" type="Node" parent="StateMachine/Roll"]
+script = ExtResource("9_jxa5f")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Stomp")
+
+[node name="Stomp" type="Node" parent="StateMachine/Roll"]
+script = ExtResource("6_krck5")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Wait")
+
+[node name="Wait" type="Node" parent="StateMachine/Roll"]
+script = ExtResource("7_6g04j")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("")
+
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {
-"Bursts": 1,
-"Jumps": 1,
-"PickRandom": 1
-}
+priorities = {}
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -108,6 +144,45 @@ timed = true
 waiting_time = 0.1
 on_timer_finished = 2
 next_state = NodePath("")
+
+[node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 10.0
+on_timer_finished = 3
+next_state = NodePath("../../Roll")
+
+[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 0.2
+on_timer_finished = 3
+next_state = NodePath("../Skip")
+
+[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("8_81dmh")
+UP_FORCE = 60
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 0.2
+on_timer_finished = 3
+next_state = NodePath("../WaitForFloor")
+
+[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("7_x8flh")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Wait")
 
 [node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("5_qe015")
@@ -156,85 +231,6 @@ debug_mode = false
 target_path = NodePath("")
 timed = false
 next_state = NodePath("../Wait")
-
-[node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 10.0
-on_timer_finished = 3
-next_state = NodePath("../../Roll")
-
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../Skip")
-
-[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("8_81dmh")
-UP_FORCE = 60
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
-[node name="Roll" type="Node" parent="StateMachine"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath(".")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Jump")
-
-[node name="Jump" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("9_jxa5f")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Stomp")
-
-[node name="Stomp" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("6_krck5")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
-[node name="Wait" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("7_6g04j")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="."]
 

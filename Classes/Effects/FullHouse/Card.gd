@@ -18,8 +18,8 @@ func _ready():
 	positionTween.stop()
 	positionTween.connect("finished", kill)
 	
-	rotationTween.tween_property($PokerCardHeart, "rotation", Vector3(0, 0, PI/15), .2)
-	rotationTween.chain().tween_property($PokerCardHeart, "rotation", Vector3(0, 0, -PI/15), .2)
+	rotationTween.tween_property($Carta, "rotation", Vector3(0, 0, PI/10), .2)
+	rotationTween.chain().tween_property($Carta, "rotation", Vector3(0, 0, -PI/10), .2)
 	rotationTween.set_ease(Tween.EASE_IN_OUT)
 	rotationTween.set_loops()
 	rotationTween.stop()

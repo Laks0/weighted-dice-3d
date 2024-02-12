@@ -7,7 +7,7 @@ var time = 0.0
 func _ready():
 	arena.connect("effectStarted", effectStarted)
 	
-	if BetHandler.currentBet is FirstToDieBet:
+	if BetHandler.currentBet is FirstToDieBet or BetHandler.currentBet is SecondToDieBet:
 		return
 	
 	if BetHandler.currentBet is GameTimeBet:
