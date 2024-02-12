@@ -18,7 +18,7 @@ var lastWinner : int = 0
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
-		if fileName !="MostGrabs.gd":#== "Bet.gd":
+		if fileName == "Bet.gd":
 			continue
 		
 		bets.append(load(betPath+fileName).new())
@@ -85,3 +85,6 @@ func settleBet(winnerId : int) -> void:
 
 func hasWon(res) -> bool:
 	return currentBet.hasWon(res)
+
+func arenaUpdate(delta):
+	currentBet.arenaUpdate(delta)

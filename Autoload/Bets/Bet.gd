@@ -24,7 +24,8 @@ var betName : String
 func startGame(arena : Arena):
 	_arena = arena
 
-func update(delta):
+## Se llama al final del update de arena. Evitar a menos que sea imposible
+func arenaUpdate(_delta):
 	pass
 
 func settle():

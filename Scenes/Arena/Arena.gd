@@ -37,6 +37,8 @@ func _process(delta):
 
 	if activeEffect != -1:
 		effects[activeEffect].update(delta)
+	
+	BetHandler.arenaUpdate(delta)
 
 func startEffect(n : int):
 	if activeEffect != -1:

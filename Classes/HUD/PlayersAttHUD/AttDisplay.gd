@@ -11,5 +11,8 @@ func _process(_delta):
 		return
 
 	# Este es un mal manejo de la información, pero todo esto es temporario
+	if BetHandler.currentBet is KingOfTheHillBet:
+		$Grabs.text = "%04.1f" % BetHandler.currentBet.times[monigote.player.id]
+		return
 	$Grabs.text = str(BetHandler.currentBet.grabs[monigote.player.id])
 

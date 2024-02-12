@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Classes/HUD/HUD.gd" id="1_4kvx0"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="2_yj5an"]
-[ext_resource type="PackedScene" uid="uid://dc5iuq7gwhsct" path="res://Classes/HUD/MostGrabsHUD/MostGrabsDisplay.tscn" id="3_4t555"]
+[ext_resource type="PackedScene" uid="uid://dc5iuq7gwhsct" path="res://Classes/HUD/PlayersAttHUD/AttDisplay.tscn" id="3_4t555"]
 [ext_resource type="FontFile" uid="uid://lksm03ik4w1w" path="res://alarm clock.ttf" id="4_flykf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sqvvv"]
@@ -37,13 +37,11 @@ theme_override_font_sizes/font_size = 72
 text = "Effect Name"
 horizontal_alignment = 1
 
-[node name="MostGrabsDisplay" parent="." instance=ExtResource("3_4t555")]
-visible = false
+[node name="AttDisplay" parent="." instance=ExtResource("3_4t555")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
-offset_top = -64.0
-offset_bottom = -64.0
+offset_top = -106.0
 grow_vertical = 0
 
 [node name="GameTime" type="Label" parent="."]
