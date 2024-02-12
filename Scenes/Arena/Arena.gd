@@ -56,6 +56,11 @@ func getLivingMonigotes() -> Array[Monigote]:
 func getRandomMonigote() -> Monigote:
 	return monigotes[randi() % len(monigotes)]
 
+func getRandomPosition(padding := .7) -> Vector3:
+	return Vector3(randf_range(-WIDTH/2 + padding, WIDTH/2 - padding),
+		Globals.SPRITE_HEIGHT,
+		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
+
 func onMonigoteDeath(mon : Monigote):
 	monigotesAlive -= 1
 	

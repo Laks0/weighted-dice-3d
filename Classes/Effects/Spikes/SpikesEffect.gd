@@ -12,13 +12,13 @@ func start():
 	# cuando spawnean
 	var padding = 1
 	for mon in arena.getLivingMonigotes():
-		if mon.position.x > Globals.BOTTOM_CORNER.x - padding:
+		if mon.position.x > arena.WIDTH/2 - padding:
 			mon.position.x -= padding
-		if mon.position.z > Globals.BOTTOM_CORNER.z - padding:
+		if mon.position.z > arena.HEIGHT/2 - padding:
 			mon.position.z -= padding
-		if mon.position.x < Globals.TOP_CORNER.x + padding:
+		if mon.position.x < -arena.WIDTH/2 + padding:
 			mon.position.x += padding
-		if mon.position.z < Globals.TOP_CORNER.z + padding:
+		if mon.position.z < -arena.HEIGHT/2 + padding:
 			mon.position.z += padding
 
 func end():

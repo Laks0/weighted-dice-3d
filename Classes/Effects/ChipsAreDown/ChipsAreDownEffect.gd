@@ -11,7 +11,7 @@ func end():
 func createChip():
 	var chip = chipResource.instantiate()
 	
-	chip.position = Globals.getRandomArenaPosition()
+	chip.position = arena.getRandomPosition()
 	chip.position.y = 10
 	
 	arena.add_child(chip)
