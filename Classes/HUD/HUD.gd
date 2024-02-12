@@ -7,12 +7,12 @@ var time = 0.0
 func _ready():
 	arena.connect("effectStarted", effectStarted)
 	
-	if BetHandler.currentBet is MostGrabsBet or BetHandler.currentBet is FewerGrabsBet \
-		or BetHandler.currentBet is KingOfTheHillBet:
-		$AttDisplay.start(arena)
-		$AttDisplay.visible = true
-	elif BetHandler.currentBet is GameTimeBet:
+	if BetHandler.currentBet is GameTimeBet:
 		$GameTime.visible = true
+		return
+	
+	$AttDisplay.start(arena)
+	$AttDisplay.visible = true
 
 func effectStarted(effect : Effect):
 	$EffectName.text = effect.effectName
