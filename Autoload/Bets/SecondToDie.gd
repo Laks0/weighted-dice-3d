@@ -27,5 +27,4 @@ func startGame(arena : Arena):
 func monigoteDied(monigote : Monigote):
 	if dead == 1:
 		_result = monigote.player.id
-	print_debug(_result)
 	dead += 1

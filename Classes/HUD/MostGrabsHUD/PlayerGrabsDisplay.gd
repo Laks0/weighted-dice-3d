@@ -9,5 +9,7 @@ func _ready():
 func _process(_delta):
 	if !is_instance_valid(monigote):
 		return
-	
-	$Grabs.text = str(monigote.grabs)
+
+	# Este es un mal manejo de la información, pero todo esto es temporario
+	$Grabs.text = str(BetHandler.currentBet.grabs[monigote.player.id])
+

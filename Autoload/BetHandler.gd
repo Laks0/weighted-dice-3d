@@ -18,7 +18,7 @@ var lastWinner : int = 0
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
-		if fileName == "Bet.gd":
+		if fileName !="MostGrabs.gd":#== "Bet.gd":
 			continue
 		
 		bets.append(load(betPath+fileName).new())

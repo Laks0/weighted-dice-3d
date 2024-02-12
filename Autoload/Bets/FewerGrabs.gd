@@ -10,7 +10,12 @@ func _init():
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():
-		mon.connect("died", registerGrabs.bind(mon))
+		grabs[mon.player.id] = 0
+		mon.connect("grab",\
+				func (body : Node):
+					if body is Monigote:
+						grabs[mon.player.id] += 1
+					minGrabs = min(minGrabs, grabs[mon.player.id]))
 	
 	super(arena)
 
@@ -19,8 +24,5 @@ func registerGrabs(monigote: Monigote):
 	minGrabs = min(monigote.grabs, minGrabs)
 
 func settle():
-	for mon : Monigote in _arena.getLivingMonigotes():
-		registerGrabs(mon)
-	
 	_result = PlayerHandler.getPlayersAliveById()\
 		.filter(func(id: int): return grabs[id] == minGrabs)

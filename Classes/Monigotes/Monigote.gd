@@ -2,6 +2,8 @@ extends Pushable
 class_name Monigote
 
 signal died
+## Se emite cuando el monigote agarra cualquier pushable
+signal grab(body)
 
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
@@ -24,8 +26,6 @@ var invincible  := false
 @export var invincibleAfterPushTime: float = 0.2
 
 @export var skins : Dictionary
-
-var grabs : int = 0 ## Cantidad de veces que aggaró a alguien. Para MostGrabs
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -55,8 +55,8 @@ func _process(_delta):
 			var success : bool = startGrab(body)
 			if !success:
 				continue
-			if body is Monigote:
-				grabs += 1
+
+			emit_signal("grab", body)
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
