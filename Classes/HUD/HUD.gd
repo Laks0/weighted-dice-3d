@@ -11,6 +11,10 @@ func _ready():
 		$GameTime.visible = true
 		return
 	
+	if BetHandler.currentBet is MostUsedAreaBet:
+		$SidesTime.visible = true
+		return
+	
 	$AttDisplay.start(arena)
 	$AttDisplay.visible = true
 
@@ -25,3 +29,7 @@ func effectStarted(effect : Effect):
 func _process(delta):
 	time += delta
 	$GameTime.text = "%04.1f" % time
+	
+	if BetHandler.currentBet is MostUsedAreaBet:
+		$SidesTime/Left.text = "%04.1f" % BetHandler.currentBet.usage[Bet.ArenaSide.LEFT]
+		$SidesTime/Right.text = "%04.1f" % BetHandler.currentBet.usage[Bet.ArenaSide.RIGHT]

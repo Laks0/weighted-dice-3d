@@ -10,7 +10,8 @@ class_name Bet
 enum BetType {
 	EXCLUDE_SELF,
 	ALL_PLAYERS,
-	GAME_TIME
+	GAME_TIME,
+	ARENA_SIDE
 }
 
 var _arena   : Arena
@@ -47,6 +48,8 @@ static func getCandidates(type : BetType) -> Array:
 			return allPlayers
 		Bet.BetType.GAME_TIME:
 			return GameTimes.values()
+		Bet.BetType.ARENA_SIDE:
+			return ArenaSide.values()
 	
 	return []
 
@@ -56,6 +59,8 @@ static func getCandidateName(type : BetType, candidate) -> String:
 			return PlayerHandler.getPlayerById(candidate).name
 		Bet.BetType.GAME_TIME:
 			return _gameTimeName(candidate)
+		Bet.BetType.ARENA_SIDE:
+			return "Left" if candidate == ArenaSide.LEFT else "Right"
 	
 	return str(candidate)
 
@@ -81,3 +86,8 @@ static func _gameTimeName(time : GameTimes) -> String:
 		GameTimes.MORE_THAN_60:
 			return ">60s"
 	return ""
+
+enum ArenaSide {
+	LEFT,
+	RIGHT
+}

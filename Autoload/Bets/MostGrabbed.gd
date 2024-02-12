@@ -26,3 +26,9 @@ func registerGrabs(monigote: Monigote):
 func settle():
 	_result = PlayerHandler.getPlayersAliveById()\
 		.filter(func(id: int): return grabs[id] == maxGrabs)
+
+func getCandidateOdds(candidate) -> int:
+	var maxBank = PlayerHandler.getPlayersInOrder()[0].bank
+	if PlayerHandler.getPlayerById(candidate).bank == maxBank:
+		return 3
+	return 2
