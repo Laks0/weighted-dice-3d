@@ -1,14 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbr1kxsjhj32d"]
+[gd_scene load_steps=13 format=3 uid="uid://cbr1kxsjhj32d"]
 
 [ext_resource type="Script" path="res://Classes/Effects/FullHouse/Card.gd" id="1_7ro7i"]
+[ext_resource type="Texture2D" uid="uid://uvi7sysf8rc0" path="res://Classes/Effects/FullHouse/1Pica.png" id="2_hhxn1"]
 [ext_resource type="PackedScene" uid="uid://0o3k7gn6inlb" path="res://Classes/Effects/FullHouse/Carta.glb" id="3_5lv3e"]
+[ext_resource type="Texture2D" uid="uid://dbfi6gyyuxxo2" path="res://Classes/Effects/FullHouse/2Corazon.png" id="3_jq85t"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="3_xuet0"]
+[ext_resource type="Texture2D" uid="uid://8vkk7cfqnrj7" path="res://Classes/Effects/FullHouse/3Trebol.png" id="4_aab2i"]
+[ext_resource type="Texture2D" uid="uid://bpdcrngf5o428" path="res://Classes/Effects/FullHouse/4Diamante.png" id="5_7ckkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0d63"]
+albedo_texture = ExtResource("4_aab2i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ug52m"]
+albedo_texture = ExtResource("2_hhxn1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtrjv"]
+albedo_texture = ExtResource("3_jq85t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iia4r"]
+albedo_texture = ExtResource("5_7ckkd")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_okyyv"]
 size = Vector3(0.845499, 2.57058, 1.18304)
 
 [node name="Card" type="Area3D"]
 script = ExtResource("1_7ro7i")
+materials = Array[StandardMaterial3D]([SubResource("StandardMaterial3D_y0d63"), SubResource("StandardMaterial3D_ug52m"), SubResource("StandardMaterial3D_dtrjv"), SubResource("StandardMaterial3D_iia4r")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.634861, -0.00809085)

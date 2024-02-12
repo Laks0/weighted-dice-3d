@@ -8,8 +8,7 @@ func setPlayer(p : PlayerHandler.Player):
 	# Super específico a como es la mesh de la ficha. (DEBUG)
 	var material := StandardMaterial3D.new()
 	material.albedo_color = p.color
-	$FichaPoker.set_surface_override_material(0, material)
-	$FichaPoker.set_surface_override_material(2, material)
+	$Ficha/Cylinder.set_surface_override_material(0, material)
 
 func getPlayerId() -> int:
 	return _player.id

@@ -5,7 +5,11 @@ var dir : Vector3 = Vector3.FORWARD
 @onready var positionTween : Tween = get_tree().create_tween()
 @onready var rotationTween : Tween = get_tree().create_tween()
 
+@export var materials : Array[StandardMaterial3D]
+
 func _ready():
+	$Carta/Plane.set_surface_override_material(0, materials.pick_random())
+	
 	look_at(position + dir)
 	$Warning.position = Vector3.FORWARD * 2.5
 	

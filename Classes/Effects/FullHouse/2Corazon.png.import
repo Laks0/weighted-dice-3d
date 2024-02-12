@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d38hlrv7faped"
-path.s3tc="res://.godot/imported/Carta_Sprite-0003.png-85730f7ca77a66664f7befa81878c940.s3tc.ctex"
+uid="uid://dbfi6gyyuxxo2"
+path.s3tc="res://.godot/imported/2Corazon.png-8bfddc80a5b7d880f02abe7c944e4d56.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://Classes/Effects/FullHouse/Carta_Sprite-0003.png"
-dest_files=["res://.godot/imported/Carta_Sprite-0003.png-85730f7ca77a66664f7befa81878c940.s3tc.ctex"]
+source_file="res://Classes/Effects/FullHouse/2Corazon.png"
+dest_files=["res://.godot/imported/2Corazon.png-8bfddc80a5b7d880f02abe7c944e4d56.s3tc.ctex"]
 
 [params]
 
