@@ -7,6 +7,9 @@ var time = 0.0
 func _ready():
 	arena.connect("effectStarted", effectStarted)
 	
+	if BetHandler.currentBet is FirstToDieBet:
+		return
+	
 	if BetHandler.currentBet is GameTimeBet:
 		$GameTime.visible = true
 		return
