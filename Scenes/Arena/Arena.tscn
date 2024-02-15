@@ -1,13 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=22 format=3 uid="uid://bpdrpg3p4qn3t"]
 
-[ext_resource type="Texture2D" uid="uid://8eqdex8ep51l" path="res://Scenes/Arena/Mesa.png" id="1_sld7k"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
+[ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="2_n20mf"]
 [ext_resource type="Shader" path="res://Outline.gdshader" id="5_d4gs2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
-[ext_resource type="ArrayMesh" uid="uid://0am65n0l6hyj" path="res://Scenes/Arena/mesa.obj" id="7_7ki2k"]
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="8_ycw3d"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="12_ob7p2"]
@@ -20,12 +19,6 @@ bounce = 0.89
 absorbent = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kbgdt"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_np6ri"]
-albedo_texture = ExtResource("1_sld7k")
-uv1_scale = Vector3(-3.937, -3.937, -3.937)
-uv1_offset = Vector3(0.453, -0.013, 0)
-point_size = 128.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wruqs"]
 data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
@@ -72,20 +65,16 @@ animations = [{
 script = ExtResource("1_txoyd")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
 collision_layer = 4
 collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-visible = false
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
-[node name="Mesa" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
-material_override = SubResource("StandardMaterial3D_np6ri")
-gi_mode = 0
-mesh = ExtResource("7_7ki2k")
-skeleton = NodePath("../..")
+[node name="Mesa" parent="Floor" instance=ExtResource("2_n20mf")]
+transform = Transform3D(2.29485e-07, 0, -1.75, 0, 1.75, 0, 1.75, 0, 2.29485e-07, 0, -0.035968, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
@@ -98,19 +87,19 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.17999)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3.2)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.19899)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.2)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.93495, 0, -0.247148)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.5, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.92792, 0, 0.228143)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 0, 0.228)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="Die" parent="." instance=ExtResource("2_gkaff")]
@@ -118,7 +107,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
-transform = Transform3D(1, 0, 0, 0, 0.190809, 0.981627, 0, -0.981627, 0.190809, 0, 8.5, 2)
+transform = Transform3D(1, 0, 0, 0, 0.418834, 0.908063, 0, -0.908063, 0.418834, 0, 8.35041, 4.05193)
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)
@@ -161,15 +150,3 @@ shadow_blur = 2.578
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
 size = Vector3(11.5972, 2, 6.95972)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46868, 4.21255, -1.51627)
-light_color = Color(0, 0.784314, 1, 1)
-light_energy = 16.0
-omni_range = 9.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.64365, 0.855901, -1.51627)
-light_color = Color(1, 0, 0, 1)
-light_energy = 16.0
-omni_range = 4.90094

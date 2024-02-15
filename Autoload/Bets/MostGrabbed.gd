@@ -15,7 +15,7 @@ func startGame(arena : Arena):
 				func (body : Node):
 					if body is Monigote:
 						grabs[body.player.id] += 1
-					maxGrabs = max(maxGrabs, grabs[body.player.id]))
+						maxGrabs = max(maxGrabs, grabs[body.player.id]))
 	
 	super(arena)
 

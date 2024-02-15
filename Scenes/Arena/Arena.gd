@@ -7,7 +7,7 @@ signal gameEnded(winner) # winner : Monigote
 @onready var effects : Array = $Effects.get_children()
 
 const WIDTH = 11
-const HEIGHT = 6
+const HEIGHT = 6.4
 
 # Active effect va de 0 a 5
 var activeEffect   : int = -1
@@ -56,7 +56,7 @@ func getLivingMonigotes() -> Array[Monigote]:
 func getRandomMonigote() -> Monigote:
 	return monigotes[randi() % len(monigotes)]
 
-func getRandomPosition(padding := .7) -> Vector3:
+func getRandomPosition(padding := 1) -> Vector3:
 	return Vector3(randf_range(-WIDTH/2 + padding, WIDTH/2 - padding),
 		Globals.SPRITE_HEIGHT,
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
