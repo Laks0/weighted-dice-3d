@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://by8k0p3yt1cr7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q5gpy"]
+top_radius = 0.7
+bottom_radius = 0.7
+height = 0.5
+radial_segments = 10
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dv7d7"]
+shading_mode = 2
+
+[node name="DisplayWheel" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_q5gpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_dv7d7")

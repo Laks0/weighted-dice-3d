@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
+[ext_resource type="PackedScene" uid="uid://by8k0p3yt1cr7" path="res://Scenes/Arena/UI3d/DisplayWheel.tscn" id="2_0e5j6"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="2_n20mf"]
 [ext_resource type="PackedScene" uid="uid://by481niwnob52" path="res://Scenes/Arena/Alfombra.glb" id="2_r83mv"]
@@ -65,8 +66,11 @@ animations = [{
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 
+[node name="DisplayWheel" parent="." instance=ExtResource("2_0e5j6")]
+transform = Transform3D(0.313599, -0.764068, 0.563787, 0.843058, -0.0491647, -0.53557, 0.43693, 0.643259, 0.628736, -7.33159, 1.61445, -3.51004)
+
 [node name="Alfombra2" parent="." instance=ExtResource("2_r83mv")]
-transform = Transform3D(2.01876, 0, 0, 0, 1.10658, 0, 0, 0, 2.01876, 0, -5.4112, 0)
+transform = Transform3D(3.80932, 0, 0, 0, 1.05536, -1.14549, 0, 0.332755, 3.63302, 0, -5.4112, 0)
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
@@ -111,7 +115,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
-transform = Transform3D(1, 0, 0, 0, 0.426979, 0.904262, 0, -0.904262, 0.426979, 0, 9.53031, 4.50949)
+transform = Transform3D(1, 0, 0, 0, 0.611527, 0.791224, 0, -0.791224, 0.611527, 0, 9, 6.31319)
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)
@@ -156,13 +160,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.01672
 size = Vector3(11.5972, 2, 6.95972)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7623, -5.61739, -7.20924)
-light_color = Color(1, 0.286275, 1, 1)
-light_energy = 10.36
-omni_range = 23.483
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0028, -8.35409, -1.50368)
+light_color = Color(1, 0.690196, 0.988235, 1)
+light_energy = 14.495
+omni_range = 15.8793
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3971, -3.211, -13.6056)
-light_color = Color(1, 0.286275, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3971, -1.20723, -12.5583)
+light_color = Color(1, 0.729412, 0.988235, 1)
 light_energy = 10.36
 omni_range = 27.25
