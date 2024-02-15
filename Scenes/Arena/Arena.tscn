@@ -74,7 +74,7 @@ physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
 [node name="Mesa" parent="Floor" instance=ExtResource("2_n20mf")]
-transform = Transform3D(2.29485e-07, 0, -1.75, 0, 1.75, 0, 1.75, 0, 2.29485e-07, 0, -0.035968, 0)
+transform = Transform3D(2.29485e-07, 0, -1.75, 0, 1.75, 0, 1.75, 0, 2.29485e-07, 0, 0.0082388, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
@@ -107,7 +107,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
-transform = Transform3D(1, 0, 0, 0, 0.418834, 0.908063, 0, -0.908063, 0.418834, 0, 8.35041, 4.05193)
+transform = Transform3D(1, 0, 0, 0, 0.418834, 0.908063, 0, -0.908063, 0.418834, 0, 8.64387, 3.97763)
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)
@@ -141,7 +141,7 @@ sprite_frames = SubResource("SpriteFrames_i2qvo")
 autoplay = "default"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 31.1542, 0)
+transform = Transform3D(1, 0, 0, 0, 0.0392947, 0.999228, 0, -0.999228, 0.0392947, 0, 2.8088, -0.209616)
 layers = 3
 shadow_enabled = true
 shadow_opacity = 0.72
