@@ -33,6 +33,10 @@ _subresources={
 "nodes": {
 "PATH:MesaEx": {
 "physics/shape_type": 1
+},
+"PATH:MesaEx/MesaInt": {
+"generate/physics": true,
+"physics/shape_type": 2
 }
 }
 }
