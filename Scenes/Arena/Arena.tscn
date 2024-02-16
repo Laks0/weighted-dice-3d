@@ -67,7 +67,7 @@ animations = [{
 script = ExtResource("1_txoyd")
 
 [node name="DisplayWheel" parent="." instance=ExtResource("2_0e5j6")]
-transform = Transform3D(0.313599, -0.764068, 0.563787, 0.843058, -0.0491647, -0.53557, 0.43693, 0.643259, 0.628736, -7.33159, 1.61445, -3.51004)
+transform = Transform3D(-3.51877e-08, 0, 0.805, -0.470583, 0.653128, -2.05698e-08, -0.653128, -0.470583, -2.85491e-08, 0, 1, -6.21402)
 
 [node name="Alfombra2" parent="." instance=ExtResource("2_r83mv")]
 transform = Transform3D(3.80932, 0, 0, 0, 1.05536, -1.14549, 0, 0.332755, 3.63302, 0, -5.4112, 0)
@@ -112,7 +112,7 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="Die" parent="." instance=ExtResource("2_gkaff")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 0.520385, -0.143847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 1.00514, -0.143847)
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
 transform = Transform3D(1, 0, 0, 0, 0.611527, 0.791224, 0, -0.791224, 0.611527, 0, 9, 6.31319)
