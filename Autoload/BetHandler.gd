@@ -18,6 +18,7 @@ var lastWinner : int = 0
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
+		# DEBUG
 		if fileName == "Bet.gd":
 			continue
 		
@@ -50,6 +51,9 @@ func getCandidateColor(candidate) -> Color:
 
 func getCandidateOdds(candidate) -> int:
 	return currentBet.getCandidateOdds(candidate)
+
+func getScores() -> Dictionary:
+	return currentBet.getScores()
 
 func canBet(playerId : int, candidate) -> bool:
 	if currentBet.betType == Bet.BetType.EXCLUDE_SELF:

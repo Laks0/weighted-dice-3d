@@ -1,5 +1,5 @@
 extends Bet
-class_name SecondToDieBet
+class_name FirstToDieBet
 
 var dead : int = 0
 
@@ -25,5 +25,7 @@ func startGame(arena : Arena):
 func monigoteDied(monigote : Monigote):
 	if dead == 0:
 		_result = monigote.player.id
-	print_debug(_result)
 	dead += 1
+
+func settle():
+	pass

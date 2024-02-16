@@ -11,5 +11,3 @@ func _rotateWheelTo(wheelN : int, n : int):
 ## Las ruedas empiezan en PI/10 y giran PI/5 por cada número
 func _getWheelCurrentFace(wheel : Node3D) -> int:
 	return (wheel.rotation.x - PI/10) / (PI/5)
-
-func _process(delta):

@@ -34,5 +34,5 @@ func _process(delta):
 	$GameTime.text = "%04.1f" % time
 	
 	if BetHandler.currentBet is MostUsedAreaBet:
-		$SidesTime/Left.text = "%04.1f" % BetHandler.currentBet.usage[Bet.ArenaSide.LEFT]
-		$SidesTime/Right.text = "%04.1f" % BetHandler.currentBet.usage[Bet.ArenaSide.RIGHT]
+		$SidesTime/Left.text = "%04.1f" % BetHandler.getScores()[Bet.ArenaSide.LEFT]
+		$SidesTime/Right.text = "%04.1f" % BetHandler.getScores()[Bet.ArenaSide.RIGHT]
