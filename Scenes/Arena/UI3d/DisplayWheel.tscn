@@ -1,7 +1,11 @@
-[gd_scene load_steps=45 format=3 uid="uid://by8k0p3yt1cr7"]
+[gd_scene load_steps=49 format=3 uid="uid://by8k0p3yt1cr7"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/UI3d/DisplayWheel.gd" id="1_jv0sm"]
+[ext_resource type="Texture2D" uid="uid://btm2e68554iqc" path="res://Assets/RedProfile.png" id="2_x2m3b"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_xsoi3"]
+[ext_resource type="Texture2D" uid="uid://gnradcgoak5f" path="res://Assets/BlueProfile.png" id="3_cmjjk"]
+[ext_resource type="Texture2D" uid="uid://ibk1kh2e3x7d" path="res://Assets/YellowProfile.png" id="4_06pcd"]
+[ext_resource type="Texture2D" uid="uid://cyo4mwfreyb12" path="res://Assets/GreenProfile.png" id="5_c4f6r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gadpc"]
 resource_name = "BaseR3"
@@ -991,61 +995,160 @@ shadow_mesh = SubResource("ArrayMesh_8fs8v")
 
 [node name="DisplayWheels" type="Node3D"]
 script = ExtResource("1_jv0sm")
+thumbnails = Array[Texture]([ExtResource("2_x2m3b"), ExtResource("3_cmjjk"), ExtResource("4_06pcd"), ExtResource("5_c4f6r")])
 
 [node name="Wheel_0" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.309017, 5.7219e-08, -0.951057, 0.951057, -4.1572e-08, -0.309017, -5.7219e-08, -1, -4.1572e-08, 0, 0, -1.2)
+transform = Transform3D(0.309017, -3.02038e-08, -0.951057, -0.951057, -4.1572e-08, -0.309017, -3.02038e-08, 1, -4.1572e-08, 0, 0, -1.2)
 mesh = SubResource("ArrayMesh_f6fev")
 skeleton = NodePath("")
 
-[node name="1" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.961921, 0, -0.0313524)
+[node name="Textures" type="Node3D" parent="Wheel_0"]
+visible = false
+
+[node name="0" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-5.70585e-08, -0.950331, -0.31124, 1, -8.91861e-08, 8.89917e-08, -1.1233e-07, -0.31124, 0.950331, -0.306642, 0, 0.913107)
 layers = 2
 shaded = true
 
-[node name="2" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(-2.56929e-08, -0.587785, -0.809017, 1, -4.37114e-08, 0, -3.53633e-08, -0.809017, 0.587785, -0.788415, 0, 0.553263)
+[node name="9" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-5.71217e-08, -0.951777, 0.306792, 1, -2.81932e-08, 9.87252e-08, -8.53149e-08, 0.306792, 0.951777, 0.266008, 0, 0.92943)
 layers = 2
 shaded = true
 
-[node name="3" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(-4.1572e-08, -0.951057, -0.309017, 1, -4.37114e-08, 0, -1.35076e-08, -0.309017, 0.951057, -0.339351, 0, 0.904966)
+[node name="8" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-4.12938e-08, -0.589676, 0.80764, 1, 2.68723e-08, 7.0749e-08, -6.34221e-08, 0.80764, 0.589676, 0.769201, 0, 0.584935)
 layers = 2
 shaded = true
 
-[node name="4" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(-4.1572e-08, -0.951057, 0.309017, 1, -4.37114e-08, 0, 1.35076e-08, 0.309017, 0.951057, 0.280526, 0, 0.929008)
+[node name="7" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-1.56205e-08, -0.00233856, 0.999998, 1, 5.49772e-08, 1.57491e-08, -5.50139e-08, 0.999998, 0.00233856, 0.954348, 0, 0.0129367)
 layers = 2
 shaded = true
 
-[node name="5" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(-2.56929e-08, -0.587785, 0.809017, 1, -4.37114e-08, 0, 3.53633e-08, 0.809017, 0.587785, 0.755664, 0, 0.585515)
+[node name="6" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(1.00919e-08, 0.585892, 0.81039, 1, 4.53865e-08, -4.52665e-08, -6.33019e-08, 0.81039, -0.585892, 0.798884, 0, -0.547733)
 layers = 2
 shaded = true
 
-[node name="6" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(2.66454e-15, 2.98023e-08, 1, 1, -4.37114e-08, 6.21725e-15, 4.37114e-08, 1, -2.98023e-08, 0.967361, 1.39879e-11, 0.00946468)
+[node name="5" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(2.60221e-08, 0.950331, 0.31124, 1, 1.76329e-09, -8.89917e-08, -8.51204e-08, 0.31124, -0.950331, 0.326187, 0, -0.894578)
 layers = 2
 shaded = true
 
-[node name="7" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(2.56929e-08, 0.587785, 0.809017, 1, -4.37114e-08, 0, 3.53633e-08, 0.809017, -0.587785, 0.793885, 0, -0.537255)
+[node name="4" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(2.60853e-08, 0.951777, -0.306792, 1, -5.92296e-08, -9.87252e-08, -1.12135e-07, -0.306792, -0.951777, -0.287031, 0, -0.919338)
 layers = 2
 shaded = true
 
-[node name="8" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(4.1572e-08, 0.951056, 0.309017, 1, -4.37114e-08, 0, 1.35076e-08, 0.309017, -0.951056, 0.317783, 0, -0.911768)
+[node name="3" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(1.02574e-08, 0.589676, -0.80764, 1, -1.14295e-07, -7.07489e-08, -1.34028e-07, -0.80764, -0.589676, -0.754165, 0, -0.586499)
 layers = 2
 shaded = true
 
-[node name="9" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(4.1572e-08, 0.951056, -0.309017, 1, -4.37114e-08, 0, -1.35076e-08, -0.309017, -0.951056, -0.274111, 0, -0.911768)
+[node name="2" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-1.54159e-08, 0.00233898, -0.999997, 1, -1.424e-07, -1.5749e-08, -1.42436e-07, -0.999997, -0.00233898, -0.964554, 0, -0.0184584)
 layers = 2
 shaded = true
 
-[node name="0" type="Sprite3D" parent="Wheel_0"]
-transform = Transform3D(2.56929e-08, 0.587785, -0.809017, 1, -4.37114e-08, 0, -3.53633e-08, -0.809017, -0.587785, -0.770701, 0, -0.571379)
+[node name="1" type="Sprite3D" parent="Wheel_0/Textures"]
+transform = Transform3D(-4.11284e-08, -0.585891, -0.810389, 1, -1.32809e-07, 4.52664e-08, -1.34148e-07, -0.810389, 0.585891, -0.782966, 0, 0.544892)
 layers = 2
 shaded = true
+
+[node name="Numbers" type="Node3D" parent="Wheel_0"]
+visible = false
+
+[node name="0" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-5.70585e-08, -0.950331, -0.31124, 1, -8.91861e-08, 8.89917e-08, -1.1233e-07, -0.31124, 0.950331, -0.306642, 8.51736e-08, 0.913107)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "0"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="9" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-5.71217e-08, -0.951777, 0.306792, 1, -2.81932e-08, 9.87252e-08, -8.53149e-08, 0.306792, 0.951777, 0.266008, 9.56716e-08, 0.92943)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "9"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="8" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-4.12938e-08, -0.589676, 0.80764, 1, 2.68723e-08, 7.0749e-08, -6.34221e-08, 0.80764, 0.589676, 0.769201, 6.947e-08, 0.584935)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "8
+"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="7" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-1.56205e-08, -0.00233856, 0.999998, 1, 5.49772e-08, 1.57491e-08, -5.50139e-08, 0.999998, 0.00233856, 0.954348, 1.75575e-08, 0.0129367)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "7
+"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="6" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(1.00919e-08, 0.585892, 0.81039, 1, 4.53865e-08, -4.52665e-08, -6.33019e-08, 0.81039, -0.585892, 0.798884, -4.18923e-08, -0.547733)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "6"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="5" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(2.60221e-08, 0.950331, 0.31124, 1, 1.76329e-09, -8.89917e-08, -8.51204e-08, 0.31124, -0.950331, 0.326187, -8.34699e-08, -0.894578)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "5"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="4" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(2.60853e-08, 0.951777, -0.306792, 1, -5.92296e-08, -9.87252e-08, -1.12135e-07, -0.306792, -0.951777, -0.287031, -9.54165e-08, -0.919338)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "4"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="3" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(1.02574e-08, 0.589676, -0.80764, 1, -1.14295e-07, -7.07489e-08, -1.34028e-07, -0.80764, -0.589676, -0.754165, -6.98199e-08, -0.586499)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "3"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="2" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-1.54159e-08, 0.00233901, -0.999997, 1, -1.424e-07, -1.5749e-08, -1.42436e-07, -0.999997, -0.00233901, -0.964554, -1.70049e-08, -0.0184584)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "2"
+font = ExtResource("2_xsoi3")
+font_size = 177
+
+[node name="1" type="Label3D" parent="Wheel_0/Numbers"]
+transform = Transform3D(-4.11284e-08, -0.585891, -0.810389, 1, -1.32809e-07, 4.52664e-08, -1.34148e-07, -0.810389, 0.585891, -0.782966, 4.14299e-08, 0.544892)
+layers = 2
+shaded = true
+modulate = Color(0, 0, 0, 1)
+text = "1"
+font = ExtResource("2_xsoi3")
+font_size = 177
 
 [node name="Wheel_1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.309017, -3.02038e-08, -0.951056, -0.951056, -4.1572e-08, -0.309017, -3.02038e-08, 1, -4.1572e-08, 0, 0, 0)

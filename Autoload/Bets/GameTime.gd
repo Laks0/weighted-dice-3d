@@ -5,7 +5,7 @@ func _init():
 	betName = "Game Time"
 	betType = BetType.GAME_TIME
 
-var gameTime: float = 0
+var gameTime: float
 
 func settle():
 	if gameTime < 30:
