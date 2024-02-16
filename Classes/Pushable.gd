@@ -1,10 +1,14 @@
 extends CharacterBody3D
 class_name Pushable
 
+## Se emite cuando se escapa de un grab
+signal escaped()
+
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
 
 @export var maxPushForce : float = 20 ## La fuerza máxima a la que _es empujado_
+@export var failedPushFactor : float = .3 ## El factor de la fuerza máxima que se usa cuando el objeto agarrado se escapa
 
 @export var affectedByGravity : bool = false
 
@@ -21,8 +25,6 @@ var timer : Timer = Timer.new() # Timer para el grab
 func _ready():
 	timer.one_shot = true
 	add_child(timer)
-	
-	timer.connect("timeout", Callable(self, "push"))
 
 func canBeGrabbed(_grabber) -> bool:
 	return true
@@ -56,6 +58,12 @@ func startGrab(body : Pushable) -> bool:
 	
 	grabBody = body
 	body.onGrabbed()
+
+	# En caso de que se escape
+	body.connect("escaped", func ():
+		pushFactor = failedPushFactor
+		push())
+
 	return true
 
 func push():
@@ -66,6 +74,7 @@ func push():
 	timer.stop()
 	
 	grabBody.onPushed(grabDir, pushFactor)
+	grabBody = null
 
 func _physics_process(delta):
 	if grabbed:

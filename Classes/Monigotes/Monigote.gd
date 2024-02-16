@@ -9,6 +9,8 @@ signal grab(body)
 @export var ACCELERATION : float = 20
 @export var FRICTION     : float = 35
 @export var GRABBING_SPEED_FACTOR : float = .05
+@export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
+var escapeMovements : int = 0
 
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
 @onready var controller : int = player.inputController
@@ -121,12 +123,23 @@ func _physics_process(delta):
 		$AnimatedSprite.play("Pushed")
 		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
 	
+	if grabbed:
+		for action: String in ["up", "down", "right", "left"]:
+			if Input.is_action_just_pressed(actions[action]):
+				escapeMovements += 1
+		if escapeMovements >= MOVEMENTS_TO_ESCAPE_GRAB:
+			emit_signal("escaped")
+
 	if grabbing:
 		$AnimatedSprite.animation = "Grabbing"
 		$AnimatedSprite.frame = vecToDir(grabDir)
 
 func canBeGrabbed(_grabber) -> bool:
 	return not invincible
+
+func onGrabbed():
+	escapeMovements = 0
+	super()
 
 func onGrabbing():
 	var pointing := Controllers.getDirection(controller)
