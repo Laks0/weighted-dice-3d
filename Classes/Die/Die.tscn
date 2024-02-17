@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=25 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Classes/Die/WaitForFloor.gd" id="7_x8flh"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Jumps/JumpsAttack.gd" id="8_81dmh"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/Burst.gd" id="8_t2h52"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine/PickRandom.gd" id="9_btr01"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Jump.gd" id="9_jxa5f"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
@@ -122,7 +123,11 @@ next_state = NodePath("")
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {}
+priorities = {
+"Bursts": 1,
+"Jumps": 1,
+"PickRandom": 1
+}
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -130,14 +135,12 @@ timed = false
 next_state = NodePath(".")
 
 [node name="PickRandom" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("3_67t0h")
+script = ExtResource("9_btr01")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
-timed = true
-waiting_time = 0.1
-on_timer_finished = 2
-next_state = NodePath("")
+timed = false
+next_state = NodePath("../Bursts")
 
 [node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("5_qe015")

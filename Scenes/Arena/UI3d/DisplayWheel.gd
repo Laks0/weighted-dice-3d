@@ -13,13 +13,14 @@ func _rotateWheelTo(wheelN : int, n : int):
 		wheel.rotation.x = wheel.rotation.x - 2*PI
 	
 	var rotationTween := create_tween()
-	rotationTween.tween_property(wheel, "rotation:x", PI/10 + n*(PI/5), .1)
+	rotationTween.tween_property(wheel, "rotation:x", PI/10 - n*(PI/5), .1)
 
 ## Las ruedas empiezan en PI/10 y giran PI/5 por cada número
 func _getWheelCurrentFace(wheel : Node3D) -> int:
 	return floori((wheel.rotation.x - PI/10) / (PI/5))
 
 func _ready():
+	$BetName.text = BetHandler.getBetName()
 	if BetHandler.currentBet is GameTimeBet:
 		$Wheel_0/Numbers.visible = true
 		return

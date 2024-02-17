@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fnl30ubedh62"
-path="res://.godot/imported/Rueditas.glb-a256315a0c176f2c49da9c88f01115dd.scn"
+uid="uid://bvgyufidhkxmj"
+path="res://.godot/imported/TragaMonedas.glb-695d13215b6d28ae5424daf130ad6a64.scn"
 
 [deps]
 
-source_file="res://Scenes/Arena/UI3d/Rueditas.glb"
-dest_files=["res://.godot/imported/Rueditas.glb-a256315a0c176f2c49da9c88f01115dd.scn"]
+source_file="res://Scenes/Arena/UI3d/TragaMonedas.glb"
+dest_files=["res://.godot/imported/TragaMonedas.glb-695d13215b6d28ae5424daf130ad6a64.scn"]
 
 [params]
 

@@ -1,10 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
-[ext_resource type="PackedScene" uid="uid://by8k0p3yt1cr7" path="res://Scenes/Arena/UI3d/DisplayWheel.tscn" id="2_0e5j6"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="2_n20mf"]
-[ext_resource type="PackedScene" uid="uid://by481niwnob52" path="res://Scenes/Arena/Alfombra.glb" id="2_r83mv"]
 [ext_resource type="Shader" path="res://Outline.gdshader" id="5_d4gs2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
@@ -14,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="12_ob7p2"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
 [ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
+[ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Scenes/Arena/UI3d/BetDisplaySimple.tscn" id="14_d7bai"]
+[ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="15_thsto"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -63,14 +63,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_20bdj"]
+material = ExtResource("15_thsto")
+subdivide_width = 30
+subdivide_depth = 30
+
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
-
-[node name="DisplayWheel" parent="." instance=ExtResource("2_0e5j6")]
-transform = Transform3D(-3.51877e-08, 0, 0.805, -0.470583, 0.653128, -2.05698e-08, -0.653128, -0.470583, -2.85491e-08, 0, 1, -6.21402)
-
-[node name="Alfombra2" parent="." instance=ExtResource("2_r83mv")]
-transform = Transform3D(3.80932, 0, 0, 0, 1.05536, -1.14549, 0, 0.332755, 3.63302, 0, -5.4112, 0)
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
@@ -149,8 +148,10 @@ sprite_frames = SubResource("SpriteFrames_i2qvo")
 autoplay = "default"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.0392947, 0.999228, 0, -0.999228, 0.0392947, 0, 2.8088, -0.209616)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8088, -0.209616)
 layers = 3
+light_color = Color(1, 1, 0.670588, 1)
+light_cull_mask = 4294967291
 shadow_enabled = true
 shadow_opacity = 0.72
 shadow_blur = 2.578
@@ -159,14 +160,33 @@ shadow_blur = 2.578
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
 size = Vector3(11.5972, 2, 6.95972)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0028, -8.35409, -1.50368)
-light_color = Color(1, 0.690196, 0.988235, 1)
-light_energy = 14.495
-omni_range = 15.8793
+[node name="Alfombra" type="MeshInstance3D" parent="."]
+transform = Transform3D(18.7172, 0, 0, 0, 0.974898, -4.16747, 0, 0.222655, 18.2473, 0, -7.74312, -2.4681)
+layers = 4
+mesh = SubResource("PlaneMesh_20bdj")
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3971, -1.20723, -12.5583)
-light_color = Color(1, 0.729412, 0.988235, 1)
-light_energy = 10.36
-omni_range = 27.25
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Alfombra"]
+transform = Transform3D(0.0534268, 0, 0, 0, -0.222655, 0.974897, 0, -0.0520856, -0.0118957, 0, 14.6889, 0.370177)
+layers = 0
+light_color = Color(1, 0.537255, 1, 1)
+light_energy = 3.2
+light_cull_mask = 4294967292
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Alfombra"]
+transform = Transform3D(0.0534268, 0, 0, 0, 0.974897, 0.222655, 0, -0.0118957, 0.0520856, 0.78442, 3.35805, -0.514751)
+light_color = Color(0.996078, 0.647059, 1, 1)
+light_energy = 5.174
+light_cull_mask = 4294967294
+omni_range = 8.0
+omni_attenuation = 0.615571
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Alfombra"]
+transform = Transform3D(0.0534268, 0, 0, 0, 0.974897, 0.222655, 0, -0.0118957, 0.0520856, -0.633406, 6.51603, 0.223997)
+light_color = Color(0.996078, 0.647059, 1, 1)
+light_energy = 5.174
+light_cull_mask = 4294967294
+omni_range = 8.0
+omni_attenuation = 0.615571
+
+[node name="BetDisplaySimple" parent="." instance=ExtResource("14_d7bai")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.322002, -5.41458)
