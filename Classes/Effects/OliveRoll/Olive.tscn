@@ -78,6 +78,11 @@ radius = 0.196796
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_yhn61")
+maxGrabTime = null
+grabDistance = null
+maxPushForce = null
+failedPushFactor = null
+affectedByGravity = null
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 layers = 2

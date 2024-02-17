@@ -13,8 +13,8 @@ func setPlayer(p : PlayerHandler.Player):
 func getPlayerId() -> int:
 	return _player.id
 
-func onPushed(dir : Vector2, factor : float):
-	super(dir, factor)
+func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
+	super(dir, factor, _pusher)
 	var velocity2d = maxPushForce * dir * factor
 	velocity = Vector3(velocity2d.x, 0, velocity2d.y)
 

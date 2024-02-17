@@ -35,7 +35,7 @@ func canGrab() -> bool:
 func onGrabbed():
 	grabbed = true
 
-func onPushed(_dir : Vector2, _factor : float):
+func onPushed(_dir : Vector2, _factor : float, _pusher : Pushable):
 	grabbed = false
 	color = Color.WHITE
 	
@@ -73,7 +73,7 @@ func push():
 	grabbing = false
 	timer.stop()
 	
-	grabBody.onPushed(grabDir, pushFactor)
+	grabBody.onPushed(grabDir, pushFactor, self)
 	grabBody = null
 
 func _physics_process(delta):

@@ -165,7 +165,7 @@ func onGrabbing():
 	
 	super.onGrabbing()
 
-func onPushed(dir : Vector2, factor : float):
+func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce
 	
 	if factor == 1:
@@ -173,7 +173,7 @@ func onPushed(dir : Vector2, factor : float):
 	else:
 		$Audio/YellPush.play()
 	
-	super.onPushed(dir, factor)
+	super(dir, factor, _pusher)
 
 func knockback(vel : Vector2):
 	unclampedVelocity += vel

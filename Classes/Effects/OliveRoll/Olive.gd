@@ -1,17 +1,21 @@
 extends Pushable
 
+var _lastThrower : Monigote
+
 func _ready():
 	$AnimatedSprite3D.frame = randi_range(0, 7)
 	
 	super()
 
-func onPushed(dir : Vector2, factor : float):
+func onPushed(dir : Vector2, factor : float, pusher : Pushable):
 	$Shot.play()
 	
 	velocity += Vector3(dir.x, 0, dir.y) * factor * maxPushForce
 	$AnimatedSprite3D.play()
 	
-	super(dir, factor)
+	_lastThrower = pusher
+
+	super(dir, factor, pusher)
 
 const FRICTION := 40
 func _physics_process(delta):
@@ -27,7 +31,7 @@ func _process(_delta):
 func _on_area_3d_body_entered(body):
 	if velocity.is_zero_approx():
 		return
-	if not body is Monigote:
+	if not body is Monigote or body == _lastThrower:
 		return
 	
 	var monigote := body as Monigote
