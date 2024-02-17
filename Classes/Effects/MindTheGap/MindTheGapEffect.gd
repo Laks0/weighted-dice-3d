@@ -8,6 +8,7 @@ var gaps : Array[Gap]
 var padding = 1
 
 func start():
+	$Startup.play()
 	for _i in range(GAP_AMMOUNT):
 		var gap : Gap = GapScene.instantiate()
 		gaps.append(gap)

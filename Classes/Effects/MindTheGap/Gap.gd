@@ -15,5 +15,7 @@ func _on_body_entered(body):
 		return
 	var mon := body as Monigote
 	
+	$YellVoid.play()
+	
 	mon.die()
 	delete()

@@ -4,6 +4,7 @@ extends State
 var die : Die
 
 func _on_enter(_args):
+	target.get_node("Buildup").play()
 	die = target as Die
 	
 	die.linear_velocity = Vector3.ZERO

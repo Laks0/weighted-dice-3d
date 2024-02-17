@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://8l23xyx2htpf"]
+[gd_scene load_steps=15 format=3 uid="uid://8l23xyx2htpf"]
 
 [ext_resource type="Script" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
 [ext_resource type="Texture2D" uid="uid://466i7kvr7oj7" path="res://Classes/Effects/OliveRoll/aceituna.png" id="2_8r2dk"]
+[ext_resource type="AudioStream" uid="uid://ba3m8jvebr6fg" path="res://Classes/Effects/OliveRoll/sfx_oliveshot.wav" id="3_fw7dq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7f1p1"]
 atlas = ExtResource("2_8r2dk")
@@ -77,7 +78,6 @@ radius = 0.196796
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_yhn61")
-maxPushForce = 30
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 layers = 2
@@ -98,5 +98,8 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_e8vk1")
+
+[node name="Shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fw7dq")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

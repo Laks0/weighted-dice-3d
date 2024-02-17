@@ -5,6 +5,8 @@ extends Effect
 const OLIVE_AMOUNT = 5
 
 func start():
+	$Startup.play()
+	
 	for _i in range(OLIVE_AMOUNT):
 		var pos := arena.getRandomPosition()
 		

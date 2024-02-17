@@ -6,6 +6,8 @@ func _ready():
 	super()
 
 func onPushed(dir : Vector2, factor : float):
+	$Shot.play()
+	
 	velocity += Vector3(dir.x, 0, dir.y) * factor * maxPushForce
 	$AnimatedSprite3D.play()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=15 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Autoload/MonigoteSkins/RedFrames.tres" id="2_u2bhy"]
@@ -7,6 +7,10 @@
 [ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Autoload/MonigoteSkins/YellowFrames.tres" id="5_7qj1l"]
 [ext_resource type="Script" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
 [ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
+[ext_resource type="AudioStream" uid="uid://ct1uhpnp8igyo" path="res://Classes/Monigotes/SFX/sfx_yellpush.6.wav" id="8_4eqdp"]
+[ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
+[ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
+[ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.094
@@ -83,5 +87,19 @@ process_material = SubResource("ParticleProcessMaterial_7joh5")
 draw_pass_1 = ExtResource("6_jppmt")
 script = ExtResource("6_f2n3y")
 mesh = ExtResource("6_jppmt")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="YellPush" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_4eqdp")
+
+[node name="YellSpike" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_ldtbj")
+
+[node name="YellStomp" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_ir8at")
+
+[node name="YellSuperpush" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("12_psywq")
 
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]

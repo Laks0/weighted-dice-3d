@@ -5,6 +5,8 @@ extends Effect
 var layout : Node3D
 
 func start():
+	$Startup.play()
+	
 	layout = SpikesLayout.instantiate()
 	arena.add_child(layout)
 	

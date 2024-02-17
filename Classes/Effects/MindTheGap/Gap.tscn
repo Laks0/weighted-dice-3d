@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://6k85bif87r1q"]
+[gd_scene load_steps=10 format=3 uid="uid://6k85bif87r1q"]
 
 [ext_resource type="Script" path="res://Classes/Effects/MindTheGap/Gap.gd" id="1_uhis5"]
 [ext_resource type="Texture2D" uid="uid://dhqq0ovgi3bve" path="res://Classes/Effects/MindTheGap/agujeros.png" id="2_gilpg"]
+[ext_resource type="AudioStream" uid="uid://dn7oy8pqe620i" path="res://Classes/Monigotes/SFX/sfx_yellvoid.wav" id="3_bj5pl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iyvxw"]
 atlas = ExtResource("2_gilpg")
@@ -79,6 +80,9 @@ frame_progress = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19089, 0)
 shape = SubResource("CapsuleShape3D_j2qry")
 disabled = true
+
+[node name="YellVoid" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bj5pl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

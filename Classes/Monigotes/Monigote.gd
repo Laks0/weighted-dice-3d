@@ -151,6 +151,11 @@ func onGrabbing():
 func onPushed(dir : Vector2, factor : float):
 	unclampedVelocity += dir * factor * maxPushForce
 	
+	if factor == 1:
+		$Audio/YellSuperpush.play()
+	else:
+		$Audio/YellPush.play()
+	
 	super.onPushed(dir, factor)
 
 func knockback(vel : Vector2):
@@ -163,11 +168,15 @@ func hurt():
 	health -= 1
 	$HurtTime.start()
 	
+	$Audio/YellStomp.play()
+	
 	if health <= 0:
 		die()
 
 func die():
 	emit_signal("died")
+	
+	$Audio/YellStomp.play()
 	
 	$AnimatedSprite.visible = false
 	$DeathParticles.emitting = true
@@ -177,6 +186,8 @@ func die():
 func stun():
 	if !$StunCooldown.is_stopped():
 		return
+	
+	$Audio/YellSpike.play()
 	
 	$StunCooldown.start()
 	stunned = true
