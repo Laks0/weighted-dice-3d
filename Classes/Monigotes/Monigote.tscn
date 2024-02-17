@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
-radius = 0.094
+radius = 0.147903
 height = 0.563633
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
@@ -62,7 +62,6 @@ animation = &"Pushed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
-visible = false
 shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]

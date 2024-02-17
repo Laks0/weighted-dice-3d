@@ -22,17 +22,11 @@ func _getWheelCurrentFace(wheel : Node3D) -> int:
 func _process(_delta):
 	var firstCandidate = BetHandler.getCandidatesInOrder()[0]
 	var firstScore: float = BetHandler.getScores()[firstCandidate]
-	var firstColor: Color = BetHandler.getCandidateColor(firstCandidate)
 
 	if BetHandler.currentBet is GameTimeBet:
 		numberShown = BetHandler.currentBet.gameTime
 	else:
 		numberShown = firstScore
-	
-	$FirstPlaceName.text = BetHandler.getCandidateName(firstCandidate)
-	$FirstPlaceName.modulate = firstColor
-	$FirstPlaceTitle.modulate = firstColor
-	$ScreenLight.light_color = firstColor
 
 	_rotateWheelTo(0, floori(numberShown/100))
 	_rotateWheelTo(1, floori(numberShown/10))

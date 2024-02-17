@@ -123,11 +123,7 @@ next_state = NodePath("")
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")
 randomized = true
-priorities = {
-"Bursts": 1,
-"Jumps": 1,
-"PickRandom": 1
-}
+priorities = {}
 disabled = false
 debug_mode = false
 target_path = NodePath("")
@@ -245,6 +241,7 @@ draw_pass_1 = SubResource("BoxMesh_dhs5y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+gi_mode = 0
 mesh = ExtResource("13_wyhdg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
