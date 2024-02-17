@@ -1,12 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://bu6qub506i5vu"]
+[gd_scene load_steps=57 format=3 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="PackedScene" uid="uid://cotwbays1f604" path="res://Scenes/Arena/UI3d/TablaApuestasSimples.glb" id="1_xpq22"]
 [ext_resource type="Script" path="res://Scenes/Arena/UI3d/DisplayWheel.gd" id="2_0d316"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_6fvvp"]
-[ext_resource type="Texture2D" uid="uid://btm2e68554iqc" path="res://Assets/RedProfile.png" id="3_neqf8"]
-[ext_resource type="Texture2D" uid="uid://gnradcgoak5f" path="res://Assets/BlueProfile.png" id="4_v5sux"]
-[ext_resource type="Texture2D" uid="uid://ibk1kh2e3x7d" path="res://Assets/YellowProfile.png" id="5_e3ogy"]
-[ext_resource type="Texture2D" uid="uid://cyo4mwfreyb12" path="res://Assets/GreenProfile.png" id="6_31436"]
 [ext_resource type="FontFile" uid="uid://lksm03ik4w1w" path="res://alarm clock.ttf" id="8_vlq1k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_db8yj"]
@@ -1179,7 +1175,6 @@ transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
 [node name="Slotmachine" type="Node3D" parent="."]
 transform = Transform3D(0.920661, -0.6689, 0, 0.6689, 0.920661, 0, 0, 0, 1.138, 0.0602882, 1.18413, 0)
 script = ExtResource("2_0d316")
-thumbnails = Array[Texture]([ExtResource("3_neqf8"), ExtResource("4_v5sux"), ExtResource("5_e3ogy"), ExtResource("6_31436")])
 
 [node name="Palanca" type="MeshInstance3D" parent="Slotmachine"]
 transform = Transform3D(0.115912, 3.57628e-08, -0.382837, -0.382837, 0, -0.115912, 1.19209e-08, 0.4, 2.38419e-08, 0.0843386, -0.544379, 0.473248)
@@ -1191,63 +1186,7 @@ transform = Transform3D(0.123607, -1.20815e-08, -0.380423, -0.380423, -1.66288e-
 mesh = SubResource("ArrayMesh_rw4px")
 skeleton = NodePath("")
 
-[node name="Textures" type="Node3D" parent="Slotmachine/Wheel_0"]
-visible = false
-
-[node name="0" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.291491, 0, -0.915587)
-layers = 2
-shaded = true
-
-[node name="9" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.763101, 0, -0.59035)
-layers = 2
-shaded = true
-
-[node name="8" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.965456, 0, -0.0150824)
-layers = 2
-shaded = true
-
-[node name="7" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.776798, 0, 0.555768)
-layers = 2
-shaded = true
-
-[node name="6" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.320059, 0, 0.916197)
-layers = 2
-shaded = true
-
-[node name="5" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.266238, 0, 0.916664)
-layers = 2
-shaded = true
-
-[node name="4" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.77556, 0, 0.574261)
-layers = 2
-shaded = true
-
-[node name="3" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(9.14572e-08, -0.00157002, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157005, -0.955715, 0, 0.0297053)
-layers = 2
-shaded = true
-
-[node name="2" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.789759, -1.19209e-07, -0.552869)
-layers = 2
-shaded = true
-
-[node name="1" type="Sprite3D" parent="Slotmachine/Wheel_0/Textures"]
-transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.310361, -1.19209e-07, -0.900023)
-layers = 2
-shaded = true
-
-[node name="Numbers" type="Node3D" parent="Slotmachine/Wheel_0"]
-visible = false
-
-[node name="0" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="0" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.291491, 0, -0.915587)
 layers = 2
 shaded = true
@@ -1256,7 +1195,7 @@ text = "0"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="9" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="9" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.763101, 0, -0.59035)
 layers = 2
 shaded = true
@@ -1265,7 +1204,7 @@ text = "9"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="8" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="8" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.965456, 0, -0.0150824)
 layers = 2
 shaded = true
@@ -1275,7 +1214,7 @@ text = "8
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="7" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="7" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.776798, 0, 0.555768)
 layers = 2
 shaded = true
@@ -1285,7 +1224,7 @@ text = "7
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="6" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="6" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.320059, 0, 0.916197)
 layers = 2
 shaded = true
@@ -1294,7 +1233,7 @@ text = "6"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="5" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="5" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.266238, 0, 0.916664)
 layers = 2
 shaded = true
@@ -1303,7 +1242,7 @@ text = "5"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="4" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="4" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.77556, 0, 0.574261)
 layers = 2
 shaded = true
@@ -1312,7 +1251,7 @@ text = "4"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="3" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="3" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(9.14572e-08, -0.00157002, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157005, -0.955715, 0, 0.0297053)
 layers = 2
 shaded = true
@@ -1321,7 +1260,7 @@ text = "3"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="2" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="2" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.789759, -1.19209e-07, -0.552869)
 layers = 2
 shaded = true
@@ -1330,7 +1269,7 @@ text = "2"
 font = ExtResource("2_6fvvp")
 font_size = 177
 
-[node name="1" type="Label3D" parent="Slotmachine/Wheel_0/Numbers"]
+[node name="1" type="Label3D" parent="Slotmachine/Wheel_0"]
 transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.310361, -1.19209e-07, -0.900023)
 layers = 2
 shaded = true
@@ -1534,7 +1473,7 @@ font = ExtResource("2_6fvvp")
 font_size = 177
 
 [node name="TragaMonedas" type="MeshInstance3D" parent="Slotmachine"]
-transform = Transform3D(0.318853, 0, 0, 0, 0.485228, 0, 0, 0, 0.813433, -0.0634704, 0.0593904, 0.00384498)
+transform = Transform3D(0.318853, -1.49012e-08, 0, 0, 0.485228, 0, 0, 0, 0.813433, -0.0634704, 0.0593904, 0.00384498)
 mesh = SubResource("ArrayMesh_wyx6c")
 skeleton = NodePath("")
 
@@ -1548,26 +1487,27 @@ transform = Transform3D(0.0982002, 0, 0, 0, 0.0982002, 0, 0, 0, 0.0982002, 0.374
 mesh = SubResource("ArrayMesh_k7t6j")
 skeleton = NodePath("")
 
-[node name="Label3D" type="Label3D" parent="Slotmachine"]
+[node name="FirstPlaceTitle" type="Label3D" parent="Slotmachine"]
 transform = Transform3D(-4.27433e-08, -0.209294, 0.977853, -9.14854e-09, 0.977853, 0.209294, -1, 0, -4.37114e-08, 0.634757, -0.699195, 0)
 layers = 2
 modulate = Color(0.976471, 0, 0, 1)
-text = "CURRENT BET:"
+text = "FIRST PLACE:"
 font = ExtResource("8_vlq1k")
 outline_size = 22
 
-[node name="BetName" type="Label3D" parent="Slotmachine"]
+[node name="FirstPlaceName" type="Label3D" parent="Slotmachine"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.669449, -1.02761, -0.0211869)
 layers = 2
 modulate = Color(0.976471, 0, 0, 1)
-text = "MOST TIME AT THE CENTER"
+text = "FRANCISCO"
 font = ExtResource("8_vlq1k")
+font_size = 42
 outline_size = 22
 uppercase = true
 autowrap_mode = 2
 width = 250.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Slotmachine"]
+[node name="ScreenLight" type="OmniLight3D" parent="Slotmachine"]
 transform = Transform3D(0.878735, 0, 0, 0, 0.878735, 0, 0, 0, 0.878735, 0.776956, -0.942747, 0)
 light_color = Color(1, 0.172549, 0.12549, 1)
 light_energy = 2.445

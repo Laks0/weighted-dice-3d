@@ -5,6 +5,8 @@ signal died
 ## Se emite cuando el monigote agarra cualquier pushable
 signal grab(body)
 
+@export var scoreParticle : PackedScene
+
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var FRICTION     : float = 35
@@ -44,7 +46,12 @@ func _ready():
 		PlayerHandler.Skins.GREEN:
 			$AnimatedSprite.sprite_frames = skins.get("Green")
 	
+	
+	
 	super._ready()
+
+## El último score de la apuesta, solo se usa si se apuesta sobre jugadores
+var _lastScore: float = 0
 
 func _process(_delta):
 	invincible = !$HurtTime.is_stopped()
@@ -73,10 +80,20 @@ func _process(_delta):
 		$AnimatedSprite.modulate.a = 1
 	
 	position.y = Globals.SPRITE_HEIGHT
-	
+
 	# DEBUG
 	if Input.is_action_just_pressed("die"):
 		emit_signal("died")
+	
+	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
+		return
+	if not get_parent() is Arena:
+		return
+
+	var newScore = BetHandler.getCandidateScore(player.id)
+	if floori(newScore) != floori(_lastScore):
+		emitScore(floori(newScore))
+	_lastScore = newScore
 
 func _physics_process(delta):
 	var dir : Vector2 = Controllers.getDirection(controller)
@@ -208,3 +225,14 @@ func vecToDir(vector : Vector2) -> Cardinal:
 
 func _on_stun_cooldown_timeout():
 	stunned = false
+
+func emitScore(n : int):
+	var particle = scoreParticle.instantiate()
+	add_child(particle)
+	
+	particle.draw_pass_1.material.albedo_color = player.color
+	particle.draw_pass_1.text = str(n)
+	
+	particle.emitting = true
+	
+	particle.connect("finished", particle.queue_free)

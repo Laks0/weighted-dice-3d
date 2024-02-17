@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var thumbnails : Array[Texture]
+var numberShown: float = 0
 
 func _rotateWheelTo(wheelN : int, n : int):
 	var wheel : Node3D = get_node("Wheel_" + str(wheelN))
@@ -19,26 +19,21 @@ func _rotateWheelTo(wheelN : int, n : int):
 func _getWheelCurrentFace(wheel : Node3D) -> int:
 	return floori((wheel.rotation.x - PI/10) / (PI/5))
 
-func _ready():
-	$BetName.text = BetHandler.getBetName()
-	if BetHandler.currentBet is GameTimeBet:
-		$Wheel_0/Numbers.visible = true
-		return
-	
-	$Wheel_0/Textures.visible = true
-	for candidate in BetHandler.getCandidates():
-		$Wheel_0/Textures.get_node(str(candidate)).texture = thumbnails[candidate]
-
 func _process(_delta):
-	if BetHandler.currentBet is GameTimeBet:
-		_rotateWheelTo(0, floori(BetHandler.currentBet.gameTime/100))
-		_rotateWheelTo(1, floori(BetHandler.currentBet.gameTime/10))
-		_rotateWheelTo(2, floori(BetHandler.currentBet.gameTime) % 10)
-		return
-	
 	var firstCandidate = BetHandler.getCandidatesInOrder()[0]
-	var firstScore :float = BetHandler.getScores()[firstCandidate]
+	var firstScore: float = BetHandler.getScores()[firstCandidate]
+	var firstColor: Color = BetHandler.getCandidateColor(firstCandidate)
+
+	if BetHandler.currentBet is GameTimeBet:
+		numberShown = BetHandler.currentBet.gameTime
+	else:
+		numberShown = firstScore
 	
-	_rotateWheelTo(0, firstCandidate)
-	_rotateWheelTo(1, floori(firstScore/10))
-	_rotateWheelTo(2, floori(firstScore) % 10)
+	$FirstPlaceName.text = BetHandler.getCandidateName(firstCandidate)
+	$FirstPlaceName.modulate = firstColor
+	$FirstPlaceTitle.modulate = firstColor
+	$ScreenLight.light_color = firstColor
+
+	_rotateWheelTo(0, floori(numberShown/100))
+	_rotateWheelTo(1, floori(numberShown/10))
+	_rotateWheelTo(2, floori(numberShown) % 10)

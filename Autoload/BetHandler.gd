@@ -57,6 +57,9 @@ func getCandidatesInOrder() -> Array:
 func getScores() -> Dictionary:
 	return currentBet.getScores()
 
+func getCandidateScore(candidate) -> float:
+	return currentBet.getScores()[candidate]
+
 func canBet(playerId : int, candidate) -> bool:
 	if currentBet.betType == Bet.BetType.EXCLUDE_SELF:
 		return candidate != playerId

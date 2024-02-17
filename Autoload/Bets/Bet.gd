@@ -101,7 +101,7 @@ static func getCandidateColor(type: BetType, candidate) -> Color:
 		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
 			return PlayerHandler.getPlayerById(candidate).color
 	
-	return Color.PURPLE
+	return Color.RED
 
 enum GameTimes {
 	FIRST_30,
