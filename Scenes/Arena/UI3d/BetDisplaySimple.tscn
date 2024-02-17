@@ -1,7 +1,7 @@
 [gd_scene load_steps=74 format=3 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/UI3d/DisplayWheel.gd" id="2_0d316"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_6fvvp"]
+[ext_resource type="FontFile" uid="uid://dfomoacntffo" path="res://Assets/alagard.ttf" id="2_ip3gf"]
 [ext_resource type="Texture2D" uid="uid://cvlwu2egkwdaa" path="res://Scenes/Arena/UI3d/TablaApuestasSimples_BordeColorApuestas.png" id="3_82ohj"]
 [ext_resource type="Texture2D" uid="uid://carq68a3vomod" path="res://Scenes/Arena/UI3d/TablaApuestasSimples_BordeTexturaApuestas.png" id="4_ggvn5"]
 [ext_resource type="Texture2D" uid="uid://b6e4jth4nfnmb" path="res://Scenes/Arena/UI3d/TablaApuestasSimples_BordeColor2.png" id="5_f0ika"]
@@ -1456,297 +1456,300 @@ script = ExtResource("2_0d316")
 
 [node name="Wheel_1" type="MeshInstance3D" parent="Slotmachine"]
 transform = Transform3D(0.123607, -1.20815e-08, -0.380423, -0.380423, -1.66288e-08, -0.123607, -1.20815e-08, 0.4, -1.66288e-08, 0, 0.65621, 0)
+layers = 2
 gi_mode = 2
 mesh = SubResource("ArrayMesh_xl2k7")
 skeleton = NodePath("")
 
 [node name="0" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.291491, 0, -0.915587)
+transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.341474, 2.5445e-09, -0.890693)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "0"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="9" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.763101, 0, -0.59035)
+transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.81971, -6.16777e-09, -0.554374)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "9"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="8" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.965456, 0, -0.0150824)
+transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.955, 0, 0.035)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "8
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="7" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.776798, 0, 0.555768)
+transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.742857, 7.11196e-10, 0.597537)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "7
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="6" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.320059, 0, 0.916197)
+transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.251404, -1.83265e-09, 0.921996)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "6"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="5" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.266238, 0, 0.916664)
+transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.339123, -3.13899e-09, 0.894112)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "5"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="4" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.77556, 0, 0.574261)
+transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.805215, -2.5925e-09, 0.533445)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "4"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="3" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(9.14572e-08, -0.00157002, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157005, -0.955715, 0, 0.0297053)
+transform = Transform3D(9.14572e-08, -0.00157008, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157008, -0.954637, -3.54761e-09, -0.0564145)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "3"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="2" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.789759, -1.19209e-07, -0.552869)
+transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.761955, -1.21009e-07, -0.616373)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "2"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="1" type="Label3D" parent="Slotmachine/Wheel_1"]
-transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.310361, -1.19209e-07, -0.900023)
+transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.264053, -1.19209e-07, -0.933667)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "1"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="Wheel_0" type="MeshInstance3D" parent="Slotmachine"]
 transform = Transform3D(0.123607, -1.20815e-08, -0.380423, -0.380423, -1.66288e-08, -0.123607, -1.20815e-08, 0.4, -1.66288e-08, 0, 0.656209, 0.47)
+layers = 2
 gi_mode = 2
 mesh = SubResource("ArrayMesh_t0kfa")
 skeleton = NodePath("")
 
 [node name="0" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.291491, 0, -0.915587)
+transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.341474, 2.5445e-09, -0.890693)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "0"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="9" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.763101, 0, -0.59035)
+transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.81971, -6.16777e-09, -0.554374)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "9"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="8" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.965456, 0, -0.0150824)
+transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.955, 0, 0.035)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "8
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="7" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.776798, 0, 0.555768)
+transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.742857, 7.11196e-10, 0.597537)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "7
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="6" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.320059, 0, 0.916197)
+transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.251404, -1.83265e-09, 0.921996)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "6"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="5" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.266238, 0, 0.916664)
+transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.339123, -3.13899e-09, 0.894112)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "5"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="4" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.77556, 0, 0.574261)
+transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.805215, -2.5925e-09, 0.533445)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "4"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="3" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(9.14572e-08, -0.00157002, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157005, -0.955715, 0, 0.0297053)
+transform = Transform3D(9.14572e-08, -0.00157008, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157008, -0.954637, -3.54761e-09, -0.0564145)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "3"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="2" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.789759, -1.19209e-07, -0.552869)
+transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.761955, -1.21009e-07, -0.616373)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "2"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="1" type="Label3D" parent="Slotmachine/Wheel_0"]
-transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.310361, -1.19209e-07, -0.900023)
+transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.264053, -1.19209e-07, -0.933667)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "1"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="Wheel_2" type="MeshInstance3D" parent="Slotmachine"]
 transform = Transform3D(0.123607, -1.20815e-08, -0.380423, -0.380423, -1.66288e-08, -0.123607, -1.20815e-08, 0.4, -1.66288e-08, 0, 0.67221, -0.47)
+layers = 2
 gi_mode = 2
 mesh = SubResource("ArrayMesh_5huns")
 skeleton = NodePath("")
 
 [node name="0" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.291491, 0, -0.915587)
+transform = Transform3D(4.99749e-08, -0.95057, 0.310511, -1, -6.49223e-08, -3.78034e-08, 5.6094e-08, -0.310511, -0.95057, 0.341474, 2.5445e-09, -0.890693)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "0"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="9" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.763101, 0, -0.59035)
+transform = Transform3D(6.58883e-08, -0.586514, 0.80994, -1, -6.63954e-08, 3.32697e-08, 3.42632e-08, -0.80994, -0.586514, 0.81971, -6.16777e-09, -0.554374)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "9"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="8" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.965456, 0, -0.0150824)
+transform = Transform3D(9.15943e-08, 0.00157002, 1, -1, -2.58115e-08, 9.1635e-08, 2.59553e-08, -1, 0.00157005, 0.955, 0, 0.035)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "8
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="7" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.776798, 0, 0.555768)
+transform = Transform3D(1.17274e-07, 0.589056, 0.808093, -1, 4.1328e-08, 1.14999e-07, 3.43438e-08, -0.808094, 0.589056, 0.742857, 7.11196e-10, 0.597537)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "7
 "
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="6" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.320059, 0, 0.916197)
+transform = Transform3D(1.33119e-07, 0.951541, 0.307523, -1, 1.09378e-07, 9.44371e-08, 5.62244e-08, -0.307523, 0.951542, 0.251404, -1.83265e-09, 0.921996)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "6"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="5" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.266238, 0, 0.916664)
+transform = Transform3D(1.33076e-07, 0.95057, -0.310511, -1, 1.52345e-07, 3.78033e-08, 8.32396e-08, 0.310511, 0.95057, -0.339123, -3.13899e-09, 0.894112)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "5"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="4" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.77556, 0, 0.574261)
+transform = Transform3D(1.17163e-07, 0.586514, -0.80994, -1, 1.53818e-07, -3.32697e-08, 1.0507e-07, 0.80994, 0.586514, -0.805215, -2.5925e-09, 0.533445)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "4"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="3" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(9.14572e-08, -0.00157002, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157005, -0.955715, 0, 0.0297053)
+transform = Transform3D(9.14572e-08, -0.00157008, -1, -1, 1.13234e-07, -9.1635e-08, 1.13378e-07, 1, -0.00157008, -0.954637, -3.54761e-09, -0.0564145)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "3"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="2" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.789759, -1.19209e-07, -0.552869)
+transform = Transform3D(6.57775e-08, -0.589055, -0.808093, -1, 4.6095e-08, -1.14999e-07, 1.04989e-07, 0.808093, -0.589055, -0.761955, -1.21009e-07, -0.616373)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "2"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="1" type="Label3D" parent="Slotmachine/Wheel_2"]
-transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.310361, -1.19209e-07, -0.900023)
+transform = Transform3D(4.99326e-08, -0.95154, -0.307523, -1, -2.1955e-08, -9.44369e-08, 8.31086e-08, 0.307523, -0.95154, -0.264053, -1.19209e-07, -0.933667)
 layers = 2
 shaded = true
 modulate = Color(0, 0, 0, 1)
 text = "1"
-font = ExtResource("2_6fvvp")
-font_size = 177
+font = ExtResource("2_ip3gf")
+font_size = 127
 
 [node name="TragaMonedas_002" type="MeshInstance3D" parent="Slotmachine"]
 transform = Transform3D(0.318853, 0, 0, 0, 0.485228, 0, 0, 0, 0.813433, -0.0634704, 0.659034, 0.00384498)

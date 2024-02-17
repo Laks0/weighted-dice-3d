@@ -28,7 +28,7 @@ uniform sampler2D noise;
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	VERTEX.y = texture(noise, VERTEX.xz + vec2(TIME, TIME)*.1).x*2.0;
+	VERTEX.y = texture(noise, VERTEX.xz + vec2(TIME, TIME)*.07).x*2.0;
 }
 
 
@@ -52,7 +52,8 @@ void fragment() {
 "
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p4a2l"]
-frequency = 0.001
+noise_type = 4
+frequency = 0.007
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0v4pl"]
 seamless = true

@@ -62,7 +62,7 @@ func _ready():
 		seed(state_seed)
 
 	var _c1 = child_entered_tree.connect(_substate_entered)
-	var _c2 = child_exiting_tree.connect(_substate_exiting)
+	#var _c2 = child_exiting_tree.connect(_substate_exiting)
 	for c in get_children():
 		if c is State:
 			var _conn = c.renamed.connect(_substate_renamed.bind(c.name, c))
@@ -121,9 +121,9 @@ func _substate_entered(node):
 		var _c = node.renamed.connect(_substate_renamed.bind(node.name, node))
 
 
-func _substate_exiting(node):
-	if node is State:
-		priorities.erase(node.name)
+#func _substate_exiting(node):
+	#if node is State:
+		#priorities.erase(node.name)
 
 
 # in case a state child is renamed, update its name in priorities
