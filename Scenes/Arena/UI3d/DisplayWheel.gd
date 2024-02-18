@@ -27,6 +27,8 @@ func _process(_delta):
 		numberShown = BetHandler.currentBet.gameTime
 	else:
 		numberShown = firstScore
+	
+	$TragaMonedas_002.get_surface_override_material(3).albedo_color = BetHandler.getCandidateColor(firstCandidate)
 
 	_rotateWheelTo(0, floori(numberShown/100))
 	_rotateWheelTo(1, floori(numberShown/10))
