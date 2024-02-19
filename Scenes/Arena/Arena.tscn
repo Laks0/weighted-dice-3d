@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=26 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Scenes/Arena/UI3d/BetDisplaySimple.tscn" id="14_d7bai"]
 [ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="15_thsto"]
+
+[sub_resource type="Environment" id="Environment_wjch0"]
+glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -71,6 +74,9 @@ subdivide_depth = 30
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wjch0")
+
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
 collision_layer = 4
@@ -112,7 +118,7 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="Die" parent="." instance=ExtResource("2_gkaff")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0275555, 1.00514, -0.143847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
 transform = Transform3D(1, 0, 0, 0, 0.623525, 0.781804, 0, -0.781804, 0.623525, 0, 9, 6.23337)
@@ -183,7 +189,7 @@ omni_range = 8.0
 omni_attenuation = 0.615571
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Alfombra"]
-transform = Transform3D(0.0534268, 0, 0, 0, 0.974897, 0.222655, 0, -0.0118957, 0.0520856, -0.633406, 6.51603, 0.223997)
+transform = Transform3D(0.0423991, 0, 0, 0, 0.912432, 0.246928, 0, -0.0111335, 0.0411401, -0.549933, 4.14784, 0.0790422)
 light_color = Color(0.996078, 0.647059, 1, 1)
 light_energy = 5.174
 light_cull_mask = 4294967294

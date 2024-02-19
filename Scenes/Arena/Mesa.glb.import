@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/Mesa.glb-bcf16307e44a838bf9981e204317a00e.scn
 
 nodes/root_type=""
 nodes/root_name=""
-nodes/apply_root_scale=true
+nodes/apply_root_scale=false
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
 meshes/generate_lods=true

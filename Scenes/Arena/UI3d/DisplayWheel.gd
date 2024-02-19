@@ -28,6 +28,7 @@ func _process(_delta):
 	else:
 		numberShown = firstScore
 	
+	$ScreenLight.light_color = BetHandler.getCandidateColor(firstCandidate)
 	$TragaMonedas_002.get_surface_override_material(3).albedo_color = BetHandler.getCandidateColor(firstCandidate)
 
 	_rotateWheelTo(0, floori(numberShown/100))

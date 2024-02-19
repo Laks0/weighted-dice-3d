@@ -1788,6 +1788,10 @@ gi_mode = 2
 mesh = SubResource("ArrayMesh_22apb")
 skeleton = NodePath("")
 
+[node name="ScreenLight" type="OmniLight3D" parent="Slotmachine"]
+transform = Transform3D(0.769232, -5.96046e-08, 0, 5.96046e-08, 0.769232, 0, 0, 0, 0.769231, 0.944575, -0.260158, 0)
+light_color = Color(1, 0, 0, 1)
+
 [node name="Table" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.27, 0, 0)
 
