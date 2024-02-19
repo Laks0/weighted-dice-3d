@@ -56,7 +56,7 @@ var _lastScore: float = 0
 func _process(_delta):
 	invincible = !$HurtTime.is_stopped()
 	
-	if Input.is_action_just_pressed(actions.grab):
+	if Input.is_action_just_pressed(actions.grab) and $GrabCooldown.is_stopped():
 		for body in $GrabArea.get_overlapping_bodies():
 			if not body is Pushable or body == self:
 				continue
@@ -64,7 +64,8 @@ func _process(_delta):
 			var success : bool = startGrab(body)
 			if !success:
 				continue
-
+			
+			$GrabCooldown.start()
 			emit_signal("grab", body)
 			break
 	

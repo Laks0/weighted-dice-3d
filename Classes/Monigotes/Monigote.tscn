@@ -43,6 +43,7 @@ scoreParticle = ExtResource("2_qu674")
 MAX_SPEED = 6.0
 ACCELERATION = 50.0
 FRICTION = 40.0
+MOVEMENTS_TO_ESCAPE_GRAB = 10
 skins = {
 "Blue": ExtResource("3_0bwyl"),
 "Green": ExtResource("4_60ab0"),
@@ -69,6 +70,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StunCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="GrabCooldown" type="Timer" parent="."]
+wait_time = 0.4
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="."]
