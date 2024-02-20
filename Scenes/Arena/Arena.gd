@@ -29,6 +29,9 @@ func _ready():
 	
 	%Die.prepareArrow = $PrepareArrow
 	%Die.rolled.connect(startEffect)
+	%Die.onCubilete.connect(func():
+		if activeEffect != -1:
+			effects[activeEffect].end())
 	
 	BetHandler.startGame(self)
 
@@ -41,9 +44,6 @@ func _process(delta):
 	BetHandler.arenaUpdate(delta)
 
 func startEffect(n : int):
-	if activeEffect != -1:
-		effects[activeEffect].end()
-	
 	activeEffect = n
 	effects[activeEffect].start()
 	

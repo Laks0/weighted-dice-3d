@@ -5,4 +5,4 @@ signal dieDrop
 
 func _ready():
 	$AnimationPlayer.play("FromLeft")
-	$AnimationPlayer.connect("animation_finished", queue_free)
+	$AnimationPlayer.connect("animation_finished", func(_name): queue_free())

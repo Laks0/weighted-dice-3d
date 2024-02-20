@@ -21,9 +21,10 @@ func onAnimationEnd(_anim):
 	startRandomAttack()
 
 func startRandomAttack():
-	$Startup.play()
 	if not running:
 		return
+	
+	$Startup.play()
 	var index = randi_range(0, $AnimationPlayer.get_animation_list().size()-1)
 	var animation = $AnimationPlayer.get_animation_list()[index]
 	$AnimationPlayer.play(animation)

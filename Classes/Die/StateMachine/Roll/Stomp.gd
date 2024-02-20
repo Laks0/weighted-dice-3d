@@ -5,7 +5,9 @@ var result : int
 var die : Die
 
 func _on_enter(_args):
-	result = randi() % 6
+	var old_result = result
+	while result == old_result:
+		result = randi() % 6
 	
 	die = target as Die
 	

@@ -4,6 +4,8 @@ extends Effect
 
 const OLIVE_AMOUNT = 5
 
+var olives : Array
+
 func start():
 	$Startup.play()
 	
@@ -13,3 +15,11 @@ func start():
 		var olive = oliveResource.instantiate()
 		olive.position = pos
 		arena.add_child(olive)
+		
+		olives.append(olive)
+
+func end():
+	for olive in olives:
+		if not is_instance_valid(olive):
+			continue
+		olive.queue_free()

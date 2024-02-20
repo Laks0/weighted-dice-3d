@@ -18,6 +18,8 @@ func _on_enter(_args):
 	# Pone el dado para ser agarrado por el cubilete y lo esconde cuando lo agarra
 	positionTween.tween_interval(timeForMiddle - animationTime)
 	positionTween.tween_property(target, "position", Vector3(0, 1, 0), animationTime)
+	positionTween.parallel().tween_callback(target.emit_signal.bind("onCubilete"))
+	
 	positionTween.connect("finished", func(): target.visible = false)
 	
 	var cubilete = cubileteScene.instantiate()

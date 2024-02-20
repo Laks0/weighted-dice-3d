@@ -2,6 +2,8 @@ extends RigidBody3D
 class_name Die
 
 signal rolled(n)
+## Se llama cuando el dado se subió al cubilete
+signal onCubilete()
 
 var prepareArrow : AnimatedSprite3D
 
