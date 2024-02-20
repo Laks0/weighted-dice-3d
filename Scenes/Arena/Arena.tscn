@@ -116,10 +116,6 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 0, 0.228)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
-[node name="Die" parent="." instance=ExtResource("2_gkaff")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
 transform = Transform3D(1, 0, 0, 0, 0.623525, 0.781804, 0, -0.781804, 0.623525, 0, 9, 6.23337)
 
@@ -198,3 +194,7 @@ omni_attenuation = 0.615571
 
 [node name="BetDisplaySimple" parent="." instance=ExtResource("14_d7bai")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.322002, -4.97252)
+
+[node name="Die" parent="." instance=ExtResource("2_gkaff")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.01937, 4.15999, -1.24959)
