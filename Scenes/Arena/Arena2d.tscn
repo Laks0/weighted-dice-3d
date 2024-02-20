@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://csr517ks82sen"]
+[gd_scene load_steps=7 format=3 uid="uid://csr517ks82sen"]
 
 [ext_resource type="Shader" path="res://Scenes/Arena/Arena2d.gdshader" id="1_2d4xw"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena2d.gd" id="1_77ke4"]
 [ext_resource type="PackedScene" uid="uid://bpdrpg3p4qn3t" path="res://Scenes/Arena/Arena.tscn" id="1_cvxfn"]
-[ext_resource type="PackedScene" uid="uid://dmyacifxq8ln1" path="res://Classes/HUD/HUD.tscn" id="2_mhr00"]
 [ext_resource type="Script" path="res://Scenes/Arena/EndGameAnimation.gd" id="5_3sniq"]
 [ext_resource type="PackedScene" uid="uid://x6hvhmpe0mb8" path="res://Scenes/RoundEnd/RoundEnd.tscn" id="6_5toah"]
 
@@ -49,11 +48,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="HUD" parent="." node_paths=PackedStringArray("arena") instance=ExtResource("2_mhr00")]
-unique_name_in_owner = true
-layout_mode = 1
-arena = NodePath("../LowResContainer/LowResViewport/Arena")
 
 [node name="EndGameAnimation" type="Control" parent="."]
 process_mode = 3

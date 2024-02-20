@@ -47,6 +47,22 @@ func startEffect(n : int):
 	activeEffect = n
 	effects[activeEffect].start()
 	
+	# Animación del nombre del efecto
+	$CurrentBetName.visible = true
+	$CurrentBetName.position = %Die.position + Vector3.BACK
+	$CurrentBetName.position.y = 1.4
+	$CurrentBetName.text = effects[activeEffect].effectName
+	
+	var animationTime = .5
+	var waitTime = 1
+	
+	var nameSizeTween = create_tween().set_trans(Tween.TRANS_ELASTIC)
+	nameSizeTween.tween_property($CurrentBetName, "scale", Vector3.ONE, animationTime)
+	nameSizeTween.tween_interval(waitTime)
+	nameSizeTween.tween_property($CurrentBetName, "scale", Vector3.ZERO, animationTime)
+	
+	nameSizeTween.connect("finished", func(): $CurrentBetName.visible = false)
+	
 	emit_signal("effectStarted", effects[activeEffect])
 
 # Esta función queda Legacy pero sigue teniendo sentido como un getter

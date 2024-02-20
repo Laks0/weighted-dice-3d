@@ -9,6 +9,8 @@ var prepareArrow : AnimatedSprite3D
 
 ## La velocidad mínima que necesita el dado para poder herir a un monigote
 @export var minMovementToHurt : float = .1
+## El tiempo que espera después de rollear para atacar
+@export var timeAfterRoll : float = 1.4
 
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)

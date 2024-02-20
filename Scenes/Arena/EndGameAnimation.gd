@@ -17,7 +17,6 @@ func startAnimation(winner: Monigote):
 	var winnerPos = winner.position
 	var winnerId = winner.player.id
 	
-	%HUD.visible = false
 	waiting = true
 	await get_tree().create_timer(deadTime).timeout
 	get_tree().paused = true

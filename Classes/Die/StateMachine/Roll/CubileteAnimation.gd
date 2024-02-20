@@ -20,6 +20,6 @@ func _on_enter(_args):
 	get_parent().add_child(cubilete)
 	
 	cubilete.connect("dieDrop", func():
-		target.position = cubilete.position
+		target.position = cubilete.position + Vector3.DOWN
 		target.visible = true
 		change_to_next())
