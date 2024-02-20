@@ -26,6 +26,15 @@ func _on_update(_delta):
 	
 	particles.emitting = true
 	
+	# Luz del número que salió
+	var light : OmniLight3D = target.get_node("NumberLight")
+	light.global_position = target.global_position + Vector3.UP
+	
+	var lightTween = create_tween()
+	lightTween.tween_interval(.4)
+	lightTween.tween_property(light, "light_energy", 1.5, target.timeAfterRoll/2-.4)
+	lightTween.tween_property(light, "light_energy", 0, target.timeAfterRoll/2)
+	
 	target.emit_signal("rolled", result)
 	
 	await get_tree().create_timer(target.timeAfterRoll).timeout

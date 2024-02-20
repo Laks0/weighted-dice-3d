@@ -51,7 +51,7 @@ func startEffect(n : int):
 	$CurrentBetName.visible = true
 	$CurrentBetName.position = %Die.position + Vector3.BACK
 	$CurrentBetName.position.y = 1.4
-	$CurrentBetName.text = effects[activeEffect].effectName
+	$CurrentBetName.text = str(activeEffect + 1) + ". " + effects[activeEffect].effectName
 	
 	var animationTime = .5
 	var waitTime = 1

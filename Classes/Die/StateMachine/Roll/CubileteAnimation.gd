@@ -9,6 +9,10 @@ extends State
 @export var animationTime : float = .1
 
 func _on_enter(_args):
+	# Espera a que empiece la animación para desabilitar las colisiones
+	get_tree().create_timer(timeForMiddle - animationTime)\
+		.connect("timeout", target.disableCollision)
+	
 	var positionTween := create_tween().set_ease(Tween.EASE_IN)
 	
 	# Pone el dado para ser agarrado por el cubilete y lo esconde cuando lo agarra
@@ -22,4 +26,5 @@ func _on_enter(_args):
 	cubilete.connect("dieDrop", func():
 		target.position = cubilete.position + Vector3.DOWN
 		target.visible = true
+		target.enableCollision()
 		change_to_next())

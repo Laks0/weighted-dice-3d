@@ -23,6 +23,14 @@ func onFloor() -> bool:
 			return true
 	return false
 
+func disableCollision():
+	$Area3D.monitoring = false
+	$CollisionShape3D.disabled = true
+
+func enableCollision():
+	$Area3D.monitoring = true
+	$CollisionShape3D.disabled = false
+
 func _process(_delta):
 	if prepareArrow.visible:
 		prepareArrow.position = position
