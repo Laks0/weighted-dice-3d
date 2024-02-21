@@ -39,7 +39,7 @@ func startRound() -> void:
 func getBetName() -> String:
 	return currentBet.betName
 
-func getCandidates():
+func getCandidates() -> Array:
 	return Bet.getCandidates(currentBet.betType)
 
 func getCandidateName(candidate) -> String:
