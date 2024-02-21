@@ -36,6 +36,9 @@ class Player:
 		bets[candidate] = amount
 	
 	func getAmountBettedOn(candidate : int):
+		if not bets.has(candidate):
+			return 0
+		
 		return bets[candidate]
 	
 	func isStillPlaying() -> bool:

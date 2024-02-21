@@ -6,6 +6,9 @@ signal gameEnded(winner) # winner : Monigote
 
 @onready var effects : Array = $Effects.get_children()
 
+@export var dieScene : PackedScene
+var die : Die
+
 const WIDTH = 11
 const HEIGHT = 6.4
 
@@ -13,11 +16,24 @@ const HEIGHT = 6.4
 var activeEffect   : int = -1
 var monigotesAlive : int = 0
 
-var gameTime : float = 0
-
 var monigotes : Array[Monigote]
 
-func _ready():
+var betting := true
+
+func _process(delta):
+	if betting:
+		return
+	
+	if activeEffect != -1:
+		effects[activeEffect].update(delta)
+	
+	BetHandler.arenaUpdate(delta)
+
+func startArena():
+	die = dieScene.instantiate()
+	die.position.y = 1
+	add_child(die)
+	
 	monigotes = PlayerHandler.instantiatePlayers(self)
 	monigotesAlive = len(monigotes)
 	
@@ -27,23 +43,17 @@ func _ready():
 	for e in effects:
 		e.create(self)
 	
-	%Die.prepareArrow = $PrepareArrow
-	%Die.rolled.connect(startEffect)
-	%Die.onCubilete.connect(func():
+	die.prepareArrow = $PrepareArrow
+	die.rolled.connect(startEffect)
+	die.onCubilete.connect(func():
 		%MultipleResCamera.showSlotMachine()
 		if activeEffect != -1:
 			effects[activeEffect].end())
-	%Die.dropped.connect(%MultipleResCamera.returnToArena)
+	die.dropped.connect(%MultipleResCamera.returnToArena)
 	
 	BetHandler.startGame(self)
-
-func _process(delta):
-	gameTime += delta
-
-	if activeEffect != -1:
-		effects[activeEffect].update(delta)
 	
-	BetHandler.arenaUpdate(delta)
+	%MultipleResCamera.startGameAnimation()
 
 func startEffect(n : int):
 	activeEffect = n
@@ -51,7 +61,7 @@ func startEffect(n : int):
 	
 	# Animación del nombre del efecto
 	$CurrentBetName.visible = true
-	$CurrentBetName.position = %Die.position + Vector3.BACK
+	$CurrentBetName.position = die.position + Vector3.BACK
 	$CurrentBetName.position.y = 1.4
 	$CurrentBetName.text = str(activeEffect + 1) + ". " + effects[activeEffect].effectName
 	

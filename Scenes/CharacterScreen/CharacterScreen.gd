@@ -12,4 +12,4 @@ func _on_start_pressed():
 		
 		PlayerHandler.createPlayer(c.controller, c.skin, c.nameEditor.text)
 	
-	get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn")

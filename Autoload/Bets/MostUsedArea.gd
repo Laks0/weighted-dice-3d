@@ -11,7 +11,7 @@ func getCandidateOdds(candidate: ArenaSide) -> int:
 	var totalPlayers: int = PlayerHandler.getPlayersAlive().size()
 	var bettingPlayers: int = 0
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
-		if player.bets[candidate] > 0:
+		if player.getAmountBettedOn(candidate) > 0:
 			bettingPlayers += 1
 	return max(1, totalPlayers/2 - bettingPlayers + 2)
 
