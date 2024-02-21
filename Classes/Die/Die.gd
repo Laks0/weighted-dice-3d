@@ -3,7 +3,9 @@ class_name Die
 
 signal rolled(n)
 ## Se llama cuando el dado se subió al cubilete
-signal onCubilete()
+signal onCubilete
+## Se llama cuando el cubilete suelta el dado
+signal dropped
 
 var prepareArrow : AnimatedSprite3D
 

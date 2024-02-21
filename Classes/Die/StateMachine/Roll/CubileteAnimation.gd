@@ -29,4 +29,5 @@ func _on_enter(_args):
 		target.position = cubilete.position + Vector3.DOWN
 		target.visible = true
 		target.enableCollision()
+		target.emit_signal("dropped")
 		change_to_next())

@@ -39,9 +39,9 @@ size = Vector2(2, 2)
 render_priority = 0
 shader = ExtResource("5_d4gs2")
 shader_parameter/shadows_enabled = true
-shader_parameter/highlights_enabled = false
-shader_parameter/shadow_strength = 0.5
-shader_parameter/highlight_strength = 1.0
+shader_parameter/highlights_enabled = true
+shader_parameter/shadow_strength = 0.4
+shader_parameter/highlight_strength = 0.1
 shader_parameter/highlight_color = Color(1, 1, 1, 1)
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
 
@@ -118,7 +118,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
-transform = Transform3D(1, 0, 0, 0, 0.623525, 0.781804, 0, -0.781804, 0.623525, 0, 9, 6.23337)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.23337)
+showSlotRotationX = -49.0
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)

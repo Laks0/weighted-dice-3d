@@ -30,8 +30,10 @@ func _ready():
 	%Die.prepareArrow = $PrepareArrow
 	%Die.rolled.connect(startEffect)
 	%Die.onCubilete.connect(func():
+		%MultipleResCamera.showSlotMachine()
 		if activeEffect != -1:
 			effects[activeEffect].end())
+	%Die.dropped.connect(%MultipleResCamera.returnToArena)
 	
 	BetHandler.startGame(self)
 
