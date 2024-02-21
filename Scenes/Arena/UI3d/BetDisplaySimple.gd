@@ -13,13 +13,13 @@ func _ready():
 	for i in range(candidates.size()):
 		var xPos : float
 		
-		var distanceBetweenLeft = halfWidth / (candidatesOnLeft + 2)
-		var distanceBetweenRight = halfWidth / (candidatesOnRight + 2)
+		var distanceBetweenLeft = halfWidth / (candidatesOnLeft + 1)
+		var distanceBetweenRight = halfWidth / (candidatesOnRight + 1)
 		
 		if i < candidatesOnLeft:
 			xPos = -halfWidth + (i+1) * distanceBetweenLeft
 		else:
-			xPos = i * distanceBetweenRight
+			xPos = (i-candidatesOnLeft+1) * distanceBetweenRight
 		
 		var chipPile = chipPileScene.instantiate()
 		chipPile.position = Vector3(xPos,.15,-.6)

@@ -1797,7 +1797,7 @@ transform = Transform3D(0.769232, -8.9407e-08, 0, 8.9407e-08, 0.769232, 1.77636e
 light_color = Color(1, 0, 0, 1)
 
 [node name="Table" type="Node3D" parent="."]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -0.27, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
 
 [node name="TablaApuestasBorde" type="MeshInstance3D" parent="Table"]
 transform = Transform3D(-1, 0, -1.39912e-06, 0, 0.136604, 0, 3.89414e-07, 0, -3.59287, -0.683558, 0.08867, 0)
