@@ -165,7 +165,7 @@ func _repositionSelectors() -> void:
 		
 		var selectorSpaceWidth : float = 1
 		
-		var spaceBetweenSelectors : float = selectorSpaceWidth/(pileSelectors.size()+2)
+		var spaceBetweenSelectors : float = selectorSpaceWidth/(pileSelectors.size()+1)
 		
 		var pileX
 		var pileY
