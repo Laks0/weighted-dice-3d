@@ -1454,6 +1454,7 @@ shadow_mesh = SubResource("ArrayMesh_cgtsm")
 script = ExtResource("1_76y5o")
 chipPileScene = ExtResource("2_t13lr")
 selectorScene = ExtResource("3_clxdh")
+playerPileZ = -5.0
 
 [node name="Slotmachine" type="Node3D" parent="."]
 transform = Transform3D(-4.59722e-08, 3.34007e-08, -1.3, 0.76412, 1.05172, 0, 1.05172, -0.76412, -5.68248e-08, 0, 0.539254, 0)

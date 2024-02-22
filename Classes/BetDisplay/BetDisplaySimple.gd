@@ -1,9 +1,14 @@
 extends Node3D
 
+signal increaseBet(playerId, candidate)
+signal decreaseBet(playerId, candidate)
+
 @export var halfWidth : float = 7
 @export var chipPileScene : PackedScene
 @export var selectorScene : PackedScene
 @export var selectorZ : float = -1.5
+
+@export var playerPileZ : float = -8
 
 var piles : Array
 var candidatesOnLeft : int
@@ -26,6 +31,8 @@ func _ready():
 	candidatesOnLeft = candidates.size() / 2
 	candidatesOnRight = candidates.size() - candidatesOnLeft
 	
+	var distanceBetweenPlayerPiles = halfWidth*2 / (PlayerHandler.getPlayersAlive().size()+1)
+	
 	for i in range(candidates.size()):
 		var xPos : float
 		var chipPile = chipPileScene.instantiate()
@@ -43,6 +50,13 @@ func _ready():
 		
 		add_child(chipPile)
 		piles.append(chipPile)
+		
+		increaseBet.connect(func (playerId, candidate):
+			if candidate == chipPile.candidate:
+				chipPile.addChip(playerId))
+		decreaseBet.connect(func (playerId, candidate):
+			if candidate == chipPile.candidate:
+				chipPile.removeChip(playerId))
 	
 	for i in range(PlayerHandler.getPlayersAlive().size()):
 		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
@@ -59,6 +73,24 @@ func _ready():
 		
 		for candidate in candidates:
 			player.setBet(0, candidate)
+		
+		# Pilas de las fichas de jugadores
+		var playerPile = chipPileScene.instantiate()
+		playerPile.isDisplay = true
+		playerPile.playerIdDisplay = player.id
+		increaseBet.connect(func (playerId, candidate):
+			if playerId == player.id:
+				playerPile.removeChip(player.id))
+		
+		decreaseBet.connect(func (playerId, candidate):
+			if playerId == player.id:
+				playerPile.addChip(player.id))
+		
+		playerPile.position = Vector3(-halfWidth + (i+1)*distanceBetweenPlayerPiles,1,playerPileZ)
+		add_child(playerPile)
+		
+		for _i in player.bank:
+			playerPile.addChip(player.id)
 	
 	$Slotmachine.set_process(false)
 	_repositionSelectors()
@@ -112,8 +144,8 @@ func _process(_delta):
 		if Input.is_action_just_pressed(playerActions["cancel"]) \
 			and player.getAmountBettedOn(candidate) > 0:
 			player.decreaseBet(candidate)
-			selectedPile.removeChip(player.id)
 			betted[player.id] -= 1
+			emit_signal("decreaseBet", player.id, candidate)
 			_repositionSelectors()
 		
 		if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
@@ -121,8 +153,8 @@ func _process(_delta):
 		
 		if Input.is_action_just_pressed(playerActions["grab"]):
 			player.increaseBet(candidate)
-			selectedPile.addChip(player.id)
 			betted[player.id] += 1
+			emit_signal("increaseBet", player.id, candidate)
 			_repositionSelectors()
 
 func _repositionSelectors() -> void:

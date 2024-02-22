@@ -3,7 +3,10 @@ extends Node3D
 @export var fichaMesh : PackedScene
 @export var fichaHeight : float = .05
 
+## Solo si isDisplay es false
 @export var candidate = 0
+## Solo si isDisplay es true
+@export var playerIdDisplay = 0
 
 ## Altura de la que caen las fichas
 @export var ceiling : float = 10
@@ -17,18 +20,22 @@ var y = 0
 @export var isDisplay := false
 
 func _ready():
-	set_process(not isDisplay)
+	for playerId in PlayerHandler.getPlayersAliveById():
+		chips[playerId] = []
 	
 	if isDisplay:
+		$CandidateLabel.modulate = PlayerHandler.getPlayerById(playerIdDisplay).color
+		$CandidateLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		return
 	
 	$CandidateLabel.text = BetHandler.getCandidateName(candidate)
 	$CandidateLabel.modulate = BetHandler.getCandidateColor(candidate)
-	
-	for playerId in PlayerHandler.getPlayersAliveById():
-		chips[playerId] = []
 
 func _process(_delta):
+	if isDisplay:
+		$CandidateLabel.text = str(chips[playerIdDisplay].size())
+		return
+	
 	$Odds.text = "x%s" % BetHandler.getCandidateOdds(candidate)
 
 func addChip(playerId : int) -> void:
