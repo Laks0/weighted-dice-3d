@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsvuh3p747t8"]
+
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="1_rpv1x"]
+[ext_resource type="Texture2D" uid="uid://bqsnocbsnohs3" path="res://Classes/BetDisplay/Selector.png" id="2_jg5n8"]
+
+[node name="pileSelector" type="Node3D"]
+
+[node name="NumberLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -0.165425)
+layers = 2
+text = "25"
+font = ExtResource("1_rpv1x")
+font_size = 72
+
+[node name="ArrowSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0)
+layers = 2
+texture_filter = 0
+texture = ExtResource("2_jg5n8")

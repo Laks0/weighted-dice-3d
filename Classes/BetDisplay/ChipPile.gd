@@ -21,14 +21,15 @@ func _ready():
 		chips[playerId] = []
 
 func addChip(playerId : int) -> void:
-	var color = PlayerHandler.getPlayerById(playerId).color
+	var player := PlayerHandler.getPlayerById(playerId)
+	var color = player.color
 	
 	var ficha : MeshInstance3D = fichaMesh.instantiate()
 	
 	ficha.get_surface_override_material(0).albedo_color = color
 	ficha.position.y = ceiling
 	
-	var heightTween = create_tween()
+	var heightTween = create_tween().set_ease(Tween.EASE_IN)
 	heightTween.tween_property(ficha, "position:y", y, .02*(ceiling - y))
 	
 	add_child(ficha)
@@ -52,5 +53,5 @@ func removeChip(playerId : int) -> void:
 		for chip in chips[id]:
 			if chip.position.y < removedY:
 				continue
-			var heightTween = create_tween()
+			var heightTween = create_tween().set_ease(Tween.EASE_IN)
 			heightTween.tween_property(chip, "position:y", chip.position.y-fichaHeight, .02*(fichaHeight))

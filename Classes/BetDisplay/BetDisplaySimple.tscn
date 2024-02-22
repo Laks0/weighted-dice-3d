@@ -1,7 +1,8 @@
-[gd_scene load_steps=76 format=3 uid="uid://bu6qub506i5vu"]
+[gd_scene load_steps=77 format=3 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="Script" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_t13lr"]
+[ext_resource type="PackedScene" uid="uid://tsvuh3p747t8" path="res://Classes/BetDisplay/PileSelector.tscn" id="3_clxdh"]
 [ext_resource type="Script" path="res://Classes/BetDisplay/DisplayWheel.gd" id="3_gj3qo"]
 [ext_resource type="FontFile" uid="uid://dfomoacntffo" path="res://Assets/alagard.ttf" id="4_6lq8r"]
 [ext_resource type="Texture2D" uid="uid://cvlwu2egkwdaa" path="res://Classes/BetDisplay/TablaApuestasSimples_BordeColorApuestas.png" id="5_bmeg7"]
@@ -1452,6 +1453,7 @@ shadow_mesh = SubResource("ArrayMesh_cgtsm")
 [node name="BetDisplaySimple" type="Node3D"]
 script = ExtResource("1_76y5o")
 chipPileScene = ExtResource("2_t13lr")
+selectorScene = ExtResource("3_clxdh")
 
 [node name="Slotmachine" type="Node3D" parent="."]
 transform = Transform3D(-4.59722e-08, 3.34007e-08, -1.3, 0.76412, 1.05172, 0, 1.05172, -0.76412, -5.68248e-08, 0, 0.539254, 0)
@@ -1815,6 +1817,6 @@ spot_range = 7.0
 spot_angle = 61.0141
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, -1.13133e-08, -7.20242e-08, -7.71341e-09, 0.965926, -0.258819, 7.24982e-08, 0.258819, 0.965926, 4.00569, 0.529369, 3)
+transform = Transform3D(1, -1.13133e-08, -7.20243e-08, -7.71341e-09, 0.965926, -0.258819, 7.24982e-08, 0.258819, 0.965926, 4.00569, 0.529369, 3)
 spot_range = 7.0
 spot_angle = 61.0141

@@ -10,6 +10,7 @@ var controllers = {
 		"right": "move_right_kb",
 		"left": "move_left_kb",
 		"grab": "grab_mouse",
+		"cancel": "cancel_kb",
 	},
 	KB2: {
 		"up": "move_up_kb2",
@@ -17,6 +18,7 @@ var controllers = {
 		"right": "move_right_kb2",
 		"left": "move_left_kb2",
 		"grab": "grab_kb2",
+		"cancel": "cancel_kb2",
 	},
 	D0: {
 		"up": "move_up_d0",
@@ -24,6 +26,7 @@ var controllers = {
 		"right": "move_right_d0",
 		"left": "move_left_d0",
 		"grab": "grab_d0",
+		"cancel": "cancel_d0",
 	},
 	D1: {
 		"up": "move_up_d1",
@@ -31,6 +34,7 @@ var controllers = {
 		"right": "move_right_d1",
 		"left": "move_left_d1",
 		"grab": "grab_d1",
+		"cancel": "cancel_d1",
 	},
 	D2: {
 		"up": "move_up_d2",
@@ -38,6 +42,7 @@ var controllers = {
 		"right": "move_right_d2",
 		"left": "move_left_d2",
 		"grab": "grab_d2",
+		"cancel": "cancel_d2",
 	},
 	D3: {
 		"up": "move_up_d3",
@@ -45,6 +50,7 @@ var controllers = {
 		"right": "move_right_d3",
 		"left": "move_left_d3",
 		"grab": "grab_d3",
+		"cancel": "cancel_d3",
 	},
 }
 

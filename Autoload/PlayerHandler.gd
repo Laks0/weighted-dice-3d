@@ -35,6 +35,12 @@ class Player:
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
 	
+	func increaseBet(candidate : int):
+		bets[candidate] += 1
+	
+	func decreaseBet(candidate : int):
+		bets[candidate] -= 1
+	
 	func getAmountBettedOn(candidate : int):
 		if not bets.has(candidate):
 			return 0
