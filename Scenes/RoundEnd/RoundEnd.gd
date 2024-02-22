@@ -29,4 +29,4 @@ func _on_next_round_pressed():
 	if gameEnded:
 		get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")
 	else:
-		get_tree().change_scene_to_file("res://Scenes/BettingScreen/BettingScreen.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn")

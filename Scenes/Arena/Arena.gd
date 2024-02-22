@@ -30,6 +30,8 @@ func _process(delta):
 	BetHandler.arenaUpdate(delta)
 
 func startArena():
+	betting = false
+	
 	die = dieScene.instantiate()
 	die.position.y = 1
 	add_child(die)

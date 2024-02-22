@@ -13,12 +13,23 @@ var chips : Dictionary
 ## La posición en y en la que va la próxima ficha
 var y = 0
 
+## Si se activa, la pila es solo para mostrar fichas y no representa ningún candidato
+@export var isDisplay := false
+
 func _ready():
+	set_process(not isDisplay)
+	
+	if isDisplay:
+		return
+	
 	$CandidateLabel.text = BetHandler.getCandidateName(candidate)
 	$CandidateLabel.modulate = BetHandler.getCandidateColor(candidate)
 	
 	for playerId in PlayerHandler.getPlayersAliveById():
 		chips[playerId] = []
+
+func _process(_delta):
+	$Odds.text = "x%s" % BetHandler.getCandidateOdds(candidate)
 
 func addChip(playerId : int) -> void:
 	var player := PlayerHandler.getPlayerById(playerId)

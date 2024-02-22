@@ -48,6 +48,6 @@ func returnToArena() -> void:
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, showSlotAnimationTime)
 
 func startGameAnimation() -> void:
-	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, startGameAnimationTime)
 	transformTween.parallel().tween_property(self, "position", restPosition, startGameAnimationTime)

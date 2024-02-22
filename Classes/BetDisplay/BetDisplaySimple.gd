@@ -12,9 +12,13 @@ var candidatesOnRight : int
 var selectors : Dictionary
 var selected : Dictionary
 var betted : Dictionary
+var isReady : Dictionary
+
+var betting = true
 
 func _ready():
 	BetHandler.startRound()
+	$Slotmachine/BetName.text = BetHandler.getBetName()
 	
 	var candidates := BetHandler.getCandidates()
 	
@@ -40,7 +44,8 @@ func _ready():
 		add_child(chipPile)
 		piles.append(chipPile)
 	
-	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
+	for i in range(PlayerHandler.getPlayersAlive().size()):
+		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
 		var sel = selectorScene.instantiate()
 		selectors[player.id] = sel
 		selected[player.id] = player.id % candidates.size()
@@ -50,6 +55,8 @@ func _ready():
 		sel.position = Vector3(0,1,selectorZ)
 		add_child(sel)
 		
+		isReady[player.id] = false
+		
 		for candidate in candidates:
 			player.setBet(0, candidate)
 	
@@ -57,22 +64,50 @@ func _ready():
 	_repositionSelectors()
 
 func _process(_delta):
+	if not betting:
+		return
+	
+	if isReady.keys().filter(func (id : int): return isReady[id]).size() == isReady.keys().size():
+		get_parent().startArena()
+		betting = false
+		$Slotmachine.set_process(true)
+		for sel in selectors.values():
+			sel.queue_free()
+		return
+	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
-		var selectedPile = piles[selected[player.id]]
-		var candidate = selectedPile.candidate
-		var selector = selectors[player.id]
-		
-		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
-		
 		## Interacción
 		var playerActions = Controllers.getActions(player.inputController)
-		if Input.is_action_just_pressed(playerActions["left"]):
-			selected[player.id] = max(selected[player.id]-1, 0)
+		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
+			if selected[player.id] == -1:
+				selected[player.id] = candidatesOnLeft-1
+			elif selected[player.id] == candidatesOnLeft:
+				selected[player.id] = -1
+			else:
+				selected[player.id] = max(selected[player.id]-1, 0)
 			_repositionSelectors()
 		
-		if Input.is_action_just_pressed(playerActions["right"]):
-			selected[player.id] = min(selected[player.id]+1, piles.size()-1)
+		if Input.is_action_just_pressed(playerActions["right"]) and not isReady[player.id]:
+			if selected[player.id] == -1:
+				selected[player.id] = candidatesOnLeft
+			elif selected[player.id] == candidatesOnLeft-1:
+				selected[player.id] = -1
+			else:
+				selected[player.id] = min(selected[player.id]+1, piles.size()-1)
 			_repositionSelectors()
+		
+		var selector = selectors[player.id]
+		
+		if selected[player.id] == -1:
+			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
+			if Input.is_action_just_pressed(playerActions["cancel"]) or Input.is_action_just_pressed(playerActions["grab"]):
+				isReady[player.id] = not isReady[player.id]
+			
+			continue
+		
+		var selectedPile = piles[selected[player.id]]
+		var candidate = selectedPile.candidate
+		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
 		
 		if Input.is_action_just_pressed(playerActions["cancel"]) \
 			and player.getAmountBettedOn(candidate) > 0:
@@ -91,9 +126,7 @@ func _process(_delta):
 			_repositionSelectors()
 
 func _repositionSelectors() -> void:
-	for i in range(piles.size()):
-		var pileX = piles[i].position.x
-		
+	for i in range(-1, piles.size()):
 		var pileSelectors : Array = selected.keys()\
 			.filter(func (id : int): return selected[id] == i)\
 			.map(func (id : int): return selectors[id])
@@ -102,9 +135,18 @@ func _repositionSelectors() -> void:
 		
 		var spaceBetweenSelectors : float = selectorSpaceWidth/(pileSelectors.size()+2)
 		
+		var pileX
+		var pileY
+		if i == -1:
+			pileX = 0
+			pileY = 2
+		else:
+			pileX = piles[i].position.x
+			pileY = max(1, piles[i].y + piles[i].position.y)
+		
 		for l in range(pileSelectors.size()):
 			var sel = pileSelectors[l]
 			var newX = pileX - selectorSpaceWidth/2 + spaceBetweenSelectors * (l+1)
 			var positionTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 			positionTween.tween_property(sel, "position:x", newX, .15)
-			positionTween.parallel().tween_property(sel, "position:y", max(1, piles[i].y + piles[i].position.y), .15)
+			positionTween.parallel().tween_property(sel, "position:y", pileY, .15)

@@ -11,7 +11,12 @@ fichaMesh = ExtResource("2_e5iql")
 [node name="CandidateLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.03387)
 layers = 2
-text = "CANDIDATE"
 font = ExtResource("3_al5hg")
 font_size = 82
 uppercase = true
+
+[node name="Odds" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.36057)
+layers = 2
+font = ExtResource("3_al5hg")
+font_size = 57

@@ -1796,6 +1796,21 @@ skeleton = NodePath("")
 [node name="ScreenLight" type="OmniLight3D" parent="Slotmachine"]
 transform = Transform3D(0.769232, -8.9407e-08, 0, 8.9407e-08, 0.769232, 1.77636e-15, 1.77636e-15, -1.77636e-15, 0.769231, 0.944575, -0.260158, 3.55271e-15)
 
+[node name="ReadyLabel" type="Label3D" parent="Slotmachine"]
+transform = Transform3D(-4.37113e-08, -5.96046e-08, 0.999999, 4.88498e-15, 1, 5.96046e-08, -0.999999, 1.77636e-15, -4.37113e-08, 0.199252, 1.27755, 2.57776e-08)
+layers = 2
+text = "READY"
+font = ExtResource("4_6lq8r")
+
+[node name="BetName" type="Label3D" parent="Slotmachine"]
+transform = Transform3D(-2.72026e-08, 0.00730354, 0.769197, 1.97638e-08, 0.769197, -0.00730354, -0.769229, 1.95046e-08, -2.73889e-08, 0.719187, -0.177084, -2.99825e-08)
+layers = 2
+text = "MOST TIME ON THE CENTER"
+font = ExtResource("4_6lq8r")
+font_size = 45
+autowrap_mode = 2
+width = 250.0
+
 [node name="Table" type="Node3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
 
