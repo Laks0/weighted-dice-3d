@@ -4,10 +4,9 @@ extends Camera3D
 @export var showSlotRotationX : float = -47
 @export var showSlotAnimationTime : float = .3
 
-@export var bettingScreenPosition : Vector3
-## En grados
-@export var bettingScreenRotationX : float
 @export var startGameAnimationTime : float = 1
+
+@export var betSceneCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
@@ -17,8 +16,8 @@ func _ready():
 	restRotation = rotation_degrees
 	restPosition = position
 	
-	position = bettingScreenPosition
-	rotation_degrees.x = bettingScreenRotationX
+	position = betSceneCamera.position
+	rotation_degrees.x = betSceneCamera.rotation_degrees.x
 
 func _process(_delta):
 	%HiResCamera.position = position

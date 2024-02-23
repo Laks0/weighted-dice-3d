@@ -118,13 +118,16 @@ shape = SubResource("WorldBoundaryShape3D_7a2co")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 0, 0.228)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
-[node name="MultipleResCamera" parent="." instance=ExtResource("5_fiigu")]
+[node name="BetSceneCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 8, 0.7)
+fov = 47.0
+
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.23)
 showSlotRotationX = -49.0
-bettingScreenPosition = Vector3(0, 8, 0.7)
-bettingScreenRotationX = -37.0
 startGameAnimationTime = 0.2
+betSceneCamera = NodePath("../BetSceneCamera")
 
 [node name="OutlineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.493578, 0.869702, 0, -0.869702, 0.493578, 0, 7.767, 1.448)

@@ -2,6 +2,7 @@ extends Node3D
 
 signal increaseBet(playerId, candidate)
 signal decreaseBet(playerId, candidate)
+signal gameStarted
 
 @export var halfWidth : float = 7
 @export var chipPileScene : PackedScene
@@ -78,13 +79,18 @@ func _ready():
 		var playerPile = chipPileScene.instantiate()
 		playerPile.isDisplay = true
 		playerPile.playerIdDisplay = player.id
-		increaseBet.connect(func (playerId, candidate):
+		increaseBet.connect(func (playerId, _candidate):
 			if playerId == player.id:
 				playerPile.removeChip(player.id))
 		
-		decreaseBet.connect(func (playerId, candidate):
+		decreaseBet.connect(func (playerId, _candidate):
 			if playerId == player.id:
 				playerPile.addChip(player.id))
+		
+		gameStarted.connect(func ():
+			var exitTween := create_tween()
+			exitTween.tween_property(playerPile, "position:x", 10, .1).as_relative()
+			exitTween.tween_callback(playerPile.queue_free))
 		
 		playerPile.position = Vector3(-halfWidth + (i+1)*distanceBetweenPlayerPiles,1,playerPileZ)
 		add_child(playerPile)
@@ -105,6 +111,7 @@ func _process(_delta):
 		$Slotmachine.set_process(true)
 		for sel in selectors.values():
 			sel.queue_free()
+		gameStarted.emit()
 		return
 	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
