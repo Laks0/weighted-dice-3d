@@ -58,6 +58,7 @@ subdivide_depth = 50
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
+dieScreenShakeMagnitude = 0.5
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
@@ -99,12 +100,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 
 [node name="BetSceneCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 8, 0.7)
+transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 7.65225, 0.7)
 fov = 47.0
 
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.23)
+transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.2)
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 betSceneCamera = NodePath("../BetSceneCamera")

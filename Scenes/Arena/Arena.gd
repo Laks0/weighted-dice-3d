@@ -9,6 +9,9 @@ signal gameEnded(winner) # winner : Monigote
 @export var dieScene : PackedScene
 var die : Die
 
+@export var dieScreenShakeMagnitude := .6
+@export var dieScreenShakeTime := .3
+
 const WIDTH = 11
 const HEIGHT = 6.4
 
@@ -58,6 +61,8 @@ func startArena():
 	%MultipleResCamera.startGameAnimation()
 
 func startEffect(n : int):
+	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
+	
 	activeEffect = n
 	effects[activeEffect].start()
 	

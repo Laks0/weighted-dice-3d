@@ -50,3 +50,20 @@ func startGameAnimation() -> void:
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, startGameAnimationTime)
 	transformTween.parallel().tween_property(self, "position", restPosition, startGameAnimationTime)
+
+func startShake(magnitude : float, time : float) -> void:
+	var initialPos = position
+	var elapsedTime := .0
+	
+	while elapsedTime < time:
+		var offset = Vector3(
+			randf_range(-magnitude, magnitude),
+			randf_range(-magnitude, magnitude),
+			0
+		) * (time - elapsedTime) / time
+		
+		position = initialPos + offset
+		elapsedTime += get_process_delta_time()
+		await get_tree().process_frame
+	
+	position = initialPos

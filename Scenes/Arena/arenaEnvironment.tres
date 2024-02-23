@@ -1,5 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://dh2efkygayqvn"]
 
 [resource]
+tonemap_mode = 3
 glow_enabled = true
 glow_intensity = 3.0
