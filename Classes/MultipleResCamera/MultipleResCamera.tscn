@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh13re66e6e63"]
+[gd_scene load_steps=6 format=3 uid="uid://bh13re66e6e63"]
 
 [ext_resource type="Script" path="res://Classes/MultipleResCamera/MultipleResCamera.gd" id="1_0nyod"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_22qtq"]
+[ext_resource type="Shader" path="res://Outline.gdshader" id="3_uu1sn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lq1p7"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tidmy"]
+render_priority = 0
+shader = ExtResource("3_uu1sn")
+shader_parameter/shadows_enabled = true
+shader_parameter/highlights_enabled = false
+shader_parameter/shadow_strength = 0.64
+shader_parameter/highlight_strength = 0.1
+shader_parameter/highlight_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
 
 [node name="MultipleResCamera" type="Camera3D"]
 cull_mask = 1048573
@@ -38,3 +52,8 @@ size = Vector2i(1280, 720)
 unique_name_in_owner = true
 cull_mask = 1048573
 fov = 47.0
+
+[node name="OutlineMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0412301, -1.44274)
+mesh = SubResource("QuadMesh_lq1p7")
+surface_material_override/0 = SubResource("ShaderMaterial_tidmy")
