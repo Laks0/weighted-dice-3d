@@ -32,6 +32,13 @@ func _ready():
 	if getControllerAmount() > skin:
 		added = true
 		$Settings/Controller.select(skin)
+	
+	Input.joy_connection_changed.connect(func (device : int, connected : bool):
+		if connected:
+			$Settings/Controller.add_item("Gamepad " + str(device), device + 2)
+		else:
+			$Settings/Controller.remove_item($Settings/Controller.get_item_index(device + 2))
+		)
 
 func getControllerAmount() -> int:
 	return len(Input.get_connected_joypads()) + 1

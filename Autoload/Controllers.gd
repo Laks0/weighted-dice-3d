@@ -31,6 +31,9 @@ func _ready():
 			addController(device))
 
 func addController(id : int):
+	if controllers.has(id + 2):
+		return
+	
 	controllers[id + 2] = {}
 	addMovementAction("up", JOY_BUTTON_DPAD_UP, JOY_AXIS_LEFT_Y, -1, id)
 	addMovementAction("down", JOY_BUTTON_DPAD_DOWN, JOY_AXIS_LEFT_Y, 1, id)
