@@ -212,6 +212,8 @@ func die():
 	
 	emit_signal("died")
 	
+	frameFeeze(.005, .4)
+	
 	$Audio/YellStomp.play()
 	
 	$AnimatedSprite.visible = false
@@ -255,3 +257,10 @@ func emitScore(n : int):
 	particle.emitting = true
 	
 	particle.connect("finished", particle.queue_free)
+
+func frameFeeze(timeScale : float, duration : float):
+	$DeathLight.visible = true
+	Engine.set_time_scale(timeScale)
+	await get_tree().create_timer(duration, true, false, true).timeout
+	Engine.set_time_scale(1)
+	$DeathLight.visible = false

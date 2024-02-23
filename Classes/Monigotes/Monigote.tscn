@@ -127,4 +127,11 @@ stream = ExtResource("10_ir8at")
 [node name="YellSuperpush" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_psywq")
 
+[node name="DeathLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342656, 0)
+visible = false
+light_energy = 16.0
+light_size = 0.253
+omni_range = 1.0
+
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
