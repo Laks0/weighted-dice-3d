@@ -54,8 +54,6 @@ func _ready():
 var _lastScore: float = 0
 
 func _process(_delta):
-	invincible = !$HurtTime.is_stopped()
-	
 	if Input.is_action_just_pressed(actions.grab) and $GrabCooldown.is_stopped():
 		for body in $GrabArea.get_overlapping_bodies():
 			if not body is Pushable or body == self:
@@ -83,8 +81,8 @@ func _process(_delta):
 	position.y = Globals.SPRITE_HEIGHT
 
 	# DEBUG
-	if Input.is_action_just_pressed("die"):
-		emit_signal("died")
+	if Input.is_action_just_pressed("die") and player.id == 0:
+		die()
 	
 	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
 		return
@@ -155,8 +153,18 @@ func _physics_process(delta):
 func canBeGrabbed(_grabber) -> bool:
 	return not invincible
 
+func startGrab(body : Pushable) -> bool:
+	if not super(body):
+		return false
+	
+	if body is Monigote:
+		body.died.connect(push)
+	
+	return true
+
 func onGrabbed():
 	escapeMovements = 0
+	invincible = true
 	super()
 
 func onGrabbing():
@@ -174,6 +182,8 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	else:
 		$Audio/YellPush.play()
 	
+	invincible = false
+	
 	super(dir, factor, _pusher)
 
 func knockback(vel : Vector2):
@@ -185,6 +195,7 @@ func hurt():
 	
 	health -= 1
 	$HurtTime.start()
+	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	$Audio/YellStomp.play()
 	
@@ -192,6 +203,12 @@ func hurt():
 		die()
 
 func die():
+	if invincible:
+		return
+	
+	if grabbing:
+		push()
+	
 	emit_signal("died")
 	
 	$Audio/YellStomp.play()

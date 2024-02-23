@@ -14,6 +14,8 @@ func _on_body_entered(body):
 	if not body is Monigote:
 		return
 	var mon := body as Monigote
+	if mon.invincible:
+		return
 	
 	$YellVoid.play()
 	

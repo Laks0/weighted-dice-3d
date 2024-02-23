@@ -67,11 +67,14 @@ func startGrab(body : Pushable) -> bool:
 	return true
 
 func push():
-	if (not grabbing) or (not is_instance_valid(grabBody)):
+	if not grabbing:
 		return
 	
 	grabbing = false
 	timer.stop()
+	
+	if not is_instance_valid(grabBody):
+		return
 	
 	grabBody.onPushed(grabDir, pushFactor, self)
 	grabBody = null
