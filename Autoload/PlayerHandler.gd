@@ -30,7 +30,7 @@ class Player:
 		elif id == Skins.YELLOW:
 			color = Color(1,1,0)
 		elif id == Skins.GREEN:
-			color = Color(0,1,0)
+			color = Color(0,.7,.3)
 	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount

@@ -2,3 +2,4 @@
 
 [resource]
 glow_enabled = true
+glow_intensity = 3.0

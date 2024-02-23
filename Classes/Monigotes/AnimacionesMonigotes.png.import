@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3l4ugkgn2ctj"
-path.s3tc="res://.godot/imported/Monigotes animaciones revoliado.png-c8cef72b68530b6d9c33a6061be73a32.s3tc.ctex"
+uid="uid://m3yx40btq1cp"
+path="res://.godot/imported/AnimacionesMonigotes.png-2f19cdcd3dc4312cd562c5d7a4b66e1a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Classes/Monigotes/Monigotes animaciones revoliado.png"
-dest_files=["res://.godot/imported/Monigotes animaciones revoliado.png-c8cef72b68530b6d9c33a6061be73a32.s3tc.ctex"]
+source_file="res://Classes/Monigotes/AnimacionesMonigotes.png"
+dest_files=["res://.godot/imported/AnimacionesMonigotes.png-2f19cdcd3dc4312cd562c5d7a4b66e1a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

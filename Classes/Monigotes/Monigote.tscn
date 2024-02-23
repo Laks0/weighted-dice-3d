@@ -1,17 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=19 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
-[ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Autoload/MonigoteSkins/RedFrames.tres" id="2_u2bhy"]
-[ext_resource type="SpriteFrames" uid="uid://bpol0b7jqb23h" path="res://Autoload/MonigoteSkins/BlueFrames.tres" id="3_0bwyl"]
-[ext_resource type="SpriteFrames" uid="uid://b11arb6b3rmrh" path="res://Autoload/MonigoteSkins/GreenFrames.tres" id="4_60ab0"]
-[ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Autoload/MonigoteSkins/YellowFrames.tres" id="5_7qj1l"]
+[ext_resource type="SpriteFrames" uid="uid://bpol0b7jqb23h" path="res://Assets/MonigoteSkins/BlueFrames.tres" id="3_3t8bt"]
+[ext_resource type="SpriteFrames" uid="uid://b11arb6b3rmrh" path="res://Assets/MonigoteSkins/GreenFrames.tres" id="4_nq8eh"]
+[ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Assets/MonigoteSkins/RedFrames.tres" id="5_xljsg"]
+[ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Assets/MonigoteSkins/YellowFrames.tres" id="6_2h8rt"]
 [ext_resource type="Script" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
 [ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
+[ext_resource type="Shader" path="res://Classes/Monigotes/Monigote.gdshader" id="7_tb5pk"]
 [ext_resource type="AudioStream" uid="uid://ct1uhpnp8igyo" path="res://Classes/Monigotes/SFX/sfx_yellpush.6.wav" id="8_4eqdp"]
+[ext_resource type="Script" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
 [ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2ano"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_tb5pk")
+shader_parameter/borderAlpha = 1.0
+shader_parameter/width = 1.0
+shader_parameter/outline_color = null
+shader_parameter/modulate = null
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
@@ -45,21 +56,25 @@ ACCELERATION = 50.0
 FRICTION = 40.0
 MOVEMENTS_TO_ESCAPE_GRAB = 10
 skins = {
-"Blue": ExtResource("3_0bwyl"),
-"Green": ExtResource("4_60ab0"),
-"Red": ExtResource("2_u2bhy"),
-"Yellow": ExtResource("5_7qj1l")
+"Blue": ExtResource("3_3t8bt"),
+"Green": ExtResource("4_nq8eh"),
+"Red": ExtResource("5_xljsg"),
+"Yellow": ExtResource("6_2h8rt")
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.353553, 0.353553, 0, -0.353553, 0.353553, 0, 0, 0)
 layers = 2
+material_override = SubResource("ShaderMaterial_s2ano")
+cast_shadow = 2
 pixel_size = 0.04
 billboard = 1
 shaded = true
 texture_filter = 0
 render_priority = 10
-sprite_frames = ExtResource("3_0bwyl")
-animation = &"Pushed"
+sprite_frames = ExtResource("3_3t8bt")
+animation = &"RunningUp"
+script = ExtResource("8_au5v3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)

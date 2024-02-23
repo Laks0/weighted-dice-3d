@@ -71,7 +71,7 @@ func _process(_delta):
 		push()
 	
 	$AnimatedSprite.modulate = color
-	if invincible:
+	if invincible and not grabbed:
 		$AnimatedSprite.modulate.a = .7
 	elif stunned:
 		$AnimatedSprite.modulate = Color.DARK_GRAY
@@ -156,9 +156,6 @@ func canBeGrabbed(_grabber) -> bool:
 func startGrab(body : Pushable) -> bool:
 	if not super(body):
 		return false
-	
-	if body is Monigote:
-		body.died.connect(push)
 	
 	return true
 
