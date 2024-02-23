@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=21 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -8,9 +8,11 @@
 [ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Assets/MonigoteSkins/YellowFrames.tres" id="6_2h8rt"]
 [ext_resource type="Script" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
 [ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
+[ext_resource type="SpriteFrames" uid="uid://cfd6alplor6mc" path="res://Assets/MonigoteSkins/OrangeFrames.tres" id="7_gdamn"]
 [ext_resource type="Shader" path="res://Classes/Monigotes/Monigote.gdshader" id="7_tb5pk"]
 [ext_resource type="AudioStream" uid="uid://ct1uhpnp8igyo" path="res://Classes/Monigotes/SFX/sfx_yellpush.6.wav" id="8_4eqdp"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
+[ext_resource type="SpriteFrames" uid="uid://cg1y2mis11sum" path="res://Assets/MonigoteSkins/PurpleFrames.tres" id="8_ppcco"]
 [ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
@@ -58,6 +60,8 @@ MOVEMENTS_TO_ESCAPE_GRAB = 10
 skins = {
 "Blue": ExtResource("3_3t8bt"),
 "Green": ExtResource("4_nq8eh"),
+"Orange": ExtResource("7_gdamn"),
+"Purple": ExtResource("8_ppcco"),
 "Red": ExtResource("5_xljsg"),
 "Yellow": ExtResource("6_2h8rt")
 }

@@ -2,7 +2,7 @@ extends Node
 
 @onready var monigoteResource := preload("res://Classes/Monigotes/Monigote.tscn")
 
-enum Skins {RED, BLUE, YELLOW, GREEN}
+enum Skins {RED, BLUE, YELLOW, GREEN, ORANGE, PURPLE}
 
 class Player:
 	var id : int
@@ -31,6 +31,10 @@ class Player:
 			color = Color(1,1,0)
 		elif id == Skins.GREEN:
 			color = Color(0,.7,.3)
+		elif id == Skins.PURPLE:
+			color = Color(0.5,.25,.5)
+		elif id == Skins.ORANGE:
+			color = Color(1,.5,.3)
 	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
@@ -53,7 +57,7 @@ class Player:
 var players : Array[Player] = []
 
 func createPlayer(controller : int, id : int, _name : String):
-	var MAX_PLAYERS = 4
+	var MAX_PLAYERS = 6
 	if len(players) >= MAX_PLAYERS:
 		return
 

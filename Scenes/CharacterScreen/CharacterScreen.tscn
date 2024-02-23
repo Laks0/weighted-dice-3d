@@ -27,7 +27,7 @@ offset_right = 322.0
 offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 2
+columns = 3
 
 [node name="TomiSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
 layout_mode = 2
@@ -44,9 +44,19 @@ layout_mode = 2
 defaultName = "Pedro"
 skin = 2
 
-[node name="JaviSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+[node name="JuanSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
 layout_mode = 2
-defaultName = "Javi"
+defaultName = "Juan"
+
+[node name="MaleSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Male"
+skin = 4
+
+[node name="MartaSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
+layout_mode = 2
+defaultName = "Marta"
+skin = 5
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1

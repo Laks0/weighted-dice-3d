@@ -45,6 +45,10 @@ func _ready():
 			$AnimatedSprite.sprite_frames = skins.get("Yellow")
 		PlayerHandler.Skins.GREEN:
 			$AnimatedSprite.sprite_frames = skins.get("Green")
+		PlayerHandler.Skins.ORANGE:
+			$AnimatedSprite.sprite_frames = skins.get("Orange")
+		PlayerHandler.Skins.PURPLE:
+			$AnimatedSprite.sprite_frames = skins.get("Purple")
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	

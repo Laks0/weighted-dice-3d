@@ -10,6 +10,8 @@ var controller
 @export var blue: Texture2D
 @export var yellow: Texture2D
 @export var green: Texture2D
+@export var orange: Texture2D
+@export var purple: Texture2D
 
 @export var added = false
 
@@ -28,6 +30,10 @@ func _ready():
 		$Settings/Preview.texture = yellow
 	elif skin == PlayerHandler.Skins.GREEN:
 		$Settings/Preview.texture = green
+	elif skin == PlayerHandler.Skins.ORANGE:
+		$Settings/Preview.texture = orange
+	elif skin == PlayerHandler.Skins.PURPLE:
+		$Settings/Preview.texture = purple
 	
 	if getControllerAmount() > skin:
 		added = true
