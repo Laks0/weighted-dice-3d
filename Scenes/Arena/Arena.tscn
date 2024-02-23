@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=26 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -15,9 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="13_ta5lr"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="15_thsto"]
-
-[sub_resource type="Environment" id="Environment_wjch0"]
-glow_enabled = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -75,9 +72,6 @@ subdivide_depth = 50
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wjch0")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
