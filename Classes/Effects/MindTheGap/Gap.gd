@@ -19,5 +19,5 @@ func _on_body_entered(body):
 	
 	$YellVoid.play()
 	
-	mon.die()
+	mon.hurt()
 	delete()

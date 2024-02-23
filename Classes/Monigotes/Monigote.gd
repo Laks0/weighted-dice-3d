@@ -46,7 +46,7 @@ func _ready():
 		PlayerHandler.Skins.GREEN:
 			$AnimatedSprite.sprite_frames = skins.get("Green")
 	
-	
+	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	super._ready()
 
@@ -71,7 +71,7 @@ func _process(_delta):
 		push()
 	
 	$AnimatedSprite.modulate = color
-	if invincible and $HurtTime.one_shot:
+	if invincible:
 		$AnimatedSprite.modulate.a = .7
 	elif stunned:
 		$AnimatedSprite.modulate = Color.DARK_GRAY
@@ -194,13 +194,13 @@ func hurt():
 		return
 	
 	health -= 1
-	$HurtTime.start()
-	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	$Audio/YellStomp.play()
 	
 	if health <= 0:
 		die()
+	
+	makeInvincible()
 
 func die():
 	if invincible:
@@ -228,7 +228,7 @@ func stun():
 	stunned = true
 
 func makeInvincible():
-	$HurtTime.one_shot = false
+	invincible = true
 	$HurtTime.start()
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
