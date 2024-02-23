@@ -139,7 +139,7 @@ func _process(_delta):
 		
 		if selected[player.id] == -1:
 			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
-			if Input.is_action_just_pressed(playerActions["cancel"]) or Input.is_action_just_pressed(playerActions["grab"]):
+			if Input.is_action_just_pressed(playerActions["grab"]):
 				isReady[player.id] = not isReady[player.id]
 			
 			continue
@@ -148,7 +148,7 @@ func _process(_delta):
 		var candidate = selectedPile.candidate
 		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
 		
-		if Input.is_action_just_pressed(playerActions["cancel"]) \
+		if Input.is_action_just_pressed(playerActions["down"]) \
 			and player.getAmountBettedOn(candidate) > 0:
 			player.decreaseBet(candidate)
 			betted[player.id] -= 1
@@ -158,7 +158,7 @@ func _process(_delta):
 		if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
 			continue
 		
-		if Input.is_action_just_pressed(playerActions["grab"]):
+		if Input.is_action_just_pressed(playerActions["grab"]) or Input.is_action_just_pressed(playerActions["up"]):
 			player.increaseBet(candidate)
 			betted[player.id] += 1
 			emit_signal("increaseBet", player.id, candidate)

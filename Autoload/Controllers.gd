@@ -10,7 +10,6 @@ var controllers = {
 		"right": "move_right_kb",
 		"left": "move_left_kb",
 		"grab": "grab_mouse",
-		"cancel": "cancel_kb",
 	},
 	KB2: {
 		"up": "move_up_kb2",
@@ -18,7 +17,6 @@ var controllers = {
 		"right": "move_right_kb2",
 		"left": "move_left_kb2",
 		"grab": "grab_kb2",
-		"cancel": "cancel_kb2",
 	}
 }
 
@@ -43,10 +41,6 @@ func addController(id : int):
 	InputMap.add_action("grab_d%s" % id)
 	controllers[id+2]["grab"] = "grab_d%s" % id
 	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
-	
-	InputMap.add_action("cancel_d%s" % id)
-	controllers[id+2]["cancel"] = "cancel_d%s" % id
-	addButtonToAction("cancel_d%s" % id, JOY_BUTTON_B, id)
 
 func addMovementAction(dir : String, button : JoyButton, axis : JoyAxis, axisDir : float, device : int):
 	var action = "move_" + dir + "_d%s" % device
