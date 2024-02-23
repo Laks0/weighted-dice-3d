@@ -1,7 +1,7 @@
 extends Node
 
-# -1 es el teclado, después el número de control
-enum {KB = 0, KB2, D0, D1, D2, D3}
+# 0 y 1 son el teclado, después el número de control + 2
+enum {KB = 0, KB2}
 
 var controllers = {
 	KB: {
@@ -19,40 +19,51 @@ var controllers = {
 		"left": "move_left_kb2",
 		"grab": "grab_kb2",
 		"cancel": "cancel_kb2",
-	},
-	D0: {
-		"up": "move_up_d0",
-		"down": "move_down_d0",
-		"right": "move_right_d0",
-		"left": "move_left_d0",
-		"grab": "grab_d0",
-		"cancel": "cancel_d0",
-	},
-	D1: {
-		"up": "move_up_d1",
-		"down": "move_down_d1",
-		"right": "move_right_d1",
-		"left": "move_left_d1",
-		"grab": "grab_d1",
-		"cancel": "cancel_d1",
-	},
-	D2: {
-		"up": "move_up_d2",
-		"down": "move_down_d2",
-		"right": "move_right_d2",
-		"left": "move_left_d2",
-		"grab": "grab_d2",
-		"cancel": "cancel_d2",
-	},
-	D3: {
-		"up": "move_up_d3",
-		"down": "move_down_d3",
-		"right": "move_right_d3",
-		"left": "move_left_d3",
-		"grab": "grab_d3",
-		"cancel": "cancel_d3",
-	},
+	}
 }
+
+func _ready():
+	for id in Input.get_connected_joypads():
+		addController(id)
+	
+	Input.joy_connection_changed.connect(func (device : int, connected : bool):
+		if connected:
+			addController(device))
+
+func addController(id : int):
+	controllers[id + 2] = {}
+	addMovementAction("up", JOY_BUTTON_DPAD_UP, JOY_AXIS_LEFT_Y, -1, id)
+	addMovementAction("down", JOY_BUTTON_DPAD_DOWN, JOY_AXIS_LEFT_Y, 1, id)
+	addMovementAction("left", JOY_BUTTON_DPAD_LEFT, JOY_AXIS_LEFT_X, -1, id)
+	addMovementAction("right", JOY_BUTTON_DPAD_RIGHT, JOY_AXIS_LEFT_X, 1, id)
+	
+	InputMap.add_action("grab_d%s" % id)
+	controllers[id+2]["grab"] = "grab_d%s" % id
+	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
+	
+	InputMap.add_action("cancel_d%s" % id)
+	controllers[id+2]["cancel"] = "cancel_d%s" % id
+	addButtonToAction("cancel_d%s" % id, JOY_BUTTON_B, id)
+
+func addMovementAction(dir : String, button : JoyButton, axis : JoyAxis, axisDir : float, device : int):
+	var action = "move_" + dir + "_d%s" % device
+	InputMap.add_action(action)
+	controllers[device+2][dir] = action
+	addButtonToAction(action, button, device)
+	addStickToAction(action, axis, axisDir, device)
+
+func addButtonToAction(action : String, button : JoyButton, device : int):
+	var event = InputEventJoypadButton.new()
+	event.set_device(device)
+	event.set_button_index(button)
+	InputMap.action_add_event(action, event)
+
+func addStickToAction(action : String, axis : JoyAxis, dir : float, device : int):
+	var event = InputEventJoypadMotion.new()
+	event.set_device(device)
+	event.set_axis(axis)
+	event.set_axis_value(dir)
+	InputMap.action_add_event(action, event)
 
 func getDirection(controller : int) -> Vector2:
 	var input = controllers[controller]
