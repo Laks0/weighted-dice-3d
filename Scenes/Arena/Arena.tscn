@@ -169,7 +169,7 @@ visible = false
 size = Vector3(11.5972, 2, 6.95972)
 
 [node name="Alfombra" type="MeshInstance3D" parent="."]
-transform = Transform3D(59.1227, 0, 0, 0, 1.37737, -12.8982, 0, 0.314572, 56.4747, 0, -7.74312, -2.4681)
+transform = Transform3D(29.5613, 0, 0, 0, 1.37737, -12.8982, 0, 0.314572, 56.4747, 0, -7.74312, -2.4681)
 layers = 4
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")
@@ -181,7 +181,7 @@ light_color = Color(1, 0.537255, 1, 1)
 light_cull_mask = 4294967292
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Alfombra"]
-transform = Transform3D(0.016914, 0, 0, 0, 0.632996, 0.316693, 0, -0.00772382, 0.0154382, -0.192711, 7.17203, -0.0645114)
+transform = Transform3D(0.033828, 0, 0, 0, 0.632995, 0.316692, 0, -0.0077238, 0.0154382, -0.399742, 5.98171, -0.112769)
 light_color = Color(0.996078, 0.647059, 1, 1)
 light_energy = 5.174
 light_cull_mask = 4294967294
@@ -189,7 +189,7 @@ omni_range = 34.0237
 omni_attenuation = 0.615571
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Alfombra"]
-transform = Transform3D(0.016914, 0, 0, 0, 0.632996, 0.316693, 0, -0.00772382, 0.0154382, 0.323453, 3.26926, -0.0147781)
+transform = Transform3D(0.033828, 0, 0, 0, 0.632995, 0.316692, 0, -0.0077238, 0.0154382, 0.659371, 2.23752, -0.124955)
 light_color = Color(0.996078, 0.647059, 1, 1)
 light_energy = 5.174
 light_cull_mask = 4294967294
