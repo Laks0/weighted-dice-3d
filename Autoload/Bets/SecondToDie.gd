@@ -1,7 +1,7 @@
 extends Bet
 class_name SecondToDieBet
 
-var dead : int = 0
+var dead : int
 
 func _init():
 	betName = "Second to die"
@@ -22,6 +22,7 @@ func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():
 		mon.connect("died", monigoteDied.bind(mon))
 	
+	dead = 0
 	super(arena)
 
 func monigoteDied(monigote : Monigote):
