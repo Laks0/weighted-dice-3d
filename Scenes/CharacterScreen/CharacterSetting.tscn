@@ -1,12 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=2 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
-[ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_74jw2"]
-[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_u4hgi"]
-[ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="4_yo4ma"]
-[ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="5_lewcx"]
-[ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="6_mjuof"]
-[ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="7_e5g1q"]
 
 [node name="CharacterSetting" type="Control"]
 custom_minimum_size = Vector2(500, 300)
@@ -17,13 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5if0m")
-skin = 3
-red = ExtResource("2_74jw2")
-blue = ExtResource("3_u4hgi")
-yellow = ExtResource("4_yo4ma")
-green = ExtResource("5_lewcx")
-orange = ExtResource("6_mjuof")
-purple = ExtResource("7_e5g1q")
 
 [node name="Settings" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,10 +26,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-
-[node name="Preview" type="TextureRect" parent="Settings"]
-layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="TextEdit" type="LineEdit" parent="Settings"]
 custom_minimum_size = Vector2(128, 32)

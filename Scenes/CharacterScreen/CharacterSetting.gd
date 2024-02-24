@@ -4,14 +4,6 @@ var controller
 @onready var nameEditor : LineEdit = $Settings/TextEdit
 
 @export var defaultName: String
-@export var skin: PlayerHandler.Skins
-
-@export var red: Texture2D
-@export var blue: Texture2D
-@export var yellow: Texture2D
-@export var green: Texture2D
-@export var orange: Texture2D
-@export var purple: Texture2D
 
 @export var added = false
 
@@ -21,23 +13,6 @@ func _ready():
 	for c in Input.get_connected_joypads():
 		$Settings/Controller.add_item("Gamepad " + str(c), c + 2)
 	$Settings/Controller.add_item("Keyboard alt", 1)
-	
-	if skin == PlayerHandler.Skins.RED:
-		$Settings/Preview.texture = red
-	elif skin == PlayerHandler.Skins.BLUE:
-		$Settings/Preview.texture = blue
-	elif skin == PlayerHandler.Skins.YELLOW:
-		$Settings/Preview.texture = yellow
-	elif skin == PlayerHandler.Skins.GREEN:
-		$Settings/Preview.texture = green
-	elif skin == PlayerHandler.Skins.ORANGE:
-		$Settings/Preview.texture = orange
-	elif skin == PlayerHandler.Skins.PURPLE:
-		$Settings/Preview.texture = purple
-	
-	if getControllerAmount() > skin:
-		added = true
-		$Settings/Controller.select(skin)
 	
 	Input.joy_connection_changed.connect(func (device : int, connected : bool):
 		if connected:
