@@ -6,6 +6,8 @@ const CARD_HEIGHT = .85
 
 var running := false
 
+var cards : Array
+
 func _ready():
 	$AnimationPlayer.connect("animation_finished", onAnimationEnd)
 
@@ -15,6 +17,12 @@ func start():
 
 func end():
 	running = false
+	$AnimationPlayer.stop()
+	
+	for card in cards:
+		if is_instance_valid(card):
+			card.queue_free()
+	cards = []
 
 func onAnimationEnd(_anim):
 	await get_tree().create_timer(2).timeout
@@ -35,3 +43,5 @@ func createCard(pos : Vector3, dir : Vector3):
 	card.position.y = CARD_HEIGHT
 	card.dir = dir
 	arena.add_child(card)
+	
+	cards.append(card)
