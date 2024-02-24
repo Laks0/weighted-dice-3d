@@ -27,6 +27,7 @@ func setupBoard():
 func _on_next_round_pressed():
 	get_tree().paused = false
 	if gameEnded:
-		get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")
-	else:
-		get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn")
+		BetHandler.round = 0
+		PlayerHandler.resetAllPlayers()
+	
+	get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn")
