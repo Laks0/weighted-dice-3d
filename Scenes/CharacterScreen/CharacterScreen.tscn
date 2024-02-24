@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=9 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_o0boa"]
 [ext_resource type="PackedScene" uid="uid://phhlbau5wrbq" path="res://Classes/SlotWheel/SlotWheel.tscn" id="3_hdkg5"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="3_sgvmr"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="4_3uqyb"]
 [ext_resource type="Shader" path="res://Scenes/Arena/Arena2d.gdshader" id="5_kt3r4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aiiuw"]
@@ -20,6 +21,7 @@ grow_vertical = 2
 theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
 wheelScene = ExtResource("3_hdkg5")
+font = ExtResource("4_3uqyb")
 
 [node name="Viewport3D" type="SubViewportContainer" parent="."]
 layout_mode = 1

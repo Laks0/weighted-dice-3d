@@ -4,6 +4,7 @@ extends Control
 @export var wheelSpaceWidth := 7.4
 ## El tiempo que tarda en dar una rotación las ruedas
 @export var wheelRotationTime = .5
+@export var font : Font
 
 func _ready():
 	randomize()
@@ -34,8 +35,30 @@ func _on_start_pressed():
 		%SubViewport.add_child(wheel)
 		wheel.showFace(player.id, i + 4, wheelRotationTime * (i+4))
 		
-		if i == players.size() - 1:
-			wheel.showAnimationFinished.connect(func ():
+		var playerNameLabel := Label3D.new()
+		playerNameLabel.font = font
+		playerNameLabel.set_layer_mask_value(2, true)
+		playerNameLabel.set_layer_mask_value(1, false)
+		playerNameLabel.text = player.name
+		playerNameLabel.position.y = -1
+		playerNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		playerNameLabel.position.x = wheel.position.x
+		add_child(playerNameLabel)
+		
+		var monigoteNameLabel := Label3D.new()
+		monigoteNameLabel.set_layer_mask_value(2, true)
+		monigoteNameLabel.set_layer_mask_value(1, false)
+		monigoteNameLabel.font = font
+		monigoteNameLabel.position.y = 1
+		monigoteNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		monigoteNameLabel.modulate = player.color
+		monigoteNameLabel.position.x = wheel.position.x
+		add_child(monigoteNameLabel)
+		
+		wheel.showAnimationFinished.connect(func ():
+			monigoteNameLabel.text = PlayerHandler.getSkinName(player.id)
+			
+			if i == players.size() - 1:
 				await get_tree().create_timer(2).timeout
 				get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn"))
 

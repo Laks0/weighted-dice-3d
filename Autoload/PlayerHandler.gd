@@ -134,3 +134,12 @@ func resetAllPlayers():
 		var p : Player = players[i]
 		players[i] = Player.new(p.name, p.inputController, p.id)
 
+func getSkinName(skin : Skins) -> String:
+	match skin:
+		Skins.RED:    return "Tomi"
+		Skins.BLUE:   return "Fran"
+		Skins.YELLOW: return "Pedro"
+		Skins.GREEN:  return "Juan"
+		Skins.ORANGE: return "Male"
+		Skins.PURPLE: return "Marta"
+	return ""
