@@ -1,4 +1,5 @@
 extends Node3D
+class_name BetDisplaySimple
 
 signal increaseBet(playerId, candidate)
 signal decreaseBet(playerId, candidate)
@@ -24,7 +25,6 @@ var isReady : Dictionary
 var betting = true
 
 func _ready():
-	
 	BetHandler.startRound()
 	$Slotmachine/BetName.text = BetHandler.getBetName()
 	
@@ -119,6 +119,8 @@ func _process(_delta):
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
 		## Interacción
 		var playerActions = Controllers.getActions(player.inputController)
+
+		# Movimientos
 		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft-1
@@ -139,6 +141,7 @@ func _process(_delta):
 		
 		var selector = selectors[player.id]
 		
+		# Ready
 		if selected[player.id] == -1:
 			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
@@ -150,21 +153,13 @@ func _process(_delta):
 		var candidate = selectedPile.candidate
 		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
 		
-		if Input.is_action_just_pressed(playerActions["down"]) \
-			and player.getAmountBettedOn(candidate) > 0:
-			player.decreaseBet(candidate)
-			betted[player.id] -= 1
-			emit_signal("decreaseBet", player.id, candidate)
-			_repositionSelectors()
+		# Bajar apuesta
+		if Input.is_action_just_pressed(playerActions["up"]):
+			decreaseCandidateBet(player, candidate)
 		
-		if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
-			continue
-		
-		if Input.is_action_just_pressed(playerActions["grab"]) or Input.is_action_just_pressed(playerActions["up"]):
-			player.increaseBet(candidate)
-			betted[player.id] += 1
-			emit_signal("increaseBet", player.id, candidate)
-			_repositionSelectors()
+		# Subir apuesta
+		if Input.is_action_just_pressed(playerActions["grab"]) or Input.is_action_just_pressed(playerActions["down"]):
+			increaseCandidateBet(player, candidate)
 
 func _repositionSelectors() -> void:
 	for i in range(-1, piles.size()):
@@ -196,3 +191,46 @@ func _repositionSelectors() -> void:
 			var sel = pileSelectors[l]
 			var positionTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 			positionTween.tween_property(sel, "position", Vector3(newX, centerY, newZ), .15)
+
+## FUNCIONES DE API PARA LA IA ##
+
+func selectCandidate(playerId : int, candidate : int):
+	var index = 0
+	for i in range(piles.size()):
+		if piles[i].candidate == candidate:
+			index = i
+			break
+	
+	selected[playerId] = index
+	_repositionSelectors()
+
+func playerReady(playerId : int) -> void:
+	if selected[playerId] != -1:
+		selected[playerId] = -1
+		_repositionSelectors()
+	isReady[playerId] = true
+
+func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
+	if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
+		return
+
+	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
+		selectCandidate(player.id, candidate)
+	
+	player.increaseBet(candidate)
+	betted[player.id] += 1
+	emit_signal("increaseBet", player.id, candidate)
+	_repositionSelectors()
+
+func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
+	if player.bank - betted[player.id] <= 0:
+		return
+
+	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
+		selectCandidate(player.id, candidate)
+
+	player.decreaseBet(candidate)
+	betted[player.id] -= 1
+	emit_signal("decreaseBet", player.id, candidate)
+	_repositionSelectors()
+
