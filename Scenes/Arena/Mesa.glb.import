@@ -35,10 +35,9 @@ _subresources={
 "physics/shape_type": 1
 },
 "PATH:MesaEx/MesaInt": {
-"generate/physics": true,
 "physics/physics_material_override": Object(PhysicsMaterial,"resource_local_to_scene":false,"resource_name":"","friction":0.0,"rough":false,"bounce":0.0,"absorbent":false,"script":null)
 ,
-"physics/shape_type": 2
+"physics/shape_type": 1
 }
 }
 }
