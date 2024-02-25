@@ -61,10 +61,14 @@ func startGrab(body : Pushable) -> bool:
 
 	# En caso de que se escape
 	body.connect("escaped", func ():
+		onGrabbingEscaped(body)
 		pushFactor = failedPushFactor
 		push())
 
 	return true
+
+func onGrabbingEscaped(body : Pushable) -> void:
+	pass
 
 func push():
 	if not grabbing:
