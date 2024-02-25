@@ -24,6 +24,7 @@ var isReady : Dictionary
 var betting = true
 
 func _ready():
+	
 	BetHandler.startRound()
 	$Slotmachine/BetName.text = BetHandler.getBetName()
 	
