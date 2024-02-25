@@ -26,7 +26,7 @@ class Player:
 		if id == Skins.RED:
 			color = Color(1,0,0)
 		elif id == Skins.BLUE:
-			color = Color(0,0,1)
+			color = Color(.1,.1,1)
 		elif id == Skins.YELLOW:
 			color = Color(1,1,0)
 		elif id == Skins.GREEN:
@@ -88,6 +88,9 @@ func getPlayerById(id : int) -> Player:
 
 func getPlayerByIndex(index : int) -> Player:
 	return players[index]
+
+func getPlayerIndex(player : Player) -> int:
+	return getPlayersAlive().find(player)
 
 ## Devuelve una lista con los jugadores ordenados de mayor a menor cantidad de fichas
 func getPlayersInOrder() -> Array:

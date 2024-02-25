@@ -8,6 +8,7 @@ signal gameStarted
 @export var chipPileScene : PackedScene
 @export var selectorScene : PackedScene
 @export var selectorZ : float = -1.5
+@export var selectorZHeight : float = .5
 
 @export var playerPileZ : float = -8
 
@@ -63,7 +64,7 @@ func _ready():
 		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
 		var sel = selectorScene.instantiate()
 		selectors[player.id] = sel
-		selected[player.id] = player.id % candidates.size()
+		selected[player.id] = PlayerHandler.getPlayerIndex(player) % candidates.size()
 		betted[player.id] = 0
 		sel.get_node("NumberLabel").modulate = player.color
 		sel.get_node("ArrowSprite").modulate = player.color
@@ -170,22 +171,27 @@ func _repositionSelectors() -> void:
 			.filter(func (id : int): return selected[id] == i)\
 			.map(func (id : int): return selectors[id])
 		
-		var selectorSpaceWidth : float = 1
+		var selectorSpaceWidth : float = 1.4
 		
-		var spaceBetweenSelectors : float = selectorSpaceWidth/(pileSelectors.size()+1)
+		var spaceBetweenSelectorsBottom : float = selectorSpaceWidth/(min(3,pileSelectors.size())+1)
+		var spaceBetweenSelectorsTop : float = selectorSpaceWidth/(max(0,pileSelectors.size()-3)+1)
 		
-		var pileX
-		var pileY
+		var centerX
+		var centerY
 		if i == -1:
-			pileX = 0
-			pileY = 2
+			centerX = 0
+			centerY = 2
 		else:
-			pileX = piles[i].position.x
-			pileY = max(1, piles[i].y + piles[i].position.y)
+			centerX = piles[i].position.x
+			centerY = max(1, piles[i].y + piles[i].position.y)
 		
 		for l in range(pileSelectors.size()):
+			var newZ := selectorZ
+			var newX = centerX - selectorSpaceWidth/2 + spaceBetweenSelectorsBottom * (l+1)
+			if l >= 3:
+				newZ -= selectorZHeight
+				newX = centerX - selectorSpaceWidth/2 + spaceBetweenSelectorsTop * (l-2)
+			
 			var sel = pileSelectors[l]
-			var newX = pileX - selectorSpaceWidth/2 + spaceBetweenSelectors * (l+1)
 			var positionTween = create_tween().set_ease(Tween.EASE_IN_OUT)
-			positionTween.tween_property(sel, "position:x", newX, .15)
-			positionTween.parallel().tween_property(sel, "position:y", pileY, .15)
+			positionTween.tween_property(sel, "position", Vector3(newX, centerY, newZ), .15)
