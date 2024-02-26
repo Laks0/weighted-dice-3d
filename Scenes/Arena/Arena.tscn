@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=23 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
-[ext_resource type="Texture2D" uid="uid://bdb0hpv7o14tg" path="res://Scenes/Arena/Mesa_Felpa_Mesa_Textura.png" id="4_ktif2"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
@@ -25,14 +24,6 @@ absorbent = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wruqs"]
 data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bu2r"]
-resource_name = "FelpaMesa"
-cull_mode = 2
-albedo_color = Color(0.381616, 0.406012, 0.100887, 1)
-metallic = 0.0136364
-normal_scale = 0.8
-normal_texture = ExtResource("4_ktif2")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -89,9 +80,6 @@ transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 
 
 [node name="MesaEx" parent="Floor/Mesa" index="0"]
 transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0, 3.41221, 0, 0, 0)
-
-[node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
-material_override = SubResource("StandardMaterial3D_0bu2r")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 visible = false
