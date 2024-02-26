@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bu6qub506i5vu"]
+[gd_scene load_steps=40 format=3 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="Script" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_t13lr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cre3n31pdweli" path="res://Classes/BetDisplay/TablaApuestasSimples_BordeTextura2.png" id="8_d242t"]
 [ext_resource type="Texture2D" uid="uid://cystl7jj4igwe" path="res://Classes/BetDisplay/TablaApuestasSimples_ColorTablasSimple.png" id="9_k1crs"]
 [ext_resource type="Texture2D" uid="uid://b8yokpq1w1whl" path="res://Classes/BetDisplay/TablaApuestasSimples_TexturaTablasSimple.png" id="10_755rp"]
+[ext_resource type="Script" path="res://Classes/BetDisplay/AIBetController.gd" id="13_o215p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa0j6"]
 resource_name = "Material.045"
@@ -600,3 +601,6 @@ spot_angle = 61.0141
 transform = Transform3D(1, -1.13133e-08, -7.20243e-08, -7.71341e-09, 0.965926, -0.258819, 7.24982e-08, 0.258819, 0.965926, 4.00569, 0.529369, 3)
 spot_range = 22.8948
 spot_angle = 61.0141
+
+[node name="AIBetController" type="Node" parent="."]
+script = ExtResource("13_o215p")

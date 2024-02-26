@@ -223,7 +223,7 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	_repositionSelectors()
 
 func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
-	if player.bank - betted[player.id] <= 0:
+	if player.bets[candidate] == 0:
 		return
 
 	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:

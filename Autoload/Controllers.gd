@@ -1,7 +1,7 @@
 extends Node
 
 # 0 y 1 son el teclado, después el número de control + 2
-enum {KB = 0, KB2}
+enum {KB = 0, KB2, AI = 1000}
 
 var controllers = {
 	KB: {
@@ -17,7 +17,14 @@ var controllers = {
 		"right": "move_right_kb2",
 		"left": "move_left_kb2",
 		"grab": "grab_kb2",
-	}
+	},
+	AI: {
+		"up": "empty",
+		"down": "empty",
+		"right": "empty",
+		"left": "empty",
+		"grab": "empty",
+	},
 }
 
 func _ready():

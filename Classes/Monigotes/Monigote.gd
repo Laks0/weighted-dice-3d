@@ -14,6 +14,10 @@ signal grab(body)
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
 var escapeMovements : int = 0
 
+var _movementDir : Vector2
+
+@export var aiControllerScript : Script
+
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
 @onready var controller : int = player.inputController
 @onready var actions    : Dictionary = Controllers.getActions(controller)
@@ -53,6 +57,11 @@ func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	super._ready()
+
+	if player.inputController == Controllers.AI:
+		var controllerNode := Node.new()
+		controllerNode.set_script(aiControllerScript)
+		add_child(controllerNode)
 
 ## El último score de la apuesta, solo se usa si se apuesta sobre jugadores
 var _lastScore: float = 0
@@ -99,7 +108,8 @@ func _process(_delta):
 	_lastScore = newScore
 
 func _physics_process(delta):
-	var dir : Vector2 = Controllers.getDirection(controller)
+	if player.inputController != Controllers.AI:
+		_movementDir = Controllers.getDirection(controller)
 	
 	var accFactor := 1.0
 	if grabbing:
@@ -109,14 +119,14 @@ func _physics_process(delta):
 	if stunned:
 		accFactor = 0
 	
-	moveVelocity += ACCELERATION * dir * delta * accFactor
+	moveVelocity += ACCELERATION * _movementDir * delta * accFactor
 	moveVelocity = moveVelocity.limit_length(MAX_SPEED * (GRABBING_SPEED_FACTOR if grabbing else 1.0))
 	
 	unclampedVelocity = unclampedVelocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	if sign(dir.x) != sign(moveVelocity.x):
+	if sign(_movementDir.x) != sign(moveVelocity.x):
 		moveVelocity.x = move_toward(moveVelocity.x, 0, FRICTION * delta)
-	if sign(dir.y) != sign(moveVelocity.y):
+	if sign(_movementDir.y) != sign(moveVelocity.y):
 		moveVelocity.y = move_toward(moveVelocity.y, 0, FRICTION * delta)
 	
 	var vel2d : Vector2 = moveVelocity + unclampedVelocity
@@ -126,7 +136,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Animaciones
-	match vecToDir(dir):
+	match vecToDir(_movementDir):
 		Cardinal.N:
 			$AnimatedSprite.play("RunningUp")
 		Cardinal.E:
@@ -136,7 +146,7 @@ func _physics_process(delta):
 		Cardinal.S:
 			$AnimatedSprite.play("RunningDown")
 	
-	if dir == Vector2.ZERO:
+	if _movementDir == Vector2.ZERO:
 		$AnimatedSprite.animation = "Idle"
 	
 	if not unclampedVelocity.is_zero_approx():

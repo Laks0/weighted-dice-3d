@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=22 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
+[ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s2ano"]
 resource_local_to_scene = true
@@ -57,6 +58,7 @@ MAX_SPEED = 6.0
 ACCELERATION = 50.0
 FRICTION = 40.0
 MOVEMENTS_TO_ESCAPE_GRAB = 10
+aiControllerScript = ExtResource("17_e2qqq")
 skins = {
 "Blue": ExtResource("3_3t8bt"),
 "Green": ExtResource("4_nq8eh"),

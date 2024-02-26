@@ -9,10 +9,11 @@ var controller
 
 func _ready():
 	nameEditor.text = defaultName
-	$Settings/Controller.add_item("Keyboard", 0)
+	$Settings/Controller.add_item("Keyboard", Controllers.KB)
 	for c in Input.get_connected_joypads():
 		$Settings/Controller.add_item("Gamepad " + str(c), c + 2)
-	$Settings/Controller.add_item("Keyboard alt", 1)
+	$Settings/Controller.add_item("Keyboard alt", Controllers.KB2)
+	$Settings/Controller.add_item("AI", Controllers.AI)
 	
 	Input.joy_connection_changed.connect(func (device : int, connected : bool):
 		if connected:

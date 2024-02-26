@@ -11,7 +11,7 @@ func _ready():
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 
-func _on_start_pressed():
+func _createPlayers():
 	var allSkins = PlayerHandler.Skins.values()
 	for c in $GridContainer.get_children():
 		if !c.added:
@@ -23,6 +23,9 @@ func _on_start_pressed():
 		PlayerHandler.createPlayer(c.controller, skin, c.nameEditor.text)
 		
 		c.queue_free()
+
+func _on_start_pressed():
+	_createPlayers()
 	$Start.queue_free()
 	
 	var players = PlayerHandler.getPlayersAlive()
