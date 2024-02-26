@@ -154,10 +154,10 @@ func _physics_process(delta):
 		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
 	
 	if grabbed:
-		for action: String in ["up", "down", "right", "left"]:
-			if Input.is_action_just_pressed(actions[action]):
-				escapeMovements += 1
+		if Input.is_action_just_pressed(actions["grab"]):
+			escapeMovements += 1
 		if escapeMovements >= MOVEMENTS_TO_ESCAPE_GRAB:
+			$GrabCooldown.start()
 			emit_signal("escaped")
 
 	if grabbing:
@@ -172,6 +172,11 @@ func startGrab(body : Pushable) -> bool:
 		return false
 	
 	return true
+
+func onGrabbingEscaped(body : Pushable):
+	var bodyPos2d = Vector2(body.position.x, body.position.z)
+	var pos2d = Vector2(position.x, position.z)
+	knockback(bodyPos2d.direction_to(pos2d) * 7)
 
 func onGrabbed():
 	escapeMovements = 0
