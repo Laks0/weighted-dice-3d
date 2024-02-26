@@ -67,6 +67,7 @@ skins = {
 "Red": ExtResource("5_xljsg"),
 "Yellow": ExtResource("6_2h8rt")
 }
+maxPushForce = 35.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.278249, 0.415424, 0, -0.415424, 0.278249, 0, 0, 0)
