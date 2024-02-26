@@ -1,37 +1,26 @@
 extends Control
+class_name CharacterSetting
 
-var controller
-@onready var nameEditor : LineEdit = $Settings/TextEdit
-
-@export var defaultName: String
-
-@export var added = false
-
-func _ready():
-	nameEditor.text = defaultName
-	$Settings/Controller.add_item("Keyboard", Controllers.KB)
-	for c in Input.get_connected_joypads():
-		$Settings/Controller.add_item("Gamepad " + str(c), c + 2)
-	$Settings/Controller.add_item("Keyboard alt", Controllers.KB2)
-	$Settings/Controller.add_item("AI", Controllers.AI)
-	
-	Input.joy_connection_changed.connect(func (device : int, connected : bool):
-		if connected:
-			$Settings/Controller.add_item("Gamepad " + str(device), device + 2)
-		else:
-			$Settings/Controller.remove_item($Settings/Controller.get_item_index(device + 2))
-		)
-
-func getControllerAmount() -> int:
-	return len(Input.get_connected_joypads()) + 1
+var controller : int
+var playerName : String
+var playerReady := false
 
 func _process(_delta):
-	controller = $Settings/Controller.get_item_id($Settings/Controller.selected)
-	$Settings.visible = added
-	$AddCharacter.visible = !added
+	if controller == Controllers.KB:
+		$ControllerLabel.text = "Keyboard"
+	elif controller == Controllers.KB2:
+		$ControllerLabel.text = "Keyboard alt."
+	elif controller == Controllers.AI:
+		$ControllerLabel.text = "AI"
+	else:
+		$ControllerLabel.text = "Gamepad %s" % controller
+	 
+	modulate.a = .5 if playerReady else 1
+	$TextEdit.set_process(not playerReady)
+	playerName = $TextEdit.text
 
-func _on_AddCharacter_pressed():
-	added = true
+func _on_ready_pressed():
+	playerReady = not playerReady
 
-func _on_Cancel_pressed():
-	added = false
+func _on_cancel_pressed():
+	queue_free()

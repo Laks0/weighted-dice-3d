@@ -20,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
+characterSettingScene = ExtResource("1_8jvhf")
 wheelScene = ExtResource("3_hdkg5")
 font = ExtResource("4_3uqyb")
 
@@ -60,58 +61,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Settings" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -322.0
-offset_top = -182.0
-offset_right = 322.0
-offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[node name="TomiSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player1"
-
-[node name="FranciscoSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player2"
-
-[node name="PedroSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player3"
-
-[node name="JuanSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player4"
-
-[node name="MaleSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player5"
-
-[node name="MartaSetting" parent="GridContainer" instance=ExtResource("1_8jvhf")]
-layout_mode = 2
-defaultName = "Player6"
-
-[node name="Start" type="Button" parent="."]
+[node name="AddAIButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -15.5
-offset_right = 23.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Start"
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -263.0
+offset_top = -136.0
+offset_right = -184.0
+offset_bottom = -104.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Add AI"
 
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="AddAIButton" to="." method="_on_add_ai_button_pressed"]

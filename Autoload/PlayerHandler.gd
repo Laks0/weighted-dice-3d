@@ -55,9 +55,9 @@ class Player:
 		return bank >= BetHandler.getMinimunBet()
 
 var players : Array[Player] = []
+var MAX_PLAYERS = 6
 
 func createPlayer(controller : int, id : int, _name : String):
-	var MAX_PLAYERS = 6
 	if len(players) >= MAX_PLAYERS:
 		return
 

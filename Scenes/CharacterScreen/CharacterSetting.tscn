@@ -2,58 +2,33 @@
 
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 
-[node name="CharacterSetting" type="Control"]
-custom_minimum_size = Vector2(500, 300)
-layout_mode = 3
+[node name="CharacterSetting" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 script = ExtResource("1_5if0m")
 
-[node name="Settings" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
+[node name="ControllerLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Controller"
+horizontal_alignment = 1
 
-[node name="TextEdit" type="LineEdit" parent="Settings"]
+[node name="TextEdit" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 placeholder_text = "Name"
-max_length = 15
+max_length = 10
 
-[node name="Controller" type="OptionButton" parent="Settings"]
-layout_mode = 2
-
-[node name="Cancel" type="Button" parent="Settings"]
+[node name="Cancel" type="Button" parent="."]
 layout_mode = 2
 text = "Cancel"
 
-[node name="AddCharacter" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -15.5
-offset_right = 59.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Add Character"
+[node name="Ready" type="Button" parent="."]
+layout_mode = 2
+text = "Ready"
 
-[connection signal="pressed" from="Settings/Cancel" to="." method="_on_Cancel_pressed"]
-[connection signal="pressed" from="AddCharacter" to="." method="_on_AddCharacter_pressed"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Ready" to="." method="_on_ready_pressed"]

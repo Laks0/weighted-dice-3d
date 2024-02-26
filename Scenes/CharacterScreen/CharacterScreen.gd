@@ -1,5 +1,7 @@
 extends Control
 
+@export var characterSettingScene : PackedScene
+
 @export var wheelScene : PackedScene
 @export var wheelSpaceWidth := 7.4
 ## El tiempo que tarda en dar una rotación las ruedas
@@ -13,20 +15,15 @@ func _ready():
 
 func _createPlayers():
 	var allSkins = PlayerHandler.Skins.values()
-	for c in $GridContainer.get_children():
-		if !c.added:
-			c.queue_free()
-			continue
-		
+	for c in $Settings.get_children():
 		var skin = allSkins.pick_random()
 		allSkins.erase(skin)
-		PlayerHandler.createPlayer(c.controller, skin, c.nameEditor.text)
-		
+		PlayerHandler.createPlayer(c.controller, skin, c.playerName)
 		c.queue_free()
 
-func _on_start_pressed():
+func _startGame():
 	_createPlayers()
-	$Start.queue_free()
+	$AddAIButton.queue_free()
 	
 	var players = PlayerHandler.getPlayersAlive()
 	var spaceBetweenWheels = wheelSpaceWidth / (players.size() + 1)
@@ -66,6 +63,37 @@ func _on_start_pressed():
 				get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn"))
 
 func _process(_delta):
+	var playersReady = $Settings.get_children()\
+		.filter(func (selector : CharacterSetting): return selector.playerReady)\
+		.size()
+	
+	if playersReady == $Settings.get_child_count() and $Settings.get_child_count() > 0:
+		_startGame()
+	
 	%HiResTexture.texture = %MultipleResCamera.getHiResTexture()
 	%HiResTexture.material.set_shader_parameter("fullTexture", %MultipleResCamera.getFullTexture())
 	%HiResTexture.material.set_shader_parameter("lowTexture", %MultipleResCamera.getLowResTexture())
+
+func _addPlayerSetting(device : int):
+	if $Settings.get_child_count() >= PlayerHandler.MAX_PLAYERS:
+		return
+	
+	for setting in $Settings.get_children():
+		if setting.controller == device and device != Controllers.AI:
+			return
+	
+	var newSetting = characterSettingScene.instantiate()
+	newSetting.controller = device
+	$Settings.add_child(newSetting)
+
+func _input(event):
+	if event is InputEventKey:
+		if event.is_action_pressed("grab_mouse"):
+			_addPlayerSetting(Controllers.KB)
+		if event.is_action_pressed("grab_kb2"):
+			_addPlayerSetting(Controllers.KB2)
+	if event is InputEventJoypadButton:
+		_addPlayerSetting(event.device)
+
+func _on_add_ai_button_pressed():
+	_addPlayerSetting(Controllers.AI)

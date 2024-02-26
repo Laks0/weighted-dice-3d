@@ -1,7 +1,6 @@
 extends Node
 
-# 0 y 1 son el teclado, después el número de control + 2
-enum {KB = 0, KB2, AI = 1000}
+enum {KB = 100, KB2, AI}
 
 var controllers = {
 	KB: {
@@ -36,23 +35,23 @@ func _ready():
 			addController(device))
 
 func addController(id : int):
-	if controllers.has(id + 2):
+	if controllers.has(id):
 		return
 	
-	controllers[id + 2] = {}
+	controllers[id] = {}
 	addMovementAction("up", JOY_BUTTON_DPAD_UP, JOY_AXIS_LEFT_Y, -1, id)
 	addMovementAction("down", JOY_BUTTON_DPAD_DOWN, JOY_AXIS_LEFT_Y, 1, id)
 	addMovementAction("left", JOY_BUTTON_DPAD_LEFT, JOY_AXIS_LEFT_X, -1, id)
 	addMovementAction("right", JOY_BUTTON_DPAD_RIGHT, JOY_AXIS_LEFT_X, 1, id)
 	
 	InputMap.add_action("grab_d%s" % id)
-	controllers[id+2]["grab"] = "grab_d%s" % id
+	controllers[id]["grab"] = "grab_d%s" % id
 	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
 
 func addMovementAction(dir : String, button : JoyButton, axis : JoyAxis, axisDir : float, device : int):
 	var action = "move_" + dir + "_d%s" % device
 	InputMap.add_action(action)
-	controllers[device+2][dir] = action
+	controllers[device][dir] = action
 	addButtonToAction(action, button, device)
 	addStickToAction(action, axis, axisDir, device)
 
