@@ -67,7 +67,7 @@ func _ready():
 var _lastScore: float = 0
 
 func _process(_delta):
-	if Input.is_action_just_pressed(actions.grab) and $GrabCooldown.is_stopped():
+	if Input.is_action_just_pressed(actions.grab):
 		for body in $GrabArea.get_overlapping_bodies():
 			if not body is Pushable or body == self:
 				continue
@@ -153,6 +153,10 @@ func _physics_process(delta):
 		$AnimatedSprite.play("Pushed")
 		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
 	
+	if grabbing:
+		$AnimatedSprite.animation = "Grabbing"
+		$AnimatedSprite.frame = vecToDir(grabDir)
+	
 	if grabbed:
 		if Input.is_action_just_pressed(actions["grab"]):
 			escapeMovements += 1
@@ -160,12 +164,11 @@ func _physics_process(delta):
 			$GrabCooldown.start()
 			emit_signal("escaped")
 
-	if grabbing:
-		$AnimatedSprite.animation = "Grabbing"
-		$AnimatedSprite.frame = vecToDir(grabDir)
+func canBeGrabbed(grabber) -> bool:
+	return (self != grabber) and (not invincible) and (not grabbed)
 
-func canBeGrabbed(_grabber) -> bool:
-	return not invincible
+func canGrab() -> bool:
+	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing)
 
 func startGrab(body : Pushable) -> bool:
 	if not super(body):

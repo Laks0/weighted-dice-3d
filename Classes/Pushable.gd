@@ -3,6 +3,7 @@ class_name Pushable
 
 ## Se emite cuando se escapa de un grab
 signal escaped()
+signal beenGrabbed
 
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
@@ -30,16 +31,17 @@ func canBeGrabbed(_grabber) -> bool:
 	return true
 
 func canGrab() -> bool:
-	return not grabbed
+	return true
 
 func onGrabbed():
 	grabbed = true
+	beenGrabbed.emit()
 
 func onPushed(_dir : Vector2, _factor : float, _pusher : Pushable):
 	grabbed = false
 	color = Color.WHITE
 	
-	# Permite colisionar con el que lo agarró devuelta
+	# Permite volver a colisionar con el que lo agarró
 	# IMPORTANTE: esto significa que los pushables no pueden tener excepciones
 	# de colisión
 	for e in get_collision_exceptions():
@@ -51,6 +53,8 @@ func startGrab(body : Pushable) -> bool:
 		return false
 	if not body.canBeGrabbed(self):
 		return false
+	if body == self:
+		return false
 	
 	grabbing = true
 	
@@ -61,6 +65,8 @@ func startGrab(body : Pushable) -> bool:
 
 	# En caso de que se escape
 	body.connect("escaped", func ():
+		if not body.grabbed:
+			return
 		onGrabbingEscaped(body)
 		pushFactor = failedPushFactor
 		push())

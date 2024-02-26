@@ -91,11 +91,11 @@ func getLivingMonigotes() -> Array[Monigote]:
 func getRandomMonigote() -> Monigote:
 	return monigotes[randi() % len(monigotes)]
 
-func getClosestMonigote(from : Vector3, exclude : Monigote = null) -> Monigote:
+func getClosestMonigote(from : Vector3, exclude : Array = []) -> Monigote:
 	var closest : Monigote
 	var minDistance : float = 10000
 	for monigote : Monigote in getLivingMonigotes():
-		if monigote == exclude:
+		if exclude.has(monigote):
 			continue
 		var distance = from.distance_to(monigote.position)
 		if distance < minDistance:
