@@ -13,11 +13,11 @@ script = ExtResource("1_fk22e")
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
 
 [node name="MaletinA" parent="Maletin" index="6"]
-transform = Transform3D(-4.69641e-07, -0.903295, 0.434974, 1.38428e-07, 1.37004, 0.286786, -2.32244, 2.64324e-07, -7.08662e-08, -3.02536, 0.151344, -0.160745)
+transform = Transform3D(2.40518e-05, 1.64095, 0.00507668, 0.00405088, 0.0159901, -0.520982, -2.32243, 4.48717e-05, -0.000908666, -3.02536, 0.151344, -0.160745)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.22772, 2.3715)
-light_energy = 8.394
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.22772, -0.78556)
+light_energy = 2.0
 omni_range = 14.5761
 
 [node name="Paredes" type="StaticBody3D" parent="."]

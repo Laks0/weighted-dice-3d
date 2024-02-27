@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=28 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://vj4n1f7bc5hh" path="res://Scenes/Lobby/Lobby.tscn" id="15_2h2ha"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="15_thsto"]
+[ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -55,6 +56,165 @@ animations = [{
 material = ExtResource("15_thsto")
 subdivide_width = 50
 subdivide_depth = 50
+
+[sub_resource type="Animation" id="Animation_3y6d5"]
+resource_name = "LobbyOutAnimation"
+length = 2.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ChipHolder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array()
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2.11012, -0.25, 0, 0.25, 0, 2.11012, -0.25, 0, 0.25, 0, 2.11012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-10.2745, -0.25, 0, 0.25, 0, -10.2745, -0.25, 0, 0.25, 0, -14.7397, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../ChipHolder:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../ChipHolder:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1.34845, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 1.34845, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../ChipHolder:position:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-10.9247, -0.25, 0, 0.25, 0, -10.9247, -0.25, 0, 0.25, 0, -10.9247, -0.25, 0, 0.25, 0, -10.9247, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_y7ohy"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.11, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-10.274, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ChipHolder:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../ChipHolder:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../ChipHolder:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-10.925, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i545o"]
+_data = {
+"LobbyOutAnimation": SubResource("Animation_3y6d5"),
+"RESET": SubResource("Animation_y7ohy")
+}
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
@@ -130,16 +290,6 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
-
-[node name="LobbyCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 9.29698, -10.9979)
-cull_mask = 1048573
-fov = 47.0
-
-[node name="BetSceneCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 7.65225, 0.7)
-cull_mask = 1048573
-fov = 47.0
 
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
@@ -226,9 +376,6 @@ light_cull_mask = 4294967294
 omni_range = 31.2944
 omni_attenuation = 0.615571
 
-[node name="BetDisplaySimple" parent="." instance=ExtResource("13_ta5lr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
-
 [node name="CurrentBetName" type="Label3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.64939, 1.0914)
 visible = false
@@ -239,7 +386,30 @@ font = ExtResource("15_ovhl6")
 font_size = 100
 uppercase = true
 
-[node name="Lobby" parent="." instance=ExtResource("15_2h2ha")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.9078)
+[node name="LobbyCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
+cull_mask = 1048573
+fov = 47.0
+
+[node name="BetSceneCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 7.65225, 0.7)
+cull_mask = 1048573
+fov = 47.0
+
+[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder") instance=ExtResource("13_ta5lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
+chipHolder = NodePath("../ChipHolder")
+
+[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("15_2h2ha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11, -10.274)
+lobbyOutAnimationPlayer = NodePath("LobbyOutAnimationPlayer")
+
+[node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="Lobby"]
+libraries = {
+"": SubResource("AnimationLibrary_i545o")
+}
+
+[node name="ChipHolder" parent="." instance=ExtResource("16_khcf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.925)
 
 [editable path="Floor/Mesa"]

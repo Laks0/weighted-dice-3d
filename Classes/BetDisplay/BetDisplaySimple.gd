@@ -13,6 +13,8 @@ signal gameStarted
 
 @export var playerPileZ : float = -8
 
+@export var chipHolder : ChipHolder
+
 var piles : Array
 var candidatesOnLeft : int
 var candidatesOnRight : int
@@ -37,8 +39,6 @@ func startBetting():
 	@warning_ignore("integer_division")
 	candidatesOnLeft = candidates.size() / 2
 	candidatesOnRight = candidates.size() - candidatesOnLeft
-	
-	var distanceBetweenPlayerPiles = halfWidth*2 / (PlayerHandler.getPlayersAlive().size()+1)
 	
 	for i in range(candidates.size()):
 		var xPos : float
@@ -80,29 +80,6 @@ func startBetting():
 		
 		for candidate in candidates:
 			player.setBet(0, candidate)
-		
-		# Pilas de las fichas de jugadores
-		var playerPile = chipPileScene.instantiate()
-		playerPile.isDisplay = true
-		playerPile.playerIdDisplay = player.id
-		increaseBet.connect(func (playerId, _candidate):
-			if playerId == player.id:
-				playerPile.removeChip(player.id))
-		
-		decreaseBet.connect(func (playerId, _candidate):
-			if playerId == player.id:
-				playerPile.addChip(player.id))
-		
-		gameStarted.connect(func ():
-			var exitTween := create_tween()
-			exitTween.tween_property(playerPile, "position:x", 10, .1).as_relative()
-			exitTween.tween_callback(playerPile.queue_free))
-		
-		playerPile.position = Vector3(-halfWidth + (i+1)*distanceBetweenPlayerPiles,1,playerPileZ)
-		add_child(playerPile)
-		
-		for _i in player.bank:
-			playerPile.addChip(player.id)
 	
 	
 	_repositionSelectors()
@@ -221,6 +198,7 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
 		selectCandidate(player.id, candidate)
 	
+	chipHolder.removeChipFromPlayer(player.id)
 	player.increaseBet(candidate)
 	betted[player.id] += 1
 	emit_signal("increaseBet", player.id, candidate)
@@ -232,7 +210,8 @@ func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 
 	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
 		selectCandidate(player.id, candidate)
-
+	
+	chipHolder.addChipToPlayer(player.id)
 	player.decreaseBet(candidate)
 	betted[player.id] -= 1
 	emit_signal("decreaseBet", player.id, candidate)

@@ -2,7 +2,11 @@ extends Node3D
 
 signal startBetting
 
+@export var lobbyOutAnimationPlayer : AnimationPlayer
+
 func _ready():
+	$Maletin/AnimationPlayer.play("MaletinAAction_001")
+	
 	var monigotes := PlayerHandler.instantiatePlayers()
 	
 	var xPos = -3
@@ -11,7 +15,11 @@ func _ready():
 		xPos += 1
 		add_child(m)
 	
-	await get_tree().create_timer(15).timeout
-	startBetting.emit()
+	await get_tree().create_timer(2).timeout
 	for m : Monigote in monigotes:
 		m.queue_free()
+	
+	lobbyOutAnimationPlayer.play("LobbyOutAnimation")
+	$Maletin/AnimationPlayer.play_backwards("MaletinAAction_001")
+	
+	lobbyOutAnimationPlayer.animation_finished.connect(func(_anim): startBetting.emit())
