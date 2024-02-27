@@ -63,6 +63,13 @@ func moveTo(newPos : Vector3, rotationDegreesX : float) -> void:
 	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, startGameAnimationTime)
 	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
 
+func zoomTo(targetPos : Vector3) -> void:
+	var zoomTime : float = .5
+	var zoomTween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	zoomTween.tween_property(self, "rotation_degrees:x", -90, zoomTime)
+	zoomTween.parallel()\
+		.tween_property(self, "position", Vector3(targetPos.x, targetPos.y + 3, targetPos.z), zoomTime)
+
 func startShake(magnitude : float, time : float) -> void:
 	var initialPos = position
 	var elapsedTime := .0

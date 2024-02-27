@@ -49,7 +49,7 @@ func addChip(playerId : int, withAnimation : bool = true) -> void:
 	if withAnimation:
 		ficha.position.y = ceiling
 		
-		var heightTween = create_tween().set_trans(Tween.TRANS_BOUNCE)
+		var heightTween = create_tween().set_trans(Tween.TRANS_QUAD)
 		heightTween.tween_property(ficha, "position:y", y, .02*(ceiling - y))
 	else:
 		ficha.position.y = y
@@ -83,9 +83,10 @@ func displayBank():
 	if not isDisplay:
 		return
 	
+	y = 0
 	for chip in chips[playerIdDisplay]:
-		chips[playerIdDisplay].erase(chip)
 		chip.queue_free()
+	chips[playerIdDisplay] = []
 	
 	for _i in PlayerHandler.getPlayerById(playerIdDisplay).bank:
 		addChip(playerIdDisplay, false)

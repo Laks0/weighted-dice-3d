@@ -73,19 +73,24 @@ func startArena():
 	
 	%MultipleResCamera.startGameAnimation()
 
+var winnerPos : Vector3
 func resetArena():
+	effects[activeEffect].end()
+	activeEffect = -1
+	
+	$PrepareArrow.visible = false
+	
 	betting = true
 	die.queue_free()
+	
+	%MultipleResCamera.zoomTo(winnerPos)
+	await get_tree().create_timer(5).timeout
 	
 	for mon in monigotes:
 		mon.queue_free()
 	
-	effects[activeEffect].end()
-	activeEffect = -1
-
-	$PrepareArrow.visible = false
-
 	$BetDisplaySimple.startBetting()
+	%MultipleResCamera.startBettingAnimation()
 
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
@@ -142,9 +147,11 @@ func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
 	if monigotesAlive == 1:
+		winnerPos = monigotes[0].position
 		BetHandler.settleBet(monigotes[0].player.id)
 		resetArena()
 	if monigotesAlive == 0:
+		winnerPos = mon.position
 		BetHandler.settleBet(mon.player.id)
 		resetArena()
 

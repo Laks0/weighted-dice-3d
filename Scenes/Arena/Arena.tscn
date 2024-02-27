@@ -291,14 +291,6 @@ depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera") instance=ExtResource("5_fiigu")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.2)
-showSlotRotationX = -49.0
-startGameAnimationTime = 0.2
-betSceneCamera = NodePath("../BetSceneCamera")
-lobbyCamera = NodePath("../LobbyCamera")
-
 [node name="Effects" type="Node" parent="."]
 
 [node name="SpikesEffect" parent="Effects" instance=ExtResource("8_ycw3d")]
@@ -385,6 +377,14 @@ text = "Full house"
 font = ExtResource("15_ovhl6")
 font_size = 100
 uppercase = true
+
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera") instance=ExtResource("5_fiigu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.2)
+showSlotRotationX = -49.0
+startGameAnimationTime = 0.2
+betSceneCamera = NodePath("../BetSceneCamera")
+lobbyCamera = NodePath("../LobbyCamera")
 
 [node name="LobbyCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
