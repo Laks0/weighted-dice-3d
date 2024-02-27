@@ -84,7 +84,7 @@ func resetArena():
 	die.queue_free()
 	
 	%MultipleResCamera.zoomTo(winnerPos)
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(3).timeout
 	
 	for mon in monigotes:
 		mon.queue_free()
@@ -148,10 +148,12 @@ func onMonigoteDeath(mon : Monigote):
 	
 	if monigotesAlive == 1:
 		winnerPos = monigotes[0].position
+		monigotes[0].set_physics_process(false)
 		BetHandler.settleBet(monigotes[0].player.id)
 		resetArena()
 	if monigotesAlive == 0:
 		winnerPos = mon.position
+		mon.set_physics_process(false)
 		BetHandler.settleBet(mon.player.id)
 		resetArena()
 

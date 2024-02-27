@@ -21,5 +21,3 @@ func _ready():
 	
 	lobbyOutAnimationPlayer.play("LobbyOutAnimation")
 	$Maletin/AnimationPlayer.play_backwards("MaletinAAction_001")
-	
-	lobbyOutAnimationPlayer.animation_finished.connect(func(_anim): startBetting.emit())
