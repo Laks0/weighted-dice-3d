@@ -97,11 +97,11 @@ func _process(_delta):
 	if Input.is_action_just_pressed("die") and player.id == 0:
 		die()
 	
-	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
-		return
 	if not get_parent() is Arena:
 		return
-
+	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
+		return
+	
 	var newScore = BetHandler.getCandidateScore(player.id)
 	if floori(newScore) != floori(_lastScore):
 		emitScore(floori(newScore))

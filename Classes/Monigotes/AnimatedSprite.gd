@@ -6,3 +6,5 @@ func _ready():
 func _process(_delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
 	material_override.set_shader_parameter("modulate", modulate)
+	
+	rotation.x = get_viewport().get_camera_3d().rotation.x

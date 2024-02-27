@@ -63,19 +63,14 @@ func createPlayer(controller : int, id : int, _name : String):
 
 	players.append(Player.new(_name, controller, id))
 
-func instantiatePlayers(parent) -> Array[Monigote]:
-	var i = 0
-	@warning_ignore("unassigned_variable")
-	var monigotes : Array[Monigote]
+func instantiatePlayers() -> Array[Monigote]:
+	var monigotes : Array[Monigote] = []
 	for player in getPlayersAlive():
 		var monigote := monigoteResource.instantiate() as Monigote
 		
-		monigote.player   = player
-		monigote.position = Vector3((i+1) -5, Globals.SPRITE_HEIGHT, 1)
+		monigote.player = player
 		
 		monigotes.append(monigote)
-		parent.add_child(monigote)
-		i += 1
 	
 	return monigotes
 

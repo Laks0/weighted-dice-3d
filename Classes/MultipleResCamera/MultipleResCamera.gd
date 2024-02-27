@@ -7,6 +7,7 @@ extends Camera3D
 @export var startGameAnimationTime : float = 1
 
 @export var betSceneCamera : Camera3D
+@export var lobbyCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
@@ -16,10 +17,10 @@ func _ready():
 	restRotation = rotation_degrees
 	restPosition = position
 	
-	if not is_instance_valid(betSceneCamera):
+	if not is_instance_valid(betSceneCamera) or not is_instance_valid(lobbyCamera):
 		return
-	position = betSceneCamera.position
-	rotation_degrees.x = betSceneCamera.rotation_degrees.x
+	position = lobbyCamera.position
+	rotation_degrees = lobbyCamera.rotation_degrees
 
 func _process(_delta):
 	%HiResCamera.position = position
@@ -52,9 +53,15 @@ func returnToArena() -> void:
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, showSlotAnimationTime)
 
 func startGameAnimation() -> void:
+	moveTo(restPosition, restRotation.x)
+
+func startBettingAnimation() -> void:
+	moveTo(betSceneCamera.position, betSceneCamera.rotation_degrees.x)
+
+func moveTo(newPos : Vector3, rotationDegreesX : float) -> void:
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
-	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, startGameAnimationTime)
-	transformTween.parallel().tween_property(self, "position", restPosition, startGameAnimationTime)
+	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, startGameAnimationTime)
+	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
 
 func startShake(magnitude : float, time : float) -> void:
 	var initialPos = position

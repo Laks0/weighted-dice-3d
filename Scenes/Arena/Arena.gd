@@ -23,6 +23,11 @@ var monigotes : Array[Monigote]
 
 var betting := true
 
+func _ready():
+	$Lobby.startBetting.connect(func ():
+		%MultipleResCamera.startBettingAnimation()
+		$BetDisplaySimple.startBetting())
+
 func _process(delta):
 	if betting:
 		return
@@ -39,11 +44,19 @@ func startArena():
 	die.position.y = 1
 	add_child(die)
 	
-	monigotes = PlayerHandler.instantiatePlayers(self)
+	monigotes = PlayerHandler.instantiatePlayers()
 	monigotesAlive = len(monigotes)
 	
+	var xPos = -1
 	for m in monigotes:
+		m.position = Vector3(xPos, Globals.SPRITE_HEIGHT, 1)
+		xPos += 1
+		add_child(m)
 		m.died.connect(onMonigoteDeath.bind(m))
+	
+	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
+	for wallCollision in $Walls.get_children():
+		wallCollision.disabled = false
 	
 	for e in effects:
 		e.create(self)

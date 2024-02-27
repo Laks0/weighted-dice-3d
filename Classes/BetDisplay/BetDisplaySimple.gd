@@ -22,9 +22,13 @@ var selected : Dictionary
 var betted : Dictionary
 var isReady : Dictionary
 
-var betting = true
+var betting = false
 
 func _ready():
+	$Slotmachine.set_process(false)
+
+func startBetting():
+	betting = true
 	BetHandler.startRound()
 	$Slotmachine/BetName.text = BetHandler.getBetName()
 	
@@ -100,7 +104,7 @@ func _ready():
 		for _i in player.bank:
 			playerPile.addChip(player.id)
 	
-	$Slotmachine.set_process(false)
+	
 	_repositionSelectors()
 
 func _process(_delta):
