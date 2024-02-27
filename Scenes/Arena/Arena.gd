@@ -12,8 +12,8 @@ var die : Die
 @export var dieScreenShakeMagnitude := .6
 @export var dieScreenShakeTime := .3
 
-const WIDTH = 11
-const HEIGHT = 6.4
+const WIDTH  : float = 11
+const HEIGHT : float = 6.4
 
 # Active effect va de 0 a 5
 var activeEffect   : int = -1
@@ -73,6 +73,20 @@ func startArena():
 	
 	%MultipleResCamera.startGameAnimation()
 
+func resetArena():
+	betting = true
+	die.queue_free()
+	
+	for mon in monigotes:
+		mon.queue_free()
+	
+	effects[activeEffect].end()
+	activeEffect = -1
+
+	$PrepareArrow.visible = false
+
+	$BetDisplaySimple.startBetting()
+
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
 	
@@ -128,9 +142,11 @@ func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
 	if monigotesAlive == 1:
-		emit_signal("gameEnded", monigotes[0])
+		BetHandler.settleBet(monigotes[0].player.id)
+		resetArena()
 	if monigotesAlive == 0:
-		emit_signal("gameEnded", mon)
+		BetHandler.settleBet(mon.player.id)
+		resetArena()
 
 func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D

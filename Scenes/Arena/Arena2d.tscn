@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://csr517ks82sen"]
+[gd_scene load_steps=5 format=3 uid="uid://csr517ks82sen"]
 
 [ext_resource type="Shader" path="res://Scenes/Arena/Arena2d.gdshader" id="1_2d4xw"]
 [ext_resource type="Script" path="res://Scenes/Arena/Arena2d.gd" id="1_77ke4"]
 [ext_resource type="PackedScene" uid="uid://bpdrpg3p4qn3t" path="res://Scenes/Arena/Arena.tscn" id="1_cvxfn"]
-[ext_resource type="Script" path="res://Scenes/Arena/EndGameAnimation.gd" id="5_3sniq"]
-[ext_resource type="PackedScene" uid="uid://x6hvhmpe0mb8" path="res://Scenes/RoundEnd/RoundEnd.tscn" id="6_5toah"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmagg"]
 shader = ExtResource("1_2d4xw")
@@ -48,38 +46,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="EndGameAnimation" type="Control" parent="."]
-process_mode = 3
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_3sniq")
-
-[node name="Background" type="TextureRect" parent="EndGameAnimation"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
-
-[node name="RoundEnd" parent="EndGameAnimation" instance=ExtResource("6_5toah")]
-visible = false
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-offset_left = -733.0
-grow_horizontal = 0
-
-[node name="WinnerPoint" type="ReferenceRect" parent="EndGameAnimation"]
-layout_mode = 0
-offset_left = 373.0
-offset_top = 343.0
-offset_right = 373.0
-offset_bottom = 343.0
-border_width = 5.0

@@ -58,6 +58,8 @@ func getScores() -> Dictionary:
 	return currentBet.getScores()
 
 func getCandidateScore(candidate) -> float:
+	if not currentBet.getScores().has(candidate):
+		return 0
 	return currentBet.getScores()[candidate]
 
 func canBet(playerId : int, candidate) -> bool:

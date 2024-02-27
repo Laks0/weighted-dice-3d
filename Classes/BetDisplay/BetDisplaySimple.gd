@@ -1,8 +1,6 @@
 extends Node3D
 class_name BetDisplaySimple
 
-signal increaseBet(playerId, candidate)
-signal decreaseBet(playerId, candidate)
 signal gameStarted
 
 @export var halfWidth : float = 7
@@ -30,6 +28,13 @@ func _ready():
 	$Slotmachine.set_process(false)
 
 func startBetting():
+	# Resetear cualquier valor viejo
+	chipHolder.reset()
+	for pile in piles:
+		pile.queue_free()
+	piles = []
+	$Slotmachine.set_process(false)
+	
 	betting = true
 	BetHandler.startRound()
 	$Slotmachine/BetName.text = BetHandler.getBetName()
@@ -57,13 +62,6 @@ func startBetting():
 		
 		add_child(chipPile)
 		piles.append(chipPile)
-		
-		increaseBet.connect(func (playerId, candidate):
-			if candidate == chipPile.candidate:
-				chipPile.addChip(playerId))
-		decreaseBet.connect(func (playerId, candidate):
-			if candidate == chipPile.candidate:
-				chipPile.removeChip(playerId))
 	
 	for i in range(PlayerHandler.getPlayersAlive().size()):
 		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
@@ -201,7 +199,7 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	chipHolder.removeChipFromPlayer(player.id)
 	player.increaseBet(candidate)
 	betted[player.id] += 1
-	emit_signal("increaseBet", player.id, candidate)
+	piles[selected[player.id]].addChip(player.id)
 	_repositionSelectors()
 
 func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
@@ -214,6 +212,6 @@ func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	chipHolder.addChipToPlayer(player.id)
 	player.decreaseBet(candidate)
 	betted[player.id] -= 1
-	emit_signal("decreaseBet", player.id, candidate)
+	piles[selected[player.id]].removeChip(player.id)
 	_repositionSelectors()
 

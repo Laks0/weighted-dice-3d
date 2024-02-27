@@ -12,17 +12,20 @@ func _ready():
 		playerPile.isDisplay = true
 		playerPile.playerIdDisplay = player.id
 		playerPile.position = $PilePositions.get_children()[i].position
+		playerPile.scale = Vector3.ONE * 1.3
 		add_child(playerPile)
-		
-		for _l in range(player.bank):
-			playerPile.addChip(player.id)
 		
 		piles[player.id] = playerPile
 		
 		i += 1
+	reset()
 
 func addChipToPlayer(id : int) -> void:
 	piles[id].addChip(id)
 
 func removeChipFromPlayer(id : int) -> void:
 	piles[id].removeChip(id)
+
+func reset():
+	for pile in piles.values():
+		pile.displayBank()

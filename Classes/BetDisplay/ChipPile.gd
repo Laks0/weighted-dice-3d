@@ -1,4 +1,5 @@
 extends Node3D
+class_name ChipPile
 
 @export var fichaMesh : PackedScene
 @export var fichaHeight : float = .05
@@ -38,17 +39,20 @@ func _process(_delta):
 	
 	$Odds.text = "x%s" % BetHandler.getCandidateOdds(candidate)
 
-func addChip(playerId : int) -> void:
+func addChip(playerId : int, withAnimation : bool = true) -> void:
 	var player := PlayerHandler.getPlayerById(playerId)
 	var color = player.color
 	
 	var ficha : MeshInstance3D = fichaMesh.instantiate()
 	
 	ficha.get_surface_override_material(0).albedo_color = color
-	ficha.position.y = ceiling
-	
-	var heightTween = create_tween().set_ease(Tween.EASE_IN)
-	heightTween.tween_property(ficha, "position:y", y, .02*(ceiling - y))
+	if withAnimation:
+		ficha.position.y = ceiling
+		
+		var heightTween = create_tween().set_trans(Tween.TRANS_BOUNCE)
+		heightTween.tween_property(ficha, "position:y", y, .02*(ceiling - y))
+	else:
+		ficha.position.y = y
 	
 	add_child(ficha)
 	chips[playerId].append(ficha)
@@ -73,3 +77,15 @@ func removeChip(playerId : int) -> void:
 				continue
 			var heightTween = create_tween().set_ease(Tween.EASE_IN)
 			heightTween.tween_property(chip, "position:y", chip.position.y-fichaHeight, .02*(fichaHeight))
+
+## Pone la cantidad de fichas de la pila en el banco del jugador de playerIdDisplay (solo si isDisplay == true)
+func displayBank():
+	if not isDisplay:
+		return
+	
+	for chip in chips[playerIdDisplay]:
+		chips[playerIdDisplay].erase(chip)
+		chip.queue_free()
+	
+	for _i in PlayerHandler.getPlayerById(playerIdDisplay).bank:
+		addChip(playerIdDisplay, false)
