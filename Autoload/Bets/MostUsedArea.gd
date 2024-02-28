@@ -17,8 +17,18 @@ func getCandidateOdds(candidate: ArenaSide) -> int:
 
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():
-		if mon.position.x < 0:
-			_scores[ArenaSide.LEFT] += delta
+		var currentArea : ArenaSide
+		if mon.position.x < 0 && mon.position.z < 0:
+			currentArea = ArenaSide.TOP_LEFT
+		elif mon.position.x < 0:
+			currentArea = ArenaSide.BOTTOM_LEFT
+		elif mon.position.x > 0 && mon.position.z > 0:
+			currentArea = ArenaSide.BOTTOM_RIGHT
 		else:
-			_scores[ArenaSide.RIGHT] += delta
+			currentArea = ArenaSide.TOP_RIGHT
+		_scores[currentArea] += delta
 
+# Ningún jugador puede apostar a más de un candidato
+func canBet(playerId : int, candidate) -> bool:
+	var player := PlayerHandler.getPlayerById(playerId)
+	return player.getTotalBets() == 0 or player.bets[candidate] != 0

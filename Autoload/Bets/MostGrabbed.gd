@@ -3,7 +3,7 @@ class_name MostGrabbedBet
 
 func _init():
 	betName = "Most Grabbed"
-	betType = BetType.EXCLUDE_SELF
+	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
 
 func startGame(arena : Arena):

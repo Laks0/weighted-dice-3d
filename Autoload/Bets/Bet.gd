@@ -56,6 +56,13 @@ func hasWon(candidate) -> bool:
 func getCandidateOdds(_candidate) -> int:
 	return 2
 
+## Determina si un jugador puede apostar a un candidato, se puede reescribir
+func canBet(playerId : int, candidate) -> bool:
+	if betType == BetType.EXCLUDE_SELF:
+		return candidate != playerId
+	
+	return true
+
 ## Retorna los puntajes de cada candidato en la apuesta
 func getScores() -> Dictionary:
 	return _scores
@@ -92,7 +99,7 @@ static func getCandidateName(type : BetType, candidate) -> String:
 		Bet.BetType.GAME_TIME:
 			return _gameTimeName(candidate)
 		Bet.BetType.ARENA_SIDE:
-			return "Left" if candidate == ArenaSide.LEFT else "Right"
+			return _arenaSideName(candidate)
 	
 	return str(candidate)
 
@@ -120,6 +127,16 @@ static func _gameTimeName(time : GameTimes) -> String:
 	return ""
 
 enum ArenaSide {
-	LEFT,
-	RIGHT
+	TOP_LEFT,
+	BOTTOM_LEFT,
+	TOP_RIGHT,
+	BOTTOM_RIGHT
 }
+
+static func _arenaSideName(side : ArenaSide) -> String:
+	match side:
+		ArenaSide.TOP_RIGHT: return "Top right"
+		ArenaSide.TOP_LEFT: return "Top left"
+		ArenaSide.BOTTOM_RIGHT: return "Bottom right"
+		ArenaSide.BOTTOM_LEFT: return "Bottom left"
+	return ""
