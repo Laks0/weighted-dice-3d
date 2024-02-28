@@ -16,7 +16,7 @@ func _ready():
 		xPos += 1
 		add_child(m)
 	
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(0).timeout
 	chipHolder.ownMonigotes(monigotes)
 	await get_tree().create_timer(1).timeout
 	

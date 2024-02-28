@@ -16,7 +16,7 @@ var roundAmount : int = 4
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
-		if fileName != "MostUsedArea.gd":# == "Bet.gd":
+		if fileName  == "Bet.gd":
 			continue
 		
 		bets.append(load(betPath+fileName).new())

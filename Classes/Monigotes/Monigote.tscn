@@ -18,18 +18,18 @@
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2ano"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xk8un"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_tb5pk")
 shader_parameter/borderAlpha = 1.0
-shader_parameter/width = 1.0
+shader_parameter/width = 1.5
 shader_parameter/outline_color = null
 shader_parameter/modulate = null
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
-height = 0.563633
+height = 0.485603
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
 radius = 0.629883
@@ -70,17 +70,17 @@ skins = {
 maxPushForce = 35.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.408301, -0.288601, 0, 0.288601, 0.408301, 0, 0, 0)
 layers = 2
-material_override = SubResource("ShaderMaterial_s2ano")
+material_override = SubResource("ShaderMaterial_xk8un")
 cast_shadow = 2
 pixel_size = 0.04
-billboard = 1
 shaded = true
+alpha_cut = 2
 texture_filter = 0
 render_priority = 10
 sprite_frames = ExtResource("3_3t8bt")
-animation = &"RunningUp"
+animation = &"Idle"
 script = ExtResource("8_au5v3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
