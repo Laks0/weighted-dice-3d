@@ -335,9 +335,10 @@ fov = 47.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
 chipHolder = NodePath("../ChipHolder")
 
-[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("15_2h2ha")]
+[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer", "chipHolder") instance=ExtResource("15_2h2ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11012, -10.274)
 lobbyOutAnimationPlayer = NodePath("LobbyOutAnimationPlayer")
+chipHolder = NodePath("../ChipHolder")
 
 [node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="Lobby"]
 libraries = {

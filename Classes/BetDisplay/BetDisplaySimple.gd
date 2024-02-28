@@ -82,18 +82,22 @@ func startBetting():
 	
 	_repositionSelectors()
 
+func startArena():
+	chipHolder.sendMonigotesToArena(get_parent())
+	get_parent().startArena()
+	betting = false
+	$Slotmachine.set_process(true)
+	for sel in selectors.values():
+		sel.queue_free()
+	gameStarted.emit()
+
 func _process(_delta):
 	$AIBetController.set_process(betting)
 	if not betting:
 		return
 	
 	if isReady.keys().filter(func (id : int): return isReady[id]).size() == isReady.keys().size():
-		get_parent().startArena()
-		betting = false
-		$Slotmachine.set_process(true)
-		for sel in selectors.values():
-			sel.queue_free()
-		gameStarted.emit()
+		startArena()
 		return
 	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():

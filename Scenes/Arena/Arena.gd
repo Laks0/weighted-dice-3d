@@ -17,7 +17,6 @@ const HEIGHT : float = 6.4
 
 # Active effect va de 0 a 5
 var activeEffect   : int = -1
-var monigotesAlive : int = 0
 
 var monigotes : Array[Monigote]
 
@@ -35,29 +34,33 @@ func _process(delta):
 	
 	BetHandler.arenaUpdate(delta)
 
+func recieveMonigote(mon : Monigote) -> void:
+	monigotes.append(mon)
+	mon.reparent(self)
+	mon.set_process(true)
+	mon.set_physics_process(true)
+	mon.died.connect(onMonigoteDeath.bind(mon))
+
 func startArena():
+	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
+	for wallCollision in $Walls.get_children():
+		wallCollision.disabled = false
+
+	BetHandler.startGame(self)
+
+	for e in effects:
+		e.create(self)
+
+	%MultipleResCamera.startGameAnimation()
+
+	# Delay hasta que entra el dado
+	await get_tree().create_timer(2).timeout
+
 	betting = false
 	
 	die = dieScene.instantiate()
 	die.position.y = 1
 	add_child(die)
-	
-	monigotes = PlayerHandler.instantiatePlayers()
-	monigotesAlive = len(monigotes)
-	
-	var xPos = -1
-	for m in monigotes:
-		m.position = Vector3(xPos, Globals.SPRITE_HEIGHT, 1)
-		xPos += 1
-		add_child(m)
-		m.died.connect(onMonigoteDeath.bind(m))
-	
-	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
-	for wallCollision in $Walls.get_children():
-		wallCollision.disabled = false
-	
-	for e in effects:
-		e.create(self)
 	
 	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(startEffect)
@@ -66,10 +69,6 @@ func startArena():
 		if activeEffect != -1:
 			effects[activeEffect].end())
 	die.dropped.connect(%MultipleResCamera.returnToArena)
-	
-	BetHandler.startGame(self)
-	
-	%MultipleResCamera.startGameAnimation()
 
 func endGame(winnerMon : Monigote):
 	effects[activeEffect].end()
@@ -89,6 +88,7 @@ func endGame(winnerMon : Monigote):
 
 	for mon in monigotes:
 		mon.queue_free()
+	monigotes.clear()
 
 func goToLeaderboard(winnerId):
 	%MultipleResCamera.startLeaderboardAnimation().tween_callback(
@@ -149,13 +149,11 @@ func getRandomPosition(padding := 1) -> Vector3:
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
 
 func onMonigoteDeath(mon : Monigote):
-	monigotesAlive -= 1
-	
 	monigotes.erase(mon)
 	
-	if monigotesAlive == 1:
+	if monigotes.size() == 1:
 		endGame(monigotes[0])
-	if monigotesAlive == 0:
+	if monigotes.size() == 0:
 		endGame(mon)
 
 func getMainLight() -> DirectionalLight3D:

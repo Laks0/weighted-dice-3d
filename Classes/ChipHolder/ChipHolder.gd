@@ -7,6 +7,8 @@ var piles : Dictionary
 var waitingToStart := false
 var gameEnded := false
 
+var ownedMonigotes : Array[Monigote] = []
+
 func _ready():
 	var i := 0
 	for player in PlayerHandler.getPlayersAlive():
@@ -32,10 +34,54 @@ func reset():
 	for pile in piles.values():
 		pile.displayBank()
 
+func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
+	var height := 5.0
+	var jumpCurve = Curve3D.new()
+	jumpCurve.add_point(monigote.position)
+	jumpCurve.add_point(pos, Vector3(0,height,0))
+
+	var jumpTween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	jumpTween.tween_method(func (t):
+		monigote.position = jumpCurve.sample(0, t),
+		0.0, 1.0, .5)
+	return jumpTween
+
+func getPositionForMonigote(playerId : int) -> Vector3:
+	var pos = piles[playerId].position
+	pos.y = piles[playerId].y
+	return pos
+
+func ownMonigotes(arr : Array[Monigote]) -> void:
+	for mon in arr:
+		mon.set_physics_process(false)
+		mon.set_process(false)
+		mon.reparent(self)
+
+		jumpMonigoteTo(mon, getPositionForMonigote(mon.player.id))\
+				.tween_callback(func (): ownedMonigotes.append(mon))
+
+func sendMonigotesToArena(arena : Arena):
+	for m in ownedMonigotes:
+		jumpMonigoteTo(m, to_local(Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1)))\
+				.tween_callback(arena.recieveMonigote.bind(m))
+	ownedMonigotes.clear()
+
+func createMonigotes():
+	ownedMonigotes = PlayerHandler.instantiatePlayers()
+	for mon in ownedMonigotes:
+		add_child(mon)
+		mon.set_process(false)
+		mon.set_physics_process(false)
+
+func _process(_delta):
+	for mon in ownedMonigotes:
+		mon.position = getPositionForMonigote(mon.player.id)
+
 func startLeaderboardAnimation(winnerId):
 	var timeBetweenSteps := 1.3
 	var timeBetweenChips := .2
 
+	createMonigotes()
 	reset()
 	BetHandler.settleBet(winnerId)
 
