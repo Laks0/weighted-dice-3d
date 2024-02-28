@@ -24,9 +24,7 @@ var monigotes : Array[Monigote]
 var betting := true
 
 func _ready():
-	$Lobby.startBetting.connect(func ():
-		%MultipleResCamera.startBettingAnimation()
-		$BetDisplaySimple.startBetting())
+	$Lobby.startBetting.connect(goToBettingScene)
 
 func _process(delta):
 	if betting:
@@ -73,8 +71,7 @@ func startArena():
 	
 	%MultipleResCamera.startGameAnimation()
 
-var winnerPos : Vector3
-func resetArena():
+func endGame(winnerMon : Monigote):
 	effects[activeEffect].end()
 	activeEffect = -1
 	
@@ -83,12 +80,22 @@ func resetArena():
 	betting = true
 	die.queue_free()
 	
-	%MultipleResCamera.zoomTo(winnerPos)
+	var winnerId = winnerMon.player.id
+	winnerMon.set_physics_process(false)
+	%MultipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	
+	goToLeaderboard(winnerId)
+
 	for mon in monigotes:
 		mon.queue_free()
-	
+
+func goToLeaderboard(winnerId):
+	%MultipleResCamera.startLeaderboardAnimation().tween_callback(
+		$ChipHolder.startLeaderboardAnimation.bind(winnerId)
+	)
+
+func goToBettingScene():
 	$BetDisplaySimple.startBetting()
 	%MultipleResCamera.startBettingAnimation()
 
@@ -147,15 +154,9 @@ func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
 	if monigotesAlive == 1:
-		winnerPos = monigotes[0].position
-		monigotes[0].set_physics_process(false)
-		BetHandler.settleBet(monigotes[0].player.id)
-		resetArena()
+		endGame(monigotes[0])
 	if monigotesAlive == 0:
-		winnerPos = mon.position
-		mon.set_physics_process(false)
-		BetHandler.settleBet(mon.player.id)
-		resetArena()
+		endGame(mon)
 
 func getMainLight() -> DirectionalLight3D:
 	return $DirectionalLight3D

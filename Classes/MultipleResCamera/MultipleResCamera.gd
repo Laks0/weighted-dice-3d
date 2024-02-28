@@ -8,6 +8,7 @@ extends Camera3D
 
 @export var betSceneCamera : Camera3D
 @export var lobbyCamera : Camera3D
+@export var leaderboardCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
@@ -52,16 +53,20 @@ func returnToArena() -> void:
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, showSlotAnimationTime)
 
-func startGameAnimation() -> void:
-	moveTo(restPosition, restRotation.x)
+func startLeaderboardAnimation() -> Tween:
+	return moveTo(leaderboardCamera.position, leaderboardCamera.rotation_degrees.x)
 
-func startBettingAnimation() -> void:
-	moveTo(betSceneCamera.position, betSceneCamera.rotation_degrees.x)
+func startGameAnimation() -> Tween:
+	return moveTo(restPosition, restRotation.x)
 
-func moveTo(newPos : Vector3, rotationDegreesX : float) -> void:
+func startBettingAnimation() -> Tween:
+	return moveTo(betSceneCamera.position, betSceneCamera.rotation_degrees.x)
+
+func moveTo(newPos : Vector3, rotationDegreesX : float) -> Tween:
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, startGameAnimationTime)
 	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
+	return transformTween
 
 func zoomTo(targetPos : Vector3) -> void:
 	var zoomTime : float = .5

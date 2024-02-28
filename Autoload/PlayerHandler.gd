@@ -14,10 +14,6 @@ class Player:
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
 	
-	# Variables para visualizar cambios en el leaderboard
-	var oldBank : int
-	var oldRank : int
-	
 	func _init(_name : String,_inputController :int = Controllers.KB,_id : int = Skins.RED):
 		name = _name
 		inputController = _inputController
@@ -45,11 +41,14 @@ class Player:
 	func decreaseBet(candidate : int):
 		bets[candidate] -= 1
 	
-	func getAmountBettedOn(candidate : int):
+	func getAmountBettedOn(candidate : int) -> int:
 		if not bets.has(candidate):
 			return 0
 		
 		return bets[candidate]
+	
+	func getTotalBets() -> int:
+		return bets.values().reduce(func (accum, number): return accum + number)
 	
 	func isStillPlaying() -> bool:
 		return bank >= BetHandler.getMinimunBet()
@@ -87,7 +86,7 @@ func getPlayerByIndex(index : int) -> Player:
 func getPlayerIndex(player : Player) -> int:
 	return getPlayersAlive().find(player)
 
-## Devuelve una lista con los jugadores ordenados de mayor a menor cantidad de fichas
+## Devuelve una lista con los jugadores ordenados de mayor a menor cantidad de fichas incluyendo a los que ya perdieron
 func getPlayersInOrder() -> Array:
 	var list = []
 	

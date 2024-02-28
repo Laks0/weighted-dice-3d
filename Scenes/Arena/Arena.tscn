@@ -395,16 +395,22 @@ font = ExtResource("15_ovhl6")
 font_size = 100
 uppercase = true
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera") instance=ExtResource("5_fiigu")]
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera", "leaderboardCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.2)
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 betSceneCamera = NodePath("../BetSceneCamera")
 lobbyCamera = NodePath("../LobbyCamera")
+leaderboardCamera = NodePath("../LeaderboardCamera")
 
 [node name="LobbyCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
+cull_mask = 1048573
+fov = 47.0
+
+[node name="LeaderboardCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.87082, 0.491603, 0, -0.491603, 0.87082, 0, 6.36938, -3.8382)
 cull_mask = 1048573
 fov = 47.0
 

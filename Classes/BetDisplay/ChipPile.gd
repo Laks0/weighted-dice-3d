@@ -10,7 +10,7 @@ class_name ChipPile
 @export var playerIdDisplay = 0
 
 ## Altura de la que caen las fichas
-@export var ceiling : float = 10
+@export var ceiling : float = 6
 
 ## chips[playerID] = [Fichas del player en el orden que se agregaron]
 var chips : Dictionary
@@ -49,8 +49,8 @@ func addChip(playerId : int, withAnimation : bool = true) -> void:
 	if withAnimation:
 		ficha.position.y = ceiling
 		
-		var heightTween = create_tween().set_trans(Tween.TRANS_QUAD)
-		heightTween.tween_property(ficha, "position:y", y, .02*(ceiling - y))
+		var heightTween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+		heightTween.tween_property(ficha, "position:y", y, .05*(ceiling - y))
 	else:
 		ficha.position.y = y
 	
