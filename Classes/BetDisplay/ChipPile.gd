@@ -54,6 +54,8 @@ func addChip(playerId : int, withAnimation : bool = true) -> void:
 	else:
 		ficha.position.y = y
 	
+	ficha.rotation.y += randf_range(-PI/10, PI/10)
+	
 	add_child(ficha)
 	chips[playerId].append(ficha)
 	

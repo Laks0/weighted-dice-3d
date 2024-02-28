@@ -83,6 +83,7 @@ func startBetting():
 	_repositionSelectors()
 
 func _process(_delta):
+	$AIBetController.set_process(betting)
 	if not betting:
 		return
 	

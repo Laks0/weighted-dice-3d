@@ -1,15 +1,21 @@
 extends Node
 
 @onready var monigote : Monigote = get_parent()
-@onready var arena : Arena = monigote.get_parent()
+var arena : Arena
 @onready var grabArea : Area3D = monigote.get_node("GrabArea")
 
 func _ready():
+	if monigote.get_parent() is Arena:
+		arena = monigote.get_parent()
+	
 	monigote.beenGrabbed.connect(addEscapeMovement)
 	grabArea.connect("body_entered", tryGrab)
 	checkNewGrabs()
 
 func _process(_delta):
+	if not is_instance_valid(arena):
+		return
+	
 	var objMonigote : Monigote = arena.getClosestMonigote(monigote.position, [monigote])
 	
 	if not is_instance_valid(objMonigote):

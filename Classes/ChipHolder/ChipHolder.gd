@@ -5,6 +5,7 @@ class_name ChipHolder
 
 var piles : Dictionary
 var waitingToStart := false
+var gameEnded := false
 
 func _ready():
 	var i := 0
@@ -38,7 +39,8 @@ func startLeaderboardAnimation(winnerId):
 	reset()
 	BetHandler.settleBet(winnerId)
 
-	if BetHandler.round < BetHandler.roundAmount:
+	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
+	if not gameEnded:
 		$RoundNumber.text = "Round " + str(BetHandler.round) + "/" + str(BetHandler.roundAmount)
 	else:
 		$RoundNumber.text = "GAME ENDED"
@@ -93,7 +95,7 @@ func startLeaderboardAnimation(winnerId):
 
 	await get_tree().create_timer(timeBetweenSteps).timeout
 
-	if BetHandler.round < BetHandler.roundAmount:
+	if not gameEnded:
 		$LeaderboardTitleLabel.text = "Press 'grab' to continue"
 	else:
 		$LeaderboardTitleLabel.text = "Press 'grab' to restart game"
@@ -106,9 +108,10 @@ func _input(event):
 
 	for player in PlayerHandler.getPlayersAlive():
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
-			if BetHandler.round == BetHandler.roundAmount:
+			if gameEnded:
 				PlayerHandler.resetAllPlayers()
 				BetHandler.round = 0
+				gameEnded = false
 
 			get_parent().goToBettingScene()
 			$RoundNumber.text = ""
