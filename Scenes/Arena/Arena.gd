@@ -34,10 +34,11 @@ func _process(delta):
 	
 	BetHandler.arenaUpdate(delta)
 
-func recieveMonigote(mon : Monigote) -> void:
-	mon.reparent(self)
-	monigotes.append(mon)
-	mon.died.connect(onMonigoteDeath.bind(mon))
+func reparentMonigotes(arr : Array[Monigote]) -> void:
+	monigotes = arr.duplicate()
+	for mon in monigotes:
+		mon.reparent(self)
+		mon.died.connect(onMonigoteDeath.bind(mon))
 
 func startArena():
 	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
