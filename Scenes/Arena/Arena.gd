@@ -35,10 +35,8 @@ func _process(delta):
 	BetHandler.arenaUpdate(delta)
 
 func recieveMonigote(mon : Monigote) -> void:
-	monigotes.append(mon)
 	mon.reparent(self)
-	mon.set_process(true)
-	mon.set_physics_process(true)
+	monigotes.append(mon)
 	mon.died.connect(onMonigoteDeath.bind(mon))
 
 func startArena():

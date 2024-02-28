@@ -14,7 +14,7 @@ class Player:
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
 	
-	func _init(_name : String,_inputController :int = Controllers.KB,_id : int = Skins.RED):
+	func _init(_name : String, _inputController :int = Controllers.KB,_id : int = Skins.RED):
 		name = _name
 		inputController = _inputController
 		id = _id
@@ -31,6 +31,9 @@ class Player:
 			color = Color(0.5,.25,.5)
 		elif id == Skins.ORANGE:
 			color = Color(1,.5,.3)
+		
+		if name == "":
+			name = PlayerHandler.getSkinName(id)
 	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount

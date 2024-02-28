@@ -62,8 +62,11 @@ func ownMonigotes(arr : Array[Monigote]) -> void:
 
 func sendMonigotesToArena(arena : Arena):
 	for m in ownedMonigotes:
-		jumpMonigoteTo(m, to_local(Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1)))\
-				.tween_callback(arena.recieveMonigote.bind(m))
+		jumpMonigoteTo(m, Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1))\
+				.tween_callback(func ():
+					m.set_process(true)
+					m.set_physics_process(true))
+		arena.recieveMonigote(m)
 	ownedMonigotes.clear()
 
 func createMonigotes():
