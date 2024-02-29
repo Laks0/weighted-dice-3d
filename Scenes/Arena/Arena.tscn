@@ -54,8 +54,8 @@ animations = [{
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_20bdj"]
 material = ExtResource("15_thsto")
-subdivide_width = 50
-subdivide_depth = 50
+subdivide_width = 10
+subdivide_depth = 20
 
 [sub_resource type="Animation" id="Animation_3y6d5"]
 resource_name = "LobbyOutAnimation"
@@ -265,13 +265,6 @@ transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4626, 0, 0.308534, 50.188
 layers = 4
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Alfombra"]
-transform = Transform3D(0.016914, 0, 0, 0, -0.0733959, 0.703983, 0, -0.0171695, -0.00179003, 0, 14.6889, 0.370177)
-layers = 0
-light_color = Color(0.509804, 0, 0.521569, 1)
-light_energy = 2.215
-light_cull_mask = 4294967292
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Alfombra"]
 transform = Transform3D(0.0333779, 0, 0, 0, 0.657268, 0.297955, 0, -0.00801998, 0.0176917, 0.865045, 4.7423, 0.317219)

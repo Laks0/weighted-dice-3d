@@ -33,6 +33,9 @@ func startBetting():
 	for pile in piles:
 		pile.queue_free()
 	piles = []
+	selectors.clear()
+	selected.clear()
+	
 	$Slotmachine.set_process(false)
 	
 	betting = true

@@ -16,7 +16,7 @@ var roundAmount : int = 4
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
-		if fileName  == "Bet.gd":
+		if fileName == "Bet.gd":
 			continue
 		
 		bets.append(load(betPath+fileName).new())
@@ -33,18 +33,22 @@ func startRound() -> void:
 	round += 1
 	
 	currentBet = bets.pick_random()
+	while not currentBet.canAppear():
+		currentBet = bets.pick_random()
+	
+	currentBet.startRound()
 
 func getBetName() -> String:
 	return currentBet.betName
 
 func getCandidates() -> Array:
-	return Bet.getCandidates(currentBet.betType)
+	return currentBet.getCandidates()
 
 func getCandidateName(candidate) -> String:
-	return Bet.getCandidateName(currentBet.betType, candidate)
+	return currentBet.getCandidateName(candidate)
 
 func getCandidateColor(candidate) -> Color:
-	return Bet.getCandidateColor(currentBet.betType, candidate)
+	return currentBet.getCandidateColor(candidate)
 
 func getCandidateOdds(candidate) -> int:
 	return currentBet.getCandidateOdds(candidate)

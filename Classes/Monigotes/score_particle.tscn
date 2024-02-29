@@ -17,13 +17,13 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_yqmq4")
 text = "123"
 font = ExtResource("1_x327a")
-font_size = 36
+font_size = 42
 
 [node name="ScoreParticle" type="GPUParticles3D"]
 layers = 2
 emitting = false
 amount = 1
-lifetime = 0.4
+lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_bdddy")

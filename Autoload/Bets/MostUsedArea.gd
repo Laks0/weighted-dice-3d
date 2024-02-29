@@ -2,9 +2,11 @@ extends Bet
 class_name MostUsedAreaBet
 
 func _init():
-	betType = BetType.ARENA_SIDE
+	betType = BetType.CUSTOM
 	betName = "Most Used Area"
 	_scoreOrder = Order.ASCENDING
+
+enum ArenaSide {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}
 
 # Mientras más apuestan, menos vale. Si apuesta la mitad + 1 no vale nada
 func getCandidateOdds(candidate: ArenaSide) -> int:
@@ -32,3 +34,14 @@ func arenaUpdate(delta):
 func canBet(playerId : int, candidate) -> bool:
 	var player := PlayerHandler.getPlayerById(playerId)
 	return player.getTotalBets() == 0 or player.bets[candidate] != 0
+
+func getCandidates() -> Array:
+	return ArenaSide.values()
+
+func getCandidateName(side : ArenaSide) -> String:
+	match side:
+		ArenaSide.TOP_RIGHT: return "Top right"
+		ArenaSide.TOP_LEFT: return "Top left"
+		ArenaSide.BOTTOM_RIGHT: return "Bottom right"
+		ArenaSide.BOTTOM_LEFT: return "Bottom left"
+	return ""

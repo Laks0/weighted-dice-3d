@@ -14,9 +14,10 @@ layers = 2
 font = ExtResource("3_al5hg")
 font_size = 82
 uppercase = true
+autowrap_mode = 2
 
 [node name="Odds" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.36057)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.41169)
 layers = 2
 font = ExtResource("3_al5hg")
 font_size = 57

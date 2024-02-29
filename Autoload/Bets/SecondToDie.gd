@@ -32,3 +32,6 @@ func monigoteDied(monigote : Monigote):
 
 func settle():
 	pass
+
+func canAppear() -> bool:
+	return PlayerHandler.getPlayersAlive().size() > 2

@@ -12,8 +12,7 @@ class_name Bet
 enum BetType {
 	EXCLUDE_SELF,
 	ALL_PLAYERS,
-	GAME_TIME,
-	ARENA_SIDE
+	CUSTOM
 }
 
 ## Un diccionario con puntajes para cada candidato. Ignorar si no tiene sentido para la apuesta
@@ -33,11 +32,15 @@ var betName : String
 ## Orden de preferencia de los resultados de getScores, determina cómo va a ordenar getCandidatesInOrder
 var _scoreOrder : Order = Order.ASCENDING
 
+## Se llama al principio de la ronda
+func startRound():
+	pass
+
 ## Se llama al final del ready de la arena
 func startGame(arena : Arena):
 	_arena = arena
 
-	for candidate in Bet.getCandidates(betType):
+	for candidate in getCandidates():
 		_scores[candidate] = 0
 
 ## Se llama al final del update de arena. Evitar a menos que sea imposible
@@ -47,7 +50,7 @@ func arenaUpdate(_delta):
 ## Determina el ganador, por defecto usa _score y _scoreOrder
 func settle():
 	var winnerScore = _scores[getCandidatesInOrder()[0]]
-	_result = Bet.getCandidates(betType).filter(func (candidate):
+	_result = getCandidates().filter(func (candidate):
 		return _scores[candidate] == winnerScore)
 
 func hasWon(candidate) -> bool:
@@ -69,7 +72,7 @@ func getScores() -> Dictionary:
 
 ## Retorna los candidatos en el orden de la apuesta
 func getCandidatesInOrder() -> Array:
-	var candidates: Array = Bet.getCandidates(betType)
+	var candidates: Array = getCandidates()
 	candidates.sort_custom(func (a, b):
 		if _scoreOrder == Order.ASCENDING:
 			return _scores[a] > _scores[b]
@@ -77,66 +80,19 @@ func getCandidatesInOrder() -> Array:
 
 	return candidates
 
-# Funciones estáticas
+## Si es posible que la apuesta aparezca ahora
+func canAppear() -> bool:
+	return true
 
-static func getCandidates(type : BetType) -> Array:
-	var allPlayers = PlayerHandler.getPlayersAliveById()
-	
-	match type:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
-			return allPlayers
-		Bet.BetType.GAME_TIME:
-			return GameTimes.values()
-		Bet.BetType.ARENA_SIDE:
-			return ArenaSide.values()
-	
-	return []
+## Por defecto los candidatos son los jugadores vivos
+func getCandidates() -> Array:
+	return PlayerHandler.getPlayersAliveById()
 
-static func getCandidateName(type : BetType, candidate) -> String:
-	match type:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
-			return PlayerHandler.getPlayerById(candidate).name
-		Bet.BetType.GAME_TIME:
-			return _gameTimeName(candidate)
-		Bet.BetType.ARENA_SIDE:
-			return _arenaSideName(candidate)
-	
-	return str(candidate)
+func getCandidateName(candidate) -> String:
+	return PlayerHandler.getPlayerById(candidate).name
 
-static func getCandidateColor(type: BetType, candidate) -> Color:
-	match type:
-		Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF:
+func getCandidateColor(candidate) -> Color:
+	if [Bet.BetType.ALL_PLAYERS, Bet.BetType.EXCLUDE_SELF].has(betType):
 			return PlayerHandler.getPlayerById(candidate).color
 	
 	return Color.RED
-
-enum GameTimes {
-	FIRST_30,
-	FROM_30_TO_60,
-	MORE_THAN_60
-}
-
-static func _gameTimeName(time : GameTimes) -> String:
-	match time:
-		GameTimes.FIRST_30:
-			return "<30s"
-		GameTimes.FROM_30_TO_60:
-			return "30s - 60s"
-		GameTimes.MORE_THAN_60:
-			return ">60s"
-	return ""
-
-enum ArenaSide {
-	TOP_LEFT,
-	BOTTOM_LEFT,
-	TOP_RIGHT,
-	BOTTOM_RIGHT
-}
-
-static func _arenaSideName(side : ArenaSide) -> String:
-	match side:
-		ArenaSide.TOP_RIGHT: return "Top right"
-		ArenaSide.TOP_LEFT: return "Top left"
-		ArenaSide.BOTTOM_RIGHT: return "Bottom right"
-		ArenaSide.BOTTOM_LEFT: return "Bottom left"
-	return ""
