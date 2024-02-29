@@ -211,7 +211,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Grabbing",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -248,7 +248,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Pushed",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,

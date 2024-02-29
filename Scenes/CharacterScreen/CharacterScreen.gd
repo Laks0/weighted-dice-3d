@@ -23,7 +23,6 @@ func _createPlayers():
 
 func _startGame():
 	_createPlayers()
-	$AddAIButton.queue_free()
 	
 	var players = PlayerHandler.getPlayersAlive()
 	var spaceBetweenWheels = wheelSpaceWidth / (players.size() + 1)

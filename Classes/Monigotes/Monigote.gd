@@ -83,14 +83,6 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	$AnimatedSprite.modulate = color
-	if invincible and not grabbed:
-		$AnimatedSprite.modulate.a = .7
-	elif stunned:
-		$AnimatedSprite.modulate = Color.DARK_GRAY
-	else:
-		$AnimatedSprite.modulate.a = 1
-	
 	position.y = Globals.SPRITE_HEIGHT
 
 	# DEBUG
@@ -135,28 +127,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	# Animaciones
-	match vecToDir(_movementDir):
-		Cardinal.N:
-			$AnimatedSprite.play("RunningUp")
-		Cardinal.E:
-			$AnimatedSprite.play("RunningRight")
-		Cardinal.W:
-			$AnimatedSprite.play("RunningLeft")
-		Cardinal.S:
-			$AnimatedSprite.play("RunningDown")
-	
-	if _movementDir == Vector2.ZERO:
-		$AnimatedSprite.animation = "Idle"
-	
-	if not unclampedVelocity.is_zero_approx():
-		$AnimatedSprite.play("Pushed")
-		$AnimatedSprite.frame = vecToDir(unclampedVelocity)
-	
-	if grabbing:
-		$AnimatedSprite.animation = "Grabbing"
-		$AnimatedSprite.frame = vecToDir(grabDir)
-	
+	# Escape del grab
 	if grabbed:
 		if Input.is_action_just_pressed(actions["grab"]):
 			escapeMovements += 1
@@ -251,16 +222,6 @@ func stun():
 func makeInvincible():
 	invincible = true
 	$HurtTime.start()
-
-enum Cardinal {E, NE, N, NW, W, SW, S, SE}
-
-func vecToDir(vector : Vector2) -> Cardinal:
-	var angle = -vector.angle()
-	if angle < 0:
-		angle += 2*PI
-	
-	angle += PI/8
-	return floor( angle / (PI/4) )
 
 func _on_stun_cooldown_timeout():
 	stunned = false

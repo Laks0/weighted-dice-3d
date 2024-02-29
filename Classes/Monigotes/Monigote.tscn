@@ -70,17 +70,18 @@ skins = {
 maxPushForce = 35.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.408301, -0.288601, 0, 0.288601, 0.408301, 0, 0, 0)
+process_mode = 3
+transform = Transform3D(0.5, 0, 0, 0, 0.340999, 0.365677, 0, -0.365677, 0.340999, 0, 0, 0)
 layers = 2
 material_override = SubResource("ShaderMaterial_xk8un")
-cast_shadow = 2
+extra_cull_margin = 1.0
 pixel_size = 0.04
 shaded = true
 alpha_cut = 2
 texture_filter = 0
 render_priority = 10
 sprite_frames = ExtResource("3_3t8bt")
-animation = &"Idle"
+animation = &"Pushed"
 script = ExtResource("8_au5v3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
