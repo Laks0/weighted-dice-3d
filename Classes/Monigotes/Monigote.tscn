@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=24 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -15,17 +15,23 @@
 [ext_resource type="SpriteFrames" uid="uid://cg1y2mis11sum" path="res://Assets/MonigoteSkins/PurpleFrames.tres" id="8_ppcco"]
 [ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
+[ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="11_f1njw"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi70r"]
+atlas = ExtResource("11_f1njw")
+region = Rect2(32, 392, 32, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xk8un"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_tb5pk")
-shader_parameter/borderAlpha = 1.0
-shader_parameter/width = 1.5
-shader_parameter/outline_color = null
-shader_parameter/modulate = null
+shader_parameter/borderAlpha = 0.98
+shader_parameter/width = 1.0
+shader_parameter/outline_color = Color(1, 0, 0, 1)
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/spriteTexture = SubResource("AtlasTexture_wi70r")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
