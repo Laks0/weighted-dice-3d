@@ -84,7 +84,6 @@ extra_cull_margin = 1.0
 pixel_size = 0.04
 shaded = true
 alpha_cut = 2
-texture_filter = 0
 render_priority = 10
 sprite_frames = ExtResource("3_3t8bt")
 animation = &"Pushed"

@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode depth_prepass_alpha;
 
 uniform sampler2D spriteTexture: source_color, filter_nearest;
 
