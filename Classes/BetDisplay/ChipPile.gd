@@ -2,7 +2,7 @@ extends Node3D
 class_name ChipPile
 
 @export var fichaMesh : PackedScene
-@export var fichaHeight : float = .05
+@export var fichaHeight : float = .08
 
 ## Solo si isDisplay es false
 @export var candidate = 0
@@ -10,7 +10,7 @@ class_name ChipPile
 @export var playerIdDisplay = 0
 
 ## Altura de la que caen las fichas
-@export var ceiling : float = 6
+@export var ceiling : float = 5
 
 ## chips[playerID] = [Fichas del player en el orden que se agregaron]
 var chips : Dictionary

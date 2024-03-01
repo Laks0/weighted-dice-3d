@@ -100,18 +100,11 @@ func startLeaderboardAnimation(winnerId):
 	###################
 	# Eliminar apuestas
 	###################
-	$LeaderboardTitleLabel.text = "Removing bets"
-	
-	var maxBet := 0 # Para calcular cuánto tarda la animación
-	for player in PlayerHandler.getPlayersInOrder():
-		var totalBets = player.getTotalBets()
-		if totalBets == 0:
-			continue
-		maxBet = max(maxBet, totalBets)
-		var chipRemover := get_tree().create_tween().set_loops(totalBets)
-		chipRemover.tween_callback(removeChipFromPlayer.bind(player.id))
-		chipRemover.tween_interval(timeBetweenChips)
-	await get_tree().create_timer(maxBet * timeBetweenChips + timeBetweenSteps).timeout
+	await changeAllPlayerChips(func (playerId : int):
+			return -PlayerHandler.getPlayerById(playerId).getTotalBets(), 
+		timeBetweenChips
+	).finished
+	await get_tree().create_timer(timeBetweenSteps).timeout
 
 	##############################
 	# Agregar ganancias de apuesta
@@ -125,16 +118,9 @@ func startLeaderboardAnimation(winnerId):
 		winner_i += 1
 
 	$LeaderboardTitleLabel.text = "Bet result: " + betWinnersString
-	var maxGain := 0
-	for player in PlayerHandler.getPlayersInOrder():
-		var winnings = BetHandler.getPlayerBetWinnings(player.id)
-		if winnings == 0:
-			continue
-		maxGain = max(maxGain, winnings)
-		var chipAdder := get_tree().create_tween().set_loops(winnings)
-		chipAdder.tween_callback(addChipToPlayer.bind(player.id))
-		chipAdder.tween_interval(timeBetweenChips)
-	await get_tree().create_timer(maxGain * timeBetweenChips + timeBetweenSteps).timeout
+	
+	await changeAllPlayerChips(BetHandler.getPlayerBetWinnings, timeBetweenChips).finished
+	await get_tree().create_timer(timeBetweenSteps).timeout 
 	
 	#################################
 	# Agregar premio de sobreviviente
@@ -152,6 +138,31 @@ func startLeaderboardAnimation(winnerId):
 		$LeaderboardTitleLabel.text = "Press 'grab' to restart game"
 
 	waitingToStart = true
+
+## Agrega a todos los jugadores una cantidad de fichas decidida por llamar amountGetter en su id
+## retorna el tween que agrega las fichas
+func changeAllPlayerChips(amountGetter : Callable, initialIntervalTime : float) -> Tween:
+	var maxAmount := 0
+	var maxTween : Tween
+	for player in PlayerHandler.getPlayersInOrder():
+		var amount : int = amountGetter.call(player.id)
+		var changeFunction := addChipToPlayer if amount > 0 else removeChipFromPlayer
+		var intervalTime := initialIntervalTime
+		var changeTween := create_tween()
+		# Para que emita finished aunque no tenga nada que hacer
+		changeTween.tween_interval(.01)
+		
+		if abs(amount) >= maxAmount:
+			maxAmount = abs(amount)
+			maxTween = changeTween
+		
+		for i in range(abs(amount)):
+			changeTween.tween_callback(changeFunction.bind(player.id))
+			changeTween.tween_interval(intervalTime)
+			
+			intervalTime = max(.01, intervalTime - .005)
+	
+	return maxTween
 
 func _input(event):
 	if not waitingToStart:
