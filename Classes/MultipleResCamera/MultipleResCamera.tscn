@@ -27,7 +27,7 @@ script = ExtResource("1_0nyod")
 [node name="HiResViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1920, 1080)
 
 [node name="HiResCamera" type="Camera3D" parent="HiResViewport"]
 unique_name_in_owner = true
@@ -37,7 +37,7 @@ fov = 47.0
 [node name="FullViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1920, 1080)
 
 [node name="FullCamera" type="Camera3D" parent="FullViewport"]
 unique_name_in_owner = true
@@ -46,7 +46,7 @@ fov = 47.0
 [node name="LowResViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1920, 1080)
 
 [node name="LowResCamera" type="Camera3D" parent="LowResViewport"]
 unique_name_in_owner = true
