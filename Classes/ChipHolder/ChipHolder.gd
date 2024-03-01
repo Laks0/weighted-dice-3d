@@ -51,14 +51,16 @@ func getPositionForMonigote(playerId : int) -> Vector3:
 	pos.y = piles[playerId].y
 	return pos
 
-func ownMonigotes(arr : Array[Monigote]) -> void:
-	for mon in arr:
-		mon.set_physics_process(false)
-		mon.set_process(false)
-		mon.reparent(self)
+func ownMonigote(mon : Monigote) -> void:
+	if ownedMonigotes.has(mon):
+		return
+	
+	mon.set_physics_process(false)
+	mon.set_process(false)
+	mon.reparent(self)
 
-		jumpMonigoteTo(mon, getPositionForMonigote(mon.player.id))\
-				.tween_callback(func (): ownedMonigotes.append(mon))
+	jumpMonigoteTo(mon, getPositionForMonigote(mon.player.id))\
+			.tween_callback(func (): ownedMonigotes.append(mon))
 
 func sendMonigotesToArena(arena : Arena):
 	arena.reparentMonigotes(ownedMonigotes)

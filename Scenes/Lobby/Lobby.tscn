@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://vj4n1f7bc5hh"]
+[gd_scene load_steps=8 format=3 uid="uid://vj4n1f7bc5hh"]
 
 [ext_resource type="Script" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="3_nfifi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsggh"]
+albedo_color = Color(0.643366, 0.435264, 0.344884, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_523s5"]
+material = SubResource("StandardMaterial3D_lsggh")
+size = Vector2(0.305, 0.275)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ag2ko"]
 size = Vector3(1, 4.7063, 7.64062)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iqr1o"]
+radius = 0.461906
 
 [node name="Lobby" type="Node3D"]
 script = ExtResource("1_fk22e")
@@ -13,7 +24,11 @@ script = ExtResource("1_fk22e")
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
 
 [node name="MaletinA" parent="Maletin" index="6"]
-transform = Transform3D(2.40518e-05, 1.64095, 0.00507668, 0.00405088, 0.0159901, -0.520982, -2.32243, 4.48717e-05, -0.000908666, -3.02536, 0.151344, -0.160745)
+transform = Transform3D(-4.6964e-07, -0.903297, 0.434974, 1.38428e-07, 1.37005, 0.286786, -2.32243, 2.64325e-07, -7.08663e-08, -3.02536, 0.151344, -0.160745)
+
+[node name="Trampolin" type="MeshInstance3D" parent="Maletin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516434, 0.122154, -7.10543e-15)
+mesh = SubResource("PlaneMesh_523s5")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.22772, -0.78556)
@@ -38,5 +53,24 @@ shape = SubResource("BoxShape3D_ag2ko")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Paredes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0812913, 1.85315, 3.94837)
 shape = SubResource("BoxShape3D_ag2ko")
+
+[node name="Ready" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.268229, -2.23283)
+layers = 2
+text = "Ready"
+font = ExtResource("3_nfifi")
+font_size = 147
+
+[node name="ReadyArea" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReadyArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360617, -1.97595)
+shape = SubResource("SphereShape3D_iqr1o")
+
+[node name="JumpPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2989, -1.22)
+
+[connection signal="body_entered" from="ReadyArea" to="." method="_on_ready_area_body_entered"]
 
 [editable path="Maletin"]
