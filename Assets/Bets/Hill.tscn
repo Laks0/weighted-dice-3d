@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce6pak6n3lk6c"]
+
+[ext_resource type="Texture2D" uid="uid://dprptapclgbxj" path="res://Assets/Bets/KingOfTheHill.png" id="1_j4ruj"]
+
+[node name="Hill" type="Sprite3D"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0)
+layers = 2
+shaded = true
+double_sided = false
+alpha_cut = 3
+texture_filter = 0
+texture = ExtResource("1_j4ruj")

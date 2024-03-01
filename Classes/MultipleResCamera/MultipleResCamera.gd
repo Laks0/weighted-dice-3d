@@ -26,14 +26,20 @@ func _ready():
 func _process(_delta):
 	%HiResCamera.position = position
 	%HiResCamera.rotation = rotation
+	%HiResCamera.h_offset = h_offset
+	%HiResCamera.v_offset = v_offset
 	%HiResCamera.fov = fov
 	
 	%LowResCamera.position = position
 	%LowResCamera.rotation = rotation
+	%LowResCamera.h_offset = h_offset
+	%LowResCamera.v_offset = v_offset
 	%LowResCamera.fov = fov
 	
 	%FullCamera.position = position
 	%FullCamera.rotation = rotation
+	%FullCamera.h_offset = h_offset
+	%FullCamera.v_offset = v_offset
 	%FullCamera.fov = fov
 
 func getHiResTexture() -> ViewportTexture:
@@ -76,7 +82,6 @@ func zoomTo(targetPos : Vector3) -> void:
 		.tween_property(self, "position", Vector3(targetPos.x, targetPos.y + 3, targetPos.z), zoomTime)
 
 func startShake(magnitude : float, time : float) -> void:
-	var initialPos = position
 	var elapsedTime := .0
 	
 	while elapsedTime < time:
@@ -86,8 +91,10 @@ func startShake(magnitude : float, time : float) -> void:
 			0
 		) * (time - elapsedTime) / time
 		
-		position = initialPos + offset
+		v_offset = offset.x
+		h_offset = offset.y
 		elapsedTime += get_process_delta_time()
 		await get_tree().process_frame
 	
-	position = initialPos
+	v_offset = 0
+	h_offset = 0

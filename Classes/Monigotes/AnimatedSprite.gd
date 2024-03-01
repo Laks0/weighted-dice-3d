@@ -1,9 +1,29 @@
 extends AnimatedSprite3D
 
-@onready var mon : Monigote = get_parent()
+var onArena := false
+
+@export var mon : Monigote
+
+@export var crownTexture : Texture
+@export var jokerHatTexture : Texture
+
+@export var betSignalScale : int = 4
 
 func _ready():
-	material_override.set_shader_parameter("outline_color", get_parent().player.color)
+	material_override.set_shader_parameter("outline_color", mon.player.color)
+
+func arenaReady():
+	onArena = true
+	var currentBet : Bet = BetHandler.currentBet
+	
+	########################
+	# Señalizador de apuesta
+	########################
+	match currentBet.monigoteSignal:
+		Bet.MonigoteSignal.CROWN: $BetSignalSprite.texture = crownTexture
+		Bet.MonigoteSignal.JOKER_HAT: $BetSignalSprite.texture = jokerHatTexture
+
+var hasSignal := false
 
 func _process(_delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
@@ -18,7 +38,11 @@ func _process(_delta):
 		modulate = Color.GRAY
 	else:
 		modulate.a = 1
-
+	
+	#############
+	# Animaciones
+	#############
+	
 	# Si el monigote está pausado no hay animaciones
 	if not mon.is_processing():
 		modulate = Color.WHITE
@@ -41,6 +65,30 @@ func _process(_delta):
 	if mon.grabbing:
 		play("Grabbing")
 		frame = vecTo8Dir(mon.grabDir)
+	
+	########################
+	# Señalizador de apuesta
+	########################
+	if not onArena:
+		return
+	
+	if BetHandler.currentBet.monigoteSignal == Bet.MonigoteSignal.NONE:
+		return
+	var signalVisible := false
+	if BetHandler.getCandidateScore(mon.player.id) == BetHandler.getScores().values().max():
+		signalVisible = true
+	
+	if hasSignal != signalVisible:
+		changeBetSignalStatus(signalVisible)
+		hasSignal = signalVisible
+
+func changeBetSignalStatus(isVisible : bool):
+	$BetSignalSprite.visible = true
+	
+	var scaleTween = create_tween()
+	scaleTween.tween_property($BetSignalSprite, "scale",\
+		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
+	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 

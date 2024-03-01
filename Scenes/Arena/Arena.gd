@@ -39,6 +39,7 @@ func reparentMonigotes(arr : Array[Monigote]) -> void:
 	for mon in monigotes:
 		mon.reparent(self)
 		mon.died.connect(onMonigoteDeath.bind(mon))
+		mon.arenaReady()
 
 func startArena():
 	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena

@@ -5,6 +5,7 @@ func _init():
 	betName = "Most Grabs"
 	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
+	monigoteSignal = MonigoteSignal.CROWN
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

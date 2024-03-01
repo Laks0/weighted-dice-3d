@@ -3,6 +3,8 @@ class_name SecondToDieBet
 
 var dead : int
 
+var tomb : Node3D
+
 func _init():
 	betName = "Second to die"
 	betType = BetType.EXCLUDE_SELF
@@ -28,10 +30,17 @@ func startGame(arena : Arena):
 func monigoteDied(monigote : Monigote):
 	if dead == 1:
 		_result = monigote.player.id
+		
+		tomb = load("res://Assets/Bets/Tomb.tscn").instantiate()
+		tomb.number = 1
+		tomb.player = monigote.player.id
+		tomb.position = monigote.position
+		tomb.position.y = 0
+		monigote.get_parent().add_child(tomb)
 	dead += 1
 
 func settle():
-	pass
+	tomb.queue_free()
 
 func canAppear() -> bool:
 	return PlayerHandler.getPlayersAlive().size() > 2

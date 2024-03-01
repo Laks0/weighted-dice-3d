@@ -5,6 +5,7 @@ func _init():
 	betName = "Fewer Grabs"
 	betType = BetType.EXCLUDE_SELF
 	_scoreOrder = Order.DESCENDING
+	monigoteSignal = MonigoteSignal.JOKER_HAT
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

@@ -42,17 +42,17 @@ func _ready():
 	# PlayerHandler.Skins y también al diccionario de Monigote
 	match player.id:
 		PlayerHandler.Skins.BLUE:
-			$AnimatedSprite.sprite_frames = skins.get("Blue")
+			%AnimatedSprite.sprite_frames = skins.get("Blue")
 		PlayerHandler.Skins.RED:
-			$AnimatedSprite.sprite_frames = skins.get("Red")
+			%AnimatedSprite.sprite_frames = skins.get("Red")
 		PlayerHandler.Skins.YELLOW:
-			$AnimatedSprite.sprite_frames = skins.get("Yellow")
+			%AnimatedSprite.sprite_frames = skins.get("Yellow")
 		PlayerHandler.Skins.GREEN:
-			$AnimatedSprite.sprite_frames = skins.get("Green")
+			%AnimatedSprite.sprite_frames = skins.get("Green")
 		PlayerHandler.Skins.ORANGE:
-			$AnimatedSprite.sprite_frames = skins.get("Orange")
+			%AnimatedSprite.sprite_frames = skins.get("Orange")
 		PlayerHandler.Skins.PURPLE:
-			$AnimatedSprite.sprite_frames = skins.get("Purple")
+			%AnimatedSprite.sprite_frames = skins.get("Purple")
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
@@ -62,6 +62,10 @@ func _ready():
 		var controllerNode := Node.new()
 		controllerNode.set_script(aiControllerScript)
 		add_child(controllerNode)
+
+## Se llama desde la arena cuando el monigote es reparentado
+func arenaReady():
+	$AnimatedSprite.arenaReady()
 
 ## El último score de la apuesta, solo se usa si se apuesta sobre jugadores
 var _lastScore: float = 0
@@ -205,7 +209,7 @@ func die():
 	
 	$Audio/YellStomp.play()
 	
-	$AnimatedSprite.visible = false
+	%AnimatedSprite.visible = false
 	$DeathParticles.emitting = true
 	
 	$DeathParticles.connect("finished", queue_free)

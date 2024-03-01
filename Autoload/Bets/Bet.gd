@@ -20,7 +20,8 @@ var _scores : Dictionary
 
 enum Order {
 	ASCENDING,
-	DESCENDING
+	DESCENDING,
+	NO_SCORE
 }
 
 var _arena   : Arena
@@ -30,7 +31,14 @@ var betType : BetType
 ## El nombre a mostrar en texto
 var betName : String
 ## Orden de preferencia de los resultados de getScores, determina cómo va a ordenar getCandidatesInOrder
-var _scoreOrder : Order = Order.ASCENDING
+var _scoreOrder : Order = Order.NO_SCORE
+
+enum MonigoteSignal {
+	CROWN,
+	JOKER_HAT,
+	NONE
+}
+var monigoteSignal : MonigoteSignal = MonigoteSignal.NONE
 
 ## Se llama al principio de la ronda
 func startRound():

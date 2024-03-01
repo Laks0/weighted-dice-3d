@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://bb7b2g4lrqcub"]
+
+[ext_resource type="PackedScene" path="res://Assets/Bets/Tumba1ery2do.glb" id="1_s0dce"]
+[ext_resource type="Script" path="res://Assets/Bets/Tomb.gd" id="1_vowye"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_3n4hy"]
+[ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_155k7"]
+[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_i0vlk"]
+[ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="4_hei7n"]
+[ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="5_3xs6u"]
+[ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="6_jh5l7"]
+[ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="7_hp38f"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_60mqt"]
+points = PackedVector3Array(-0.974727, 0.944797, -0.609109, 0.984632, 0.460384, 0.984669, 0.996495, -0.626, 0.996532, 0.996495, -0.626, -0.996532, -0.996532, -0.626, 0.996532, -0.996532, -0.626, -0.996532, 0.979336, 0.703582, -0.918018, -0.979271, 0.917821, 0.703779, 0.976911, 0.977138, 0.488474, -0.98467, 0.460384, -0.984669, -0.98467, 0.460384, 0.984669, 0.976911, 0.977138, -0.488474, 0.979336, 0.703582, 0.918018, -0.976948, 0.977138, 0.488474, 0.984632, 0.460384, -0.984669, -0.979373, 0.703582, -0.918018, 0.979234, 0.917821, -0.703779, -0.979373, 0.703582, 0.918018, 0.979234, 0.917821, 0.703779, -0.976948, 0.977138, -0.488474, -0.979271, 0.917821, -0.703779, 0.97469, 0.944797, 0.609109)
+
+[node name="Tomb" type="Node3D"]
+script = ExtResource("1_vowye")
+thumbnails = Array[Texture]([ExtResource("2_155k7"), ExtResource("3_i0vlk"), ExtResource("4_hei7n"), ExtResource("5_3xs6u"), ExtResource("6_jh5l7"), ExtResource("7_hp38f")])
+
+[node name="Tumba1ery2do" parent="." instance=ExtResource("1_s0dce")]
+transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, -0.543121, 0, 0)
+
+[node name="Number" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0282639, 0.281995, 0.0712732)
+layers = 2
+shaded = true
+modulate = Color(0.52549, 0.52549, 0.52549, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "2°"
+font = ExtResource("2_3n4hy")
+font_size = 132
+
+[node name="Face" type="Sprite3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, -0.00762767, 0.752491, 0.0773666)
+layers = 2
+shaded = true
+texture_filter = 0
+texture = ExtResource("3_i0vlk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621874, 0.973381)
+layers = 3
+light_energy = 0.861
+spot_range = 1.32991
+spot_angle = 41.634
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-3.89447e-09, 0, -0.369369, 0, 0.666078, 0, 0.0890951, 0, -1.61456e-08, 0.00581324, 0.393671, 2.39947e-08)
+shape = SubResource("ConvexPolygonShape3D_60mqt")
+
+[editable path="Tumba1ery2do"]

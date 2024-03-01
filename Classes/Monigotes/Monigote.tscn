@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=26 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="11_f1njw"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
+[ext_resource type="Texture2D" uid="uid://pylm0uplpf13" path="res://Assets/Bets/MostGrabbed.png" id="14_wqmb4"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
+[ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wi70r"]
 atlas = ExtResource("11_f1njw")
@@ -75,9 +77,10 @@ skins = {
 }
 maxPushForce = 35.0
 
-[node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
+unique_name_in_owner = true
 process_mode = 3
-transform = Transform3D(0.5, 0, 0, 0, 0.340999, 0.365677, 0, -0.365677, 0.340999, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 layers = 2
 material_override = SubResource("ShaderMaterial_xk8un")
 extra_cull_margin = 1.0
@@ -88,6 +91,16 @@ render_priority = 10
 sprite_frames = ExtResource("3_3t8bt")
 animation = &"Pushed"
 script = ExtResource("8_au5v3")
+mon = NodePath("..")
+crownTexture = ExtResource("19_0df27")
+jokerHatTexture = ExtResource("14_wqmb4")
+
+[node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)
+visible = false
+layers = 2
+texture_filter = 0
+texture = ExtResource("19_0df27")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)

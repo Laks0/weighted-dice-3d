@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv02t15y6bned"
-path.s3tc="res://.godot/imported/IcoTomi.png-546957ddc73f7845e4176241ab786057.s3tc.ctex"
+path="res://.godot/imported/IcoTomi.png-546957ddc73f7845e4176241ab786057.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/IcoTomi.png"
-dest_files=["res://.godot/imported/IcoTomi.png-546957ddc73f7845e4176241ab786057.s3tc.ctex"]
+dest_files=["res://.godot/imported/IcoTomi.png-546957ddc73f7845e4176241ab786057.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
