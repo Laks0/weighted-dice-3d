@@ -77,7 +77,9 @@ func endGame(winnerMon : Monigote):
 	$PrepareArrow.visible = false
 	
 	betting = true
-	die.queue_free()
+	
+	if is_instance_valid(die):
+		die.queue_free()
 	
 	var winnerId = winnerMon.player.id
 	winnerMon.set_physics_process(false)
@@ -143,9 +145,9 @@ func getClosestMonigote(from : Vector3, exclude : Array = []) -> Monigote:
 
 	return closest
 
-func getRandomPosition(padding := 1) -> Vector3:
+func getRandomPosition(padding := 1, yPos : float = Globals.SPRITE_HEIGHT) -> Vector3:
 	return Vector3(randf_range(-WIDTH/2 + padding, WIDTH/2 - padding),
-		Globals.SPRITE_HEIGHT,
+		yPos,
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
 
 func onMonigoteDeath(mon : Monigote):

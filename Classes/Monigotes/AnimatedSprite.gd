@@ -75,7 +75,8 @@ func _process(_delta):
 	if BetHandler.currentBet.monigoteSignal == Bet.MonigoteSignal.NONE:
 		return
 	var signalVisible := false
-	if BetHandler.getCandidateScore(mon.player.id) == BetHandler.getScores().values().max():
+	if BetHandler.getCandidateScore(mon.player.id) == \
+			BetHandler.getScores()[BetHandler.getCandidatesInOrder()[0]]:
 		signalVisible = true
 	
 	if hasSignal != signalVisible:

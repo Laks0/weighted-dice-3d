@@ -302,7 +302,7 @@ uppercase = true
 
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera", "leaderboardCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 9, 6.2)
+transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 8.80834, 5.92504)
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 betSceneCamera = NodePath("../BetSceneCamera")

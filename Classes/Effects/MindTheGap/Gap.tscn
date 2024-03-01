@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j2qry"]
-radius = 0.322874
+radius = 0.260333
 height = 1.4568
 
 [node name="Gap" type="Area3D"]
