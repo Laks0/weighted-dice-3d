@@ -9,7 +9,7 @@ void fragment() {
 	vec4 lowColor = texture(lowTexture, UV).rgba;
 	
 	if (fullColor != lowColor) {
-		if (COLOR.a == 1.0) {
+		if (COLOR.a == 1.0 || COLOR.rgb == vec3(0.0)) {
 			COLOR = fullColor;
 		}
 	} else {

@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Assets/Bets/AreaUse.gd" id="1_bocwt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jspe"]
-disable_receive_shadows = true
 
 [node name="AreaUse" type="Node3D"]
 transform = Transform3D(-1, 2.38419e-07, -1.04216e-14, 0, -4.37114e-08, -1, 2.38419e-07, 1, -4.37114e-08, 0, 0, 0)
@@ -14,7 +13,7 @@ transform = Transform3D(-1, 2.38419e-07, -1.04216e-14, 2.38419e-07, 1, 0, -1.042
 sorting_offset = -1000.0
 sorting_use_aabb_center = false
 transparency = 0.58
-polygon = PackedVector2Array(0, 0, 0, -3, -4.5, -3, -5.3, -2.25, -5.3, 0)
+polygon = PackedVector2Array(0, 0, 0, -3.1, -4.5, -3.1, -5, -3, -5.295, -2.605, -5.4, -2.25, -5.4, 0)
 depth = 0.01
 material = SubResource("StandardMaterial3D_8jspe")
 
@@ -23,7 +22,7 @@ transform = Transform3D(1, -1.50996e-07, 6.60024e-15, -1.50996e-07, -1, 8.74228e
 sorting_offset = -1000.0
 sorting_use_aabb_center = false
 transparency = 0.58
-polygon = PackedVector2Array(0, 0, 0, -3, -4.5, -3, -5.3, -2.25, -5.3, 0)
+polygon = PackedVector2Array(0, 0, 0, -3.1, -4.5, -3.1, -5, -3, -5.295, -2.605, -5.4, -2.25, -5.4, 0)
 depth = 0.01
 material = SubResource("StandardMaterial3D_8jspe")
 
@@ -32,7 +31,7 @@ transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 8.74228e-08, -1, 8.74228e
 sorting_offset = -1000.0
 sorting_use_aabb_center = false
 transparency = 0.58
-polygon = PackedVector2Array(0, 0, 0, -3, -4.5, -3, -5.3, -2.25, -5.3, 0)
+polygon = PackedVector2Array(0, 0, 0, -3.1, -4.5, -3.1, -5, -3, -5.295, -2.605, -5.4, -2.25, -5.4, 0)
 depth = 0.01
 material = SubResource("StandardMaterial3D_8jspe")
 
@@ -40,6 +39,6 @@ material = SubResource("StandardMaterial3D_8jspe")
 sorting_offset = -1000.0
 sorting_use_aabb_center = false
 transparency = 0.58
-polygon = PackedVector2Array(0, 0, 0, -3, -4.5, -3, -5.3, -2.25, -5.3, 0)
+polygon = PackedVector2Array(0, 0, 0, -3.1, -4.5, -3.1, -5, -3, -5.295, -2.605, -5.4, -2.25, -5.4, 0)
 depth = 0.01
 material = SubResource("StandardMaterial3D_8jspe")
