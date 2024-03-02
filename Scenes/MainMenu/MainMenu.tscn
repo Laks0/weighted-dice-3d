@@ -51,17 +51,47 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Vamo"
 
-[node name="Weight-scale-3506479187" type="Sprite2D" parent="."]
-position = Vector2(1552, 234)
+[node name="Weight-scale-3506479187" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -414.0
+offset_right = -80.0
+offset_bottom = -82.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("4_2gpey")
 
-[node name="Ytknick-a-die-2639638238" type="Sprite2D" parent="."]
-position = Vector2(1555, 462)
+[node name="Ytknick-a-die-2639638238" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -565.0
+offset_top = -210.0
+offset_right = 1832.0
+offset_bottom = 2082.0
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.199171, 0.199171)
 texture = ExtResource("5_2doka")
 
-[node name="Flh777Jrd7c51-2084074454" type="Sprite2D" parent="."]
-position = Vector2(367, 662)
+[node name="Flh777Jrd7c51-2084074454" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 38.0
+offset_top = -369.0
+offset_right = 4510.0
+offset_bottom = 5221.0
+grow_vertical = 2
 scale = Vector2(0.130367, 0.130367)
 texture = ExtResource("6_cofel")
 

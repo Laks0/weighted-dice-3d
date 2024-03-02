@@ -18,6 +18,10 @@ func _ready():
 	restRotation = rotation_degrees
 	restPosition = position
 	
+	$HiResViewport.size = get_viewport().size * 4
+	$LowResViewport.size = get_viewport().size * 4
+	$FullViewport.size = get_viewport().size * 4
+	
 	if not is_instance_valid(betSceneCamera) or not is_instance_valid(lobbyCamera):
 		return
 	

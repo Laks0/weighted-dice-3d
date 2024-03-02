@@ -3,10 +3,11 @@ extends RigidBody3D
 const PUSH_SPEED : int = 10
 
 func _on_body_entered(body):
-	if $DeadTime.is_stopped():
+	if body.is_in_group("Table") and $DeadTime.is_stopped():
+		freeze = true
 		$DeadTime.start()
 	
-	if body is Monigote:
+	if body is Monigote and not linear_velocity.is_zero_approx():
 		body.hurt()
 		
 		var direction = position.direction_to(body.position)
