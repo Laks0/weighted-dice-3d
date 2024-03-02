@@ -10,7 +10,7 @@ func start():
 	$Startup.play()
 	
 	for _i in range(OLIVE_AMOUNT):
-		var pos := arena.getRandomPosition()
+		var pos := arena.getRandomPosition(1, .2)
 		
 		var olive = oliveResource.instantiate()
 		olive.position = pos

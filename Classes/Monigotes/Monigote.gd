@@ -139,6 +139,11 @@ func _physics_process(delta):
 			$GrabCooldown.start()
 			emit_signal("escaped")
 
+func resetMovement() -> void:
+	moveVelocity = Vector2.ZERO
+	unclampedVelocity = Vector2.ZERO
+	velocity = Vector3.ZERO
+
 func canBeGrabbed(grabber) -> bool:
 	return (self != grabber) and (not invincible) and (not grabbed)
 

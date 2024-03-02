@@ -113,4 +113,5 @@ func onGrabbing():
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
 	var newPosition = position + dir3d.normalized() * grabBody.grabDistance
+	newPosition.y = grabBody.position.y
 	grabBody.position = newPosition

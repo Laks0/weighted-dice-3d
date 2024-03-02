@@ -252,8 +252,7 @@ layers = 3
 light_color = Color(1, 1, 0.835294, 1)
 light_cull_mask = 4294967291
 shadow_enabled = true
-shadow_opacity = 0.72
-shadow_blur = 2.578
+shadow_opacity = 0.82
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.936196, 0.0167236)
@@ -261,7 +260,7 @@ visible = false
 size = Vector3(11.5972, 2, 6.95972)
 
 [node name="Alfombra" type="MeshInstance3D" parent="."]
-transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4626, 0, 0.308534, 50.1887, 0, -5.46408, -21.3703)
+transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4624, 0, 0.308534, 50.1887, 0, -5.46408, -21.3703)
 layers = 4
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")

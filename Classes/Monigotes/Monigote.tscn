@@ -67,6 +67,7 @@ ACCELERATION = 50.0
 FRICTION = 40.0
 MOVEMENTS_TO_ESCAPE_GRAB = 10
 aiControllerScript = ExtResource("17_e2qqq")
+invincibleAfterHurtTime = 1.5
 skins = {
 "Blue": ExtResource("3_3t8bt"),
 "Green": ExtResource("4_nq8eh"),

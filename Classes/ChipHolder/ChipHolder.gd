@@ -65,6 +65,7 @@ func ownMonigote(mon : Monigote) -> void:
 func sendMonigotesToArena(arena : Arena):
 	arena.reparentMonigotes(ownedMonigotes)
 	for m in ownedMonigotes:
+		m.resetMovement()
 		jumpMonigoteTo(m, Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1))\
 				.tween_callback(func ():
 					m.set_process(true)

@@ -18,16 +18,18 @@ func _on_body_entered(body):
 	if mon.invincible:
 		return
 	
+	mon.resetMovement()
 	$YellVoid.play()
 	
 	$Sprite.play("BW")
+	$Collision.disabled = true
 	
 	# Animación del monigote
 	mon.set_process(false)
 	mon.set_physics_process(false)
 	mon.position.y = monigoteFallHeight
-	var fallTween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
-	fallTween.tween_property(mon, "position:y", 0, .5)
+	var fallTween := get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
+	fallTween.tween_property(mon, "position:y", Globals.SPRITE_HEIGHT, .5)
 	fallTween.tween_callback(func ():
 		mon.set_physics_process(true)
 		mon.set_process(true)

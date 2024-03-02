@@ -55,7 +55,8 @@ func startArena():
 
 	# Delay hasta que entra el dado
 	await get_tree().create_timer(2).timeout
-
+	
+	$ChipHolder.visible = false
 	betting = false
 	
 	die = dieScene.instantiate()
@@ -74,9 +75,11 @@ func endGame(winnerMon : Monigote):
 	effects[activeEffect].end()
 	activeEffect = -1
 	
-	$PrepareArrow.visible = false
-	
 	betting = true
+	
+	await get_tree().create_timer(.3).timeout
+	
+	$PrepareArrow.visible = false
 	
 	if is_instance_valid(die):
 		die.queue_free()
@@ -93,6 +96,7 @@ func endGame(winnerMon : Monigote):
 	monigotes.clear()
 
 func goToLeaderboard(winnerId):
+	$ChipHolder.visible = true
 	%MultipleResCamera.startLeaderboardAnimation().tween_callback(
 		$ChipHolder.startLeaderboardAnimation.bind(winnerId)
 	)
@@ -152,6 +156,9 @@ func getRandomPosition(padding := 1, yPos : float = Globals.SPRITE_HEIGHT) -> Ve
 
 func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
+	
+	if betting:
+		return
 	
 	if monigotes.size() == 1:
 		endGame(monigotes[0])

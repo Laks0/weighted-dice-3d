@@ -23,5 +23,6 @@ func startGame(arena : Arena):
 	super(arena)
 
 func settle():
-	hill.queue_free()
+	if is_instance_valid(hill):
+		hill.queue_free()
 	super()

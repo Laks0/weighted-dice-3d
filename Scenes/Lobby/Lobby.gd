@@ -4,7 +4,7 @@ signal startBetting
 
 @export var lobbyOutAnimationPlayer : AnimationPlayer
 @export var chipHolder : ChipHolder
-@export var maxLobbyTime := 10.0
+@export var maxLobbyTime := 50.0
 
 func _ready():
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
