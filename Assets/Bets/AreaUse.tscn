@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvwnt5i3nk61j"]
+[gd_scene load_steps=4 format=3 uid="uid://cvwnt5i3nk61j"]
 
 [ext_resource type="Script" path="res://Assets/Bets/AreaUse.gd" id="1_bocwt"]
+[ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="2_h5nt4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jspe"]
 
@@ -42,3 +43,27 @@ transparency = 0.58
 polygon = PackedVector2Array(0, 0, 0, -3.1, -4.5, -3.1, -5, -3, -5.295, -2.605, -5.4, -2.25, -5.4, 0)
 depth = 0.01
 material = SubResource("StandardMaterial3D_8jspe")
+
+[node name="NWSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-6, 9.05975e-07, -2.29283e-14, -9.05975e-07, -6, 5.24537e-07, 5.62746e-14, 5.24537e-07, 6, 3, -1.36959, 5.98666e-08)
+layers = 2
+texture_filter = 0
+texture = ExtResource("2_h5nt4")
+
+[node name="NESprite" type="Sprite3D" parent="."]
+transform = Transform3D(-6, 9.05975e-07, -2.29283e-14, -9.05975e-07, -6, 5.24537e-07, 5.62746e-14, 5.24537e-07, 6, -3, -1.36959, 5.98665e-08)
+layers = 2
+texture_filter = 0
+texture = ExtResource("2_h5nt4")
+
+[node name="SWSprite" type="Sprite3D" parent="."]
+transform = Transform3D(-6, 9.05975e-07, -2.29283e-14, -9.05975e-07, -6, 5.24537e-07, 5.62746e-14, 5.24537e-07, 6, 3, 1.37, 0)
+layers = 2
+texture_filter = 0
+texture = ExtResource("2_h5nt4")
+
+[node name="SESprite" type="Sprite3D" parent="."]
+transform = Transform3D(-6, 9.05975e-07, -2.29283e-14, -9.05975e-07, -6, 5.24537e-07, 5.62746e-14, 5.24537e-07, 6, -3, 1.37, -5.68434e-14)
+layers = 2
+texture_filter = 0
+texture = ExtResource("2_h5nt4")

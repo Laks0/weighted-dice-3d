@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=28 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -16,7 +16,6 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="15_thsto"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
-[ext_resource type="PackedScene" uid="uid://8l23xyx2htpf" path="res://Classes/Effects/OliveRoll/Olive.tscn" id="17_x7hv6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -350,8 +349,5 @@ light_energy = 4.184
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11525, 0, 3.7418)
 light_color = Color(1, 0.917647, 0.862745, 1)
 light_energy = 4.184
-
-[node name="Olive" parent="." instance=ExtResource("17_x7hv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06305, 0.2, 0)
 
 [editable path="Floor/Mesa"]
