@@ -7,6 +7,7 @@ extends Node
 var bets : Array[Bet]
 
 var currentBet : Bet
+var _lastBet : Bet
 
 @warning_ignore("shadowed_global_identifier")
 var round : int = 0
@@ -16,7 +17,7 @@ var roundAmount : int = 4
 func _ready():
 	var betPath := "res://Autoload/Bets/"
 	for fileName in DirAccess.get_files_at(betPath):
-		if fileName == "Bet.gd":
+		if fileName != "MostUsedArea.gd":#== "Bet.gd":
 			continue
 		
 		bets.append(load(betPath+fileName).new())
@@ -32,9 +33,15 @@ func startGame(arena : Arena):
 func startRound() -> void:
 	round += 1
 	
-	currentBet = bets.pick_random()
-	while not currentBet.canAppear():
+	# Si se reelige la misma apuesta que antes hay solo un 5% de chances de dejarla
+	while currentBet == _lastBet:
 		currentBet = bets.pick_random()
+		while not currentBet.canAppear():
+			currentBet = bets.pick_random()
+		
+		if randf() < .2:
+			break
+	_lastBet = currentBet
 	
 	currentBet.startRound()
 

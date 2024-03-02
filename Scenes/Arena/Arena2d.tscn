@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Arena/Arena2d.gd" id="1_77ke4"]
 [ext_resource type="PackedScene" uid="uid://bpdrpg3p4qn3t" path="res://Scenes/Arena/Arena.tscn" id="1_cvxfn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmagg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr5ti"]
 shader = ExtResource("1_2d4xw")
 
 [node name="Control" type="Control"]
@@ -39,7 +39,7 @@ unique_name_in_owner = true
 
 [node name="HiResTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_fmagg")
+material = SubResource("ShaderMaterial_fr5ti")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

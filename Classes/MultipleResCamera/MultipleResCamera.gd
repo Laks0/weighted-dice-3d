@@ -20,6 +20,7 @@ func _ready():
 	
 	if not is_instance_valid(betSceneCamera) or not is_instance_valid(lobbyCamera):
 		return
+	
 	position = lobbyCamera.position
 	rotation_degrees = lobbyCamera.rotation_degrees
 

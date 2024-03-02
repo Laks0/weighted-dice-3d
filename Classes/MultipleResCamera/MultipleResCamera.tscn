@@ -31,7 +31,7 @@ size = Vector2i(1920, 1080)
 
 [node name="HiResCamera" type="Camera3D" parent="HiResViewport"]
 unique_name_in_owner = true
-cull_mask = 1048574
+cull_mask = 1048570
 fov = 47.0
 
 [node name="FullViewport" type="SubViewport" parent="."]

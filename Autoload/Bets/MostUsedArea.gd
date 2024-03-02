@@ -1,12 +1,20 @@
 extends Bet
 class_name MostUsedAreaBet
 
+var areaUse : Node3D
+
 func _init():
 	betType = BetType.CUSTOM
 	betName = "Most Used Area"
 	_scoreOrder = Order.ASCENDING
 
 enum ArenaSide {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}
+
+func startGame(arena : Arena):
+	areaUse = load("res://Assets/Bets/AreaUse.tscn").instantiate()
+	arena.add_child(areaUse)
+	
+	super(arena)
 
 # Mientras más apuestan, menos vale. Si apuesta la mitad + 1 no vale nada
 func getCandidateOdds(candidate: ArenaSide) -> int:
@@ -18,6 +26,7 @@ func getCandidateOdds(candidate: ArenaSide) -> int:
 	return max(1, totalPlayers/2 - bettingPlayers + 2)
 
 func arenaUpdate(delta):
+	areaUse.playersInArea = [.0,.0,.0,.0]
 	for mon : Monigote in _arena.getLivingMonigotes():
 		var currentArea : ArenaSide
 		if mon.position.x < 0 && mon.position.z < 0:
@@ -29,6 +38,7 @@ func arenaUpdate(delta):
 		else:
 			currentArea = ArenaSide.TOP_RIGHT
 		_scores[currentArea] += delta
+		areaUse.playersInArea[currentArea] += 1
 
 # Ningún jugador puede apostar a más de un candidato
 func canBet(playerId : int, candidate) -> bool:
@@ -45,3 +55,9 @@ func getCandidateName(side : ArenaSide) -> String:
 		ArenaSide.BOTTOM_RIGHT: return "Bottom right"
 		ArenaSide.BOTTOM_LEFT: return "Bottom left"
 	return ""
+
+func settle():
+	if is_instance_valid(areaUse):
+		areaUse.queue_free()
+	
+	super()
