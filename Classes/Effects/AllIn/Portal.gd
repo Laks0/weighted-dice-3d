@@ -26,6 +26,7 @@ func isOnRay(mon : Monigote):
 func _on_animated_sprite_3d_animation_finished():
 	if $AnimatedSprite3D.animation == "Spawn":
 		$AnimatedSprite3D.play("Loop")
+		monitoring = true
 	if $AnimatedSprite3D.animation == "DeSpawn":
 		queue_free()
 

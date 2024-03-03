@@ -109,7 +109,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Spawn",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ihlre"]
@@ -117,6 +117,8 @@ radius = 0.846557
 height = 6.08744
 
 [node name="Portal" type="Area3D"]
+monitoring = false
+monitorable = false
 script = ExtResource("1_8x0fw")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
@@ -125,7 +127,7 @@ layers = 2
 shaded = true
 texture_filter = 4
 sprite_frames = SubResource("SpriteFrames_eqw54")
-animation = &"DeSpawn"
+animation = &"Spawn"
 autoplay = "Spawn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
