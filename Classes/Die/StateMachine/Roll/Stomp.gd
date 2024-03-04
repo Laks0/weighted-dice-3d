@@ -5,12 +5,7 @@ var result : int = -1
 var die : Die
 
 func _on_enter(_args):
-	var old_result = result
-	while result == old_result:
-		if randf() <= 1.0/target.invertedChanceOfSix:
-			result = 5
-		else:
-			result = randi() % 5
+	result = target.pickNewEffect(result)
 	
 	die = target as Die
 	

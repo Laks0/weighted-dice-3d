@@ -64,3 +64,34 @@ func _on_area_3d_body_entered(body):
 	if body is Monigote:
 		body.hurt()
 		body.knockback(Vector2(linear_velocity.x, linear_velocity.z) * 2)
+
+## Los pesos de cada efecto hasta el 5
+var effectOdds : Array[float] = [.2, .2, .2, .2, .2]
+## La probabilidad que se agrega cuando un efecto no es elegido
+var notChosenBonus := .05
+
+func pickNewEffect(oldEffect : int) -> int:
+	var result = oldEffect
+	var ceiling : float = effectOdds.reduce(func (accum, val): return accum + val)
+	while result == oldEffect:
+		if randf() < 1.0/invertedChanceOfSix:
+			result = 5
+			continue
+		
+		# Elección pesada
+		var pickedNumber := randf_range(0, ceiling)
+		var sum := 0.0
+		for i in range(5):
+			sum += effectOdds[i]
+			if pickedNumber <= sum:
+				result = i
+				break
+	
+	# Ajuste de pesos
+	for i in range(5):
+		if result == i:
+			effectOdds[i] = .2
+		else:
+			effectOdds[i] += notChosenBonus
+	
+	return result
