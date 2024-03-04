@@ -172,13 +172,15 @@ func onMonigoteDeath(mon : Monigote):
 		endGame(mon)
 
 func lightsOff():
-	var lightTween := get_tree().create_tween()
+	var lightTween := get_tree().create_tween().parallel()
 	lightTween.tween_property($DirectionalLight3D, "light_energy", .3, 1)
+	$GlobalLight.visible = false
 	lightTween.set_ease(Tween.EASE_OUT)
 
 func lightsOn():
-	var lightTween := get_tree().create_tween()
+	var lightTween := get_tree().create_tween().parallel()
 	lightTween.tween_property($DirectionalLight3D, "light_energy", 1, 1)
+	$GlobalLight.visible = true
 	lightTween.set_ease(Tween.EASE_OUT)
 
 func getHiResTexture() -> ViewportTexture:
