@@ -39,4 +39,7 @@ func _on_update(_delta):
 	
 	await get_tree().create_timer(target.timeAfterRoll).timeout
 	
-	get_parent().change_state("RandomAttack")
+	if result != 5:
+		get_parent().change_state("RandomAttack")
+	else:
+		change_to_next()

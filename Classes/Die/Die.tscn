@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=27 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Jumps/JumpsAttack.gd" id="8_81dmh"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/Burst.gd" id="8_t2h52"]
 [ext_resource type="Script" path="res://Classes/Die/StateMachine/PickRandom.gd" id="9_btr01"]
+[ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Rolled6.gd" id="9_o2hbn"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
 [ext_resource type="AudioStream" uid="uid://b4ilyinrb6dqu" path="res://Classes/Die/SFX/sfx_dicestomp.wav" id="15_w3cel"]
@@ -120,7 +121,17 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("")
+next_state = NodePath("../Rolled6")
+
+[node name="Rolled6" type="Node" parent="StateMachine/Roll"]
+script = ExtResource("9_o2hbn")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 12.0
+on_timer_finished = 3
+next_state = NodePath("../CubileteAnimation")
 
 [node name="RandomAttack" type="Node" parent="StateMachine"]
 script = ExtResource("4_m8stm")

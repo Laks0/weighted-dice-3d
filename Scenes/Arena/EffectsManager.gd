@@ -15,7 +15,7 @@ func pickEffects():
 		var pickedEffect : PackedScene = regularEffects.pick_random()
 		while pickedEffects.has(pickedEffect):
 			pickedEffect = regularEffects.pick_random()
-		pickedEffects.append(pickedEffects)
+		pickedEffects.append(pickedEffect)
 		add_child(pickedEffect.instantiate())
 	
 	add_child(specialEffects.pick_random().instantiate())
