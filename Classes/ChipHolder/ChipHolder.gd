@@ -173,6 +173,7 @@ func _input(event):
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
 			if gameEnded:
 				PlayerHandler.resetAllPlayers()
+				get_parent().startNewGame()
 				BetHandler.round = 0
 				gameEnded = false
 

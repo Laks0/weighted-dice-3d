@@ -39,6 +39,9 @@ func _process(_delta):
 	else:
 		modulate.a = 1
 	
+	if mon.drunk:
+		modulate *= Color.GREEN_YELLOW
+	
 	#############
 	# Animaciones
 	#############

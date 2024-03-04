@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1nh5obk35kds"]
+
+[ext_resource type="Script" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.gd" id="1_dccme"]
+[ext_resource type="PackedScene" uid="uid://b42mamlf6pkm3" path="res://Classes/Effects/ShakenAndStirred/Drink.tscn" id="2_tii4k"]
+
+[node name="ShakenAndStirredEffect" type="Node"]
+script = ExtResource("1_dccme")
+drinkScene = ExtResource("2_tii4k")
+drinksAmount = 4
+effectName = "Shaken and Stirred"

@@ -35,6 +35,8 @@ var invincible  := false
 
 @export var skins : Dictionary
 
+var drunk := false
+
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
 	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
@@ -106,6 +108,9 @@ func _process(_delta):
 func _physics_process(delta):
 	if player.inputController != Controllers.AI:
 		_movementDir = Controllers.getDirection(controller)
+	
+	if drunk:
+		_movementDir = _movementDir.rotated(PI)
 	
 	var accFactor := 1.0
 	if grabbing:

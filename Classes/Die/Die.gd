@@ -16,6 +16,9 @@ var prepareArrow : AnimatedSprite3D
 ## El tiempo que espera después de rollear para atacar
 @export var timeAfterRoll : float = 1.4
 
+## Si esta variable es n, la chance de sacar un 6 es 1/n
+@export var invertedChanceOfSix : int = 8
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()

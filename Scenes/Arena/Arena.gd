@@ -4,7 +4,7 @@ class_name Arena
 signal effectStarted(effect)
 signal gameEnded(winner) # winner : Monigote
 
-@onready var effects : Array = $Effects.get_children()
+var effects : Array[Node]
 
 @export var dieScene : PackedScene
 var die : Die
@@ -24,6 +24,13 @@ var betting := true
 
 func _ready():
 	$Lobby.startBetting.connect(goToBettingScene)
+	startNewGame()
+
+func startNewGame():
+	$Effects.pickEffects()
+	effects = $Effects.get_children()
+	for e in effects:
+		e.create(self)
 
 func _process(delta):
 	if betting:
@@ -45,14 +52,11 @@ func startArena():
 	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
 	for wallCollision in $Walls.get_children():
 		wallCollision.disabled = false
-
+	
 	BetHandler.startGame(self)
-
-	for e in effects:
-		e.create(self)
-
+	
 	%MultipleResCamera.startGameAnimation()
-
+	
 	# Delay hasta que entra el dado
 	await get_tree().create_timer(2).timeout
 	
@@ -149,7 +153,7 @@ func getClosestMonigote(from : Vector3, exclude : Array = []) -> Monigote:
 
 	return closest
 
-func getRandomPosition(padding := 1, yPos : float = Globals.SPRITE_HEIGHT) -> Vector3:
+func getRandomPosition(padding := 1, yPos : float = .1) -> Vector3:
 	return Vector3(randf_range(-WIDTH/2 + padding, WIDTH/2 - padding),
 		yPos,
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
