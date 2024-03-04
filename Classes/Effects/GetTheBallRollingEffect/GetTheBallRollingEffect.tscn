@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxjh4xet8soqm"]
+
+[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.gd" id="1_748c0"]
+[ext_resource type="PackedScene" uid="uid://v52mgut660el" path="res://Classes/Effects/GetTheBallRollingEffect/PoolStick.tscn" id="2_hhtq5"]
+[ext_resource type="PackedScene" uid="uid://5grbkmxqlcab" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.tscn" id="2_j2s6x"]
+
+[sub_resource type="Animation" id="Animation_qpltu"]
+resource_name = "BallEnter"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallAnimationPos:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(8.34924, -0.25, 0, 0.25, 0, 5.53385, -0.25, 0, 0.25, 0, 3.898, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallAnimationPos:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(2.17066, -0.25, 0, 0.25, 0.1, 1.8496, 0, 0, 0.25, 0.66, 1.05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_w57vw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallAnimationPos:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(8.34924, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallAnimationPos:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.17066, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ph6er"]
+_data = {
+"BallEnter": SubResource("Animation_qpltu"),
+"RESET": SubResource("Animation_w57vw")
+}
+
+[node name="GetTheBallRollingEffect" type="Node"]
+script = ExtResource("1_748c0")
+stickScene = ExtResource("2_hhtq5")
+ball8Scene = ExtResource("2_j2s6x")
+effectName = "Get The Ball Rolling"
+
+[node name="BallAnimationPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.34924, 2.17066, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ph6er")
+}
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.26607, 0)
+visible = false
+layers = 3
+light_color = Color(1, 1, 0.823529, 1)
+light_energy = 8.5
+light_specular = 6.918
+spot_range = 10.3982
+spot_angle = 14.4391

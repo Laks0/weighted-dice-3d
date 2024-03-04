@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://v52mgut660el"]
+
+[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/PoolStick.gd" id="1_f0sxv"]
+[ext_resource type="Texture2D" uid="uid://b0wxuaxfe1skr" path="res://Classes/Effects/GetTheBallRollingEffect/Stick.png" id="2_dhf0f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tetwd"]
+radius = 0.220011
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ljcfc"]
+radius = 0.471384
+
+[node name="PoolStick" type="CharacterBody3D"]
+collision_mask = 7
+script = ExtResource("1_f0sxv")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+layers = 2
+billboard = 1
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_dhf0f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tetwd")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ljcfc")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

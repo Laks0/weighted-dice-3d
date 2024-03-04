@@ -19,4 +19,6 @@ func _on_body_entered(body):
 		return
 	
 	body.drunk = true
-	get_tree().create_timer(drunkTime).timeout.connect(func(): body.drunk = false)
+	get_tree().create_timer(drunkTime).timeout.connect(func(): 
+		if is_instance_valid(body):
+			body.drunk = false)

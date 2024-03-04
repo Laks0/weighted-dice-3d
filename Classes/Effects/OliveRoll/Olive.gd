@@ -10,17 +10,11 @@ func _ready():
 func onPushed(dir : Vector2, factor : float, pusher : Pushable):
 	$Shot.play()
 	
-	velocity += Vector3(dir.x, 0, dir.y) * factor * maxPushForce
 	$AnimatedSprite3D.play()
 	
 	_lastThrower = pusher
 
 	super(dir, factor, pusher)
-
-const FRICTION := 40
-func _physics_process(delta):
-	velocity = velocity.move_toward(Vector3.ZERO, FRICTION * delta)
-	move_and_slide()
 
 func _process(_delta):
 	$AnimatedSprite3D.modulate = color

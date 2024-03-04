@@ -9,7 +9,6 @@ signal grab(body)
 
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
-@export var FRICTION     : float = 35
 @export var GRABBING_SPEED_FACTOR : float = .05
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
 var escapeMovements : int = 0
@@ -193,9 +192,9 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 func knockback(vel : Vector2):
 	unclampedVelocity += vel
 
-func hurt():
+func hurt() -> bool:
 	if invincible:
-		return
+		return false
 	
 	health -= 1
 	
@@ -205,6 +204,8 @@ func hurt():
 		die()
 	
 	makeInvincible()
+	
+	return true
 
 func die():
 	if invincible:

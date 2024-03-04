@@ -76,6 +76,8 @@ func startArena():
 	die.dropped.connect(%MultipleResCamera.returnToArena)
 
 func endGame(winnerMon : Monigote):
+	lightsOn() # Por si acaso
+	
 	effects[activeEffect].end()
 	activeEffect = -1
 	
@@ -116,20 +118,20 @@ func startEffect(n : int):
 	effects[activeEffect].start()
 	
 	# Animación del nombre del efecto
-	$CurrentBetName.visible = true
-	$CurrentBetName.position = die.position + Vector3.BACK
-	$CurrentBetName.position.y = 1.4
-	$CurrentBetName.text = str(activeEffect + 1) + ". " + effects[activeEffect].effectName
+	$CurrentEffectName.visible = true
+	$CurrentEffectName.position = die.position + Vector3.BACK
+	$CurrentEffectName.position.y = 1.4
+	$CurrentEffectName.text = str(activeEffect + 1) + ". " + effects[activeEffect].effectName
 	
 	var animationTime = .5
 	var waitTime = 1
 	
 	var nameSizeTween = create_tween().set_trans(Tween.TRANS_ELASTIC)
-	nameSizeTween.tween_property($CurrentBetName, "scale", Vector3.ONE, animationTime)
+	nameSizeTween.tween_property($CurrentEffectName, "scale", Vector3.ONE, animationTime)
 	nameSizeTween.tween_interval(waitTime)
-	nameSizeTween.tween_property($CurrentBetName, "scale", Vector3.ZERO, animationTime)
+	nameSizeTween.tween_property($CurrentEffectName, "scale", Vector3.ZERO, animationTime)
 	
-	nameSizeTween.connect("finished", func(): $CurrentBetName.visible = false)
+	nameSizeTween.connect("finished", func(): $CurrentEffectName.visible = false)
 	
 	emit_signal("effectStarted", effects[activeEffect])
 
@@ -169,8 +171,15 @@ func onMonigoteDeath(mon : Monigote):
 	if monigotes.size() == 0:
 		endGame(mon)
 
-func getMainLight() -> DirectionalLight3D:
-	return $DirectionalLight3D
+func lightsOff():
+	var lightTween := get_tree().create_tween()
+	lightTween.tween_property($DirectionalLight3D, "light_energy", .3, 1)
+	lightTween.set_ease(Tween.EASE_OUT)
+
+func lightsOn():
+	var lightTween := get_tree().create_tween()
+	lightTween.tween_property($DirectionalLight3D, "light_energy", 1, 1)
+	lightTween.set_ease(Tween.EASE_OUT)
 
 func getHiResTexture() -> ViewportTexture:
 	return $MultipleResCamera.getHiResTexture()

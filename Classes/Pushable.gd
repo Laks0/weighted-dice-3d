@@ -11,7 +11,10 @@ signal beenGrabbed
 @export var maxPushForce : float = 20 ## La fuerza máxima a la que _es empujado_
 @export var failedPushFactor : float = .3 ## El factor de la fuerza máxima que se usa cuando el objeto agarrado se escapa
 
+@export var customMovement    : bool = false
 @export var affectedByGravity : bool = false
+
+@export var FRICTION : float = 40
 
 var grabbing   := false
 var grabbed    := false
@@ -37,7 +40,7 @@ func onGrabbed():
 	grabbed = true
 	beenGrabbed.emit()
 
-func onPushed(_dir : Vector2, _factor : float, _pusher : Pushable):
+func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	grabbed = false
 	color = Color.WHITE
 	
@@ -46,6 +49,11 @@ func onPushed(_dir : Vector2, _factor : float, _pusher : Pushable):
 	# de colisión
 	for e in get_collision_exceptions():
 		remove_collision_exception_with(e)
+	
+	if customMovement:
+		return
+	
+	velocity += Vector3(dir.x, 0, dir.y) * factor * maxPushForce
 
 ## Devuelve si el grab fue exitoso o no
 func startGrab(body : Pushable) -> bool:
@@ -93,8 +101,14 @@ func _physics_process(delta):
 	if grabbed:
 		return
 	
+	if customMovement:
+		return
+	
 	if affectedByGravity and !is_on_floor():
 		velocity.y -= 20 * delta
+	
+	velocity = velocity.move_toward(Vector3.ZERO, FRICTION * delta)
+	move_and_slide()
 
 func onGrabbing():
 	if not is_instance_valid(grabBody):

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://5grbkmxqlcab"]
+
+[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pkem"]
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_obhf0"]
+material = SubResource("StandardMaterial3D_6pkem")
+radius = 1.0
+height = 2.0
+radial_segments = 16
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tuxhk"]
+size = Vector3(0.631958, 1.39465, 1.5979)
+
+[node name="Ball8" type="CharacterBody3D"]
+collision_mask = 7
+axis_lock_linear_y = true
+script = ExtResource("1_e3peu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_obhf0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_olcpn")
+
+[node name="HitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.184021, 0, 0)
+shape = SubResource("BoxShape3D_tuxhk")
+
+[node name="WallRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(-0.145, 0, 0)
+collision_mask = 4
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
