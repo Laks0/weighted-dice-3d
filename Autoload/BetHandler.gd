@@ -13,6 +13,8 @@ var _lastBet : Bet
 var round : int = 0
 var roundAmount : int = 4
 
+var inArena := false
+
 # Automáticamente usa todas las apuestas en betPath
 func _ready():
 	var betPath := "res://Autoload/Bets/"
@@ -28,6 +30,7 @@ func startGame(arena : Arena):
 		startRound()
 	
 	currentBet.startGame(arena)
+	inArena = true
 
 ## Empieza la ronda de apuestas
 func startRound() -> void:
@@ -101,6 +104,7 @@ func settleBet(winnerId : int) -> void:
 		player.bank += getPlayerBetWinnings(player.id)
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
+	inArena = false
 
 func hasWon(res) -> bool:
 	return currentBet.hasWon(res)

@@ -3,6 +3,9 @@ extends Node3D
 var numberShown: float = 0
 
 func _process(_delta):
+	if not BetHandler.inArena:
+		return
+	
 	var firstCandidate = BetHandler.getCandidatesInOrder()[0]
 	var firstScore: float = BetHandler.getScores()[firstCandidate]
 

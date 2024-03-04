@@ -71,6 +71,16 @@ shape = SubResource("SphereShape3D_iqr1o")
 [node name="JumpPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2989, -1.22)
 
+[node name="Tutorial" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.00593385, -5.32054)
+layers = 2
+text = "Enter/AltGr/Xbox A
+to grab
+spam button
+to escape a grab"
+font = ExtResource("3_nfifi")
+font_size = 147
+
 [connection signal="body_entered" from="ReadyArea" to="." method="_on_ready_area_body_entered"]
 
 [editable path="Maletin"]

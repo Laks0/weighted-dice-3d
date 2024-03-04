@@ -1,8 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=32 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
+[ext_resource type="PackedScene" uid="uid://bnxn215f58sus" path="res://Scenes/Arena/CardShowAnimation.tscn" id="3_wm28h"]
 [ext_resource type="Script" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
@@ -152,6 +153,7 @@ _data = {
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
 dieScreenShakeMagnitude = 0.5
+cardShowAnimationScene = ExtResource("3_wm28h")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
@@ -255,7 +257,6 @@ size = Vector3(11.5972, 2, 6.95972)
 
 [node name="Alfombra" type="MeshInstance3D" parent="."]
 transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4624, 0, 0.308534, 50.1887, 0, -5.46408, -21.3703)
-layers = 4
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")
 

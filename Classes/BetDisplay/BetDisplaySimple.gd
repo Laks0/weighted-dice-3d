@@ -40,7 +40,7 @@ func startBetting():
 	
 	betting = true
 	BetHandler.startRound()
-	$Slotmachine/BetName.text = BetHandler.getBetName()
+	$Slotmachine/BetName.text = "Betting on:\n" + BetHandler.getBetName()
 	
 	var candidates := BetHandler.getCandidates()
 	

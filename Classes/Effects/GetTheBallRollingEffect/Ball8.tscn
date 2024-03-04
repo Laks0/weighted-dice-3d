@@ -23,6 +23,7 @@ size = Vector3(0.631958, 1.39465, 1.5979)
 collision_mask = 7
 axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
+speed = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_obhf0")

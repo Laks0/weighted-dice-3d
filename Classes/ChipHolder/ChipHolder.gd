@@ -66,10 +66,7 @@ func sendMonigotesToArena(arena : Arena):
 	arena.reparentMonigotes(ownedMonigotes)
 	for m in ownedMonigotes:
 		m.resetMovement()
-		jumpMonigoteTo(m, Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1))\
-				.tween_callback(func ():
-					m.set_process(true)
-					m.set_physics_process(true))
+		jumpMonigoteTo(m, Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1))
 	ownedMonigotes.clear()
 
 func createMonigotes():
@@ -93,9 +90,11 @@ func startLeaderboardAnimation(winnerId):
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
 	if not gameEnded:
+		$RoundNumber.modulate = Color.WHITE
 		$RoundNumber.text = "Round " + str(BetHandler.round) + "/" + str(BetHandler.roundAmount)
 	else:
 		$RoundNumber.text = "GAME ENDED"
+		$RoundNumber.modulate = Color.RED
 
 	await get_tree().create_timer(1).timeout
 	###################

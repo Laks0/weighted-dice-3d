@@ -12,6 +12,8 @@ var die : Die
 @export var dieScreenShakeMagnitude := .6
 @export var dieScreenShakeTime := .3
 
+@export var cardShowAnimationScene : PackedScene
+
 const WIDTH  : float = 11
 const HEIGHT : float = 6.4
 
@@ -56,6 +58,17 @@ func startArena():
 	BetHandler.startGame(self)
 	
 	%MultipleResCamera.startGameAnimation()
+	
+	if BetHandler.round == 1:
+		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
+		cardAnimation.effects = effects
+		add_child(cardAnimation)
+		await cardAnimation.animation_finished
+		cardAnimation.queue_free()
+	
+	for mon in monigotes:
+			mon.set_process(true)
+			mon.set_physics_process(true)
 	
 	# Delay hasta que entra el dado
 	await get_tree().create_timer(2).timeout

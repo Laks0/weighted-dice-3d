@@ -1,0 +1,272 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnxn215f58sus"]
+
+[ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Assets/MonigoteSkins/RedFrames.tres" id="1_v54hv"]
+[ext_resource type="Script" path="res://Scenes/Arena/CardShowAnimation.gd" id="1_x7ohg"]
+[ext_resource type="PackedScene" uid="uid://0o3k7gn6inlb" path="res://Classes/Effects/FullHouse/Carta.glb" id="2_4mghj"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="4_u3b0b"]
+
+[sub_resource type="Animation" id="Animation_uhtyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardShowAnimation/AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"RunningRight"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardShowAnimation/AnimatedSprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4, 0.297, 0.4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardShowAnimation/Card0:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_5xqol"]
+resource_name = "ShowCards"
+length = 6.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardShowAnimation/AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.2, 1.6, 2.1, 2.5, 3, 3.4, 3.9, 4.3, 5.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"RunningRight", &"Idle", &"RunningRight", &"Idle", &"RunningRight", &"Idle", &"RunningRight", &"Idle", &"RunningRight", &"Idle", &"RunningLeft", &"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardShowAnimation/Card0:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardShowAnimation/Card1:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardShowAnimation/Card2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CardShowAnimation/Card3:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CardShowAnimation/Card4:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.9, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CardShowAnimation/Card5:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5.1, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CardShowAnimation/AnimatedSprite3D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.2, 1.6, 2.1, 2.5, 3, 3.4, 3.9, 4.3, 5.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5, 0.297, 0.4), Vector3(-4, 0.297, 0.4), Vector3(-4, 0.297, 0.4), Vector3(-2, 0.297, 0.4), Vector3(-2, 0.297, 0.4), Vector3(0, 0.297, 0.4), Vector3(0, 0.297, 0.4), Vector3(2, 0.297, 0.4), Vector3(2, 0.297, 0.4), Vector3(4, 0.297, 0.4), Vector3(4, 0.297, 0.4), Vector3(0, 0.297, 0.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pfkn"]
+_data = {
+"RESET": SubResource("Animation_uhtyh"),
+"ShowCards": SubResource("Animation_5xqol")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvvva"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="CardShowAnimation" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_6pfkn")
+}
+script = ExtResource("1_x7ohg")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.25864, 1.55429, 0, -1.55429, 1.25864, -4, 0.297, 0.4)
+layers = 2
+modulate = Color(0, 0, 0, 1)
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("1_v54hv")
+animation = &"RunningRight"
+
+[node name="Card0" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(-1.5, 3.80277e-06, 0, -3.80277e-06, -1.5, 0, 0, 0, 1.5, -4, 0.532051, -1)
+
+[node name="Plane" parent="Card0" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card0"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[node name="Card1" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 0.532051, -1)
+
+[node name="Plane" parent="Card1" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card1"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[node name="Card2" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.532051, -1)
+
+[node name="Plane" parent="Card2" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card2"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[node name="Card3" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 2, 0.532051, -1)
+
+[node name="Plane" parent="Card3" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card3"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[node name="Card4" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4, 0.532051, -1)
+
+[node name="Plane" parent="Card4" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card4"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[node name="Card5" parent="." instance=ExtResource("2_4mghj")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.532051, 2)
+
+[node name="Plane" parent="Card5" index="0"]
+transform = Transform3D(0, 2.98023e-08, -0.418211, 0, -0.597762, -1.49012e-08, -0.597763, 0, 0, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_yvvva")
+
+[node name="EffectName" type="Label3D" parent="Card5"]
+transform = Transform3D(-1, 2.44776e-06, 8.74225e-08, -8.74225e-08, 4.37116e-08, -1, -2.44776e-06, -1, -4.37114e-08, 0, -0.0368484, 0)
+layers = 2
+text = "asdfasdf fasdf"
+font = ExtResource("4_u3b0b")
+font_size = 42
+autowrap_mode = 2
+width = 150.0
+
+[editable path="Card0"]
+[editable path="Card1"]
+[editable path="Card2"]
+[editable path="Card3"]
+[editable path="Card4"]
+[editable path="Card5"]
