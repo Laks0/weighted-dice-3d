@@ -24,15 +24,6 @@ func _ready():
 	position = lobbyCamera.position
 	rotation_degrees = lobbyCamera.rotation_degrees
 
-func getHiResTexture() -> ViewportTexture:
-	return $HiResViewport.get_texture()
-
-func getLowResTexture() -> ViewportTexture:
-	return $LowResViewport.get_texture()
-
-func getFullTexture() -> ViewportTexture:
-	return $FullViewport.get_texture()
-
 func showSlotMachine() -> void:
 	var rotationTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	rotationTween.tween_property(self, "rotation_degrees:x", showSlotRotationX, showSlotAnimationTime)

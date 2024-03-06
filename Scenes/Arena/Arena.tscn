@@ -185,7 +185,6 @@ transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 
 transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0, 3.41221, 0, 0, 0)
 
 [node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_foc0n")
 
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]

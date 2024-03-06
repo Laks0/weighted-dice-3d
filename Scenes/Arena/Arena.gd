@@ -196,15 +196,6 @@ func lightsOn():
 	$GlobalLight.visible = true
 	lightTween.set_ease(Tween.EASE_OUT)
 
-func getHiResTexture() -> ViewportTexture:
-	return $MultipleResCamera.getHiResTexture()
-
-func getLowResTexture() -> ViewportTexture:
-	return $MultipleResCamera.getLowResTexture()
-
-func getFullTexture() -> ViewportTexture:
-	return $MultipleResCamera.getFullTexture()
-
 ## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
 func getScreenPos(pos3d : Vector3) -> Vector2:
 	return $MultipleResCamera.unproject_position(pos3d)

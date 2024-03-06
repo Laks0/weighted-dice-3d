@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bb7b2g4lrqcub"]
 
-[ext_resource type="PackedScene" path="res://Assets/Bets/Tumba1ery2do.glb" id="1_s0dce"]
+[ext_resource type="PackedScene" uid="uid://dv7ynjv00flrl" path="res://Assets/Bets/Tumba1ery2do.glb" id="1_s0dce"]
 [ext_resource type="Script" path="res://Assets/Bets/Tomb.gd" id="1_vowye"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_3n4hy"]
 [ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_155k7"]
@@ -24,6 +24,8 @@ transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0282639, 0.281995, 0.0712732)
 layers = 2
 shaded = true
+render_priority = 2
+outline_render_priority = 1
 modulate = Color(0.52549, 0.52549, 0.52549, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "2°"
@@ -35,6 +37,7 @@ transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, -0.00762767, 0.75249
 layers = 2
 shaded = true
 texture_filter = 0
+render_priority = 1
 texture = ExtResource("3_i0vlk")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
