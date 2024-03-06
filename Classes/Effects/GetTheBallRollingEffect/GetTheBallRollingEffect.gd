@@ -1,6 +1,6 @@
 extends Effect
 
-@export var stickAmount : int = 2
+@export var stickAmount : int = 1
 @export var stickScene : PackedScene
 
 @export var ball8Scene : PackedScene

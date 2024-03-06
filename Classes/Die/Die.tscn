@@ -72,7 +72,6 @@ max_contacts_reported = 5
 contact_monitor = true
 script = ExtResource("1_qjoqg")
 rotations = Array[Vector3]([Vector3(90, 0, 0), Vector3(0, 90, 90), Vector3(0, 90, 180), Vector3(0, 0, 0), Vector3(0, 0, -90), Vector3(-90, 0, 0)])
-invertedChanceOfSix = 1
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_orssd")

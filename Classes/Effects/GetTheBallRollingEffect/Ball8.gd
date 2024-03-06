@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Ball8
 
 # metros/segundos
-@export var speed := 5
+@export var speed := 7
 var direction := Vector3(-1, 0, 0)
 
 func _physics_process(_delta):
