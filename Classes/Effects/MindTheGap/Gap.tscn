@@ -66,10 +66,11 @@ script = ExtResource("1_uhis5")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-layers = 2
+layers = 3
 axis = 1
 shaded = true
 texture_filter = 0
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_54dgb")
 animation = &"FW"
 autoplay = "FW"

@@ -39,6 +39,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06527, -0.661, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.904219, 1.73245)
 layers = 2
 billboard = 1
+render_priority = 2
+outline_render_priority = 1
 font = ExtResource("4_0rd7g")
 font_size = 128
 
@@ -46,6 +48,8 @@ font_size = 128
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.16154, -1.39361)
 layers = 2
 billboard = 1
+render_priority = 2
+outline_render_priority = 1
 font = ExtResource("4_0rd7g")
 font_size = 128
 

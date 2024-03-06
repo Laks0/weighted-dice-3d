@@ -561,13 +561,15 @@ transform = Transform3D(0.769232, -8.9407e-08, 0, 8.9407e-08, 0.769232, 1.77636e
 
 [node name="ReadyLabel" type="Label3D" parent="Slotmachine"]
 transform = Transform3D(-4.37113e-08, -5.96046e-08, 0.999999, 4.88498e-15, 1, 5.96046e-08, -0.999999, 1.77636e-15, -4.37113e-08, 0.199252, 1.27755, 2.57776e-08)
-layers = 2
+render_priority = 2
+outline_render_priority = 1
 text = "READY"
 font = ExtResource("4_6lq8r")
 
 [node name="BetName" type="Label3D" parent="Slotmachine"]
 transform = Transform3D(-2.72026e-08, 0.00730354, 0.769197, 1.97638e-08, 0.769197, -0.00730354, -0.769229, 1.95046e-08, -2.73889e-08, 0.719187, -0.177084, -2.99825e-08)
-layers = 2
+render_priority = 2
+outline_render_priority = 1
 text = "MOST TIME ON THE CENTER"
 font = ExtResource("4_6lq8r")
 font_size = 45

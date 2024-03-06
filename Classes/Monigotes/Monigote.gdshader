@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_prepass_alpha;
 
 uniform sampler2D spriteTexture: source_color, filter_nearest;
 
@@ -35,4 +36,7 @@ void fragment()
 		ALBEDO *= modulate.rgb;
 		ALPHA *= modulate.a;
 	}
+	
+	// Por alguna razón todo se ve muy blown up si no hago esto
+	ALBEDO *= .5;
 }

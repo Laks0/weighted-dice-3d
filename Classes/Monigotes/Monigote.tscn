@@ -21,19 +21,19 @@
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wi70r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
 region = Rect2(32, 392, 32, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xk8un"]
 resource_local_to_scene = true
-render_priority = 0
+render_priority = 1
 shader = ExtResource("7_tb5pk")
 shader_parameter/borderAlpha = 0.98
 shader_parameter/width = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/modulate = Color(1, 1, 1, 1)
-shader_parameter/spriteTexture = SubResource("AtlasTexture_wi70r")
+shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
@@ -88,7 +88,7 @@ affectedByGravity = null
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-layers = 2
+layers = 3
 material_override = SubResource("ShaderMaterial_xk8un")
 extra_cull_margin = 1.0
 pixel_size = 0.04
@@ -105,8 +105,9 @@ jokerHatTexture = ExtResource("14_wqmb4")
 [node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)
 visible = false
-layers = 2
+layers = 3
 texture_filter = 0
+render_priority = 1
 texture = ExtResource("19_0df27")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

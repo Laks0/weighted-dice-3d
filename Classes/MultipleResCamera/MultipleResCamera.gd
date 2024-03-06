@@ -18,34 +18,11 @@ func _ready():
 	restRotation = rotation_degrees
 	restPosition = position
 	
-	$HiResViewport.size = get_viewport().size * 4
-	$LowResViewport.size = get_viewport().size * 4
-	$FullViewport.size = get_viewport().size * 4
-	
 	if not is_instance_valid(betSceneCamera) or not is_instance_valid(lobbyCamera):
 		return
 	
 	position = lobbyCamera.position
 	rotation_degrees = lobbyCamera.rotation_degrees
-
-func _process(_delta):
-	%HiResCamera.position = position
-	%HiResCamera.rotation = rotation
-	%HiResCamera.h_offset = h_offset
-	%HiResCamera.v_offset = v_offset
-	%HiResCamera.fov = fov
-	
-	%LowResCamera.position = position
-	%LowResCamera.rotation = rotation
-	%LowResCamera.h_offset = h_offset
-	%LowResCamera.v_offset = v_offset
-	%LowResCamera.fov = fov
-	
-	%FullCamera.position = position
-	%FullCamera.rotation = rotation
-	%FullCamera.h_offset = h_offset
-	%FullCamera.v_offset = v_offset
-	%FullCamera.fov = fov
 
 func getHiResTexture() -> ViewportTexture:
 	return $HiResViewport.get_texture()

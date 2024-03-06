@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=34 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
+[ext_resource type="Texture2D" uid="uid://db3gatvig6t0c" path="res://Scenes/Arena/Mesa_FelpaMesaTexN.png" id="6_o0cy5"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="10_vf6cn"]
@@ -30,6 +31,13 @@ absorbent = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wruqs"]
 data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_foc0n"]
+resource_name = "FelpaMesa"
+cull_mode = 2
+albedo_color = Color(0.381616, 0.406012, 0.100887, 1)
+normal_enabled = true
+normal_texture = ExtResource("6_o0cy5")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -176,6 +184,10 @@ transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 
 [node name="MesaEx" parent="Floor/Mesa" index="0"]
 transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0, 3.41221, 0, 0, 0)
 
+[node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_foc0n")
+
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
 visible = false
 collision_layer = 4
@@ -233,12 +245,12 @@ specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("12_10
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
 visible = false
-layers = 2
 centered = false
 offset = Vector2(-64, 32)
 modulate = Color(1, 1, 1, 0.396078)
 axis = 1
 texture_filter = 0
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_i2qvo")
 autoplay = "default"
 
@@ -257,14 +269,33 @@ size = Vector3(11.5972, 2, 6.95972)
 
 [node name="Alfombra" type="MeshInstance3D" parent="."]
 transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4624, 0, 0.308534, 50.1887, 0, -5.46408, -21.3703)
+layers = 5
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Alfombra"]
+transform = Transform3D(0.0333779, 0, 0, 0, 0.721649, -1.63913e-07, 0, -9.31323e-10, 0.0194246, 0.507779, 1.78094, 0.229742)
+layers = 4
+light_color = Color(1, 0, 1, 1)
+light_energy = 6.015
+light_cull_mask = 4294967292
+omni_range = 8.64154
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Alfombra"]
+transform = Transform3D(0.0333779, 0, 0, 0, 0.721649, -1.63913e-07, 0, -9.31323e-10, 0.0194246, -0.456493, 1.78094, 0.346143)
+layers = 4
+light_color = Color(1, 0, 1, 1)
+light_energy = 4.503
+light_cull_mask = 4294967292
+omni_range = 8.64154
 
 [node name="CurrentEffectName" type="Label3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.64939, 1.0914)
 visible = false
-layers = 2
+layers = 3
 billboard = 1
+render_priority = 2
+outline_render_priority = 1
 text = "Full house"
 font = ExtResource("15_ovhl6")
 font_size = 100
@@ -275,6 +306,7 @@ width = 800.0
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera", "leaderboardCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 8.80834, 5.92504)
+cull_mask = 1048575
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 betSceneCamera = NodePath("../BetSceneCamera")
@@ -315,6 +347,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
 
 [node name="GlobalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)
+light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
 [editable path="Floor/Mesa"]

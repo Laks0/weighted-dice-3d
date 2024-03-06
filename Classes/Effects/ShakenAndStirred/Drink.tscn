@@ -12,11 +12,12 @@ script = ExtResource("1_oogm3")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0)
-layers = 2
+layers = 3
 sorting_offset = -10.0
 shaded = true
 double_sided = false
 texture_filter = 0
+render_priority = 1
 texture = ExtResource("2_djdc4")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)

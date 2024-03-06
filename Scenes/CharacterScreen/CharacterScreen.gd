@@ -37,8 +37,8 @@ func _startGame():
 		
 		var playerNameLabel := Label3D.new()
 		playerNameLabel.font = font
-		playerNameLabel.set_layer_mask_value(2, true)
-		playerNameLabel.set_layer_mask_value(1, false)
+		playerNameLabel.render_priority = 2
+		playerNameLabel.outline_render_priority = 1
 		playerNameLabel.text = player.name
 		playerNameLabel.position.y = -1
 		playerNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
@@ -46,8 +46,8 @@ func _startGame():
 		add_child(playerNameLabel)
 		
 		var monigoteNameLabel := Label3D.new()
-		monigoteNameLabel.set_layer_mask_value(2, true)
-		monigoteNameLabel.set_layer_mask_value(1, false)
+		monigoteNameLabel.render_priority = 2
+		monigoteNameLabel.outline_render_priority = 1
 		monigoteNameLabel.font = font
 		monigoteNameLabel.position.y = 1
 		monigoteNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
@@ -60,7 +60,7 @@ func _startGame():
 			
 			if i == players.size() - 1:
 				await get_tree().create_timer(2).timeout
-				get_tree().change_scene_to_file("res://Scenes/Arena/Arena2d.tscn"))
+				get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn"))
 
 func _process(_delta):
 	var playersReady = $Settings.get_children()\
@@ -69,10 +69,6 @@ func _process(_delta):
 	
 	if playersReady == $Settings.get_child_count() and $Settings.get_child_count() > 0:
 		_startGame()
-	
-	%HiResTexture.texture = %MultipleResCamera.getHiResTexture()
-	%HiResTexture.material.set_shader_parameter("fullTexture", %MultipleResCamera.getFullTexture())
-	%HiResTexture.material.set_shader_parameter("lowTexture", %MultipleResCamera.getLowResTexture())
 
 func _addPlayerSetting(device : int):
 	if $Settings.get_child_count() >= PlayerHandler.MAX_PLAYERS:

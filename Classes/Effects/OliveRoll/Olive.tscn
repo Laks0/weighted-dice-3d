@@ -82,11 +82,10 @@ maxPushForce = 35.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.681998, 0.731354, 0, -0.731354, 0.681998, 0, 0, 0)
-layers = 2
 pixel_size = 0.02
 shaded = true
-alpha_cut = 2
 texture_filter = 0
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_l4hj2")
 frame = 1
 frame_progress = 0.52876

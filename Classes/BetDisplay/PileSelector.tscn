@@ -8,6 +8,8 @@
 [node name="NumberLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -0.165425)
 layers = 2
+render_priority = 2
+outline_render_priority = 1
 text = "25"
 font = ExtResource("1_rpv1x")
 font_size = 72
@@ -16,4 +18,5 @@ font_size = 72
 transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0)
 layers = 2
 texture_filter = 0
+render_priority = 1
 texture = ExtResource("2_jg5n8")
