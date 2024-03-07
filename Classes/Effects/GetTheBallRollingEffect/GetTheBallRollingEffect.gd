@@ -28,11 +28,11 @@ func start():
 	create_tween().tween_property($SpotLight3D, "light_energy", 11, .2)
 
 func _process(_delta):
-	if $AnimationPlayer.is_playing() and is_instance_valid(ball8):
-		ball8.position = $BallsAnimationPos.position
-	
 	if not is_instance_valid(ball8):
 		return
+	
+	if $AnimationPlayer.is_playing():
+		ball8.position = $BallAnimationPos.position
 	
 	var targetDir = $SpotLight3D.position.direction_to(ball8.position)
 	var targetBasis = Basis.looking_at(targetDir)
