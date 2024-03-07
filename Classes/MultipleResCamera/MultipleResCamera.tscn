@@ -1,26 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh13re66e6e63"]
+[gd_scene load_steps=6 format=3 uid="uid://bh13re66e6e63"]
 
 [ext_resource type="Script" path="res://Classes/MultipleResCamera/MultipleResCamera.gd" id="1_0nyod"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_22qtq"]
-[ext_resource type="Shader" path="res://Outline.gdshader" id="3_uu1sn"]
 [ext_resource type="Shader" path="res://Classes/MultipleResCamera/Pixelate.gdshader" id="4_4k3cc"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lq1p7"]
 size = Vector2(2, 2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tidmy"]
-render_priority = 0
-shader = ExtResource("3_uu1sn")
-shader_parameter/shadows_enabled = true
-shader_parameter/highlights_enabled = false
-shader_parameter/shadow_strength = 0.59
-shader_parameter/highlight_strength = 0.1
-shader_parameter/highlight_color = Color(1, 1, 1, 1)
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5h6i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_suf3b"]
 render_priority = 0
 shader = ExtResource("4_4k3cc")
+shader_parameter/shadow_strength = 0.42
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
 
 [node name="MultipleResCamera" type="Camera3D"]
 cull_mask = 1048573
@@ -29,14 +20,8 @@ current = true
 fov = 47.0
 script = ExtResource("1_0nyod")
 
-[node name="OutlineMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0412301, -1.44274)
-visible = false
-mesh = SubResource("QuadMesh_lq1p7")
-surface_material_override/0 = SubResource("ShaderMaterial_tidmy")
-
 [node name="OutlineMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0412301, -1.31479)
 layers = 3
 mesh = SubResource("QuadMesh_lq1p7")
-surface_material_override/0 = SubResource("ShaderMaterial_p5h6i")
+surface_material_override/0 = SubResource("ShaderMaterial_suf3b")

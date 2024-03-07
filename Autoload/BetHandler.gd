@@ -107,7 +107,8 @@ func settleBet(winnerId : int) -> void:
 	inArena = false
 
 func hasWon(res) -> bool:
-	return currentBet.hasWon(res)
+	var d = currentBet.hasWon(res)
+	return d
 
 func arenaUpdate(delta):
 	currentBet.arenaUpdate(delta)

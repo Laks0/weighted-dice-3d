@@ -1,6 +1,10 @@
 [gd_resource type="Environment" format=3 uid="uid://dh2efkygayqvn"]
 
 [resource]
-tonemap_mode = 3
+tonemap_mode = 2
+sdfgi_read_sky_light = false
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.8
+sdfgi_cascade0_distance = 51.2
 glow_enabled = true
-volumetric_fog_density = 0.0147
+volumetric_fog_density = 0.0098

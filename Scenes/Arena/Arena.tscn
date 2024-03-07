@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=35 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
 [ext_resource type="PackedScene" uid="uid://bnxn215f58sus" path="res://Scenes/Arena/CardShowAnimation.tscn" id="3_wm28h"]
+[ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="4_0von1"]
 [ext_resource type="Script" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
@@ -163,6 +164,9 @@ dieScene = ExtResource("2_gkaff")
 dieScreenShakeMagnitude = 0.5
 cardShowAnimationScene = ExtResource("3_wm28h")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_0von1")
+
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
 collision_layer = 4
@@ -306,6 +310,7 @@ width = 800.0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 8.80834, 5.92504)
 cull_mask = 1048575
+environment = null
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 betSceneCamera = NodePath("../BetSceneCamera")
@@ -346,6 +351,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
 
 [node name="GlobalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)
+visible = false
 light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 

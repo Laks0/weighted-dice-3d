@@ -62,7 +62,7 @@ func settle():
 		return _scores[candidate] == winnerScore)
 
 func hasWon(candidate) -> bool:
-	return candidate in _result
+	return _result.has(candidate)
 
 func getCandidateOdds(_candidate) -> int:
 	return 2
