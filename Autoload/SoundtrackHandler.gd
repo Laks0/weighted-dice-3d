@@ -14,7 +14,6 @@ func _ready():
 	bus = "OST"
 	loadedTracks[0] = loadTrack(firstTrack)
 	loadedTracks[1] = loadTrack("Modales Monigotes")
-	print()
 	connect("finished", onFinished)
 	volume_db = -4
 
@@ -29,11 +28,8 @@ func onFinished():
 func loadTrack(track : String):
 	var trackStore : Array[AudioStreamMP3] = []
 	for i in range(setList[track].size()):
-		print(setList[track][i])
-		print(i)
 		trackStore.append(load(setList[track][i]))
 	return trackStore
-		
 
 func unloadTrack(track):
 	pass
