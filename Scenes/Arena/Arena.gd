@@ -51,6 +51,7 @@ func reparentMonigotes(arr : Array[Monigote]) -> void:
 		mon.arenaReady()
 
 func startArena():
+	SoundtrackHandler.stop()
 	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
 	for wallCollision in $Walls.get_children():
 		wallCollision.disabled = false

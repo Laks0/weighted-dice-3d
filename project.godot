@@ -22,6 +22,7 @@ Controllers="*res://Autoload/Controllers.gd"
 PlayerHandler="*res://Autoload/PlayerHandler.gd"
 PowerupHandler="*res://Autoload/PowerupHandler.gd"
 Globals="*res://Autoload/Globals.gd"
+SoundtrackHandler="*res://Autoload/SoundtrackHandler.gd"
 
 [display]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2v4ihgbdvdqi"
+path="res://.godot/imported/Do You Like Kazz - Intro.mp3-28f47e8494c3f9ba9e2b1f61298c939e.mp3str"
+
+[deps]
+
+source_file="res://Assets/OST/Do You Like Kazz - Intro.mp3"
+dest_files=["res://.godot/imported/Do You Like Kazz - Intro.mp3-28f47e8494c3f9ba9e2b1f61298c939e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=100.0
+beat_count=0
+bar_beats=4
