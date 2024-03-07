@@ -1,17 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=5 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pkem"]
-albedo_color = Color(0, 0, 0, 1)
-roughness = 0.25
-
-[sub_resource type="SphereMesh" id="SphereMesh_obhf0"]
-material = SubResource("StandardMaterial3D_6pkem")
-radius = 1.0
-height = 2.0
-radial_segments = 16
-rings = 16
+[ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 1.0
@@ -25,11 +15,11 @@ axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
 speed = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_obhf0")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_olcpn")
+
+[node name="Bola8" parent="." instance=ExtResource("2_e3sye")]
+transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
 
 [node name="HitArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)

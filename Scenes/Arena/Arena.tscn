@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=34 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="10_vf6cn"]
 [ext_resource type="PackedScene" uid="uid://cxjh4xet8soqm" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.tscn" id="11_7goy4"]
-[ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="12_10uem"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
 [ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="13_ta5lr"]
@@ -243,7 +242,7 @@ polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.886
 [node name="Effects" type="Node" parent="."]
 script = ExtResource("4_rx763")
 regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5pfw"), ExtResource("12_yk85d"), ExtResource("5_ed70i"), ExtResource("4_tqem7"), ExtResource("10_vf6cn")])
-specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("12_10uem")])
+specialEffects = Array[PackedScene]([ExtResource("11_7goy4")])
 
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)

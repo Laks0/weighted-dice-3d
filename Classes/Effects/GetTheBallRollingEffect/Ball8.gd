@@ -5,7 +5,7 @@ class_name Ball8
 @export var speed := 7
 var direction := Vector3(-1, 0, 0)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	direction = direction.normalized()
 	$WallRaycast.target_position = direction * 1.1
 	if $WallRaycast.is_colliding() and $WallRaycast.get_collider().is_in_group("Walls"):
@@ -14,6 +14,7 @@ func _physics_process(_delta):
 	$HitArea.position = direction
 	
 	velocity = direction * speed
+	rotation += direction.rotated(Vector3.UP, PI/2) * delta * speed
 	move_and_slide()
 
 func _on_hit_area_body_entered(body):
