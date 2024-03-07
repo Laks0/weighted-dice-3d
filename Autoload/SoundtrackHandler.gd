@@ -1,8 +1,9 @@
 extends AudioStreamPlayer
 var firstTrack : String = "Do You Like Kazz"
-var trackA : Array[AudioStreamMP3] = []
-var trackB : Array[AudioStreamMP3] = []
+var loadedTracks : Array[Array] = [[],[]]
+
 var currentClip : int = 0
+var currentTrack : int
 
 var setList : Dictionary = {
 	"Modales Monigotes" :  ["res://Assets/OST/Modales Monigotes - Intro.mp3", "res://Assets/OST/Modales Monigotes - Loop.mp3"],
@@ -10,8 +11,8 @@ var setList : Dictionary = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	trackA = loadTrack(firstTrack)
-	trackB = loadTrack("Modales Monigotes")
+	loadedTracks[0] = loadTrack(firstTrack)
+	loadedTracks[1] = loadTrack("Modales Monigotes")
 	print()
 	connect("finished", onFinished)
 	volume_db = -4
@@ -35,6 +36,14 @@ func loadTrack(track : String):
 func unloadTrack(track):
 	pass
 
-func playTrack(track : Array = trackA):
-	stream = track[currentClip]
+func stopTrack():
+	stop()
+
+func playTrack(track : int = 0):
+	if currentTrack != track:
+		currentClip = 0
+	var currentTrack  = track
+	stream = loadedTracks[track][currentClip]
+	currentTrack = loadedTracks[track]
+	print(currentTrack)
 	play()

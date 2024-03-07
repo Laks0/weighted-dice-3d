@@ -51,7 +51,6 @@ func reparentMonigotes(arr : Array[Monigote]) -> void:
 		mon.arenaReady()
 
 func startArena():
-	SoundtrackHandler.stop()
 	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
 	for wallCollision in $Walls.get_children():
 		wallCollision.disabled = false
@@ -72,7 +71,9 @@ func startArena():
 			mon.set_physics_process(true)
 	
 	# Delay hasta que entra el dado
+	SoundtrackHandler.stopTrack()
 	await get_tree().create_timer(2).timeout
+	SoundtrackHandler.playTrack(1)
 	
 	$ChipHolder.visible = false
 	betting = false
@@ -90,6 +91,7 @@ func startArena():
 	die.dropped.connect(%MultipleResCamera.returnToArena)
 
 func endGame(winnerMon : Monigote):
+	SoundtrackHandler.stopTrack()
 	lightsOn() # Por si acaso
 	
 	effects[activeEffect].end()
@@ -98,6 +100,7 @@ func endGame(winnerMon : Monigote):
 	betting = true
 	
 	await get_tree().create_timer(.3).timeout
+	SoundtrackHandler.playTrack(0)
 	
 	$PrepareArrow.visible = false
 	
