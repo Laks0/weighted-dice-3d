@@ -1,10 +1,52 @@
-[gd_resource type="Environment" format=3 uid="uid://dh2efkygayqvn"]
+[gd_resource type="Environment" load_steps=8 format=3 uid="uid://dh2efkygayqvn"]
+
+[ext_resource type="Shader" path="res://Scenes/Arena/SkyShader.gdshader" id="1_lbq3v"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nb83e"]
+noise_type = 0
+frequency = 0.0294
+fractal_type = 0
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ggx4w"]
+noise = SubResource("FastNoiseLite_nb83e")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y4ptq"]
+noise_type = 3
+frequency = 0.2696
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_utr0e"]
+noise = SubResource("FastNoiseLite_y4ptq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaof3"]
+shader = ExtResource("1_lbq3v")
+shader_parameter/sky_color = Color(0.47451, 0.0862745, 0.443137, 1)
+shader_parameter/first_layer_opacity = 0.1
+shader_parameter/first_layer_cutoff = 0.42
+shader_parameter/second_layer_opacity = 0.255
+shader_parameter/second_layer_cutoff = 0.745
+shader_parameter/noise = SubResource("NoiseTexture2D_ggx4w")
+shader_parameter/star_mask_noise = SubResource("NoiseTexture2D_utr0e")
+
+[sub_resource type="Sky" id="Sky_uapgf"]
+sky_material = SubResource("ShaderMaterial_xaof3")
+process_mode = 3
 
 [resource]
+background_mode = 2
+background_energy_multiplier = 2.54
+sky = SubResource("Sky_uapgf")
+sky_custom_fov = 16.5
 tonemap_mode = 2
 sdfgi_read_sky_light = false
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.8
 sdfgi_cascade0_distance = 51.2
 glow_enabled = true
+glow_normalized = true
+fog_density = 0.0
+fog_sky_affect = 0.173
 volumetric_fog_density = 0.0098
+volumetric_fog_sky_affect = 0.451

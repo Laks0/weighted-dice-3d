@@ -272,6 +272,7 @@ size = Vector3(11.5972, 2, 6.95972)
 
 [node name="Alfombra" type="MeshInstance3D" parent="."]
 transform = Transform3D(29.9599, 0, 0, 0, 1.35093, -11.4624, 0, 0.308534, 50.1887, 0, -5.46408, -21.3703)
+visible = false
 layers = 5
 gi_mode = 0
 mesh = SubResource("PlaneMesh_20bdj")

@@ -21,7 +21,7 @@ fov = 47.0
 script = ExtResource("1_0nyod")
 
 [node name="OutlineMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0412301, -1.31479)
+transform = Transform3D(1.41108, 0, 0, 0, 1.41108, 0, 0, 0, 1, 0, -0.0412301, -1.31479)
 layers = 3
 mesh = SubResource("QuadMesh_lq1p7")
 surface_material_override/0 = SubResource("ShaderMaterial_suf3b")
