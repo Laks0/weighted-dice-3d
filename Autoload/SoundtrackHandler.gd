@@ -21,8 +21,9 @@ func _ready():
 func _process(delta):
 	pass
 func onFinished():
-	currentClip += 1
-	playTrack()
+	if currentClip == 0:
+		currentClip += 1
+	playTrack(currentTrack)
 
 func loadTrack(track : String):
 	var trackStore : Array[AudioStreamMP3] = []
@@ -42,8 +43,7 @@ func stopTrack():
 func playTrack(track : int = 0):
 	if currentTrack != track:
 		currentClip = 0
-	var currentTrack  = track
+	currentTrack  = track
 	stream = loadedTracks[track][currentClip]
-	currentTrack = loadedTracks[track]
 	print(currentTrack)
 	play()
