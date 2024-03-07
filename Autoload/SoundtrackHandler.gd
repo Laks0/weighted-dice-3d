@@ -11,6 +11,7 @@ var setList : Dictionary = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	bus = "OST"
 	loadedTracks[0] = loadTrack(firstTrack)
 	loadedTracks[1] = loadTrack("Modales Monigotes")
 	print()
