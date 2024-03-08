@@ -88,6 +88,12 @@ func getCandidatesInOrder() -> Array:
 
 	return candidates
 
+func getWinnerCandidates() -> Array:
+	if _result is Array:
+		return _result
+	else:
+		return [_result]
+
 ## Si es posible que la apuesta aparezca ahora
 func canAppear() -> bool:
 	return true

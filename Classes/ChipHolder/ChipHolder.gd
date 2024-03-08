@@ -111,7 +111,7 @@ func startLeaderboardAnimation(winnerId):
 	##############################
 	var betWinnersString := ""
 	var winner_i := 0
-	for winner in BetHandler.getCandidates().filter(BetHandler.hasWon):
+	for winner in BetHandler.getWinnerCandidates():
 		if winner_i != 0:
 			betWinnersString += ", "
 		betWinnersString += BetHandler.getCandidateName(winner)

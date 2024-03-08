@@ -54,6 +54,9 @@ func getBetName() -> String:
 func getCandidates() -> Array:
 	return currentBet.getCandidates()
 
+func getWinnerCandidates() -> Array:
+	return currentBet.getWinnerCandidates()
+
 func getCandidateName(candidate) -> String:
 	return currentBet.getCandidateName(candidate)
 
@@ -84,10 +87,9 @@ func getMinimunBet():
 func getPlayerBetWinnings(playerId : int) -> int:
 	var player := PlayerHandler.getPlayerById(playerId)
 	var res : int = 0
-	for candidate in getCandidates():
+	for candidate in getWinnerCandidates():
 		var odds = getCandidateOdds(candidate)
-		if (hasWon(candidate)):
-			res += player.getAmountBettedOn(candidate) * odds
+		res += player.getAmountBettedOn(candidate) * odds
 	return res
 
 ## Cuántas fichas gana el sobreviviente de la ronda
@@ -101,6 +103,8 @@ func settleBet(winnerId : int) -> void:
 	
 	for player in PlayerHandler.getPlayersAlive():
 		player.bank -= player.getTotalBets()
+		# Por si acaso
+		player.bank = max(player.bank, 0)
 		player.bank += getPlayerBetWinnings(player.id)
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
