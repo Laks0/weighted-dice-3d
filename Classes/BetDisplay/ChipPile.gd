@@ -51,7 +51,6 @@ func addChip(playerId : int, withAnimation : bool = true) -> void:
 		
 		var heightTween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 		heightTween.tween_property(ficha, "position:y", y, .05*(ceiling - y))
-		heightTween.tween_callback(func(): $AudioStreamPlayer.play())
 	else:
 		ficha.position.y = y
 	
@@ -81,7 +80,6 @@ func removeChip(playerId : int) -> void:
 				continue
 			var heightTween = create_tween().set_ease(Tween.EASE_IN)
 			heightTween.tween_property(chip, "position:y", chip.position.y-fichaHeight, .02*(fichaHeight))
-			heightTween.tween_callback(func():$AudioStreamPlayer.play())
 
 ## Pone la cantidad de fichas de la pila en el banco del jugador de playerIdDisplay (solo si isDisplay == true)
 func displayBank():

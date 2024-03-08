@@ -22,9 +22,6 @@ var selected : Dictionary
 var betted : Dictionary
 var isReady : Dictionary
 
-#para SFX
-var pointerShouldMove : bool
-
 var betting = false
 
 func startBetting():
@@ -84,7 +81,6 @@ func startBetting():
 	_repositionSelectors()
 
 func startArena():
-	SfxHandler.playSound("displayReady")
 	chipHolder.sendMonigotesToArena(get_parent())
 	get_parent().startArena()
 	betting = false
@@ -107,27 +103,23 @@ func _process(_delta):
 
 		# Movimientos
 		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
-			if selected[player.id] != 0:
-				SfxHandler.playSound("pointerMove")
+			SfxHandler.playSound("pointerMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft-1
 			elif selected[player.id] == candidatesOnLeft:
 				selected[player.id] = -1
 			else:
 				selected[player.id] = max(selected[player.id]-1, 0)
-
 			_repositionSelectors()
 		
 		if Input.is_action_just_pressed(playerActions["right"]) and not isReady[player.id]:
-			if selected[player.id] != piles.size()-1:
-				SfxHandler.playSound("pointerMove")
+			SfxHandler.playSound("pointerMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft
 			elif selected[player.id] == candidatesOnLeft-1:
 				selected[player.id] = -1
 			else:
 				selected[player.id] = min(selected[player.id]+1, piles.size()-1)
-
 			_repositionSelectors()
 		
 		var selector = selectors[player.id]
@@ -137,10 +129,7 @@ func _process(_delta):
 			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
 				isReady[player.id] = not isReady[player.id]
-				if isReady[player.id]:
-					SfxHandler.playSound("playerReady")
-				else:
-					SfxHandler.playSound("readyCancel") 
+			
 			continue
 		
 		var selectedPile = piles[selected[player.id]]

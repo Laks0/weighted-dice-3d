@@ -36,14 +36,12 @@ func startLeaderboardAnimation() -> Tween:
 	return moveTo(leaderboardCamera.position, leaderboardCamera.rotation_degrees.x)
 
 func startGameAnimation() -> Tween:
-#	$wooshPlayer.playSound("zoomToGame")
 	return moveTo(restPosition, restRotation.x)
 
 func startBettingAnimation() -> Tween:
 	return moveTo(betSceneCamera.position, betSceneCamera.rotation_degrees.x)
 
 func moveTo(newPos : Vector3, rotationDegreesX : float) -> Tween:
-	$wooshPlayer.playSound("wooshTrans")
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
 	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, startGameAnimationTime)
 	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
