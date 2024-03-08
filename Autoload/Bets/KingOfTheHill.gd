@@ -8,7 +8,7 @@ const HILL_RADIUS := 1
 
 func _init():
 	betType = BetType.ALL_PLAYERS
-	betName = "Most time on the center"
+	betName = "King of the hill"
 	_scoreOrder = Order.ASCENDING
 	monigoteSignal = MonigoteSignal.CROWN
 

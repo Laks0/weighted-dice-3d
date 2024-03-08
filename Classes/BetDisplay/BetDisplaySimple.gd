@@ -24,9 +24,6 @@ var isReady : Dictionary
 
 var betting = false
 
-func _ready():
-	$Slotmachine.set_process(false)
-
 func startBetting():
 	# Resetear cualquier valor viejo
 	chipHolder.reset()
@@ -35,8 +32,6 @@ func startBetting():
 	piles = []
 	selectors.clear()
 	selected.clear()
-	
-	$Slotmachine.set_process(false)
 	
 	betting = true
 	BetHandler.startRound()
@@ -89,7 +84,6 @@ func startArena():
 	chipHolder.sendMonigotesToArena(get_parent())
 	get_parent().startArena()
 	betting = false
-	$Slotmachine.set_process(true)
 	for sel in selectors.values():
 		sel.queue_free()
 	gameStarted.emit()
