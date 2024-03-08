@@ -20,6 +20,7 @@ func _process(_delta):
 	playerName = $TextEdit.text
 
 func _on_ready_pressed():
+	SfxHandler.playSound("playerReady")
 	playerReady = not playerReady
 
 func _on_cancel_pressed():

@@ -1,0 +1,22 @@
+extends AudioStreamPlayer
+
+var sounds : Dictionary = {
+	"buttonHighlight" : preload("res://Assets/SFX/buttonHighlight.wav"),
+	"buttonSelect" : preload("res://Assets/SFX/buttonSelect.wav"),
+	"controllerLogin" : preload("res://Assets/SFX/controllerLogin.wav"),
+	"playerReady" : preload("res://Assets/SFX/playerReady.wav"),
+	"pointerSelect" : preload("res://Assets/SFX/pointerSelect.wav"),
+	"pointerCancel" : preload("res://Assets/SFX/pointerCancel.wav"),
+	"pointerMove" : preload("res://Assets/SFX/pointerMove.wav")
+}
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	bus = "SFX"
+
+func playSound(sound : String):
+	stream = sounds[sound]
+	play()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
