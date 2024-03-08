@@ -42,5 +42,4 @@ func playTrack(track : int = 0):
 		currentClip = 0
 	currentTrack  = track
 	stream = loadedTracks[track][currentClip]
-	print(currentTrack)
 	play()
