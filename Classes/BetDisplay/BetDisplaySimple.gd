@@ -109,6 +109,7 @@ func _process(_delta):
 
 		# Movimientos
 		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
+			SfxHandler.playSound("pointerMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft-1
 			elif selected[player.id] == candidatesOnLeft:
@@ -118,6 +119,7 @@ func _process(_delta):
 			_repositionSelectors()
 		
 		if Input.is_action_just_pressed(playerActions["right"]) and not isReady[player.id]:
+			SfxHandler.playSound("pointerMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft
 			elif selected[player.id] == candidatesOnLeft-1:
@@ -200,6 +202,7 @@ func playerReady(playerId : int) -> void:
 func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
 		return
+	SfxHandler.playSound("pointerSelect")
 
 	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
 		selectCandidate(player.id, candidate)
@@ -213,6 +216,7 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if player.bets[candidate] == 0:
 		return
+	SfxHandler.playSound("pointerCancel")
 
 	if selected[player.id] == -1 or piles[selected[player.id]].candidate != candidate:
 		selectCandidate(player.id, candidate)

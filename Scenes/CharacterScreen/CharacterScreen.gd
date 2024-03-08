@@ -71,6 +71,7 @@ func _process(_delta):
 		_startGame()
 
 func _addPlayerSetting(device : int):
+	SfxHandler.playSound("controllerLogin")
 	if $Settings.get_child_count() >= PlayerHandler.MAX_PLAYERS:
 		return
 	
