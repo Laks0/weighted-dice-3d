@@ -7,4 +7,4 @@
 script = ExtResource("1_pbkt0")
 PortalScene = ExtResource("2_d8hlu")
 effectName = "ALL IN!"
-effectId = 1
+duration = 10.0

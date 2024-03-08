@@ -65,6 +65,7 @@ script = ExtResource("1_748c0")
 stickScene = ExtResource("2_hhtq5")
 ball8Scene = ExtResource("2_j2s6x")
 effectName = "Get The Ball Rolling"
+duration = 20.0
 
 [node name="BallAnimationPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.34924, 2.17066, 0)

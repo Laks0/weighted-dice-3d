@@ -5,6 +5,9 @@ class_name Effect
 
 var arena : Arena
 
+## Solo para los efectos del 6
+@export var duration : float = 15
+
 func create(_arena : Arena) -> void:
 	arena = _arena
 

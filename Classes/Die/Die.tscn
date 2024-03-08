@@ -128,9 +128,7 @@ script = ExtResource("9_o2hbn")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
-timed = true
-waiting_time = 12.0
-on_timer_finished = 3
+timed = false
 next_state = NodePath("../CubileteAnimation")
 
 [node name="RandomAttack" type="Node" parent="StateMachine"]
