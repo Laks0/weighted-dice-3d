@@ -95,3 +95,7 @@ func displayBank():
 	
 	for _i in PlayerHandler.getPlayerById(playerIdDisplay).bank:
 		addChip(playerIdDisplay, false)
+
+func setLabelVisibility(value : bool) -> void:
+	$CandidateLabel.visible = value
+	$Odds.visible = value

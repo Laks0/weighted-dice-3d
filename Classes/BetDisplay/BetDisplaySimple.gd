@@ -28,6 +28,7 @@ var pointerShouldMove : bool
 var betting = false
 
 func startBetting():
+	$StartDelay.start()
 	# Resetear cualquier valor viejo
 	chipHolder.reset()
 	for pile in piles:
@@ -94,7 +95,7 @@ func startArena():
 
 func _process(_delta):
 	$AIBetController.set_process(betting)
-	if not betting:
+	if (not betting) or (not $StartDelay.is_stopped()):
 		return
 	
 	if isReady.keys().filter(func (id : int): return isReady[id]).size() == isReady.keys().size():

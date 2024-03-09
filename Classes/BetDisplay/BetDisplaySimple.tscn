@@ -220,4 +220,8 @@ skeleton = NodePath("")
 [node name="AIBetController" type="Node" parent="."]
 script = ExtResource("13_o215p")
 
+[node name="StartDelay" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [editable path="Slotmachine"]

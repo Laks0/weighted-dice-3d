@@ -378,7 +378,7 @@ font = ExtResource("2_atg18")
 font_size = 127
 
 [node name="6" type="Label3D" parent="Numbers"]
-transform = Transform3D(-4.7388e-07, -0.951542, -0.307523, -1, 3.87955e-07, 3.40544e-07, -2.04736e-07, 0.307523, -0.951543, -0.264128, 2.22745e-07, -0.921091)
+transform = Transform3D(-4.7388e-07, -0.951542, -0.307523, -1, 3.87955e-07, 3.40544e-07, -2.04736e-07, 0.307523, -0.951543, -0.262862, 2.22807e-07, -0.924987)
 shaded = true
 render_priority = 2
 outline_render_priority = 1
@@ -388,7 +388,7 @@ font = ExtResource("2_atg18")
 font_size = 127
 
 [node name="5" type="Label3D" parent="Numbers"]
-transform = Transform3D(-4.73837e-07, -0.950571, 0.310511, -1, 5.22377e-07, 7.31643e-08, -2.31751e-07, -0.310511, -0.950571, 0.327868, 1.61543e-08, -0.897725)
+transform = Transform3D(-4.73837e-07, -0.950571, 0.310511, -1, 5.22377e-07, 7.31643e-08, -2.31751e-07, -0.310511, -0.950571, 0.3304, 1.62784e-08, -0.905517)
 shaded = true
 render_priority = 2
 outline_render_priority = 1
@@ -398,7 +398,7 @@ font = ExtResource("2_atg18")
 font_size = 127
 
 [node name="4" type="Label3D" parent="Numbers"]
-transform = Transform3D(-4.57924e-07, -0.586515, 0.809941, -1, 4.73965e-07, -2.22161e-07, -2.53582e-07, -0.809941, -0.586515, 0.792492, -1.95774e-07, -0.532539)
+transform = Transform3D(-4.57924e-07, -0.586515, 0.809941, -1, 4.73965e-07, -2.22161e-07, -2.53582e-07, -0.809941, -0.586515, 0.793758, -1.95712e-07, -0.536435)
 shaded = true
 render_priority = 2
 outline_render_priority = 1
@@ -408,7 +408,7 @@ font = ExtResource("2_atg18")
 font_size = 127
 
 [node name="3" type="Label3D" parent="Numbers"]
-transform = Transform3D(-4.32218e-07, 0.00156984, 1, -1, 2.61211e-07, -4.32629e-07, -2.6189e-07, -1, 0.00156993, 0.954772, -3.36379e-07, 0.0430594)
+transform = Transform3D(-4.32218e-07, 0.00156984, 1, -1, 2.61211e-07, -4.32629e-07, -2.6189e-07, -1, 0.00156993, 0.962564, -3.37648e-07, 0.0455911)
 shaded = true
 render_priority = 2
 outline_render_priority = 1
@@ -418,7 +418,7 @@ font = ExtResource("2_atg18")
 font_size = 127
 
 [node name="2" type="Label3D" parent="Numbers"]
-transform = Transform3D(-4.06538e-07, 0.589055, 0.808094, -1, -3.46204e-08, -4.77847e-07, -2.53501e-07, -0.808094, 0.589056, 0.752765, -4.66901e-07, 0.582387)
+transform = Transform3D(-4.06538e-07, 0.589055, 0.808094, -1, -3.46204e-08, -4.77847e-07, -2.53501e-07, -0.808094, 0.589056, 0.760557, -4.6817e-07, 0.584919)
 shaded = true
 render_priority = 2
 outline_render_priority = 1

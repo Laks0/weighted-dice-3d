@@ -75,7 +75,6 @@ func startArena():
 	await get_tree().create_timer(2).timeout
 	SoundtrackHandler.playTrack(1)
 	
-	$ChipHolder.visible = false
 	betting = false
 	
 	die = dieScene.instantiate()

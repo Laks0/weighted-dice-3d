@@ -17,6 +17,7 @@ func _ready():
 		playerPile.playerIdDisplay = player.id
 		playerPile.position = $PilePositions.get_children()[i].position
 		playerPile.scale = Vector3.ONE * 1.3
+		playerPile.setLabelVisibility(false)
 		add_child(playerPile)
 		
 		piles[player.id] = playerPile
@@ -68,6 +69,7 @@ func sendMonigotesToArena(arena : Arena):
 		m.resetMovement()
 		jumpMonigoteTo(m, Vector3(m.position.x, Globals.SPRITE_HEIGHT, 1))
 	ownedMonigotes.clear()
+	visible = false
 
 func createMonigotes():
 	ownedMonigotes = PlayerHandler.instantiatePlayers()
@@ -79,6 +81,11 @@ func createMonigotes():
 func _process(_delta):
 	for mon in ownedMonigotes:
 		mon.position = getPositionForMonigote(mon.player.id)
+	
+	# Si tiene monigotes, muestra los valores de las fichas. No es lo más elegante pero anda
+	if ownedMonigotes.size() > 0:
+		for pile in piles.values():
+			pile.setLabelVisibility(true)
 
 func startLeaderboardAnimation(winnerId):
 	var timeBetweenSteps := 1.3
@@ -93,7 +100,7 @@ func startLeaderboardAnimation(winnerId):
 		$RoundNumber.modulate = Color.WHITE
 		$RoundNumber.text = "Round " + str(BetHandler.round) + "/" + str(BetHandler.roundAmount)
 	else:
-		$RoundNumber.text = "GAME ENDED"
+		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
 
 	await get_tree().create_timer(1).timeout
