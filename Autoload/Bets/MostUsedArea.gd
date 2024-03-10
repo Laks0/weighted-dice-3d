@@ -2,6 +2,7 @@ extends Bet
 class_name MostUsedAreaBet
 
 var areaUse : Node3D
+var livingPlayers : Array[PlayerHandler.Player] # Los jugadores que participan de la ronda
 
 func _init():
 	betType = BetType.CUSTOM
@@ -9,6 +10,9 @@ func _init():
 	_scoreOrder = Order.ASCENDING
 
 enum ArenaSide {TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT}
+
+func startRound():
+	livingPlayers = PlayerHandler.getPlayersAlive()
 
 func startGame(arena : Arena):
 	areaUse = load("res://Assets/Bets/AreaUse.tscn").instantiate()
@@ -18,9 +22,9 @@ func startGame(arena : Arena):
 
 # Mientras más apuestan, menos vale. Si apuesta la mitad + 1 no vale nada
 func getCandidateOdds(candidate: ArenaSide) -> int:
-	var totalPlayers: int = PlayerHandler.getPlayersAlive().size()
+	var totalPlayers = livingPlayers.size()
 	var bettingPlayers: int = 0
-	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
+	for player : PlayerHandler.Player in livingPlayers:
 		if player.getAmountBettedOn(candidate) > 0:
 			bettingPlayers += 1
 	return max(1, totalPlayers/2 - bettingPlayers + 2)

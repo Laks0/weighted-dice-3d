@@ -8,17 +8,12 @@ var tomb : Node3D
 func _init():
 	betName = "Second to die"
 	betType = BetType.EXCLUDE_SELF
+	_prizeOnFirst = true
 	
 	_result = 0
 
 func hasWon(candidate : int) -> bool:
 	return candidate == _result
-
-func getCandidateOdds(candidate) -> int:
-	var maxBank = PlayerHandler.getPlayersInOrder()[0].bank
-	if PlayerHandler.getPlayerById(candidate).bank == maxBank:
-		return 3
-	return 2
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

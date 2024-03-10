@@ -33,6 +33,9 @@ var betName : String
 ## Orden de preferencia de los resultados de getScores, determina cómo va a ordenar getCandidatesInOrder
 var _scoreOrder : Order = Order.NO_SCORE
 
+## Si el que va primero devuelve triple y el resto doble
+var _prizeOnFirst := false
+
 enum MonigoteSignal {
 	CROWN,
 	JOKER_HAT,
@@ -40,9 +43,12 @@ enum MonigoteSignal {
 }
 var monigoteSignal : MonigoteSignal = MonigoteSignal.NONE
 
+## Para determinar las apuestas con prizeOnFirst
+var _maxBank : int = 0
+
 ## Se llama al principio de la ronda
 func startRound():
-	pass
+	_maxBank = PlayerHandler.getPlayersInOrder()[0].bank
 
 ## Se llama al final del ready de la arena
 func startGame(arena : Arena):
@@ -64,7 +70,11 @@ func settle():
 func hasWon(candidate) -> bool:
 	return _result.has(candidate)
 
-func getCandidateOdds(_candidate) -> int:
+
+
+func getCandidateOdds(candidate) -> int:
+	if _prizeOnFirst and PlayerHandler.getPlayerById(candidate).bank == _maxBank:
+		return 3
 	return 2
 
 ## Determina si un jugador puede apostar a un candidato, se puede reescribir

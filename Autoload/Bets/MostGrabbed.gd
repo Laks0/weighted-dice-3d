@@ -6,6 +6,7 @@ func _init():
 	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
 	monigoteSignal = MonigoteSignal.JOKER_HAT
+	_prizeOnFirst = true
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():
@@ -15,9 +16,3 @@ func startGame(arena : Arena):
 						_scores[body.player.id] += 1)
 	
 	super(arena)
-
-func getCandidateOdds(candidate) -> int:
-	var maxBank = PlayerHandler.getPlayersInOrder()[0].bank
-	if PlayerHandler.getPlayerById(candidate).bank == maxBank:
-		return 3
-	return 2
