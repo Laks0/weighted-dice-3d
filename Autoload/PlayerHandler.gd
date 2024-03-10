@@ -48,7 +48,7 @@ class Player:
 var players : Array[Player] = []
 var MAX_PLAYERS = 6
 
-func createPlayer(controller : int, id : int, _name : String):
+func createPlayer(controller : int, id : int, _name : String = ""):
 	if len(players) >= MAX_PLAYERS:
 		return
 
@@ -144,3 +144,16 @@ var skinColors = {
 
 func getSkinColor(skin : Skins) -> Color:
 	return skinColors[skin]
+
+func createDebugPlayers(amount : int) -> void:
+	var skins = Skins.values()
+	for i in range(amount):
+		var skin = skins.pick_random()
+		skins.erase(skin)
+		var controller = Controllers.AI
+		if i == 0:
+			controller = Controllers.KB
+		elif i == 1:
+			controller = Controllers.KB2
+		
+		createPlayer(controller, skin)

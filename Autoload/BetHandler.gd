@@ -36,6 +36,11 @@ func startGame(arena : Arena):
 func startRound() -> void:
 	round += 1
 	
+	if DebugVars.onlyBet != null:
+		currentBet = DebugVars.onlyBet
+		currentBet.startRound()
+		return
+	
 	# Si se reelige la misma apuesta que antes hay solo un 5% de chances de dejarla
 	while currentBet == _lastBet:
 		currentBet = bets.pick_random()

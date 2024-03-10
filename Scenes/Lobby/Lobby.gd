@@ -7,6 +7,9 @@ signal startBetting
 @export var maxLobbyTime := 50.0
 
 func _ready():
+	if DebugVars.straigtToArena:
+		maxLobbyTime = 0
+	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
 	
 	var monigotes := PlayerHandler.instantiatePlayers()

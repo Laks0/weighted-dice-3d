@@ -95,4 +95,38 @@ grow_vertical = 2
 scale = Vector2(0.130367, 0.130367)
 texture = ExtResource("6_cofel")
 
+[node name="DebugVars" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="StraightToArena" type="CheckBox" parent="DebugVars"]
+layout_mode = 2
+text = "Directo a la arena"
+
+[node name="SkipCards" type="CheckBox" parent="DebugVars"]
+layout_mode = 2
+text = "Saltearse anim. cartas"
+
+[node name="PlayerN" type="SpinBox" parent="DebugVars"]
+layout_mode = 2
+min_value = 1.0
+max_value = 6.0
+value = 1.0
+rounded = true
+prefix = "Jugadores:"
+
+[node name="OnlyBet" type="OptionButton" parent="DebugVars"]
+layout_mode = 2
+item_count = 1
+selected = 0
+allow_reselect = true
+popup/item_0/text = "Todas las apuestas"
+popup/item_0/id = 100
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

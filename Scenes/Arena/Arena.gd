@@ -59,7 +59,7 @@ func startArena():
 	
 	%MultipleResCamera.startGameAnimation()
 	
-	if BetHandler.round == 1:
+	if BetHandler.round == 1 and not DebugVars.skipCardAnimation:
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
 		add_child(cardAnimation)
