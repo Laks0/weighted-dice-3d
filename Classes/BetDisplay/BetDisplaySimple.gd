@@ -110,6 +110,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
 			if selected[player.id] != 0:
 				SfxHandler.playSound("pointerMove")
+			else: SfxHandler.playSound("pointerCantMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft-1
 			elif selected[player.id] == candidatesOnLeft:
@@ -122,6 +123,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed(playerActions["right"]) and not isReady[player.id]:
 			if selected[player.id] != piles.size()-1:
 				SfxHandler.playSound("pointerMove")
+			else: SfxHandler.playSound("pointerCantMove")
 			if selected[player.id] == -1:
 				selected[player.id] = candidatesOnLeft
 			elif selected[player.id] == candidatesOnLeft-1:
