@@ -1,11 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=14 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_o0boa"]
-[ext_resource type="PackedScene" uid="uid://phhlbau5wrbq" path="res://Classes/SlotWheel/SlotWheel.tscn" id="3_hdkg5"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="3_sgvmr"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="4_3uqyb"]
+[ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScene3d.gd" id="6_2b0u8"]
+[ext_resource type="PackedScene" uid="uid://c66esfi8xr0k2" path="res://Scenes/CharacterScreen/RigidBall.tscn" id="6_j45k1"]
+[ext_resource type="PackedScene" uid="uid://blflcpxr0336c" path="res://Scenes/CharacterScreen/Gacha.glb" id="6_jruqi"]
+[ext_resource type="Texture2D" uid="uid://det4xf1efg0s0" path="res://Scenes/CharacterScreen/Gacha_Image_0.png" id="7_auogy"]
+[ext_resource type="Texture2D" uid="uid://x3gdoknllcg2" path="res://Scenes/CharacterScreen/Gacha_Image_1.png" id="8_88s8u"]
+[ext_resource type="Texture2D" uid="uid://bxd4g0qww21b2" path="res://Scenes/CharacterScreen/Gacha_Image_2.png" id="9_py5a4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y7ii"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb0iq"]
+resource_name = "Glass"
+render_priority = 1
+transparency = 4
+albedo_texture = ExtResource("7_auogy")
+metallic = 1.0
+metallic_texture = ExtResource("8_88s8u")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("8_88s8u")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("9_py5a4")
+ao_enabled = true
+ao_texture = ExtResource("8_88s8u")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjegc"]
+size = Vector3(2.1792, 2.67761, 1)
 
 [node name="CharacterScreen" type="Control"]
 layout_mode = 3
@@ -17,8 +41,6 @@ grow_vertical = 2
 theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
 characterSettingScene = ExtResource("1_8jvhf")
-wheelScene = ExtResource("3_hdkg5")
-font = ExtResource("4_3uqyb")
 
 [node name="Viewport3D" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -35,15 +57,133 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Viewport3D/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.2855)
+[node name="Scene3D" type="Node3D" parent="Viewport3D/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.42514)
+script = ExtResource("6_2b0u8")
+rigidBall = ExtResource("6_j45k1")
+
+[node name="MonigoteBallPosition" type="Marker3D" parent="Viewport3D/SubViewport/Scene3D"]
+transform = Transform3D(0.089878, -0.338842, 0.111815, -0.321065, -0.127107, -0.127107, 0.155673, -0.0665178, -0.326705, 1.53034, -1.29941, -9.35063)
+
+[node name="Gacha" parent="Viewport3D/SubViewport/Scene3D" instance=ExtResource("6_jruqi")]
+transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 0, -2.57502, -10.4574)
+
+[node name="PelotaMonigote" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="0"]
+transform = Transform3D(0.364809, -0.03398, -0.03398, 0.0480551, 0.257959, 0.257959, -1.64491e-08, -0.260187, 0.260187, -0.315369, 1.27561, 0.77193)
+surface_material_override/0 = SubResource("StandardMaterial3D_8y7ii")
+
+[node name="Light_001" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="1"]
+transform = Transform3D(-0.290865, -0.771101, 0.566393, -0.0551891, 0.604525, 0.794672, -0.955171, 0.199883, -0.218391, -1.54621, 1.61966, 0.948608)
+light_energy = 0.785
+omni_range = 2.13
+
+[node name="Vidrio" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rb0iq")
+
+[node name="LuzGacha2" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="4"]
+transform = Transform3D(-0.290865, -0.771101, 0.566393, -0.0551891, 0.604525, 0.794672, -0.955171, 0.199883, -0.218391, -1.57985, 3.74917, 1.07448)
+light_energy = 4.04
+omni_range = 2.13
+
+[node name="LuzGacha1" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="5"]
+transform = Transform3D(-0.290865, -0.771101, 0.566393, -0.0551891, 0.604525, 0.794672, -0.955171, 0.199883, -0.218391, -1.57985, 3.74917, -0.930291)
+light_energy = 4.04
+omni_range = 2.13
+
+[node name="Manija" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="6"]
+transform = Transform3D(-1.54894e-08, 0.0629369, -1.54894e-08, 0, -2.75106e-09, -0.354356, -0.354356, -2.75106e-09, 6.77063e-16, -2.025, 1.53591, -0.946912)
+
+[node name="Moneda" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="7"]
+transform = Transform3D(0, 0.0163474, 0, -0.208014, 0, 0, 0, 0, 0.208014, -1.94403, 9.53364, -0.948904)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Viewport3D/SubViewport/Scene3D/Gacha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37776, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Viewport3D/SubViewport/Scene3D/Gacha/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46335, 0, 0)
+depth = 3.215
+polygon = PackedVector2Array(-0.200617, 1.1485, -0.498765, 1.48316, -1.50882, -0.0623448, -0.469434, -0.932643, 0.893219, -0.804895, 1.16291, -0.00291711, 0.808053, 1.33135, 0.0946107, 1.67295, 0.201068, 1.20454, 0.463662, 0.991621, 0.697868, 0.480627, 0.719159, -0.257476, 0.283921, -0.657947, 0.0142293, -0.622461, -0.163199, -0.60117, -0.361919, -0.437935, -0.532251, -0.0617865, -0.567737, 0.356945, -0.503862, 0.690511)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Viewport3D/SubViewport/Scene3D/Gacha/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72122, 0.355042, -1.95263)
+shape = SubResource("BoxShape3D_wjegc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Viewport3D/SubViewport/Scene3D/Gacha/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72122, 0.355042, 1.9904)
+shape = SubResource("BoxShape3D_wjegc")
+
+[node name="Hole" type="Marker3D" parent="Viewport3D/SubViewport/Scene3D/Gacha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582151, 2.76172, 0.200257)
+
+[node name="RigidBalls" type="Node3D" parent="Viewport3D/SubViewport/Scene3D"]
+
+[node name="RigidBall" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978568, 1.02178, -9.88581)
+
+[node name="RigidBall2" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61744, 1.02178, -9.88581)
+
+[node name="RigidBall17" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61744, 1.02178, -9.51764)
+
+[node name="RigidBall18" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34804, 1.57357, -9.52337)
+
+[node name="RigidBall3" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61744, 1.61731, -9.88581)
+
+[node name="RigidBall4" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205538, 1.61731, -9.37762)
+
+[node name="RigidBall5" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205538, 0.869535, -9.37762)
+
+[node name="RigidBall6" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.419217, 0.869535, -9.55639)
+
+[node name="RigidBall7" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.419217, 1.51267, -9.55639)
+
+[node name="RigidBall9" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01237, 0.63641, -9.55639)
+
+[node name="RigidBall15" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01237, 1.16835, -9.18552)
+
+[node name="RigidBall16" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01237, 0.755079, -9.18552)
+
+[node name="RigidBall10" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01237, 1.48047, -9.44028)
+
+[node name="RigidBall13" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.260729, 1.48047, -9.07577)
+
+[node name="RigidBall11" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480051, 0.522427, -9.06317)
+
+[node name="RigidBall19" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00631, 0.755079, -9.07321)
+
+[node name="RigidBall12" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00631, 1.48047, -9.32797)
+
+[node name="RigidBall14" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.489847, 1.48047, -8.96346)
+
+[node name="RigidBall20" parent="Viewport3D/SubViewport/Scene3D/RigidBalls" instance=ExtResource("6_j45k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.486103, 0.522427, -8.95086)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Viewport3D/SubViewport/Scene3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.7106)
 layers = 3
 light_energy = 16.0
 spot_range = 36.2734
 
-[node name="MultipleResCamera" parent="Viewport3D/SubViewport" instance=ExtResource("3_sgvmr")]
+[node name="MultipleResCamera" parent="Viewport3D/SubViewport/Scene3D" instance=ExtResource("3_sgvmr")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.2064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.6315)
 cull_mask = 1048575
 fov = 12.9
 
@@ -56,7 +196,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-columns = 3
+theme_override_constants/h_separation = 1000
+theme_override_constants/v_separation = 255
+columns = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -69,3 +211,5 @@ offset_right = 196.0
 offset_bottom = 200.0
 grow_horizontal = 2
 text = "Enter / AltGr / Xbox A / PS X para agregar jugadores"
+
+[editable path="Viewport3D/SubViewport/Scene3D/Gacha"]

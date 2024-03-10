@@ -11,6 +11,11 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_5if0m")
 
+[node name="Separator" type="Container" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
 [node name="ControllerLabel" type="Label" parent="."]
 layout_mode = 2
 text = "Controller"

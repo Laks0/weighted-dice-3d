@@ -19,18 +19,7 @@ class Player:
 		inputController = _inputController
 		id = _id
 
-		if id == Skins.RED:
-			color = Color(1,0,0)
-		elif id == Skins.BLUE:
-			color = Color(.1,.1,1)
-		elif id == Skins.YELLOW:
-			color = Color(1,1,0)
-		elif id == Skins.GREEN:
-			color = Color(0,.7,.3)
-		elif id == Skins.PURPLE:
-			color = Color(0.5,.25,.5)
-		elif id == Skins.ORANGE:
-			color = Color(1,.5,.3)
+		color = PlayerHandler.getSkinColor(id)
 		
 		if name == "":
 			name = PlayerHandler.getSkinName(id)
@@ -143,3 +132,15 @@ func getSkinName(skin : Skins) -> String:
 		Skins.ORANGE: return "Male"
 		Skins.PURPLE: return "Marta"
 	return ""
+
+var skinColors = {
+	Skins.RED: Color(1,0,0),
+	Skins.BLUE: Color(.1,.1,1),
+	Skins.YELLOW: Color(1,1,0),
+	Skins.GREEN: Color(0,.7,.3),
+	Skins.ORANGE: Color(1,.5,.3),
+	Skins.PURPLE: Color(0.5,.25,.5)
+}
+
+func getSkinColor(skin : Skins) -> Color:
+	return skinColors[skin]

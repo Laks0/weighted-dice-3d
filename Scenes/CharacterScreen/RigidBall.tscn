@@ -1,0 +1,52 @@
+[gd_scene load_steps=13 format=3 uid="uid://c66esfi8xr0k2"]
+
+[ext_resource type="Script" path="res://Scenes/CharacterScreen/RigidBall.gd" id="1_2gvo7"]
+[ext_resource type="PackedScene" uid="uid://ccqu0sum0ar4c" path="res://Scenes/CharacterScreen/Pelotita.glb" id="1_xbrlg"]
+[ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_delqi"]
+[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_qnxay"]
+[ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="4_4os5j"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="4_ej5l2"]
+[ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="5_37qv1"]
+[ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="6_q12v5"]
+[ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="7_se2sa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_llj4f"]
+bounce = 0.55
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rihc"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_crh0o"]
+radius = 0.311671
+
+[node name="RigidBall" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_llj4f")
+script = ExtResource("1_2gvo7")
+monigoteTextures = Array[Texture]([ExtResource("2_delqi"), ExtResource("3_qnxay"), ExtResource("4_4os5j"), ExtResource("5_37qv1"), ExtResource("6_q12v5"), ExtResource("7_se2sa")])
+
+[node name="Pelotita" parent="." instance=ExtResource("1_xbrlg")]
+transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 0, 0, 0)
+
+[node name="PelotaGacha_001" parent="Pelotita" index="1"]
+material_override = SubResource("StandardMaterial3D_6rihc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_crh0o")
+
+[node name="MonigoteSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.32, 0, 0, 0, 0.32, 0, 0, 0, 0.32, 0, 0.299379, 0)
+visible = false
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("3_qnxay")
+
+[node name="PlayerName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709544, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(0, 0, 1, 1)
+text = "FRAN"
+font = ExtResource("4_ej5l2")
+
+[editable path="Pelotita"]

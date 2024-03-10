@@ -2,73 +2,36 @@ extends Control
 
 @export var characterSettingScene : PackedScene
 
-@export var wheelScene : PackedScene
-@export var wheelSpaceWidth := 7.4
-## El tiempo que tarda en dar una rotación las ruedas
-@export var wheelRotationTime = .5
-@export var font : Font
-
 func _ready():
 	randomize()
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 
-func _createPlayers():
+
+func _startGame():
+	$Label.queue_free()
+	
+	# Animaciones de cada jugador
 	var allSkins = PlayerHandler.Skins.values()
 	for c in $Settings.get_children():
 		var skin = allSkins.pick_random()
 		allSkins.erase(skin)
 		PlayerHandler.createPlayer(c.controller, skin, c.playerName)
-		c.queue_free()
-
-func _startGame():
-	_createPlayers()
-	$Label.queue_free()
+		
+		%Scene3D.chooseMonigote(skin, c.global_position + c.size/2)
+		await %Scene3D.finishedAnimation
 	
-	var players = PlayerHandler.getPlayersAlive()
-	var spaceBetweenWheels = wheelSpaceWidth / (players.size() + 1)
-	for i in range(players.size()):
-		var player := PlayerHandler.getPlayerByIndex(i)
-		var wheel : SlotWheel = wheelScene.instantiate()
-		wheel.imageOnFaces = SlotWheel.Faces.SKINS
-		wheel.position.x = -wheelSpaceWidth/2 + (i+1) * spaceBetweenWheels
-		%SubViewport.add_child(wheel)
-		wheel.showFace(player.id, i + 4, wheelRotationTime * (i+4))
-		
-		var playerNameLabel := Label3D.new()
-		playerNameLabel.font = font
-		playerNameLabel.render_priority = 2
-		playerNameLabel.outline_render_priority = 1
-		playerNameLabel.text = player.name
-		playerNameLabel.position.y = -1
-		playerNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		playerNameLabel.position.x = wheel.position.x
-		add_child(playerNameLabel)
-		
-		var monigoteNameLabel := Label3D.new()
-		monigoteNameLabel.render_priority = 2
-		monigoteNameLabel.outline_render_priority = 1
-		monigoteNameLabel.font = font
-		monigoteNameLabel.position.y = 1
-		monigoteNameLabel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		monigoteNameLabel.modulate = player.color
-		monigoteNameLabel.position.x = wheel.position.x
-		add_child(monigoteNameLabel)
-		
-		wheel.showAnimationFinished.connect(func ():
-			monigoteNameLabel.text = PlayerHandler.getSkinName(player.id)
-			
-			if i == players.size() - 1:
-				await get_tree().create_timer(2).timeout
-				get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn"))
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
 
 func _process(_delta):
-	var playersReady = $Settings.get_children()\
-		.filter(func (selector : CharacterSetting): return selector.playerReady)\
-		.size()
+	var allPlayersReady : bool = $Settings.get_children().all(func (selector): 
+		return selector.playerReady)
 	
-	if playersReady == $Settings.get_child_count() and $Settings.get_child_count() > 0:
+	if allPlayersReady and $Settings.get_child_count() > 0:
 		_startGame()
+		for setting in $Settings.get_children():
+			setting.allReady()
 
 func _addPlayerSetting(device : int):
 	SfxHandler.playSound("controllerLogin")

@@ -25,3 +25,17 @@ func _on_ready_pressed():
 
 func _on_cancel_pressed():
 	queue_free()
+
+## Se llama cuando todos los jugadores están ready y no hay vuelta atrás
+func allReady():
+	$TextEdit.visible = false
+	$Cancel.visible = false
+	$Ready.visible = false
+	$Separator.visible = true
+	playerReady = false
+	
+	if playerName != "":
+		$ControllerLabel.text = playerName
+	
+	modulate = Color.WHITE
+	set_process(false)
