@@ -27,5 +27,4 @@ font_size = 57
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_65flo")
-volume_db = 6.0
-bus = &"SFX"
+volume_db = 7.0

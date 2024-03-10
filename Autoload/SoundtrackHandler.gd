@@ -6,7 +6,7 @@ var currentClip : int = 0
 var currentTrack : int
 
 var setList : Dictionary = {
-	"Modales Monigotes" :  ["res://Assets/OST/Modales Monigotes - Intro.mp3", "res://Assets/OST/Modales Monigotes - Loop.mp3"],
+	"Modales Monigotes" :  ["res://Assets/OST/Modales Monigotes.mp3"],
 	"Do You Like Kazz" : ["res://Assets/OST/Do You Like Kazz - Intro.mp3", "res://Assets/OST/Do You Like Kazz - Loop.mp3"]
 }
 # Called when the node enters the scene tree for the first time.

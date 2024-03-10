@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://diov22a08a645"
+uid="uid://c6iiuu5aiw67u"
 path="res://.godot/imported/Do You Like Kazz - Loop.mp3-3a0a2aa9ef4c639f05eeb889efdfa2c0.mp3str"
 
 [deps]
@@ -16,4 +16,4 @@ loop=true
 loop_offset=0.0
 bpm=100.0
 beat_count=0
-bar_beats=4
+bar_beats=2
