@@ -11,7 +11,7 @@ var sounds : Dictionary = {
 	"readyCancel" : preload("res://Assets/SFX/pointerCancel.wav"),
 	"displayReady" : preload("res://Assets/SFX/displayReady.wav"),
 }
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	bus = "SFX"
 
@@ -19,7 +19,3 @@ func playSound(sound : String):
 	if sound in sounds:
 		stream = sounds[sound]
 	play()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

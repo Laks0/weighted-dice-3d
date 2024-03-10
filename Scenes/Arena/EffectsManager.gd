@@ -10,7 +10,7 @@ func pickEffects():
 		remove_child(c)
 		c.queue_free()
 	
-	var pickedEffects : Array[PackedScene]
+	var pickedEffects : Array[PackedScene] = []
 	for _i in range(5):
 		var pickedEffect : PackedScene = regularEffects.pick_random()
 		while pickedEffects.has(pickedEffect):
