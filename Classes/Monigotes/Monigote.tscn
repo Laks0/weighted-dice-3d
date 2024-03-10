@@ -64,11 +64,9 @@ script = ExtResource("1_kvmu2")
 scoreParticle = ExtResource("2_qu674")
 MAX_SPEED = 6.0
 ACCELERATION = 50.0
-GRABBING_SPEED_FACTOR = null
 MOVEMENTS_TO_ESCAPE_GRAB = 10
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
-invincibleAfterPushTime = null
 skins = {
 "Blue": ExtResource("3_3t8bt"),
 "Green": ExtResource("4_nq8eh"),
@@ -77,12 +75,8 @@ skins = {
 "Red": ExtResource("5_xljsg"),
 "Yellow": ExtResource("6_2h8rt")
 }
-maxGrabTime = null
-grabDistance = null
-maxPushForce = 35.0
-failedPushFactor = null
+maxPushForce = 25.0
 customMovement = true
-affectedByGravity = null
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
 unique_name_in_owner = true
