@@ -31,48 +31,48 @@ void fragment() {
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
 	
 //	Shadows
-	float mean_depth_diff = 0.0;
-	for (int i = 0; i < 5; i++) {
-		vec2 screen_pos = pixelated_uv;
-		switch (i) {
-			case 0:
-				screen_pos += e;
-				break;
-			case 1:
-				screen_pos -= e;
-				break;
-			case 2:
-				screen_pos += vec2(.0, e.y);
-				break;
-			case 3:
-				screen_pos += vec2(e.x, .0);
-				break;
-		}
-		
-		float depth_diff = 0.0;
-		float neg_depth_diff = .5;
-		float depth = getDepth(screen_pos, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float du = getDepth(screen_pos+vec2(0., -1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dr = getDepth(screen_pos+vec2(1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dd = getDepth(screen_pos+vec2(0., 1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		float dl = getDepth(screen_pos+vec2(-1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
-		depth_diff += clamp(du - depth, 0., 1.);
-		depth_diff += clamp(dd - depth, 0., 1.);
-		depth_diff += clamp(dr - depth, 0., 1.);
-		depth_diff += clamp(dl - depth, 0., 1.);
-		neg_depth_diff += depth - du;
-		neg_depth_diff += depth - dd;
-		neg_depth_diff += depth - dr;
-		neg_depth_diff += depth - dl;
-		neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
-		neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff)*10., 0., 1.);
-		depth_diff = smoothstep(0.2, 0.3, depth_diff);
-		
-		mean_depth_diff += depth_diff;
-	}
-	//mean_depth_diff /= 2.;
-	
-	vec3 shadow_final_color = mix(ALBEDO, shadow_color, shadow_strength);
-	
-	ALBEDO = mix(ALBEDO, shadow_final_color, mean_depth_diff);
+	//float mean_depth_diff = 0.0;
+	//for (int i = 0; i < 5; i++) {
+		//vec2 screen_pos = pixelated_uv;
+		//switch (i) {
+			//case 0:
+				//screen_pos += e;
+				//break;
+			//case 1:
+				//screen_pos -= e;
+				//break;
+			//case 2:
+				//screen_pos += vec2(.0, e.y);
+				//break;
+			//case 3:
+				//screen_pos += vec2(e.x, .0);
+				//break;
+		//}
+		//
+		//float depth_diff = 0.0;
+		//float neg_depth_diff = .5;
+		//float depth = getDepth(screen_pos, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+		//float du = getDepth(screen_pos+vec2(0., -1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+		//float dr = getDepth(screen_pos+vec2(1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+		//float dd = getDepth(screen_pos+vec2(0., 1.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+		//float dl = getDepth(screen_pos+vec2(-1., 0.)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
+		//depth_diff += clamp(du - depth, 0., 1.);
+		//depth_diff += clamp(dd - depth, 0., 1.);
+		//depth_diff += clamp(dr - depth, 0., 1.);
+		//depth_diff += clamp(dl - depth, 0., 1.);
+		//neg_depth_diff += depth - du;
+		//neg_depth_diff += depth - dd;
+		//neg_depth_diff += depth - dr;
+		//neg_depth_diff += depth - dl;
+		//neg_depth_diff = clamp(neg_depth_diff, 0., 1.);
+		//neg_depth_diff = clamp(smoothstep(0.5, 0.5, neg_depth_diff)*10., 0., 1.);
+		//depth_diff = smoothstep(0.2, 0.3, depth_diff);
+		//
+		//mean_depth_diff += depth_diff;
+	//}
+	////mean_depth_diff /= 2.;
+	//
+	//vec3 shadow_final_color = mix(ALBEDO, shadow_color, shadow_strength);
+	//
+	//ALBEDO = mix(ALBEDO, shadow_final_color, mean_depth_diff);
 }

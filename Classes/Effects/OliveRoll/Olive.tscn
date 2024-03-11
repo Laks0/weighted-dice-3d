@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://8l23xyx2htpf"]
+[gd_scene load_steps=17 format=3 uid="uid://8l23xyx2htpf"]
 
 [ext_resource type="Script" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
 [ext_resource type="Texture2D" uid="uid://466i7kvr7oj7" path="res://Classes/Effects/OliveRoll/aceituna.png" id="2_8r2dk"]
 [ext_resource type="AudioStream" uid="uid://ba3m8jvebr6fg" path="res://Classes/Effects/OliveRoll/sfx_oliveshot.wav" id="3_fw7dq"]
+[ext_resource type="PackedScene" uid="uid://sdlmgjn7qmrw" path="res://Classes/Effects/OliveRoll/Aceituna.glb" id="4_wall5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7f1p1"]
 atlas = ExtResource("2_8r2dk")
@@ -69,10 +70,14 @@ animations = [{
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t7spw"]
-radius = 0.0919599
+radius = 0.253192
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e8vk1"]
-radius = 0.196796
+radius = 0.279866
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mm6rx"]
+resource_local_to_scene = true
+albedo_color = Color(0.321569, 0.458824, 0.0784314, 1)
 
 [node name="Olive" type="CharacterBody3D"]
 collision_layer = 2
@@ -82,6 +87,7 @@ maxPushForce = 35.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.681998, 0.731354, 0, -0.731354, 0.681998, 0, 0, 0)
+visible = false
 pixel_size = 0.02
 shaded = true
 texture_filter = 0
@@ -102,4 +108,12 @@ shape = SubResource("SphereShape3D_e8vk1")
 [node name="Shot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fw7dq")
 
+[node name="Aceituna" parent="." instance=ExtResource("4_wall5")]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 0, 0)
+
+[node name="Sphere" parent="Aceituna" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_mm6rx")
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Aceituna"]

@@ -205,11 +205,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -196.0
-offset_top = 176.0
-offset_right = 196.0
-offset_bottom = 200.0
+offset_left = -570.5
+offset_top = 48.0
+offset_right = 570.5
+offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 51
 text = "Enter / AltGr / Xbox A / PS X para agregar jugadores"
 
 [editable path="Viewport3D/SubViewport/Scene3D/Gacha"]

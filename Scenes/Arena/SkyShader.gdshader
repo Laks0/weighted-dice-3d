@@ -25,6 +25,6 @@ void sky() {
 	
 	COLOR = noise_texture * sky_color + sky_color * .05;
 	
-	vec3 star_texture = smoothstep(.9, 1., texture(noise, SKY_COORDS + TIME * vec2(0.0, .01)).rgb);
-	COLOR += star_texture * step(.7, texture(star_mask_noise, SKY_COORDS + TIME * .001).xyz);
+	vec3 star_texture = smoothstep(.9, 1., texture(noise, SKY_COORDS + TIME * .005).rgb);
+	COLOR += star_texture * step(.7, texture(star_mask_noise, SKY_COORDS).xyz);
 }

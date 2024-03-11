@@ -92,6 +92,8 @@ func startArena():
 	for sel in selectors.values():
 		sel.queue_free()
 	gameStarted.emit()
+	
+	$Label3D2.visible = false
 
 func _process(_delta):
 	$AIBetController.set_process(betting)

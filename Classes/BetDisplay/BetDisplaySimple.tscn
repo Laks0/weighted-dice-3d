@@ -224,4 +224,20 @@ script = ExtResource("13_o215p")
 wait_time = 0.1
 one_shot = true
 
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.498624, 0.866818, 0, -0.866818, 0.498624, 0, 1.28603, 0.481772)
+render_priority = 2
+outline_render_priority = 1
+text = "Betting on:"
+font = ExtResource("4_6lq8r")
+font_size = 47
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.498624, 0.866818, 0, -0.866818, 0.498624, 0, 0.591888, 1.58172)
+render_priority = 2
+outline_render_priority = 1
+text = "Right/left to move, grab to bet, up to cancel bet"
+font = ExtResource("4_6lq8r")
+font_size = 47
+
 [editable path="Slotmachine"]
