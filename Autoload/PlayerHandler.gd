@@ -4,6 +4,8 @@ extends Node
 
 enum Skins {RED, BLUE, YELLOW, GREEN, ORANGE, PURPLE}
 
+var isGameOnline := false
+
 class Player:
 	var id : int
 	var name : String
@@ -14,11 +16,14 @@ class Player:
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
 	
-	func _init(_name : String, _inputController :int = Controllers.KB,_id : int = Skins.RED):
+	var multiplayerId : int
+	
+	func _init(_name : String, _inputController :int = Controllers.KB,_id : int = Skins.RED, _multiplayerId : int = -1):
 		name = _name
 		inputController = _inputController
 		id = _id
-
+		multiplayerId = _multiplayerId
+		
 		color = PlayerHandler.getSkinColor(id)
 		
 		if name == "":
@@ -48,11 +53,11 @@ class Player:
 var players : Array[Player] = []
 var MAX_PLAYERS = 6
 
-func createPlayer(controller : int, id : int, _name : String = ""):
+func createPlayer(controller : int, id : int, _name : String = "", multiplayerId : int = 1):
 	if len(players) >= MAX_PLAYERS:
 		return
 
-	players.append(Player.new(_name, controller, id))
+	players.append(Player.new(_name, controller, id, multiplayerId))
 
 func instantiatePlayers() -> Array[Monigote]:
 	var monigotes : Array[Monigote] = []
@@ -122,6 +127,17 @@ func resetAllPlayers():
 	for i in range(len(players)):
 		var p : Player = players[i]
 		players[i] = Player.new(p.name, p.inputController, p.id)
+
+## Dado un diccionario de peers crea jugadores para todos los peers con una skin asignada.
+## Espera un diccionario donde las claves son la id del cliente y las definiciones tienen
+## campos "name" y "controller"
+func createAllOnlinePlayers(connectedPlayers : Dictionary):
+	var allSkins = Skins.values()
+	for id in connectedPlayers.keys():
+		var playerInfo = connectedPlayers[id]
+		var randomSkin = allSkins.pick_random()
+		allSkins.erase(randomSkin)
+		createPlayer(playerInfo["controller"], randomSkin, playerInfo["name"], id)
 
 func getSkinName(skin : Skins) -> String:
 	match skin:

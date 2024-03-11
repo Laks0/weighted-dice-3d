@@ -6,7 +6,8 @@ func _ready():
 	randomize()
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
-
+	
+	$Label.visible = not PlayerHandler.isGameOnline
 
 func _startGame():
 	$Label.queue_free()

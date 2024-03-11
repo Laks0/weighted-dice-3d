@@ -52,6 +52,15 @@ func startRound() -> void:
 	_lastBet = currentBet
 	
 	currentBet.startRound()
+	
+	if PlayerHandler.isGameOnline and multiplayer.get_unique_id() == 1:
+		_syncBet.rpc(currentBet.betName, round)
+
+@rpc("authority", "reliable")
+func _syncBet(betName : String, currentRound : int):
+	currentBet = bets.filter(func (bet : Bet): return bet.betName == betName)[0]
+	round = currentRound
+	currentBet.startRound()
 
 func getBetName() -> String:
 	return currentBet.betName

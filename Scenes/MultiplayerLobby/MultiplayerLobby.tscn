@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://di8vp0wbjb7es"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_3fs7m"]
+[ext_resource type="Script" path="res://Scenes/MultiplayerLobby/MultiplayerLobby.gd" id="1_blll3"]
+
+[node name="MultiplayerLobby" type="VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 4.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3fs7m")
+alignment = 1
+script = ExtResource("1_blll3")
+
+[node name="NameField" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Name"
+max_length = 10
+
+[node name="ControllerPick" type="OptionButton" parent="."]
+layout_mode = 2
+selected = 0
+
+[node name="JoinButton" type="Button" parent="."]
+layout_mode = 2
+text = "Join"
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 2
+text = "Host"
+
+[node name="ReadyPlayersLabel" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "Players ready: x/x"
+
+[node name="ReadyButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = "Ready"
+
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
