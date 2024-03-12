@@ -80,7 +80,7 @@ func startArena():
 	
 	betting = false
 	
-	if not PlayerHandler.isGameOnline or multiplayer.is_server():
+	if MultiplayerHandler.isAuthority():
 		die = dieScene.instantiate()
 		die.position.y = 1
 		add_child(die)
@@ -121,7 +121,10 @@ func endGame(winnerMon : Monigote):
 	
 	goToLeaderboard(winnerId)
 
-	for mon in monigotes:
+	for mon in getLivingMonigotes():
+		if not MultiplayerHandler.isAuthority():
+			break
+		
 		mon.queue_free()
 	monigotes.clear()
 
@@ -161,7 +164,7 @@ func startEffect(n : int):
 
 # Esta función queda Legacy pero sigue teniendo sentido como un getter
 func getLivingMonigotes() -> Array[Monigote]:
-	return monigotes
+	return monigotes.filter(func (mon): return is_instance_valid(mon))
 
 func getRandomMonigote() -> Monigote:
 	return monigotes[randi() % len(monigotes)]

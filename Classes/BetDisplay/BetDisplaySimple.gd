@@ -28,7 +28,7 @@ var pointerShouldMove : bool
 var betting = false
 
 func startBetting():
-	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+	if not MultiplayerHandler.isAuthority():
 		while not BetHandler.synced:
 			await get_tree().process_frame
 	
@@ -121,7 +121,7 @@ func _process(_delta):
 		else:
 			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
 		
-		if PlayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
+		if MultiplayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
 			continue
 		## Interacción
 		var playerActions = Controllers.getActions(player.inputController)

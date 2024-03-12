@@ -74,7 +74,7 @@ func playerReady(id):
 	playersConnected[id]["ready"] = true
 	
 	if playersConnected.values().all(func (info): return info["ready"]):
-		PlayerHandler.isGameOnline = true
+		MultiplayerHandler.isGameOnline = true
 		if multiplayer.is_server():
 			PlayerHandler.createAllOnlinePlayers(playersConnected)
 		get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")

@@ -100,7 +100,7 @@ func _get_property_list():
 # PUBLIC FUNCTIONS
 #
 func change_to_next_substate():
-	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+	if not MultiplayerHandler.isAuthority():
 		return
 	
 	var rand_array = []

@@ -7,7 +7,7 @@ func _on_enter(_args):
 	target.prepareArrow.visible = true
 	direction = Vector2.ZERO
 	
-	if not PlayerHandler.isGameOnline or multiplayer.is_server():
+	if MultiplayerHandler.isAuthority():
 		direction = target._getRandomMonigoteDirection()
 		_syncDirection.rpc(direction)
 	else:

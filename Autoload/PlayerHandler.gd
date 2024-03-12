@@ -6,8 +6,6 @@ signal playersSynced
 
 enum Skins {RED, BLUE, YELLOW, GREEN, ORANGE, PURPLE}
 
-var isGameOnline := false
-
 class Player:
 	var id : int
 	var name : String

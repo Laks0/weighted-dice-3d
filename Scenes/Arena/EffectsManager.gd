@@ -6,7 +6,7 @@ extends Node
 @export var specialEffects : Array[PackedScene]
 
 func pickEffects():
-	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+	if not MultiplayerHandler.isAuthority():
 		return
 	
 	for c in get_children():
@@ -27,10 +27,10 @@ func pickEffects():
 	var specialIdx = randi() % specialEffects.size()
 	add_child(specialEffects[specialIdx].instantiate())
 	
-	if PlayerHandler.isGameOnline and multiplayer.is_server():
+	if MultiplayerHandler.isAuthority():
 		_syncEffects.rpc(idxs, specialIdx)
 
-@rpc("authority", "reliable")
+@rpc("authority", "reliable", "call_remote")
 func _syncEffects(idxs : Array, specialIdx : int):
 	for c in get_children():
 		remove_child(c)

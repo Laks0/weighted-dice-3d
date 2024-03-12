@@ -162,7 +162,6 @@ _data = {
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
 dieScreenShakeMagnitude = 0.5
-dieScreenShakeTime = null
 cardShowAnimationScene = ExtResource("3_wm28h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

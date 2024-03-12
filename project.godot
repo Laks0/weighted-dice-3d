@@ -25,6 +25,7 @@ Globals="*res://Autoload/Globals.gd"
 SoundtrackHandler="*res://Autoload/SoundtrackHandler.gd"
 SfxHandler="*res://Autoload/SFXHandler.gd"
 DebugVars="*res://Autoload/DebugVars.gd"
+MultiplayerHandler="*res://Autoload/MultiplayerHandler.gd"
 
 [display]
 

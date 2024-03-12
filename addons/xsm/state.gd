@@ -530,7 +530,7 @@ func change_state_node(new_state_node: State = null, args_on_enter = null, args_
 func change_state(new_state_name: String = "", args_on_enter = null, args_after_enter = null,
 		args_before_exit = null, args_on_exit = null) -> State:
 	
-	if PlayerHandler.isGameOnline:
+	if MultiplayerHandler.isGameOnline:
 		if multiplayer.is_server():
 			change_state.rpc(new_state_name, args_on_enter, args_after_enter, args_before_exit, args_on_exit)
 		elif multiplayer.get_remote_sender_id() == 0:
@@ -544,7 +544,7 @@ func change_state(new_state_name: String = "", args_on_enter = null, args_after_
 func change_to_next( args_on_enter = null, args_after_enter = null,
 		args_before_exit = null, args_on_exit = null) -> State:
 	
-	if PlayerHandler.isGameOnline:
+	if MultiplayerHandler.isGameOnline:
 		if multiplayer.is_server():
 			change_to_next.rpc(args_on_enter, args_after_enter, args_before_exit, args_on_exit)
 		elif multiplayer.get_remote_sender_id() == 0:

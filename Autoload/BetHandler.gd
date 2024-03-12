@@ -36,7 +36,7 @@ func startGame(arena : Arena):
 
 ## Empieza la ronda de apuestas
 func startRound() -> void:
-	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+	if not MultiplayerHandler.isAuthority():
 		return
 	
 	round += 1
@@ -58,7 +58,7 @@ func startRound() -> void:
 	
 	currentBet.startRound()
 	
-	if PlayerHandler.isGameOnline:
+	if MultiplayerHandler.isGameOnline:
 		_syncBet.rpc(currentBet.betName, round)
 
 @rpc("authority", "reliable")

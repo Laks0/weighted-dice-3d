@@ -7,7 +7,7 @@ func _ready():
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 	
-	$Label.visible = not PlayerHandler.isGameOnline
+	$Label.visible = not MultiplayerHandler.isGameOnline
 
 func _startGame():
 	$Label.queue_free()

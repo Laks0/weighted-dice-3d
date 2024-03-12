@@ -82,10 +82,10 @@ func _process(_delta):
 
 	# DEBUG
 	if Input.is_action_just_pressed("die") and player.id == 0:
-		die()
+		die.rpc()
 	
 	if health == 0 and not dead:
-		die()
+		die.rpc()
 	
 	if not BetHandler.inArena:
 		return
@@ -147,7 +147,7 @@ func _physics_process(delta):
 func canControll() -> bool:
 	if player.inputController == Controllers.AI:
 		return false
-	if PlayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
+	if MultiplayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
 		return false
 	return true
 
@@ -226,12 +226,13 @@ func hurt() -> bool:
 	$Audio/YellStomp.play()
 	
 	if health <= 0:
-		die()
+		die.rpc()
 	
 	makeInvincible()
 	
 	return true
 
+@rpc("any_peer", "call_local", "reliable")
 func die():
 	if grabbing:
 		push.rpc()
