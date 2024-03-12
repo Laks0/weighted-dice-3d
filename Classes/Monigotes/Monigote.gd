@@ -77,23 +77,6 @@ func arenaReady():
 var _lastScore: float = 0
 
 func _process(_delta):
-	if Input.is_action_just_pressed(actions.grab) and $MultiplayerSynchronizer.is_multiplayer_authority():
-		for body in $GrabArea.get_overlapping_bodies():
-			if not body is Pushable or body == self:
-				continue
-			
-			var success : bool = startGrab(body)
-			if !success:
-				continue
-			
-			startGrab.rpc(body)
-			$GrabCooldown.start()
-			emit_signal("grab", body)
-			break
-	
-	if grabbing and Input.is_action_just_released(actions.grab):
-		push.rpc()
-	
 	#position.y = Globals.SPRITE_HEIGHT
 
 	# DEBUG
@@ -141,6 +124,13 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	$GrabRayCast.target_position = Vector3(_movementDir.x, 0, _movementDir.y) * .5
+	if Input.is_action_just_pressed(actions.grab) and $MultiplayerSynchronizer.is_multiplayer_authority():
+		attemptGrab.rpc()
+	
+	if grabbing and Input.is_action_just_released(actions.grab):
+		push.rpc()
+	
 	# Escape del grab
 	if grabbed:
 		if Input.is_action_just_pressed(actions["grab"]):
@@ -168,7 +158,23 @@ func canBeGrabbed(grabber) -> bool:
 func canGrab() -> bool:
 	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing)
 
-@rpc("any_peer", "reliable")
+@rpc("any_peer", "reliable", "call_local")
+func attemptGrab():
+	if not $GrabRayCast.is_colliding():
+		return
+	
+	var body = $GrabRayCast.get_collider()
+	if not body is Pushable or body == self:
+		return
+	
+	var success : bool = startGrab(body)
+	if !success:
+		return
+	
+	startGrab(body)
+	$GrabCooldown.start()
+	emit_signal("grab", body)
+
 func startGrab(body : Pushable) -> bool:
 	if not super(body):
 		return false
