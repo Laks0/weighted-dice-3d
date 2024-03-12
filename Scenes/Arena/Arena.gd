@@ -30,6 +30,10 @@ func _ready():
 
 func startNewGame():
 	$Effects.pickEffects()
+	# Si es multijugador pausa la ejecución hasta recibir los efectos
+	while $Effects.get_child_count() == 0:
+		await get_tree().process_frame
+	
 	effects = $Effects.get_children()
 	for e in effects:
 		e.create(self)
@@ -46,7 +50,6 @@ func _process(delta):
 func reparentMonigotes(arr : Array[Monigote]) -> void:
 	monigotes = arr.duplicate()
 	for mon in monigotes:
-		mon.reparent(self)
 		mon.died.connect(onMonigoteDeath.bind(mon))
 		mon.arenaReady()
 

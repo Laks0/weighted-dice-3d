@@ -27,7 +27,6 @@ max_length = 10
 
 [node name="ControllerPick" type="OptionButton" parent="."]
 layout_mode = 2
-selected = 0
 
 [node name="JoinButton" type="Button" parent="."]
 layout_mode = 2

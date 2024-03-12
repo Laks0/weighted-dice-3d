@@ -65,6 +65,7 @@ func onConnectionFailed():
 	print("Failed to connect")
 
 @rpc("any_peer", "reliable", "call_local")
+@warning_ignore("shadowed_variable")
 func registerPlayer(id, playerInfo):
 	playersConnected[id] = playerInfo
 
@@ -74,7 +75,8 @@ func playerReady(id):
 	
 	if playersConnected.values().all(func (info): return info["ready"]):
 		PlayerHandler.isGameOnline = true
-		PlayerHandler.createAllOnlinePlayers(playersConnected)
+		if multiplayer.is_server():
+			PlayerHandler.createAllOnlinePlayers(playersConnected)
 		get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
 
 func _on_host_button_pressed():

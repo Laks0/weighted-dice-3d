@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=28 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -54,6 +54,19 @@ scale_max = 0.4
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.13
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rqwct"]
+properties/0/path = NodePath(".:_movementDir")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:grabDir")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k8eqi"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -157,5 +170,12 @@ visible = false
 light_energy = 16.0
 light_size = 0.253
 omni_range = 1.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rqwct")
+
+[node name="SlowSynchronizer" type="MultiplayerSynchronizer" parent="."]
+delta_interval = 1.0
+replication_config = SubResource("SceneReplicationConfig_k8eqi")
 
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]

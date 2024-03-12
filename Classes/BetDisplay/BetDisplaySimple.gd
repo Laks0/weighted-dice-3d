@@ -28,6 +28,10 @@ var pointerShouldMove : bool
 var betting = false
 
 func startBetting():
+	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+		while not BetHandler.synced:
+			await get_tree().process_frame
+	
 	$StartDelay.start()
 	# Resetear cualquier valor viejo
 	chipHolder.reset()
@@ -105,60 +109,43 @@ func _process(_delta):
 		return
 	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
+		#Texto del selector
+		var selector = selectors[player.id]
+		
+		var selectedPile
+		var candidate
+		if selected[player.id] > -1:
+			selectedPile = piles[selected[player.id]]
+			candidate = selectedPile.candidate
+			selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
+		else:
+			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
+		
+		if PlayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
+			continue
 		## Interacción
 		var playerActions = Controllers.getActions(player.inputController)
 
 		# Movimientos
 		if Input.is_action_just_pressed(playerActions["left"]) and not isReady[player.id]:
-			if selected[player.id] != 0:
-				SfxHandler.playSound("pointerMove")
-			else: SfxHandler.playSound("pointerCantMove")
-			if selected[player.id] == -1:
-				selected[player.id] = candidatesOnLeft-1
-			elif selected[player.id] == candidatesOnLeft:
-				selected[player.id] = -1
-			else:
-				selected[player.id] = max(selected[player.id]-1, 0)
-
-			_repositionSelectors()
+			moveLeft.rpc(player.id)
 		
 		if Input.is_action_just_pressed(playerActions["right"]) and not isReady[player.id]:
-			if selected[player.id] != piles.size()-1:
-				SfxHandler.playSound("pointerMove")
-			else: SfxHandler.playSound("pointerCantMove")
-			if selected[player.id] == -1:
-				selected[player.id] = candidatesOnLeft
-			elif selected[player.id] == candidatesOnLeft-1:
-				selected[player.id] = -1
-			else:
-				selected[player.id] = min(selected[player.id]+1, piles.size()-1)
-
-			_repositionSelectors()
-		
-		var selector = selectors[player.id]
+			moveRight.rpc(player.id)
 		
 		# Ready
 		if selected[player.id] == -1:
-			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
-				isReady[player.id] = not isReady[player.id]
-				if isReady[player.id]:
-					SfxHandler.playSound("playerReady")
-				else:
-					SfxHandler.playSound("readyCancel") 
+				toggleReady.rpc(player.id)
 			continue
-		
-		var selectedPile = piles[selected[player.id]]
-		var candidate = selectedPile.candidate
-		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
 		
 		# Bajar apuesta
 		if Input.is_action_just_pressed(playerActions["up"]):
-			decreaseCandidateBet(player, candidate)
+			decreaseCandidateBet.rpc(player.id, candidate)
 		
 		# Subir apuesta
 		if Input.is_action_just_pressed(playerActions["grab"]) or Input.is_action_just_pressed(playerActions["down"]):
-			increaseCandidateBet(player, candidate)
+			increaseCandidateBet.rpc(player.id, candidate)
 
 func _repositionSelectors() -> void:
 	for i in range(-1, piles.size()):
@@ -209,7 +196,51 @@ func playerReady(playerId : int) -> void:
 		_repositionSelectors()
 	isReady[playerId] = true
 
-func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
+@rpc("any_peer", "call_local", "reliable")
+func toggleReady(playerId : int):
+	isReady[playerId] = not isReady[playerId]
+	if isReady[playerId]:
+		SfxHandler.playSound("playerReady")
+	else:
+		SfxHandler.playSound("readyCancel") 
+
+@rpc("any_peer", "call_local", "reliable")
+func moveRight(playerId : int):
+	# Sonido
+	if selected[playerId] != piles.size()-1:
+		SfxHandler.playSound("pointerMove")
+	else: 
+		SfxHandler.playSound("pointerCantMove")
+	# Movimiento
+	if selected[playerId] == -1:
+		selected[playerId] = candidatesOnLeft
+	elif selected[playerId] == candidatesOnLeft-1:
+		selected[playerId] = -1
+	else:
+		selected[playerId] = min(selected[playerId]+1, piles.size()-1)
+	
+	_repositionSelectors()
+
+@rpc("any_peer", "call_local", "reliable")
+func moveLeft(playerId : int):
+	# Sonido
+	if selected[playerId] != 0:
+		SfxHandler.playSound("pointerMove")
+	else: 
+		SfxHandler.playSound("pointerCantMove")
+	# Movimiento
+	if selected[playerId] == -1:
+		selected[playerId] = candidatesOnLeft-1
+	elif selected[playerId] == candidatesOnLeft:
+		selected[playerId] = -1
+	else:
+		selected[playerId] = max(selected[playerId]-1, 0)
+	
+	_repositionSelectors()
+
+@rpc("any_peer", "call_local", "reliable")
+func increaseCandidateBet(playerId : int, candidate : int):
+	var player := PlayerHandler.getPlayerById(playerId)
 	if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
 		return
 	SfxHandler.playSound("pointerSelect")
@@ -223,7 +254,9 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	piles[selected[player.id]].addChip(player.id)
 	_repositionSelectors()
 
-func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
+@rpc("any_peer", "call_local", "reliable")
+func decreaseCandidateBet(playerId : int, candidate : int):
+	var player := PlayerHandler.getPlayerById(playerId)
 	if player.bets[candidate] == 0:
 		return
 	SfxHandler.playSound("pointerCancel")

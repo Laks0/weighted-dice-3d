@@ -6,9 +6,14 @@ extends Node
 @export var specialEffects : Array[PackedScene]
 
 func pickEffects():
+	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+		return
+	
 	for c in get_children():
 		remove_child(c)
 		c.queue_free()
+	
+	var idxs : Array = []
 	
 	var pickedEffects : Array[PackedScene] = []
 	for _i in range(5):
@@ -17,5 +22,21 @@ func pickEffects():
 			pickedEffect = regularEffects.pick_random()
 		pickedEffects.append(pickedEffect)
 		add_child(pickedEffect.instantiate())
+		idxs.append(regularEffects.find(pickedEffect))
 	
-	add_child(specialEffects.pick_random().instantiate())
+	var specialIdx = randi() % specialEffects.size()
+	add_child(specialEffects[specialIdx].instantiate())
+	
+	if PlayerHandler.isGameOnline and multiplayer.is_server():
+		_syncEffects.rpc(idxs, specialIdx)
+
+@rpc("authority", "reliable")
+func _syncEffects(idxs : Array, specialIdx : int):
+	for c in get_children():
+		remove_child(c)
+		c.queue_free()
+	
+	for idx in idxs:
+		add_child(regularEffects[idx].instantiate())
+	add_child(specialEffects[specialIdx].instantiate())
+	pass

@@ -38,19 +38,19 @@ func reset():
 func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 	var height := 5.0
 	var jumpCurve = Curve3D.new()
-	jumpCurve.add_point(monigote.position)
+	jumpCurve.add_point(monigote.global_position)
 	jumpCurve.add_point(pos, Vector3(0,height,0))
 
 	var jumpTween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	jumpTween.tween_method(func (t):
-		monigote.position = jumpCurve.sample(0, t),
+		monigote.global_position = jumpCurve.sample(0, t),
 		0.0, 1.0, .5)
 	return jumpTween
 
 func getPositionForMonigote(playerId : int) -> Vector3:
 	var pos = piles[playerId].position
 	pos.y = piles[playerId].y
-	return pos
+	return to_global(pos)
 
 func ownMonigote(mon : Monigote) -> void:
 	if ownedMonigotes.has(mon):
@@ -58,7 +58,6 @@ func ownMonigote(mon : Monigote) -> void:
 	
 	mon.set_physics_process(false)
 	mon.set_process(false)
-	mon.reparent(self)
 
 	jumpMonigoteTo(mon, getPositionForMonigote(mon.player.id))\
 			.tween_callback(func (): ownedMonigotes.append(mon))
@@ -74,13 +73,13 @@ func sendMonigotesToArena(arena : Arena):
 func createMonigotes():
 	ownedMonigotes = PlayerHandler.instantiatePlayers()
 	for mon in ownedMonigotes:
-		add_child(mon)
+		get_parent().add_child(mon, true)
 		mon.set_process(false)
 		mon.set_physics_process(false)
 
 func _process(_delta):
 	for mon in ownedMonigotes:
-		mon.position = getPositionForMonigote(mon.player.id)
+		mon.global_position = getPositionForMonigote(mon.player.id)
 	
 	# Si tiene monigotes, muestra los valores de las fichas. No es lo más elegante pero anda
 	if ownedMonigotes.size() > 0:

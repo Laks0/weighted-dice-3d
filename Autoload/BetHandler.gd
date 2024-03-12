@@ -15,6 +15,8 @@ var roundAmount : int = 4
 
 var inArena := false
 
+var synced := false
+
 # Automáticamente usa todas las apuestas en betPath
 func _ready():
 	var betPath := "res://Autoload/Bets/"
@@ -34,6 +36,9 @@ func startGame(arena : Arena):
 
 ## Empieza la ronda de apuestas
 func startRound() -> void:
+	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+		return
+	
 	round += 1
 	
 	if DebugVars.onlyBet != null:
@@ -53,7 +58,7 @@ func startRound() -> void:
 	
 	currentBet.startRound()
 	
-	if PlayerHandler.isGameOnline and multiplayer.get_unique_id() == 1:
+	if PlayerHandler.isGameOnline:
 		_syncBet.rpc(currentBet.betName, round)
 
 @rpc("authority", "reliable")
@@ -61,6 +66,7 @@ func _syncBet(betName : String, currentRound : int):
 	currentBet = bets.filter(func (bet : Bet): return bet.betName == betName)[0]
 	round = currentRound
 	currentBet.startRound()
+	synced = true
 
 func getBetName() -> String:
 	return currentBet.betName
@@ -123,6 +129,7 @@ func settleBet(winnerId : int) -> void:
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
 	inArena = false
+	synced = false
 
 func hasWon(res) -> bool:
 	var d = currentBet.hasWon(res)

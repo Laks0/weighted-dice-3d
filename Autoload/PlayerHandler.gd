@@ -1,5 +1,7 @@
 extends Node
 
+signal playersSynced
+
 @onready var monigoteResource := preload("res://Classes/Monigotes/Monigote.tscn")
 
 enum Skins {RED, BLUE, YELLOW, GREEN, ORANGE, PURPLE}
@@ -64,7 +66,7 @@ func instantiatePlayers() -> Array[Monigote]:
 	for player in getPlayersAlive():
 		var monigote := monigoteResource.instantiate() as Monigote
 		
-		monigote.player = player
+		monigote.name = str(player.id)
 		
 		monigotes.append(monigote)
 	
@@ -130,14 +132,33 @@ func resetAllPlayers():
 
 ## Dado un diccionario de peers crea jugadores para todos los peers con una skin asignada.
 ## Espera un diccionario donde las claves son la id del cliente y las definiciones tienen
-## campos "name" y "controller"
+## campos "name" y "controller". Solo llamar esta función si ya está armado el sistema de conexión
 func createAllOnlinePlayers(connectedPlayers : Dictionary):
+	# Solo la puede llamar la autoridad
+	if not multiplayer.is_server():
+		return
+	
+	var data : Dictionary = {}
 	var allSkins = Skins.values()
 	for id in connectedPlayers.keys():
 		var playerInfo = connectedPlayers[id]
 		var randomSkin = allSkins.pick_random()
 		allSkins.erase(randomSkin)
-		createPlayer(playerInfo["controller"], randomSkin, playerInfo["name"], id)
+		data[id] = {
+			"controller": playerInfo["controller"],
+			"skin": randomSkin,
+			"name": playerInfo["name"],
+			"id": id
+		}
+	
+	_syncPlayers.rpc(data)
+
+@rpc("authority", "reliable", "call_local")
+func _syncPlayers(playersData : Dictionary):
+	deleteAllPlayers()
+	for data in playersData.values():
+		createPlayer(data["controller"], data["skin"], data["name"], data["id"])
+	playersSynced.emit()
 
 func getSkinName(skin : Skins) -> String:
 	match skin:

@@ -13,7 +13,7 @@ signal grab(body)
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
 var escapeMovements : int = 0
 
-var _movementDir : Vector2
+@export var _movementDir : Vector2
 
 @export var aiControllerScript : Script
 
@@ -35,6 +35,11 @@ var invincible  := false
 @export var skins : Dictionary
 
 var drunk := false
+
+func _enter_tree():
+	player = PlayerHandler.getPlayerById(name.to_int())
+	$MultiplayerSynchronizer.set_multiplayer_authority(player.multiplayerId)
+	$SlowSynchronizer.set_multiplayer_authority(1)
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -58,7 +63,7 @@ func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	super._ready()
-
+	
 	if player.inputController == Controllers.AI:
 		var controllerNode := Node.new()
 		controllerNode.set_script(aiControllerScript)
@@ -72,7 +77,7 @@ func arenaReady():
 var _lastScore: float = 0
 
 func _process(_delta):
-	if Input.is_action_just_pressed(actions.grab):
+	if Input.is_action_just_pressed(actions.grab) and $MultiplayerSynchronizer.is_multiplayer_authority():
 		for body in $GrabArea.get_overlapping_bodies():
 			if not body is Pushable or body == self:
 				continue
@@ -81,20 +86,21 @@ func _process(_delta):
 			if !success:
 				continue
 			
+			startGrab.rpc(body)
 			$GrabCooldown.start()
 			emit_signal("grab", body)
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
-		push()
+		push.rpc()
 	
-	position.y = Globals.SPRITE_HEIGHT
+	#position.y = Globals.SPRITE_HEIGHT
 
 	# DEBUG
 	if Input.is_action_just_pressed("die") and player.id == 0:
 		die()
 	
-	if not get_parent() is Arena:
+	if not BetHandler.inArena:
 		return
 	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
 		return
@@ -105,7 +111,7 @@ func _process(_delta):
 	_lastScore = newScore
 
 func _physics_process(delta):
-	if player.inputController != Controllers.AI:
+	if canControll():
 		_movementDir = Controllers.getDirection(controller)
 	
 	if drunk:
@@ -143,6 +149,14 @@ func _physics_process(delta):
 			$GrabCooldown.start()
 			emit_signal("escaped")
 
+## Determina si un monigote puede controlarse (si no es IA o otro jugador online)
+func canControll() -> bool:
+	if player.inputController == Controllers.AI:
+		return false
+	if PlayerHandler.isGameOnline and player.multiplayerId != multiplayer.get_unique_id():
+		return false
+	return true
+
 func resetMovement() -> void:
 	moveVelocity = Vector2.ZERO
 	unclampedVelocity = Vector2.ZERO
@@ -154,6 +168,7 @@ func canBeGrabbed(grabber) -> bool:
 func canGrab() -> bool:
 	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing)
 
+@rpc("any_peer", "reliable")
 func startGrab(body : Pushable) -> bool:
 	if not super(body):
 		return false
@@ -212,7 +227,7 @@ func die():
 		return
 	
 	if grabbing:
-		push()
+		push.rpc()
 	
 	emit_signal("died")
 	

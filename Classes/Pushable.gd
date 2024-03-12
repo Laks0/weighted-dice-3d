@@ -18,7 +18,7 @@ signal beenGrabbed
 
 var grabbing   := false
 var grabbed    := false
-var grabDir    := Vector2.RIGHT
+@export var grabDir    := Vector2.RIGHT
 var grabBody   : Pushable
 var pushFactor : float = 0
 
@@ -81,9 +81,10 @@ func startGrab(body : Pushable) -> bool:
 
 	return true
 
-func onGrabbingEscaped(body : Pushable) -> void:
+func onGrabbingEscaped(_body : Pushable) -> void:
 	pass
 
+@rpc("any_peer", "reliable", "call_local")
 func push():
 	if not grabbing:
 		return
