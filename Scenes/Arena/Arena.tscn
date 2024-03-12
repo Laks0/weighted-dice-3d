@@ -162,6 +162,7 @@ _data = {
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
 dieScreenShakeMagnitude = 0.5
+dieScreenShakeTime = null
 cardShowAnimationScene = ExtResource("3_wm28h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -359,7 +360,7 @@ light_energy = 0.2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Classes/Monigotes/Monigote.tscn")
+_spawnable_scenes = PackedStringArray("res://Classes/Monigotes/Monigote.tscn", "res://Classes/Die/Die.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="spawned" from="MultiplayerSpawner" to="Lobby" method="_on_multiplayer_spawner_spawned"]

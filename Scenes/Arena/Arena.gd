@@ -80,9 +80,14 @@ func startArena():
 	
 	betting = false
 	
-	die = dieScene.instantiate()
-	die.position.y = 1
-	add_child(die)
+	if not PlayerHandler.isGameOnline or multiplayer.is_server():
+		die = dieScene.instantiate()
+		die.position.y = 1
+		add_child(die)
+	else:
+		while get_tree().get_nodes_in_group("Die").size() == 0:
+			await get_tree().process_frame
+		die = get_tree().get_nodes_in_group("Die")[0]
 	
 	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(startEffect)

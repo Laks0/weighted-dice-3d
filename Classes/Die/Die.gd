@@ -43,7 +43,7 @@ func _ready():
 	visible = false
 
 func _process(_delta):
-	if prepareArrow.visible:
+	if is_instance_valid(prepareArrow) and prepareArrow.visible:
 		prepareArrow.position = position
 
 func _getRandomMonigoteDirection() -> Vector2:

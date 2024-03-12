@@ -526,18 +526,31 @@ func change_state_node(new_state_node: State = null, args_on_enter = null, args_
 
 	return new_state
 
-
+@rpc("authority", "call_remote", "reliable")
 func change_state(new_state_name: String = "", args_on_enter = null, args_after_enter = null,
 		args_before_exit = null, args_on_exit = null) -> State:
+	
+	if PlayerHandler.isGameOnline:
+		if multiplayer.is_server():
+			change_state.rpc(new_state_name, args_on_enter, args_after_enter, args_before_exit, args_on_exit)
+		elif multiplayer.get_remote_sender_id() == 0:
+			return
+	
 	# finds the node of new_state, return null if empty
 	var new_state_node: State = find_state_node_or_null(new_state_name)
 	return change_state_node(new_state_node, args_on_enter, args_after_enter, args_before_exit, args_on_exit)
 
-
+@rpc("authority", "call_remote", "reliable")
 func change_to_next( args_on_enter = null, args_after_enter = null,
 		args_before_exit = null, args_on_exit = null) -> State:
+	
+	if PlayerHandler.isGameOnline:
+		if multiplayer.is_server():
+			change_to_next.rpc(args_on_enter, args_after_enter, args_before_exit, args_on_exit)
+		elif multiplayer.get_remote_sender_id() == 0:
+			return
+	
 	return change_state_node(get_node_or_null(next_state), args_on_enter, args_after_enter, args_before_exit, args_on_exit)
-
 
 func change_to_next_substate() -> State:
 	var substate = get_active_substate()

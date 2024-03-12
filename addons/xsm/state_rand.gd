@@ -100,6 +100,9 @@ func _get_property_list():
 # PUBLIC FUNCTIONS
 #
 func change_to_next_substate():
+	if PlayerHandler.isGameOnline and not multiplayer.is_server():
+		return
+	
 	var rand_array = []
 	for c in priorities.keys():
 		for i in priorities[c]:
@@ -109,8 +112,19 @@ func change_to_next_substate():
 		return
 	
 	var rand_idx = randi() % rand_array.size()
+	if multiplayer.is_server():
+		changeToRandIdx.rpc(rand_idx)
+	
 	var _st =  change_state_node_force(get_node_or_null(rand_array[rand_idx]))
 
+@rpc("authority", "reliable", "call_remote")
+func changeToRandIdx(rand_idx):
+	var rand_array = []
+	for c in priorities.keys():
+		for i in priorities[c]:
+			rand_array.append(c)
+	
+	change_state_node_force(get_node_or_null(rand_array[rand_idx]))
 
 #
 # PRIVATE FUNCTIONS

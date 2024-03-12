@@ -25,7 +25,8 @@ var moveVelocity      := Vector2.ZERO
 var unclampedVelocity := Vector2.ZERO
 
 var stunned := false
-var health : int = 2
+@export var health : int = 2
+var dead := false
 
 var invincible  := false
 
@@ -81,6 +82,9 @@ func _process(_delta):
 
 	# DEBUG
 	if Input.is_action_just_pressed("die") and player.id == 0:
+		die()
+	
+	if health == 0 and not dead:
 		die()
 	
 	if not BetHandler.inArena:
@@ -229,13 +233,11 @@ func hurt() -> bool:
 	return true
 
 func die():
-	if invincible:
-		return
-	
 	if grabbing:
 		push.rpc()
 	
 	emit_signal("died")
+	dead = true
 	
 	frameFeeze(.005, .4)
 	

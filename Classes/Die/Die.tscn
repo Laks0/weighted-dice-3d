@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=28 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -62,7 +62,21 @@ material = SubResource("StandardMaterial3D_bmhk7")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ijiam"]
 points = PackedVector3Array(-0.893276, -0.985924, -0.862587, 0.893277, 0.985925, 0.862588, 0.893276, 0.985924, -0.862587, -0.955132, 0.955132, -0.862669, -0.955132, -0.862669, 0.955132, 0.955132, -0.955132, 0.862669, 0.924803, -0.924803, -0.955707, -0.92482, 0.92482, 0.955725, 0.955132, 0.862669, 0.955132, -0.893273, 0.862583, -0.98592, 0.985896, 0.862562, -0.893444, -0.955132, -0.862669, -0.955132, 0.862561, -0.893443, 0.985895, -0.862558, -0.985891, 0.89344, 0.862559, 0.89344, -0.985892, -0.985896, 0.893444, 0.862562, -0.893276, 0.985924, 0.862587, 0.893273, -0.98592, -0.862583, -0.985896, -0.893444, -0.862562, -0.862559, -0.89344, -0.985892, 0.985896, -0.862562, 0.893444, 0.985892, -0.89344, -0.862559, -0.862561, 0.893443, 0.985895, -0.862562, 0.985896, -0.893444, -0.985895, -0.893443, 0.862561, -0.985895, 0.862561, -0.893443, 0.985937, 0.893288, 0.862405, 0.862562, 0.893444, 0.985896, -0.862562, -0.893444, 0.985896, 0.862561, -0.985895, 0.893443, 0.893273, -0.862583, -0.98592, 0.862669, 0.955132, 0.955132)
 
-[node name="Die" type="RigidBody3D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bu46w"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:linear_velocity")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:angular_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Die" type="RigidBody3D" groups=["Die"]]
 collision_layer = 4
 collision_mask = 4
 mass = 10.0
@@ -153,45 +167,6 @@ target_path = NodePath("")
 timed = false
 next_state = NodePath("../Bursts")
 
-[node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 10.0
-on_timer_finished = 3
-next_state = NodePath("../../Roll")
-
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../Skip")
-
-[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("8_81dmh")
-UP_FORCE = 60
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
 [node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("5_qe015")
 loop_mode = 1
@@ -240,6 +215,45 @@ target_path = NodePath("")
 timed = false
 next_state = NodePath("../Wait")
 
+[node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 10.0
+on_timer_finished = 3
+next_state = NodePath("../../Roll")
+
+[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 0.2
+on_timer_finished = 3
+next_state = NodePath("../Skip")
+
+[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("8_81dmh")
+UP_FORCE = 60
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 0.2
+on_timer_finished = 3
+next_state = NodePath("../WaitForFloor")
+
+[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("7_x8flh")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Wait")
+
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -273,5 +287,10 @@ stream = ExtResource("15_w3cel")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792503, 0)
 light_energy = 0.0
 omni_range = 1.5141
+
+[node name="SlowSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 2.0
+delta_interval = 5.0
+replication_config = SubResource("SceneReplicationConfig_bu46w")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
