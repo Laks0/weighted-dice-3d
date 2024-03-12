@@ -165,55 +165,7 @@ disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Bursts")
-
-[node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("5_qe015")
-loop_mode = 1
-exit_state = NodePath("")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../../Roll")
-
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 1.0
-on_timer_finished = 3
-next_state = NodePath("../Prepare")
-
-[node name="Prepare" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("7_3cl3o")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 1.0
-on_timer_finished = 0
-next_state = NodePath("../Burst")
-
-[node name="Burst" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("8_t2h52")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.5
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
+next_state = NodePath("../../../Bursts")
 
 [node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
 script = ExtResource("3_67t0h")
@@ -225,34 +177,23 @@ waiting_time = 10.0
 on_timer_finished = 3
 next_state = NodePath("../../Roll")
 
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../Skip")
-
-[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("8_81dmh")
-UP_FORCE = 60
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
 [node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
 script = ExtResource("7_x8flh")
 disabled = false
 debug_mode = false
 target_path = NodePath("")
 timed = false
-next_state = NodePath("../Wait")
+next_state = NodePath("../Jump")
+
+[node name="Jump" type="Node" parent="StateMachine/RandomAttack/Jumps"]
+script = ExtResource("8_81dmh")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 2.0
+on_timer_finished = 3
+next_state = NodePath("../WaitForFloor")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -280,6 +221,55 @@ shape = SubResource("ConvexPolygonShape3D_ijiam")
 [node name="Buildup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_e70v7")
 
+[node name="Bursts" type="Node" parent="."]
+script = ExtResource("5_qe015")
+loop_mode = 1
+exit_state = NodePath("")
+history_size = 0
+disabled = true
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../StateMachine/Roll")
+
+[node name="Wait" type="Node" parent="Bursts"]
+script = ExtResource("3_67t0h")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 1.0
+on_timer_finished = 3
+next_state = NodePath("../Prepare")
+
+[node name="Prepare" type="Node" parent="Bursts"]
+script = ExtResource("7_3cl3o")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 1.0
+on_timer_finished = 0
+next_state = NodePath("../Burst")
+
+[node name="Burst" type="Node" parent="Bursts"]
+script = ExtResource("8_t2h52")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = true
+waiting_time = 0.5
+on_timer_finished = 3
+next_state = NodePath("../WaitForFloor")
+
+[node name="WaitForFloor" type="Node" parent="Bursts"]
+script = ExtResource("7_x8flh")
+disabled = false
+debug_mode = false
+target_path = NodePath("")
+timed = false
+next_state = NodePath("../Wait")
+
 [node name="Stomp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_w3cel")
 
@@ -289,8 +279,6 @@ light_energy = 0.0
 omni_range = 1.5141
 
 [node name="SlowSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 2.0
-delta_interval = 5.0
 replication_config = SubResource("SceneReplicationConfig_bu46w")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
