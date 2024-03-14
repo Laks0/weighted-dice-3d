@@ -87,10 +87,13 @@ func _process(_delta):
 			pile.setLabelVisibility(true)
 
 func startLeaderboardAnimation(winnerId):
+	# Antes de empezar la animación se espera a que los monigotes hayan despawneado
+	while get_tree().get_nodes_in_group("Monigotes").size() > 0:
+		await get_tree().process_frame
+	
 	var timeBetweenSteps := 1.3
 	var timeBetweenChips := .2
-
-	createMonigotes()
+	
 	reset()
 	BetHandler.settleBet(winnerId)
 
@@ -103,6 +106,8 @@ func startLeaderboardAnimation(winnerId):
 		$RoundNumber.modulate = Color.RED
 
 	await get_tree().create_timer(1).timeout
+	if MultiplayerHandler.isAuthority():
+		createMonigotes()
 	###################
 	# Eliminar apuestas
 	###################
@@ -176,13 +181,23 @@ func _input(event):
 
 	for player in PlayerHandler.getPlayersAlive():
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
-			if gameEnded:
-				PlayerHandler.resetAllPlayers()
-				get_parent().startNewGame()
-				BetHandler.round = 0
-				gameEnded = false
+			startBetting.rpc()
 
-			get_parent().goToBettingScene()
-			$RoundNumber.text = ""
-			$LeaderboardTitleLabel.text = ""
-			waitingToStart = false
+@rpc("any_peer", "reliable", "call_local")
+func startBetting():
+	if gameEnded:
+		PlayerHandler.resetAllPlayers()
+		get_parent().startNewGame()
+		BetHandler.round = 0
+		gameEnded = false
+	get_parent().goToBettingScene()
+	$RoundNumber.text = ""
+	$LeaderboardTitleLabel.text = ""
+	waitingToStart = false
+
+func _on_multiplayer_spawner_spawned(node):
+	if (not node is Monigote) or BetHandler.round < 1:
+		return
+	ownedMonigotes.append(node)
+	node.set_process(false)
+	node.set_physics_process(false)

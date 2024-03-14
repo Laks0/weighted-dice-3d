@@ -10,7 +10,7 @@ var monigotes : Array[Monigote]
 
 func _ready():
 	if DebugVars.straigtToArena:
-		maxLobbyTime = 0
+		maxLobbyTime = .1
 	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
 	

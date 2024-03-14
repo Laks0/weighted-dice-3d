@@ -15,10 +15,10 @@ func start():
 	
 	sticks.clear()
 	for _i in range(stickAmount):
-		var stick = stickScene.instantiate()
-		stick.position = arena.getRandomPosition(1, .3)
-		sticks.append(stick)
-		arena.add_child(stick)
+		if not MultiplayerHandler.isAuthority():
+			break
+		
+		spawnStick.rpc(arena.getRandomPosition(1, .3))
 	
 	$AnimationPlayer.play("BallEnter")
 	$AnimationPlayer.animation_finished.connect(func (_anim): ball8.set_physics_process(true))
@@ -26,6 +26,13 @@ func start():
 	$SpotLight3D.visible = true
 	$SpotLight3D.light_energy = 0
 	create_tween().tween_property($SpotLight3D, "light_energy", 11, .2)
+
+@rpc("authority", "call_local", "reliable")
+func spawnStick(pos : Vector3):
+	var stick = stickScene.instantiate()
+	stick.position = pos
+	sticks.append(stick)
+	arena.add_child(stick, true)
 
 func _process(_delta):
 	if not is_instance_valid(ball8):

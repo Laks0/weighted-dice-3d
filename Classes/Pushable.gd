@@ -16,11 +16,11 @@ signal beenGrabbed
 
 @export var FRICTION : float = 40
 
-var grabbing   := false
-var grabbed    := false
+@export var grabbing   := false
+@export var grabbed    := false
 @export var grabDir    := Vector2.RIGHT
 var grabBody   : Pushable
-var pushFactor : float = 0
+@export var pushFactor : float = 0
 
 var color := Color.WHITE
 

@@ -363,5 +363,6 @@ _spawnable_scenes = PackedStringArray("res://Classes/Monigotes/Monigote.tscn", "
 spawn_path = NodePath("..")
 
 [connection signal="spawned" from="MultiplayerSpawner" to="Lobby" method="_on_multiplayer_spawner_spawned"]
+[connection signal="spawned" from="MultiplayerSpawner" to="ChipHolder" method="_on_multiplayer_spawner_spawned"]
 
 [editable path="Floor/Mesa"]

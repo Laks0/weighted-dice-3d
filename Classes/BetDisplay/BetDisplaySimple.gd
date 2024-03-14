@@ -27,22 +27,28 @@ var pointerShouldMove : bool
 
 var betting = false
 
+func endBet():
+	for pile in piles:
+		pile.queue_free()
+	piles.clear()
+	selectors.clear()
+	selected.clear()
+
 func startBetting():
+	if betting:
+		return
+	
+	$StartDelay.start()
+	# Resetear cualquier valor viejo
+	endBet()
+	chipHolder.reset()
+	
+	betting = true
+	BetHandler.startRound()
 	if not MultiplayerHandler.isAuthority():
 		while not BetHandler.synced:
 			await get_tree().process_frame
 	
-	$StartDelay.start()
-	# Resetear cualquier valor viejo
-	chipHolder.reset()
-	for pile in piles:
-		pile.queue_free()
-	piles = []
-	selectors.clear()
-	selected.clear()
-	
-	betting = true
-	BetHandler.startRound()
 	$Slotmachine/BetName.text = "Betting on:\n" + BetHandler.getBetName()
 	
 	var candidates := BetHandler.getCandidates()

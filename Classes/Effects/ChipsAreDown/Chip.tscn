@@ -10,7 +10,7 @@ bounce = 0.05
 height = 0.0941596
 radius = 0.456848
 
-[node name="Chip" type="RigidBody3D"]
+[node name="Chip" type="RigidBody3D" groups=["Chips"]]
 collision_layer = 2
 collision_mask = 7
 mass = 1000.0

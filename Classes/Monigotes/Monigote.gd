@@ -234,6 +234,9 @@ func hurt() -> bool:
 
 @rpc("any_peer", "call_local", "reliable")
 func die():
+	if dead:
+		return
+	
 	if grabbing:
 		push.rpc()
 	
@@ -247,7 +250,9 @@ func die():
 	%AnimatedSprite.visible = false
 	$DeathParticles.emitting = true
 	
-	$DeathParticles.connect("finished", queue_free)
+	$DeathParticles.connect("finished", func ():
+		if MultiplayerHandler.isAuthority():
+			queue_free())
 
 func stun():
 	if !$StunCooldown.is_stopped():

@@ -1,12 +1,10 @@
 extends Pushable
+class_name Olive
 
 var _lastThrower : Monigote
 
 @onready var material : Material = $Aceituna/Sphere.get_surface_override_material(0)
 @onready var base_color : Color = material.albedo_color
-
-func _ready():
-	rotation.y = randf_range(-PI, PI)
 
 func onPushed(dir : Vector2, factor : float, pusher : Pushable):
 	$Shot.play()

@@ -111,7 +111,7 @@ func endGame(winnerMon : Monigote):
 	
 	$PrepareArrow.visible = false
 	
-	if is_instance_valid(die):
+	if is_instance_valid(die) and MultiplayerHandler.isAuthority():
 		die.queue_free()
 	
 	var winnerId = winnerMon.player.id
@@ -120,7 +120,8 @@ func endGame(winnerMon : Monigote):
 	await get_tree().create_timer(3).timeout
 	
 	goToLeaderboard(winnerId)
-
+	$BetDisplaySimple.endBet()
+	
 	for mon in getLivingMonigotes():
 		if not MultiplayerHandler.isAuthority():
 			break

@@ -29,12 +29,15 @@ func onAnimationEnd(_anim):
 	startRandomAttack()
 
 func startRandomAttack():
-	if not running:
+	if (not running) or (not MultiplayerHandler.isAuthority()):
 		return
 	
+	var idx = randi() % ($AnimationPlayer.get_animation_list().size() - 1)
+	startAttack.rpc($AnimationPlayer.get_animation_list()[idx])
+
+@rpc("reliable", "call_local", "authority")
+func startAttack(animation : String):
 	$Startup.play()
-	var index = randi_range(0, $AnimationPlayer.get_animation_list().size()-1)
-	var animation = $AnimationPlayer.get_animation_list()[index]
 	$AnimationPlayer.play(animation)
 
 func createCard(pos : Vector3, dir : Vector3):
