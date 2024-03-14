@@ -30,9 +30,6 @@ func _ready():
 
 func startNewGame():
 	$Effects.pickEffects()
-	# Si es multijugador pausa la ejecución hasta recibir los efectos
-	while $Effects.get_child_count() == 0:
-		await get_tree().process_frame
 	
 	effects = $Effects.get_children()
 	for e in effects:

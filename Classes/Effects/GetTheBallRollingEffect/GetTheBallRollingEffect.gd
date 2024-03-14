@@ -50,7 +50,8 @@ func end():
 		ball8.queue_free()
 	
 	for s in sticks:
-		s.queue_free()
+		if is_instance_valid(s):
+			s.queue_free()
 	
 	var tween := create_tween()
 	tween.tween_property($SpotLight3D, "light_energy", 0, .2)

@@ -39,4 +39,7 @@ func _syncEffects(idxs : Array, specialIdx : int):
 	for idx in idxs:
 		add_child(regularEffects[idx].instantiate())
 	add_child(specialEffects[specialIdx].instantiate())
-	pass
+	
+	get_parent().effects = get_children()
+	for e in get_children():
+		e.create(get_parent())

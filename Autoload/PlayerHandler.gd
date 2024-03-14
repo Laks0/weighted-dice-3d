@@ -126,7 +126,7 @@ func deleteAllPlayers():
 func resetAllPlayers():
 	for i in range(len(players)):
 		var p : Player = players[i]
-		players[i] = Player.new(p.name, p.inputController, p.id)
+		players[i] = Player.new(p.name, p.inputController, p.id, p.multiplayerId)
 
 ## Dado un diccionario de peers crea jugadores para todos los peers con una skin asignada.
 ## Espera un diccionario donde las claves son la id del cliente y las definiciones tienen

@@ -79,6 +79,8 @@ func createMonigotes():
 
 func _process(_delta):
 	for mon in ownedMonigotes:
+		if not is_instance_valid(mon):
+			continue
 		mon.global_position = getPositionForMonigote(mon.player.id)
 	
 	# Si tiene monigotes, muestra los valores de las fichas. No es lo más elegante pero anda
@@ -190,10 +192,28 @@ func startBetting():
 		get_parent().startNewGame()
 		BetHandler.round = 0
 		gameEnded = false
+		
+		if MultiplayerHandler.isAuthority():
+			resetMonigotes.rpc()
+	
 	get_parent().goToBettingScene()
 	$RoundNumber.text = ""
 	$LeaderboardTitleLabel.text = ""
 	waitingToStart = false
+
+@rpc("authority", "call_local", "reliable")
+func resetMonigotes():
+	if not MultiplayerHandler.isAuthority():
+		ownedMonigotes.clear()
+		return
+	
+	for mon in ownedMonigotes:
+		mon.queue_free()
+	ownedMonigotes.clear()
+	
+	await get_tree().create_timer(.5).timeout
+	
+	createMonigotes()
 
 func _on_multiplayer_spawner_spawned(node):
 	if (not node is Monigote) or BetHandler.round < 1:
