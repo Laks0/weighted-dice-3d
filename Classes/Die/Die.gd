@@ -19,6 +19,9 @@ var prepareArrow : AnimatedSprite3D
 ## Si esta variable es n, la chance de sacar un 6 es 1/n
 @export var invertedChanceOfSix : int = 8
 
+func _enter_tree():
+	set_multiplayer_authority(MultiplayerHandler.hostId)
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()

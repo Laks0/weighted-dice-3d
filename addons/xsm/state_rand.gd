@@ -112,7 +112,7 @@ func change_to_next_substate():
 		return
 	
 	var rand_idx = randi() % rand_array.size()
-	if multiplayer.is_server():
+	if MultiplayerHandler.isAuthority():
 		changeToRandIdx.rpc(rand_idx)
 	
 	var _st =  change_state_node_force(get_node_or_null(rand_array[rand_idx]))

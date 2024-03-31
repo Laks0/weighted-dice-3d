@@ -14,7 +14,7 @@ func _ready():
 	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
 	
-	if multiplayer.is_server():
+	if MultiplayerHandler.isAuthority():
 		monigotes = PlayerHandler.instantiatePlayers()
 		
 		var xPos = -3

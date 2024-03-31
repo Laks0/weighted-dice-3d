@@ -1,37 +1,21 @@
 extends VBoxContainer
 
-const ADDRESS = "127.0.0.1"
-const PORT = 8000
-
-var peer : ENetMultiplayerPeer
-
-var playersConnected := {}
-var playerInfo := {
-	"name": "",
-	"controller": 0,
-	"ready": false
-}
-
 var clientJoined := false
 
+var arenaScene = preload("res://Scenes/Arena/Arena.tscn")
+
 func _ready():
-	peer = ENetMultiplayerPeer.new()
-	
-	multiplayer.connected_to_server.connect(onConnectedToServer)
-	multiplayer.connection_failed.connect(onConnectionFailed)
-	multiplayer.peer_connected.connect(onPeerConnected)
-	multiplayer.peer_disconnected.connect(onPeerDisconnected)
-	
 	# Selector de controles
 	$ControllerPick.add_item("Keyboard (WASD/Enter)", Controllers.KB)
 	$ControllerPick.add_item("Keyboard alt. (Arrows/AltGr)", Controllers.KB2)
 	for device in Input.get_connected_joypads():
 		$ControllerPick.add_item("Gamepad %s" % device, device)
+	
+	# Señales del cliente
+	$Client.joinedLobby.connect(func (): clientJoined = true)
 
 func _process(_delta):
 	if not clientJoined:
-		playerInfo["name"] = $NameField.text
-		playerInfo["controller"] = $ControllerPick.get_selected_id()
 		return
 	
 	#########################
@@ -41,53 +25,46 @@ func _process(_delta):
 	$NameField.visible = false
 	$ControllerPick.visible = false
 	$HostButton.visible = false
-	$JoinButton.visible = false
+	$Lobby.visible = false
+	$StartClient.visible = false
+	$StartServer.visible = false
 	
 	$ReadyPlayersLabel.visible = true
+	$LobbyIdLabel.visible = true
 	$ReadyButton.visible = true
 	
-	$ReadyPlayersLabel.text = "Players ready: %s/%s" % [ 
-		playersConnected.values().filter(func (info): return info["ready"]).size(),
-		playersConnected.size()
-	]
-
-func onPeerConnected(id : int):
-	registerPlayer.rpc_id(id, multiplayer.get_unique_id(), playerInfo)
-
-func onPeerDisconnected(id : int):
-	playersConnected.erase(id)
-
-func onConnectedToServer():
-	registerPlayer.rpc(multiplayer.get_unique_id(), playerInfo)
-	clientJoined = true
-
-func onConnectionFailed():
-	print("Failed to connect")
-
-@rpc("any_peer", "reliable", "call_local")
-@warning_ignore("shadowed_variable")
-func registerPlayer(id, playerInfo):
-	playersConnected[id] = playerInfo
-
-@rpc("any_peer", "reliable", "call_local")
-func playerReady(id):
-	playersConnected[id]["ready"] = true
+	$LobbyIdLabel.text = "Lobby id: %s" % $Client.lobby.lobbyId
+	$ReadyPlayersLabel.text = "Players ready: %s/%s" % [$Client.lobby.playersReady(),
+													$Client.lobby.playersConnected()]
 	
-	if playersConnected.values().all(func (info): return info["ready"]):
-		MultiplayerHandler.isGameOnline = true
-		if multiplayer.is_server():
-			PlayerHandler.createAllOnlinePlayers(playersConnected)
-		get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
+	$StartButton.visible = $Client.lobby.areAllPlayersReady() and \
+						   $Client.lobby.hostId == $Client.peer.get_unique_id()
 
 func _on_host_button_pressed():
-	peer.create_server(PORT, 6)
-	multiplayer.multiplayer_peer = peer
-	registerPlayer(multiplayer.get_unique_id(), playerInfo)
-	clientJoined = true
+	MultiplayerHandler.localController = $ControllerPick.get_selected_id()
+	$Client.createLobby($NameField.text)
 
 func _on_join_button_pressed():
-	peer.create_client(ADDRESS, PORT)
-	multiplayer.multiplayer_peer = peer
+	MultiplayerHandler.localController = $ControllerPick.get_selected_id()
+	$Client.joinLobby(%LobbyId.text, $NameField.text)
+
+func _on_start_server_pressed():
+	$Server.startServer(9999)
+
+func _on_start_client_pressed():
+	$Client.connectToServer("ws://127.0.0.1:9999")
 
 func _on_ready_button_pressed():
-	playerReady.rpc(multiplayer.get_unique_id())
+	$Client.playerReady.rpc()
+
+# Señal desde el host para empezar el juego
+func _on_start_button_pressed():
+	MultiplayerHandler.createAllPlayers($Client.lobby)
+	startArena.rpc()
+
+@rpc("any_peer", "reliable", "call_local")
+func startArena():
+	visible = false
+	
+	if MultiplayerHandler.isAuthority():
+		get_parent().add_child(arenaScene.instantiate())

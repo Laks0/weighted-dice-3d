@@ -40,7 +40,7 @@ var drunk := false
 func _enter_tree():
 	player = PlayerHandler.getPlayerById(name.to_int())
 	$MultiplayerSynchronizer.set_multiplayer_authority(player.multiplayerId)
-	$SlowSynchronizer.set_multiplayer_authority(1)
+	$SlowSynchronizer.set_multiplayer_authority(MultiplayerHandler.hostId)
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.

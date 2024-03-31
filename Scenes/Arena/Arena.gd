@@ -24,6 +24,9 @@ var monigotes : Array[Monigote]
 
 var betting := true
 
+func _enter_tree():
+	$MultiplayerSpawner.set_multiplayer_authority(MultiplayerHandler.hostId)
+
 func _ready():
 	$Lobby.startBetting.connect(goToBettingScene)
 	startNewGame()

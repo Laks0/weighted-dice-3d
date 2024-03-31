@@ -531,7 +531,7 @@ func change_state(new_state_name: String = "", args_on_enter = null, args_after_
 		args_before_exit = null, args_on_exit = null) -> State:
 	
 	if MultiplayerHandler.isGameOnline:
-		if multiplayer.is_server():
+		if MultiplayerHandler.isAuthority():
 			change_state.rpc(new_state_name, args_on_enter, args_after_enter, args_before_exit, args_on_exit)
 		elif multiplayer.get_remote_sender_id() == 0:
 			return
@@ -545,7 +545,7 @@ func change_to_next( args_on_enter = null, args_after_enter = null,
 		args_before_exit = null, args_on_exit = null) -> State:
 	
 	if MultiplayerHandler.isGameOnline:
-		if multiplayer.is_server():
+		if MultiplayerHandler.isAuthority():
 			change_to_next.rpc(args_on_enter, args_after_enter, args_before_exit, args_on_exit)
 		elif multiplayer.get_remote_sender_id() == 0:
 			return

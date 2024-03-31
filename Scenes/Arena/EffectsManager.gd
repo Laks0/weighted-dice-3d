@@ -5,6 +5,9 @@ extends Node
 ## Efectos que van en el 6
 @export var specialEffects : Array[PackedScene]
 
+func _enter_tree():
+	set_multiplayer_authority(MultiplayerHandler.hostId)
+
 func pickEffects():
 	if not MultiplayerHandler.isAuthority():
 		return
@@ -21,7 +24,9 @@ func pickEffects():
 		while pickedEffects.has(pickedEffect):
 			pickedEffect = regularEffects.pick_random()
 		pickedEffects.append(pickedEffect)
-		add_child(pickedEffect.instantiate())
+		var e = pickedEffect.instantiate()
+		e.set_multiplayer_authority(MultiplayerHandler.hostId)
+		add_child(e)
 		idxs.append(regularEffects.find(pickedEffect))
 	
 	var specialIdx = randi() % specialEffects.size()

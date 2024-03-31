@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://di8vp0wbjb7es"]
+[gd_scene load_steps=5 format=3 uid="uid://di8vp0wbjb7es"]
 
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_3fs7m"]
 [ext_resource type="Script" path="res://Scenes/MultiplayerLobby/MultiplayerLobby.gd" id="1_blll3"]
+[ext_resource type="Script" path="res://Scenes/MultiplayerLobby/Client.gd" id="3_sp4fn"]
+[ext_resource type="Script" path="res://Scenes/MultiplayerLobby/Server.gd" id="4_4r583"]
 
-[node name="MultiplayerLobby" type="VBoxContainer"]
+[node name="Node" type="Node"]
+
+[node name="MultiplayerLobby" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(500, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,32 +24,72 @@ theme = ExtResource("1_3fs7m")
 alignment = 1
 script = ExtResource("1_blll3")
 
-[node name="NameField" type="LineEdit" parent="."]
+[node name="NameField" type="LineEdit" parent="MultiplayerLobby"]
 layout_mode = 2
 placeholder_text = "Name"
 max_length = 10
 
-[node name="ControllerPick" type="OptionButton" parent="."]
+[node name="ControllerPick" type="OptionButton" parent="MultiplayerLobby"]
 layout_mode = 2
 
-[node name="JoinButton" type="Button" parent="."]
+[node name="StartServer" type="Button" parent="MultiplayerLobby"]
 layout_mode = 2
-text = "Join"
+text = "Start server"
 
-[node name="HostButton" type="Button" parent="."]
+[node name="StartClient" type="Button" parent="MultiplayerLobby"]
+layout_mode = 2
+text = "Start client"
+
+[node name="Lobby" type="HBoxContainer" parent="MultiplayerLobby"]
+layout_mode = 2
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="MultiplayerLobby/Lobby"]
+layout_mode = 2
+text = "Join lobby"
+
+[node name="LobbyId" type="LineEdit" parent="MultiplayerLobby/Lobby"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="MultiplayerLobby"]
 layout_mode = 2
 text = "Host"
 
-[node name="ReadyPlayersLabel" type="Label" parent="."]
+[node name="ReadyPlayersLabel" type="Label" parent="MultiplayerLobby"]
 visible = false
 layout_mode = 2
 text = "Players ready: x/x"
 
-[node name="ReadyButton" type="Button" parent="."]
+[node name="LobbyIdLabel" type="Label" parent="MultiplayerLobby"]
+visible = false
+layout_mode = 2
+text = "Players ready: x/x"
+
+[node name="ReadyButton" type="Button" parent="MultiplayerLobby"]
 visible = false
 layout_mode = 2
 text = "Ready"
 
-[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
+[node name="StartButton" type="Button" parent="MultiplayerLobby"]
+visible = false
+layout_mode = 2
+text = "Start Game"
+
+[node name="Client" type="Node" parent="MultiplayerLobby"]
+script = ExtResource("3_sp4fn")
+
+[node name="Server" type="Node" parent="MultiplayerLobby"]
+script = ExtResource("4_4r583")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Arena/Arena.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="MultiplayerLobby/StartServer" to="MultiplayerLobby" method="_on_start_server_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/StartClient" to="MultiplayerLobby" method="_on_start_client_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/Lobby/JoinButton" to="MultiplayerLobby" method="_on_join_button_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/HostButton" to="MultiplayerLobby" method="_on_host_button_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/ReadyButton" to="MultiplayerLobby" method="_on_ready_button_pressed"]
+[connection signal="pressed" from="MultiplayerLobby/StartButton" to="MultiplayerLobby" method="_on_start_button_pressed"]
