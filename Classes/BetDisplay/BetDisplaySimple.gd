@@ -22,9 +22,6 @@ var selected : Dictionary
 var betted : Dictionary
 var isReady : Dictionary
 
-#para SFX
-var pointerShouldMove : bool
-
 var betting = false
 
 func startBetting():
@@ -80,7 +77,6 @@ func startBetting():
 		
 		for candidate in candidates:
 			player.setBet(0, candidate)
-	
 	
 	_repositionSelectors()
 
@@ -190,8 +186,6 @@ func _repositionSelectors() -> void:
 			var sel = pileSelectors[l]
 			var positionTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 			positionTween.tween_property(sel, "position", Vector3(newX, centerY, newZ), .15)
-
-## FUNCIONES DE API PARA LA IA ##
 
 func selectCandidate(playerId : int, candidate : int):
 	var index = 0

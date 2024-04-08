@@ -1,4 +1,5 @@
 extends Camera3D
+class_name MultipleResCamera
 
 ## En grados
 @export var showSlotRotationX : float = -47
@@ -32,15 +33,12 @@ func returnToArena() -> void:
 	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, showSlotAnimationTime)
 
-func startLeaderboardAnimation() -> Tween:
-	return moveTo(leaderboardCamera.position, leaderboardCamera.rotation_degrees.x)
-
 func startGameAnimation() -> Tween:
 #	$wooshPlayer.playSound("zoomToGame")
 	return moveTo(restPosition, restRotation.x)
 
-func startBettingAnimation() -> Tween:
-	return moveTo(betSceneCamera.position, betSceneCamera.rotation_degrees.x)
+func goToCamera(obj : Camera3D) -> Tween:
+	return moveTo(obj.position, obj.rotation_degrees.x)
 
 func moveTo(newPos : Vector3, rotationDegreesX : float) -> Tween:
 	$wooshPlayer.playSound("wooshTrans")

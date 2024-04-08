@@ -25,7 +25,6 @@ var monigotes : Array[Monigote]
 var betting := true
 
 func _ready():
-	$Lobby.startBetting.connect(goToBettingScene)
 	startNewGame()
 
 func startNewGame():
@@ -122,10 +121,6 @@ func goToLeaderboard(winnerId):
 	%MultipleResCamera.startLeaderboardAnimation().tween_callback(
 		$ChipHolder.startLeaderboardAnimation.bind(winnerId)
 	)
-
-func goToBettingScene():
-	$BetDisplaySimple.startBetting()
-	%MultipleResCamera.startBettingAnimation()
 
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)

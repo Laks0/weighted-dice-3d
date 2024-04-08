@@ -34,6 +34,8 @@ var invincible  := false
 
 @export var skins : Dictionary
 
+var stageHandler : StageHandler
+
 var drunk := false
 
 func _ready():
@@ -56,6 +58,8 @@ func _ready():
 			%AnimatedSprite.sprite_frames = skins.get("Purple")
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
+	
+	stageHandler = get_parent().get_node("StageHandler")
 	
 	super._ready()
 
@@ -88,14 +92,15 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	position.y = Globals.SPRITE_HEIGHT
-
 	# DEBUG
 	if Input.is_action_just_pressed("die") and player.id == 0:
 		die()
 	
-	if not get_parent() is Arena:
+	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
+		
+	position.y = Globals.SPRITE_HEIGHT
+	
 	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
 		return
 	
