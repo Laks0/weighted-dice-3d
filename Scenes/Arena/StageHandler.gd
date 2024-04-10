@@ -13,8 +13,9 @@ class_name StageHandler
 @export var camera : MultipleResCamera
 
 @export var betCamera : Camera3D
+@export var leaderboardCamera : Camera3D
 
-enum Stages {LOBBY, BETTING, ARENA}
+enum Stages {LOBBY, BETTING, ARENA, LEADERBOARD}
 var currentStage := Stages.LOBBY
 
 var monigotes : Array[Monigote]
@@ -24,6 +25,17 @@ func _ready():
 	createMonigotes()
 	lobby.positionMonigotes(monigotes)
 	lobby.monigoteReady.connect(onLobbyMonigoteReady)
+	
+	betDisplay.allPlayersReady.connect(betToArena)
+	
+	arena.gameEnded.connect(arenaToLeaderboard)
+	
+	chipHolder.nextRound.connect(leaderboardToBet)
+	chipHolder.resetRequest.connect(resetGame)
+	
+	arena.setTableRender(false)
+	# Las paredes de la arena tienen que empezar desabilitadas para poder tener monigotes fuera
+	arena.setWallsDisabled(true)
 
 ## Crea los monigotes necesarios y los pone en Arena.
 ## IMPORTANTE: para evitar problemas de path, los monigotes siempre son hijos directos de Arena
@@ -56,9 +68,63 @@ func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 ###########################
 # Se llama desde la animación de lobbyOut
 func lobbyToBet():
-	camera.goToCamera(betCamera)\
-			.finished.connect(betDisplay.startBetting)
-	currentStage = Stages.BETTING
+	arena.setTableRender(true)
+	camera.goToCamera(betCamera).finished.connect(func(): 
+		betDisplay.startBetting()
+		currentStage = Stages.BETTING
+	)
+
+func betToArena():
+	currentStage = Stages.ARENA
+	chipHolder.disownAllMonigotes()
+	for mon in monigotes:
+		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 0))
+	await camera.startGameAnimation().finished
+	
+	chipHolder.visible = false
+	arena.setWallsDisabled(false)
+	arena.recieveMonigotes(monigotes)
+	arena.startArena()
+
+func arenaToLeaderboard(winnerId):
+	currentStage = Stages.LEADERBOARD
+	# Resetea los monigotes
+	# IMPORTANTE: todavía no se llamó settleBet, entonces si un jugador se quedó
+	# sin fichas esta ronda, igualmente se crea su monigote, se tiene que eliminar
+	# antes de la próxima ronda
+	destroyMonigotes()
+	createMonigotes()
+	for mon in monigotes:
+		chipHolder.ownMonigote(mon)
+	
+	chipHolder.visible = true
+	camera.goToCamera(leaderboardCamera)\
+		.finished.connect(chipHolder.startLeaderboardAnimation.bind(winnerId))
+
+func leaderboardToBet():
+	for mon in monigotes:
+		if not mon.player.isStillPlaying():
+			chipHolder.disownMonigote(mon)
+			mon.queue_free()
+	
+	monigotes = chipHolder.ownedMonigotes.duplicate()
+	
+	arena.setTableRender(true)
+	camera.goToCamera(betCamera).finished.connect(func(): 
+		betDisplay.startBetting()
+		currentStage = Stages.BETTING
+	)
+
+func resetGame():
+	PlayerHandler.resetAllPlayers()
+	BetHandler.round = 0
+	arena.startNewGame()
+	
+	chipHolder.disownAllMonigotes()
+	destroyMonigotes()
+	createMonigotes()
+	for mon in monigotes:
+		chipHolder.ownMonigote(mon)
 
 ######################
 # Funciones de lobby #

@@ -7,9 +7,7 @@ class_name MultipleResCamera
 
 @export var startGameAnimationTime : float = 1
 
-@export var betSceneCamera : Camera3D
 @export var lobbyCamera : Camera3D
-@export var leaderboardCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
@@ -19,7 +17,7 @@ func _ready():
 	restRotation = rotation_degrees
 	restPosition = position
 	
-	if not is_instance_valid(betSceneCamera) or not is_instance_valid(lobbyCamera):
+	if not is_instance_valid(lobbyCamera):
 		return
 	
 	position = lobbyCamera.position

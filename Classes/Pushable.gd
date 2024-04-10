@@ -81,7 +81,7 @@ func startGrab(body : Pushable) -> bool:
 
 	return true
 
-func onGrabbingEscaped(body : Pushable) -> void:
+func onGrabbingEscaped(_body : Pushable) -> void:
 	pass
 
 func push():

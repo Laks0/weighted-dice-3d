@@ -2,7 +2,7 @@ extends Node3D
 class_name Arena
 
 signal effectStarted(effect)
-signal gameEnded(winner) # winner : Monigote
+signal gameEnded(winner) # winner : playerId
 
 var effects : Array[Node]
 
@@ -22,7 +22,7 @@ var activeEffect   : int = -1
 
 var monigotes : Array[Monigote]
 
-var betting := true
+var gameRunning := false
 
 func _ready():
 	startNewGame()
@@ -34,7 +34,7 @@ func startNewGame():
 		e.create(self)
 
 func _process(delta):
-	if betting:
+	if %StageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
 	
 	if activeEffect != -1:
@@ -42,18 +42,21 @@ func _process(delta):
 	
 	BetHandler.arenaUpdate(delta)
 
-func reparentMonigotes(arr : Array[Monigote]) -> void:
-	monigotes = arr.duplicate()
+func recieveMonigotes(arr : Array[Monigote]) -> void:
+	monigotes = arr
 	for mon in monigotes:
-		mon.reparent(self)
 		mon.died.connect(onMonigoteDeath.bind(mon))
 		mon.arenaReady()
 
-func startArena():
-	# Las paredes tienen que empezar desactivadas para que pueda haber monigotes fuera de la arena
+func setWallsDisabled(val : bool) -> void:
 	for wallCollision in $Walls.get_children():
-		wallCollision.disabled = false
-	
+		wallCollision.disabled = val
+
+func setTableRender(val : bool) -> void:
+	$Floor.visible = val
+
+# Se llama para empezar la ronda de juego
+func startArena():
 	BetHandler.startGame(self)
 	
 	%MultipleResCamera.startGameAnimation()
@@ -74,7 +77,7 @@ func startArena():
 	await get_tree().create_timer(2).timeout
 	SoundtrackHandler.playTrack(1)
 	
-	betting = false
+	gameRunning = true
 	
 	die = dieScene.instantiate()
 	die.position.y = 1
@@ -95,7 +98,7 @@ func endGame(winnerMon : Monigote):
 	effects[activeEffect].end()
 	activeEffect = -1
 	
-	betting = true
+	gameRunning = false
 	
 	await get_tree().create_timer(.3).timeout
 	SoundtrackHandler.playTrack(0)
@@ -110,17 +113,7 @@ func endGame(winnerMon : Monigote):
 	%MultipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	
-	goToLeaderboard(winnerId)
-
-	for mon in monigotes:
-		mon.queue_free()
-	monigotes.clear()
-
-func goToLeaderboard(winnerId):
-	$ChipHolder.visible = true
-	%MultipleResCamera.startLeaderboardAnimation().tween_callback(
-		$ChipHolder.startLeaderboardAnimation.bind(winnerId)
-	)
+	gameEnded.emit(winnerId)
 
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
@@ -174,7 +167,7 @@ func getRandomPosition(padding := 1, yPos : float = .1) -> Vector3:
 func onMonigoteDeath(mon : Monigote):
 	monigotes.erase(mon)
 	
-	if betting:
+	if not gameRunning:
 		return
 	
 	if monigotes.size() == 1:

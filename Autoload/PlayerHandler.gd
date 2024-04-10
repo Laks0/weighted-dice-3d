@@ -150,10 +150,8 @@ func createDebugPlayers(amount : int) -> void:
 	for i in range(amount):
 		var skin = skins.pick_random()
 		skins.erase(skin)
-		var controller = Controllers.AI
-		if i == 0:
-			controller = Controllers.KB
-		elif i == 1:
+		var controller = Controllers.KB
+		if i == 1:
 			controller = Controllers.KB2
 		
 		createPlayer(controller, skin)

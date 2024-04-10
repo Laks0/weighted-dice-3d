@@ -15,7 +15,7 @@ func _process(_delta):
 	else:
 		$ControllerLabel.text = "Gamepad %s" % controller
 	 
-	modulate.a = .5 if playerReady else 1
+	modulate.a = .5 if playerReady else 1.0
 	$TextEdit.set_process(not playerReady)
 	playerName = $TextEdit.text
 

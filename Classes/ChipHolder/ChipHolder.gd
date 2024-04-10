@@ -1,6 +1,9 @@
 extends Node3D
 class_name ChipHolder
 
+signal resetRequest # Se pidió reiniciar el juego
+signal nextRound # Se avanzó de ronda
+
 @export var chipPileScene : PackedScene
 
 var piles : Dictionary
@@ -44,7 +47,15 @@ func ownMonigote(mon : Monigote) -> void:
 	if ownedMonigotes.has(mon):
 		return
 	
+	mon.set_process(false)
+	mon.set_physics_process(false)
 	ownedMonigotes.append(mon)
+
+func disownAllMonigotes() -> void:
+	ownedMonigotes.clear()
+
+func disownMonigote(mon : Monigote) -> void:
+	ownedMonigotes.erase(mon)
 
 func _process(_delta):
 	for mon in ownedMonigotes:
@@ -145,12 +156,10 @@ func _input(event):
 	for player in PlayerHandler.getPlayersAlive():
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
 			if gameEnded:
-				PlayerHandler.resetAllPlayers()
-				get_parent().startNewGame()
-				BetHandler.round = 0
+				resetRequest.emit()
 				gameEnded = false
-
-			get_parent().goToBettingScene()
+			
+			nextRound.emit()
 			$RoundNumber.text = ""
 			$LeaderboardTitleLabel.text = ""
 			waitingToStart = false

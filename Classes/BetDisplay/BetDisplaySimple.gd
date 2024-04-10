@@ -1,7 +1,7 @@
 extends Node3D
 class_name BetDisplaySimple
 
-signal gameStarted
+signal allPlayersReady
 
 @export var halfWidth : float = 7
 @export var chipPileScene : PackedScene
@@ -12,6 +12,7 @@ signal gameStarted
 @export var playerPileZ : float = -8
 
 @export var chipHolder : ChipHolder
+@export var stageHandler : StageHandler
 
 var piles : Array
 var candidatesOnLeft : int
@@ -21,8 +22,6 @@ var selectors : Dictionary
 var selected : Dictionary
 var betted : Dictionary
 var isReady : Dictionary
-
-var betting = false
 
 func startBetting():
 	$StartDelay.start()
@@ -34,7 +33,6 @@ func startBetting():
 	selectors.clear()
 	selected.clear()
 	
-	betting = true
 	BetHandler.startRound()
 	$Slotmachine/BetName.text = "Betting on:\n" + BetHandler.getBetName()
 	
@@ -80,24 +78,20 @@ func startBetting():
 	
 	_repositionSelectors()
 
-func startArena():
+func endBetting():
 	SfxHandler.playSound("displayReady")
-	chipHolder.sendMonigotesToArena(get_parent())
-	get_parent().startArena()
-	betting = false
 	for sel in selectors.values():
 		sel.queue_free()
-	gameStarted.emit()
 	
 	$Label3D2.visible = false
 
 func _process(_delta):
-	$AIBetController.set_process(betting)
-	if (not betting) or (not $StartDelay.is_stopped()):
+	if (stageHandler.currentStage != StageHandler.Stages.BETTING) or (not $StartDelay.is_stopped()):
 		return
 	
 	if isReady.keys().filter(func (id : int): return isReady[id]).size() == isReady.keys().size():
-		startArena()
+		allPlayersReady.emit()
+		endBetting()
 		return
 	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():

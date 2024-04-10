@@ -27,6 +27,7 @@ func getCandidateOdds(candidate: ArenaSide) -> int:
 	for player : PlayerHandler.Player in livingPlayers:
 		if player.getAmountBettedOn(candidate) > 0:
 			bettingPlayers += 1
+	@warning_ignore("integer_division")
 	return max(1, totalPlayers/2 - bettingPlayers + 2)
 
 func arenaUpdate(delta):

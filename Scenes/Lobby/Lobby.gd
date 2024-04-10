@@ -9,9 +9,9 @@ signal monigoteReady(mon)
 var monigotes : Array[Monigote]
 
 ## Dada la lista de monigotes, los posiciona en el lobby (con posiciones globales)
-func positionMonigotes(monigotes : Array[Monigote]) -> void:
+func positionMonigotes(mons : Array[Monigote]) -> void:
 	var xPos = -3
-	for m : Monigote in monigotes:
+	for m : Monigote in mons:
 		m.global_position = to_global(Vector3(xPos, Globals.SPRITE_HEIGHT, -3))
 		xPos += 1
 

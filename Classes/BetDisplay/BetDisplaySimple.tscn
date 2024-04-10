@@ -218,6 +218,7 @@ mesh = SubResource("ArrayMesh_f05kf")
 skeleton = NodePath("")
 
 [node name="AIBetController" type="Node" parent="."]
+process_mode = 4
 script = ExtResource("13_o215p")
 
 [node name="StartDelay" type="Timer" parent="."]

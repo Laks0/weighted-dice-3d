@@ -290,20 +290,18 @@ uppercase = true
 autowrap_mode = 2
 width = 800.0
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("betSceneCamera", "lobbyCamera", "leaderboardCamera") instance=ExtResource("5_fiigu")]
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 8.80834, 5.92504)
 cull_mask = 1048575
 environment = null
 showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
-betSceneCamera = NodePath("../BetSceneCamera")
 lobbyCamera = NodePath("../LobbyCamera")
-leaderboardCamera = NodePath("../LeaderboardCamera")
 
 [node name="LobbyCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
-cull_mask = 1048573
+cull_mask = 3
 fov = 47.0
 
 [node name="LeaderboardCamera" type="Camera3D" parent="."]
@@ -316,9 +314,10 @@ transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 
 cull_mask = 1048573
 fov = 47.0
 
-[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder") instance=ExtResource("13_ta5lr")]
+[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("13_ta5lr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
 chipHolder = NodePath("../ChipHolder")
+stageHandler = NodePath("../StageHandler")
 
 [node name="ChipHolder" parent="." instance=ExtResource("16_khcf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
@@ -327,7 +326,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11012, -10.274)
 lobbyOutAnimationPlayer = NodePath("../StageHandler/LobbyOutAnimationPlayer")
 
-[node name="StageHandler" type="Node" parent="." node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera")]
+[node name="StageHandler" type="Node" parent="." node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera")]
+unique_name_in_owner = true
 script = ExtResource("23_v1elk")
 arena = NodePath("..")
 lobby = NodePath("../Lobby")
@@ -335,6 +335,7 @@ chipHolder = NodePath("../ChipHolder")
 betDisplay = NodePath("../BetDisplaySimple")
 camera = NodePath("../MultipleResCamera")
 betCamera = NodePath("../BetSceneCamera")
+leaderboardCamera = NodePath("../LeaderboardCamera")
 
 [node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="StageHandler"]
 root_node = NodePath("../../Lobby")
