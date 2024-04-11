@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=30 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -54,6 +54,21 @@ scale_max = 0.4
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.13
+
+[sub_resource type="Curve" id="Curve_38svj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.111111, 1), 0.0, 0.0, 0, 0, Vector2(0.421053, 0.67033), 0.0, 0.0, 0, 0, Vector2(0.54386, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_xri4h"]
+curve = SubResource("Curve_38svj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_keoja"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xri4h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_862k8"]
+radius = 0.1
+height = 0.2
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -159,5 +174,13 @@ visible = false
 light_energy = 16.0
 light_size = 0.253
 omni_range = 1.0
+
+[node name="PushedParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 0.65
+process_material = SubResource("ParticleProcessMaterial_keoja")
+draw_pass_1 = SubResource("SphereMesh_862k8")
 
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
