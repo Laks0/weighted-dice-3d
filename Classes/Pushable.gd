@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Pushable
 
 ## Se emite cuando se escapa de un grab
-signal escaped()
+signal escaped
 signal beenGrabbed
 
 @export_range(0, 3) var maxGrabTime  : float = 1

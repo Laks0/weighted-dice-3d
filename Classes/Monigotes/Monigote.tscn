@@ -64,7 +64,7 @@ script = ExtResource("1_kvmu2")
 scoreParticle = ExtResource("2_qu674")
 MAX_SPEED = 6.0
 ACCELERATION = 50.0
-MOVEMENTS_TO_ESCAPE_GRAB = 10
+MOVEMENTS_TO_ESCAPE_GRAB = 5
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 skins = {
@@ -95,6 +95,8 @@ script = ExtResource("8_au5v3")
 mon = NodePath("..")
 crownTexture = ExtResource("19_0df27")
 jokerHatTexture = ExtResource("14_wqmb4")
+shakeMagnitude = 0.15
+shakeTime = 0.15
 
 [node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)

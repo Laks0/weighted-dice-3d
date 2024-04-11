@@ -9,6 +9,9 @@ var onArena := false
 
 @export var betSignalScale : int = 4
 
+@export var shakeMagnitude := .4
+@export var shakeTime := .1
+
 func _ready():
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 
@@ -93,6 +96,16 @@ func changeBetSignalStatus(isVisible : bool):
 	scaleTween.tween_property($BetSignalSprite, "scale",\
 		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
+
+func shake() -> void:
+	var elapsedTime := .0
+	while elapsedTime < shakeTime:
+		position = Vector3.RIGHT * randf_range(-shakeMagnitude, shakeMagnitude)\
+			* (shakeTime - elapsedTime) / shakeTime
+		elapsedTime += get_process_delta_time()
+		await get_tree().process_frame
+	
+	position = Vector3.ZERO
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 
