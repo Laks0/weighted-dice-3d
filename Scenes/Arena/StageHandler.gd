@@ -68,11 +68,14 @@ func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 ###########################
 # Se llama desde la animación de lobbyOut
 func lobbyToBet():
+	currentStage = Stages.TRANSITION
+	
 	arena.setTableRender(true)
-	camera.goToCamera(betCamera).finished.connect(func(): 
-		betDisplay.startBetting()
-		currentStage = Stages.BETTING
-	)
+	betDisplay.startBetting()
+	
+	await camera.goToCamera(betCamera).finished
+	
+	currentStage = Stages.BETTING
 
 func betToArena():
 	currentStage = Stages.TRANSITION
@@ -103,6 +106,7 @@ func arenaToLeaderboard(winnerId):
 		.finished.connect(chipHolder.startLeaderboardAnimation.bind(winnerId))
 
 func leaderboardToBet():
+	currentStage = Stages.TRANSITION
 	for mon in monigotes:
 		if not mon.player.isStillPlaying():
 			chipHolder.disownMonigote(mon)
@@ -111,10 +115,10 @@ func leaderboardToBet():
 	monigotes = chipHolder.ownedMonigotes.duplicate()
 	
 	arena.setTableRender(true)
-	camera.goToCamera(betCamera).finished.connect(func(): 
-		betDisplay.startBetting()
-		currentStage = Stages.BETTING
-	)
+	betDisplay.startBetting()
+	await camera.goToCamera(betCamera).finished
+	
+	currentStage = Stages.BETTING
 
 func resetGame():
 	PlayerHandler.resetAllPlayers()
