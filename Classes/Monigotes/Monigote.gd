@@ -199,6 +199,13 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	
 	super(dir, factor, _pusher)
 	
+	##############
+	# Partículas #
+	##############
+	# Solo las genera a partir de factor .5
+	if factor < .5:
+		return
+	
 	# Se espera un poco antes de crear las partículas
 	await get_tree().create_timer(.1).timeout
 	
