@@ -107,11 +107,13 @@ func arenaToLeaderboard(winnerId):
 
 func leaderboardToBet():
 	currentStage = Stages.TRANSITION
+	# Hace falta matar a los monigotes que perdieron, avisarle a chipHolder que
+	# no existen más, y eliminarlos de nuestra lista. Para eso lo hacemos desde
+	# chipHolder y después copiamos el resultado de ahí
 	for mon in monigotes:
 		if not mon.player.isStillPlaying():
 			chipHolder.disownMonigote(mon)
 			mon.queue_free()
-	
 	monigotes = chipHolder.ownedMonigotes.duplicate()
 	
 	arena.setTableRender(true)
@@ -132,7 +134,7 @@ func resetGame():
 		chipHolder.ownMonigote(mon)
 
 ######################
-# Funciones de lobby #
+# Señal desde lobby #
 ######################
 var lobbyMonigotesReady := 0
 func onLobbyMonigoteReady(mon : Monigote):
