@@ -30,6 +30,9 @@ func startBetting():
 	for pile in piles:
 		pile.queue_free()
 	piles = []
+	for sel in selectors.values():
+		if is_instance_valid(sel):
+			sel.queue_free()
 	selectors.clear()
 	selected.clear()
 	
@@ -90,8 +93,8 @@ func _process(_delta):
 		return
 	
 	if isReady.keys().filter(func (id : int): return isReady[id]).size() == isReady.keys().size():
-		allPlayersReady.emit()
 		endBetting()
+		allPlayersReady.emit()
 		return
 	
 	for player : PlayerHandler.Player in PlayerHandler.getPlayersAlive():

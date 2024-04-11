@@ -15,7 +15,7 @@ class_name StageHandler
 @export var betCamera : Camera3D
 @export var leaderboardCamera : Camera3D
 
-enum Stages {LOBBY, BETTING, ARENA, LEADERBOARD}
+enum Stages {LOBBY, BETTING, ARENA, LEADERBOARD, TRANSITION}
 var currentStage := Stages.LOBBY
 
 var monigotes : Array[Monigote]
@@ -75,7 +75,7 @@ func lobbyToBet():
 	)
 
 func betToArena():
-	currentStage = Stages.ARENA
+	currentStage = Stages.TRANSITION
 	chipHolder.disownAllMonigotes()
 	for mon in monigotes:
 		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 0))
@@ -85,6 +85,7 @@ func betToArena():
 	arena.setWallsDisabled(false)
 	arena.recieveMonigotes(monigotes)
 	arena.startArena()
+	currentStage = Stages.ARENA
 
 func arenaToLeaderboard(winnerId):
 	currentStage = Stages.LEADERBOARD

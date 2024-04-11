@@ -10,7 +10,6 @@ transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -0
 layers = 2
 render_priority = 2
 outline_render_priority = 1
-text = "25"
 font = ExtResource("1_rpv1x")
 font_size = 72
 
