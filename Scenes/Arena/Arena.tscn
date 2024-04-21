@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=38 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -11,12 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
 [ext_resource type="Texture2D" uid="uid://db3gatvig6t0c" path="res://Scenes/Arena/Mesa_FelpaMesaTexN.png" id="6_o0cy5"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
+[ext_resource type="Texture2D" uid="uid://b4igh3861gbtw" path="res://Scenes/Arena/Mesa_ColorMesaInt.png" id="7_qljs3"]
+[ext_resource type="Texture2D" uid="uid://c8iscn744p8fr" path="res://Scenes/Arena/Mesa_TexturaMesaIntN.png" id="8_pfx7u"]
 [ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/spikes_effect.tscn" id="10_vf6cn"]
 [ext_resource type="PackedScene" uid="uid://cxjh4xet8soqm" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.tscn" id="11_7goy4"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
 [ext_resource type="PackedScene" uid="uid://bs1h7cfuyhx81" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.tscn" id="12_yk85d"]
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="13_ta5lr"]
+[ext_resource type="PackedScene" uid="uid://dgln6bpylui5h" path="res://Classes/Effects/Pinball/PinballEffect.tscn" id="14_0dm7k"]
 [ext_resource type="PackedScene" uid="uid://vj4n1f7bc5hh" path="res://Scenes/Lobby/Lobby.tscn" id="15_2h2ha"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
@@ -39,6 +42,14 @@ cull_mode = 2
 albedo_color = Color(0.381616, 0.406012, 0.100887, 1)
 normal_enabled = true
 normal_texture = ExtResource("6_o0cy5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdnf3"]
+resource_name = "MesaInt"
+cull_mode = 2
+albedo_texture = ExtResource("7_qljs3")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("8_pfx7u")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -197,6 +208,9 @@ transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0,
 [node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
 material_override = SubResource("StandardMaterial3D_foc0n")
 
+[node name="MesaInt" parent="Floor/Mesa/MesaEx" index="2"]
+material_override = SubResource("StandardMaterial3D_fdnf3")
+
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
 visible = false
 collision_layer = 4
@@ -248,7 +262,7 @@ polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.886
 
 [node name="Effects" type="Node" parent="."]
 script = ExtResource("4_rx763")
-regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5pfw"), ExtResource("12_yk85d"), ExtResource("5_ed70i"), ExtResource("4_tqem7"), ExtResource("10_vf6cn")])
+regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5pfw"), ExtResource("12_yk85d"), ExtResource("5_ed70i"), ExtResource("4_tqem7"), ExtResource("10_vf6cn"), ExtResource("14_0dm7k")])
 specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("15_qr7s2")])
 
 [node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
@@ -292,7 +306,7 @@ width = 800.0
 
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 8.80834, 5.92504)
+transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 1.90735e-05, 8.80804, 5.92528)
 cull_mask = 1048575
 environment = null
 showSlotRotationX = -49.0

@@ -132,3 +132,9 @@ func onGrabbing():
 	var newPosition = position + dir3d.normalized() * grabBody.grabDistance
 	newPosition.y = grabBody.position.y
 	grabBody.position = newPosition
+
+func bounce(normal : Vector3) -> void:
+	if customMovement:
+		return
+	
+	velocity = velocity.bounce(normal)

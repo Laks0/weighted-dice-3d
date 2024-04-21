@@ -217,8 +217,20 @@ func push():
 	knockback(-grabDir * 5)
 	super()
 
+func bounce(normal : Vector3):
+	var normal2 := Vector2(normal.x, normal.z)
+	unclampedVelocity = unclampedVelocity.bounce(normal2)
+	moveVelocity = moveVelocity.bounce(normal2)
+	velocity = velocity.bounce(normal)
+
 func knockback(vel : Vector2):
 	unclampedVelocity += vel
+
+func knockbackFrom(pos : Vector3, force : float):
+	var pos2d = Vector2(pos.x, pos.z)
+	var selfPos2d = Vector2(position.x, position.z)
+	
+	knockback(pos2d.direction_to(selfPos2d) * force)
 
 func hurt() -> bool:
 	if invincible:

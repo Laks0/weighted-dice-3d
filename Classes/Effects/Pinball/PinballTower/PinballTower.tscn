@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dry1p0k0elo86"]
+
+[ext_resource type="Script" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.gd" id="1_ws2rw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ivw02"]
+albedo_color = Color(0.101961, 0, 0.458824, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c25e5"]
+material = SubResource("StandardMaterial3D_ivw02")
+height = 0.405
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mlpxm"]
+points = PackedVector3Array(-0.147126, 0.2025, 0.456126, -0.091639, -0.2025, -0.489124, -0.152827, -0.2025, -0.473803, 0.152827, -0.2025, 0.473803, 0.456127, 0.2025, -0.147033, -0.470876, 0.2025, -0.0882201, -0.45843, -0.202477, 0.198672, 0.473803, -0.2025, -0.152732, 0.0882201, 0.2025, -0.470876, 0.382472, 0.2025, 0.294251, 0.45843, -0.202477, 0.198672, -0.45843, -0.202477, -0.198672, -0.294251, 0.2025, -0.382564, 0.304512, -0.201728, -0.395903, -0.198593, -0.202493, 0.458467, -0.382472, 0.2025, 0.294251, 0.153382, 0.149524, 0.475524, 0.382472, 0.2025, -0.294251, 0.470876, 0.2025, 0.0882201, 0.304512, -0.201728, 0.395903, 0.153382, 0.149524, -0.475524, -0.0882201, 0.2025, -0.470876, -0.304512, -0.201728, -0.395903, -0.470876, 0.2025, 0.0882201, -0.489124, -0.2025, 0.0916389, -0.091639, -0.2025, 0.489124, 0.0916389, -0.2025, -0.489124, -0.382472, 0.2025, -0.294251, -0.304512, -0.201728, 0.395903, 0.489124, -0.2025, 0.0916389, 0.250095, 0.2025, 0.411878, -0.250095, 0.2025, 0.41197)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kap6k"]
+height = 1.21997
+radius = 0.509704
+
+[node name="PinballTower" type="StaticBody3D"]
+script = ExtResource("1_ws2rw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199061, 0)
+mesh = SubResource("CylinderMesh_c25e5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199061, 0)
+visible = false
+shape = SubResource("ConvexPolygonShape3D_mlpxm")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551471, 0)
+shape = SubResource("CylinderShape3D_kap6k")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

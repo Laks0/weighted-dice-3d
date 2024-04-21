@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgln6bpylui5h"]
+
+[ext_resource type="Script" path="res://Classes/Effects/Pinball/PinballEffect.gd" id="1_cd2g7"]
+[ext_resource type="PackedScene" uid="uid://dry1p0k0elo86" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.tscn" id="2_s8npj"]
+[ext_resource type="PackedScene" uid="uid://c32l2ktah81x3" path="res://Classes/Effects/Pinball/Bouncers.tscn" id="3_x7nvd"]
+
+[node name="PinballEffect" type="Node"]
+script = ExtResource("1_cd2g7")
+towerScene = ExtResource("2_s8npj")
+bouncersScene = ExtResource("3_x7nvd")
+effectName = "Pinball"

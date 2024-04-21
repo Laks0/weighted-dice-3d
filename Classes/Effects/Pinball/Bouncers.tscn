@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c32l2ktah81x3"]
+
+[ext_resource type="Script" path="res://Classes/Effects/Pinball/Bouncers.gd" id="1_rv2gn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_om4ex"]
+size = Vector3(11.668, 1.7627, 0.584839)
+
+[node name="Bouncers" type="Area3D"]
+script = ExtResource("1_rv2gn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.20039)
+shape = SubResource("BoxShape3D_om4ex")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.46923, 0, -0.589229)
+shape = SubResource("BoxShape3D_om4ex")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.52975, 0, -0.589229)
+shape = SubResource("BoxShape3D_om4ex")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0338235, 0.381348, 3.19708)
+shape = SubResource("BoxShape3D_om4ex")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

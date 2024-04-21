@@ -190,3 +190,8 @@ func lightsOn():
 ## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
 func getScreenPos(pos3d : Vector3) -> Vector2:
 	return $MultipleResCamera.unproject_position(pos3d)
+
+## PLACEHOLDER
+func changeWallHue(color : Color):
+	var tween = create_tween()
+	tween.tween_property($Floor/Mesa/MesaEx/MesaInt, "material_override:albedo_color", color, .5)
