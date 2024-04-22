@@ -79,8 +79,8 @@ func getPlayerIndex(player : Player) -> int:
 	return getPlayersAlive().find(player)
 
 ## Devuelve una lista con los jugadores ordenados de mayor a menor cantidad de fichas incluyendo a los que ya perdieron
-func getPlayersInOrder() -> Array:
-	var list = []
+func getPlayersInOrder() -> Array[Player]:
+	var list : Array[Player] = []
 	
 	# Selection sort
 	for _i in range(len(players)):
@@ -97,6 +97,10 @@ func getPlayersInOrder() -> Array:
 				list.append(p)
 
 	return list
+
+func getWinningPlayers() -> Array[Player]:
+	var maxBank = getPlayersInOrder()[0].bank
+	return players.filter(func(p : Player): return p.bank == maxBank)
 
 func amountOfPlayersLeft() -> int:
 	var left = 0

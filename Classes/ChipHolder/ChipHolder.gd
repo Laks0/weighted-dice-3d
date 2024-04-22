@@ -12,6 +12,12 @@ var gameEnded := false
 
 var ownedMonigotes : Array[Monigote] = []
 
+@export var camera : MultipleResCamera
+@export var worldEnvironment : WorldEnvironment
+@onready var skyMaterial :ShaderMaterial= worldEnvironment.environment.sky.sky_material
+
+@onready var defaultSkyColor : Color = skyMaterial.get_shader_parameter("sky_color")
+
 func _ready():
 	var i := 0
 	for player in PlayerHandler.getPlayersAlive():
@@ -69,17 +75,21 @@ func _process(_delta):
 func startLeaderboardAnimation(winnerId):
 	var timeBetweenSteps := 1.3
 	var timeBetweenChips := .2
+	var skySpeed := 4.
 
 	reset()
 	BetHandler.settleBet(winnerId)
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
+	
 	if not gameEnded:
 		$RoundNumber.modulate = Color.WHITE
 		$RoundNumber.text = "Round " + str(BetHandler.round) + "/" + str(BetHandler.roundAmount)
 	else:
 		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
+		
+		skyMaterial.set_shader_parameter("speed", skySpeed)
 
 	await get_tree().create_timer(1).timeout
 	###################
@@ -119,10 +129,26 @@ func startLeaderboardAnimation(winnerId):
 
 	if not gameEnded:
 		$LeaderboardTitleLabel.text = "Press 'grab' to continue"
-	else:
-		$LeaderboardTitleLabel.text = "Press 'grab' to restart game"
-
+		waitingToStart = true
+		return
+	
+	###########################
+	# Animación de fin de juego
+	###########################
+	
+	var winners : Array[PlayerHandler.Player] = PlayerHandler.getWinningPlayers()
+	if winners.size() == 1:
+		var winner := winners[0]
+		
+		goToSkyColor(winner.color)
+		await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+	
 	waitingToStart = true
+
+func goToSkyColor(color : Color, alpha : float = .5):
+	create_tween().tween_method(func(c : Color):
+		skyMaterial.set_shader_parameter("sky_color", c)
+	,skyMaterial.get_shader_parameter("sky_color"), color*alpha, .5)
 
 ## Agrega a todos los jugadores una cantidad de fichas decidida por llamar amountGetter en su id
 ## retorna el tween que agrega las fichas
@@ -157,6 +183,8 @@ func _input(event):
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
 			if gameEnded:
 				resetRequest.emit()
+				skyMaterial.set_shader_parameter("speed", 1)
+				goToSkyColor(defaultSkyColor, 1)
 				gameEnded = false
 			
 			nextRound.emit()

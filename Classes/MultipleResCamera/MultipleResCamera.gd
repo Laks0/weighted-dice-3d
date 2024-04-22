@@ -45,10 +45,14 @@ func moveTo(newPos : Vector3, rotationDegreesX : float) -> Tween:
 	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
 	return transformTween
 
-func zoomTo(targetPos : Vector3) -> void:
+func zoomTo(targetPos : Vector3, zoomDistance : float = 2.5, zoomTime : float = .5) -> Tween:
+	var cameraDirection := get_camera_transform().basis.z
+	
 	var zoomTween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
-	var zoomPos := targetPos * Vector3(1,0,1) + Vector3(0, 2, 1.5)
-	zoomTween.tween_property(self, "position", zoomPos, .5)
+	var zoomPos := targetPos + zoomDistance * cameraDirection
+	zoomTween.tween_property(self, "position", zoomPos, zoomTime)
+	
+	return zoomTween
 
 func startShake(magnitude : float, time : float) -> void:
 	var elapsedTime := .0

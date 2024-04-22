@@ -333,8 +333,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
 chipHolder = NodePath("../ChipHolder")
 stageHandler = NodePath("../StageHandler")
 
-[node name="ChipHolder" parent="." instance=ExtResource("16_khcf0")]
+[node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("16_khcf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
+camera = NodePath("../MultipleResCamera")
+worldEnvironment = NodePath("../WorldEnvironment")
 
 [node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("15_2h2ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11012, -10.274)
