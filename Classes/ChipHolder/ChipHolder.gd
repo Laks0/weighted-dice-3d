@@ -79,6 +79,8 @@ func startLeaderboardAnimation(winnerId):
 
 	reset()
 	BetHandler.settleBet(winnerId)
+	
+	setSkyRotationStrength(2)
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
 	
@@ -150,6 +152,11 @@ func goToSkyColor(color : Color, alpha : float = .5):
 		skyMaterial.set_shader_parameter("sky_color", c)
 	,skyMaterial.get_shader_parameter("sky_color"), color*alpha, .5)
 
+func setSkyRotationStrength(strength : float):
+	create_tween().tween_method(func(s : float):
+		skyMaterial.set_shader_parameter("rotation_strength", s)
+	,skyMaterial.get_shader_parameter("rotation_strength"), strength, .2)
+
 ## Agrega a todos los jugadores una cantidad de fichas decidida por llamar amountGetter en su id
 ## retorna el tween que agrega las fichas
 func changeAllPlayerChips(amountGetter : Callable, initialIntervalTime : float) -> Tween:
@@ -191,3 +198,4 @@ func _input(event):
 			$RoundNumber.text = ""
 			$LeaderboardTitleLabel.text = ""
 			waitingToStart = false
+			setSkyRotationStrength(0)
