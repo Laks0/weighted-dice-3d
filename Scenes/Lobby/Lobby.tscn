@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vj4n1f7bc5hh"]
+[gd_scene load_steps=9 format=3 uid="uid://vj4n1f7bc5hh"]
 
 [ext_resource type="Script" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
+[ext_resource type="PackedScene" uid="uid://b27nwsetse046" path="res://Scenes/Lobby/ButtonHint/ButtonHint.tscn" id="2_jj814"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="3_nfifi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsggh"]
@@ -19,6 +20,7 @@ radius = 0.461906
 
 [node name="Lobby" type="Node3D"]
 script = ExtResource("1_fk22e")
+buttonHintScene = ExtResource("2_jj814")
 
 [node name="Maletin" parent="." instance=ExtResource("1_k3tbe")]
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
@@ -66,17 +68,6 @@ shape = SubResource("SphereShape3D_iqr1o")
 
 [node name="JumpPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2989, -1.22)
-
-[node name="Tutorial" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.00593385, -5.32054)
-render_priority = 2
-outline_render_priority = 1
-text = "Enter/AltGr/Xbox A
-to grab
-spam button
-to escape a grab"
-font = ExtResource("3_nfifi")
-font_size = 147
 
 [connection signal="body_entered" from="ReadyArea" to="." method="_on_ready_area_body_entered"]
 

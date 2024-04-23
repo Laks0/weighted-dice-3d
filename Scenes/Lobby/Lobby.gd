@@ -6,7 +6,7 @@ signal monigoteReady(mon)
 @export var lobbyOutAnimationPlayer : AnimationPlayer
 @export var maxLobbyTime := 50.0
 
-var monigotes : Array[Monigote]
+@export var buttonHintScene : PackedScene
 
 ## Dada la lista de monigotes, los posiciona en el lobby (con posiciones globales)
 func positionMonigotes(mons : Array[Monigote]) -> void:
@@ -14,22 +14,31 @@ func positionMonigotes(mons : Array[Monigote]) -> void:
 	for m : Monigote in mons:
 		m.global_position = to_global(Vector3(xPos, Globals.SPRITE_HEIGHT, -3))
 		xPos += 1
+	
+	for mon : Monigote in mons:
+		var device = mon.player.inputController
+		mon.beenGrabbed.connect(func():
+			var hint :AnimatedSprite3D= buttonHintScene.instantiate()
+			
+			mon.add_child(hint)
+			hint.position = Vector3(0,1,0)
+			
+			if device == Controllers.KB:
+				hint.play("kb")
+			elif device == Controllers.KB2:
+				hint.play("kb_alt")
+			else:
+				hint.play("xbox")
+			
+			mon.escaped.connect(hint.queue_free)
+			mon.pushed.connect(hint.queue_free)
+		)
 
 func _ready():
 	if DebugVars.straigtToArena:
 		maxLobbyTime = 0
 	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
-	
-	get_tree().create_timer(maxLobbyTime).timeout.connect(func():
-		if lobbyOutAnimationPlayer.is_playing():
-			return
-		
-		for mon in monigotes:
-			if mon.get_parent() != self:
-				continue
-			monigoteReady.emit(mon)
-	)
 
 func _on_ready_area_body_entered(body):
 	if not body is Monigote:
