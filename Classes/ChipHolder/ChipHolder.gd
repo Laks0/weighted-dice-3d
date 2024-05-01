@@ -17,6 +17,7 @@ var ownedMonigotes : Array[Monigote] = []
 @onready var skyMaterial :ShaderMaterial= worldEnvironment.environment.sky.sky_material
 
 @onready var defaultSkyColor : Color = skyMaterial.get_shader_parameter("sky_color")
+@onready var defaultSkyRotation : float = skyMaterial.get_shader_parameter("rotation_strength")
 
 func _ready():
 	var i := 0
@@ -80,7 +81,7 @@ func startLeaderboardAnimation(winnerId):
 	reset()
 	BetHandler.settleBet(winnerId)
 	
-	setSkyRotationStrength(2)
+	setSkyRotationStrength(defaultSkyRotation*2)
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
 	
@@ -198,4 +199,4 @@ func _input(event):
 			$RoundNumber.text = ""
 			$LeaderboardTitleLabel.text = ""
 			waitingToStart = false
-			setSkyRotationStrength(0)
+			setSkyRotationStrength(defaultSkyRotation)

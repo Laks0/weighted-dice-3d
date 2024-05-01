@@ -4,7 +4,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nb83e"]
 noise_type = 0
-frequency = 0.0294
+frequency = 0.02
 fractal_type = 0
 domain_warp_enabled = true
 domain_warp_type = 2
@@ -39,13 +39,14 @@ shader_parameter/first_layer_cutoff = 0.42
 shader_parameter/second_layer_opacity = 0.255
 shader_parameter/second_layer_cutoff = 0.745
 shader_parameter/speed = 1.0
-shader_parameter/rotation_strength = 0.0
+shader_parameter/rotation_strength = 1.5
 shader_parameter/noise = SubResource("NoiseTexture2D_ggx4w")
 shader_parameter/rotation_noise = SubResource("NoiseTexture2D_2dnor")
 shader_parameter/star_mask_noise = SubResource("NoiseTexture2D_utr0e")
 
 [sub_resource type="Sky" id="Sky_uapgf"]
 sky_material = SubResource("ShaderMaterial_xaof3")
+process_mode = 3
 radiance_size = 0
 
 [resource]
