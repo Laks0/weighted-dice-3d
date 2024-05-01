@@ -44,6 +44,6 @@ void sky() {
 		COLOR = noise_texture * sky_color + sky_color * .05;
 		
 		vec3 star_texture = step(.91, texture(noise, stereographic + speed * TIME * .005).rgb);
-		COLOR += star_texture * step(.7, texture(star_mask_noise, stereographic).xyz);
+		COLOR += star_texture * step(.8, texture(star_mask_noise, stereographic).xyz);
 	}
 }
