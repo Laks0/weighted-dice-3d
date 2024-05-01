@@ -145,6 +145,7 @@ func _physics_process(delta):
 	# Detiene las partículas si se interrumpió el movimiento
 	if velocity.is_zero_approx():
 		$PushedParticles.emitting = false
+		unclampedVelocity = Vector2.ZERO
 
 func resetMovement() -> void:
 	moveVelocity = Vector2.ZERO
@@ -224,7 +225,7 @@ func bounce(normal : Vector3):
 	velocity = velocity.bounce(normal)
 
 func knockback(vel : Vector2):
-	unclampedVelocity += vel
+	unclampedVelocity = vel
 
 func knockbackFrom(pos : Vector3, force : float):
 	var pos2d = Vector2(pos.x, pos.z)
