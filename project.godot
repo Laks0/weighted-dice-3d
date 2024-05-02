@@ -45,6 +45,7 @@ enabled=PackedStringArray("res://addons/xsm/plugin.cfg")
 
 folder_colors={
 "res://Assets/": "blue",
+"res://Autoload/": "red",
 "res://Classes/": "orange",
 "res://Scenes/": "green"
 }

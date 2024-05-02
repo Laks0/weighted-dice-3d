@@ -167,14 +167,18 @@ func startGrab(body : Pushable) -> bool:
 func attemptEscape():
 	$AnimatedSprite.shake()
 	escapeMovements += 1
+	Input.start_joy_vibration(controller, .3, 0, .2)
+	
 	if escapeMovements >= MOVEMENTS_TO_ESCAPE_GRAB:
 		$GrabCooldown.start()
 		escaped.emit()
+		Input.start_joy_vibration(controller, 1, 0, .1)
 
 func onGrabbingEscaped(body : Pushable):
 	var bodyPos2d = Vector2(body.position.x, body.position.z)
 	var pos2d = Vector2(position.x, position.z)
 	knockback(bodyPos2d.direction_to(pos2d) * 14)
+	Input.start_joy_vibration(controller, 1, 0, .25)
 
 func onGrabbed():
 	escapeMovements = 0
@@ -215,7 +219,8 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 
 func push():
 	moveVelocity = Vector2.ZERO
-	knockback(-grabDir * 5)
+	knockback(-grabDir * pow(pushFactor, 2) * 11)
+	Input.start_joy_vibration(controller, pushFactor, 0, .1)
 	super()
 
 func bounce(normal : Vector3):
