@@ -70,8 +70,7 @@ func startArena():
 	BetHandler.startGame(self)
 	
 	for mon in monigotes:
-			mon.set_process(true)
-			mon.set_physics_process(true)
+			mon.unfreeze()
 	
 	# Delay hasta que entra el dado
 	SoundtrackHandler.stopTrack()
@@ -110,7 +109,7 @@ func endGame(winnerMon : Monigote):
 		die.queue_free()
 	
 	var winnerId = winnerMon.player.id
-	winnerMon.set_physics_process(false)
+	winnerMon.freeze()
 	%MultipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	

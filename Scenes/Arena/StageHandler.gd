@@ -138,8 +138,7 @@ func resetGame():
 ######################
 var lobbyMonigotesReady := 0
 func onLobbyMonigoteReady(mon : Monigote):
-	mon.set_process(false)
-	mon.set_physics_process(false)
+	mon.freeze()
 	
 	await jumpMonigoteTo(mon, chipHolder.getPositionForMonigote(mon.player.id)).finished
 	chipHolder.ownMonigote(mon)

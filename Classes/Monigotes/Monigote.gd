@@ -284,6 +284,21 @@ func makeInvincible():
 	invincible = true
 	$HurtTime.start()
 
+## Detiene todo movimiento e interrumpe los controles, se usa en las transiciones de estado
+func freeze():
+	set_process(false)
+	set_physics_process(false)
+	moveVelocity = Vector2.ZERO
+	unclampedVelocity = Vector2.ZERO
+	
+	push()
+	if grabbed:
+		escaped.emit()
+
+func unfreeze():
+	set_process(true)
+	set_physics_process(true)
+
 func _on_stun_cooldown_timeout():
 	stunned = false
 
