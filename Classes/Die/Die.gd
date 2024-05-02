@@ -48,11 +48,17 @@ func _process(_delta):
 
 func _getRandomMonigoteDirection() -> Vector2:
 	var monigote : Monigote = get_parent().getRandomMonigote()
+	if not is_instance_valid(get_parent().getRandomMonigote()):
+		return Vector2.LEFT
+	
 	var dir3d : Vector3 = position.direction_to(monigote.position)
 	
 	return Vector2(dir3d.x, dir3d.z)
 
 func _getClosestMonigoteDirection() -> Vector2:
+	if not is_instance_valid(get_parent().getClosestMonigote(position)):
+		return Vector2.LEFT
+	
 	var closestMonigotePos = get_parent().getClosestMonigote(position).position
 	var dir3d = position.direction_to(closestMonigotePos)
 	return Vector2(dir3d.x, dir3d.z)
