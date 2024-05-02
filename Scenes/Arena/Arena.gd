@@ -64,6 +64,7 @@ func startArena():
 	if BetHandler.round == 1 and not DebugVars.skipCardAnimation:
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
+		cardAnimation.arena = self
 		add_child(cardAnimation)
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
@@ -186,6 +187,17 @@ func lightsOn():
 	lightTween.tween_property($DirectionalLight3D, "light_energy", 1, 1)
 	$GlobalLight.visible = true
 	lightTween.set_ease(Tween.EASE_OUT)
+
+func fogOn(density : float = .01, time : float = .5):
+	var env : Environment = $WorldEnvironment.environment
+	env.volumetric_fog_enabled = true
+	var tween := get_tree().create_tween()
+	tween.tween_property(env, "volumetric_fog_density", density, time)
+
+func fogOff(time : float = .5):
+	var env : Environment = $WorldEnvironment.environment
+	var tween := get_tree().create_tween()
+	tween.tween_property(env, "volumetric_fog_density", 0, time)
 
 ## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
 func getScreenPos(pos3d : Vector3) -> Vector2:

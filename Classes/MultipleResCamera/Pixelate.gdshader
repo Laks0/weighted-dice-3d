@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, fog_disabled;
 
 float getDepth(vec2 screen_uv, sampler2D depth_texture, mat4 inv_projection_matrix){
 //	Credit: https://godotshaders.com/shader/depth-modulated-pixel-outline-in-screen-space/

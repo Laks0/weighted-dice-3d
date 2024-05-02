@@ -801,6 +801,20 @@ tracks/35/keys = {
 "points": PackedFloat32Array(3.26266e-07, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(4, 5, 5.5, 7.3, 7.6, 8.2)
 }
+tracks/36/type = "method"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("CardShowAnimation")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(7.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"startExit"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6pfkn"]
 _data = {
@@ -815,19 +829,26 @@ libraries = {
 script = ExtResource("1_x7ohg")
 
 [node name="Card1" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.747613, -0.426898, -0.508756, 0.664135, 0.480556, 0.572704, -5.96046e-08, -0.766045, 0.642787, -11.3681, 8.08739, 0)
+transform = Transform3D(0.747613, -0.426898, -0.508756, 0.664135, 0.480557, 0.572704, -2.98023e-08, -0.766045, 0.642787, -11.3681, 8.08739, 0)
 
 [node name="Card2" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.848492, -0.340169, -0.405397, 0.529209, 0.5454, 0.649982, 5.96046e-08, -0.766045, 0.642787, -8.86814, 8.08739, 0)
+transform = Transform3D(0.848492, -0.340169, -0.405397, 0.529209, 0.5454, 0.649982, 1.49012e-07, -0.766045, 0.642787, -8.86814, 8.08739, 0)
 
 [node name="Card3" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(1, 0, 0, 0, 0.0871557, -0.996194, 0, 0.996195, 0.0871556, 0, 12.0492, 9.95514)
+transform = Transform3D(1, 0, 0, 0, 0.865317, -0.501225, 0, 0.501225, 0.865316, 0, 12.0492, 0.642065)
 
 [node name="Card4" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.814845, 0.372611, 0.44406, -0.579679, 0.523772, 0.624207, -2.98023e-08, -0.766045, 0.642787, 9.77312, 7.5797, 0)
+transform = Transform3D(0.814845, 0.372611, 0.44406, -0.57968, 0.523772, 0.624207, 3.8743e-07, -0.766044, 0.642788, 9.77312, 7.5797, 0)
 
 [node name="Card5" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.844477, 0.344271, 0.410286, -0.535591, 0.54282, 0.646907, 0, -0.766045, 0.642787, 12.2731, 7.5797, 0)
+transform = Transform3D(0.844477, 0.344271, 0.410286, -0.535591, 0.54282, 0.646907, -2.98023e-08, -0.766045, 0.642787, 12.2731, 7.5797, 0)
 
 [node name="Card6" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(1.18, 0, 0, 0, -0.204905, -1.16207, 0, 1.16207, -0.204905, 0, 11.8175, 11.9551)
+transform = Transform3D(1.18, 0, 0, 0, 1.17551, 0.102843, 0, -0.102843, 1.17551, 0, 9.09408, 2)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.868657, 0.495413, 0, -0.495413, 0.868657, 0.902044, 8.49095, 14.6556)
+light_color = Color(0.997014, 0.455945, 1, 1)
+light_energy = 15.349
+spot_range = 46.6451
+spot_angle = 30.9375
