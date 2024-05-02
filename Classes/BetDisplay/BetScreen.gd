@@ -8,7 +8,7 @@ func _process(_delta):
 	
 	%ColorRect.color = Color.WHITE
 	
-	if not BetHandler.inArena:
+	if not BetHandler.betOngoing:
 		return
 	
 	if not (BetHandler.currentBet is FirstToDieBet or BetHandler.currentBet is SecondToDieBet):

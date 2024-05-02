@@ -1,13 +1,13 @@
 extends Node3D
 
-var numberShown: float = 0
+var numberShown : float = 0
 
 func _process(_delta):
 	$Pantalla.get_surface_override_material(0).set_shader_parameter("screenTexture", $ScreenViewport.get_texture())
 	
 	$ScreenLight.light_color = Color.WHITE
 	
-	if not BetHandler.inArena:
+	if not BetHandler.betOngoing:
 		return
 	
 	var firstCandidate = BetHandler.getCandidatesInOrder()[0]

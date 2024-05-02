@@ -13,7 +13,7 @@ var _lastBet : Bet
 var round : int = 0
 var roundAmount : int = 4
 
-var inArena := false
+var betOngoing := false
 
 # Automáticamente usa todas las apuestas en betPath
 func _ready():
@@ -30,7 +30,7 @@ func startGame(arena : Arena):
 		startRound()
 	
 	currentBet.startGame(arena)
-	inArena = true
+	betOngoing = true
 
 ## Empieza la ronda de apuestas
 func startRound() -> void:
@@ -113,11 +113,13 @@ func settleBet(winnerId : int) -> void:
 		player.bank += getPlayerBetWinnings(player.id)
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
-	inArena = false
+	betOngoing = false
 
 func hasWon(res) -> bool:
 	var d = currentBet.hasWon(res)
 	return d
 
 func arenaUpdate(delta):
+	if not betOngoing:
+		return
 	currentBet.arenaUpdate(delta)
