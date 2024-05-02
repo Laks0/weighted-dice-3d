@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dv7ynjv00flrl" path="res://Assets/Bets/Tumba1ery2do.glb" id="1_s0dce"]
 [ext_resource type="Script" path="res://Assets/Bets/Tomb.gd" id="1_vowye"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="2_3n4hy"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_3n4hy"]
 [ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_155k7"]
 [ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_i0vlk"]
 [ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="4_hei7n"]

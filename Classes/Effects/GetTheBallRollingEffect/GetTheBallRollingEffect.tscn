@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxjh4xet8soqm"]
+[gd_scene load_steps=8 format=3 uid="uid://cxjh4xet8soqm"]
 
 [ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.gd" id="1_748c0"]
 [ext_resource type="PackedScene" uid="uid://v52mgut660el" path="res://Classes/Effects/GetTheBallRollingEffect/PoolStick.tscn" id="2_hhtq5"]
 [ext_resource type="PackedScene" uid="uid://5grbkmxqlcab" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.tscn" id="2_j2s6x"]
+[ext_resource type="Texture2D" uid="uid://cuhwgspnq1lig" path="res://Classes/Effects/GetTheBallRollingEffect/TarotBola8.png" id="4_5b0xi"]
 
 [sub_resource type="Animation" id="Animation_qpltu"]
 resource_name = "BallEnter"
@@ -65,6 +66,7 @@ script = ExtResource("1_748c0")
 stickScene = ExtResource("2_hhtq5")
 ball8Scene = ExtResource("2_j2s6x")
 effectName = "Get The Ball Rolling"
+cardTexture = ExtResource("4_5b0xi")
 duration = 20.0
 
 [node name="BallAnimationPos" type="Marker3D" parent="."]

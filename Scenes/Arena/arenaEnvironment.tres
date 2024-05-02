@@ -47,7 +47,6 @@ shader_parameter/star_mask_noise = SubResource("NoiseTexture2D_utr0e")
 [sub_resource type="Sky" id="Sky_uapgf"]
 sky_material = SubResource("ShaderMaterial_xaof3")
 process_mode = 3
-radiance_size = 0
 
 [resource]
 background_mode = 2

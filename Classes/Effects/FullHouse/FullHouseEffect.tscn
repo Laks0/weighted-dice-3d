@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbg4fcgpv31yt"]
+[gd_scene load_steps=10 format=3 uid="uid://bbg4fcgpv31yt"]
 
 [ext_resource type="Script" path="res://Classes/Effects/FullHouse/FullHouseEffect.gd" id="1_3hme3"]
 [ext_resource type="PackedScene" uid="uid://cbr1kxsjhj32d" path="res://Classes/Effects/FullHouse/Card.tscn" id="2_kkwc2"]
 [ext_resource type="AudioStream" uid="uid://cpy40ag5gegu8" path="res://Classes/Effects/FullHouse/sfx_stampede.wav" id="3_2xv2m"]
+[ext_resource type="Texture2D" uid="uid://csu4tkab2toxr" path="res://Classes/Effects/FullHouse/TarotFullHouse.png" id="3_o1itp"]
 
 [sub_resource type="Animation" id="Animation_08o78"]
 resource_name = "BottomUp"
@@ -118,7 +119,7 @@ _data = {
 script = ExtResource("1_3hme3")
 CardScene = ExtResource("2_kkwc2")
 effectName = "Full House"
-effectId = 5
+cardTexture = ExtResource("3_o1itp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

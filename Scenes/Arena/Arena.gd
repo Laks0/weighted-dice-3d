@@ -4,7 +4,7 @@ class_name Arena
 signal effectStarted(effect)
 signal gameEnded(winner) # winner : playerId
 
-var effects : Array[Node]
+var effects : Array
 
 @export var dieScene : PackedScene
 var die : Die

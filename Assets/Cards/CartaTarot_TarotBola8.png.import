@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b8mtdcg0o31n8"
+path.s3tc="res://.godot/imported/CartaTarot_TarotBola8.png-0c1a7f0fc60f6679d459598fcf2119d0.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "161b537a5d79e8752965147cb2d6f94f"
+}
+
+[deps]
+
+source_file="res://Assets/Cards/CartaTarot_TarotBola8.png"
+dest_files=["res://.godot/imported/CartaTarot_TarotBola8.png-0c1a7f0fc60f6679d459598fcf2119d0.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

@@ -2,6 +2,7 @@ extends Node
 class_name Effect
 
 @export var effectName : String
+@export var cardTexture : Texture
 
 var arena : Arena
 

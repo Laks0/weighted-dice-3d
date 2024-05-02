@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_delqi"]
 [ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_qnxay"]
 [ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="4_4os5j"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="4_ej5l2"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_ej5l2"]
 [ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="5_37qv1"]
 [ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="6_q12v5"]
 [ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="7_se2sa"]

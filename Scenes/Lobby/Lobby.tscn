@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
 [ext_resource type="PackedScene" uid="uid://b27nwsetse046" path="res://Scenes/Lobby/ButtonHint/ButtonHint.tscn" id="2_jj814"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="3_nfifi"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_nfifi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsggh"]
 albedo_color = Color(0.643366, 0.435264, 0.344884, 1)

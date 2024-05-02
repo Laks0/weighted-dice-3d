@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="13_ta5lr"]
 [ext_resource type="PackedScene" uid="uid://dgln6bpylui5h" path="res://Classes/Effects/Pinball/PinballEffect.tscn" id="14_0dm7k"]
 [ext_resource type="PackedScene" uid="uid://vj4n1f7bc5hh" path="res://Scenes/Lobby/Lobby.tscn" id="15_2h2ha"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://GrapeSoda.ttf" id="15_ovhl6"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
 [ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
