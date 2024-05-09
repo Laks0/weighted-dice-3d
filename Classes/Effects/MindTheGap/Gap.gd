@@ -22,16 +22,16 @@ func _on_body_entered(body):
 	$YellVoid.play()
 	
 	$Sprite.play("BW")
-	$Collision.disabled = true
+	$Collision.queue_free()
 	
 	# Animación del monigote
-	mon.set_process(false)
-	mon.set_physics_process(false)
+	mon.freeze()
 	mon.position.y = monigoteFallHeight
 	var fallTween := get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
 	fallTween.tween_property(mon, "position:y", Globals.SPRITE_HEIGHT, .5)
 	fallTween.tween_callback(func ():
-		mon.set_physics_process(true)
-		mon.set_process(true)
-		mon.hurt()
-		queue_free())
+		mon.unfreeze()
+		mon.hurt())
+	
+	await fallTween.finished
+	queue_free()
