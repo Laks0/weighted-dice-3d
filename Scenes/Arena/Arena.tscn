@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=39 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -24,6 +24,7 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
+[ext_resource type="PackedScene" uid="uid://o4qvulj5o50g" path="res://Classes/Effects/Spikes/Spike.tscn" id="20_1lqek"]
 [ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
@@ -276,6 +277,164 @@ texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_i2qvo")
 autoplay = "default"
+
+[node name="SpikesLayout" type="Node3D" parent="."]
+
+[node name="Right" type="Node3D" parent="SpikesLayout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.335605, 0, 0)
+
+[node name="Spike2" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="SpikesLayout/Right" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Left" type="Node3D" parent="SpikesLayout"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.336, 0, 0)
+
+[node name="Spike2" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="SpikesLayout/Left" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Up" type="Node3D" parent="SpikesLayout"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.161, 0, 2.542)
+
+[node name="Spike" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike14" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.1)
+
+[node name="Spike15" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.7)
+
+[node name="Spike16" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 4.3)
+
+[node name="Spike2" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Spike11" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -3.5)
+
+[node name="Spike12" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.1)
+
+[node name="Spike13" parent="SpikesLayout/Up" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
+
+[node name="Down" type="Node3D" parent="SpikesLayout"]
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 0, 0, -2.53703)
+
+[node name="Spike" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+
+[node name="Spike14" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.1)
+
+[node name="Spike15" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 3.7)
+
+[node name="Spike16" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 4.3)
+
+[node name="Spike2" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike3" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
+[node name="Spike10" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
+
+[node name="Spike11" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -3.5)
+
+[node name="Spike12" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.1)
+
+[node name="Spike13" parent="SpikesLayout/Down" instance=ExtResource("20_1lqek")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8088, -0.209616)
