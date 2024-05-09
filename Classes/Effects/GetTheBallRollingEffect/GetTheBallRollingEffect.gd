@@ -21,7 +21,10 @@ func start():
 		arena.add_child(stick)
 	
 	$AnimationPlayer.play("BallEnter")
-	$AnimationPlayer.animation_finished.connect(func (_anim): ball8.set_physics_process(true))
+	$AnimationPlayer.animation_finished.connect(func (_anim):
+		if not is_instance_valid(ball8):
+			return
+		ball8.set_physics_process(true))
 	
 	$SpotLight3D.visible = true
 	$SpotLight3D.light_energy = 0
