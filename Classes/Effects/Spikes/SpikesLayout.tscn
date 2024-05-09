@@ -5,9 +5,7 @@
 [node name="SpikesLayout" type="Node3D"]
 
 [node name="Right" type="Node3D" parent="."]
-
-[node name="Spike" parent="Right" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.335605, 0, 0)
 
 [node name="Spike2" parent="Right" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
@@ -33,14 +31,8 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 [node name="Spike9" parent="Right" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
 
-[node name="Spike10" parent="Right" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
-
 [node name="Left" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Spike" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.336, 0, 0)
 
 [node name="Spike2" parent="Left" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
@@ -66,11 +58,8 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 [node name="Spike9" parent="Left" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
 
-[node name="Spike10" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.91)
-
 [node name="Up" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.160539, 0, 2.42191)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.161, 0, 2.542)
 
 [node name="Spike" parent="Up" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
@@ -121,7 +110,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
 
 [node name="Down" type="Node3D" parent="."]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 0, 0, -2.503)
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 0, 0, -2.53703)
 
 [node name="Spike" parent="Down" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
