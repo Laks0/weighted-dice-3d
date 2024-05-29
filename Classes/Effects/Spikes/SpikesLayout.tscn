@@ -1,14 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1wca58rqkpw7"]
+[gd_scene load_steps=4 format=3 uid="uid://d1wca58rqkpw7"]
 
+[ext_resource type="Script" path="res://Classes/Effects/Spikes/SpikesLayout.gd" id="1_s86o3"]
 [ext_resource type="PackedScene" uid="uid://o4qvulj5o50g" path="res://Classes/Effects/Spikes/Spike.tscn" id="3_6fsq6"]
+[ext_resource type="AudioStream" uid="uid://dxjdyts2kubt7" path="res://Classes/Effects/Spikes/sfx_spike.wav" id="3_l63si"]
 
 [node name="SpikesLayout" type="Node3D"]
+script = ExtResource("1_s86o3")
 
 [node name="Right" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.335605, 0, 0)
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.335605, 0, -0.0870727)
+visible = false
 
 [node name="Spike2" parent="Right" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike10" parent="Right" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
 
 [node name="Spike3" parent="Right" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
@@ -31,35 +39,10 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 [node name="Spike9" parent="Right" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
 
-[node name="Left" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.336, 0, 0)
-
-[node name="Spike2" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
-
-[node name="Spike3" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
-
-[node name="Spike4" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
-
-[node name="Spike5" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
-
-[node name="Spike6" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
-
-[node name="Spike7" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
-
-[node name="Spike8" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
-
-[node name="Spike9" parent="Left" instance=ExtResource("3_6fsq6")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
-
 [node name="Up" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.161, 0, 2.542)
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.494108, 0, 2.542)
+visible = false
 
 [node name="Spike" parent="Up" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
@@ -109,8 +92,45 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 [node name="Spike13" parent="Up" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
 
+[node name="Spike17" parent="Up" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -5.26278)
+
+[node name="Left" type="Node3D" parent="."]
+process_mode = 4
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.336, 0, 0.109601)
+visible = false
+
+[node name="Spike2" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.9)
+
+[node name="Spike10" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.48945)
+
+[node name="Spike3" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 1.3)
+
+[node name="Spike4" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.7)
+
+[node name="Spike5" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 0.0897553)
+
+[node name="Spike6" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -0.510245)
+
+[node name="Spike7" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.11024)
+
+[node name="Spike8" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -1.71024)
+
+[node name="Spike9" parent="Left" instance=ExtResource("3_6fsq6")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -2.31)
+
 [node name="Down" type="Node3D" parent="."]
-transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 0, 0, -2.53703)
+process_mode = 4
+transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, -0.293941, 0, -2.53703)
+visible = false
 
 [node name="Spike" parent="Down" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, 2.5)
@@ -159,3 +179,6 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0
 
 [node name="Spike13" parent="Down" instance=ExtResource("3_6fsq6")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.7, 0.4, -4.7)
+
+[node name="SpikeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l63si")

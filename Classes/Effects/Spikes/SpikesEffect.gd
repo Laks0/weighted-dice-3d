@@ -4,24 +4,28 @@ extends Effect
 
 var layout : Node3D
 
+var dir
+var spikesOut := false
+
 func start():
-	$Startup.play()
-	
 	layout = SpikesLayout.instantiate()
 	arena.add_child(layout)
 	
-	# Movimiento de los monigotes para que no se queden abajo de los pinchos
-	# cuando spawnean
-	var padding = 1
-	for mon in arena.getLivingMonigotes():
-		if mon.position.x > arena.WIDTH/2 - padding:
-			mon.position.x -= padding
-		if mon.position.z > arena.HEIGHT/2 - padding:
-			mon.position.z -= padding
-		if mon.position.x < -arena.WIDTH/2 + padding:
-			mon.position.x += padding
-		if mon.position.z < -arena.HEIGHT/2 + padding:
-			mon.position.z += padding
+	dir = 0
+	
+	$SpikeTime.start()
+
+func spikeTimeout():
+	if spikesOut:
+		layout.despawnSpikes(dir)
+		spikesOut = false
+		return
+	
+	dir = (dir + 1) % 4
+	layout.spawnSpikes(dir)
+	
+	spikesOut = true
 
 func end():
 	arena.remove_child(layout)
+	$SpikeTime.stop()
