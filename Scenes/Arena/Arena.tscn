@@ -41,6 +41,7 @@ resource_name = "FelpaMesa"
 cull_mode = 2
 albedo_color = Color(0.381616, 0.406012, 0.100887, 1)
 normal_enabled = true
+normal_scale = 0.43
 normal_texture = ExtResource("6_o0cy5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdnf3"]
@@ -48,7 +49,6 @@ resource_name = "MesaInt"
 cull_mode = 2
 albedo_texture = ExtResource("7_qljs3")
 normal_enabled = true
-normal_scale = 3.0
 normal_texture = ExtResource("8_pfx7u")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
