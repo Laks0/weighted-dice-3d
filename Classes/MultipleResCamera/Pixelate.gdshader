@@ -8,7 +8,7 @@ vec2 getDepth(vec2 screen_pos, sampler2D depth_texture, mat4 inv_projection_matr
 	float raw_depth = texture(depth_texture, screen_pos)[0];
 	vec3 normalized_device_coordinates = vec3(screen_pos * 2.0 - 1.0, raw_depth);
     vec4 view_space = inv_projection_matrix * vec4(normalized_device_coordinates, 1.0);	
-	view_space.xyz /= view_space.w;	
+	view_space.xyz /= view_space.w;
 	return vec2(-view_space.z, raw_depth);
 }
 
@@ -25,9 +25,6 @@ void fragment() {
 	y = FRAGCOORD.y + floor(float(pixel_size) / 2.0) - y;
 	
 	vec2 pixelated_uv = vec2(x, y) / VIEWPORT_SIZE;
-	
-	ALBEDO = texture(SCREEN_TEXTURE, pixelated_uv).rgb;
-	
 	// Outlines
 	vec2 e = vec2(1./VIEWPORT_SIZE.xy);
 
@@ -81,7 +78,8 @@ void fragment() {
 			depth_diff += (1.0-abs(dot(nu, normal)))/max(min(dd, depth), 2.0);
 		}
 	}
-	depth_diff = smoothstep(0.2, 0.3, depth_diff) * .85;
+	depth_diff = smoothstep(0.5, 0.7, depth_diff) * .95;
 	
+	ALBEDO = texture(SCREEN_TEXTURE, pixelated_uv).rgb;
 	ALBEDO = mix(ALBEDO, shadow_color, depth_diff);
 }
