@@ -12,8 +12,13 @@ var onArena := false
 @export var shakeMagnitude := .4
 @export var shakeTime := .1
 
+@onready var rotationRaycast := $RotationRaycast
+
 func _ready():
 	material_override.set_shader_parameter("outline_color", mon.player.color)
+	
+	# Para la función de rotación
+	$RotationRaycast.add_exception(get_parent())
 
 func arenaReady():
 	onArena = true
@@ -32,8 +37,6 @@ func _process(_delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
 	material_override.set_shader_parameter("modulate", modulate)
 	
-	rotation.x = get_viewport().get_camera_3d().rotation.x
-	
 	modulate = mon.color
 	if mon.invincible and not mon.grabbed:
 		modulate.a = .7
@@ -44,6 +47,8 @@ func _process(_delta):
 	
 	if mon.drunk:
 		modulate *= Color.GREEN_YELLOW
+	
+	billboardUpdate()
 	
 	#############
 	# Animaciones
@@ -89,6 +94,57 @@ func _process(_delta):
 		changeBetSignalStatus(signalVisible)
 		hasSignal = signalVisible
 
+############
+# Rotación
+############
+
+## Retorna cuál debería ser la rotación en el eje x del sprite en su posición, con el efecto
+## secundario de rotar el raycast lo que sea necesario
+func getNewRotation() -> float:
+	# Billboard normal
+	var billboardRotation := get_viewport().get_camera_3d().rotation.x
+	
+	if not rotationRaycast.is_colliding():
+		rotationRaycast.rotation.x = 0
+		return billboardRotation
+	
+	var collisionPoint : Vector3 = rotationRaycast.get_collision_point()
+	# angulo = arcos(A/H)
+	var rayLength : float = rotationRaycast.target_position.y
+	var newRotation := acos(abs(collisionPoint.z - global_position.z) / rayLength) - PI/2
+	rotationRaycast.rotation.x = billboardRotation - newRotation
+	return newRotation
+
+var transitioningRotation := false
+var rotationAnimationTreshold := PI/8 # La máxima cantidad que se puede rotar en un frame sin tween
+## Rota el sprite como billboard a menos que se choque contra un cuerpo
+func billboardUpdate():
+	if transitioningRotation:
+		return
+	
+	var newRotation = getNewRotation()
+	
+	# Reajuste de altura
+	var spriteHalfHeight := .05
+	var feetHeight := cos(newRotation) * spriteHalfHeight
+	
+	# Si la rotación nueva es lo suficientemente parecida se puede pasar en un solo frame
+	if abs(newRotation - rotation.x) < rotationAnimationTreshold:
+		position.y = feetHeight
+		rotation.x = newRotation
+		return
+	
+	# Si no, se anima la rotación
+	transitioningRotation = true
+	var tween = create_tween().set_parallel(true)
+	var time := .08
+	tween.tween_property(self, "rotation:x", newRotation, time)
+	tween.tween_property(self, "position:y", feetHeight, time)
+	
+	await tween.finished
+	
+	transitioningRotation = false
+
 func changeBetSignalStatus(isVisible : bool):
 	$BetSignalSprite.visible = true
 	
@@ -96,6 +152,11 @@ func changeBetSignalStatus(isVisible : bool):
 	scaleTween.tween_property($BetSignalSprite, "scale",\
 		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
+	
+	# Para la función de rotación
+	$RotationRaycast.enabled = !isVisible
+	$RotationRaycastSignal.enabled = isVisible
+	rotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycast
 
 func shake() -> void:
 	var elapsedTime := .0
