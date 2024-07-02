@@ -70,7 +70,10 @@ func startArena():
 	BetHandler.startGame(self)
 	
 	for mon in monigotes:
-			mon.unfreeze()
+		mon.unfreeze()
+	
+	if DebugVars.dontStartGame:
+		return
 	
 	# Delay hasta que entra el dado
 	SoundtrackHandler.stopTrack()

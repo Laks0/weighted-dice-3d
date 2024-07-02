@@ -113,6 +113,10 @@ text = "Directo a la arena"
 layout_mode = 2
 text = "Saltearse anim. cartas"
 
+[node name="DontStartGame" type="CheckBox" parent="DebugVars"]
+layout_mode = 2
+text = "No empezar la ronda"
+
 [node name="PlayerN" type="SpinBox" parent="DebugVars"]
 layout_mode = 2
 min_value = 1.0

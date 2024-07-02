@@ -14,6 +14,7 @@ func _on_start_button_pressed():
 	SoundtrackHandler.playTrack()
 	
 	DebugVars.skipCardAnimation = $DebugVars/SkipCards.button_pressed
+	DebugVars.dontStartGame = $DebugVars/DontStartGame.button_pressed
 	
 	if $DebugVars/OnlyBet.selected != 0:
 		DebugVars.onlyBet = $DebugVars/OnlyBet.get_selected_metadata()
