@@ -5,6 +5,25 @@ var controller : int
 var playerName : String
 var playerReady := false
 
+func _ready():
+	$VirtualKeyboard.setController(controller)
+	$Cancel.controller = controller
+	$Ready.controller = controller
+	
+	$VirtualKeyboard.characterWritten.connect(func(c : String):
+		$TextEdit.text = $TextEdit.text + c)
+	$VirtualKeyboard.deleteCharacter.connect(func():
+		if $TextEdit.text.length() == 0:
+			return
+		$TextEdit.text = $TextEdit.text.erase($TextEdit.text.length()-1, 1))
+	
+	if controller != Controllers.KB and controller != Controllers.KB2:
+		startVirtualKeyboard()
+		$TextEdit.editable = false
+	
+	$Cancel.movedUp.connect(startVirtualKeyboard)
+	$VirtualKeyboard.accept.connect(endVirtualKeyboard)
+
 func _process(_delta):
 	if controller == Controllers.KB:
 		$ControllerLabel.text = "Keyboard"
@@ -25,6 +44,21 @@ func _on_ready_pressed():
 
 func _on_cancel_pressed():
 	queue_free()
+
+func startVirtualKeyboard():
+	$Cancel.visible = false
+	$Ready.visible = false
+	$VirtualKeyboard.visible = true
+	$Cancel.unfocus()
+	$Ready.unfocus()
+	$VirtualKeyboard.focus()
+
+func endVirtualKeyboard():
+	$VirtualKeyboard.visible = false
+	$Cancel.visible = true
+	$Ready.visible = true
+	$VirtualKeyboard.unfocus()
+	$Cancel.focus()
 
 ## Se llama cuando todos los jugadores están ready y no hay vuelta atrás
 func allReady():

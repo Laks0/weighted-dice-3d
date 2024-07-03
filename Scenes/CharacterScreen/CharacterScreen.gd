@@ -7,7 +7,6 @@ func _ready():
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 
-
 func _startGame():
 	$Label.queue_free()
 	
@@ -34,7 +33,6 @@ func _process(_delta):
 			setting.allReady()
 
 func _addPlayerSetting(device : int):
-	SfxHandler.playSound("controllerLogin")
 	if $Settings.get_child_count() >= PlayerHandler.MAX_PLAYERS:
 		return
 	
@@ -42,17 +40,24 @@ func _addPlayerSetting(device : int):
 		if setting.controller == device and device != Controllers.AI:
 			return
 	
+	SfxHandler.playSound("controllerLogin")
+	
 	var newSetting = characterSettingScene.instantiate()
 	newSetting.controller = device
 	$Settings.add_child(newSetting)
 
 func _input(event):
+	if not event.is_pressed():
+		return
+	
 	if event is InputEventKey:
 		if event.is_action_pressed("grab_mouse"):
 			_addPlayerSetting(Controllers.KB)
 		if event.is_action_pressed("grab_kb2"):
 			_addPlayerSetting(Controllers.KB2)
 	if event is InputEventJoypadButton:
+		# yqs
+		await get_tree().process_frame
 		_addPlayerSetting(event.device)
 
 func _on_add_ai_button_pressed():

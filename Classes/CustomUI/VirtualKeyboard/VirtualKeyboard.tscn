@@ -1,0 +1,168 @@
+[gd_scene load_steps=3 format=3 uid="uid://oxxrws4k27pk"]
+
+[ext_resource type="Script" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_e8km5"]
+
+[node name="VirtualKeyboard" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -33.0
+offset_right = 121.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_bhw5p")
+
+[node name="Row1" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Q" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "Q"
+
+[node name="W" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "W"
+
+[node name="E" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "E"
+
+[node name="R" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "R"
+
+[node name="T" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "T"
+
+[node name="Y" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "Y"
+
+[node name="U" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "U"
+
+[node name="I" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "I"
+
+[node name="O" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "O"
+
+[node name="P" parent="Row1" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "P"
+
+[node name="Delete" parent="Row1" instance=ExtResource("1_e8km5")]
+unique_name_in_owner = true
+layout_mode = 2
+text = " ⌫ "
+
+[node name="Row2" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="A" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "A"
+
+[node name="S" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "S"
+
+[node name="D" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "D"
+
+[node name="F" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "F"
+
+[node name="G" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "G"
+
+[node name="H" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "H"
+
+[node name="J" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "J"
+
+[node name="K" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "K"
+
+[node name="L" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "L"
+
+[node name="Ñ" parent="Row2" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "Ñ"
+
+[node name="Row3" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Shift" parent="Row3" instance=ExtResource("1_e8km5")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "  ↑  "
+
+[node name="Z" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "Z"
+
+[node name="X" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "X"
+
+[node name="C" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "C"
+
+[node name="V" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "V"
+
+[node name="B" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "B"
+
+[node name="N" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "N"
+
+[node name="M" parent="Row3" instance=ExtResource("1_e8km5")]
+layout_mode = 2
+text = "M"
+
+[node name="OK" parent="Row3" instance=ExtResource("1_e8km5")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "✔"
+
+[node name="Row4" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Space" parent="Row4" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = " "

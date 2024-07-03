@@ -1,13 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=4 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
+[ext_resource type="PackedScene" uid="uid://oxxrws4k27pk" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.tscn" id="2_1dgad"]
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="3_itu8j"]
 
 [node name="CharacterSetting" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(256, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.5
+offset_right = 64.0
+offset_bottom = 64.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 alignment = 1
 script = ExtResource("1_5if0m")
 
@@ -27,13 +37,24 @@ layout_mode = 2
 placeholder_text = "Name"
 max_length = 10
 
-[node name="Cancel" type="Button" parent="."]
+[node name="VirtualKeyboard" parent="." instance=ExtResource("2_1dgad")]
+visible = false
 layout_mode = 2
-text = "Cancel"
+size_flags_vertical = 4
 
-[node name="Ready" type="Button" parent="."]
+[node name="Cancel" parent="." node_paths=PackedStringArray("downSelect") instance=ExtResource("3_itu8j")]
 layout_mode = 2
-text = "Ready"
+size_flags_horizontal = 1
+text = "Cancel"
+focused = true
+downSelect = NodePath("../Ready")
+
+[node name="Ready" parent="." node_paths=PackedStringArray("upSelect") instance=ExtResource("3_itu8j")]
+layout_mode = 2
+size_flags_horizontal = 1
+text = "Ready
+"
+upSelect = NodePath("../Cancel")
 
 [connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="Ready" to="." method="_on_ready_pressed"]
