@@ -19,7 +19,8 @@ func _ready():
 	
 	if controller != Controllers.KB and controller != Controllers.KB2:
 		startVirtualKeyboard()
-		$TextEdit.editable = false
+		$TextEdit.focus_mode = FOCUS_NONE
+		$TextEdit.mouse_filter = MOUSE_FILTER_IGNORE
 	
 	$Cancel.movedUp.connect(startVirtualKeyboard)
 	$VirtualKeyboard.accept.connect(endVirtualKeyboard)

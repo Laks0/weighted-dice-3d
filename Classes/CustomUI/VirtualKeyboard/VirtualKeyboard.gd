@@ -48,11 +48,11 @@ func _ready():
 
 func _process(_delta):
 	if capsLock:
-		%Shift.text = "  ⬆  "
+		%Shift.text = "⬆"
 	elif upper:
-		%Shift.text = "  ⇧  "
+		%Shift.text = "⇧"
 	else:
-		%Shift.text = "  ↑  "
+		%Shift.text = "↑"
 
 func setCapsLock():
 	capsLock = true

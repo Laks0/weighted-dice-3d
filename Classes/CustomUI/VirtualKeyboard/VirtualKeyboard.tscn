@@ -24,49 +24,71 @@ theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Q" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Q"
+clip_text = true
 
 [node name="W" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "W"
+clip_text = true
 
 [node name="E" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "E"
+clip_text = true
 
 [node name="R" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "R"
+clip_text = true
 
 [node name="T" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "T"
+clip_text = true
 
 [node name="Y" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Y"
+clip_text = true
 
 [node name="U" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "U"
+clip_text = true
 
 [node name="I" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "I"
+clip_text = true
 
 [node name="O" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "O"
+clip_text = true
 
 [node name="P" parent="Row1" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "P"
+clip_text = true
 
 [node name="Delete" parent="Row1" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 text = " ⌫ "
+clip_text = true
 
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -74,44 +96,64 @@ theme_override_constants/separation = 4
 alignment = 1
 
 [node name="A" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "A"
+clip_text = true
 
 [node name="S" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "S"
+clip_text = true
 
 [node name="D" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "D"
+clip_text = true
 
 [node name="F" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "F"
+clip_text = true
 
 [node name="G" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "G"
+clip_text = true
 
 [node name="H" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "H"
+clip_text = true
 
 [node name="J" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "J"
+clip_text = true
 
 [node name="K" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "K"
+clip_text = true
 
 [node name="L" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "L"
+clip_text = true
 
 [node name="Ñ" parent="Row2" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Ñ"
+clip_text = true
 
 [node name="Row3" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -120,41 +162,59 @@ alignment = 1
 
 [node name="Shift" parent="Row3" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-text = "  ↑  "
+text = "↑"
+clip_text = true
 
 [node name="Z" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "Z"
+clip_text = true
 
 [node name="X" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "X"
+clip_text = true
 
 [node name="C" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "C"
+clip_text = true
 
 [node name="V" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "V"
+clip_text = true
 
 [node name="B" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "B"
+clip_text = true
 
 [node name="N" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "N"
+clip_text = true
 
 [node name="M" parent="Row3" instance=ExtResource("1_e8km5")]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "M"
+clip_text = true
 
 [node name="OK" parent="Row3" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "✔"
+clip_text = true
 
 [node name="Row4" type="HBoxContainer" parent="."]
 layout_mode = 2
