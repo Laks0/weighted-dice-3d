@@ -24,9 +24,8 @@ seamless_blend_skirt = 0.5
 noise = SubResource("FastNoiseLite_w2vmf")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_y4ptq"]
-noise_type = 3
-frequency = 0.9066
-fractal_type = 3
+noise_type = 4
+frequency = 0.9255
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_utr0e"]
 noise = SubResource("FastNoiseLite_y4ptq")
