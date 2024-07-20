@@ -62,6 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_y7e1f")
+theme_override_constants/separation = 425
 alignment = 1
 
 [node name="PlayAgain" parent="EndgameButtons" node_paths=PackedStringArray("rightSelect") instance=ExtResource("6_c82te")]

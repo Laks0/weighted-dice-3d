@@ -148,21 +148,32 @@ func startLeaderboardAnimation(winnerId):
 	goToSkyColor(winner.color)
 	await camera.zoomTo(getPositionForMonigote(winner.id)).finished
 	
+	# Un tiempito para que baile el monigote
+	await get_tree().create_timer(1).timeout
+	
 	for b : GamepadSelectButton in $EndgameButtons.get_children():
 		b.controller = winner.inputController 
 		b.visible = true
 	$EndgameButtons.get_children()[0].focused = true
 	gameEnded = true
 
-func goToSkyColor(color : Color, alpha : float = .5):
+func goToSkyColor(color : Color, alpha := .5, time := .5, instant := false):
+	if instant:
+		skyMaterial.set_shader_parameter("sky_color", color*alpha)
+		return
+	
 	create_tween().tween_method(func(c : Color):
 		skyMaterial.set_shader_parameter("sky_color", c)
-	,skyMaterial.get_shader_parameter("sky_color"), color*alpha, .5)
+	,skyMaterial.get_shader_parameter("sky_color"), color*alpha, time)
 
-func setSkyRotationStrength(strength : float):
+func setSkyRotationStrength(strength : float, time := .2, instant := false):
+	if instant:
+		skyMaterial.set_shader_parameter("rotation_strength", strength)
+		return
+	
 	create_tween().tween_method(func(s : float):
 		skyMaterial.set_shader_parameter("rotation_strength", s)
-	,skyMaterial.get_shader_parameter("rotation_strength"), strength, .2)
+	,skyMaterial.get_shader_parameter("rotation_strength"), strength, time)
 
 ## Agrega a todos los jugadores una cantidad de fichas decidida por llamar amountGetter en su id
 ## retorna el tween que agrega las fichas
@@ -217,7 +228,7 @@ func goToNextRound() -> void:
 
 func _on_reselect_characters_pressed():
 	skyMaterial.set_shader_parameter("speed", 1)
-	goToSkyColor(defaultSkyColor, 1)
-	setSkyRotationStrength(defaultSkyRotation)
+	goToSkyColor(defaultSkyColor, 1, 0, true)
+	setSkyRotationStrength(defaultSkyRotation, 0, true)
 	PlayerHandler.deleteAllPlayers()
 	get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")
