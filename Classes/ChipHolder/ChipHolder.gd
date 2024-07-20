@@ -140,13 +140,19 @@ func startLeaderboardAnimation(winnerId):
 	###########################
 	
 	var winners : Array[PlayerHandler.Player] = PlayerHandler.getWinningPlayers()
-	if winners.size() == 1:
-		var winner := winners[0]
-		
-		goToSkyColor(winner.color)
-		await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+	if winners.size() != 1:
+		return
 	
-	waitingToStart = true
+	var winner := winners[0]
+	
+	goToSkyColor(winner.color)
+	await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+	
+	for b : GamepadSelectButton in $EndgameButtons.get_children():
+		b.controller = winner.inputController 
+		b.visible = true
+	$EndgameButtons.get_children()[0].focused = true
+	gameEnded = true
 
 func goToSkyColor(color : Color, alpha : float = .5):
 	create_tween().tween_method(func(c : Color):
@@ -189,14 +195,29 @@ func _input(event):
 
 	for player in PlayerHandler.getPlayersAlive():
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
-			if gameEnded:
-				resetRequest.emit()
-				skyMaterial.set_shader_parameter("speed", 1)
-				goToSkyColor(defaultSkyColor, 1)
-				gameEnded = false
-			
-			nextRound.emit()
-			$RoundNumber.text = ""
-			$LeaderboardTitleLabel.text = ""
-			waitingToStart = false
-			setSkyRotationStrength(defaultSkyRotation)
+			goToNextRound()
+
+## TODO: Esta lógica no se puede quedar acá, habría que mover todo lo posible a StageHandler
+func goToNextRound() -> void:
+	if gameEnded:
+		resetRequest.emit()
+		skyMaterial.set_shader_parameter("speed", 1)
+		goToSkyColor(defaultSkyColor, 1)
+		gameEnded = false
+		
+		for b : GamepadSelectButton in $EndgameButtons.get_children():
+			b.visible = false
+			b.focused = false
+	
+	nextRound.emit()
+	$RoundNumber.text = ""
+	$LeaderboardTitleLabel.text = ""
+	waitingToStart = false
+	setSkyRotationStrength(defaultSkyRotation)
+
+func _on_reselect_characters_pressed():
+	skyMaterial.set_shader_parameter("speed", 1)
+	goToSkyColor(defaultSkyColor, 1)
+	setSkyRotationStrength(defaultSkyRotation)
+	PlayerHandler.deleteAllPlayers()
+	get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")

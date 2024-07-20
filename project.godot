@@ -129,5 +129,6 @@ empty={
 
 [rendering]
 
+rendering_device/pipeline_cache/save_chunk_size_mb=10.0
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.1991, 0.33, 0.1056, 1)

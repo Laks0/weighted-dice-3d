@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4trc0xhmaen"]
+[gd_scene load_steps=7 format=3 uid="uid://4trc0xhmaen"]
 
 [ext_resource type="PackedScene" uid="uid://cxcu72n5anfbv" path="res://Classes/ChipHolder/Fichero.glb" id="1_7360m"]
 [ext_resource type="Script" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_tv04d"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_0rd7g"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="5_y7e1f"]
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="6_c82te"]
 
 [node name="ChipHolder" type="Node3D"]
 script = ExtResource("1_j6y70")
@@ -52,5 +54,29 @@ render_priority = 2
 outline_render_priority = 1
 font = ExtResource("4_0rd7g")
 font_size = 128
+
+[node name="EndgameButtons" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_y7e1f")
+alignment = 1
+
+[node name="PlayAgain" parent="EndgameButtons" node_paths=PackedStringArray("rightSelect") instance=ExtResource("6_c82te")]
+visible = false
+layout_mode = 2
+text = "Volver a jugar"
+rightSelect = NodePath("../ReselectCharacters")
+
+[node name="ReselectCharacters" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect") instance=ExtResource("6_c82te")]
+visible = false
+layout_mode = 2
+text = "Cambiar jugadores"
+leftSelect = NodePath("../PlayAgain")
+
+[connection signal="pressed" from="EndgameButtons/PlayAgain" to="." method="goToNextRound"]
+[connection signal="pressed" from="EndgameButtons/ReselectCharacters" to="." method="_on_reselect_characters_pressed"]
 
 [editable path="Fichero2"]
