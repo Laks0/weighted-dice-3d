@@ -2,6 +2,8 @@ extends Control
 
 @export var characterSettingScene : PackedScene
 
+var arenaScene := preload("res://Scenes/Arena/Arena.tscn")
+
 func _ready():
 	randomize()
 	PlayerHandler.deleteAllPlayers()
@@ -21,7 +23,7 @@ func _startGame():
 		await %Scene3D.finishedAnimation
 	
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
+	get_tree().change_scene_to_packed(arenaScene)
 
 func _process(_delta):
 	var allPlayersReady : bool = $Settings.get_children().all(func (selector): 
