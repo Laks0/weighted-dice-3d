@@ -12,6 +12,7 @@ render_priority = 2
 outline_render_priority = 1
 font = ExtResource("1_rpv1x")
 font_size = 72
+outline_size = 20
 
 [node name="ArrowSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0)
