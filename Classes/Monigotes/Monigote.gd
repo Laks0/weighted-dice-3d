@@ -319,3 +319,6 @@ func frameFeeze(timeScale : float, duration : float):
 	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.set_time_scale(1)
 	$DeathLight.visible = false
+
+func dance():
+	$AnimatedSprite.dance()

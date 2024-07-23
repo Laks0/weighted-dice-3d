@@ -58,6 +58,12 @@ func ownMonigote(mon : Monigote) -> void:
 	mon.set_physics_process(false)
 	ownedMonigotes.append(mon)
 
+func getPlayerMonigote(playerId : int) -> Monigote:
+	for m : Monigote in ownedMonigotes:
+		if m.player.id == playerId:
+			return m
+	return null
+
 func disownAllMonigotes() -> void:
 	ownedMonigotes.clear()
 
@@ -141,11 +147,14 @@ func startLeaderboardAnimation(winnerId):
 	
 	var winners : Array[PlayerHandler.Player] = PlayerHandler.getWinningPlayers()
 	if winners.size() != 1:
+		$EndgameButtons.get_children()[0].focused = true
+		gameEnded = true
 		return
 	
 	var winner := winners[0]
 	
 	goToSkyColor(winner.color)
+	getPlayerMonigote(winner.id).dance()
 	await camera.zoomTo(getPositionForMonigote(winner.id)).finished
 	
 	# Un tiempito para que baile el monigote

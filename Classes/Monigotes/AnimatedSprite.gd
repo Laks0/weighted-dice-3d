@@ -31,7 +31,10 @@ func arenaReady():
 		Bet.MonigoteSignal.CROWN: $BetSignalSprite.texture = crownTexture
 		Bet.MonigoteSignal.JOKER_HAT: $BetSignalSprite.texture = jokerHatTexture
 
+## Si se muestra un señalizador de apuesta
 var hasSignal := false
+
+var dancing = false
 
 func _process(_delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
@@ -53,6 +56,9 @@ func _process(_delta):
 	#############
 	# Animaciones
 	#############
+	
+	if dancing:
+		return
 	
 	# Si el monigote está pausado no hay animaciones
 	if not mon.is_processing():
@@ -93,6 +99,10 @@ func _process(_delta):
 	if hasSignal != signalVisible:
 		changeBetSignalStatus(signalVisible)
 		hasSignal = signalVisible
+
+func dance():
+	dancing = true
+	play("Dancing")
 
 ############
 # Rotación

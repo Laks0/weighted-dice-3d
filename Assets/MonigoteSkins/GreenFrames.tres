@@ -1,6 +1,38 @@
-[gd_resource type="SpriteFrames" load_steps=47 format=3 uid="uid://b11arb6b3rmrh"]
+[gd_resource type="SpriteFrames" load_steps=55 format=3 uid="uid://b11arb6b3rmrh"]
 
 [ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="1_6r57e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr346"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(0, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnmed"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(32, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnw7k"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(64, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6txa"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(96, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ebwe"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(128, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyi3y"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(160, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpviy"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(192, 8, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6ngn"]
+atlas = ExtResource("1_6r57e")
+region = Rect2(224, 8, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7krp4"]
 atlas = ExtResource("1_6r57e")
@@ -184,6 +216,35 @@ region = Rect2(416, 152, 32, 48)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr346")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnmed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnw7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6txa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ebwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyi3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpviy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6ngn")
+}],
+"loop": true,
+"name": &"Dancing",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7krp4")
