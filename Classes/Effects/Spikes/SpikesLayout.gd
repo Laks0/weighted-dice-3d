@@ -9,8 +9,28 @@ func _ready():
 func spawnSpikes(dir : int) -> void:
 	dir = dir % 4
 	
-	get_children()[dir].set_process_mode(Node.PROCESS_MODE_INHERIT)
-	get_children()[dir].visible = true
+	var spikes : Node = get_children()[dir]
+	
+	# Warning
+	var attackPosition : Vector3 = spikes.position
+	var warningPosition := attackPosition
+	var displacement := .7
+	if dir == 0:
+		warningPosition += Vector3(1,0,0) * displacement
+	elif dir == 1:
+		warningPosition += Vector3(0,0,-1) * displacement
+	elif dir == 2:
+		warningPosition += Vector3(-1,0,0) * displacement
+	elif dir == 3:
+		warningPosition += Vector3(0,0,1) * displacement
+	
+	spikes.visible = true
+	spikes.position = warningPosition
+	await get_tree().create_timer(.5).timeout
+	
+	# Ataque
+	create_tween().tween_property(spikes, "position", attackPosition, .05)
+	spikes.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	
 	$SpikeSound.play()
 

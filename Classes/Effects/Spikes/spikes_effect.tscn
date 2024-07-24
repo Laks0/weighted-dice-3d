@@ -11,6 +11,5 @@ effectName = "Spikes"
 cardTexture = ExtResource("3_0k53g")
 
 [node name="SpikeTime" type="Timer" parent="."]
-wait_time = 0.67
 
 [connection signal="timeout" from="SpikeTime" to="." method="spikeTimeout"]
