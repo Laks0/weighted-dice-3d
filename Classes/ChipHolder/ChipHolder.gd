@@ -93,13 +93,13 @@ func startLeaderboardAnimation(winnerId):
 	
 	if not gameEnded:
 		$RoundNumber.modulate = Color.WHITE
-		$RoundNumber.text = "Round " + str(BetHandler.round) + "/" + str(BetHandler.roundAmount)
+		$RoundNumber.text = "Ronda " + str(BetHandler.round) + " de " + str(BetHandler.roundAmount)
 	else:
 		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
 		
 		skyMaterial.set_shader_parameter("speed", skySpeed)
-
+	
 	await get_tree().create_timer(1).timeout
 	###################
 	# Eliminar apuestas
@@ -113,15 +113,8 @@ func startLeaderboardAnimation(winnerId):
 	##############################
 	# Agregar ganancias de apuesta
 	##############################
-	var betWinnersString := ""
-	var winner_i := 0
-	for winner in BetHandler.getWinnerCandidates():
-		if winner_i != 0:
-			betWinnersString += ", "
-		betWinnersString += BetHandler.getCandidateName(winner)
-		winner_i += 1
-
-	$LeaderboardTitleLabel.text = "Bet result: " + betWinnersString
+	
+	$BetResultsLabel.text = BetHandler.getWinnersText()
 	
 	await changeAllPlayerChips(BetHandler.getPlayerBetWinnings, timeBetweenChips).finished
 	await get_tree().create_timer(timeBetweenSteps).timeout 
@@ -129,15 +122,18 @@ func startLeaderboardAnimation(winnerId):
 	#################################
 	# Agregar premio de sobreviviente
 	#################################
-	$LeaderboardTitleLabel.text = "Last standing: " + PlayerHandler.getPlayerById(winnerId).name
+	var survivor : PlayerHandler.Player = PlayerHandler.getPlayerById(winnerId)
+	$SurvivorLabel.modulate = survivor.color
+	$SurvivorLabel.text = "Último sobreviviente: %s" % survivor.name
+	
 	for _i in range(BetHandler.getRoundPrize()):
 		addChipToPlayer(winnerId)
 		await get_tree().create_timer(timeBetweenChips).timeout
-
+	
 	await get_tree().create_timer(timeBetweenSteps).timeout
 
+	# Fin de la animación normal y esperar a que alguien presione grab
 	if not gameEnded:
-		$LeaderboardTitleLabel.text = "Press 'grab' to continue"
 		waitingToStart = true
 		return
 	
@@ -155,7 +151,13 @@ func startLeaderboardAnimation(winnerId):
 	
 	goToSkyColor(winner.color)
 	getPlayerMonigote(winner.id).dance()
+	
 	await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+	
+	# Fade in texto de ganador
+	$WinnerLabel.text = "¡GANÓ %s!" % winner.name
+	$WinnerLabel.visible = true
+	create_tween().tween_property($WinnerLabel, "modulate:a", 1, .2).from(0)
 	
 	# Un tiempito para que baile el monigote
 	await get_tree().create_timer(1).timeout
@@ -224,6 +226,7 @@ func goToNextRound() -> void:
 		skyMaterial.set_shader_parameter("speed", 1)
 		goToSkyColor(defaultSkyColor, 1)
 		gameEnded = false
+		$WinnerLabel.visible = false
 		
 		for b : GamepadSelectButton in $EndgameButtons.get_children():
 			b.visible = false
@@ -231,7 +234,8 @@ func goToNextRound() -> void:
 	
 	nextRound.emit()
 	$RoundNumber.text = ""
-	$LeaderboardTitleLabel.text = ""
+	$BetResultsLabel.text = ""
+	$SurvivorLabel.text = ""
 	waitingToStart = false
 	setSkyRotationStrength(defaultSkyRotation)
 

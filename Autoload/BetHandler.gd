@@ -62,6 +62,9 @@ func getCandidates() -> Array:
 func getWinnerCandidates() -> Array:
 	return currentBet.getWinnerCandidates()
 
+func getWinnersText() -> String:
+	return currentBet.getWinnersText()
+
 func getCandidateName(candidate) -> String:
 	return currentBet.getCandidateName(candidate)
 

@@ -183,7 +183,7 @@ transform = Transform3D(0.769231, -4.17233e-07, -3.90799e-14, 4.17233e-07, 0.769
 transform = Transform3D(-4.37112e-08, -4.76837e-07, 0.999997, -1.19904e-14, 0.999998, 4.17233e-07, -0.999999, 3.73035e-14, -4.37113e-08, 0.199366, 1.27771, 2.57777e-08)
 render_priority = 2
 outline_render_priority = 1
-text = "READY"
+text = "LISTO"
 font = ExtResource("4_6lq8r")
 
 [node name="BetName" type="Label3D" parent="Slotmachine"]
@@ -229,7 +229,7 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 0.498624, 0.866818, 0, -0.866818, 0.498624, 0, 1.28603, 0.481772)
 render_priority = 2
 outline_render_priority = 1
-text = "Betting on:"
+text = "Apuesta:"
 font = ExtResource("4_6lq8r")
 font_size = 47
 
@@ -237,7 +237,7 @@ font_size = 47
 transform = Transform3D(1, 0, 0, 0, 0.498624, 0.866818, 0, -0.866818, 0.498624, 0, 0.591888, 1.58172)
 render_priority = 2
 outline_render_priority = 1
-text = "Right/left to move, grab to bet, up to cancel bet"
+text = "Izquierda/derecha para moverse, 'agarre' para apostar"
 font = ExtResource("4_6lq8r")
 font_size = 47
 

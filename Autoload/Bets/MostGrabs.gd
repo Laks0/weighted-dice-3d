@@ -2,10 +2,13 @@ extends Bet
 class_name MostGrabsBet
 
 func _init():
-	betName = "Most Grabs"
+	betName = "Más agarres"
 	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
 	monigoteSignal = MonigoteSignal.CROWN
+	
+	_resultTextSingular = "%s agarró más"
+	_resultTextPlural = "%s agarraron más"
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

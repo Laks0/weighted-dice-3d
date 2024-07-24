@@ -8,8 +8,10 @@ var times : Array[float]
 enum GameTime {FIRST, MIDDLE_LONG, MIDDLE_SHORT, LAST}
 
 func _init():
-	betName = "Game Time"
+	betName = "Tiempo de juego"
 	betType = BetType.CUSTOM
+	
+	_resultTextSingular = "La partida duró %s"
 
 func startRound():
 	times = [0,0,0]
@@ -49,10 +51,10 @@ func getCandidates() -> Array:
 
 func getCandidateName(time : GameTime) -> String:
 	match time:
-		GameTime.FIRST: return "Less than %ss" % times[0]
-		GameTime.MIDDLE_LONG: return "Between %ss and %ss" % [times[0], times[1]]
-		GameTime.MIDDLE_SHORT: return "Between %ss and %ss" % [times[1], times[2]]
-		GameTime.LAST: return "More than %ss" % times[2]
+		GameTime.FIRST: return "Menos de %ss" % times[0]
+		GameTime.MIDDLE_LONG: return "Entre %ss y %ss" % [times[0], times[1]]
+		GameTime.MIDDLE_SHORT: return "Entre %ss y %ss" % [times[1], times[2]]
+		GameTime.LAST: return "Más de %ss" % times[2]
 	return ""
 
 func getCandidateColor(time : GameTime) -> Color:

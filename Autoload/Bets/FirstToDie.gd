@@ -6,9 +6,11 @@ var dead : int
 var tomb : Node3D
 
 func _init():
-	betName = "First to die"
+	betName = "Primero en morir"
 	betType = BetType.EXCLUDE_SELF
 	_prizeOnFirst = true
+	
+	_resultTextSingular = "%s murió primero"
 
 func hasWon(candidate : int) -> bool:
 	return candidate == _result

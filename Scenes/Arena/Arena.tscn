@@ -319,8 +319,7 @@ cull_mask = 3
 fov = 47.0
 
 [node name="LeaderboardCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.87082, 0.491603, 0, -0.491603, 0.87082, 0, 6.36938, -3.8382)
-cull_mask = 1048573
+transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 0, 4.90326, -2.02901)
 fov = 47.0
 
 [node name="BetSceneCamera" type="Camera3D" parent="."]
@@ -329,7 +328,7 @@ cull_mask = 1048573
 fov = 47.0
 
 [node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("13_ta5lr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.322002, -5.06623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -5.066)
 chipHolder = NodePath("../ChipHolder")
 stageHandler = NodePath("../StageHandler")
 

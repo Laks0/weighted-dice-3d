@@ -37,17 +37,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.13, -0.661, 0)
 [node name="5" type="Marker3D" parent="PilePositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06527, -0.661, 0)
 
-[node name="LeaderboardTitleLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.904219, 1.73245)
+[node name="BetResultsLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49552, 2.17057)
 layers = 2
 billboard = 1
 render_priority = 2
 outline_render_priority = 1
 font = ExtResource("4_0rd7g")
-font_size = 128
+font_size = 58
+
+[node name="SurvivorLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.86496, 2.17057)
+layers = 2
+billboard = 1
+render_priority = 2
+outline_render_priority = 1
+font = ExtResource("4_0rd7g")
+font_size = 58
 
 [node name="RoundNumber" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.16154, -1.39361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -1.4)
 layers = 2
 billboard = 1
 render_priority = 2
@@ -76,6 +85,23 @@ visible = false
 layout_mode = 2
 text = "Cambiar jugadores"
 leftSelect = NodePath("../PlayAgain")
+
+[node name="WinnerLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -384.0
+offset_top = 200.0
+offset_right = 384.0
+offset_bottom = 328.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource("5_y7e1f")
+theme_override_font_sizes/font_size = 128
+text = "¡GANÓ x!"
+horizontal_alignment = 1
+uppercase = true
 
 [connection signal="pressed" from="EndgameButtons/PlayAgain" to="." method="goToNextRound"]
 [connection signal="pressed" from="EndgameButtons/ReselectCharacters" to="." method="_on_reselect_characters_pressed"]

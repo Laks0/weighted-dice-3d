@@ -90,6 +90,10 @@ func betToArena():
 	arena.startArena()
 	currentStage = Stages.ARENA
 
+## Cuánto se mueve en y el bet display para que no moleste a la cámara del leaderboard
+var betDisplayDisplacement := -1.5
+@onready var betDisplayHeight := betDisplay.position.y
+
 func arenaToLeaderboard(winnerId):
 	currentStage = Stages.LEADERBOARD
 	# Resetea los monigotes
@@ -101,9 +105,12 @@ func arenaToLeaderboard(winnerId):
 	for mon in monigotes:
 		chipHolder.ownMonigote(mon)
 	
+	# Saco al bet display para que no moleste con el leaderboard
+	create_tween().tween_property(betDisplay, "position:y", betDisplayDisplacement, .3).as_relative()
+	
 	chipHolder.visible = true
-	camera.goToCamera(leaderboardCamera)\
-		.finished.connect(chipHolder.startLeaderboardAnimation.bind(winnerId))
+	await camera.goToCamera(leaderboardCamera).finished
+	chipHolder.startLeaderboardAnimation(winnerId)
 
 func leaderboardToBet():
 	currentStage = Stages.TRANSITION
@@ -116,8 +123,14 @@ func leaderboardToBet():
 			mon.queue_free()
 	monigotes = chipHolder.ownedMonigotes.duplicate()
 	
+	# Hay que poner a betDisplay en su lugar (se saca en arenaToLeaderboard)
+	#create_tween().tween_property(betDisplay, "position:y", -betDisplayHeight, .1)
+	# Por alguna razón tweeneando no funciona pero así sí
+	betDisplay.position.y = betDisplayHeight
+	
 	arena.setTableRender(true)
 	betDisplay.startBetting()
+	
 	await camera.goToCamera(betCamera).finished
 	
 	currentStage = Stages.BETTING

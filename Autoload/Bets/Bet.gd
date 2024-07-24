@@ -36,6 +36,10 @@ var _scoreOrder : Order = Order.NO_SCORE
 ## Si el que va primero devuelve triple y el resto doble
 var _prizeOnFirst := false
 
+## Los textos para anunciar el resultado de la apuesta. Debe tener un %s donde va el resultado
+var _resultTextSingular : String = "El resultado de la apuesta es: %s"
+var _resultTextPlural   : String = "Los resultados de la apuesta son: %s"
+
 enum MonigoteSignal {
 	CROWN,
 	JOKER_HAT,
@@ -70,8 +74,6 @@ func settle():
 func hasWon(candidate) -> bool:
 	return _result.has(candidate)
 
-
-
 func getCandidateOdds(candidate) -> int:
 	if _prizeOnFirst and PlayerHandler.getPlayerById(candidate).bank == _maxBank:
 		return 3
@@ -103,6 +105,22 @@ func getWinnerCandidates() -> Array:
 		return _result
 	else:
 		return [_result]
+
+func getWinnersText() -> String:
+	if getWinnerCandidates().size() == 1:
+		return _resultTextSingular % getCandidateName(getWinnerCandidates()[0])
+	
+	var lista := ""
+	var i := 0
+	for candidate in getWinnerCandidates():
+		if i != 0:
+			lista += ", " if getWinnerCandidates().size() != 2 else " "
+		if i == getWinnerCandidates().size() - 1:
+			lista += "y "
+		lista += getCandidateName(candidate)
+		i += 1
+	
+	return _resultTextPlural % lista
 
 ## Si es posible que la apuesta aparezca ahora
 func canAppear() -> bool:

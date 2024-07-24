@@ -2,10 +2,13 @@ extends Bet
 class_name FewerGrabsBet
 
 func _init():
-	betName = "Fewer Grabs"
+	betName = "Menos Agarres"
 	betType = BetType.EXCLUDE_SELF
 	_scoreOrder = Order.DESCENDING
 	monigoteSignal = MonigoteSignal.JOKER_HAT
+	
+	_resultTextSingular = "%s agarró menos"
+	_resultTextPlural = "%s agarraron menos"
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

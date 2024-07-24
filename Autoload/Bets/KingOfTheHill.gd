@@ -8,9 +8,12 @@ const HILL_RADIUS := 1
 
 func _init():
 	betType = BetType.ALL_PLAYERS
-	betName = "King of the hill"
+	betName = "Rey de la colina"
 	_scoreOrder = Order.ASCENDING
 	monigoteSignal = MonigoteSignal.CROWN
+	
+	_resultTextSingular = "%s fue el rey de la colina"
+	_resultTextPlural = "%s fueron reyes de la colina"
 
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():
