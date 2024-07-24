@@ -7,7 +7,7 @@
 [node name="SpikesEffect" type="Node"]
 script = ExtResource("1_ogj0k")
 SpikesLayout = ExtResource("2_5s6py")
-effectName = "Spikes"
+effectName = "Espaditas"
 cardTexture = ExtResource("3_0k53g")
 
 [node name="SpikeTime" type="Timer" parent="."]

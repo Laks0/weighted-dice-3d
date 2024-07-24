@@ -7,7 +7,7 @@
 [node name="ChipsAreDownEffect" type="Node"]
 script = ExtResource("1_ar7g5")
 chipResource = ExtResource("2_asn4i")
-effectName = "Chips Are Down"
+effectName = "Cayó la ficha"
 cardTexture = ExtResource("3_up4cd")
 
 [node name="Cooldown" type="Timer" parent="."]

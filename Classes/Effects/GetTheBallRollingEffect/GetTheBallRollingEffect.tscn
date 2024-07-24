@@ -65,7 +65,7 @@ _data = {
 script = ExtResource("1_748c0")
 stickScene = ExtResource("2_hhtq5")
 ball8Scene = ExtResource("2_j2s6x")
-effectName = "Get The Ball Rolling"
+effectName = "Corran la bola"
 cardTexture = ExtResource("4_5b0xi")
 duration = 20.0
 
