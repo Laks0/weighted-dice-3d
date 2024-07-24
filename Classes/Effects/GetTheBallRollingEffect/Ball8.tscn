@@ -7,13 +7,13 @@
 radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tuxhk"]
-size = Vector3(0.631958, 1.39465, 1.5979)
+size = Vector3(0.631958, 1.39465, 1.21289)
 
 [node name="Ball8" type="CharacterBody3D"]
 collision_mask = 7
 axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
-speed = 3
+speed = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_olcpn")
