@@ -186,17 +186,6 @@ outline_render_priority = 1
 text = "LISTO"
 font = ExtResource("4_6lq8r")
 
-[node name="BetName" type="Label3D" parent="Slotmachine"]
-transform = Transform3D(-2.72026e-08, 0.00730318, 0.769196, 1.97638e-08, 0.769196, -0.00730318, -0.769229, 1.95046e-08, -2.73889e-08, 0.719301, -0.176925, -2.99825e-08)
-visible = false
-render_priority = 2
-outline_render_priority = 1
-text = "MOST TIME ON THE CENTER"
-font = ExtResource("4_6lq8r")
-font_size = 45
-autowrap_mode = 2
-width = 250.0
-
 [node name="ScreenViewport" type="SubViewport" parent="Slotmachine"]
 size = Vector2i(1024, 1024)
 

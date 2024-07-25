@@ -37,7 +37,6 @@ func startBetting():
 	selected.clear()
 	
 	BetHandler.startRound()
-	$Slotmachine/BetName.text = "Betting on:\n" + BetHandler.getBetName()
 	
 	var candidates := BetHandler.getCandidates()
 	
@@ -132,7 +131,7 @@ func _process(_delta):
 		
 		# Ready
 		if selected[player.id] == -1:
-			selector.get_node("NumberLabel").text = "X" if isReady[player.id] else ""
+			selector.get_node("NumberLabel").text = "OK" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
 				isReady[player.id] = not isReady[player.id]
 				if isReady[player.id]:
@@ -144,6 +143,8 @@ func _process(_delta):
 		var selectedPile = piles[selected[player.id]]
 		var candidate = selectedPile.candidate
 		selector.get_node("NumberLabel").text = str(player.getAmountBettedOn(candidate))
+		if not BetHandler.canBet(player.id, candidate):
+			selector.get_node("NumberLabel").text = "X"
 		
 		# Bajar apuesta
 		if Input.is_action_just_pressed(playerActions["up"]):
@@ -202,6 +203,7 @@ func playerReady(playerId : int) -> void:
 
 func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
+		shakeSelector(player.id)
 		return
 	SfxHandler.playSound("pointerSelect")
 
@@ -228,3 +230,15 @@ func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	piles[selected[player.id]].removeChip(player.id)
 	_repositionSelectors()
 
+func shakeSelector(playerId : int):
+	var sel : Node3D = selectors[playerId]
+	var restPosition := sel.position.x
+	var magnitude := .05
+	var time := .1
+	while time > 0:
+		sel.position.x = restPosition + (randf() * 2 - 1) * magnitude
+		await get_tree().process_frame
+		time -= get_process_delta_time()
+	
+	sel.position.x = restPosition
+	_repositionSelectors()
