@@ -240,5 +240,4 @@ func shakeSelector(playerId : int):
 		await get_tree().process_frame
 		time -= get_process_delta_time()
 	
-	sel.position.x = restPosition
 	_repositionSelectors()

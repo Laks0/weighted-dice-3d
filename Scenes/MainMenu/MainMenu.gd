@@ -8,6 +8,10 @@ func _ready():
 		$DebugVars/OnlyBet.add_item(bet.betName, i)
 		var idx = $DebugVars/OnlyBet.get_item_index(i)
 		$DebugVars/OnlyBet.set_item_metadata(idx, bet)
+	
+	var tween := create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property($GameName, "position:y", -50, 2).as_relative()
+	tween.tween_property($GameName, "position:y", 50, 2).as_relative()
 
 func _on_start_button_pressed():
 	SfxHandler.playSound("buttonSelect")
