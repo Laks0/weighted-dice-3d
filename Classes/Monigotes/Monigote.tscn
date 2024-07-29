@@ -77,11 +77,11 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
 scoreParticle = ExtResource("2_qu674")
-MAX_SPEED = 6.0
-ACCELERATION = 50.0
+ACCELERATION = 80.0
 MOVEMENTS_TO_ESCAPE_GRAB = 5
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
+invincibleAfterPushTime = 0.5
 skins = {
 "Blue": ExtResource("3_3t8bt"),
 "Green": ExtResource("4_nq8eh"),
@@ -92,6 +92,7 @@ skins = {
 }
 maxPushForce = 25.0
 customMovement = true
+FRICTION = 60.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
 unique_name_in_owner = true
