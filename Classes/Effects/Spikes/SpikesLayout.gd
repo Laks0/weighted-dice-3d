@@ -28,8 +28,11 @@ func spawnSpikes(dir : int) -> void:
 	spikes.position = warningPosition
 	await get_tree().create_timer(.5).timeout
 	
+	if not is_instance_valid(spikes):
+		return
+	
 	# Ataque
-	create_tween().tween_property(spikes, "position", attackPosition, .05)
+	spikes.create_tween().tween_property(spikes, "position", attackPosition, .05)
 	spikes.set_process_mode(Node.PROCESS_MODE_INHERIT)
 	
 	$SpikeSound.play()
