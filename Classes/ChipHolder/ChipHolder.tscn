@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://4trc0xhmaen"]
+[gd_scene load_steps=8 format=3 uid="uid://4trc0xhmaen"]
 
 [ext_resource type="PackedScene" uid="uid://cxcu72n5anfbv" path="res://Classes/ChipHolder/Fichero.glb" id="1_7360m"]
 [ext_resource type="Script" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_tv04d"]
+[ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="3_eey3n"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_0rd7g"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="5_y7e1f"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="6_c82te"]
@@ -10,6 +11,7 @@
 [node name="ChipHolder" type="Node3D"]
 script = ExtResource("1_j6y70")
 chipPileScene = ExtResource("2_tv04d")
+bonusChipScene = ExtResource("3_eey3n")
 
 [node name="Fichero2" parent="." instance=ExtResource("1_7360m")]
 transform = Transform3D(-1.18021e-07, 0, -2.7, 0, 2.7, 0, 2.7, 0, -1.18021e-07, 0, 0, 0)

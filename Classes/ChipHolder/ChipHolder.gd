@@ -19,13 +19,20 @@ var ownedMonigotes : Array[Monigote] = []
 @onready var defaultSkyColor : Color = skyMaterial.get_shader_parameter("sky_color")
 @onready var defaultSkyRotation : float = skyMaterial.get_shader_parameter("rotation_strength")
 
+## La diferencia entre la base de una pila y la posición en donde tiene que ir la ficha de bonus
+@export var positionDifferenceForBonusChip := Vector3(.5, .33, .5)
+@export var bonusChipScene : PackedScene
+
+func getPilePosition(i : int) -> Vector3:
+	return $PilePositions.get_children()[i].position
+
 func _ready():
 	var i := 0
 	for player in PlayerHandler.getPlayersAlive():
 		var playerPile = chipPileScene.instantiate()
 		playerPile.isDisplay = true
 		playerPile.playerIdDisplay = player.id
-		playerPile.position = $PilePositions.get_children()[i].position
+		playerPile.position = getPilePosition(i)
 		playerPile.scale = Vector3.ONE * 1.3
 		playerPile.setLabelVisibility(false)
 		add_child(playerPile)
@@ -131,7 +138,30 @@ func startLeaderboardAnimation(winnerId):
 		await get_tree().create_timer(timeBetweenChips).timeout
 	
 	await get_tree().create_timer(timeBetweenSteps).timeout
-
+	
+	#################
+	# Bonus de fichas
+	#################
+	for p : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
+		if p.roundBonus == 0:
+			continue
+		
+		var chip = bonusChipScene.instantiate()
+		chip.bonus = p.roundBonus
+		chip.rotation.x = PI/2
+		chip.position = piles[p.id].position + positionDifferenceForBonusChip
+		add_child(chip)
+		chip.disable()
+		chip.create_tween().tween_property(chip, "position:y", chip.position.y, 1).from(5)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_ELASTIC)
+		
+		nextRound.connect(chip.queue_free)
+	
+	await changeAllPlayerChips(func (id : int): 
+		return PlayerHandler.getPlayerById(id).roundBonus, 
+		timeBetweenChips).finished
+	
 	# Fin de la animación normal y esperar a que alguien presione grab
 	if not gameEnded:
 		waitingToStart = true

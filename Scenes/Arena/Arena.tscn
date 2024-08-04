@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=40 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
 [ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
+[ext_resource type="Script" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
+[ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -365,5 +367,11 @@ light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ChipDropper" type="Node" parent="."]
+script = ExtResource("26_sgy0k")
+chipDrop = ExtResource("27_gjkb2")
+
+[connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
 
 [editable path="Floor/Mesa"]

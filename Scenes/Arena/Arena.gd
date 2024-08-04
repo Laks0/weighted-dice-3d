@@ -2,6 +2,7 @@ extends Node3D
 class_name Arena
 
 signal effectStarted(effect)
+signal gameStarted
 signal gameEnded(winner) # winner : playerId
 
 var effects : Array
@@ -93,6 +94,8 @@ func startArena():
 		if activeEffect != -1:
 			effects[activeEffect].end())
 	die.dropped.connect(%MultipleResCamera.returnToArena)
+	
+	gameStarted.emit()
 
 func endGame(winnerMon : Monigote):
 	SoundtrackHandler.stopTrack()

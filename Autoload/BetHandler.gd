@@ -26,6 +26,9 @@ func _ready():
 
 ## Empieza la ronda de arena
 func startGame(arena : Arena):
+	for p : PlayerHandler.Player in PlayerHandler.players:
+		p.setRoundBonus(0)
+	
 	if currentBet == null:
 		startRound()
 	
@@ -116,6 +119,7 @@ func settleBet(winnerId : int) -> void:
 		player.bank += getPlayerBetWinnings(player.id)
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
+		player.bank += player.roundBonus
 	betOngoing = false
 
 func hasWon(res) -> bool:

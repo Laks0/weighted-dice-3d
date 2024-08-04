@@ -12,6 +12,8 @@ class Player:
 	var bets : Dictionary
 	var color : Color
 	
+	var roundBonus : int = 0 # Fichas de bonus que puede ganar en una ronda
+	
 	var grabs : int = 0 # Para el resultado de MostGrabs
 	
 	func _init(_name : String, _inputController :int = Controllers.KB,_id : int = Skins.RED):
@@ -44,6 +46,9 @@ class Player:
 	
 	func isStillPlaying() -> bool:
 		return bank >= BetHandler.getMinimunBet()
+	
+	func setRoundBonus(bonus : int) -> void:
+		roundBonus = bonus
 
 var players : Array[Player] = []
 var MAX_PLAYERS = 6
