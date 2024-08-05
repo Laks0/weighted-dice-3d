@@ -27,5 +27,5 @@ func spikeTimeout():
 	spikesOut = true
 
 func end():
-	arena.call_deferred("remove_child", layout)
+	layout.queue_free()
 	$SpikeTime.stop()
