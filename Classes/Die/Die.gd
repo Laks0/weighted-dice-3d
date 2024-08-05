@@ -77,6 +77,9 @@ var effectOdds : Array[float] = [.2, .2, .2, .2, .2]
 var notChosenBonus := .05
 
 func pickNewEffect(oldEffect : int) -> int:
+	if DebugVars.onlyEffect != "":
+		return 0
+	
 	var result = oldEffect
 	var ceiling : float = effectOdds.reduce(func (accum, val): return accum + val)
 	while result == oldEffect:

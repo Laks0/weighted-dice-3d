@@ -10,6 +10,10 @@ func pickEffects():
 		remove_child(c)
 		c.queue_free()
 	
+	if DebugVars.onlyEffect != "":
+		var effectScene = load(DebugVars.onlyEffect)
+		add_child(effectScene.instantiate())
+	
 	var pickedEffects : Array[PackedScene] = []
 	for _i in range(5):
 		var pickedEffect : PackedScene = regularEffects.pick_random()

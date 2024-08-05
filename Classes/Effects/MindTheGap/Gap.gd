@@ -27,7 +27,7 @@ func _on_body_entered(body):
 	# Animación del monigote
 	mon.freeze()
 	mon.position.y = monigoteFallHeight
-	var fallTween := get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
+	var fallTween := mon.create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
 	fallTween.tween_property(mon, "position:y", Globals.SPRITE_HEIGHT, .5)
 	fallTween.tween_callback(func ():
 		mon.unfreeze()

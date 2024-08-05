@@ -9,6 +9,18 @@ func _ready():
 		var idx = $DebugVars/OnlyBet.get_item_index(i)
 		$DebugVars/OnlyBet.set_item_metadata(idx, bet)
 	
+	# Conseguir los efectos
+	var i : int = 0
+	for dir in DirAccess.get_directories_at("res://Classes/Effects"):
+		for file in DirAccess.get_files_at("res://Classes/Effects/%s" % dir):
+			if not file.contains("Effect.tscn"):
+				continue
+			
+			$DebugVars/OnlyEffect.add_item(file.trim_suffix("Effect.tscn"), i)
+			var idx = $DebugVars/OnlyEffect.get_item_index(i)
+			$DebugVars/OnlyEffect.set_item_metadata(idx, "res://Classes/Effects/%s/%s" % [dir, file])
+			i += 1
+	
 	var tween := create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property($GameName, "position:y", -50, 2).as_relative()
 	tween.tween_property($GameName, "position:y", 50, 2).as_relative()
@@ -22,6 +34,9 @@ func _on_start_button_pressed():
 	
 	if $DebugVars/OnlyBet.selected != 0:
 		DebugVars.onlyBet = $DebugVars/OnlyBet.get_selected_metadata()
+	
+	if $DebugVars/OnlyEffect.selected != 0:
+		DebugVars.onlyEffect = $DebugVars/OnlyEffect.get_selected_metadata()
 	
 	if $DebugVars/StraightToArena.button_pressed:
 		PlayerHandler.createDebugPlayers($DebugVars/PlayerN.value)

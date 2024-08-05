@@ -95,7 +95,7 @@ func _process(_delta):
 		push()
 	
 	# DEBUG
-	if Input.is_action_just_pressed("die") and player.id == 0:
+	if Input.is_action_just_pressed("die"):
 		die()
 	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
