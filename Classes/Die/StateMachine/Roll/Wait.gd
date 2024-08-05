@@ -32,7 +32,7 @@ func _on_update(_delta):
 	
 	var lightTween = create_tween()
 	lightTween.tween_interval(.4)
-	lightTween.tween_property(light, "light_energy", 1.5, target.timeAfterRoll/2-.4)
+	lightTween.tween_property(light, "light_energy", target.numberLightPosition, target.timeAfterRoll/2-.4)
 	lightTween.tween_property(light, "light_energy", 0, target.timeAfterRoll/2)
 	
 	target.emit_signal("rolled", result)

@@ -73,7 +73,7 @@ shadow_mesh = SubResource("ArrayMesh_3ccru")
 resource_local_to_scene = true
 albedo_color = Color(0.66, 0.1914, 0.1914, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m23s0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwss4"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 
@@ -89,7 +89,7 @@ script = ExtResource("1_6jy3f")
 transform = Transform3D(0.6, 0, 0, 0, 0.055, 0, 0, 0, 0.6, 0, 0.728304, 0)
 mesh = SubResource("ArrayMesh_dv470")
 surface_material_override/0 = SubResource("StandardMaterial3D_itfxb")
-surface_material_override/1 = SubResource("StandardMaterial3D_m23s0")
+surface_material_override/1 = SubResource("StandardMaterial3D_pwss4")
 
 [node name="Label3D" type="Label3D" parent="FichaMesh"]
 transform = Transform3D(1.66667, 0, 0, 0, -7.94752e-07, 18.1818, 0, -1.66667, -7.28523e-08, 0, 0.528156, 0)

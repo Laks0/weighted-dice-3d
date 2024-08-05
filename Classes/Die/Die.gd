@@ -19,6 +19,8 @@ var prepareArrow : AnimatedSprite3D
 ## Si esta variable es n, la chance de sacar un 6 es 1/n
 @export var invertedChanceOfSix : int = 8
 
+@export var numberLightPosition : float = 2
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()
