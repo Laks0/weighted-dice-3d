@@ -8,3 +8,5 @@ var onlyEffect : String = ""
 var skipCardAnimation : bool = false
 
 var dontStartGame := false
+
+var dropAllChips := false

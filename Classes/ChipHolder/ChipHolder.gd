@@ -94,6 +94,24 @@ func startLeaderboardAnimation(winnerId):
 	reset()
 	BetHandler.settleBet(winnerId)
 	
+	## APARICIÓN FICHAS DE BONUS
+	var bonusChip : Node3D
+	for p : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
+		if p.roundBonus == 0:
+			continue
+		
+		bonusChip = bonusChipScene.instantiate()
+		bonusChip.bonus = p.roundBonus
+		bonusChip.rotation.x = PI/2
+		bonusChip.position = piles[p.id].position + positionDifferenceForBonusChip
+		add_child(bonusChip)
+		bonusChip.disable()
+		bonusChip.create_tween().tween_property(bonusChip, "position:y", bonusChip.position.y, 1).from(5)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_ELASTIC)
+		
+		nextRound.connect(bonusChip.queue_free)
+	
 	setSkyRotationStrength(defaultSkyRotation*2)
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
@@ -142,21 +160,12 @@ func startLeaderboardAnimation(winnerId):
 	#################
 	# Bonus de fichas
 	#################
-	for p : PlayerHandler.Player in PlayerHandler.getPlayersAlive():
-		if p.roundBonus == 0:
-			continue
-		
-		var chip = bonusChipScene.instantiate()
-		chip.bonus = p.roundBonus
-		chip.rotation.x = PI/2
-		chip.position = piles[p.id].position + positionDifferenceForBonusChip
-		add_child(chip)
-		chip.disable()
-		chip.create_tween().tween_property(chip, "position:y", chip.position.y, 1).from(5)\
-			.set_ease(Tween.EASE_OUT)\
-			.set_trans(Tween.TRANS_ELASTIC)
-		
-		nextRound.connect(chip.queue_free)
+	
+	await bonusChip.create_tween().tween_property(bonusChip, "position:y", -5, .3)\
+			.set_ease(Tween.EASE_IN)\
+			.set_trans(Tween.TRANS_SPRING).finished
+	
+	bonusChip.queue_free()
 	
 	await changeAllPlayerChips(func (id : int): 
 		return PlayerHandler.getPlayerById(id).roundBonus, 
