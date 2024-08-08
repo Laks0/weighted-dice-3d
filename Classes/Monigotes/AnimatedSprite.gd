@@ -14,6 +14,8 @@ var onArena := false
 
 @onready var rotationRaycast := $RotationRaycast
 
+@export var drunkColor : Color = Color.DARK_MAGENTA
+
 func _ready():
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 	
@@ -49,7 +51,7 @@ func _process(_delta):
 		modulate.a = 1
 	
 	if mon.drunk:
-		modulate *= Color.GREEN_YELLOW
+		modulate *= drunkColor
 	
 	billboardUpdate()
 	

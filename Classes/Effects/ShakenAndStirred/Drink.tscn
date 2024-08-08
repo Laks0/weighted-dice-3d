@@ -14,6 +14,7 @@ script = ExtResource("1_oogm3")
 transform = Transform3D(4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0)
 layers = 3
 sorting_offset = -10.0
+modulate = Color(0.468468, 0.000154307, 0.468464, 1)
 shaded = true
 double_sided = false
 texture_filter = 0
