@@ -29,7 +29,7 @@ func monigoteDied(monigote : Monigote):
 		_result = monigote.player.id
 		
 		tomb = load("res://Assets/Bets/Tomb.tscn").instantiate()
-		tomb.number = 1
+		tomb.number = 2
 		tomb.player = monigote.player.id
 		tomb.position = monigote.position
 		tomb.position.y = 0
