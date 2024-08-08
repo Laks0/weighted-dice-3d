@@ -141,11 +141,6 @@ func _physics_process(delta):
 	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
 	
 	move_and_slide()
-	
-	# Detiene las partículas si se interrumpió el movimiento
-	if velocity.is_zero_approx():
-		$PushedParticles.emitting = false
-		unclampedVelocity = Vector2.ZERO
 
 func resetMovement() -> void:
 	moveVelocity = Vector2.ZERO
@@ -203,19 +198,6 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	invincible = false
 	
 	super(dir, factor, _pusher)
-	
-	##############
-	# Partículas #
-	##############
-	# Solo las genera a partir de factor .5
-	if factor < .5:
-		return
-	
-	# Se espera un poco antes de crear las partículas
-	await get_tree().create_timer(.1).timeout
-	
-	$PushedParticles.amount = floor(factor * 3)
-	$PushedParticles.emitting = true
 
 func push():
 	moveVelocity = Vector2.ZERO

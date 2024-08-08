@@ -4,7 +4,7 @@ class_name Pushable
 ## Se emite cuando se escapa de un grab
 signal escaped
 signal beenGrabbed
-signal pushed
+signal pushed(dir : Vector2, factor : float, _pusher : Pushable)
 
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
@@ -42,7 +42,7 @@ func onGrabbed():
 	beenGrabbed.emit()
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
-	pushed.emit()
+	pushed.emit(dir, factor, _pusher)
 	grabbed = false
 	color = Color.WHITE
 	

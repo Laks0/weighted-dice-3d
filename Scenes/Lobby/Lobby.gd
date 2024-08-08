@@ -31,7 +31,7 @@ func positionMonigotes(mons : Array[Monigote]) -> void:
 				hint.play("xbox")
 			
 			mon.escaped.connect(hint.queue_free)
-			mon.pushed.connect(hint.queue_free)
+			mon.pushed.connect(hint.queue_free.unbind(3))
 		)
 
 func _ready():
