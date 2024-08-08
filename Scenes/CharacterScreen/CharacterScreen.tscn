@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=15 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://det4xf1efg0s0" path="res://Scenes/CharacterScreen/Gacha_Image_0.png" id="7_auogy"]
 [ext_resource type="Texture2D" uid="uid://x3gdoknllcg2" path="res://Scenes/CharacterScreen/Gacha_Image_1.png" id="8_88s8u"]
 [ext_resource type="Texture2D" uid="uid://bxd4g0qww21b2" path="res://Scenes/CharacterScreen/Gacha_Image_2.png" id="9_py5a4"]
+[ext_resource type="AudioStream" uid="uid://ccygglvm1sguu" path="res://Scenes/CharacterScreen/gacha.wav" id="11_or6ru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y7ii"]
 
@@ -70,7 +71,7 @@ transform = Transform3D(0.089878, -0.338842, 0.111815, -0.321065, -0.127107, -0.
 transform = Transform3D(-0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, -0.5, 0, -2.57502, -10.4574)
 
 [node name="PelotaMonigote" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="0"]
-transform = Transform3D(0.364809, -0.03398, -0.03398, 0.0480551, 0.257959, 0.257959, -1.64491e-08, -0.260187, 0.260187, -0.315369, 1.27561, 0.77193)
+transform = Transform3D(0.364809, -0.03398, -0.03398, 0.048055, 0.257959, 0.257959, -1.64491e-08, -0.260187, 0.260187, -0.315369, 1.27561, 0.77193)
 surface_material_override/0 = SubResource("StandardMaterial3D_8y7ii")
 
 [node name="Light_001" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="1"]
@@ -95,7 +96,7 @@ omni_range = 2.13
 transform = Transform3D(-1.54894e-08, 0.0629369, -1.54894e-08, 0, -2.75106e-09, -0.354356, -0.354356, -2.75106e-09, 6.77063e-16, -2.025, 1.53591, -0.946912)
 
 [node name="Moneda" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="7"]
-transform = Transform3D(0, 0.0163474, 0, -0.208014, 0, 0, 0, 0, 0.208014, -1.94403, 9.53364, -0.948904)
+transform = Transform3D(0, 0.0163474, 0, -0.208014, 0, 0, 0, 0, 0.208014, -1.94403, 1.9886, -0.948904)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Viewport3D/SubViewport/Scene3D/Gacha"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37776, 0)
@@ -186,6 +187,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.6315)
 cull_mask = 1048575
 fov = 12.9
+
+[node name="GachaSFX" type="AudioStreamPlayer" parent="Viewport3D/SubViewport/Scene3D"]
+stream = ExtResource("11_or6ru")
+volume_db = -2.08
 
 [node name="Settings" type="GridContainer" parent="."]
 layout_mode = 1
