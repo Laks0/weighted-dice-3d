@@ -1,3 +1,5 @@
+## Se encarga de manejar las fichas de bonus que pueden aparecer en las rondas
+
 extends Node
 
 @export var dropChance := .25 # Las probabilidades de un drop en una ronda

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=32 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
+[ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -184,13 +185,6 @@ stream = ExtResource("10_ir8at")
 [node name="YellSuperpush" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_psywq")
 
-[node name="DeathLight" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342656, 0)
-visible = false
-light_energy = 16.0
-light_size = 0.253
-omni_range = 1.0
-
 [node name="PushedParticles" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 3
@@ -200,6 +194,17 @@ explosiveness = 0.65
 process_material = SubResource("ParticleProcessMaterial_keoja")
 draw_pass_1 = SubResource("SphereMesh_862k8")
 script = ExtResource("21_tvbga")
+
+[node name="CameraEffects" type="Node3D" parent="."]
+script = ExtResource("22_cfqdd")
+deathShakeMagnitude = 0.1
+
+[node name="DeathLight" type="OmniLight3D" parent="CameraEffects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342656, 0)
+visible = false
+light_energy = 16.0
+light_size = 0.253
+omni_range = 1.0
 
 [connection signal="pushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
