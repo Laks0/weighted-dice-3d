@@ -123,6 +123,8 @@ func endGame(winnerMon : Monigote):
 
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
+	for i in Input.get_connected_joypads():
+		Input.start_joy_vibration(i, .6, .6, dieScreenShakeTime)
 	
 	activeEffect = n
 	effects[activeEffect].start()
