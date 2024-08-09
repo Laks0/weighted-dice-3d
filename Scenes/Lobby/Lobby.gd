@@ -7,7 +7,8 @@ signal monigoteReady(mon)
 @export var maxLobbyTime := 50.0
 
 @export var buttonHintScene : PackedScene
-
+@export var maletin_abre : AudioStreamWAV
+@export var maletin_cierra : AudioStreamWAV
 ## Dada la lista de monigotes, los posiciona en el lobby (con posiciones globales)
 func positionMonigotes(mons : Array[Monigote]) -> void:
 	var xPos = -3
@@ -39,6 +40,8 @@ func _ready():
 		maxLobbyTime = 0
 	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
+	$Maletin/AudioStreamPlayer.stream = maletin_abre
+	$Maletin/AudioStreamPlayer.play()
 
 func _on_ready_area_body_entered(body):
 	if not body is Monigote:
@@ -55,4 +58,6 @@ func _on_ready_area_body_entered(body):
 	monigoteReady.emit(body)
 
 func startExitAnimation():
+	$Maletin/AudioStreamPlayer.stream = maletin_cierra
+	get_tree().create_timer(.5).timeout.connect($Maletin/AudioStreamPlayer.play)
 	$Maletin/AnimationPlayer.play_backwards("MaletinAAction_001")
