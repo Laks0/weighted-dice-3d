@@ -26,6 +26,9 @@ var ownedMonigotes : Array[Monigote] = []
 func getPilePosition(i : int) -> Vector3:
 	return $PilePositions.get_children()[i].position
 
+func getPileLabel(i : int) -> Label3D:
+	return $PilePositions.get_children()[i].get_node("Name")
+
 func _ready():
 	var i := 0
 	for player in PlayerHandler.getPlayersAlive():
@@ -38,6 +41,10 @@ func _ready():
 		add_child(playerPile)
 		
 		piles[player.id] = playerPile
+		
+		var label := getPileLabel(i)
+		label.text = player.name
+		label.modulate = player.color
 		
 		i += 1
 	reset()
