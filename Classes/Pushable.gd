@@ -5,6 +5,7 @@ class_name Pushable
 signal escaped
 signal beenGrabbed
 signal pushed(dir : Vector2, factor : float, _pusher : Pushable)
+signal doubled ## Se llama cuando quien lo está agarrando es agarrado
 
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
@@ -32,7 +33,7 @@ func _ready():
 	add_child(timer)
 
 func canBeGrabbed(_grabber) -> bool:
-	return true
+	return not grabbed
 
 func canGrab() -> bool:
 	return true
@@ -40,6 +41,9 @@ func canGrab() -> bool:
 func onGrabbed():
 	grabbed = true
 	beenGrabbed.emit()
+	
+	if is_instance_valid(grabBody) and grabbing:
+		grabBody.doubled.emit()
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	pushed.emit(dir, factor, _pusher)

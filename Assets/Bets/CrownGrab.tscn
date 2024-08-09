@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://i54nt5afhxnf"]
+
+[ext_resource type="Script" path="res://Assets/Bets/CrownGrab.gd" id="1_jlkdb"]
+[ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="1_plhlc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3r4vu"]
+radius = 0.232201
+
+[node name="CrownGrab" type="CharacterBody3D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_jlkdb")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("1_plhlc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)
+light_energy = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_3r4vu")
