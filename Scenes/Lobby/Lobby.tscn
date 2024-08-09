@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://vj4n1f7bc5hh"]
+[gd_scene load_steps=11 format=3 uid="uid://vj4n1f7bc5hh"]
 
 [ext_resource type="Script" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
 [ext_resource type="PackedScene" uid="uid://b27nwsetse046" path="res://Scenes/Lobby/ButtonHint/ButtonHint.tscn" id="2_jj814"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_nfifi"]
+[ext_resource type="AudioStream" uid="uid://cn2xcq3skr5hm" path="res://Assets/SFX/sfx_maletin_abre.wav" id="3_ue778"]
+[ext_resource type="AudioStream" uid="uid://chpiswyfaare" path="res://Assets/SFX/sfx_malinete_cierra.wav" id="4_7um5u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsggh"]
 albedo_color = Color(0.643366, 0.435264, 0.344884, 1)
@@ -21,16 +23,20 @@ radius = 0.461906
 [node name="Lobby" type="Node3D"]
 script = ExtResource("1_fk22e")
 buttonHintScene = ExtResource("2_jj814")
+maletin_abre = ExtResource("3_ue778")
+maletin_cierra = ExtResource("4_7um5u")
 
 [node name="Maletin" parent="." instance=ExtResource("1_k3tbe")]
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
 
 [node name="MaletinA" parent="Maletin" index="6"]
-transform = Transform3D(2.40518e-05, 1.64095, 0.00507668, 0.00405088, 0.0159901, -0.520982, -2.32243, 4.48717e-05, -0.000908666, -3.02536, 0.151344, -0.160745)
+transform = Transform3D(6.93798e-08, -0.657626, 0.477343, 2.42249e-07, 1.5035, 0.208789, -2.32243, 1.37181e-07, 3.60384e-08, -3.02536, 0.151344, -0.160745)
 
 [node name="Trampolin" type="MeshInstance3D" parent="Maletin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516434, 0.122154, -7.10543e-15)
 mesh = SubResource("PlaneMesh_523s5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Maletin"]
 
 [node name="Paredes" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.25044)
