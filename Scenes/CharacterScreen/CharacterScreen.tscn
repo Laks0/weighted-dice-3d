@@ -96,7 +96,7 @@ omni_range = 2.13
 transform = Transform3D(-1.54894e-08, 0.0629369, -1.54894e-08, 0, -2.75106e-09, -0.354356, -0.354356, -2.75106e-09, 6.77063e-16, -2.025, 1.53591, -0.946912)
 
 [node name="Moneda" parent="Viewport3D/SubViewport/Scene3D/Gacha" index="7"]
-transform = Transform3D(0, 0.0163474, 0, -0.208014, 0, 0, 0, 0, 0.208014, -1.94403, 1.9886, -0.948904)
+transform = Transform3D(0, 0.0163474, 0, -0.208014, 0, 0, 0, 0, 0.208014, -1.94403, 9.53364, -0.948904)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Viewport3D/SubViewport/Scene3D/Gacha"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37776, 0)
