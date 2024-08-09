@@ -22,10 +22,12 @@ func _ready():
 		$TextEdit.focus_mode = FOCUS_NONE
 		$TextEdit.mouse_filter = MOUSE_FILTER_IGNORE
 	
-	$Cancel.movedUp.connect(startVirtualKeyboard)
+	$Ready.movedUp.connect(startVirtualKeyboard)
 	$VirtualKeyboard.accept.connect(endVirtualKeyboard)
 
 func _process(_delta):
+	$Ready.canMoveFocus = not playerReady
+	
 	if controller == Controllers.KB:
 		$ControllerLabel.text = "Keyboard"
 	elif controller == Controllers.KB2:
@@ -59,7 +61,7 @@ func endVirtualKeyboard():
 	$Cancel.visible = true
 	$Ready.visible = true
 	$VirtualKeyboard.unfocus()
-	$Cancel.focus()
+	$Ready.focus()
 
 ## Se llama cuando todos los jugadores están ready y no hay vuelta atrás
 func allReady():

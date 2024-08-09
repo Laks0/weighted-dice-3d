@@ -14,6 +14,8 @@ signal movedRight
 @export var leftSelect  : GamepadSelectButton
 @export var rightSelect : GamepadSelectButton
 
+var canMoveFocus := true
+
 func _process(_delta):
 	if controller == Controllers.KB or controller == Controllers.KB2:
 		# Lo transforma en un botón normal
@@ -29,6 +31,9 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed(actions["grab"]):
 		pressed.emit()
+	
+	if not canMoveFocus:
+		return
 	if Input.is_action_just_pressed(actions["left"]):
 		movedLeft.emit()
 		if is_instance_valid(leftSelect):

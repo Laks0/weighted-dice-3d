@@ -4,17 +4,33 @@ extends Control
 
 var arenaScene := preload("res://Scenes/Arena/Arena.tscn")
 
+var gameStarted := false
+
 func _ready():
 	randomize()
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 
+func _getActiveSettings() -> Array[CharacterSetting]:
+	var res : Array[CharacterSetting] = []
+	for space in $Settings.get_children():
+		for child in space.get_children():
+			if child is CharacterSetting:
+				res.append(child)
+	return res
+
 func _startGame():
+	for setting in _getActiveSettings():
+		setting.allReady()
 	$Label.queue_free()
+	for space in $Settings.get_children():
+		space.color.a = 0
+	
+	gameStarted = true
 	
 	# Animaciones de cada jugador
 	var allSkins = PlayerHandler.Skins.values()
-	for c in $Settings.get_children():
+	for c in _getActiveSettings():
 		var skin = allSkins.pick_random()
 		allSkins.erase(skin)
 		PlayerHandler.createPlayer(c.controller, skin, c.playerName)
@@ -26,19 +42,19 @@ func _startGame():
 	get_tree().change_scene_to_packed(arenaScene)
 
 func _process(_delta):
-	var allPlayersReady : bool = $Settings.get_children().all(func (selector): 
+	var allPlayersReady : bool = _getActiveSettings().all(func (selector): 
 		return selector.playerReady)
 	
-	if allPlayersReady and $Settings.get_child_count() > 0:
-		_startGame()
-		for setting in $Settings.get_children():
-			setting.allReady()
+	if allPlayersReady and _getActiveSettings().size() > 0 and not $Countdown.visible:
+		_startContdown()
+	if (not allPlayersReady) and $Countdown.visible:
+		_stopCountdown()
 
 func _addPlayerSetting(device : int):
-	if $Settings.get_child_count() >= PlayerHandler.MAX_PLAYERS:
+	if _getActiveSettings().size() >= PlayerHandler.MAX_PLAYERS:
 		return
 	
-	for setting in $Settings.get_children():
+	for setting in _getActiveSettings():
 		if setting.controller == device and device != Controllers.AI:
 			return
 	
@@ -46,10 +62,30 @@ func _addPlayerSetting(device : int):
 	
 	var newSetting = characterSettingScene.instantiate()
 	newSetting.controller = device
-	$Settings.add_child(newSetting)
+	for space in $Settings.get_children():
+		if space.get_child_count() == 0:
+			space.add_child(newSetting)
+			break
+
+var countdownTween : Tween
+func _startContdown():
+	$Countdown.visible = true
+	$Countdown.scale = Vector2.ZERO
+	
+	countdownTween = create_tween()
+	
+	for i in range(5, 0, -1):
+		countdownTween.tween_callback(func(): $Countdown.text = str(i))
+		countdownTween.tween_property($Countdown, "scale", Vector2.ONE, .2)
+		countdownTween.tween_property($Countdown, "scale", Vector2.ZERO, .8)
+	countdownTween.tween_callback(_startGame)
+
+func _stopCountdown():
+	countdownTween.stop()
+	$Countdown.visible = false
 
 func _input(event):
-	if not event.is_pressed():
+	if gameStarted or not event.is_pressed():
 		return
 	
 	if event is InputEventKey:
@@ -61,6 +97,3 @@ func _input(event):
 		# yqs
 		await get_tree().process_frame
 		_addPlayerSetting(event.device)
-
-func _on_add_ai_button_pressed():
-	_addPlayerSetting(Controllers.AI)
