@@ -161,24 +161,50 @@ func startLeaderboardAnimation(winnerId):
 	# Bonus de fichas
 	#################
 	
-	await bonusChip.create_tween().tween_property(bonusChip, "position:y", -5, .3)\
-			.set_ease(Tween.EASE_IN)\
-			.set_trans(Tween.TRANS_SPRING).finished
-	
-	bonusChip.queue_free()
+	if is_instance_valid(bonusChip):
+		await bonusChip.create_tween().tween_property(bonusChip, "position:y", -5, .3)\
+				.set_ease(Tween.EASE_IN)\
+				.set_trans(Tween.TRANS_SPRING).finished
+		
+		bonusChip.queue_free()
 	
 	await changeAllPlayerChips(func (id : int): 
 		return PlayerHandler.getPlayerById(id).roundBonus, 
 		timeBetweenChips).finished
 	
-	# Fin de la animación normal y esperar a que alguien presione grab
-	if not gameEnded:
-		waitingToStart = true
-		return
+	##############################
+	# Eliminar a los que perdieron
+	##############################
+	
+	var monFallTime := .7
+	var someoneLost := false
+	for mon : Monigote in ownedMonigotes:
+		if mon.player.bank > 0:
+			continue
+		
+		someoneLost = true
+		
+		mon.dance()
+		
+		disownMonigote(mon)
+		
+		mon.create_tween().tween_property(mon, "position:y", -4, monFallTime)\
+			.set_ease(Tween.EASE_IN)\
+			.set_trans(Tween.TRANS_CIRC)
+	
+	if someoneLost:
+		$MonigoteFall.play()
+		create_tween().tween_property($MonigoteFall, "pitch_scale", .91, monFallTime)
+		await get_tree().create_timer(monFallTime).timeout
 	
 	###########################
 	# Animación de fin de juego
 	###########################
+	
+	# Fin de la animación normal y esperar a que alguien presione grab
+	if not gameEnded:
+		waitingToStart = true
+		return
 	
 	var winners : Array[PlayerHandler.Player] = PlayerHandler.getWinningPlayers()
 	if winners.size() != 1:

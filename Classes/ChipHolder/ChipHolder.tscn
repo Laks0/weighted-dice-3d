@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4trc0xhmaen"]
+[gd_scene load_steps=9 format=3 uid="uid://4trc0xhmaen"]
 
 [ext_resource type="PackedScene" uid="uid://cxcu72n5anfbv" path="res://Classes/ChipHolder/Fichero.glb" id="1_7360m"]
 [ext_resource type="Script" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_0rd7g"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="5_y7e1f"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="6_c82te"]
+[ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="8_44tda"]
 
 [node name="ChipHolder" type="Node3D"]
 script = ExtResource("1_j6y70")
@@ -104,6 +105,9 @@ theme_override_font_sizes/font_size = 128
 text = "¡GANÓ x!"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="MonigoteFall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_44tda")
 
 [connection signal="pressed" from="EndgameButtons/PlayAgain" to="." method="goToNextRound"]
 [connection signal="pressed" from="EndgameButtons/ReselectCharacters" to="." method="_on_reselect_characters_pressed"]
