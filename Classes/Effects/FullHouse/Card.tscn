@@ -26,6 +26,8 @@ size = Vector3(0.845499, 2.57058, 1.18304)
 [node name="Card" type="Area3D"]
 script = ExtResource("1_7ro7i")
 materials = Array[StandardMaterial3D]([SubResource("StandardMaterial3D_y0d63"), SubResource("StandardMaterial3D_ug52m"), SubResource("StandardMaterial3D_dtrjv"), SubResource("StandardMaterial3D_iia4r")])
+heightIntroOffset = 6.0
+zIntroOffset = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.634861, -0.00809085)
@@ -42,12 +44,6 @@ font = ExtResource("3_xuet0")
 font_size = 168
 outline_size = 20
 
-[node name="Carta" parent="." instance=ExtResource("3_5lv3e")]
-
-[node name="WarningTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true
+[node name="Mesh" parent="." instance=ExtResource("3_5lv3e")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="WarningTimer" to="." method="shoot"]
