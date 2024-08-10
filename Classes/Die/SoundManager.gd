@@ -17,4 +17,3 @@ func onDieHit(_body):
 	var step : float = maxVelocity / n
 	var intensity : int = floor(magnitude / step)
 	get_child(intensity).play()
-	print(intensity)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=52 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -33,6 +33,8 @@
 [ext_resource type="AudioStream" uid="uid://e33ibluqvtr2" path="res://Assets/SFX/Dado/dado 5b.wav" id="30_tg0rf"]
 [ext_resource type="AudioStream" uid="uid://b4s44ykualug8" path="res://Assets/SFX/Dado/dado 6a.wav" id="31_gsky6"]
 [ext_resource type="AudioStream" uid="uid://cyb48xxsmydh2" path="res://Assets/SFX/Dado/dado 6b.wav" id="32_23sig"]
+[ext_resource type="AudioStream" uid="uid://c0f51rhtqfr7p" path="res://Assets/SFX/Dado/dado 7a.wav" id="33_1remy"]
+[ext_resource type="AudioStream" uid="uid://cowucprk5s3tv" path="res://Assets/SFX/Dado/dado 7b.wav" id="34_ih4gn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lf240"]
 friction = 0.65
@@ -131,6 +133,14 @@ streams_count = 2
 stream_0/stream = ExtResource("31_gsky6")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("32_23sig")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wn5s1"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("33_1remy")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_ih4gn")
 stream_1/weight = 1.0
 
 [node name="Die" type="RigidBody3D"]
@@ -372,6 +382,9 @@ stream = SubResource("AudioStreamRandomizer_50ttr")
 
 [node name="6" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_ugk4b")
+
+[node name="7" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = SubResource("AudioStreamRandomizer_wn5s1")
 
 [connection signal="body_entered" from="." to="SoundManager" method="onDieHit"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
