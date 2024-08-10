@@ -32,6 +32,7 @@ func _on_start_button_pressed():
 	DebugVars.skipCardAnimation = $DebugVars/SkipCards.button_pressed
 	DebugVars.dontStartGame = $DebugVars/DontStartGame.button_pressed
 	DebugVars.dropAllChips = $DebugVars/DropAllChips.button_pressed
+	DebugVars.inmortalMonigotes = $DebugVars/InmortalMonigotes.button_pressed
 	
 	if $DebugVars/OnlyBet.selected != 0:
 		DebugVars.onlyBet = $DebugVars/OnlyBet.get_selected_metadata()

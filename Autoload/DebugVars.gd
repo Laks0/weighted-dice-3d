@@ -10,3 +10,5 @@ var skipCardAnimation : bool = false
 var dontStartGame := false
 
 var dropAllChips := false
+
+var inmortalMonigotes := false

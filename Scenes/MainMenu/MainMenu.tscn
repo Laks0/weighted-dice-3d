@@ -134,6 +134,10 @@ text = "No empezar la ronda"
 layout_mode = 2
 text = "Forzar chip drops"
 
+[node name="InmortalMonigotes" type="CheckBox" parent="DebugVars"]
+layout_mode = 2
+text = "Monigotes inmortales"
+
 [node name="PlayerN" type="SpinBox" parent="DebugVars"]
 layout_mode = 2
 min_value = 1.0

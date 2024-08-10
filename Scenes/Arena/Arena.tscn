@@ -315,6 +315,9 @@ showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 lobbyCamera = NodePath("../LobbyCamera")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="MultipleResCamera"]
+current = true
+
 [node name="LobbyCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
 cull_mask = 3
