@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=49 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -21,20 +21,18 @@
 [ext_resource type="AudioStream" uid="uid://cebdr5tnikcfs" path="res://Assets/SFX/Dado/dado 0a.wav" id="19_5t2lp"]
 [ext_resource type="Script" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
 [ext_resource type="AudioStream" uid="uid://dvm4jl44umrm8" path="res://Assets/SFX/Dado/dado 0b.wav" id="20_5gvsa"]
-[ext_resource type="AudioStream" uid="uid://bqc2maunqxya6" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
-[ext_resource type="AudioStream" uid="uid://decro6igby578" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
-[ext_resource type="AudioStream" uid="uid://b18h1vyll7gg6" path="res://Assets/SFX/Dado/dado 2a.wav" id="23_65i7b"]
-[ext_resource type="AudioStream" uid="uid://dc518p7ui24yp" path="res://Assets/SFX/Dado/dado 2b.wav" id="24_drw72"]
-[ext_resource type="AudioStream" uid="uid://ctntxuqo6fspq" path="res://Assets/SFX/Dado/dado 3a.wav" id="25_k74yy"]
-[ext_resource type="AudioStream" uid="uid://bl05g7fbbmwnw" path="res://Assets/SFX/Dado/dado 3b.wav" id="26_i8mxh"]
-[ext_resource type="AudioStream" uid="uid://cdl6ch5wqar5m" path="res://Assets/SFX/Dado/dado 4a.wav" id="27_r4hgl"]
-[ext_resource type="AudioStream" uid="uid://drrdirnc7sgxs" path="res://Assets/SFX/Dado/dado 4b.wav" id="28_kslf3"]
-[ext_resource type="AudioStream" uid="uid://7o50f2uim84b" path="res://Assets/SFX/Dado/dado 5a.wav" id="29_0afo5"]
-[ext_resource type="AudioStream" uid="uid://dyrb8tsn00sbk" path="res://Assets/SFX/Dado/dado 5b.wav" id="30_tg0rf"]
-[ext_resource type="AudioStream" uid="uid://b3u7tmvr5nfvg" path="res://Assets/SFX/Dado/dado 6a.wav" id="31_gsky6"]
-[ext_resource type="AudioStream" uid="uid://benjeev6dh46d" path="res://Assets/SFX/Dado/dado 6b.wav" id="32_23sig"]
-[ext_resource type="AudioStream" uid="uid://b2olis60nxv63" path="res://Assets/SFX/Dado/dado 7a.wav" id="33_1remy"]
-[ext_resource type="AudioStream" uid="uid://bmc4qqqoyst12" path="res://Assets/SFX/Dado/dado 7b.wav" id="34_ih4gn"]
+[ext_resource type="AudioStream" uid="uid://cnu46v3hx7wh1" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
+[ext_resource type="AudioStream" uid="uid://dsgodc7ab7sjk" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
+[ext_resource type="AudioStream" uid="uid://fdgbmkmt63ki" path="res://Assets/SFX/Dado/dado 2a.wav" id="23_65i7b"]
+[ext_resource type="AudioStream" uid="uid://dk03hap748og0" path="res://Assets/SFX/Dado/dado 2b.wav" id="24_drw72"]
+[ext_resource type="AudioStream" uid="uid://cyh45imtjn7dj" path="res://Assets/SFX/Dado/dado 3a.wav" id="25_k74yy"]
+[ext_resource type="AudioStream" uid="uid://uijvm4d7kcyr" path="res://Assets/SFX/Dado/dado 3b.wav" id="26_i8mxh"]
+[ext_resource type="AudioStream" uid="uid://bebq2m68o2fjf" path="res://Assets/SFX/Dado/dado 4a.wav" id="27_r4hgl"]
+[ext_resource type="AudioStream" uid="uid://c7rgs8j2d65md" path="res://Assets/SFX/Dado/dado 4b.wav" id="28_kslf3"]
+[ext_resource type="AudioStream" uid="uid://cgfm34ffnwhqc" path="res://Assets/SFX/Dado/dado 5a.wav" id="29_0afo5"]
+[ext_resource type="AudioStream" uid="uid://e33ibluqvtr2" path="res://Assets/SFX/Dado/dado 5b.wav" id="30_tg0rf"]
+[ext_resource type="AudioStream" uid="uid://b4s44ykualug8" path="res://Assets/SFX/Dado/dado 6a.wav" id="31_gsky6"]
+[ext_resource type="AudioStream" uid="uid://cyb48xxsmydh2" path="res://Assets/SFX/Dado/dado 6b.wav" id="32_23sig"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lf240"]
 friction = 0.65
@@ -133,14 +131,6 @@ streams_count = 2
 stream_0/stream = ExtResource("31_gsky6")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("32_23sig")
-stream_1/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wn5s1"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("33_1remy")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("34_ih4gn")
 stream_1/weight = 1.0
 
 [node name="Die" type="RigidBody3D"]
@@ -382,9 +372,6 @@ stream = SubResource("AudioStreamRandomizer_50ttr")
 
 [node name="6" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_ugk4b")
-
-[node name="7" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_wn5s1")
 
 [connection signal="body_entered" from="." to="SoundManager" method="onDieHit"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
