@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5ofd4toyljvq"
+path="res://.godot/imported/dado 8b.wav-8ccccb97d080b40401330174d0c6af20.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Dado/dado 8b.wav"
+dest_files=["res://.godot/imported/dado 8b.wav-8ccccb97d080b40401330174d0c6af20.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

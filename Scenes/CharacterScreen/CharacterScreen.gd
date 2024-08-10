@@ -74,7 +74,7 @@ func _startContdown():
 	
 	countdownTween = create_tween()
 	
-	for i in range(5, 0, -1):
+	for i in range(3, 0, -1):
 		countdownTween.tween_callback(func(): $Countdown.text = str(i))
 		countdownTween.tween_property($Countdown, "scale", Vector2.ONE, .2)
 		countdownTween.tween_property($Countdown, "scale", Vector2.ZERO, .8)
