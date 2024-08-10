@@ -34,6 +34,7 @@ var invincible  := false
 @export var invincibleAfterPushTime: float = 0.2
 
 @export var skins : Dictionary
+@export var bites : Dictionary
 
 var stageHandler : StageHandler
 
@@ -45,23 +46,26 @@ func _ready():
 	# Para agregar una nueva skin hace falta agregarla al enum de
 	# PlayerHandler.Skins y también al diccionario de Monigote
 	match player.id:
-		PlayerHandler.Skins.BLUE:
+		PlayerHandler.Skins.BLUE: #FRAN
 			%AnimatedSprite.sprite_frames = skins.get("Blue")
-		PlayerHandler.Skins.RED:
+			
+		PlayerHandler.Skins.RED: #TOMI
 			%AnimatedSprite.sprite_frames = skins.get("Red")
-		PlayerHandler.Skins.YELLOW:
+		PlayerHandler.Skins.YELLOW: #PEDRO
 			%AnimatedSprite.sprite_frames = skins.get("Yellow")
-		PlayerHandler.Skins.GREEN:
+		PlayerHandler.Skins.GREEN: #JUAN
 			%AnimatedSprite.sprite_frames = skins.get("Green")
-		PlayerHandler.Skins.ORANGE:
+		PlayerHandler.Skins.ORANGE: #MALE
 			%AnimatedSprite.sprite_frames = skins.get("Orange")
-		PlayerHandler.Skins.PURPLE:
+		PlayerHandler.Skins.PURPLE: #MARTA
 			%AnimatedSprite.sprite_frames = skins.get("Purple")
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	stageHandler = get_parent().get_node("StageHandler")
 	
+	#CARGA DE AUDIOS RELEVANTES
+	bites["hit"] = [load("res://Assets/SFX/Bites/bite_" + PlayerHandler.getSkinName(player.id).to_lower() + "_1.wav")]
 	super._ready()
 
 	if player.inputController == Controllers.AI:
@@ -227,11 +231,14 @@ func hurt() -> bool:
 	
 	health -= 1
 	
-	$Audio/YellStomp.play()
 	
 	if health <= 0:
 		die()
 	else:
+		$BitesPlayer.stream = AudioStreamRandomizer.new() 
+		for i in range(bites["hit"].size()):
+			$BitesPlayer.stream.add_stream(i, bites["hit"][i])
+		$BitesPlayer.play()
 		wasHurt.emit()
 		Input.start_joy_vibration(controller, .4, .4, .2)
 	
