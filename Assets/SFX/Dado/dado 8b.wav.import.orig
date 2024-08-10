@@ -2,7 +2,11 @@
 
 importer="wav"
 type="AudioStreamWAV"
+<<<<<<< HEAD
+uid="uid://5ofd4toyljvq"
+=======
 uid="uid://cj5wq3ghyjqxh"
+>>>>>>> 68ac2216756731bcc701059b348e4fd0a535a950
 path="res://.godot/imported/dado 8b.wav-8ccccb97d080b40401330174d0c6af20.sample"
 
 [deps]
