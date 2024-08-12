@@ -9,6 +9,9 @@ var controllers = {
 		"right": "move_right_kb",
 		"left": "move_left_kb",
 		"grab": "grab_mouse",
+		"ui_ok": "ui_ok_kb",
+		"ui_cancel": "ui_cancel_kb",
+		"ui_edit": "ui_edit_kb",
 	},
 	KB2: {
 		"up": "move_up_kb2",
@@ -16,6 +19,9 @@ var controllers = {
 		"right": "move_right_kb2",
 		"left": "move_left_kb2",
 		"grab": "grab_kb2",
+		"ui_ok": "ui_ok_kb2",
+		"ui_cancel": "ui_cancel_kb2",
+		"ui_edit": "ui_edit_kb2",
 	},
 	AI: {
 		"up": "empty",
@@ -23,6 +29,9 @@ var controllers = {
 		"right": "empty",
 		"left": "empty",
 		"grab": "empty",
+		"ui_ok": "empty",
+		"ui_cancel": "empty",
+		"ui_edit": "empty",
 	},
 }
 
@@ -33,6 +42,9 @@ func _ready():
 	Input.joy_connection_changed.connect(func (device : int, connected : bool):
 		if connected:
 			addController(device))
+
+func isKeyboard(id : int) -> bool:
+	return id == KB or id == KB2
 
 func addController(id : int):
 	if controllers.has(id):
@@ -47,6 +59,19 @@ func addController(id : int):
 	InputMap.add_action("grab_d%s" % id)
 	controllers[id]["grab"] = "grab_d%s" % id
 	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
+	
+	# Botones de UI
+	InputMap.add_action("ui_ok_d%s" % id)
+	controllers[id]["ui_ok"] = "ui_ok_d%s" % id
+	addButtonToAction("ui_ok_d%s" % id, JOY_BUTTON_A, id)
+	
+	InputMap.add_action("ui_edit_d%s" % id)
+	controllers[id]["ui_edit"] = "ui_edit_d%s" % id
+	addButtonToAction("ui_edit_d%s" % id, JOY_BUTTON_X, id)
+	
+	InputMap.add_action("ui_cancel_d%s" % id)
+	controllers[id]["ui_cancel"] = "ui_cancel_d%s" % id
+	addButtonToAction("ui_cancel_d%s" % id, JOY_BUTTON_B, id)
 
 func addMovementAction(dir : String, button : JoyButton, axis : JoyAxis, axisDir : float, device : int):
 	var action = "move_" + dir + "_d%s" % device

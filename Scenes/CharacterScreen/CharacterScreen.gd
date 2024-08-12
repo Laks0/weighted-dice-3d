@@ -49,6 +49,14 @@ func _process(_delta):
 		_startContdown()
 	if (not allPlayersReady) and $Countdown.visible:
 		_stopCountdown()
+	
+	var isSomeKeyboardEditting := false
+	for setting in _getActiveSettings():
+		if Controllers.isKeyboard(setting.controller) and setting.edittingName:
+			isSomeKeyboardEditting = true
+	for setting in _getActiveSettings():
+		if Controllers.isKeyboard(setting.controller):
+			setting.waiting = isSomeKeyboardEditting and not setting.edittingName
 
 func _addPlayerSetting(device : int):
 	if _getActiveSettings().size() >= PlayerHandler.MAX_PLAYERS:

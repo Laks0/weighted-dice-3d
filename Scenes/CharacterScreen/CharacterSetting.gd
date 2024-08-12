@@ -5,10 +5,12 @@ var controller : int
 var playerName : String
 var playerReady := false
 
+var edittingName := false
+## Marca si es un teclado que está esperando a que termine el otro
+var waiting := false
+
 func _ready():
 	$VirtualKeyboard.setController(controller)
-	$Cancel.controller = controller
-	$Ready.controller = controller
 	
 	$VirtualKeyboard.characterWritten.connect(func(c : String):
 		$TextEdit.text = $TextEdit.text + c)
@@ -17,58 +19,87 @@ func _ready():
 			return
 		$TextEdit.text = $TextEdit.text.erase($TextEdit.text.length()-1, 1))
 	
-	if controller != Controllers.KB and controller != Controllers.KB2:
-		startVirtualKeyboard()
+	if not Controllers.isKeyboard(controller):
 		$TextEdit.focus_mode = FOCUS_NONE
 		$TextEdit.mouse_filter = MOUSE_FILTER_IGNORE
+	else:
+		$KeyboardHints.visible = true
 	
-	$Ready.movedUp.connect(startVirtualKeyboard)
 	$VirtualKeyboard.accept.connect(endVirtualKeyboard)
+	startEdit()
 
 func _process(_delta):
-	$Ready.canMoveFocus = not playerReady
-	
 	if controller == Controllers.KB:
 		$ControllerLabel.text = "Keyboard"
+		
+		$KeyboardHints.text = "Espacio: Listo/No listo\nE: editar\nQ: eliminar"
 	elif controller == Controllers.KB2:
 		$ControllerLabel.text = "Keyboard alt."
+		
+		$KeyboardHints.text = "AltGr: Listo/No listo\n+ : editar\n- : eliminar"
 	elif controller == Controllers.AI:
 		$ControllerLabel.text = "AI"
 	else:
 		$ControllerLabel.text = "Gamepad %s" % controller
-	 
+	
 	modulate.a = .5 if playerReady else 1.0
 	$TextEdit.set_process(not playerReady)
 	playerName = $TextEdit.text
+	
+	if Controllers.isKeyboard(controller):
+		edittingName = $TextEdit.has_focus()
+	
+	if edittingName:
+		$KeyboardHints.text = "Esc para terminar"
+	elif waiting:
+		$KeyboardHints.text = "Esperá a que termine el otro teclado"
+	
+	# Opciones
+	if edittingName or waiting:
+		return
+	
+	var actions := Controllers.getActions(controller)
+	if Input.is_action_just_pressed(actions["ui_ok"]):
+		toggleReady()
+	
+	if Input.is_action_just_pressed(actions["ui_cancel"]):
+		queue_free()
+	
+	if Input.is_action_just_pressed(actions["ui_edit"]):
+		startEdit()
 
-func _on_ready_pressed():
+func toggleReady():
 	SfxHandler.playSound("playerReady")
 	playerReady = not playerReady
 
-func _on_cancel_pressed():
-	queue_free()
+func startEdit():
+	if waiting:
+		return
+	
+	edittingName = true
+	playerReady = false
+	if controller == Controllers.KB or controller == Controllers.KB2:
+		$TextEdit.grab_focus()
+		return
+	startVirtualKeyboard()
 
 func startVirtualKeyboard():
-	$Cancel.visible = false
-	$Ready.visible = false
 	$VirtualKeyboard.visible = true
-	$Cancel.unfocus()
-	$Ready.unfocus()
 	$VirtualKeyboard.focus()
+	$GamepadHints.visible = false
 
 func endVirtualKeyboard():
 	$VirtualKeyboard.visible = false
-	$Cancel.visible = true
-	$Ready.visible = true
 	$VirtualKeyboard.unfocus()
-	$Ready.focus()
+	$GamepadHints.visible = true
+	edittingName = false
 
 ## Se llama cuando todos los jugadores están ready y no hay vuelta atrás
 func allReady():
 	$TextEdit.visible = false
-	$Cancel.visible = false
-	$Ready.visible = false
 	$Separator.visible = true
+	$KeyboardHints.visible = false
+	$GamepadHints.visible = false
 	playerReady = false
 	
 	if playerName != "":
