@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=38 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -14,10 +14,16 @@
 [ext_resource type="Script" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
 [ext_resource type="SpriteFrames" uid="uid://cg1y2mis11sum" path="res://Assets/MonigoteSkins/PurpleFrames.tres" id="8_ppcco"]
 [ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
+[ext_resource type="SpriteFrames" uid="uid://d1kvn7fksstc8" path="res://Assets/MonigoteSkins/BlueFramesBloody.tres" id="10_8e2x8"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="11_f1njw"]
+[ext_resource type="SpriteFrames" uid="uid://dts4yb87aergf" path="res://Assets/MonigoteSkins/RedFramesBloody.tres" id="11_jjwmm"]
 [ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
+[ext_resource type="SpriteFrames" uid="uid://0xholgolte5" path="res://Assets/MonigoteSkins/GreenFramesBloody.tres" id="12_x5fgu"]
+[ext_resource type="SpriteFrames" uid="uid://de11nu01mv8rd" path="res://Assets/MonigoteSkins/PurpleFramesBloody.tres" id="13_u0f2g"]
+[ext_resource type="SpriteFrames" uid="uid://c3xlub6ostpq" path="res://Assets/MonigoteSkins/OrangeFramesBloody.tres" id="14_1xbeh"]
 [ext_resource type="Texture2D" uid="uid://pylm0uplpf13" path="res://Assets/Bets/MostGrabbed.png" id="14_wqmb4"]
+[ext_resource type="SpriteFrames" uid="uid://gpx3mko75y5v" path="res://Assets/MonigoteSkins/YellowFramesBloody.tres" id="15_0kk3g"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
@@ -86,11 +92,17 @@ invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
 skins = {
 "Blue": ExtResource("3_3t8bt"),
+"BlueBloody": ExtResource("10_8e2x8"),
 "Green": ExtResource("4_nq8eh"),
+"GreenBloody": ExtResource("12_x5fgu"),
 "Orange": ExtResource("7_gdamn"),
+"OrangeBloody": ExtResource("14_1xbeh"),
 "Purple": ExtResource("8_ppcco"),
+"PurpleBloody": ExtResource("13_u0f2g"),
 "Red": ExtResource("5_xljsg"),
-"Yellow": ExtResource("6_2h8rt")
+"RedBloody": ExtResource("11_jjwmm"),
+"Yellow": ExtResource("6_2h8rt"),
+"YellowBloody": ExtResource("15_0kk3g")
 }
 maxPushForce = 32.0
 customMovement = true

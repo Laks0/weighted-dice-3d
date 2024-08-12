@@ -16,11 +16,15 @@ var onArena := false
 
 @export var drunkColor : Color = Color.DARK_MAGENTA
 
+var hurtSkin : SpriteFrames
+
 func _ready():
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 	
 	# Para la función de rotación
 	$RotationRaycast.add_exception(get_parent())
+	
+	mon.wasHurt.connect(func(): sprite_frames = hurtSkin)
 
 func arenaReady():
 	onArena = true

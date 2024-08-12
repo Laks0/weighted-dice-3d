@@ -48,17 +48,22 @@ func _ready():
 	match player.id:
 		PlayerHandler.Skins.BLUE: #FRAN
 			%AnimatedSprite.sprite_frames = skins.get("Blue")
-			
+			%AnimatedSprite.hurtSkin = skins.get("BlueBloody")
 		PlayerHandler.Skins.RED: #TOMI
 			%AnimatedSprite.sprite_frames = skins.get("Red")
+			%AnimatedSprite.hurtSkin = skins.get("RedBloody")
 		PlayerHandler.Skins.YELLOW: #PEDRO
 			%AnimatedSprite.sprite_frames = skins.get("Yellow")
+			%AnimatedSprite.hurtSkin = skins.get("YellowBloody")
 		PlayerHandler.Skins.GREEN: #JUAN
 			%AnimatedSprite.sprite_frames = skins.get("Green")
+			%AnimatedSprite.hurtSkin = skins.get("GreenBloody")
 		PlayerHandler.Skins.ORANGE: #MALE
 			%AnimatedSprite.sprite_frames = skins.get("Orange")
+			%AnimatedSprite.hurtSkin = skins.get("OrangeBloody")
 		PlayerHandler.Skins.PURPLE: #MARTA
 			%AnimatedSprite.sprite_frames = skins.get("Purple")
+			%AnimatedSprite.hurtSkin = skins.get("PurpleBloody")
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
@@ -232,7 +237,6 @@ func hurt() -> bool:
 		return false
 	
 	health -= 1
-	
 	
 	if health <= 0:
 		die()
