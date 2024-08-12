@@ -195,6 +195,8 @@ func onGrabbing():
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce
 	
+	$GrabCooldown.start()
+	
 	if factor == 1:
 		$Audio/YellSuperpush.play()
 	else:
