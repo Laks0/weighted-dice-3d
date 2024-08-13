@@ -67,7 +67,7 @@ func _ready():
 	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
-	stageHandler = get_parent().get_node("StageHandler")
+	stageHandler = get_parent().get_node_or_null("StageHandler")
 	
 	#CARGA DE AUDIOS RELEVANTES
 	bites["hit"] = [load("res://Assets/SFX/Bites/bite_" + PlayerHandler.getSkinName(player.id).to_lower() + "_1.wav")]

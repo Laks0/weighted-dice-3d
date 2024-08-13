@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c1ow3j0i3uw8b"
+
+[deps]
+
+files=["res://Assets/FunFacts.Fran.translation", "res://Assets/FunFacts.Pedro.translation", "res://Assets/FunFacts.Juan.translation", "res://Assets/FunFacts.Male.translation", "res://Assets/FunFacts.Marta.translation"]
+
+source_file="res://Assets/FunFacts.csv"
+dest_files=["res://Assets/FunFacts.Fran.translation", "res://Assets/FunFacts.Pedro.translation", "res://Assets/FunFacts.Juan.translation", "res://Assets/FunFacts.Male.translation", "res://Assets/FunFacts.Marta.translation"]
+
+[params]
+
+compress=true
+delimiter=0
