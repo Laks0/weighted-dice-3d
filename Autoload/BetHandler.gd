@@ -1,5 +1,7 @@
 extends Node
 
+signal pickedNewBet
+
 ## Al principio de cada ronda se tiene que llamar startRound()
 ## settleBet() reparte las apuestas una vez determinado el candidato ganador
 ## se tiene que llamar mientras la arena sigue viva porque usa información de ahí
@@ -42,6 +44,7 @@ func startRound() -> void:
 	if DebugVars.onlyBet != null:
 		currentBet = DebugVars.onlyBet
 		currentBet.startRound()
+		pickedNewBet.emit()
 		return
 	
 	# Si se reelige la misma apuesta que antes hay solo un 5% de chances de dejarla
@@ -55,6 +58,7 @@ func startRound() -> void:
 	_lastBet = currentBet
 	
 	currentBet.startRound()
+	pickedNewBet.emit()
 
 func getBetName() -> String:
 	return currentBet.betName

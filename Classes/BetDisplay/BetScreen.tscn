@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce83diidesaw6"]
+[gd_scene load_steps=3 format=3 uid="uid://ce83diidesaw6"]
 
 [ext_resource type="Script" path="res://Classes/BetDisplay/BetScreen.gd" id="1_f684m"]
+[ext_resource type="FontFile" uid="uid://cqlagf4oikhim" path="res://Assets/BebasNeue-Regular.ttf" id="2_bdjno"]
 
 [node name="BetScreen" type="Node2D"]
 script = ExtResource("1_f684m")
@@ -29,10 +30,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 25
 theme_override_constants/line_spacing = -80
-theme_override_font_sizes/font_size = 216
-text = "KING OF THE HILL"
+theme_override_fonts/font = ExtResource("2_bdjno")
+theme_override_font_sizes/font_size = 300
+text = "Más agarrado"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
