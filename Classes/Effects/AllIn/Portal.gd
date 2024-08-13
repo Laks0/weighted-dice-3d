@@ -1,5 +1,7 @@
 extends Area3D
 
+@export var atractAcceleration := 300
+
 var rayDir := Vector3(PI/100, 0, 0)
 
 func _process(delta):
@@ -12,9 +14,8 @@ func _process(delta):
 		if not isOnRay(mon):
 			continue
 		var dir3D = mon.position.direction_to(position)
-		var acceleration = 150
-		var dist = 1/mon.position.distance_to(position)
-		mon.knockback(Vector2(dir3D.x, dir3D.z).normalized() * acceleration * dist * delta)
+		var dist = 2/mon.position.distance_to(position)
+		mon.knockback(Vector2(dir3D.x, dir3D.z).normalized() * atractAcceleration * dist * delta)
 
 func isOnRay(mon : Monigote):
 	var dir2d := Vector2.from_angle(-rayDir.y - PI/2)
