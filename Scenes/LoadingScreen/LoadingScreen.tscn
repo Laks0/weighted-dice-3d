@@ -18,6 +18,7 @@ script = ExtResource("1_6dlsn")
 monigotePos = Vector3(0, 0, -2)
 monigoteScene = ExtResource("3_j3vqa")
 factsFile = "res://Assets/FunFacts.json"
+arenaPath = "res://Scenes/Arena/Arena.tscn"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1

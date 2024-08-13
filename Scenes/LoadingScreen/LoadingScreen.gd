@@ -5,6 +5,10 @@ extends Control
 
 @export_dir var factsFile : String
 
+@export_dir var arenaPath : String
+
+@onready var arenaScene := ResourceLoader.load_threaded_request(arenaPath)
+
 func _ready():
 	var mon = monigoteScene.instantiate()
 	mon.player = PlayerHandler.Player.new("", 0, PlayerHandler.Skins.values().pick_random())
@@ -22,3 +26,13 @@ func _ready():
 	var skinName = PlayerHandler.getSkinName(mon.player.id)
 	
 	$FunFact.text = "Dato curioso: %s" % facts[skinName].pick_random()
+
+func _process(delta):
+	var progress = []
+	ResourceLoader.load_threaded_get_status(arenaPath, progress)
+	
+	$ProgressBar.value = floor(progress[0] * 100)
+	
+	if progress[0] == 1:
+		await get_tree().create_timer(1).timeout
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(arenaPath))

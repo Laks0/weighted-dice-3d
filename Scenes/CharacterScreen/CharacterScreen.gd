@@ -2,7 +2,7 @@ extends Control
 
 @export var characterSettingScene : PackedScene
 
-var arenaScene := preload("res://Scenes/Arena/Arena.tscn")
+var loadingScene := preload("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 
 var gameStarted := false
 
@@ -39,7 +39,7 @@ func _startGame():
 		await %Scene3D.finishedAnimation
 	
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_packed(arenaScene)
+	get_tree().change_scene_to_packed(loadingScene)
 
 func _process(_delta):
 	var allPlayersReady : bool = _getActiveSettings().all(func (selector): 
