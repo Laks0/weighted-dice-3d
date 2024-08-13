@@ -26,6 +26,9 @@ func _ready():
 		$KeyboardHints.visible = true
 	
 	$VirtualKeyboard.accept.connect(endVirtualKeyboard)
+	
+	await get_tree().process_frame
+	
 	startEdit()
 
 func _process(_delta):

@@ -27,7 +27,7 @@ func _ready():
 	
 	$FunFact.text = "Dato curioso: %s" % facts[skinName].pick_random()
 
-func _process(delta):
+func _process(_delta):
 	var progress = []
 	ResourceLoader.load_threaded_get_status(arenaPath, progress)
 	
