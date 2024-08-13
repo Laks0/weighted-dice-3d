@@ -30,7 +30,7 @@ maletin_cierra = ExtResource("4_7um5u")
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
 
 [node name="MaletinA" parent="Maletin" index="6"]
-transform = Transform3D(6.93798e-08, -0.657626, 0.477343, 2.42249e-07, 1.5035, 0.208789, -2.32243, 1.37181e-07, 3.60384e-08, -3.02536, 0.151344, -0.160745)
+transform = Transform3D(2.40518e-05, 1.64095, 0.00507668, 0.00405087, 0.0159901, -0.520982, -2.32243, 4.48718e-05, -0.000908666, -3.02536, 0.151344, -0.160745)
 
 [node name="Trampolin" type="MeshInstance3D" parent="Maletin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516434, 0.122154, -7.10543e-15)

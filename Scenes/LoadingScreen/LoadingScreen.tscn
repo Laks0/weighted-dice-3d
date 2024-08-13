@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjm023a5mmwvy"]
+
+[ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_1rcnr"]
+[ext_resource type="Script" path="res://Scenes/LoadingScreen/LoadingScreen.gd" id="1_6dlsn"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_dda77"]
+[ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="2_sioe6"]
+[ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="3_j3vqa"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dda77")
+script = ExtResource("1_6dlsn")
+monigotePos = Vector3(0, 0, -2)
+monigoteScene = ExtResource("3_j3vqa")
+factsFile = "res://Assets/FunFacts.json"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = ExtResource("1_1rcnr")
+
+[node name="MultipleResCamera" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_sioe6")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.881752)
+light_energy = 3.087
+
+[node name="FunFact" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -396.0
+offset_top = -268.0
+offset_right = 396.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "Fun fact: :)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -192.0
+offset_right = 350.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 0
