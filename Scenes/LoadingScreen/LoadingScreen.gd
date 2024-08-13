@@ -11,7 +11,7 @@ extends Control
 
 func _ready():
 	var mon = monigoteScene.instantiate()
-	mon.player = PlayerHandler.Player.new("", 0, PlayerHandler.Skins.values().pick_random())
+	mon.player = PlayerHandler.Player.new("", Controllers.KB, PlayerHandler.Skins.values().pick_random())
 	%SubViewport.add_child(mon)
 	mon.freeze()
 	mon.dance()
