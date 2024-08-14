@@ -61,6 +61,7 @@ func chooseMonigote(skin : int, target2dPos : Vector2):
 	# SFX de saludo del monigote
 	animTween.chain().tween_callback(func ():
 		var player = PlayerHandler.getPlayerById(skin)
+		await get_tree().create_timer(.3).timeout
 		$BallsSFX.stream = player.getBiteStream("salute")
 		$BallsSFX.play()
 	)
