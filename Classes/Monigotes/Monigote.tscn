@@ -219,6 +219,7 @@ light_size = 0.253
 omni_range = 1.0
 
 [node name="BitesPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [connection signal="pushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]

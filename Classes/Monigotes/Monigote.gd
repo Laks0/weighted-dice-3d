@@ -70,8 +70,26 @@ func _ready():
 	stageHandler = get_parent().get_node_or_null("StageHandler")
 	
 	#CARGA DE AUDIOS RELEVANTES
-	bites["hit"] = [load("res://Assets/SFX/Bites/bite_" + PlayerHandler.getSkinName(player.id).to_lower() + "_1.wav")]
+	biteCreate("hit")
+	biteCreate("dead")
+	biteCreate("grab")
+	biteCreate("jump")
+	biteCreate("throwc")
+	biteCreate("thrown")
+	biteCreate("salute")
+	biteCreate("victory")
 	super._ready()
+
+func biteCreate(category : String):
+	bites[category] = AudioStreamRandomizer.new()
+	for i in range(5): # Esto se fijaría hasta 5 (o 6?) audios para la categoría
+		var newStream = load("res://Assets/SFX/Bites/bite_" + PlayerHandler.getSkinName(player.id).to_lower() + "_" + category + "_" + str(i) + ".wav")
+		if newStream != null:
+			bites[category].add_stream(bites[category].streams_count, newStream)
+
+func bitePlay(category : String):
+	$BitesPlayer.stream = bites[category]
+	$BitesPlayer.play()
 
 	if player.inputController == Controllers.AI:
 		var controllerNode := Node.new()
@@ -241,10 +259,7 @@ func hurt() -> bool:
 	if health <= 0:
 		die()
 	else:
-		$BitesPlayer.stream = AudioStreamRandomizer.new() 
-		for i in range(bites["hit"].size()):
-			$BitesPlayer.stream.add_stream(i, bites["hit"][i])
-		$BitesPlayer.play()
+		bitePlay("hit")
 		wasHurt.emit()
 		Input.start_joy_vibration(controller, .4, .4, .2)
 	
@@ -252,16 +267,18 @@ func hurt() -> bool:
 	
 	return true
 
+
+
 func die():
 	if invincible:
 		return
 	
 	if grabbing:
 		push()
-	
+	bitePlay("dead")
 	emit_signal("died")
 	
-	$Audio/YellStomp.play()
+############	$BitesPlayer.stream == "asd"
 	
 	%AnimatedSprite.visible = false
 	$DeathParticles.emitting = true
