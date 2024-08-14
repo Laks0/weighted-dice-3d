@@ -14,7 +14,7 @@ func chooseMonigote(skin : int, target2dPos : Vector2):
 	$Gacha/AnimationPlayer.play("Pelota")
 	monigoteBall.visible = true
 	
-	# El SFX empieza .5 segundos después (Hack)
+	# El SFX empieza .7 segundos después (Hack)
 	get_tree().create_timer(.7).timeout.connect($GachaSFX.play)
 	
 	await get_tree().create_timer(1.7).timeout

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=34 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -10,15 +10,11 @@
 [ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
 [ext_resource type="SpriteFrames" uid="uid://cfd6alplor6mc" path="res://Assets/MonigoteSkins/OrangeFrames.tres" id="7_gdamn"]
 [ext_resource type="Shader" path="res://Classes/Monigotes/Monigote.gdshader" id="7_tb5pk"]
-[ext_resource type="AudioStream" uid="uid://ct1uhpnp8igyo" path="res://Classes/Monigotes/SFX/sfx_yellpush.6.wav" id="8_4eqdp"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
 [ext_resource type="SpriteFrames" uid="uid://cg1y2mis11sum" path="res://Assets/MonigoteSkins/PurpleFrames.tres" id="8_ppcco"]
-[ext_resource type="AudioStream" uid="uid://diwfb1lgmyh7l" path="res://Classes/Monigotes/SFX/sfx_yellspike.wav" id="9_ldtbj"]
 [ext_resource type="SpriteFrames" uid="uid://d1kvn7fksstc8" path="res://Assets/MonigoteSkins/BlueFramesBloody.tres" id="10_8e2x8"]
-[ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="10_ir8at"]
 [ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="11_f1njw"]
 [ext_resource type="SpriteFrames" uid="uid://dts4yb87aergf" path="res://Assets/MonigoteSkins/RedFramesBloody.tres" id="11_jjwmm"]
-[ext_resource type="AudioStream" uid="uid://b0karqy5rnkaa" path="res://Classes/Monigotes/SFX/sfx_yellsuperpush.wav" id="12_psywq"]
 [ext_resource type="SpriteFrames" uid="uid://0xholgolte5" path="res://Assets/MonigoteSkins/GreenFramesBloody.tres" id="12_x5fgu"]
 [ext_resource type="SpriteFrames" uid="uid://de11nu01mv8rd" path="res://Assets/MonigoteSkins/PurpleFramesBloody.tres" id="13_u0f2g"]
 [ext_resource type="SpriteFrames" uid="uid://c3xlub6ostpq" path="res://Assets/MonigoteSkins/OrangeFramesBloody.tres" id="14_1xbeh"]
@@ -182,20 +178,6 @@ process_material = SubResource("ParticleProcessMaterial_7joh5")
 draw_pass_1 = ExtResource("6_jppmt")
 script = ExtResource("6_f2n3y")
 mesh = ExtResource("6_jppmt")
-
-[node name="Audio" type="Node" parent="."]
-
-[node name="YellPush" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("8_4eqdp")
-
-[node name="YellSpike" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("9_ldtbj")
-
-[node name="YellStomp" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("10_ir8at")
-
-[node name="YellSuperpush" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("12_psywq")
 
 [node name="PushedParticles" type="GPUParticles3D" parent="."]
 emitting = false

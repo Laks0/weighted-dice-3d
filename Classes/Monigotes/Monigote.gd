@@ -117,9 +117,11 @@ func _process(_delta):
 			
 			$GrabCooldown.start()
 			emit_signal("grab", body)
+			bitePlay("grab")
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
+		bitePlay("throwc")
 		push()
 	
 	# DEBUG
@@ -221,9 +223,9 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	$GrabCooldown.start()
 	
 	if factor == 1:
-		$Audio/YellSuperpush.play()
+		bitePlay("thrown") #cambiar cuando haya tiro largo
 	else:
-		$Audio/YellPush.play()
+		bitePlay("thrown")
 	
 	invincible = false
 	
@@ -291,7 +293,7 @@ func stun():
 	if !$StunCooldown.is_stopped():
 		return
 	
-	$Audio/YellSpike.play()
+	bitePlay("hit")
 	
 	$StunCooldown.start()
 	stunned = true
