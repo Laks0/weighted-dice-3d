@@ -4,7 +4,8 @@ class_name Pushable
 ## Se emite cuando se escapa de un grab
 signal escaped
 signal beenGrabbed
-signal pushed(dir : Vector2, factor : float, _pusher : Pushable)
+signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)
+signal pushed
 signal doubled ## Se llama cuando quien lo está agarrando es agarrado
 
 @export_range(0, 3) var maxGrabTime  : float = 1
@@ -46,7 +47,7 @@ func onGrabbed():
 		grabBody.doubled.emit()
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
-	pushed.emit(dir, factor, _pusher)
+	wasPushed.emit(dir, factor, _pusher)
 	grabbed = false
 	color = Color.WHITE
 	
@@ -102,6 +103,7 @@ func push():
 	
 	grabBody.onPushed(grabDir, pushFactor, self)
 	grabBody = null
+	pushed.emit()
 
 func _physics_process(delta):
 	if grabbed:

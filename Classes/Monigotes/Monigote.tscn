@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=35 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
+[ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -200,8 +201,14 @@ light_energy = 16.0
 light_size = 0.253
 omni_range = 1.0
 
-[node name="BitesPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="BitesPlayer" type="AudioStreamPlayer3D" parent="."]
 bus = &"SFX"
+script = ExtResource("25_tld37")
 
-[connection signal="pushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
+[connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
+[connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
+[connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
+[connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
+[connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
+[connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]

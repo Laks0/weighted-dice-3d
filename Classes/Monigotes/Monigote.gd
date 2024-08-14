@@ -34,7 +34,6 @@ var invincible  := false
 @export var invincibleAfterPushTime: float = 0.2
 
 @export var skins : Dictionary
-@export var bites : Dictionary
 
 var stageHandler : StageHandler
 
@@ -69,32 +68,12 @@ func _ready():
 	
 	stageHandler = get_parent().get_node_or_null("StageHandler")
 	
-	#CARGA DE AUDIOS RELEVANTES
-	biteCreate("hit")
-	biteCreate("dead")
-	biteCreate("grab")
-	biteCreate("jump")
-	biteCreate("throwc")
-	biteCreate("thrown")
-	biteCreate("salute")
-	biteCreate("victory")
-	super._ready()
-
-func biteCreate(category : String):
-	bites[category] = AudioStreamRandomizer.new()
-	for i in range(5): # Esto se fijaría hasta 5 (o 6?) audios para la categoría
-		var newStream = load("res://Assets/SFX/Bites/bite_" + PlayerHandler.getSkinName(player.id).to_lower() + "_" + category + "_" + str(i) + ".wav")
-		if newStream != null:
-			bites[category].add_stream(bites[category].streams_count, newStream)
-
-func bitePlay(category : String):
-	$BitesPlayer.stream = bites[category]
-	$BitesPlayer.play()
-
 	if player.inputController == Controllers.AI:
 		var controllerNode := Node.new()
 		controllerNode.set_script(aiControllerScript)
 		add_child(controllerNode)
+	
+	super._ready()
 
 ## Se llama desde la arena cuando el monigote es reparentado
 func arenaReady():
@@ -117,11 +96,10 @@ func _process(_delta):
 			
 			$GrabCooldown.start()
 			emit_signal("grab", body)
-			bitePlay("grab")
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
-		bitePlay("throwc")
+		
 		push()
 	
 	# DEBUG
@@ -222,11 +200,6 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	
 	$GrabCooldown.start()
 	
-	if factor == 1:
-		bitePlay("thrown") #cambiar cuando haya tiro largo
-	else:
-		bitePlay("thrown")
-	
 	invincible = false
 	
 	super(dir, factor, _pusher)
@@ -261,7 +234,6 @@ func hurt() -> bool:
 	if health <= 0:
 		die()
 	else:
-		bitePlay("hit")
 		wasHurt.emit()
 		Input.start_joy_vibration(controller, .4, .4, .2)
 	
@@ -277,10 +249,8 @@ func die():
 	
 	if grabbing:
 		push()
-	bitePlay("dead")
-	emit_signal("died")
 	
-############	$BitesPlayer.stream == "asd"
+	emit_signal("died")
 	
 	%AnimatedSprite.visible = false
 	$DeathParticles.emitting = true
@@ -292,8 +262,6 @@ func die():
 func stun():
 	if !$StunCooldown.is_stopped():
 		return
-	
-	bitePlay("hit")
 	
 	$StunCooldown.start()
 	stunned = true

@@ -32,7 +32,7 @@ func positionMonigotes(mons : Array[Monigote]) -> void:
 				hint.play("xbox")
 			
 			mon.escaped.connect(hint.queue_free)
-			mon.pushed.connect(hint.queue_free.unbind(3))
+			mon.wasPushed.connect(hint.queue_free.unbind(3))
 		)
 
 func _ready():
@@ -49,7 +49,7 @@ func _on_ready_area_body_entered(body):
 	
 	if not body.is_processing():
 		return
-	body.bitePlay("jump")
+	body.get_node("BitesPlayer").bitePlay("jump")
 	body.set_process(false)
 	body.set_physics_process(false)
 	

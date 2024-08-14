@@ -16,6 +16,8 @@ class Player:
 	
 	var grabs : int = 0 # Para el resultado de MostGrabs
 	
+	var soundBites : Dictionary
+	
 	func _init(_name : String, _inputController :int = Controllers.KB,_id : int = Skins.RED):
 		name = _name
 		inputController = _inputController
@@ -25,6 +27,15 @@ class Player:
 		
 		if name == "":
 			name = PlayerHandler.getSkinName(id)
+		
+		_createBite("hit")
+		_createBite("dead")
+		_createBite("grab")
+		_createBite("jump")
+		_createBite("throwc")
+		_createBite("thrown")
+		_createBite("salute")
+		_createBite("victory")
 	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
@@ -49,6 +60,20 @@ class Player:
 	
 	func setRoundBonus(bonus : int) -> void:
 		roundBonus = bonus
+	
+	func _createBite(category : String) -> void:
+		soundBites[category] = AudioStreamRandomizer.new()
+		var bitePath := "res://Assets/SFX/Bites/"
+		var prefix := "bite_" + PlayerHandler.getSkinName(id).to_lower() + "_" + category
+		for fileName : String in DirAccess.get_files_at(bitePath):
+			if not (fileName.begins_with(prefix) and fileName.ends_with(".wav")):
+				continue
+			var newStream = load(bitePath+fileName)
+			if newStream != null:
+				soundBites[category].add_stream(soundBites[category].streams_count, newStream)
+	
+	func getBiteStream(category : String) -> AudioStreamRandomizer:
+		return soundBites[category]
 
 var players : Array[Player] = []
 var MAX_PLAYERS = 6
