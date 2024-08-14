@@ -5,6 +5,7 @@ signal wasHurt
 signal died
 ## Se emite cuando el monigote agarra cualquier pushable
 signal grab(body)
+signal hasWon
 
 @export var scoreParticle : PackedScene
 

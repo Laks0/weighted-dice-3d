@@ -23,3 +23,8 @@ func _on_monigote_was_hurt():
 
 func _on_monigote_died():
 	bitePlay("dead")
+
+
+func _on_monigote_has_won():
+	await get_tree().create_timer(.6).timeout
+	bitePlay("victory")

@@ -207,6 +207,7 @@ script = ExtResource("25_tld37")
 
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
+[connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]
 [connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
