@@ -58,6 +58,12 @@ func chooseMonigote(skin : int, target2dPos : Vector2):
 	animTween.tween_property(chosenBall, "global_position", 
 		$MultipleResCamera.project_position(target2dPos, 20), .5)
 	animTween.tween_property(chosenBall, "rotation", Vector3.ZERO, .5)
+	# SFX de saludo del monigote
+	animTween.chain().tween_callback(func ():
+		var player = PlayerHandler.getPlayerById(skin)
+		$BallsSFX.stream = player.getBiteStream("salute")
+		$BallsSFX.play()
+	)
 	
 	chosenBall.startAnimation()
 	
