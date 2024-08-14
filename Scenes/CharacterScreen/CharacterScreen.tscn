@@ -191,6 +191,7 @@ fov = 12.9
 [node name="GachaSFX" type="AudioStreamPlayer" parent="Viewport3D/SubViewport/Scene3D"]
 stream = ExtResource("11_or6ru")
 volume_db = -2.08
+bus = &"SFX"
 
 [node name="Settings" type="GridContainer" parent="."]
 layout_mode = 1

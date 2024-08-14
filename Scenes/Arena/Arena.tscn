@@ -370,6 +370,7 @@ light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="ChipDropper" type="Node" parent="."]
 script = ExtResource("26_sgy0k")
