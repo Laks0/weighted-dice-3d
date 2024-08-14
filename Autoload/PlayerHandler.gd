@@ -53,6 +53,8 @@ class Player:
 		return bets[candidate]
 	
 	func getTotalBets() -> int:
+		if bets.size() == 0:
+			return 0
 		return bets.values().reduce(func (accum, number): return accum + number)
 	
 	func isStillPlaying() -> bool:

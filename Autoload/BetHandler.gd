@@ -17,6 +17,9 @@ var roundAmount : int = 4
 
 var betOngoing := false
 
+## La apuesta dummy que se usa la primera ronda
+var emptyBet : Bet = preload("res://Autoload/Bets/Bet.gd").new()
+
 # Automáticamente usa todas las apuestas en betPath
 func _ready():
 	var betPath := "res://Autoload/Bets/"
@@ -37,6 +40,11 @@ func startGame(arena : Arena):
 	currentBet.startGame(arena)
 	betOngoing = true
 
+func resetGame():
+	round = 0
+	currentBet = null
+	_lastBet = null
+
 ## Empieza la ronda de apuestas
 func startRound() -> void:
 	round += 1
@@ -55,6 +63,11 @@ func startRound() -> void:
 		
 		if randf() < .2:
 			break
+	
+	# En la primera ronda no hay apuestas
+	if round == 1:
+		currentBet = emptyBet
+	
 	_lastBet = currentBet
 	
 	currentBet.startRound()

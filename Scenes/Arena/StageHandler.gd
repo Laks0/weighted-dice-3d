@@ -26,7 +26,7 @@ func _ready():
 	lobby.positionMonigotes(monigotes)
 	lobby.monigoteReady.connect(onLobbyMonigoteReady)
 	
-	betDisplay.allPlayersReady.connect(betToArena)
+	betDisplay.allPlayersReady.connect(goToArena)
 	
 	arena.gameEnded.connect(arenaToLeaderboard)
 	
@@ -66,27 +66,22 @@ func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 ###########################
 # Funciones de transición #
 ###########################
-# Se llama desde la animación de lobbyOut
-func lobbyToBet():
-	currentStage = Stages.TRANSITION
-	
-	arena.setTableRender(true)
-	betDisplay.startBetting()
-	
-	await camera.goToCamera(betCamera).finished
-	
-	currentStage = Stages.BETTING
-
-func betToArena():
+## La transición para ir a la arena es la misma viniendo desde cualquier stage
+## Desde el lobby se llama en la animación de lobbyOut
+func goToArena():
 	currentStage = Stages.TRANSITION
 	chipHolder.disownAllMonigotes()
+	arena.setTableRender(true)
+	
 	for mon in monigotes:
-		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 0))
+		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 1.5))
 	await camera.startGameAnimation().finished
 	
 	chipHolder.visible = false
 	arena.setWallsDisabled(false)
 	arena.recieveMonigotes(monigotes)
+	
+	BetHandler.startGame(arena)
 	arena.startArena()
 	currentStage = Stages.ARENA
 
@@ -137,14 +132,15 @@ func leaderboardToBet():
 
 func resetGame():
 	PlayerHandler.resetAllPlayers()
-	BetHandler.round = 0
-	arena.startNewGame()
-	
-	chipHolder.disownAllMonigotes()
-	destroyMonigotes()
-	createMonigotes()
-	for mon in monigotes:
-		chipHolder.ownMonigote(mon)
+	BetHandler.resetGame()
+	#arena.startNewGame()
+	#
+	#chipHolder.disownAllMonigotes()
+	#destroyMonigotes()
+	#createMonigotes()
+	#for mon in monigotes:
+		#chipHolder.ownMonigote(mon)
+	get_tree().change_scene_to_file("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 
 ######################
 # Señal desde lobby #

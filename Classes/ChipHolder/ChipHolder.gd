@@ -133,23 +133,24 @@ func startLeaderboardAnimation(winnerId):
 		skyMaterial.set_shader_parameter("speed", skySpeed)
 	
 	await get_tree().create_timer(1).timeout
-	###################
-	# Eliminar apuestas
-	###################
-	await changeAllPlayerChips(func (playerId : int):
-			return -PlayerHandler.getPlayerById(playerId).getTotalBets(), 
-		timeBetweenChips
-	).finished
-	await get_tree().create_timer(timeBetweenSteps).timeout
+	if BetHandler.round != 1:
+		###################
+		# Eliminar apuestas
+		###################
+		await changeAllPlayerChips(func (playerId : int):
+				return -PlayerHandler.getPlayerById(playerId).getTotalBets(), 
+			timeBetweenChips
+		).finished
+		await get_tree().create_timer(timeBetweenSteps).timeout
 
-	##############################
-	# Agregar ganancias de apuesta
-	##############################
-	
-	$BetResultsLabel.text = BetHandler.getWinnersText()
-	
-	await changeAllPlayerChips(BetHandler.getPlayerBetWinnings, timeBetweenChips).finished
-	await get_tree().create_timer(timeBetweenSteps).timeout 
+		##############################
+		# Agregar ganancias de apuesta
+		##############################
+		
+		$BetResultsLabel.text = BetHandler.getWinnersText()
+		
+		await changeAllPlayerChips(BetHandler.getPlayerBetWinnings, timeBetweenChips).finished
+		await get_tree().create_timer(timeBetweenSteps).timeout 
 	
 	#################################
 	# Agregar premio de sobreviviente
@@ -294,15 +295,11 @@ func _input(event):
 ## TODO: Esta lógica no se puede quedar acá, habría que mover todo lo posible a StageHandler
 func goToNextRound() -> void:
 	if gameEnded:
-		resetRequest.emit()
 		skyMaterial.set_shader_parameter("speed", 1)
-		goToSkyColor(defaultSkyColor, 1)
-		gameEnded = false
-		$WinnerLabel.visible = false
-		
-		for b : GamepadSelectButton in $EndgameButtons.get_children():
-			b.visible = false
-			b.focused = false
+		goToSkyColor(defaultSkyColor, 1, 0, true)
+		setSkyRotationStrength(defaultSkyRotation, 0, true)
+		resetRequest.emit()
+		return
 	
 	nextRound.emit()
 	$RoundNumber.text = ""

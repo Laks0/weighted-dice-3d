@@ -58,8 +58,6 @@ func setTableRender(val : bool) -> void:
 
 # Se llama para empezar la ronda de juego
 func startArena():
-	%MultipleResCamera.startGameAnimation()
-	
 	if BetHandler.round == 1 and not DebugVars.skipCardAnimation:
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
@@ -68,7 +66,6 @@ func startArena():
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
 	
-	BetHandler.startGame(self)
 	
 	for mon in monigotes:
 		mon.unfreeze()

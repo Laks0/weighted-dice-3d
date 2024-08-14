@@ -30,6 +30,9 @@ func arenaReady():
 	onArena = true
 	var currentBet : Bet = BetHandler.currentBet
 	
+	if currentBet == null:
+		return
+	
 	########################
 	# Señalizador de apuesta
 	########################

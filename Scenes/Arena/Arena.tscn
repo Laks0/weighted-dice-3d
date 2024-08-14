@@ -142,7 +142,7 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"lobbyToBet"
+"method": &"goToArena"
 }]
 }
 
