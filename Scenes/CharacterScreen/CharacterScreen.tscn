@@ -193,6 +193,8 @@ stream = ExtResource("11_or6ru")
 volume_db = -2.08
 bus = &"SFX"
 
+[node name="BallsSFX" type="AudioStreamPlayer" parent="Viewport3D/SubViewport/Scene3D"]
+
 [node name="Settings" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
