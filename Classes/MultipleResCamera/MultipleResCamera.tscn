@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh13re66e6e63"]
+[gd_scene load_steps=9 format=3 uid="uid://bh13re66e6e63"]
 
 [ext_resource type="Script" path="res://Classes/MultipleResCamera/MultipleResCamera.gd" id="1_0nyod"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_22qtq"]
 [ext_resource type="Shader" path="res://Classes/MultipleResCamera/Pixelate.gdshader" id="4_4k3cc"]
 [ext_resource type="Script" path="res://Classes/MultipleResCamera/wooshPlayer.gd" id="4_ugo5d"]
+[ext_resource type="Shader" path="res://Assets/Shaders/arlez80-godot4-crt-shader-4702150540fe/crt.gdshader" id="5_gwuie"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lq1p7"]
 size = Vector2(2, 2)
@@ -13,6 +14,15 @@ render_priority = 0
 shader = ExtResource("4_4k3cc")
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
 shader_parameter/shadow_thickness = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0b521"]
+shader = ExtResource("5_gwuie")
+shader_parameter/crt_curve = 0.0
+shader_parameter/crt_scan_line_color = 0.05
+shader_parameter/aperture_grille_rate = 0.469
+shader_parameter/aparture_grille_cut_rate = 1.0
+shader_parameter/rf_switch_esque_blur = 0.0
+shader_parameter/white_noise_rate = 0.05
 
 [node name="MultipleResCamera" type="Camera3D"]
 cull_mask = 1048573
@@ -29,3 +39,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_suf3b")
 
 [node name="wooshPlayer" type="AudioStreamPlayer" parent="."]
 script = ExtResource("4_ugo5d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0b521")
+offset_left = -22.0
+offset_top = -36.0
+offset_right = 1943.0
+offset_bottom = 1104.0

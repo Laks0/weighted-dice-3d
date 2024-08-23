@@ -81,57 +81,43 @@ points = PackedVector3Array(-0.893276, -0.985924, -0.862587, 0.893277, 0.985925,
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("19_5t2lp")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("20_5gvsa")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ooxoi"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("21_umdam")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("22_uv4sw")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a6ncq"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("23_65i7b")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("24_drw72")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_atnvo"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("25_k74yy")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("26_i8mxh")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bpx0u"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("27_r4hgl")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("28_kslf3")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_50ttr"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("29_0afo5")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("30_tg0rf")
-stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ugk4b"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("31_gsky6")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("32_23sig")
-stream_1/weight = 1.0
 
 [node name="Die" type="RigidBody3D"]
 collision_layer = 4
@@ -139,8 +125,8 @@ collision_mask = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_lf240")
 inertia = Vector3(1, 1, 1)
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_qjoqg")
 rotations = Array[Vector3]([Vector3(90, 0, 0), Vector3(0, 90, 90), Vector3(0, 90, 180), Vector3(0, 0, 0), Vector3(0, 0, -90), Vector3(-90, 0, 0)])
 numberLightPosition = 30.0
