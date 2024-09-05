@@ -84,8 +84,6 @@ func endBetting():
 	SfxHandler.playSound("displayReady")
 	for sel in selectors.values():
 		sel.queue_free()
-	
-	$Label3D2.visible = false
 
 func _process(_delta):
 	if (stageHandler.currentStage != StageHandler.Stages.BETTING) or (not $StartDelay.is_stopped()):

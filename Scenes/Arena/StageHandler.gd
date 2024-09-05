@@ -102,6 +102,7 @@ func arenaToLeaderboard(winnerId):
 	destroyMonigotes()
 	createMonigotes()
 	for mon in monigotes:
+		mon.freeze()
 		chipHolder.ownMonigote(mon)
 	
 	# Saco al bet display para que no moleste con el leaderboard
