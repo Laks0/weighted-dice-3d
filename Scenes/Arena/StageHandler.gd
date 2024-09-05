@@ -75,6 +75,10 @@ func goToArena():
 	
 	for mon in monigotes:
 		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 1.5))
+	
+	# Delay del monigote saltando antes de que cambie la cámara
+	await get_tree().create_timer(.1).timeout
+	
 	await camera.startGameAnimation().finished
 	
 	chipHolder.visible = false
