@@ -85,7 +85,11 @@ func endBetting():
 	for sel in selectors.values():
 		sel.queue_free()
 
-func _process(_delta):
+@export var timeToHoldBet : float = .5
+var holdTimers : PackedFloat32Array = [.0, .0, .0, .0, .0, .0]
+var holdRemoveTimers : PackedFloat32Array = [.0, .0, .0, .0, .0, .0]
+
+func _process(delta):
 	if (stageHandler.currentStage != StageHandler.Stages.BETTING) or (not $StartDelay.is_stopped()):
 		return
 	
@@ -148,9 +152,27 @@ func _process(_delta):
 		if Input.is_action_just_pressed(playerActions["up"]):
 			decreaseCandidateBet(player, candidate)
 		
+		# Mantener para sacar apuesta
+		if Input.is_action_pressed(playerActions["up"]):
+			holdRemoveTimers[player.id] += delta
+			if holdRemoveTimers[player.id] > timeToHoldBet:
+				decreaseCandidateBet(player, candidate)
+				holdRemoveTimers[player.id] = timeToHoldBet * .9
+		if Input.is_action_just_released(playerActions["up"]):
+			holdRemoveTimers[player.id] = 0.0
+		
 		# Subir apuesta
 		if Input.is_action_just_pressed(playerActions["grab"]) or Input.is_action_just_pressed(playerActions["down"]):
 			increaseCandidateBet(player, candidate)
+		
+		# Mantener para apostar
+		if Input.is_action_pressed(playerActions["grab"]) or Input.is_action_pressed(playerActions["down"]):
+			holdTimers[player.id] += delta
+			if holdTimers[player.id] > timeToHoldBet:
+				increaseCandidateBet(player, candidate)
+				holdTimers[player.id] = timeToHoldBet * .9
+		if Input.is_action_just_released(playerActions["grab"]) or Input.is_action_just_released(playerActions["down"]):
+			holdTimers[player.id] = 0.0
 
 func _repositionSelectors() -> void:
 	for i in range(-1, piles.size()):
