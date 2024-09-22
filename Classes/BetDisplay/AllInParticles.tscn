@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnn332o3ilra4"]
+
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="1_f63wg"]
+[ext_resource type="Script" path="res://Classes/BetDisplay/AllInParticles.gd" id="1_govoa"]
+[ext_resource type="AudioStream" uid="uid://dbrtj52hfeyjo" path="res://Assets/SFX/allin.wav" id="3_4jhuv"]
+
+[sub_resource type="Curve" id="Curve_0psm0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.758824, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4kehq"]
+curve = SubResource("Curve_0psm0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_au4n4"]
+direction = Vector3(0, 1, 0.5)
+spread = 15.909
+initial_velocity_min = 0.6
+initial_velocity_max = 7.0
+scale_curve = SubResource("CurveTexture_4kehq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmblr"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbnj1"]
+material = SubResource("StandardMaterial3D_jmblr")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="AllInParticles" type="Node3D"]
+script = ExtResource("1_govoa")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_au4n4")
+draw_pass_1 = SubResource("BoxMesh_wbnj1")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.148352)
+billboard = 1
+render_priority = 2
+outline_render_priority = 1
+text = "¡ALL IN!"
+font = ExtResource("1_f63wg")
+font_size = 50
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4jhuv")

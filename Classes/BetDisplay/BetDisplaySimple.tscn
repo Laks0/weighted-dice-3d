@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bu6qub506i5vu"]
+[gd_scene load_steps=27 format=4 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="Script" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_t13lr"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b8yokpq1w1whl" path="res://Classes/BetDisplay/TablaApuestasSimples_TexturaTablasSimple.png" id="10_755rp"]
 [ext_resource type="PackedScene" uid="uid://ce83diidesaw6" path="res://Classes/BetDisplay/BetScreen.tscn" id="10_xm5ya"]
 [ext_resource type="Script" path="res://Classes/BetDisplay/AIBetController.gd" id="13_o215p"]
+[ext_resource type="PackedScene" uid="uid://cnn332o3ilra4" path="res://Classes/BetDisplay/AllInParticles.tscn" id="18_t55ck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttvtf"]
 render_priority = 1
@@ -141,6 +142,7 @@ script = ExtResource("1_76y5o")
 chipPileScene = ExtResource("2_t13lr")
 selectorScene = ExtResource("3_clxdh")
 playerPileZ = -5.0
+allInParticlesScene = ExtResource("18_t55ck")
 
 [node name="Slotmachine" parent="." instance=ExtResource("4_vcxxi")]
 transform = Transform3D(-4.59722e-08, 3.34008e-08, -1.3, 0.764121, 1.05172, 0, 1.05172, -0.764121, -5.68248e-08, 0, 0.539, 0)

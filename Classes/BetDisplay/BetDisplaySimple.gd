@@ -221,6 +221,8 @@ func playerReady(playerId : int) -> void:
 		_repositionSelectors()
 	isReady[playerId] = true
 
+@export var allInParticlesScene : PackedScene
+
 func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if betted[player.id] >= player.bank or not BetHandler.canBet(player.id, candidate):
 		shakeSelector(player.id)
@@ -235,6 +237,13 @@ func increaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	betted[player.id] += 1
 	piles[selected[player.id]].addChip(player.id)
 	_repositionSelectors()
+	
+	# Efecto de all in
+	if player.bank == player.getAmountBettedOn(candidate):
+		var particles = allInParticlesScene.instantiate()
+		particles.position = piles[selected[player.id]].position + Vector3(0, 1, .2)
+		particles.playerId = player.id
+		add_child(particles)
 
 func decreaseCandidateBet(player : PlayerHandler.Player, candidate : int):
 	if player.bets[candidate] == 0:
