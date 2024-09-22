@@ -84,6 +84,7 @@ func arenaReady():
 var _lastScore: float = 0
 
 func _process(_delta):
+	
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
@@ -147,7 +148,7 @@ func _physics_process(delta):
 	
 	var vel2d : Vector2 = moveVelocity + unclampedVelocity
 	
-	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
+	velocity = Vector3(vel2d.x, -40*delta, vel2d.y)
 	
 	move_and_slide()
 
