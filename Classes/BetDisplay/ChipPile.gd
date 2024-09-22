@@ -88,13 +88,17 @@ func displayBank():
 	if not isDisplay:
 		return
 	
-	y = 0
-	for chip in chips[playerIdDisplay]:
-		chip.queue_free()
-	chips[playerIdDisplay] = []
+	clearChips()
 	
 	for _i in PlayerHandler.getPlayerById(playerIdDisplay).bank:
 		addChip(playerIdDisplay, false)
+
+func clearChips():
+	y = 0
+	for id : int in chips.keys():
+		for chip in chips[id]:
+			chip.queue_free()
+		chips[id] = []
 
 func setLabelVisibility(value : bool) -> void:
 	$CandidateLabel.visible = value

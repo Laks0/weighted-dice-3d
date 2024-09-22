@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://1vsjqwkprn18"]
+
+[ext_resource type="Script" path="res://Scenes/Lobby/ReadyChip.gd" id="1_jqs34"]
+[ext_resource type="PackedScene" uid="uid://cq5gqlwg77y81" path="res://Classes/BetDisplay/ficha_mesh.tscn" id="2_snnl7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nft4e"]
+resource_local_to_scene = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tq8nx"]
+height = 0.178534
+radius = 0.309402
+
+[node name="ReadyChip" type="CharacterBody3D"]
+script = ExtResource("1_jqs34")
+grabDistance = 0.4
+affectedByGravity = true
+
+[node name="FichaMesh" parent="." instance=ExtResource("2_snnl7")]
+transform = Transform3D(0.35, 0, 0, 0, 0.032, 0, 0, 0, 0.35, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_nft4e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_tq8nx")

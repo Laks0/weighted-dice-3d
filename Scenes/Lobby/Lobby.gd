@@ -2,6 +2,7 @@ extends Node3D
 class_name Briefcase
 
 signal monigoteReady(mon)
+signal monigoteUnready(mon)
 
 @export var lobbyOutAnimationPlayer : AnimationPlayer
 @export var maxLobbyTime := 50.0
@@ -9,6 +10,9 @@ signal monigoteReady(mon)
 @export var buttonHintScene : PackedScene
 @export var maletin_abre : AudioStreamWAV
 @export var maletin_cierra : AudioStreamWAV
+
+@export var readyChipScene : PackedScene
+
 ## Dada la lista de monigotes, los posiciona en el lobby (con posiciones globales)
 func positionMonigotes(mons : Array[Monigote]) -> void:
 	var xPos = -3
@@ -39,23 +43,31 @@ func _ready():
 	if DebugVars.straigtToArena:
 		maxLobbyTime = 0
 	
+	var i = 0
+	for id in PlayerHandler.getPlayersAliveById():
+		var chip = readyChipScene.instantiate()
+		chip.position = Vector3(-3 + i, .3, -8)
+		chip.playerId = id
+		add_child(chip)
+		i += 1
+	
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
 	$Maletin/AudioStreamPlayer.stream = maletin_abre
 	$Maletin/AudioStreamPlayer.play()
 
-func _on_ready_area_body_entered(body):
-	if not body is Monigote:
-		return
-	
-	if not body.is_processing():
-		return
-	body.get_node("BitesPlayer").bitePlay("jump")
-	body.set_process(false)
-	body.set_physics_process(false)
-	
-	await create_tween().tween_property(body, "position", to_global($JumpPosition.position), .1).finished
-	
-	monigoteReady.emit(body)
+#func _on_ready_area_body_entered(body):
+	#if not body is Monigote:
+		#return
+	#
+	#if not body.is_processing():
+		#return
+	#body.get_node("BitesPlayer").bitePlay("jump")
+	#body.set_process(false)
+	#body.set_physics_process(false)
+	#
+	#await create_tween().tween_property(body, "position", to_global($JumpPosition.position), .1).finished
+	#
+	#monigoteReady.emit(body)
 
 func startExitAnimation():
 	$Maletin/AudioStreamPlayer.stream = maletin_cierra

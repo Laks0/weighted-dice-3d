@@ -109,13 +109,18 @@ func _physics_process(delta):
 	if grabbed:
 		return
 	
+	if affectedByGravity:
+		velocity.y -= 20 * delta
+	
 	if customMovement:
 		return
 	
-	if affectedByGravity and !is_on_floor():
-		velocity.y -= 20 * delta
-	
-	velocity = velocity.move_toward(Vector3.ZERO, FRICTION * delta)
+	# La velocidad vertical no se interpola a 0
+	var y_vel = velocity.y
+	# Solo interpolar x y z
+	velocity = (velocity*Vector3(1,0,1)).move_toward(Vector3.ZERO, FRICTION * delta)
+	# Volver al valor inicial de y
+	velocity.y = y_vel
 	move_and_slide()
 
 func onGrabbing():
@@ -137,9 +142,9 @@ func onGrabbing():
 	var dir3d := Vector3(grabDir.x, 0, grabDir.y)
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
-	var newPosition = position + dir3d.normalized() * grabBody.grabDistance
-	newPosition.y = grabBody.position.y
-	grabBody.position = newPosition
+	var newPosition = global_position + dir3d.normalized() * grabBody.grabDistance
+	newPosition.y = max(grabBody.global_position.y, global_position.y)
+	grabBody.global_position = newPosition
 
 func bounce(normal : Vector3) -> void:
 	if customMovement:

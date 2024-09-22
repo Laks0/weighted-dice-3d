@@ -16,8 +16,8 @@ collision_mask = 7
 mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_65kc1")
 continuous_cd = true
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_odypl")
 
 [node name="Ficha" parent="." instance=ExtResource("2_k7onw")]

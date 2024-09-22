@@ -242,8 +242,6 @@ func hurt() -> bool:
 	
 	return true
 
-
-
 func die():
 	if invincible:
 		return
