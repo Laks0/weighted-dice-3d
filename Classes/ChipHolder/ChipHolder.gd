@@ -23,6 +23,9 @@ var ownedMonigotes : Array[Monigote] = []
 @export var positionDifferenceForBonusChip := Vector3(.5, .33, .5)
 @export var bonusChipScene : PackedScene
 
+@export var monPositionMultiplier := 1.3
+@export var monPositionOffset     := -.45
+
 func getPilePosition(i : int) -> Vector3:
 	return $PilePositions.get_children()[i].position
 
@@ -60,7 +63,7 @@ func reset():
 
 func getPositionForMonigote(playerId : int) -> Vector3:
 	var pos = piles[playerId].position
-	pos.y = piles[playerId].y
+	pos.y = piles[playerId].y * monPositionMultiplier + monPositionOffset
 	return to_global(pos)
 
 func ownMonigote(mon : Monigote) -> void:
