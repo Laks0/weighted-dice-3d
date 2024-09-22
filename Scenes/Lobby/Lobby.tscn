@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vj4n1f7bc5hh"]
+[gd_scene load_steps=11 format=3 uid="uid://vj4n1f7bc5hh"]
 
 [ext_resource type="Script" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://chpiswyfaare" path="res://Assets/SFX/sfx_malinete_cierra.wav" id="4_7um5u"]
 [ext_resource type="PackedScene" uid="uid://1vsjqwkprn18" path="res://Scenes/Lobby/ReadyChip.tscn" id="6_7yocg"]
 [ext_resource type="Script" path="res://Scenes/Lobby/ReadyArea.gd" id="7_8yebe"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="7_i56w4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ag2ko"]
 size = Vector3(2.72729, 7.83801, 7.64062)
@@ -26,6 +27,15 @@ transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.14
 
 [node name="MaletinA" parent="Maletin" index="6"]
 transform = Transform3D(-4.6964e-07, -0.903297, 0.434974, 1.38428e-07, 1.37005, 0.286786, -2.32243, 2.64325e-07, -7.08663e-08, -3.02536, 0.151344, -0.160745)
+
+[node name="Label3D" type="Label3D" parent="Maletin/MaletinA" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0594533, 0.120215, -0.153842)
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(1, 0, 1, 1)
+text = "Mover las fichas al fichero para arrancar"
+font = ExtResource("7_i56w4")
+font_size = 20
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Maletin"]
 
