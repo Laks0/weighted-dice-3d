@@ -152,12 +152,23 @@ func resetGame():
 ######################
 var lobbyMonigotesReady := 0
 func onLobbyMonigoteReady(mon : Monigote):
-	mon.freeze()
+	lobbyMonigotesReady += 1
+	if lobbyMonigotesReady < PlayerHandler.getPlayersAlive().size():
+		return
+	
+	for m : Monigote in monigotes:
+		m.freeze()
+		
+		# Hacemos el salto del último por separado para poder hacer un wait
+		if m == mon:
+			continue
+		
+		jumpMonigoteTo(m, chipHolder.getPositionForMonigote(m.player.id)).finished.connect(
+			chipHolder.ownMonigote.bind(m)
+		)
 	
 	await jumpMonigoteTo(mon, chipHolder.getPositionForMonigote(mon.player.id)).finished
 	chipHolder.ownMonigote(mon)
-	lobbyMonigotesReady += 1
 	
-	if lobbyMonigotesReady == PlayerHandler.getPlayersAlive().size():
-		$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
-		$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))
+	$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
+	$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))

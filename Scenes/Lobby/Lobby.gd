@@ -1,6 +1,7 @@
 extends Node3D
 class_name Briefcase
 
+# Señales que escucha el stageHandler
 signal monigoteReady(mon)
 signal monigoteUnready(mon)
 
@@ -54,20 +55,6 @@ func _ready():
 	$Maletin/AnimationPlayer.play("MaletinAAction_001")
 	$Maletin/AudioStreamPlayer.stream = maletin_abre
 	$Maletin/AudioStreamPlayer.play()
-
-#func _on_ready_area_body_entered(body):
-	#if not body is Monigote:
-		#return
-	#
-	#if not body.is_processing():
-		#return
-	#body.get_node("BitesPlayer").bitePlay("jump")
-	#body.set_process(false)
-	#body.set_physics_process(false)
-	#
-	#await create_tween().tween_property(body, "position", to_global($JumpPosition.position), .1).finished
-	#
-	#monigoteReady.emit(body)
 
 func startExitAnimation():
 	$Maletin/AudioStreamPlayer.stream = maletin_cierra
