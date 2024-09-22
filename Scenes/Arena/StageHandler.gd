@@ -153,6 +153,9 @@ func resetGame():
 var lobbyMonigotesReady := 0
 func onLobbyMonigoteReady(mon : Monigote):
 	lobbyMonigotesReady += 1
+	
+	chipHolder.showChipDisplay(mon.player.id)
+	
 	if lobbyMonigotesReady < PlayerHandler.getPlayersAlive().size():
 		return
 	

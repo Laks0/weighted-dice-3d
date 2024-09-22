@@ -12,7 +12,7 @@
 size = Vector3(2.72729, 7.83801, 7.64062)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nrlme"]
-size = Vector3(7.00488, 6.28406, 1)
+size = Vector3(7.00488, 6.28406, 0.730469)
 
 [node name="Lobby" type="Node3D"]
 script = ExtResource("1_fk22e")
@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.65796)
 script = ExtResource("7_8yebe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ReadyArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64203, 0.134766)
 shape = SubResource("BoxShape3D_nrlme")
 
 [connection signal="body_entered" from="ReadyArea" to="ReadyArea" method="onBodyEntered"]

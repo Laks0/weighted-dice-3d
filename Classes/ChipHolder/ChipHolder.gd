@@ -47,7 +47,6 @@ func _ready():
 		label.modulate = player.color
 		
 		i += 1
-	reset()
 
 func addChipToPlayer(id : int) -> void:
 	piles[id].addChip(id)
@@ -83,6 +82,14 @@ func disownAllMonigotes() -> void:
 
 func disownMonigote(mon : Monigote) -> void:
 	ownedMonigotes.erase(mon)
+
+## Muestra las fichas en el display de un jugador específico
+func showChipDisplay(playerId : int) -> void:
+	piles[playerId].displayBank()
+
+## Esconde las fichas del display de un jugador específico
+func removeChipDisplay(playerId : int) -> void:
+	piles[playerId].clearChips()
 
 func _process(_delta):
 	for mon in ownedMonigotes:
