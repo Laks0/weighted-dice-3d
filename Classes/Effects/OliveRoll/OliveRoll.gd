@@ -2,7 +2,7 @@ extends Effect
 
 @export var oliveResource : PackedScene
 
-const OLIVE_AMOUNT = 5
+const OLIVE_AMOUNT = 3
 
 var olives : Array
 

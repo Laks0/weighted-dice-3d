@@ -104,6 +104,7 @@ skins = {
 }
 maxPushForce = 32.0
 customMovement = true
+grabSpeedFactor = 0.05
 FRICTION = 80.0
 
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]

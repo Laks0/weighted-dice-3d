@@ -50,6 +50,10 @@ folder_colors={
 "res://Scenes/": "green"
 }
 
+[global_group]
+
+Monigotes="El gripo con todos los monigotes"
+
 [input]
 
 ui_accept={

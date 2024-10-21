@@ -17,6 +17,8 @@ signal doubled ## Se llama cuando quien lo está agarrando es agarrado
 @export var customMovement    : bool = false
 @export var affectedByGravity : bool = false
 
+@export var grabSpeedFactor : float = .08 ## El factor de la velocidad de un monigote cuando está agarrando el objeto
+
 @export var FRICTION : float = 40
 
 var grabbing   := false
