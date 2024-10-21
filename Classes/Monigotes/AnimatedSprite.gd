@@ -23,12 +23,13 @@ func _ready():
 	
 	# Para la función de rotación
 	$RotationRaycast.add_exception(get_parent())
-	
-	mon.wasHurt.connect(func(): sprite_frames = hurtSkin)
 
 func arenaReady():
 	onArena = true
 	var currentBet : Bet = BetHandler.currentBet
+	$PlayerName.visible = true
+	$PlayerName.text = mon.player.name
+	$PlayerName.modulate = mon.player.color
 	
 	if currentBet == null:
 		return
@@ -176,6 +177,18 @@ func changeBetSignalStatus(isVisible : bool):
 	$RotationRaycast.enabled = !isVisible
 	$RotationRaycastSignal.enabled = isVisible
 	rotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycast
+
+func onMonigoteHurt():
+	sprite_frames = hurtSkin
+	var labelTween = create_tween().set_loops()
+	labelTween.tween_property($PlayerName, "modulate:a", .4, .2)
+	labelTween.tween_property($PlayerName, "modulate:a", 1, .2)
+	shakeName()
+
+func shakeName():
+	while true:
+		$PlayerName.rotation.z = randf() * (PI/10) - PI/20
+		await get_tree().create_timer(.05).timeout
 
 func shake() -> void:
 	var elapsedTime := .0
