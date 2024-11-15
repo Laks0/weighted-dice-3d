@@ -43,6 +43,7 @@ var invincible  := false
 var stageHandler : StageHandler
 
 var drunk := false
+var can_steer := true
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -88,7 +89,6 @@ func arenaReady():
 var _lastScore: float = 0
 
 func _process(_delta):
-	
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
@@ -123,7 +123,7 @@ func _process(_delta):
 	_lastScore = newScore
 
 func _physics_process(delta):
-	if player.inputController != Controllers.AI:
+	if player.inputController != Controllers.AI and can_steer:
 		_movementDir = Controllers.getDirection(controller)
 	
 	if drunk:
@@ -151,9 +151,6 @@ func _physics_process(delta):
 	
 	velocity.y -= 50*delta
 	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
-	
-	if Input.is_action_just_pressed(actions.jump):
-		jump()
 	
 	move_and_slide()
 
@@ -216,17 +213,6 @@ func push():
 	knockback(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
 	super()
-
-func jump():
-	if jumping or not $JumpCooldown.is_stopped():
-		return
-	velocity.y = 10
-	jumping = true
-
-func onFloorColision(body):
-	if jumping and body is StaticBody3D:
-		jumping = false
-		$JumpCooldown.start()
 
 func bounce(normal : Vector3):
 	var normal2 := Vector2(normal.x, normal.z)
@@ -317,3 +303,12 @@ func emitScore(n : int):
 
 func dance():
 	$AnimatedSprite.dance()
+
+func disable_steer() -> void:
+	can_steer = false
+
+func enable_steer() -> void:
+	can_steer = true
+
+func set_movement_direction(dir : Vector2) -> void:
+	_movementDir = dir

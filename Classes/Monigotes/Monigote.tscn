@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=38 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -26,6 +26,7 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 [ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
+[ext_resource type="Script" path="res://Classes/Monigotes/MonigoteJump.gd" id="27_gowgj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -175,10 +176,6 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
-[node name="JumpCooldown" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="GrabArea" type="Area3D" parent="."]
 collision_mask = 7
 
@@ -222,12 +219,21 @@ omni_range = 1.0
 bus = &"SFX"
 script = ExtResource("25_tld37")
 
-[node name="FloorArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259262, 0)
+[node name="Jumping" type="Node3D" parent="."]
+script = ExtResource("27_gowgj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorArea"]
+[node name="FloorArea" type="Area3D" parent="Jumping"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.259262, 0)
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0180054, 0)
 shape = SubResource("BoxShape3D_1clej")
+
+[node name="JumpCooldown" type="Timer" parent="Jumping"]
+wait_time = 0.2
+one_shot = true
 
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
@@ -238,4 +244,4 @@ shape = SubResource("BoxShape3D_1clej")
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
-[connection signal="body_entered" from="FloorArea" to="." method="onFloorColision"]
+[connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
