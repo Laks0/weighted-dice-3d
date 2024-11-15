@@ -43,7 +43,6 @@ var invincible  := false
 var stageHandler : StageHandler
 
 var drunk := false
-var can_steer := true
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -123,7 +122,7 @@ func _process(_delta):
 	_lastScore = newScore
 
 func _physics_process(delta):
-	if player.inputController != Controllers.AI and can_steer:
+	if player.inputController != Controllers.AI:
 		_movementDir = Controllers.getDirection(controller)
 	
 	if drunk:
@@ -220,6 +219,7 @@ func bounce(normal : Vector3):
 	moveVelocity = moveVelocity.bounce(normal2)
 	velocity = velocity.bounce(normal)
 
+## Se usa para cualquier fuerza de empuje externa, incluyendo saltos
 func knockback(vel : Vector2):
 	unclampedVelocity = vel
 
@@ -268,6 +268,12 @@ func stun():
 	$StunCooldown.start()
 	stunned = true
 
+func untimed_stun():
+	stunned = true
+
+func unstun():
+	stunned = false
+
 func makeInvincible():
 	invincible = true
 	$HurtTime.start()
@@ -303,12 +309,3 @@ func emitScore(n : int):
 
 func dance():
 	$AnimatedSprite.dance()
-
-func disable_steer() -> void:
-	can_steer = false
-
-func enable_steer() -> void:
-	can_steer = true
-
-func set_movement_direction(dir : Vector2) -> void:
-	_movementDir = dir
