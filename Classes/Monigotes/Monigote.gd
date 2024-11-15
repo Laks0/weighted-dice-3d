@@ -2,9 +2,12 @@ extends Pushable
 class_name Monigote
 
 signal wasHurt
+@warning_ignore("unused_signal")
 signal died
 ## Se emite cuando el monigote agarra cualquier pushable
+@warning_ignore("unused_signal")
 signal grab(body)
+@warning_ignore("unused_signal")
 signal hasWon
 
 @export var scoreParticle : PackedScene
@@ -28,6 +31,8 @@ var unclampedVelocity := Vector2.ZERO
 var stunned := false
 var health : int = 2
 
+# Se activa en jump(), se desactiva en onFloorColision()
+var jumping := false
 var invincible  := false
 
 @export var invincibleAfterHurtTime: float = 3.0
@@ -100,7 +105,6 @@ func _process(_delta):
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
-		
 		push()
 	
 	# DEBUG
@@ -109,8 +113,6 @@ func _process(_delta):
 	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
-		
-	position.y = Globals.SPRITE_HEIGHT
 	
 	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
 		return
@@ -128,7 +130,7 @@ func _physics_process(delta):
 		_movementDir = _movementDir.rotated(PI)
 	
 	var accFactor := 1.0
-	if grabbing:
+	if grabbing and is_instance_valid(grabBody):
 		accFactor = grabBody.grabSpeedFactor
 		onGrabbing()
 	
@@ -147,7 +149,11 @@ func _physics_process(delta):
 	
 	var vel2d : Vector2 = moveVelocity + unclampedVelocity
 	
-	velocity = Vector3(vel2d.x, -40*delta, vel2d.y)
+	velocity.y -= 50*delta
+	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
+	
+	if Input.is_action_just_pressed(actions.jump):
+		jump()
 	
 	move_and_slide()
 
@@ -157,10 +163,10 @@ func resetMovement() -> void:
 	velocity = Vector3.ZERO
 
 func canBeGrabbed(grabber) -> bool:
-	return (self != grabber) and (not invincible) and (not grabbed)
+	return (self != grabber) and (not invincible) and (not grabbed) and (not jumping)
 
 func canGrab() -> bool:
-	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing)
+	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing) and (not jumping)
 
 func startGrab(body : Pushable) -> bool:
 	if not super(body):
@@ -210,6 +216,17 @@ func push():
 	knockback(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
 	super()
+
+func jump():
+	if jumping or not $JumpCooldown.is_stopped():
+		return
+	velocity.y = 10
+	jumping = true
+
+func onFloorColision(body):
+	if jumping and body is StaticBody3D:
+		jumping = false
+		$JumpCooldown.start()
 
 func bounce(normal : Vector3):
 	var normal2 := Vector2(normal.x, normal.z)

@@ -66,7 +66,6 @@ func startArena():
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
 	
-	
 	for mon in monigotes:
 		mon.unfreeze()
 	
