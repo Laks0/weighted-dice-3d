@@ -179,6 +179,9 @@ jump_kb2={
 3d_render/layer_1="Pixelated 3d"
 3d_render/layer_2="HiRes sprites"
 2d_physics/layer_1="a"
+3d_physics/layer_1="Monigotes"
+3d_physics/layer_2="Entidades"
+3d_physics/layer_3="Paredes"
 
 [rendering]
 

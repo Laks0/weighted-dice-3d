@@ -24,6 +24,7 @@ albedo_texture = ExtResource("5_7ckkd")
 size = Vector3(0.845499, 2.57058, 1.18304)
 
 [node name="Card" type="Area3D"]
+collision_layer = 2
 script = ExtResource("1_7ro7i")
 materials = Array[StandardMaterial3D]([SubResource("StandardMaterial3D_y0d63"), SubResource("StandardMaterial3D_ug52m"), SubResource("StandardMaterial3D_dtrjv"), SubResource("StandardMaterial3D_iia4r")])
 heightIntroOffset = 6.0

@@ -26,6 +26,7 @@ func _process(delta):
 	if jumping and Input.is_action_just_pressed(mon.actions.grab):
 		$GrabBuffer.start()
 
+
 func jump():
 	if jumping or not $JumpCooldown.is_stopped():
 		return
@@ -36,18 +37,9 @@ func jump():
 	mon.knockback(jumpDirection * horizontalInitialSpeed)
 	jumping = true
 	stillAccelerating = true
-
-func onFloorCollision(body):
-	if mon.velocity.y > 0 or not jumping:
-		return
 	
-	if body is StaticBody3D:
-		stopJump()
-	
-	if body is Monigote:
-		stopJump()
-		body.knockback(Vector2.DOWN * 8)
-		mon.knockback(Vector2.UP * 8)
+	# Mientras un monigote está saltando no puede colisionar con otros monigotes
+	mon.set_collision_mask_value(1, false)
 
 func stopJump():
 	jumping = false
@@ -56,3 +48,18 @@ func stopJump():
 	
 	if Input.is_action_pressed(mon.actions.grab) and not $GrabBuffer.is_stopped():
 		mon.attemptGrab()
+	
+	mon.set_collision_mask_value(1, true)
+
+func onFloorCollision(body):
+	if not jumping:
+		return
+	
+	if body is Monigote and mon.velocity.y > 0:
+		return
+	
+	if body is Monigote:
+		body.knockback(Vector2.DOWN * 8)
+		mon.knockback(Vector2.UP * 8)
+	
+	stopJump()
