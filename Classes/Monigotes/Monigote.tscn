@@ -235,6 +235,10 @@ shape = SubResource("BoxShape3D_1clej")
 wait_time = 0.2
 one_shot = true
 
+[node name="GrabBuffer" type="Timer" parent="Jumping"]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
 [connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]

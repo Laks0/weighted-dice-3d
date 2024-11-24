@@ -31,8 +31,6 @@ var unclampedVelocity := Vector2.ZERO
 var stunned := false
 var health : int = 2
 
-# Se activa en jump(), se desactiva en onFloorColision()
-var jumping := false
 var invincible  := false
 
 @export var invincibleAfterHurtTime: float = 3.0
@@ -91,17 +89,8 @@ func _process(_delta):
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
-		for body in $GrabArea.get_overlapping_bodies():
-			if not body is Pushable or body == self:
-				continue
-			
-			var success : bool = startGrab(body)
-			if !success:
-				continue
-			
-			$GrabCooldown.start()
-			emit_signal("grab", body)
-			break
+		else:
+			attemptGrab()
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
@@ -159,10 +148,23 @@ func resetMovement() -> void:
 	velocity = Vector3.ZERO
 
 func canBeGrabbed(grabber) -> bool:
-	return (self != grabber) and (not invincible) and (not grabbed) and (not jumping)
+	return (self != grabber) and (not invincible) and (not grabbed) and (not $Jumping.jumping)
 
 func canGrab() -> bool:
-	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing) and (not jumping)
+	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing) and (not $Jumping.jumping)
+
+func attemptGrab():
+	for body in $GrabArea.get_overlapping_bodies():
+		if not body is Pushable or body == self:
+			continue
+		
+		var success : bool = startGrab(body)
+		if !success:
+			continue
+		
+		$GrabCooldown.start()
+		emit_signal("grab", body)
+		break
 
 func startGrab(body : Pushable) -> bool:
 	if not super(body):
@@ -228,6 +230,12 @@ func knockbackFrom(pos : Vector3, force : float):
 	var selfPos2d = Vector2(position.x, position.z)
 	
 	knockback(pos2d.direction_to(selfPos2d) * force)
+
+func accelerateUp(accel : float):
+	velocity.y += accel
+
+func unclampedAccelerate(accel : Vector2):
+	unclampedVelocity += accel
 
 func hurt() -> bool:
 	if invincible or DebugVars.inmortalMonigotes:
