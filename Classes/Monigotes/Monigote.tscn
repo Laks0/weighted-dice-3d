@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=37 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -26,6 +26,7 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 [ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
+[ext_resource type="Script" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -82,26 +83,11 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
-scoreParticle = ExtResource("2_qu674")
 ACCELERATION = 80.0
 MOVEMENTS_TO_ESCAPE_GRAB = 5
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
-skins = {
-"Blue": ExtResource("3_3t8bt"),
-"BlueBloody": ExtResource("10_8e2x8"),
-"Green": ExtResource("4_nq8eh"),
-"GreenBloody": ExtResource("12_x5fgu"),
-"Orange": ExtResource("7_gdamn"),
-"OrangeBloody": ExtResource("14_1xbeh"),
-"Purple": ExtResource("8_ppcco"),
-"PurpleBloody": ExtResource("13_u0f2g"),
-"Red": ExtResource("5_xljsg"),
-"RedBloody": ExtResource("11_jjwmm"),
-"Yellow": ExtResource("6_2h8rt"),
-"YellowBloody": ExtResource("15_0kk3g")
-}
 maxPushForce = 32.0
 customMovement = true
 grabSpeedFactor = 0.05
@@ -127,6 +113,20 @@ jokerHatTexture = ExtResource("14_wqmb4")
 shakeMagnitude = 0.15
 shakeTime = 0.15
 drunkColor = Color(1, 0.357633, 0.991534, 1)
+skins = {
+"Blue": ExtResource("3_3t8bt"),
+"BlueBloody": ExtResource("10_8e2x8"),
+"Green": ExtResource("4_nq8eh"),
+"GreenBloody": ExtResource("12_x5fgu"),
+"Orange": ExtResource("7_gdamn"),
+"OrangeBloody": ExtResource("14_1xbeh"),
+"Purple": ExtResource("8_ppcco"),
+"PurpleBloody": ExtResource("13_u0f2g"),
+"Red": ExtResource("5_xljsg"),
+"RedBloody": ExtResource("11_jjwmm"),
+"Yellow": ExtResource("6_2h8rt"),
+"YellowBloody": ExtResource("15_0kk3g")
+}
 
 [node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)
@@ -214,6 +214,10 @@ omni_range = 1.0
 [node name="BitesPlayer" type="AudioStreamPlayer3D" parent="."]
 bus = &"SFX"
 script = ExtResource("25_tld37")
+
+[node name="ScoreParticles" type="Node3D" parent="."]
+script = ExtResource("27_j86kv")
+scoreParticle = ExtResource("2_qu674")
 
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]

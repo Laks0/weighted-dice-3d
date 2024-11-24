@@ -7,8 +7,6 @@ signal died
 signal grab(body)
 signal hasWon
 
-@export var scoreParticle : PackedScene
-
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
@@ -33,37 +31,11 @@ var invincible  := false
 @export var invincibleAfterHurtTime: float = 3.0
 @export var invincibleAfterPushTime: float = 0.2
 
-@export var skins : Dictionary
-
 var stageHandler : StageHandler
 
 var drunk := false
 
 func _ready():
-	# El id del objeto player determina la skin que usa el monigote.
-	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
-	# Para agregar una nueva skin hace falta agregarla al enum de
-	# PlayerHandler.Skins y también al diccionario de Monigote
-	match player.id:
-		PlayerHandler.Skins.BLUE: #FRAN
-			%AnimatedSprite.sprite_frames = skins.get("Blue")
-			%AnimatedSprite.hurtSkin = skins.get("BlueBloody")
-		PlayerHandler.Skins.RED: #TOMI
-			%AnimatedSprite.sprite_frames = skins.get("Red")
-			%AnimatedSprite.hurtSkin = skins.get("RedBloody")
-		PlayerHandler.Skins.YELLOW: #PEDRO
-			%AnimatedSprite.sprite_frames = skins.get("Yellow")
-			%AnimatedSprite.hurtSkin = skins.get("YellowBloody")
-		PlayerHandler.Skins.GREEN: #JUAN
-			%AnimatedSprite.sprite_frames = skins.get("Green")
-			%AnimatedSprite.hurtSkin = skins.get("GreenBloody")
-		PlayerHandler.Skins.ORANGE: #MALE
-			%AnimatedSprite.sprite_frames = skins.get("Orange")
-			%AnimatedSprite.hurtSkin = skins.get("OrangeBloody")
-		PlayerHandler.Skins.PURPLE: #MARTA
-			%AnimatedSprite.sprite_frames = skins.get("Purple")
-			%AnimatedSprite.hurtSkin = skins.get("PurpleBloody")
-	
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
 	stageHandler = get_parent().get_node_or_null("StageHandler")
@@ -79,11 +51,7 @@ func _ready():
 func arenaReady():
 	$AnimatedSprite.arenaReady()
 
-## El último score de la apuesta, solo se usa si se apuesta sobre jugadores
-var _lastScore: float = 0
-
 func _process(_delta):
-	
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
@@ -100,7 +68,6 @@ func _process(_delta):
 			break
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
-		
 		push()
 	
 	# DEBUG
@@ -111,14 +78,6 @@ func _process(_delta):
 		return
 		
 	position.y = Globals.SPRITE_HEIGHT
-	
-	if not BetHandler.currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]:
-		return
-	
-	var newScore = BetHandler.getCandidateScore(player.id)
-	if floori(newScore) != floori(_lastScore):
-		emitScore(floori(newScore))
-	_lastScore = newScore
 
 func _physics_process(delta):
 	if player.inputController != Controllers.AI:
@@ -286,17 +245,6 @@ func unfreeze():
 
 func _on_stun_cooldown_timeout():
 	stunned = false
-
-func emitScore(n : int):
-	var particle = scoreParticle.instantiate()
-	add_child(particle)
-	
-	particle.draw_pass_1.material.albedo_color = player.color
-	particle.draw_pass_1.text = str(n)
-	
-	particle.emitting = true
-	
-	particle.connect("finished", particle.queue_free)
 
 func dance():
 	$AnimatedSprite.dance()

@@ -18,7 +18,33 @@ var onArena := false
 
 var hurtSkin : SpriteFrames
 
+@export var skins : Dictionary
+
 func _ready():
+	# El id del objeto player determina la skin que usa el monigote.
+	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
+	# Para agregar una nueva skin hace falta agregarla al enum de
+	# PlayerHandler.Skins y también al diccionario de Monigote
+	match mon.player.id:
+		PlayerHandler.Skins.BLUE: #FRAN
+			sprite_frames = skins.get("Blue")
+			hurtSkin = skins.get("BlueBloody")
+		PlayerHandler.Skins.RED: #TOMI
+			sprite_frames = skins.get("Red")
+			hurtSkin = skins.get("RedBloody")
+		PlayerHandler.Skins.YELLOW: #PEDRO
+			sprite_frames = skins.get("Yellow")
+			hurtSkin = skins.get("YellowBloody")
+		PlayerHandler.Skins.GREEN: #JUAN
+			sprite_frames = skins.get("Green")
+			hurtSkin = skins.get("GreenBloody")
+		PlayerHandler.Skins.ORANGE: #MALE
+			sprite_frames = skins.get("Orange")
+			hurtSkin = skins.get("OrangeBloody")
+		PlayerHandler.Skins.PURPLE: #MARTA
+			sprite_frames = skins.get("Purple")
+			hurtSkin = skins.get("PurpleBloody")
+	
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 	
 	# Para la función de rotación
