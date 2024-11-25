@@ -26,7 +26,7 @@ readyChipScene = ExtResource("6_7yocg")
 transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.140923, 0)
 
 [node name="MaletinA" parent="Maletin" index="6"]
-transform = Transform3D(2.40518e-05, 1.64095, 0.00507668, 0.00405087, 0.0159901, -0.520982, -2.32243, 4.48717e-05, -0.000908665, -3.02536, 0.151344, -0.160745)
+transform = Transform3D(-4.6964e-07, -0.903297, 0.434974, 1.38428e-07, 1.37005, 0.286786, -2.32243, 2.64325e-07, -7.08663e-08, -3.02536, 0.151344, -0.160745)
 
 [node name="Label3D" type="Label3D" parent="Maletin/MaletinA" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0594533, 0.120215, -0.153842)

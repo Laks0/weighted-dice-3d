@@ -148,7 +148,7 @@ func dance():
 ## secundario de rotar el raycast lo que sea necesario
 func getNewRotation() -> float:
 	# Billboard normal
-	var billboardRotation := get_viewport().get_camera_3d().rotation.x
+	var billboardRotation := get_viewport().get_camera_3d().rotation.x + PI/8
 	
 	if not rotationRaycast.is_colliding():
 		rotationRaycast.rotation.x = 0

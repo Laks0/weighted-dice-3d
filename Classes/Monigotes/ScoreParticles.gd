@@ -7,6 +7,9 @@ extends Node3D
 var lastScore: float = 0
 
 func _process(_delta):
+	if not (is_instance_valid(mon) and is_instance_valid(mon.stageHandler)):
+		return
+	
 	if mon.stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
 	

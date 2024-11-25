@@ -303,17 +303,22 @@ uppercase = true
 autowrap_mode = 2
 width = 800.0
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera") instance=ExtResource("5_fiigu")]
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera", "cubileteCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 1.90735e-05, 8.80804, 5.92528)
+transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.26394, 2.70155)
 cull_mask = 1048575
 environment = null
-showSlotRotationX = -49.0
 startGameAnimationTime = 0.2
 lobbyCamera = NodePath("../LobbyCamera")
+cubileteCamera = NodePath("../CubileteCamera")
 
 [node name="LobbyCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.503684, 0.863888, 0, -0.863888, 0.503684, 0, 13.0593, -6.7854)
+transform = Transform3D(1, 0, 0, 0, 0.514395, 0.857553, 0, -0.857553, 0.514395, 0, 11.0294, -8.82155)
+cull_mask = 3
+fov = 47.0
+
+[node name="CubileteCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.532567, 0.846388, 0, -0.846388, 0.532567, 0, 8.67915, 4.94487)
 cull_mask = 3
 fov = 47.0
 

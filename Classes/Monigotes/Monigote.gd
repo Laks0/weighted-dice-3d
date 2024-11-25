@@ -87,7 +87,7 @@ func _physics_process(delta):
 		_movementDir = _movementDir.rotated(PI)
 	
 	var accFactor := 1.0
-	if grabbing:
+	if grabbing and is_instance_valid(grabBody):
 		accFactor = grabBody.grabSpeedFactor
 		onGrabbing()
 	

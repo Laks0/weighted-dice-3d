@@ -1,13 +1,10 @@
 extends Camera3D
 class_name MultipleResCamera
 
-## En grados
-@export var showSlotRotationX : float = -47
-@export var showSlotAnimationTime : float = .3
-
 @export var startGameAnimationTime : float = 1
 
 @export var lobbyCamera : Camera3D
+@export var cubileteCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
@@ -23,26 +20,24 @@ func _ready():
 	position = lobbyCamera.position
 	rotation_degrees = lobbyCamera.rotation_degrees
 
-func showSlotMachine() -> void:
-	var rotationTween = create_tween().set_ease(Tween.EASE_IN_OUT)
-	rotationTween.tween_property(self, "rotation_degrees:x", showSlotRotationX, showSlotAnimationTime)
+func showCubilete() -> void:
+	goToCamera(cubileteCamera)
 
 func returnToArena() -> void:
-	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT)
-	transformTween.tween_property(self, "rotation_degrees:x", restRotation.x, showSlotAnimationTime)
+	return moveTo(restPosition, restRotation.x)
 
 func startGameAnimation() -> Tween:
 #	$wooshPlayer.playSound("zoomToGame")
-	return moveTo(restPosition, restRotation.x)
+	return moveTo(restPosition, restRotation.x, .4)
 
-func goToCamera(obj : Camera3D) -> Tween:
-	return moveTo(obj.position, obj.rotation_degrees.x)
+func goToCamera(obj : Camera3D, time := .3) -> Tween:
+	return moveTo(obj.position, obj.rotation_degrees.x, time)
 
-func moveTo(newPos : Vector3, rotationDegreesX : float) -> Tween:
+func moveTo(newPos : Vector3, rotationDegreesX : float, time := .3) -> Tween:
 	$wooshPlayer.playSound("wooshTrans")
-	var transformTween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
-	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, startGameAnimationTime)
-	transformTween.parallel().tween_property(self, "position", newPos, startGameAnimationTime)
+	var transformTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, time)
+	transformTween.parallel().tween_property(self, "position", newPos, time)
 	return transformTween
 
 func zoomTo(targetPos : Vector3, zoomDistance : float = 2.5, zoomTime : float = .5) -> Tween:

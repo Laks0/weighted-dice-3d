@@ -87,7 +87,7 @@ func startArena():
 	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(startEffect)
 	die.onCubilete.connect(func():
-		%MultipleResCamera.showSlotMachine()
+		%MultipleResCamera.showCubilete()
 		if activeEffect != -1:
 			effects[activeEffect].end())
 	die.dropped.connect(%MultipleResCamera.returnToArena)
