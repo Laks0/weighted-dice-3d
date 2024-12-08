@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=40 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
+[ext_resource type="Script" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
 [ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Script" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
 
@@ -44,12 +45,12 @@ shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
+points = PackedVector3Array(0, 0, 0, 0.6, -0.5, 0.33, 0.6, -0.5, -0.33, 0.6, 0.5, 0.33, 0.6, 0.5, -0.33)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
 height = 0.485603
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_scrbw"]
-radius = 0.629883
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7joh5"]
 particle_flag_rotate_y = true
@@ -180,6 +181,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.1, 0)
 [node name="RestL" type="Marker3D" parent="AnimatedSprite/Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
 
+[node name="Grabbing" type="Node3D" parent="."]
+script = ExtResource("23_jjywh")
+
+[node name="GrabCooldown" type="Timer" parent="Grabbing"]
+wait_time = 0.4
+one_shot = true
+
+[node name="GrabReadyTime" type="Timer" parent="Grabbing"]
+wait_time = 0.2
+one_shot = true
+
+[node name="GrabArea" type="Area3D" parent="Grabbing"]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grabbing/GrabArea"]
+shape = SubResource("ConvexPolygonShape3D_vg6q7")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
@@ -190,16 +208,6 @@ one_shot = true
 
 [node name="StunCooldown" type="Timer" parent="."]
 one_shot = true
-
-[node name="GrabCooldown" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
-[node name="GrabArea" type="Area3D" parent="."]
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabArea"]
-shape = SubResource("CylinderShape3D_scrbw")
 
 [node name="DeathParticles" type="GPUParticles3D" parent="."]
 emitting = false
