@@ -23,11 +23,11 @@
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
 [ext_resource type="Script" path="res://Classes/Monigotes/hands.gd" id="21_3gcfk"]
-[ext_resource type="Texture2D" uid="uid://b1f0gfmh7do6q" path="res://icon.svg" id="21_kx6n8"]
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 [ext_resource type="Script" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
+[ext_resource type="Texture2D" uid="uid://dlpq50y3uenix" path="res://Assets/MonigoteSkins/MonigoteHand.png" id="23_oeq53"]
 [ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Script" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
 
@@ -190,14 +190,14 @@ mon = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite")
 
 [node name="L" type="Sprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.190014, -0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190014, -0.3, 0)
 render_priority = 1
-texture = ExtResource("21_kx6n8")
+texture = ExtResource("23_oeq53")
 
 [node name="R" type="Sprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.3, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.1, 0)
 render_priority = 1
-texture = ExtResource("21_kx6n8")
+texture = ExtResource("23_oeq53")
 
 [node name="ReadyL" type="Marker3D" parent="Grabbing/Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336886, -0.101809, 0)
