@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=39 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -22,6 +22,8 @@
 [ext_resource type="SpriteFrames" uid="uid://gpx3mko75y5v" path="res://Assets/MonigoteSkins/YellowFramesBloody.tres" id="15_0kk3g"]
 [ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
+[ext_resource type="Script" path="res://Classes/Monigotes/hands.gd" id="21_3gcfk"]
+[ext_resource type="Texture2D" uid="uid://b1f0gfmh7do6q" path="res://icon.svg" id="21_kx6n8"]
 [ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
@@ -156,6 +158,27 @@ render_priority = 2
 outline_render_priority = 1
 text = "Juancho"
 font = ExtResource("21_xwq3q")
+
+[node name="Hands" type="Node3D" parent="AnimatedSprite"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.443612, 0)
+visible = false
+script = ExtResource("21_3gcfk")
+
+[node name="L" type="Sprite3D" parent="AnimatedSprite/Hands"]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.190014, -0.3, 0)
+render_priority = 1
+texture = ExtResource("21_kx6n8")
+
+[node name="R" type="Sprite3D" parent="AnimatedSprite/Hands"]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.3, 0.1, 0)
+render_priority = 1
+texture = ExtResource("21_kx6n8")
+
+[node name="ReadyL" type="Marker3D" parent="AnimatedSprite/Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.1, 0)
+
+[node name="RestL" type="Marker3D" parent="AnimatedSprite/Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
