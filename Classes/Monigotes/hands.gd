@@ -60,7 +60,7 @@ func _goToPosition(time : float):
 func go_to_rest(time : float) -> void:
 	closed = false
 	var tween := create_tween()
-	var waitTime = time/4
+	var waitTime = time/2
 	var backTime = time - waitTime
 	tween.tween_interval(waitTime)
 	tween.tween_property($L, "position", $RestL.position, backTime)

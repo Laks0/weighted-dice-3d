@@ -165,11 +165,15 @@ script = ExtResource("23_jjywh")
 hands = NodePath("Hands")
 
 [node name="GrabCooldown" type="Timer" parent="Grabbing"]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="GrabReadyTime" type="Timer" parent="Grabbing"]
 wait_time = 0.3
+one_shot = true
+
+[node name="GrabGraceTime" type="Timer" parent="Grabbing"]
+wait_time = 0.1
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="Grabbing"]
@@ -262,4 +266,6 @@ scoreParticle = ExtResource("2_qu674")
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
+[connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
+[connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
 [connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]

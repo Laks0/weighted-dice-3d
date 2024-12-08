@@ -8,8 +8,8 @@ extends Node3D
 func _physics_process(_delta):
 	var pointing := Controllers.getDirection(mon.controller)
 	if pointing != Vector2.ZERO:
-			mon.grabDir = pointing
-			$GrabArea.rotation.y = -pointing.angle()
+		mon.grabDir = pointing
+		$GrabArea.rotation.y = -pointing.angle()
 
 func canBeGrabbed(grabber):
 	return (mon != grabber) and (not mon.invincible)
@@ -42,7 +42,7 @@ func attemptGrab():
 		break
 	
 	if not couldGrab:
-		onPushed()
+		$GrabGraceTime.start()
 
 func onPushed():
 	$GrabCooldown.start()
@@ -51,3 +51,14 @@ func onPushed():
 func onGrabbed():
 	mon.escapeMovements = 0
 	mon.invincible = true
+
+func onGrabGraceTimeTimeout():
+	if not mon.grabbing:
+		onPushed()
+
+func onGrabAreaBodyEntered(body):
+	if $GrabGraceTime.is_stopped() or not body is Pushable:
+		return
+	
+	if mon.startGrab(body):
+		mon.emit_signal("grab", body)
