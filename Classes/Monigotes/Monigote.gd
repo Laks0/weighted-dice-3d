@@ -135,6 +135,7 @@ func push():
 	moveVelocity = Vector2.ZERO
 	knockback(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
+	$Grabbing.onPushed()
 	super()
 
 func bounce(normal : Vector3):
@@ -220,10 +221,6 @@ func dance():
 # FUNCIONES CEDIDAS #
 #####################
 ## Funciones de la clase que se le cede el funcionamiento a otro script
-
-func onGrabbing():
-	$Grabbing.onGrabbing()
-	super.onGrabbing()
 
 func canBeGrabbed(grabber) -> bool:
 	return super(grabber) and $Grabbing.canBeGrabbed

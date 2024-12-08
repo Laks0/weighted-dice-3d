@@ -39,7 +39,7 @@ script/templates_search_path="res://addons/xsm/templates/"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg", "res://addons/xsm/plugin.cfg")
+enabled=PackedStringArray("res://addons/xsm/plugin.cfg")
 
 [file_customization]
 

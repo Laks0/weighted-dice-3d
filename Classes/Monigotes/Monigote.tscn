@@ -160,36 +160,16 @@ outline_render_priority = 1
 text = "Juancho"
 font = ExtResource("21_xwq3q")
 
-[node name="Hands" type="Node3D" parent="AnimatedSprite"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.443612, 0)
-visible = false
-script = ExtResource("21_3gcfk")
-
-[node name="L" type="Sprite3D" parent="AnimatedSprite/Hands"]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.190014, -0.3, 0)
-render_priority = 1
-texture = ExtResource("21_kx6n8")
-
-[node name="R" type="Sprite3D" parent="AnimatedSprite/Hands"]
-transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.3, 0.1, 0)
-render_priority = 1
-texture = ExtResource("21_kx6n8")
-
-[node name="ReadyL" type="Marker3D" parent="AnimatedSprite/Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.1, 0)
-
-[node name="RestL" type="Marker3D" parent="AnimatedSprite/Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
-
-[node name="Grabbing" type="Node3D" parent="."]
+[node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("hands")]
 script = ExtResource("23_jjywh")
+hands = NodePath("Hands")
 
 [node name="GrabCooldown" type="Timer" parent="Grabbing"]
-wait_time = 0.4
+wait_time = 0.5
 one_shot = true
 
 [node name="GrabReadyTime" type="Timer" parent="Grabbing"]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="Grabbing"]
@@ -197,6 +177,29 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grabbing/GrabArea"]
 shape = SubResource("ConvexPolygonShape3D_vg6q7")
+
+[node name="Hands" type="Node3D" parent="Grabbing" node_paths=PackedStringArray("mon", "sprite")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.221806, 0)
+visible = false
+script = ExtResource("21_3gcfk")
+mon = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite")
+
+[node name="L" type="Sprite3D" parent="Grabbing/Hands"]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0.190014, -0.3, 0)
+render_priority = 1
+texture = ExtResource("21_kx6n8")
+
+[node name="R" type="Sprite3D" parent="Grabbing/Hands"]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.3, 0.1, 0)
+render_priority = 1
+texture = ExtResource("21_kx6n8")
+
+[node name="ReadyL" type="Marker3D" parent="Grabbing/Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336886, -0.101809, 0)
+
+[node name="RestL" type="Marker3D" parent="Grabbing/Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
@@ -251,6 +254,7 @@ script = ExtResource("27_j86kv")
 scoreParticle = ExtResource("2_qu674")
 
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
+[connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
 [connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]
 [connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
