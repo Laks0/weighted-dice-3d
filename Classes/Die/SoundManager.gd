@@ -13,9 +13,7 @@ func onDieHit(_body):
 	$Roll.play(randf_range(0, 4))
 
 func _process(delta: float) -> void:
-	print(get_parent().position.y)
 	if get_parent().position.y >= 0 && get_parent().position.y < 2 && magnitude > 0.5:
-		$Roll.volume_db = -18 + position.y*6/2 + 6*magnitude/2
+		$Roll.volume_db = -18 + 6*(position.y*6/2 + magnitude/2)
 	else:
 		$Roll.volume_db = -90
-		print("no  roll")
