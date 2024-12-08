@@ -15,16 +15,25 @@ func _process(_delta):
 	$L.rotation = sprite.rotation
 	$R.rotation = sprite.rotation
 	if closed:
+		direction = mon.grabDir
 		$L.position = _getClosedPositionL()
 		$R.position = _getClosedPositionR()
 
+func _planePosition() -> Vector2:
+	return direction * (grabDistance if not closed else grabBody.grabDistance)
+
+func _handDifference() -> Vector2:
+	return Vector2(-direction.y, direction.x) * (0 if not closed else grabBody.grabDistance*.9)
+
 func _getClosedPositionL() -> Vector3:
-	direction = mon.grabDir
-	var planePosition := direction * grabDistance
+	var planePosition := _planePosition()
+	planePosition -= _handDifference()
 	return Vector3(planePosition.x, 0, planePosition.y)
 
 func _getClosedPositionR() -> Vector3:
-	return _getClosedPositionL()
+	var planePosition := _planePosition()
+	planePosition += _handDifference()
+	return Vector3(planePosition.x, 0, planePosition.y)
 
 func attack(time : float) -> void:
 	$R.position = restPositionR
@@ -43,6 +52,7 @@ func attack(time : float) -> void:
 	tween.tween_callback(_goToPosition.bind(attackTime))
 
 func _goToPosition(time : float):
+	direction = mon.grabDir
 	var tween := create_tween()
 	tween.tween_property($L, "position", _getClosedPositionL(), time)
 	tween.parallel().tween_property($R, "position", _getClosedPositionR(), time)
@@ -50,8 +60,11 @@ func _goToPosition(time : float):
 func go_to_rest(time : float) -> void:
 	closed = false
 	var tween := create_tween()
-	tween.tween_property($L, "position", $RestL.position, time)
-	tween.parallel().tween_property($R, "position", restPositionR, time)
+	var waitTime = time/4
+	var backTime = time - waitTime
+	tween.tween_interval(waitTime)
+	tween.tween_property($L, "position", $RestL.position, backTime)
+	tween.parallel().tween_property($R, "position", restPositionR, backTime)
 	await tween.finished
 	visible = false
 

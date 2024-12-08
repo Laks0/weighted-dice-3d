@@ -25,8 +25,7 @@ func attemptGrab():
 	$GrabReadyTime.start()
 	await $GrabReadyTime.timeout
 	if not Input.is_action_pressed(mon.actions["grab"]):
-		hands.go_to_rest(.1)
-		await get_tree().create_timer(.1).timeout
+		onPushed()
 		return
 	
 	var couldGrab := false
