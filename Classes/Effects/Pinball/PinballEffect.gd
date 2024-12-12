@@ -25,5 +25,6 @@ func end():
 		t.queue_free()
 	towers.clear()
 	
-	bouncers.queue_free()
+	if is_instance_valid(bouncers):
+		bouncers.queue_free()
 	arena.changeWallHue(Color.WHITE)

@@ -5,6 +5,10 @@
 extends Node
 class_name StageHandler
 
+signal inLeaderboard
+signal inArena
+signal inBetting
+
 @export var arena : Arena
 @export var lobby : Briefcase
 @export var chipHolder : ChipHolder
@@ -88,6 +92,7 @@ func goToArena():
 	BetHandler.startGame(arena)
 	arena.startArena()
 	currentStage = Stages.ARENA
+	inArena.emit()
 
 ## Cuánto se mueve en y el bet display para que no moleste a la cámara del leaderboard
 var betDisplayDisplacement := -1.5
@@ -109,6 +114,7 @@ func arenaToLeaderboard(winnerId):
 	create_tween().tween_property(betDisplay, "position:y", betDisplayDisplacement, .3).as_relative()
 	
 	chipHolder.visible = true
+	inLeaderboard.emit()
 	await camera.goToCamera(leaderboardCamera).finished
 	chipHolder.startLeaderboardAnimation(winnerId)
 
@@ -130,10 +136,11 @@ func leaderboardToBet():
 	
 	arena.setTableRender(true)
 	betDisplay.startBetting()
+	currentStage = Stages.BETTING
 	
 	await camera.goToCamera(betCamera).finished
 	
-	currentStage = Stages.BETTING
+	inBetting.emit()
 
 func resetGame():
 	PlayerHandler.resetAllPlayers()

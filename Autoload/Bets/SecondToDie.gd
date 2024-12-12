@@ -41,3 +41,8 @@ func settle():
 
 func canAppear() -> bool:
 	return PlayerHandler.getPlayersAlive().size() > 2
+
+func getCandidatesOnFirst() -> Array:
+	if dead <= 1:
+		return getCandidates()
+	return [_result]

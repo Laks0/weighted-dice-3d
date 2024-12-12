@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/GrapeSoda.ttf-889f9703a492e2b16ae8a2725fef0cf
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

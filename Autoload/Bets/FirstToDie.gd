@@ -36,3 +36,8 @@ func monigoteDied(monigote : Monigote):
 
 func settle():
 	tomb.queue_free()
+
+func getCandidatesOnFirst() -> Array:
+	if dead == 0:
+		return getCandidates()
+	return [_result]

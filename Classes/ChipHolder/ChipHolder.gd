@@ -301,6 +301,7 @@ func _input(event):
 	for player in PlayerHandler.getPlayersAlive():
 		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
 			goToNextRound()
+			break
 
 ## TODO: Esta lógica no se puede quedar acá, habría que mover todo lo posible a StageHandler
 func goToNextRound() -> void:

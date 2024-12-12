@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=41 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
 [ext_resource type="Script" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
+[ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Scenes/Arena/BetHUD/BetHUD.tscn" id="28_4dsfl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -305,7 +306,7 @@ width = 800.0
 
 [node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera", "cubileteCamera") instance=ExtResource("5_fiigu")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.26394, 2.70155)
+transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
 cull_mask = 1048575
 environment = null
 startGameAnimationTime = 0.2
@@ -375,6 +376,11 @@ bus = &"SFX"
 script = ExtResource("26_sgy0k")
 chipDrop = ExtResource("27_gjkb2")
 
+[node name="BetHUD" parent="." instance=ExtResource("28_4dsfl")]
+visible = false
+
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
+[connection signal="inArena" from="StageHandler" to="BetHUD" method="showBetName"]
+[connection signal="inLeaderboard" from="StageHandler" to="BetHUD" method="reset"]
 
 [editable path="Floor/Mesa"]

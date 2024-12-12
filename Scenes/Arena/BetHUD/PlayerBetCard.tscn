@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://if5mowox57bo"]
+
+[ext_resource type="Texture2D" uid="uid://hcagaamsg1w6" path="res://Assets/BetsUI/MonigotesUIApuesta-Color-Sheet.png" id="1_34mtb"]
+[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/PlayerBetCard.gd" id="1_pafre"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_dj2iw"]
+[ext_resource type="Material" uid="uid://bankwl5wtdnlt" path="res://Scenes/Arena/AlfombraMaterial.tres" id="4_dje55"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4ix5"]
+bg_color = Color(0.907942, 0.907942, 0.907942, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5cfxs"]
+font = ExtResource("2_dj2iw")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd2yh"]
+resource_local_to_scene = true
+atlas = ExtResource("1_34mtb")
+region = Rect2(0, 0, 176, 96)
+
+[node name="PlayerBetCard" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -56.0
+offset_right = 88.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_pafre")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_c4ix5")
+text = "Tomás"
+label_settings = SubResource("LabelSettings_5cfxs")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qd2yh")
+
+[node name="Betters" type="GridContainer" parent="TextureRect"]
+material = ExtResource("4_dje55")
+layout_direction = 2
+layout_mode = 0
+offset_left = 81.0
+offset_top = 10.0
+offset_right = 164.0
+offset_bottom = 83.0
+columns = 3

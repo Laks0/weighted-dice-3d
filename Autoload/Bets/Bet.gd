@@ -67,9 +67,7 @@ func arenaUpdate(_delta):
 
 ## Determina el ganador, por defecto usa _score y _scoreOrder
 func settle():
-	var winnerScore = _scores[getCandidatesInOrder()[0]]
-	_result = getCandidates().filter(func (candidate):
-		return _scores[candidate] == winnerScore)
+	_result = getCandidatesOnFirst()
 
 func hasWon(candidate) -> bool:
 	return _result.has(candidate)
@@ -99,6 +97,12 @@ func getCandidatesInOrder() -> Array:
 		return _scores[a] < _scores[b])
 
 	return candidates
+
+## Retorna los candidatos que están ganando la apuesta
+func getCandidatesOnFirst() -> Array:
+	var winnerScore = _scores[getCandidatesInOrder()[0]]
+	return getCandidates().filter(func (candidate):
+		return _scores[candidate] == winnerScore)
 
 func getWinnerCandidates() -> Array:
 	if _result is Array:
