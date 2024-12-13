@@ -171,6 +171,7 @@ func getRandomPosition(padding := 1, yPos : float = .1) -> Vector3:
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
 
 func onMonigoteDeath(mon : Monigote):
+	Narrator.announceKill("generic")
 	monigotes.erase(mon)
 	
 	if not gameRunning:
