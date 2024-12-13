@@ -1,13 +1,87 @@
-[gd_scene load_steps=7 format=3 uid="uid://bww4tl6fwi7k"]
+[gd_scene load_steps=17 format=3 uid="uid://bww4tl6fwi7k"]
 
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
 [ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/PlayerBetCard.tscn" id="2_vnj2t"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_6whhi"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8l753"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ido6v"]
 atlas = ExtResource("1_5e4j8")
-region = Rect2(440, 0, 220, 120)
+region = Rect2(0, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxphc"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(220, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vjtf"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(440, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la04u"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(660, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wqyj"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(880, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afwlk"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(1100, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q3pd"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(1320, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im6uu"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(1540, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8fh1"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(1760, 0, 220, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yt6u"]
+atlas = ExtResource("1_5e4j8")
+region = Rect2(1980, 0, 220, 118)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_buomd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ido6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxphc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vjtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la04u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wqyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afwlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q3pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im6uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8fh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yt6u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgs10"]
 atlas = ExtResource("1_5e4j8")
@@ -26,7 +100,6 @@ script = ExtResource("1_c5tys")
 playerCardScene = ExtResource("2_vnj2t")
 
 [node name="BetDisplay" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -39,12 +112,12 @@ offset_right = 110.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Fondo" type="TextureRect" parent="BetDisplay"]
-custom_minimum_size = Vector2(220, 118)
-layout_mode = 0
-offset_right = 220.0
-offset_bottom = 120.0
-texture = SubResource("AtlasTexture_8l753")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BetDisplay"]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_buomd")
+autoplay = "default"
+frame_progress = 0.493709
+centered = false
 
 [node name="Marco" type="TextureRect" parent="BetDisplay"]
 layout_mode = 1

@@ -15,3 +15,6 @@ func _process(_delta):
 	if BetHandler.getScores().has(player.id):
 		var isWinning = BetHandler.getCandidatesOnFirst().has(player.id)
 		$TextureRect.modulate.v = 1 if isWinning else .5
+	
+	for p in PlayerHandler.getPlayersAlive():
+		%GridContainer.get_child(p.id).visible = p.getAmountBettedOn(player.id) > 0
