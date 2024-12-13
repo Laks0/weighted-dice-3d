@@ -84,7 +84,6 @@ func _ready() -> void:
 	createSimpleBank("menu_titulo")
 	
 	createBank("roundend", [
-		["roundend_bien"],
 		["roundend_felicitaciones"],
 		["roundend_vamos"],
 		["roundend_victoria"]

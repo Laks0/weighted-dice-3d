@@ -97,7 +97,10 @@ func startArena():
 	gameStarted.emit()
 
 func endGame(winnerMon : Monigote):
-	Narrator.playBank("gameend")
+	if winnerMon.name == "Male" or winnerMon.name == "Marta":
+		Narrator.playBank("roundend", 2)
+	else:
+		Narrator.playBank("roundend", 1)
 	winnerMon.hasWon.emit()
 	SoundtrackHandler.stopTrack()
 	lightsOn() # Por si acaso
