@@ -63,9 +63,7 @@ func _process(_delta):
 	
 	# DEBUG
 	if Input.is_action_just_pressed("die"):
-		$AnimatedSprite/Hands.go_to_ready_position(.5)
-		await get_tree().create_timer(.6).timeout
-		$AnimatedSprite/Hands.go_to_rest(.5)
+		die()
 	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return

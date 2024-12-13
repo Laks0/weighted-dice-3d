@@ -97,7 +97,9 @@ func startArena():
 	gameStarted.emit()
 
 func endGame(winnerMon : Monigote):
-	if winnerMon.name == "Male" or winnerMon.name == "Marta":
+	var winnerId = winnerMon.player.id
+	var skinName = PlayerHandler.getSkinName(winnerId)
+	if skinName == "Male" or skinName == "Marta":
 		Narrator.playBank("roundend", 2)
 	else:
 		Narrator.playBank("roundend", 1)
@@ -118,7 +120,6 @@ func endGame(winnerMon : Monigote):
 	if is_instance_valid(die):
 		die.queue_free()
 	
-	var winnerId = winnerMon.player.id
 	winnerMon.freeze()
 	%MultipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
