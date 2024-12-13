@@ -8,7 +8,7 @@
 [node name="MindTheGapEffect" type="Node"]
 script = ExtResource("1_1xma8")
 GapScene = ExtResource("2_bnwej")
-effectName = "Mind The Gap"
+effectName = "Cuidado Abajo"
 cardTexture = ExtResource("3_y6g6p")
 
 [node name="Startup" type="AudioStreamPlayer" parent="."]

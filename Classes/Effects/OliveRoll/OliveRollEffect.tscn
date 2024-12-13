@@ -8,7 +8,7 @@
 [node name="OliveRollEffect" type="Node"]
 script = ExtResource("1_lk4lc")
 oliveResource = ExtResource("2_2dm25")
-effectName = "Olive Roll"
+effectName = "Aceitunas!"
 cardTexture = ExtResource("3_4an5a")
 
 [node name="Startup" type="AudioStreamPlayer" parent="."]

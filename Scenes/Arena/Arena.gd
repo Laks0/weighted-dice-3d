@@ -126,7 +126,7 @@ func startEffect(n : int):
 	
 	activeEffect = n
 	effects[activeEffect].start()
-	
+	Narrator.announceEffect(effects[activeEffect].effectName)
 	# Animación del nombre del efecto
 	$CurrentEffectName.visible = true
 	$CurrentEffectName.position = die.position + Vector3.BACK
