@@ -128,14 +128,14 @@ alignment = 1
 [node name="PlayAgain" parent="EndgameButtons" node_paths=PackedStringArray("rightSelect") instance=ExtResource("6_c82te")]
 visible = false
 layout_mode = 2
-text = "Volver a jugar"
 rightSelect = NodePath("../ReselectCharacters")
+text = "Volver a jugar"
 
 [node name="ReselectCharacters" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect") instance=ExtResource("6_c82te")]
 visible = false
 layout_mode = 2
-text = "Cambiar jugadores"
 leftSelect = NodePath("../PlayAgain")
+text = "Cambiar jugadores"
 
 [node name="WinnerLabel" type="Label" parent="."]
 visible = false

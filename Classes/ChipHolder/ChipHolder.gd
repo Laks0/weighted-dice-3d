@@ -138,6 +138,7 @@ func startLeaderboardAnimation(winnerId):
 		$RoundNumber.text = "Ronda " + str(BetHandler.round) + " de " + str(BetHandler.roundAmount)
 	else:
 		$RoundNumber.text = "GAME OVER"
+		Narrator.playBank("gameend")
 		$RoundNumber.modulate = Color.RED
 		
 		skyMaterial.set_shader_parameter("speed", skySpeed)
