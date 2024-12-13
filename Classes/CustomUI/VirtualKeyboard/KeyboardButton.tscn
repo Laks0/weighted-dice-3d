@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvnn2je0u572l"]
+
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_22euv"]
+[ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="1_dd6sj"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_sfhw1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwb6n"]
+atlas = ExtResource("1_dd6sj")
+region = Rect2(16, 8, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mkpf"]
+atlas = ExtResource("1_dd6sj")
+region = Rect2(80, 8, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bikv2"]
+atlas = ExtResource("1_dd6sj")
+region = Rect2(144, 8, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo0p7"]
+atlas = ExtResource("1_dd6sj")
+region = Rect2(16, 8, 32, 40)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3vtb"]
+font = ExtResource("3_sfhw1")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[node name="KeyboardButton" instance=ExtResource("1_22euv")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
+focusedTexture = SubResource("AtlasTexture_1mkpf")
+pressedTexture = SubResource("AtlasTexture_bikv2")
+underTexture = SubResource("AtlasTexture_uo0p7")
+text = "Q"
+
+[node name="Label" parent="." index="0"]
+offset_left = -18.0
+offset_top = -23.0
+offset_right = 22.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_w3vtb")
+
+[node name="UnderTexture" parent="." index="2"]
+modulate = Color(1, 1, 1, 0.498039)
+offset_left = -15.0
+offset_top = -19.0
+offset_right = 25.0
+offset_bottom = 21.0
+scale = Vector2(0.786325, 1.02316)
+texture = SubResource("AtlasTexture_uo0p7")

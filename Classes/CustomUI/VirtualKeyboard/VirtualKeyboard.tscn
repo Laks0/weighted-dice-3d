@@ -1,7 +1,102 @@
-[gd_scene load_steps=3 format=3 uid="uid://oxxrws4k27pk"]
+[gd_scene load_steps=29 format=3 uid="uid://oxxrws4k27pk"]
 
 [ext_resource type="Script" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_e8km5"]
+[ext_resource type="PackedScene" uid="uid://cvnn2je0u572l" path="res://Classes/CustomUI/VirtualKeyboard/KeyboardButton.tscn" id="2_12how"]
+[ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="3_c7ol2"]
+[ext_resource type="Texture2D" uid="uid://drtxe3cocrgr6" path="res://Classes/CustomUI/VirtualKeyboard/TeclasEspacioUICharSelect-Sheet.png" id="5_6dgbs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d1od"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(132, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ha4p"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(324, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rdsy"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(516, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypfu5"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(68, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rtcn"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(260, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lkl1"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(452, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y3em"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(4, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nludu"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(196, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha8ie"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(388, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwb6n"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(16, 8, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq77p"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(0, 140, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skruo"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(64, 140, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwfo5"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(128, 140, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef463"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(0, 140, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeiyo"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(4, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e542e"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(196, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iws8t"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(388, 68, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhhl7"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(4, 196, 56, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10lp6"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(68, 196, 56, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8uxo"]
+atlas = ExtResource("3_c7ol2")
+region = Rect2(132, 196, 56, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fraqs"]
+atlas = ExtResource("5_6dgbs")
+region = Rect2(0, 0, 48, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dnms"]
+atlas = ExtResource("5_6dgbs")
+region = Rect2(48, 0, 48, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yova"]
+atlas = ExtResource("5_6dgbs")
+region = Rect2(96, 0, 48, 12)
 
 [node name="VirtualKeyboard" type="VBoxContainer"]
 anchors_preset = 8
@@ -17,212 +112,352 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_bhw5p")
+capsLockTextureNormal = SubResource("AtlasTexture_0d1od")
+capsLockTextureFocus = SubResource("AtlasTexture_3ha4p")
+capsLockTexturePressed = SubResource("AtlasTexture_5rdsy")
+upperTextureNormal = SubResource("AtlasTexture_ypfu5")
+upperTextureFocus = SubResource("AtlasTexture_5rtcn")
+upperTexturePressed = SubResource("AtlasTexture_8lkl1")
+lowerTextureNormal = SubResource("AtlasTexture_4y3em")
+lowerTextureFocus = SubResource("AtlasTexture_nludu")
+lowerTexturePressed = SubResource("AtlasTexture_ha8ie")
 
 [node name="Row1" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
-[node name="Q" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="Q" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
-text = "Q"
-clip_text = true
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 
-[node name="W" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="W" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "W"
-clip_text = true
 
-[node name="E" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="E" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "E"
-clip_text = true
 
-[node name="R" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="R" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "R"
-clip_text = true
 
-[node name="T" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="T" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "T"
-clip_text = true
 
-[node name="Y" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="Y" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "Y"
-clip_text = true
 
-[node name="U" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="U" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "U"
-clip_text = true
 
-[node name="I" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="I" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "I"
-clip_text = true
 
-[node name="O" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="O" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "O"
-clip_text = true
 
-[node name="P" parent="Row1" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="P" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "P"
-clip_text = true
 
-[node name="Delete" parent="Row1" instance=ExtResource("1_e8km5")]
+[node name="Delete" parent="Row1" instance=ExtResource("2_12how")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-text = " ⌫ "
-clip_text = true
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_sq77p")
+normalTexture = SubResource("AtlasTexture_sq77p")
+focusedTexture = SubResource("AtlasTexture_skruo")
+pressedTexture = SubResource("AtlasTexture_cwfo5")
+underTexture = SubResource("AtlasTexture_ef463")
+text = ""
+
+[node name="Label" parent="Row1/Delete" index="0"]
+text = ""
+
+[node name="OnclickedTime" parent="Row1/Delete" index="1"]
+wait_time = 0.3
+
+[node name="UnderTexture" parent="Row1/Delete" index="2"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 18.0
+offset_bottom = 1.0
+texture = SubResource("AtlasTexture_ef463")
 
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
-[node name="A" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="A" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "A"
-clip_text = true
 
-[node name="S" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="S" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "S"
-clip_text = true
 
-[node name="D" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="D" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "D"
-clip_text = true
 
-[node name="F" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="F" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "F"
-clip_text = true
 
-[node name="G" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="G" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "G"
-clip_text = true
 
-[node name="H" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="H" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "H"
-clip_text = true
 
-[node name="J" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="J" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "J"
-clip_text = true
 
-[node name="K" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="K" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "K"
-clip_text = true
 
-[node name="L" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="L" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "L"
-clip_text = true
 
-[node name="Ñ" parent="Row2" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="Ñ" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "Ñ"
-clip_text = true
 
 [node name="Row3" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
 [node name="Shift" parent="Row3" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-text = "↑"
-clip_text = true
+texture = SubResource("AtlasTexture_oeiyo")
+normalTexture = SubResource("AtlasTexture_oeiyo")
+focusedTexture = SubResource("AtlasTexture_e542e")
+pressedTexture = SubResource("AtlasTexture_iws8t")
 
-[node name="Z" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="TextureRect" type="TextureRect" parent="Row3/Shift"]
+modulate = Color(1, 1, 1, 0.498039)
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 57.0
+offset_bottom = 57.0
+texture = SubResource("AtlasTexture_oeiyo")
+
+[node name="Z" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "Z"
-clip_text = true
 
-[node name="X" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="X" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "X"
-clip_text = true
 
-[node name="C" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="C" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "C"
-clip_text = true
 
-[node name="V" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="V" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "V"
-clip_text = true
 
-[node name="B" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="B" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "B"
-clip_text = true
 
-[node name="N" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="N" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "N"
-clip_text = true
 
-[node name="M" parent="Row3" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(30, 0)
+[node name="M" parent="Row3" instance=ExtResource("2_12how")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "M"
-clip_text = true
 
 [node name="OK" parent="Row3" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-text = "✔"
-clip_text = true
+texture = SubResource("AtlasTexture_bhhl7")
+normalTexture = SubResource("AtlasTexture_bhhl7")
+focusedTexture = SubResource("AtlasTexture_10lp6")
+pressedTexture = SubResource("AtlasTexture_u8uxo")
+
+[node name="TextureRect" type="TextureRect" parent="Row3/OK"]
+modulate = Color(1, 1, 1, 0.498039)
+z_index = -1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 57.0
+offset_bottom = 57.0
+texture = SubResource("AtlasTexture_bhhl7")
 
 [node name="Row4" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 3
 alignment = 1
 
 [node name="Space" parent="Row4" instance=ExtResource("1_e8km5")]
-custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 3
-text = " "
+texture = SubResource("AtlasTexture_fraqs")
+normalTexture = SubResource("AtlasTexture_fraqs")
+focusedTexture = SubResource("AtlasTexture_4dnms")
+pressedTexture = SubResource("AtlasTexture_3yova")
+
+[editable path="Row1/Delete"]

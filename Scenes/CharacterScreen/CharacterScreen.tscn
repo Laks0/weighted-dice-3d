@@ -41,7 +41,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
-characterSettingScene = ExtResource("1_8jvhf")
 
 [node name="Viewport3D" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -208,35 +207,29 @@ theme_override_constants/h_separation = 870
 theme_override_constants/v_separation = 40
 columns = 2
 
-[node name="Space0" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
-[node name="Space1" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting2" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
-[node name="Space2" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting3" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
-[node name="Space3" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting4" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
-[node name="Space4" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting5" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
-[node name="Space5" type="ColorRect" parent="Settings"]
-custom_minimum_size = Vector2(450, 250)
+[node name="CharacterSetting6" parent="Settings" instance=ExtResource("1_8jvhf")]
+z_index = 5
 layout_mode = 2
-color = Color(0.807843, 0.807843, 0.807843, 0.32549)
 
 [node name="Countdown" type="Label" parent="."]
 visible = false
@@ -259,18 +252,5 @@ theme_override_font_sizes/font_size = 500
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -570.5
-offset_top = 48.0
-offset_right = 570.5
-offset_bottom = 100.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 51
-text = "Enter / AltGr / Xbox A / PS X para agregar jugadores"
 
 [editable path="Viewport3D/SubViewport/Scene3D/Gacha"]

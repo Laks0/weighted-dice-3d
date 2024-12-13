@@ -1,10 +1,11 @@
-extends Button
+extends TextureRect
 class_name GamepadSelectButton
 
 signal movedUp
 signal movedDown
 signal movedLeft
 signal movedRight
+signal pressed
 
 @export var controller : int # Un enum de Controllers
 @export var focused := false
@@ -14,23 +15,37 @@ signal movedRight
 @export var leftSelect  : GamepadSelectButton
 @export var rightSelect : GamepadSelectButton
 
+@export var normalTexture  : Texture
+@export var focusedTexture : Texture
+@export var pressedTexture : Texture
+
+@export var underTexture : Texture
+
 var canMoveFocus := true
 
+@export var text : String
+
 func _process(_delta):
-	if controller == Controllers.KB or controller == Controllers.KB2:
-		# Lo transforma en un botón normal
-		mouse_filter = Control.MOUSE_FILTER_STOP
+	$Label.text = text
+	if !focused:
+		texture = normalTexture
+	
+	if underTexture != null:
+		$UnderTexture.texture = underTexture
+	
+	if !focused or !is_visible_in_tree():
 		return
 	
-	$FocusedOutline.visible = focused
-	
-	if !focused or !visible:
-		return
+	if $OnclickedTime.is_stopped():
+		texture = focusedTexture
+	else:
+		texture = pressedTexture
 	
 	var actions : Dictionary = Controllers.getActions(controller)
 	
 	if Input.is_action_just_pressed(actions["grab"]):
 		pressed.emit()
+		$OnclickedTime.start()
 	
 	if not canMoveFocus:
 		return

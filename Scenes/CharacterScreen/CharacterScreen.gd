@@ -1,7 +1,5 @@
 extends Control
 
-@export var characterSettingScene : PackedScene
-
 var loadingScene := preload("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 
 var gameStarted := false
@@ -11,20 +9,12 @@ func _ready():
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
 
-func _getActiveSettings() -> Array[CharacterSetting]:
-	var res : Array[CharacterSetting] = []
-	for space in $Settings.get_children():
-		for child in space.get_children():
-			if child is CharacterSetting:
-				res.append(child)
-	return res
+func _getActiveSettings() -> Array[Node]:
+	return $Settings.get_children().filter(func (c): return c.isActive())
 
 func _startGame():
-	for setting in _getActiveSettings():
+	for setting in $Settings.get_children():
 		setting.allReady()
-	$Label.queue_free()
-	for space in $Settings.get_children():
-		space.color.a = 0
 	
 	gameStarted = true
 	
@@ -33,7 +23,7 @@ func _startGame():
 	for c in _getActiveSettings():
 		var skin = allSkins.pick_random()
 		allSkins.erase(skin)
-		PlayerHandler.createPlayer(c.controller, skin, c.playerName)
+		PlayerHandler.createPlayer(c.getController(), skin, c.playerName)
 		
 		%Scene3D.chooseMonigote(skin, c.global_position + c.size/2)
 		await %Scene3D.finishedAnimation
@@ -43,37 +33,39 @@ func _startGame():
 
 func _process(_delta):
 	var allPlayersReady : bool = _getActiveSettings().all(func (selector): 
-		return selector.playerReady)
+		return selector.isReady())
 	
 	if allPlayersReady and _getActiveSettings().size() > 0 and not $Countdown.visible:
 		_startContdown()
 	if (not allPlayersReady) and $Countdown.visible:
 		_stopCountdown()
 	
-	var isSomeKeyboardEditting := false
-	for setting in _getActiveSettings():
-		if Controllers.isKeyboard(setting.controller) and setting.edittingName:
-			isSomeKeyboardEditting = true
-	for setting in _getActiveSettings():
-		if Controllers.isKeyboard(setting.controller):
-			setting.waiting = isSomeKeyboardEditting and not setting.edittingName
+	#var isSomeKeyboardEditting := false
+	#for setting in _getActiveSettings():
+		#if Controllers.isKeyboard(setting.getController()) and not setting.isReady():
+			#isSomeKeyboardEditting = true
+	#var someLocked := false
+	#for setting in _getActiveSettings():
+		#if Controllers.isKeyboard(setting.getController()):
+			#if isSomeKeyboardEditting and not someLocked:
+				#someLocked = true
+				#setting.waitForKeyboard()
+			#else:
+				#setting.stopWaiting()
+
+func _isDeviceActive(device : int) -> bool:
+	return _getActiveSettings().any(func(c): return c.getController() == device)
 
 func _addPlayerSetting(device : int):
-	if _getActiveSettings().size() >= PlayerHandler.MAX_PLAYERS:
+	if _isDeviceActive(device):
 		return
 	
-	for setting in _getActiveSettings():
-		if setting.controller == device and device != Controllers.AI:
-			return
-	
-	SfxHandler.playSound("controllerLogin")
-	
-	var newSetting = characterSettingScene.instantiate()
-	newSetting.controller = device
-	for space in $Settings.get_children():
-		if space.get_child_count() == 0:
-			space.add_child(newSetting)
+	for s : CharacterSetting in $Settings.get_children():
+		if not s.isActive():
+			s.activate(device)
 			break
+	
+	SfxHandler.playSound("getController()Login")
 
 var countdownTween : Tween
 func _startContdown():
@@ -102,6 +94,4 @@ func _input(event):
 		if event.is_action_pressed("grab_kb2"):
 			_addPlayerSetting(Controllers.KB2)
 	if event is InputEventJoypadButton:
-		# yqs
-		await get_tree().process_frame
 		_addPlayerSetting(event.device)

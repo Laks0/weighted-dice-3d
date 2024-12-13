@@ -1,112 +1,136 @@
-extends Control
+extends TextureRect
 class_name CharacterSetting
 
-var controller : int
-var playerName : String
-var playerReady := false
+@export var maxNameLength : int = 10
 
-var edittingName := false
-## Marca si es un teclado que está esperando a que termine el otro
-var waiting := false
+var _controller : int = 0
+var playerName := ""
+
+enum Stages { WAITING, MAIN, NAME_EDIT, CONTROLLERS, READY, LOCKED, ALLREADY}
+var stage := Stages.WAITING
+
+var active := false
 
 func _ready():
-	$VirtualKeyboard.setController(controller)
+	%VirtualKeyboard.focus()
+	$FromWaitTransition.visible = stage == Stages.WAITING
+	custom_minimum_size = size
+
+func setController(arr : Array):
+	for c in arr:
+		setController(c.get_children())
+		if not c is GamepadSelectButton:
+			continue
+		c.controller = _controller
+
+func activate(controller : int):
+	_controller = controller
+	active = true
 	
-	$VirtualKeyboard.characterWritten.connect(func(c : String):
-		$TextEdit.text = $TextEdit.text + c)
-	$VirtualKeyboard.deleteCharacter.connect(func():
-		if $TextEdit.text.length() == 0:
-			return
-		$TextEdit.text = $TextEdit.text.erase($TextEdit.text.length()-1, 1))
+	%VirtualKeyboard.setController(controller)
+	setController(get_children())
 	
-	if not Controllers.isKeyboard(controller):
-		$TextEdit.focus_mode = FOCUS_NONE
-		$TextEdit.mouse_filter = MOUSE_FILTER_IGNORE
-	else:
-		$KeyboardHints.visible = true
-	
-	$VirtualKeyboard.accept.connect(endVirtualKeyboard)
-	
-	await get_tree().process_frame
-	
-	startEdit()
+	$FromWaitTransition.play()
+	stage = Stages.MAIN
+	await $FromWaitTransition.animation_finished
+	$FromWaitTransition.visible = false
+	%EditNameButton.focus()
+
+func deactivate():
+	active = false
+	$FromWaitTransition.visible = true
+	$FromWaitTransition.play_backwards()
+	await $FromWaitTransition.animation_finished
+	playerName = ""
+	stage = Stages.WAITING
+	%ExitButton.unfocus()
+	%EditNameButton.unfocus()
+	%StartButton.unfocus()
+	%ControllersButton.unfocus()
 
 func _process(_delta):
-	if controller == Controllers.KB:
-		$ControllerLabel.text = "Keyboard"
-		
-		$KeyboardHints.text = "Espacio: Listo/No listo\nE: editar\nQ: eliminar"
-	elif controller == Controllers.KB2:
-		$ControllerLabel.text = "Keyboard alt."
-		
-		$KeyboardHints.text = "AltGr: Listo/No listo\n+ : editar\n- : eliminar"
-	elif controller == Controllers.AI:
-		$ControllerLabel.text = "AI"
-	else:
-		$ControllerLabel.text = "Gamepad %s" % controller
-	
-	modulate.a = .5 if playerReady else 1.0
-	$TextEdit.set_process(not playerReady)
-	playerName = $TextEdit.text
-	
-	if Controllers.isKeyboard(controller):
-		edittingName = $TextEdit.has_focus()
-	
-	if edittingName:
-		$KeyboardHints.text = "Esc para terminar"
-	elif waiting:
-		$KeyboardHints.text = "Esperá a que termine el otro teclado"
-	
-	# Opciones
-	if edittingName or waiting:
-		return
-	
-	var actions := Controllers.getActions(controller)
-	if Input.is_action_just_pressed(actions["ui_ok"]):
-		toggleReady()
-	
-	if Input.is_action_just_pressed(actions["ui_cancel"]):
-		queue_free()
-	
-	if Input.is_action_just_pressed(actions["ui_edit"]):
-		startEdit()
+	$MainStage.visible = stage == Stages.MAIN
+	$NameEdit.visible = stage == Stages.NAME_EDIT
+	$ReadyStage.visible = stage == Stages.READY
+	$WaitingStage.visible = stage == Stages.WAITING
+	$ControlsStage.visible = stage == Stages.CONTROLLERS
+	$LockedStage.visible = stage == Stages.LOCKED
+	if stage == Stages.MAIN:
+		mainProcess()
+	if stage == Stages.NAME_EDIT:
+		editProcess()
+	if stage == Stages.CONTROLLERS:
+		controllersProcess()
 
-func toggleReady():
-	SfxHandler.playSound("playerReady")
-	playerReady = not playerReady
+func getControllerName() -> String:
+	if _controller < Controllers.KB:
+		return "Gamepad " + str(_controller+1)
+	if _controller == Controllers.KB:
+		return "Main keyboard"
+	return "Keyboard alt."
 
-func startEdit():
-	if waiting:
-		return
-	
-	edittingName = true
-	playerReady = false
-	if controller == Controllers.KB or controller == Controllers.KB2:
-		$TextEdit.grab_focus()
-		return
-	startVirtualKeyboard()
-
-func startVirtualKeyboard():
-	$VirtualKeyboard.visible = true
-	$VirtualKeyboard.focus()
-	$GamepadHints.visible = false
-
-func endVirtualKeyboard():
-	$VirtualKeyboard.visible = false
-	$VirtualKeyboard.unfocus()
-	$GamepadHints.visible = true
-	edittingName = false
-
-## Se llama cuando todos los jugadores están ready y no hay vuelta atrás
-func allReady():
-	$TextEdit.visible = false
-	$Separator.visible = true
-	$KeyboardHints.visible = false
-	$GamepadHints.visible = false
-	playerReady = false
-	
+func mainProcess():
 	if playerName != "":
-		$ControllerLabel.text = playerName
-	
-	modulate = Color.WHITE
-	set_process(false)
+		%PlayerNameLabel.text = playerName
+	else:
+		%PlayerNameLabel.text = getControllerName()
+
+func editProcess():
+	%PlayerNameEditLabel.text = playerName
+
+func controllersProcess():
+	if _controller == Controllers.KB:
+		%ControlsText.text = "Espacio para agarrar\nspam de espacio para escaparse\nwasd para moverse"
+	elif _controller == Controllers.KB2:
+		%ControlsText.text = "Altgr para agarrar\nspam de altgr para escaparse\nflechas para moverse"
+	else:
+		%ControlsText.text = "X para agarrar\nspam de X para escaparse\njoystick/dpad para moverse"
+
+var transitioning_stage := Stages.MAIN
+func transition(to : Stages):
+	$Transition.visible = true
+	$Transition.play()
+	transitioning_stage = to
+
+func onTransitionFrameChanged():
+	if $Transition.frame == 5:
+		stage = transitioning_stage
+
+func onTransitionAnimationFinished():
+	$Transition.visible = false
+
+func onVirtualKeyboardCharacterWritten(char):
+	if len(playerName) >= maxNameLength:
+		return
+	playerName += char
+
+func onVirtualKeyboardDeleteCharacter():
+	if len(playerName) > 0:
+		playerName = playerName.erase(len(playerName)-1, 1)
+
+func isActive():
+	return active
+
+func isReady():
+	return stage == Stages.READY
+
+func waitForKeyboard():
+	stage = Stages.LOCKED
+
+func stopWaiting():
+	if stage != Stages.LOCKED:
+		return
+	transition(Stages.MAIN)
+
+func allReady():
+	stage = Stages.ALLREADY
+	texture = null
+	for c in get_children():
+		c.visible = false
+	%AllReadyPlayerName.text = playerName
+	if playerName == "" and active:
+		%AllReadyPlayerName.text = getControllerName()
+	%AllReadyPlayerName.visible = true
+
+func getController() -> int:
+	return _controller
