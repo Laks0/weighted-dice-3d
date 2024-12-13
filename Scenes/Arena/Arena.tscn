@@ -323,6 +323,11 @@ transform = Transform3D(1, 0, 0, 0, 0.532567, 0.846388, 0, -0.846388, 0.532567, 
 cull_mask = 3
 fov = 47.0
 
+[node name="CardsCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.673904, 0.738819, 0, -0.738819, 0.673904, 0, 8.11205, 6.56296)
+cull_mask = 3
+fov = 47.0
+
 [node name="LeaderboardCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 0, 4.90326, -2.02901)
 fov = 47.0

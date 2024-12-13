@@ -31,7 +31,7 @@ region = Rect2(0, 64, 448, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bm3o"]
 font = ExtResource("5_xcq4e")
-font_size = 22
+font_size = 25
 font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.498039)
 
@@ -75,6 +75,7 @@ region = Rect2(0, 256, 64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bv6h6"]
 font = ExtResource("5_xcq4e")
+font_size = 22
 font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.498039)
 
@@ -472,7 +473,6 @@ offset_bottom = 288.0
 texture = SubResource("AtlasTexture_esup7")
 
 [node name="MainStage" type="Control" parent="."]
-visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -500,9 +500,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -202.5
+offset_left = -205.0
 offset_top = 26.0
-offset_right = 50.5
+offset_right = 83.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -598,9 +598,9 @@ texture = SubResource("AtlasTexture_c2ctj")
 
 [node name="Label2" type="Label" parent="MainStage/HBoxContainer/ControllersButton"]
 layout_mode = 0
-offset_left = -2.0
+offset_left = -15.0
 offset_top = 58.0
-offset_right = 69.0
+offset_right = 83.0
 offset_bottom = 81.0
 text = "CONTROLES"
 label_settings = SubResource("LabelSettings_bv6h6")
@@ -626,9 +626,9 @@ texture = SubResource("AtlasTexture_1d68x")
 
 [node name="Label3" type="Label" parent="MainStage/HBoxContainer/ExitButton"]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 7.0
 offset_top = 58.0
-offset_right = 85.0
+offset_right = 78.0
 offset_bottom = 81.0
 text = "SALIR"
 label_settings = SubResource("LabelSettings_bv6h6")
@@ -654,9 +654,9 @@ texture = SubResource("AtlasTexture_huyio")
 
 [node name="Label4" type="Label" parent="MainStage/HBoxContainer/StartButton"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 2.0
 offset_top = 58.0
-offset_right = 81.0
+offset_right = 73.0
 offset_bottom = 81.0
 text = "JUGAR"
 label_settings = SubResource("LabelSettings_bv6h6")
@@ -800,6 +800,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 text = "VOLVER"
 
 [node name="WaitingStage" type="Control" parent="."]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -942,6 +943,7 @@ frame_progress = 0.78132
 centered = false
 
 [node name="FromWaitTransition" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = -2
 sprite_frames = SubResource("SpriteFrames_sboqm")
 centered = false

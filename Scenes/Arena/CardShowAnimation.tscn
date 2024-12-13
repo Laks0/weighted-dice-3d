@@ -343,7 +343,7 @@ tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/31/type = "bezier"
@@ -354,7 +354,7 @@ tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(3, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(3, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/32/type = "bezier"
@@ -365,7 +365,7 @@ tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(6.38, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(10.2212, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/33/type = "bezier"
@@ -742,9 +742,9 @@ tracks/30/path = NodePath("CardShowAnimation/Card6:position:x")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(4, 5, 5.5, 7.3, 7.8, 8.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 4, 5, 5.5, 7.3, 7.8, 8.2)
 }
 tracks/31/type = "bezier"
 tracks/31/imported = false
@@ -753,9 +753,9 @@ tracks/31/path = NodePath("CardShowAnimation/Card6:position:y")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 11.8175, -0.25, 0, 0.25, 0, 11.8175, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(4, 5, 5.5, 7.3, 7.8, 8.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 11.8175, -0.25, 0, 0.25, 0, 11.8175, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 4, 5, 5.5, 7.3, 7.8, 8.2)
 }
 tracks/32/type = "bezier"
 tracks/32/imported = false
@@ -764,9 +764,9 @@ tracks/32/path = NodePath("CardShowAnimation/Card6:position:z")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(6.38524, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 11.9551, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(4, 5, 5.5, 7.3, 7.8, 8.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(10.5914, -0.25, 0, 0.25, 0, 6.38524, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 11.9551, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 4, 5, 5.5, 7.3, 7.8, 8.2)
 }
 tracks/33/type = "bezier"
 tracks/33/imported = false
@@ -829,22 +829,22 @@ libraries = {
 script = ExtResource("1_x7ohg")
 
 [node name="Card1" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.747613, -0.426898, -0.508756, 0.664135, 0.480557, 0.572704, -2.98023e-08, -0.766045, 0.642787, -11.3681, 8.08739, 0)
+transform = Transform3D(0.258823, -0.965925, 2.53518e-06, -0.965925, -0.258823, 2.26267e-08, 6.34308e-07, -2.45465e-06, -0.999999, 9, 6, 0)
 
 [node name="Card2" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.848492, -0.340169, -0.405397, 0.529209, 0.5454, 0.649982, 1.49012e-07, -0.766045, 0.642787, -8.86814, 8.08739, 0)
+transform = Transform3D(0.259209, -0.965821, -0.000407306, -0.965821, -0.259209, 0, -0.000105578, 0.000393385, -0.999999, 9, 6, 0)
 
 [node name="Card3" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(1, 0, 0, 0, 0.104528, 0.994521, 0, -0.994522, 0.104528, 0, 12.0492, -19.426)
+transform = Transform3D(0.259209, -0.965821, -2.53518e-06, -0.965821, -0.259209, 0, -6.57143e-07, 2.44853e-06, -0.999999, 9, 6, 0)
 
 [node name="Card4" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.814845, 0.372611, 0.44406, -0.57968, 0.523772, 0.624207, 3.8743e-07, -0.766044, 0.642788, 9.77312, 7.5797, 0)
+transform = Transform3D(0.259209, -0.965821, -2.53518e-06, -0.965821, -0.259209, 0, -6.57143e-07, 2.44853e-06, -1, 9, 6, 0)
 
 [node name="Card5" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(0.844477, 0.344271, 0.410286, -0.535591, 0.54282, 0.646907, -2.98023e-08, -0.766045, 0.642787, 12.2731, 7.5797, 0)
+transform = Transform3D(0.259209, -0.965821, -2.53518e-06, -0.965821, -0.259209, 0, -6.57143e-07, 2.44853e-06, -0.999999, 9, 6, 0)
 
 [node name="Card6" parent="." instance=ExtResource("2_qy1gx")]
-transform = Transform3D(1.18, 0, 0, 0, -0.204906, -1.16207, 0, 1.16207, -0.204906, 0, 11.8175, 11.9551)
+transform = Transform3D(-1.18, -2.50458e-06, -7.7425e-07, 9.96426e-08, 0.305402, -1.13979, 2.61964e-06, -1.13979, -0.305402, 0, 2, 10.5914)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.868657, 0.495413, 0, -0.495413, 0.868657, 0.902044, 8.49095, 14.6556)
