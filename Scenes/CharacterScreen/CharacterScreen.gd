@@ -40,19 +40,6 @@ func _process(_delta):
 		_startContdown()
 	if (not allPlayersReady) and $Countdown.visible:
 		_stopCountdown()
-	
-	#var isSomeKeyboardEditting := false
-	#for setting in _getActiveSettings():
-		#if Controllers.isKeyboard(setting.getController()) and not setting.isReady():
-			#isSomeKeyboardEditting = true
-	#var someLocked := false
-	#for setting in _getActiveSettings():
-		#if Controllers.isKeyboard(setting.getController()):
-			#if isSomeKeyboardEditting and not someLocked:
-				#someLocked = true
-				#setting.waitForKeyboard()
-			#else:
-				#setting.stopWaiting()
 
 func _isDeviceActive(device : int) -> bool:
 	return _getActiveSettings().any(func(c): return c.getController() == device)
