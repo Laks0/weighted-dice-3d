@@ -12,3 +12,4 @@ grow_vertical = 2
 script = ExtResource("1_d160l")
 
 [node name="VOX" type="AudioStreamPlayer" parent="."]
+bus = &"ANNOUNCER"

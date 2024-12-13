@@ -159,7 +159,7 @@ layout_mode = 2
 selected = 0
 allow_reselect = true
 item_count = 1
-popup/item_0/text = "Todas las apuestas"
+popup/item_0/text = "Todos los efectos"
 popup/item_0/id = 100
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
