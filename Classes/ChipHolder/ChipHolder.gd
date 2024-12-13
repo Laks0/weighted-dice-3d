@@ -139,7 +139,6 @@ func startLeaderboardAnimation(winnerId):
 	else:
 		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
-		Narrator.playBank("gameend")
 		skyMaterial.set_shader_parameter("speed", skySpeed)
 	
 	await get_tree().create_timer(1).timeout
@@ -240,6 +239,10 @@ func startLeaderboardAnimation(winnerId):
 	# Fade in texto de ganador
 	$WinnerLabel.text = "¡GANÓ %s!" % winner.name
 	$WinnerLabel.visible = true
+	if PlayerHandler.getPlayersAlive()[0].name == "Male" or PlayerHandler.getPlayersAlive()[0].name == "Marta":
+		Narrator.playBank("gameend", 2)
+	else:
+		Narrator.playBank("gameend", 1)
 	create_tween().tween_property($WinnerLabel, "modulate:a", 1, .2).from(0)
 	
 	# Un tiempito para que baile el monigote
@@ -311,6 +314,7 @@ func goToNextRound() -> void:
 		setSkyRotationStrength(defaultSkyRotation, 0, true)
 		resetRequest.emit()
 		return
+		
 	
 	nextRound.emit()
 	$RoundNumber.text = ""
