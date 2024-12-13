@@ -3,6 +3,7 @@ extends Control
 @export var startScene : PackedScene
 
 func _ready():
+	SoundtrackHandler.playTrack()
 	for i in range(BetHandler.bets.size()):
 		var bet : Bet = BetHandler.bets[i]
 		$DebugVars/OnlyBet.add_item(bet.betName, i)
@@ -24,10 +25,14 @@ func _ready():
 	var tween := create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_property($GameName, "position:y", -50, 2).as_relative()
 	tween.tween_property($GameName, "position:y", 50, 2).as_relative()
-
+	await get_tree().create_timer(1).timeout
+	Narrator.get_node("VOX").volume_db = -10
+	Narrator.playBank("menu_titulo")
 func _on_start_button_pressed():
+	Narrator.get_node("VOX").volume_db = -4
+	Narrator.playBank("menu_timba")
+	await get_tree().create_timer(1.5).timeout
 	SfxHandler.playSound("buttonSelect")
-	SoundtrackHandler.playTrack()
 	
 	DebugVars.skipCardAnimation = $DebugVars/SkipCards.button_pressed
 	DebugVars.dontStartGame = $DebugVars/DontStartGame.button_pressed

@@ -62,7 +62,9 @@ func chooseMonigote(skin : int, target2dPos : Vector2):
 	animTween.chain().tween_callback(func ():
 		var player = PlayerHandler.getPlayerById(skin)
 		await get_tree().create_timer(.3).timeout
+		Narrator.playBank("charsel_" + PlayerHandler.getPlayerById(skin).name.to_lower())
 		$BallsSFX.stream = player.getBiteStream("salute")
+		await get_tree().create_timer(.5).timeout
 		$BallsSFX.play()
 	)
 	
