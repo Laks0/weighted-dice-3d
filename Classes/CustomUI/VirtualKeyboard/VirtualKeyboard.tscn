@@ -88,15 +88,15 @@ region = Rect2(132, 196, 56, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fraqs"]
 atlas = ExtResource("5_6dgbs")
-region = Rect2(0, 0, 48, 10)
+region = Rect2(0, 0, 192, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dnms"]
 atlas = ExtResource("5_6dgbs")
-region = Rect2(48, 0, 48, 10)
+region = Rect2(192, 0, 192, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yova"]
 atlas = ExtResource("5_6dgbs")
-region = Rect2(96, 0, 48, 12)
+region = Rect2(384, 0, 192, 40)
 
 [node name="VirtualKeyboard" type="VBoxContainer"]
 anchors_preset = 8
@@ -104,13 +104,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.0
-offset_top = -33.0
-offset_right = 121.0
-offset_bottom = 33.0
+offset_left = -207.0
+offset_top = -89.0
+offset_right = 207.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 1
+alignment = 1
 script = ExtResource("1_bhw5p")
 capsLockTextureNormal = SubResource("AtlasTexture_0d1od")
 capsLockTextureFocus = SubResource("AtlasTexture_3ha4p")
@@ -125,7 +126,6 @@ lowerTexturePressed = SubResource("AtlasTexture_ha8ie")
 [node name="Row1" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 3
-alignment = 1
 
 [node name="Q" parent="Row1" instance=ExtResource("2_12how")]
 layout_mode = 2
@@ -250,7 +250,6 @@ texture = SubResource("AtlasTexture_ef463")
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 3
-alignment = 1
 
 [node name="A" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
@@ -345,7 +344,6 @@ text = "Ñ"
 [node name="Row3" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 3
-alignment = 1
 
 [node name="Shift" parent="Row3" instance=ExtResource("1_e8km5")]
 unique_name_in_owner = true
@@ -443,17 +441,18 @@ modulate = Color(1, 1, 1, 0.498039)
 z_index = -1
 layout_mode = 0
 offset_left = 1.0
-offset_top = 2.0
+offset_top = 1.0
 offset_right = 57.0
 offset_bottom = 57.0
 texture = SubResource("AtlasTexture_bhhl7")
 
 [node name="Row4" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 3
-alignment = 1
 
 [node name="Space" parent="Row4" instance=ExtResource("1_e8km5")]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_fraqs")
 normalTexture = SubResource("AtlasTexture_fraqs")

@@ -4,6 +4,7 @@ class_name VirtualKeyboard
 signal characterWritten(char : String)
 signal deleteCharacter
 signal accept
+signal space
 
 @export var capsLockTextureNormal : Texture
 @export var capsLockTextureFocus : Texture
@@ -21,6 +22,8 @@ var capsLock := false
 var upper := true
 
 func _ready():
+	%Space.pressed.connect(space.emit)
+	
 	for y in get_child_count():
 		var row : HBoxContainer = get_child(y)
 		for x in range(row.get_child_count()):
