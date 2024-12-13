@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dry1p0k0elo86"]
+[gd_scene load_steps=7 format=3 uid="uid://dry1p0k0elo86"]
 
 [ext_resource type="Script" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.gd" id="1_ws2rw"]
 [ext_resource type="PackedScene" uid="uid://da07o7woomim2" path="res://Classes/Effects/Pinball/PinballTower/CosoPinball_v2.glb" id="2_vkloh"]
+[ext_resource type="AudioStream" uid="uid://cqwg1p5ooxdt" path="res://Assets/SFX/fx_pinball_bumper.wav" id="3_heh04"]
+[ext_resource type="AudioStream" uid="uid://civ8kj6kjn1au" path="res://Assets/SFX/fx_pinball_bumper_bell.wav" id="4_o8dfq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mlpxm"]
 points = PackedVector3Array(-0.147126, 0.2025, 0.456126, -0.091639, -0.2025, -0.489124, -0.152827, -0.2025, -0.473803, 0.152827, -0.2025, 0.473803, 0.456127, 0.2025, -0.147033, -0.470876, 0.2025, -0.0882201, -0.45843, -0.202477, 0.198672, 0.473803, -0.2025, -0.152732, 0.0882201, 0.2025, -0.470876, 0.382472, 0.2025, 0.294251, 0.45843, -0.202477, 0.198672, -0.45843, -0.202477, -0.198672, -0.294251, 0.2025, -0.382564, 0.304512, -0.201728, -0.395903, -0.198593, -0.202493, 0.458467, -0.382472, 0.2025, 0.294251, 0.153382, 0.149524, 0.475524, 0.382472, 0.2025, -0.294251, 0.470876, 0.2025, 0.0882201, 0.304512, -0.201728, 0.395903, 0.153382, 0.149524, -0.475524, -0.0882201, 0.2025, -0.470876, -0.304512, -0.201728, -0.395903, -0.470876, 0.2025, 0.0882201, -0.489124, -0.2025, 0.0916389, -0.091639, -0.2025, 0.489124, 0.0916389, -0.2025, -0.489124, -0.382472, 0.2025, -0.294251, -0.304512, -0.201728, 0.395903, 0.489124, -0.2025, 0.0916389, 0.250095, 0.2025, 0.411878, -0.250095, 0.2025, 0.41197)
@@ -26,5 +28,13 @@ shape = SubResource("ConvexPolygonShape3D_mlpxm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551471, 0)
 shape = SubResource("CylinderShape3D_kap6k")
+
+[node name="SFXbumper" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_heh04")
+bus = &"SFX"
+
+[node name="SFXbumperClink" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_o8dfq")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
