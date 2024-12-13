@@ -5,6 +5,7 @@ var loadingScene := preload("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 var gameStarted := false
 
 func _ready():
+	Narrator.playBank("charselscreen")
 	randomize()
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
