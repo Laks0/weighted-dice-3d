@@ -55,24 +55,17 @@ func _process(_delta):
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
-		for body in $GrabArea.get_overlapping_bodies():
-			if not body is Pushable or body == self:
-				continue
-			
-			var success : bool = startGrab(body)
-			if !success:
-				continue
-			
-			$GrabCooldown.start()
-			emit_signal("grab", body)
-			break
+		else:
+			$Grabbing.attemptGrab()
 	
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
 	# DEBUG
 	if Input.is_action_just_pressed("die"):
-		die()
+		$AnimatedSprite/Hands.go_to_ready_position(.5)
+		await get_tree().create_timer(.6).timeout
+		$AnimatedSprite/Hands.go_to_rest(.5)
 	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
@@ -115,25 +108,13 @@ func resetMovement() -> void:
 	unclampedVelocity = Vector2.ZERO
 	velocity = Vector3.ZERO
 
-func canBeGrabbed(grabber) -> bool:
-	return (self != grabber) and (not invincible) and (not grabbed)
-
-func canGrab() -> bool:
-	return $GrabCooldown.is_stopped() and (not grabbed) and (not grabbing)
-
-func startGrab(body : Pushable) -> bool:
-	if not super(body):
-		return false
-	
-	return true
-
 func attemptEscape():
 	$AnimatedSprite.shake()
 	escapeMovements += 1
 	Input.start_joy_vibration(controller, .3, 0, .2)
 	
 	if escapeMovements >= MOVEMENTS_TO_ESCAPE_GRAB:
-		$GrabCooldown.start()
+		$Grabbing/GrabCooldown.start()
 		escaped.emit()
 		Input.start_joy_vibration(controller, 1, 0, .1)
 
@@ -143,23 +124,9 @@ func onGrabbingEscaped(body : Pushable):
 	knockback(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
 
-func onGrabbed():
-	escapeMovements = 0
-	invincible = true
-	super()
-
-func onGrabbing():
-	var pointing := Controllers.getDirection(controller)
-	if pointing != Vector2.ZERO:
-		grabDir = pointing
-	
-	super.onGrabbing()
-
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce
-	
-	$GrabCooldown.start()
-	
+	$Grabbing/GrabCooldown.start()
 	invincible = false
 	
 	super(dir, factor, _pusher)
@@ -168,6 +135,7 @@ func push():
 	moveVelocity = Vector2.ZERO
 	knockback(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
+	$Grabbing.onPushed()
 	super()
 
 func bounce(normal : Vector3):
@@ -248,3 +216,18 @@ func _on_stun_cooldown_timeout():
 
 func dance():
 	$AnimatedSprite.dance()
+
+#####################
+# FUNCIONES CEDIDAS #
+#####################
+## Funciones de la clase que se le cede el funcionamiento a otro script
+
+func canBeGrabbed(grabber) -> bool:
+	return super(grabber) and $Grabbing.canBeGrabbed
+
+func canGrab() -> bool:
+	return $Grabbing.canGrab()
+
+func onGrabbed():
+	$Grabbing.onGrabbed()
+	super()
