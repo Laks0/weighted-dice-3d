@@ -139,7 +139,7 @@ func startLeaderboardAnimation(winnerId):
 	else:
 		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
-		
+		Narrator.playBank("gameend")
 		skyMaterial.set_shader_parameter("speed", skySpeed)
 	
 	await get_tree().create_timer(1).timeout

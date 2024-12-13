@@ -97,6 +97,7 @@ func startArena():
 	gameStarted.emit()
 
 func endGame(winnerMon : Monigote):
+	Narrator.playBank("gameend")
 	winnerMon.hasWon.emit()
 	SoundtrackHandler.stopTrack()
 	lightsOn() # Por si acaso

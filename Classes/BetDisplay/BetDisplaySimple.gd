@@ -24,6 +24,7 @@ var betted : Dictionary
 var isReady : Dictionary
 
 func startBetting():
+	Narrator.playBank("bets")
 	$StartDelay.start()
 	# Resetear cualquier valor viejo
 	chipHolder.reset()
