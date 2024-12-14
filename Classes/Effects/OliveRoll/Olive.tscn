@@ -73,7 +73,7 @@ animations = [{
 radius = 0.253192
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e8vk1"]
-radius = 0.279866
+radius = 0.443759
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mm6rx"]
 resource_local_to_scene = true
@@ -102,6 +102,7 @@ frame_progress = 0.52876
 shape = SubResource("SphereShape3D_t7spw")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

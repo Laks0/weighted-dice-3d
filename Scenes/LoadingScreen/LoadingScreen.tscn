@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="2_sioe6"]
 [ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="3_j3vqa"]
 
-[node name="LoadingScreen" type="Control"]
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.881752)
+
+[node name="LoadingScreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +23,7 @@ monigoteScene = ExtResource("3_j3vqa")
 factsFile = "res://Assets/FunFacts.json"
 arenaPath = "res://Scenes/Arena/Arena.tscn"
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="LoadingScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,23 +31,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="LoadingScreen/SubViewportContainer"]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="LoadingScreen/SubViewportContainer/SubViewport"]
 environment = ExtResource("1_1rcnr")
 
-[node name="MultipleResCamera" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_sioe6")]
+[node name="MultipleResCamera" parent="LoadingScreen/SubViewportContainer/SubViewport" instance=ExtResource("2_sioe6")]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport"]
+[node name="SpotLight3D" type="SpotLight3D" parent="LoadingScreen/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.881752)
 light_energy = 3.087
 
-[node name="FunFact" type="Label" parent="."]
+[node name="FunFact" type="Label" parent="LoadingScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -62,7 +65,7 @@ text = "Fun fact: :)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

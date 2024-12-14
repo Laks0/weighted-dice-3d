@@ -34,7 +34,9 @@ func _process(_delta):
 func _on_area_3d_body_entered(body):
 	if velocity.is_zero_approx():
 		return
-	if not body is Monigote or body == _lastThrower:
+	if not body is Monigote:
+		return
+	if body == _lastThrower:
 		return
 	
 	var monigote := body as Monigote
