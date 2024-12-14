@@ -40,3 +40,6 @@ func playTrack(track : int = 0):
 	currentTrack  = track
 	stream = loadedTracks[track][currentClip]
 	play()
+	if track == 0:
+		volume_db = 0
+	else: volume_db = -4
