@@ -83,6 +83,7 @@ func _ready() -> void:
 	createSimpleBank("menu_timba")
 	createSimpleBank("menu_titulo")
 	
+	#acá nos faltó el "bien", porque estaba mal exportado:/
 	createBank("roundend", [
 		["roundend_felicitaciones"],
 		["roundend_vamos"],
