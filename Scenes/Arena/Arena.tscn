@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=41 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -24,7 +24,6 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
-[ext_resource type="PackedScene" uid="uid://8l23xyx2htpf" path="res://Classes/Effects/OliveRoll/Olive.tscn" id="20_nfmvh"]
 [ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
 [ext_resource type="Script" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
@@ -285,9 +284,6 @@ light_color = Color(0.999998, 0.997464, 0.742191, 1)
 light_cull_mask = 4294967291
 shadow_enabled = true
 shadow_opacity = 0.82
-
-[node name="Olive" parent="." instance=ExtResource("20_nfmvh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267441, -0.844752)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.999542, 0.0167236)
