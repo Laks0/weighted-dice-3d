@@ -52,3 +52,9 @@ func _on_start_button_pressed():
 		return
 	
 	get_tree().change_scene_to_packed(startScene)
+
+func _input(event):
+	if event.is_pressed():
+		var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+		tween.tween_property($StartText, "position:x", -500, .5)
+		_on_start_button_pressed()

@@ -41,25 +41,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.0165502, 0.524091, 3.85046e-07, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 142
 text = "DADOS PESADOS"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -556.0
-offset_top = -248.0
-offset_right = -498.0
-offset_bottom = -216.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "¡VAMOO!"
 
 [node name="Weight-scale-3506479187" type="TextureRect" parent="."]
 visible = false
@@ -108,7 +93,23 @@ grow_vertical = 2
 scale = Vector2(0.130367, 0.130367)
 texture = ExtResource("6_cofel")
 
+[node name="StartText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 249.0
+offset_top = -325.0
+offset_right = 641.0
+offset_bottom = -222.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 49
+text = "Apretá cualquier 
+cosa para arrancar"
+horizontal_alignment = 1
+
 [node name="DebugVars" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -161,5 +162,3 @@ allow_reselect = true
 item_count = 1
 popup/item_0/text = "Todos los efectos"
 popup/item_0/id = 100
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
