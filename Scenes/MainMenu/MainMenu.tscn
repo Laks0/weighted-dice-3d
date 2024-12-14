@@ -130,7 +130,6 @@ cosa para arrancar"
 horizontal_alignment = 1
 
 [node name="DebugVars" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

@@ -156,6 +156,7 @@ func hurt() -> bool:
 		return false
 	
 	health -= 1
+	$BloodTrail.emitting = true
 	
 	if health <= 0:
 		die()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=43 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -79,6 +79,25 @@ scale_curve = SubResource("CurveTexture_xri4h")
 [sub_resource type="SphereMesh" id="SphereMesh_862k8"]
 radius = 0.1
 height = 0.2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l5w31"]
+emission_shape_scale = Vector3(0.2, 0, 0.2)
+emission_shape = 1
+emission_sphere_radius = 1.0
+scale_min = 0.6
+scale_max = 1.5
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf838"]
+albedo_color = Color(0.760203, 2.55093e-06, 4.81307e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dvb8s"]
+material = SubResource("StandardMaterial3D_sf838")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.01
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -256,6 +275,15 @@ script = ExtResource("25_tld37")
 [node name="ScoreParticles" type="Node3D" parent="."]
 script = ExtResource("27_j86kv")
 scoreParticle = ExtResource("2_qu674")
+
+[node name="BloodTrail" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18867, 0)
+emitting = false
+amount = 40
+lifetime = 1.54
+explosiveness = 0.06
+process_material = SubResource("ParticleProcessMaterial_l5w31")
+draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
