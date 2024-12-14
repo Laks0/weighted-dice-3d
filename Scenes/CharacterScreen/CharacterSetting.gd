@@ -11,7 +11,10 @@ var stage := Stages.WAITING
 
 var active := false
 
+@export_range(1,6) var color : int = 1
+
 func _ready():
+	$Sombra/Marco.texture.region.position.x *= color
 	%VirtualKeyboard.focus()
 	$FromWaitTransition.visible = stage == Stages.WAITING
 	custom_minimum_size = size

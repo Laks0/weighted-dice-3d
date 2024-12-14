@@ -22,6 +22,7 @@ atlas = ExtResource("1_fgyrc")
 region = Rect2(0, 864, 488, 288)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_esup7"]
+resource_local_to_scene = true
 atlas = ExtResource("1_fgyrc")
 region = Rect2(488, 1152, 488, 288)
 
@@ -459,14 +460,14 @@ theme_override_font_sizes/font_size = 46
 text = "ELCARLO"
 horizontal_alignment = 1
 
-[node name="Marco" type="TextureRect" parent="."]
+[node name="Sombra" type="TextureRect" parent="."]
 z_index = -1
 layout_mode = 0
 offset_right = 488.0
 offset_bottom = 288.0
 texture = SubResource("AtlasTexture_aq1ac")
 
-[node name="Sombra" type="TextureRect" parent="Marco"]
+[node name="Marco" type="TextureRect" parent="Sombra"]
 layout_mode = 0
 offset_right = 488.0
 offset_bottom = 288.0

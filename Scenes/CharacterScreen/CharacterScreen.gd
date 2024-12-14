@@ -36,7 +36,7 @@ func _process(_delta):
 	var allPlayersReady : bool = _getActiveSettings().all(func (selector): 
 		return selector.isReady())
 	
-	if allPlayersReady and _getActiveSettings().size() > 0 and not $Countdown.visible:
+	if allPlayersReady and _getActiveSettings().size() > 1 and not $Countdown.visible:
 		_startContdown()
 	if (not allPlayersReady) and $Countdown.visible:
 		_stopCountdown()

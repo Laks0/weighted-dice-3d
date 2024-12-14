@@ -214,22 +214,27 @@ layout_mode = 2
 [node name="CharacterSetting2" parent="Settings" instance=ExtResource("1_8jvhf")]
 z_index = 5
 layout_mode = 2
+color = 2
 
 [node name="CharacterSetting3" parent="Settings" instance=ExtResource("1_8jvhf")]
 z_index = 5
 layout_mode = 2
+color = 3
 
 [node name="CharacterSetting4" parent="Settings" instance=ExtResource("1_8jvhf")]
 z_index = 5
 layout_mode = 2
+color = 4
 
 [node name="CharacterSetting5" parent="Settings" instance=ExtResource("1_8jvhf")]
 z_index = 5
 layout_mode = 2
+color = 5
 
 [node name="CharacterSetting6" parent="Settings" instance=ExtResource("1_8jvhf")]
 z_index = 5
 layout_mode = 2
+color = 6
 
 [node name="Countdown" type="Label" parent="."]
 visible = false
