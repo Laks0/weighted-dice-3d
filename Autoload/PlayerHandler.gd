@@ -68,9 +68,9 @@ class Player:
 		var bitePath := "res://Assets/SFX/Bites/"
 		var prefix := "bite_" + PlayerHandler.getSkinName(id).to_lower() + "_" + category
 		for fileName : String in DirAccess.get_files_at(bitePath):
-			if not (fileName.begins_with(prefix) and fileName.ends_with(".wav")):
+			if not (fileName.begins_with(prefix) and fileName.ends_with(".wav.import")):
 				continue
-			var newStream = load(bitePath+fileName)
+			var newStream = ResourceLoader.load(bitePath+fileName.trim_suffix(".import"))
 			if newStream != null:
 				soundBites[category].add_stream(soundBites[category].streams_count, newStream)
 	

@@ -124,13 +124,13 @@ func playBank(bankName : String, gender : int = 0):
 	$VOX.play()
 #busca los audios con el nombre buscado, y los añade a un audiostreamrandomizer que devuelve
 func createBankElement(bankName : String):
-	var bankElement := AudioStreamRandomizer.new()
+	var bankElement = AudioStreamRandomizer.new()
 	var fileToSearch : String = "narr_" + bankName + "_"
 	var narratorPath := "res://Assets/SFX/Narrador/"
 	
 	for fileName in DirAccess.get_files_at(narratorPath):
-		if fileName.contains(fileToSearch) && !fileName.contains("import"):
-			bankElement.add_stream(-1, load(narratorPath+fileName))
+		if fileName.contains(fileToSearch):
+			bankElement.add_stream(-1, ResourceLoader.load(narratorPath+fileName.trim_suffix(".import")))
 	return bankElement
 
 func createSimpleBank(bankName):
