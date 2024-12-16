@@ -1,0 +1,217 @@
+[gd_scene load_steps=5 format=3 uid="uid://deawggr4gho3u"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_qyocb"]
+[ext_resource type="Script" path="res://debug_menu.gd" id="1_vl0u6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jp2gv"]
+bg_color = Color(0, 0, 0, 0.443137)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8bmb"]
+bg_color = Color(0.05, 0.05, 0.05, 1)
+
+[node name="DebugMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qyocb")
+script = ExtResource("1_vl0u6")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 916.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jp2gv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Inmortals" type="CheckBox" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MONIGOTES INMORTALES
+"
+
+[node name="SkipCards" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SALTEAR ANIMACIÓN CARTAS"
+
+[node name="PausarDado" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "PAUSAR DADO
+"
+
+[node name="ChipDrop" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "DROP CHIP"
+
+[node name="misc" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="EMPEZAR" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="delobby" type="Button" parent="PanelContainer/VBoxContainer/EMPEZAR"]
+layout_mode = 2
+text = "A LOBBY"
+
+[node name="dearena" type="Button" parent="PanelContainer/VBoxContainer/EMPEZAR"]
+layout_mode = 2
+text = "A ARENA"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/EMPEZAR"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8bmb")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/EMPEZAR/PanelContainer"]
+layout_mode = 2
+text = "CANT. JUGADORES"
+
+[node name="CantidadJugadores" type="OptionButton" parent="PanelContainer/VBoxContainer/EMPEZAR"]
+unique_name_in_owner = true
+layout_mode = 2
+icon_alignment = 2
+selected = 1
+item_count = 6
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+popup/item_5/text = "6"
+popup/item_5/id = 5
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/EMPEZAR"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n8bmb")
+
+[node name="NO EMPEZAR" type="CheckBox" parent="PanelContainer/VBoxContainer/EMPEZAR/PanelContainer2"]
+layout_mode = 2
+text = "NO EMPEZAR RONDA"
+
+[node name="SpawnMonigote" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Spawn" type="Button" parent="PanelContainer/VBoxContainer/SpawnMonigote"]
+layout_mode = 2
+text = "SPAWN MONIGOTE"
+
+[node name="ListaMonigotes" type="OptionButton" parent="PanelContainer/VBoxContainer/SpawnMonigote"]
+layout_mode = 2
+icon_alignment = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "TODOS"
+popup/item_0/id = 6
+popup/item_1/text = "Marta"
+popup/item_1/id = 1
+popup/item_2/text = "Male"
+popup/item_2/id = 1
+popup/item_3/text = "Pedro"
+popup/item_3/id = 2
+popup/item_4/text = "Tomi"
+popup/item_4/id = 3
+popup/item_5/text = "Juan"
+popup/item_5/id = 4
+popup/item_6/text = "Fran"
+popup/item_6/id = 5
+
+[node name="MatarMonigote" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Kill" type="Button" parent="PanelContainer/VBoxContainer/MatarMonigote"]
+layout_mode = 2
+text = "MATAR MONIGOTE
+"
+
+[node name="ListaMonigotes" type="OptionButton" parent="PanelContainer/VBoxContainer/MatarMonigote"]
+layout_mode = 2
+icon_alignment = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "Marta"
+popup/item_1/text = "Male"
+popup/item_1/id = 1
+popup/item_2/text = "Pedro"
+popup/item_2/id = 2
+popup/item_3/text = "Tomi"
+popup/item_3/id = 3
+popup/item_4/text = "Juan"
+popup/item_4/id = 4
+popup/item_5/text = "Fran"
+popup/item_5/id = 5
+
+[node name="QueGaneMonigote" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Win" type="Button" parent="PanelContainer/VBoxContainer/QueGaneMonigote"]
+layout_mode = 2
+text = "HACER QUE GANE"
+
+[node name="ListaMonigotes" type="OptionButton" parent="PanelContainer/VBoxContainer/QueGaneMonigote"]
+layout_mode = 2
+icon_alignment = 2
+selected = 0
+item_count = 6
+popup/item_0/text = "Marta"
+popup/item_1/text = "Male"
+popup/item_1/id = 1
+popup/item_2/text = "Pedro"
+popup/item_2/id = 2
+popup/item_3/text = "Tomi"
+popup/item_3/id = 3
+popup/item_4/text = "Juan"
+popup/item_4/id = 4
+popup/item_5/text = "Fran"
+popup/item_5/id = 5
+
+[node name="FX" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="FX" type="Button" parent="PanelContainer/VBoxContainer/FX"]
+layout_mode = 2
+text = "CAUSAR EFECTO"
+
+[node name="ListaFX" type="OptionButton" parent="PanelContainer/VBoxContainer/FX"]
+layout_mode = 2
+icon_alignment = 2
+
+[node name="APUESTA" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Apuesta" type="Button" parent="PanelContainer/VBoxContainer/APUESTA"]
+layout_mode = 2
+text = "PRÓXIMA APUESTA"
+
+[node name="ListaApuestas" type="OptionButton" parent="PanelContainer/VBoxContainer/APUESTA"]
+layout_mode = 2
+icon_alignment = 2
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/PanelContainer/Inmortals" to="." method="_on_inmortals_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/SkipCards" to="." method="_on_skip_cards_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/PausarDado" to="." method="_on_pausardado_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/ChipDrop" to="." method="_on_chipdrop_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/EMPEZAR/delobby" to="." method="_on_delobby_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/EMPEZAR/dearena" to="." method="_on_dearena_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/SpawnMonigote/Spawn" to="." method="_on_spawn_button_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/MatarMonigote/Kill" to="." method="_on_kill_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/QueGaneMonigote/Win" to="." method="_on_win_button_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/FX/FX" to="." method="_on_win_button_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/APUESTA/Apuesta" to="." method="_on_win_button_button_up"]

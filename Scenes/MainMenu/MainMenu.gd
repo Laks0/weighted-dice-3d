@@ -4,6 +4,7 @@ extends Control
 var dijoTimba := false
 
 func _ready():
+	DebugMenu.is_in_arena = false
 	SoundtrackHandler.playTrack()
 	for i in range(BetHandler.bets.size()):
 		var bet : Bet = BetHandler.bets[i]
@@ -50,14 +51,17 @@ func _on_start_button_pressed():
 	
 	if $DebugVars/StraightToArena.button_pressed:
 		PlayerHandler.createDebugPlayers($DebugVars/PlayerN.value)
-		DebugVars.straigtToArena = true
+		DebugVars.straigthToArena = true
 		get_tree().change_scene_to_file("res://Scenes/Arena/Arena.tscn")
 		return
 	
 	get_tree().change_scene_to_packed(startScene)
 
 func _input(event):
-	if event.is_pressed() and not event is InputEventMouse:
+	if event.is_action_pressed("ui_debug"):
+		#DebugMenu.toggleMenu()
+		$DebugVars.visible = !$DebugVars.visible
+	elif event.is_pressed() and not event is InputEventMouse:
 		var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 		tween.tween_property($StartText, "position:x", -500, .5)
 		_on_start_button_pressed()

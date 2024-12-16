@@ -1,6 +1,6 @@
 extends Node
 
-var straigtToArena : bool = false
+var straigthToArena : bool = false
 
 var onlyBet : Bet = null
 var onlyEffect : String = ""

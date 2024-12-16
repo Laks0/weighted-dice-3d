@@ -4,7 +4,7 @@
 
 [resource]
 default_font = ExtResource("1_x4ft0")
-default_font_size = 24
+default_font_size = 32
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 9
 HBoxContainer/constants/separation = 25
