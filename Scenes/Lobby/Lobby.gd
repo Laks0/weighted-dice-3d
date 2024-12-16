@@ -41,7 +41,7 @@ func positionMonigotes(mons : Array[Monigote]) -> void:
 		)
 
 func _ready():
-	if DebugVars.straigtToArena:
+	if DebugVars.straigthToArena:
 		maxLobbyTime = 0
 	
 	var i = 0

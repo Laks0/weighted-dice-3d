@@ -27,6 +27,7 @@ var gameRunning := false
 
 func _ready():
 	startNewGame()
+	DebugMenu.is_in_arena = true
 
 func startNewGame():
 	$Effects.pickEffects()
