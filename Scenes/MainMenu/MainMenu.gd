@@ -1,6 +1,7 @@
 extends Control
 
 @export var startScene : PackedScene
+var dijoTimba := false
 
 func _ready():
 	SoundtrackHandler.playTrack()
@@ -27,10 +28,12 @@ func _ready():
 	tween.tween_property($GameName, "position:y", 50, 2).as_relative()
 	await get_tree().create_timer(1).timeout
 	Narrator.get_node("VOX").volume_db = -5
-	Narrator.playBank("menu_titulo")
+	if !dijoTimba:
+		Narrator.playBank("menu_titulo")
 func _on_start_button_pressed():
 	Narrator.get_node("VOX").volume_db = -3
 	Narrator.playBank("menu_timba")
+	dijoTimba = true
 	await get_tree().create_timer(1.5).timeout
 	SfxHandler.playSound("buttonSelect")
 	
