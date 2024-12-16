@@ -191,7 +191,6 @@ text = "CAUSAR EFECTO"
 [node name="ListaFX" type="OptionButton" parent="PanelContainer/VBoxContainer/FX"]
 layout_mode = 2
 icon_alignment = 2
-selected = 0
 
 [node name="APUESTA" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
@@ -204,7 +203,6 @@ text = "PRÓXIMA APUESTA"
 [node name="ListaApuestas" type="OptionButton" parent="PanelContainer/VBoxContainer/APUESTA"]
 layout_mode = 2
 icon_alignment = 2
-selected = 0
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/PanelContainer/Inmortals" to="." method="_on_inmortals_button_up"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/SkipCards" to="." method="_on_skip_cards_button_up"]

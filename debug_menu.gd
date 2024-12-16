@@ -4,8 +4,9 @@ var is_in_arena = false
 func _ready() -> void:
 	visible = false
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_debug"):
-		toggleMenu()
+	pass
+	#if Input.is_action_just_pressed("ui_debug"):
+	#	toggleMenu()
 
 
 func toggleMenu():
