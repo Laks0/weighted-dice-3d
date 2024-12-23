@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Pushable
 
 ## Se emite cuando se escapa de un grab
+@warning_ignore("unused_signal")
 signal escaped
 signal beenGrabbed
 signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)

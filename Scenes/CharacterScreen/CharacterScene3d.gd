@@ -1,5 +1,6 @@
 extends Node3D
 
+@warning_ignore("unused_signal")
 signal finishedAnimation
 
 @export var rigidBall : PackedScene

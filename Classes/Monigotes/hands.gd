@@ -26,7 +26,7 @@ func _planePosition() -> Vector2:
 	return direction * (grabDistance if not _canUseGrabBody() else grabBody.grabDistance)
 
 func _handDifference() -> Vector2:
-	return Vector2(-direction.y, direction.x) * (0 if not _canUseGrabBody() else grabBody.grabDistance*.9)
+	return Vector2(-direction.y, direction.x) * (.0 if not _canUseGrabBody() else grabBody.grabDistance*.9)
 
 func _getClosedPositionL() -> Vector3:
 	var planePosition := _planePosition()

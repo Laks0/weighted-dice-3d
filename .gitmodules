@@ -1,0 +1,3 @@
+[submodule "addons/limbo_console"]
+	path = addons/limbo_console
+	url = git@github.com:limbonaut/limbo_console.git

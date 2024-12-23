@@ -2,7 +2,9 @@ extends Node3D
 class_name Briefcase
 
 # Señales que escucha el stageHandler
+@warning_ignore("unused_signal")
 signal monigoteReady(mon)
+@warning_ignore("unused_signal")
 signal monigoteUnready(mon)
 
 @export var lobbyOutAnimationPlayer : AnimationPlayer

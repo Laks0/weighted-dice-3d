@@ -1,6 +1,7 @@
 extends Node3D
 class_name Arena
 
+@warning_ignore("unused_signal")
 signal effectStarted(effect)
 signal gameStarted
 signal gameEnded(winner) # winner : playerId

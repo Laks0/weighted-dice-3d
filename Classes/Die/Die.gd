@@ -1,10 +1,13 @@
 extends RigidBody3D
 class_name Die
 
+@warning_ignore("unused_signal")
 signal rolled(n)
 ## Se llama cuando el dado se subió al cubilete
+@warning_ignore("unused_signal")
 signal onCubilete
 ## Se llama cuando el cubilete suelta el dado
+@warning_ignore("unused_signal")
 signal dropped
 
 var prepareArrow : AnimatedSprite3D

@@ -102,10 +102,10 @@ func onTransitionFrameChanged():
 func onTransitionAnimationFinished():
 	$Transition.visible = false
 
-func onVirtualKeyboardCharacterWritten(char):
+func onVirtualKeyboardCharacterWritten(c):
 	if len(playerName) >= maxNameLength:
 		return
-	playerName += char
+	playerName += c
 
 func onVirtualKeyboardDeleteCharacter():
 	if len(playerName) > 0:

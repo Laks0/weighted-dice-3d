@@ -2,9 +2,12 @@ extends Pushable
 class_name Monigote
 
 signal wasHurt
+@warning_ignore("unused_signal")
 signal died
 ## Se emite cuando el monigote agarra cualquier pushable
+@warning_ignore("unused_signal")
 signal grab(body)
+@warning_ignore("unused_signal")
 signal hasWon
 
 @export var MAX_SPEED    : float = 7
