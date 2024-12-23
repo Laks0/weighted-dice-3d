@@ -57,7 +57,10 @@ func _on_start_button_pressed():
 	
 	get_tree().change_scene_to_packed(startScene)
 
+var _leaving := false
 func _input(event):
+	if _leaving:
+		return
 	if event.is_action_pressed("ui_debug"):
 		#DebugMenu.toggleMenu()
 		$DebugVars.visible = !$DebugVars.visible
@@ -65,3 +68,4 @@ func _input(event):
 		var tween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 		tween.tween_property($StartText, "position:x", -500, .5)
 		_on_start_button_pressed()
+		_leaving = true
