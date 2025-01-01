@@ -64,10 +64,6 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	# DEBUG
-	if Input.is_action_just_pressed("die"):
-		die()
-	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
 		
