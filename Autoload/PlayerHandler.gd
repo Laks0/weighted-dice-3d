@@ -180,14 +180,3 @@ var skinColors = {
 
 func getSkinColor(skin : Skins) -> Color:
 	return skinColors[skin]
-
-func createDebugPlayers(amount : int) -> void:
-	var skins = Skins.values()
-	for i in range(amount):
-		var skin = skins.pick_random()
-		skins.erase(skin)
-		var controller = Controllers.KB
-		if i == 1:
-			controller = Controllers.KB2
-		
-		createPlayer(controller, skin)

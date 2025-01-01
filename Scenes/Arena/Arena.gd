@@ -30,6 +30,7 @@ func _ready():
 	startNewGame()
 
 func startNewGame():
+	BetHandler.resetGame()
 	$Effects.pickEffects()
 	effects = $Effects.get_children()
 	for e in effects:

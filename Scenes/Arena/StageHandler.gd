@@ -26,9 +26,6 @@ var monigotes : Array[Monigote]
 
 func _ready():
 	await arena.ready
-	createMonigotes()
-	lobby.positionMonigotes(monigotes)
-	lobby.monigoteReady.connect(onLobbyMonigoteReady)
 	
 	betDisplay.allPlayersReady.connect(goToArena)
 	
@@ -40,6 +37,13 @@ func _ready():
 	arena.setTableRender(false)
 	# Las paredes de la arena tienen que empezar desabilitadas para poder tener monigotes fuera
 	arena.setWallsDisabled(true)
+	
+	createMonigotes()
+	lobby.positionMonigotes(monigotes)
+	lobby.monigoteReady.connect(onLobbyMonigoteReady)
+	
+	if Debug.vars.skipLobby:
+		lobbyToArena()
 
 ## Crea los monigotes necesarios y los pone en Arena.
 ## IMPORTANTE: para evitar problemas de path, los monigotes siempre son hijos directos de Arena
@@ -93,6 +97,25 @@ func goToArena():
 	arena.startArena()
 	currentStage = Stages.ARENA
 	inArena.emit()
+
+
+func lobbyToArena():
+	for m : Monigote in monigotes:
+		m.freeze()
+		
+		# Hacemos el salto del último por separado para poder hacer un wait
+		if m == monigotes[0]:
+			continue
+		
+		jumpMonigoteTo(m, chipHolder.getPositionForMonigote(m.player.id)).finished.connect(
+			chipHolder.ownMonigote.bind(m)
+		)
+	
+	await jumpMonigoteTo(monigotes[0], chipHolder.getPositionForMonigote(monigotes[0].player.id)).finished
+	chipHolder.ownMonigote(monigotes[0])
+	
+	$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
+	$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))
 
 ## Cuánto se mueve en y el bet display para que no moleste a la cámara del leaderboard
 var betDisplayDisplacement := -1.5
@@ -166,19 +189,4 @@ func onLobbyMonigoteReady(mon : Monigote):
 	if lobbyMonigotesReady < PlayerHandler.getPlayersAlive().size():
 		return
 	
-	for m : Monigote in monigotes:
-		m.freeze()
-		
-		# Hacemos el salto del último por separado para poder hacer un wait
-		if m == mon:
-			continue
-		
-		jumpMonigoteTo(m, chipHolder.getPositionForMonigote(m.player.id)).finished.connect(
-			chipHolder.ownMonigote.bind(m)
-		)
-	
-	await jumpMonigoteTo(mon, chipHolder.getPositionForMonigote(mon.player.id)).finished
-	chipHolder.ownMonigote(mon)
-	
-	$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
-	$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))
+	lobbyToArena()

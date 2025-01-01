@@ -4,6 +4,7 @@ var vars := {
 	"onlyBet" : null,
 	"onlyEffect" : "",
 	"skipCardAnimation" : false,
+	"skipLobby" : false,
 	"dontStartGame" : false,
 	"dropAllChips" : false,
 	"inmortalMonigotes" : false
@@ -19,6 +20,8 @@ func _ready():
 	LimboConsole.add_argument_autocomplete_source("matarMonigote", 1, func ():
 		return get_tree().get_nodes_in_group("Monigotes")\
 			.map(func(m : Monigote): return m.player.name))
+	
+	LimboConsole.register_command(newGame, "nuevaPartida", "Empieza una nueva partida generando una cantidad de jugadores")
 
 func _setVar(varName : String, val):
 	if varName == "onlyBet" or varName == "onlyEffect":
@@ -43,6 +46,26 @@ func _killMonigote(playerName : String = ""):
 		return
 	for m : Monigote in monigotes:
 		m.die()
+
+func newGame(players : int, skipLobby := true, skipCards := true):
+	PlayerHandler.deleteAllPlayers()
+	_createDebugPlayers(players)
+	vars.skipCardAnimation = skipCards
+	vars.skipLobby = skipLobby
+	get_tree().change_scene_to_file("res://Scenes/LoadingScreen/LoadingScreen.tscn")
+	LimboConsole.close_console()
+
+func _createDebugPlayers(amount : int) -> void:
+	amount = min(6, amount)
+	var skins = PlayerHandler.Skins.values()
+	for i in range(amount):
+		var skin = skins.pick_random()
+		skins.erase(skin)
+		var controller = Controllers.KB
+		if i == 1:
+			controller = Controllers.KB2
+		
+		PlayerHandler.createPlayer(controller, skin)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):
