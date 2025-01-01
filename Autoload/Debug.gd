@@ -2,7 +2,7 @@ extends Node
 
 var vars := {
 	"onlyBet" : null,
-	"onlyEffect" : "",
+	"ww" : "",
 	"skipCardAnimation" : false,
 	"skipLobby" : false,
 	"dontStartGame" : false,
