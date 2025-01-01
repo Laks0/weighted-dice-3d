@@ -22,6 +22,11 @@ func _ready():
 			.map(func(m : Monigote): return m.player.name))
 	
 	LimboConsole.register_command(newGame, "nuevaPartida", "Empieza una nueva partida generando una cantidad de jugadores")
+	
+	LimboConsole.register_command(_setNewBet, "unicaApuesta", "Establece una apuesta como la única posible y empieza la partida desde la ronda 1")
+	LimboConsole.add_argument_autocomplete_source("unicaApuesta", 1, func ():
+		return BetHandler.bets.map(func(b : Bet): return b.betName))
+	LimboConsole.register_command(_listBets, "listarApuestas", "Lista los nombres de apuesta posibles")
 
 func _setVar(varName : String, val):
 	if varName == "onlyBet" or varName == "onlyEffect":
@@ -66,6 +71,17 @@ func _createDebugPlayers(amount : int) -> void:
 			controller = Controllers.KB2
 		
 		PlayerHandler.createPlayer(controller, skin)
+
+func _setNewBet(betName : String):
+	for b : Bet in BetHandler.bets:
+		if b.betName != betName:
+			continue
+		vars.onlyBet = b
+		break
+
+func _listBets():
+	for b : Bet in BetHandler.bets:
+		LimboConsole.info(b.betName)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):

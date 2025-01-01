@@ -42,6 +42,8 @@ func startGame(arena : Arena):
 
 func resetGame():
 	round = 0
+	if Debug.vars.onlyBet != null:
+		round = 1
 	currentBet = null
 	_lastBet = null
 
