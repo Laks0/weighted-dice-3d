@@ -155,7 +155,7 @@ func knockbackFrom(pos : Vector3, force : float):
 	knockback(pos2d.direction_to(selfPos2d) * force)
 
 func hurt() -> bool:
-	if invincible or DebugVars.inmortalMonigotes:
+	if invincible or Debug.vars.inmortalMonigotes:
 		return false
 	
 	health -= 1

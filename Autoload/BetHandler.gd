@@ -49,8 +49,8 @@ func resetGame():
 func startRound() -> void:
 	round += 1
 	
-	if DebugVars.onlyBet != null:
-		currentBet = DebugVars.onlyBet
+	if Debug.vars.onlyBet != null:
+		currentBet = Debug.vars.onlyBet
 		currentBet.startRound()
 		pickedNewBet.emit()
 		return

@@ -43,9 +43,6 @@ func positionMonigotes(mons : Array[Monigote]) -> void:
 		)
 
 func _ready():
-	if DebugVars.straigthToArena:
-		maxLobbyTime = 0
-	
 	var i = 0
 	for id in PlayerHandler.getPlayersAliveById():
 		var chip = readyChipScene.instantiate()

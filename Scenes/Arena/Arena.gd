@@ -28,7 +28,6 @@ var gameRunning := false
 
 func _ready():
 	startNewGame()
-	DebugMenu.is_in_arena = true
 
 func startNewGame():
 	$Effects.pickEffects()
@@ -60,7 +59,7 @@ func setTableRender(val : bool) -> void:
 
 # Se llama para empezar la ronda de juego
 func startArena():
-	if BetHandler.round == 1 and not DebugVars.skipCardAnimation:
+	if BetHandler.round == 1 and not Debug.vars.skipCardAnimation:
 		$MultipleResCamera.goToCamera($CardsCamera, .1)
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
@@ -74,7 +73,7 @@ func startArena():
 	for mon in monigotes:
 		mon.unfreeze()
 	
-	if DebugVars.dontStartGame:
+	if Debug.vars.dontStartGame:
 		return
 	
 	# Delay hasta que entra el dado

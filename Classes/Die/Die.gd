@@ -82,7 +82,7 @@ var effectOdds : Array[float] = [.2, .2, .2, .2, .2]
 var notChosenBonus := .05
 
 func pickNewEffect(oldEffect : int) -> int:
-	if DebugVars.onlyEffect != "":
+	if Debug.vars.onlyEffect != "":
 		return 0
 	
 	var result = oldEffect

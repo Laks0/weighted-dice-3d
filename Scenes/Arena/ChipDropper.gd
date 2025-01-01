@@ -8,12 +8,12 @@ extends Node
 @onready var arena : Arena = get_parent()
 
 func onGameStarted():
-	if randf() > dropChance and not DebugVars.dropAllChips:
+	if randf() > dropChance and not Debug.vars.dropAllChips:
 		return
 	
 	# La ficha va a aparecer entre el segundo 5 y el 15
 	var time := 5 + 10 * randf()
-	if DebugVars.dropAllChips:
+	if Debug.vars.dropAllChips:
 		time = 0
 	
 	await get_tree().create_timer(time).timeout
