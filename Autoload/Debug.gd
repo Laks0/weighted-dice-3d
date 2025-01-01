@@ -56,11 +56,12 @@ func _killMonigote(playerName : String = ""):
 	for m : Monigote in monigotes:
 		m.die()
 
-func newGame(players : int, skipLobby := true, skipCards := true):
+func newGame(players : int, skipLobby := true, skipCards := true, dontStartGame := false):
 	PlayerHandler.deleteAllPlayers()
 	_createDebugPlayers(players)
 	vars.skipCardAnimation = skipCards
 	vars.skipLobby = skipLobby
+	vars.dontStartGame = dontStartGame
 	get_tree().change_scene_to_file("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 	LimboConsole.close_console()
 
