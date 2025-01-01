@@ -27,6 +27,10 @@ func _ready():
 	LimboConsole.add_argument_autocomplete_source("unicaApuesta", 1, func ():
 		return BetHandler.bets.map(func(b : Bet): return b.betName))
 	LimboConsole.register_command(_listBets, "listarApuestas", "Lista los nombres de apuesta posibles")
+	
+	LimboConsole.register_command(_printEffects, "listarEfectos", "Los nombres de los efectos")
+	LimboConsole.register_command(_setOnlyEffect, "unicoEfecto", "Pone un efecto como el único posible (para la lista de posibles usar listarEfectos)")
+	LimboConsole.add_argument_autocomplete_source("unicoEfecto", 1, func(): return _getEffectList())
 
 func _setVar(varName : String, val):
 	if varName == "onlyBet" or varName == "onlyEffect":
@@ -82,6 +86,27 @@ func _setNewBet(betName : String):
 func _listBets():
 	for b : Bet in BetHandler.bets:
 		LimboConsole.info(b.betName)
+
+func _getEffectList() -> Array[String]:
+	var arr : Array[String] = []
+	for dir in DirAccess.get_directories_at("res://Classes/Effects"):
+		for file in DirAccess.get_files_at("res://Classes/Effects/%s" % dir):
+			if not file.contains("Effect"):
+				continue
+			arr.push_back(file.split("Effect")[0])
+			break
+	return arr
+
+func _printEffects():
+	for s in _getEffectList():
+		LimboConsole.info(s)
+
+func _setOnlyEffect(effectName : String):
+	for dir in DirAccess.get_directories_at("res://Classes/Effects"):
+		for file in DirAccess.get_files_at("res://Classes/Effects/%s" % dir):
+			if file.begins_with(effectName) and file.ends_with(".tscn"):
+				vars.onlyEffect = "res://Classes/Effects/" + dir + "/" + file
+				return
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):
