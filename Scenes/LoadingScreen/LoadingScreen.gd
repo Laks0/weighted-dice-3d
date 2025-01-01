@@ -29,10 +29,13 @@ func _ready():
 
 func _process(_delta):
 	var progress = []
-	ResourceLoader.load_threaded_get_status(arenaPath, progress)
+	var status := ResourceLoader.load_threaded_get_status(arenaPath, progress)
 	
 	$ProgressBar.value = floor(progress[0] * 100)
 	
-	if progress[0] == 1:
+	if status == ResourceLoader.THREAD_LOAD_LOADED:
 		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(arenaPath))
+		return
+	if status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		push_error("Error al cargar la escena")
