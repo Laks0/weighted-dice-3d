@@ -305,6 +305,7 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.300812, 0.00160217)
 shape = SubResource("BoxShape3D_8g2ci")
 
+[connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]

@@ -11,12 +11,6 @@ func _physics_process(_delta):
 		mon.grabDir = pointing
 		$GrabArea.rotation.y = -pointing.angle()
 
-func canBeGrabbed(grabber):
-	return (mon != grabber) and (not mon.invincible)
-
-func canGrab():
-	return $GrabCooldown.is_stopped() and (not mon.grabbed) and (not mon.grabbing)
-
 func attemptGrab():
 	if not $GrabCooldown.is_stopped():
 		return
@@ -48,7 +42,7 @@ func onPushed():
 	$GrabCooldown.start()
 	hands.go_to_rest($GrabCooldown.wait_time)
 
-func onGrabbed():
+func onMonigoteGrabbed():
 	mon.escapeMovements = 0
 	mon.invincible = true
 

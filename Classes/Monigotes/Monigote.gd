@@ -217,17 +217,3 @@ func unfreeze():
 func dance():
 	$AnimatedSprite.dance()
 
-#####################
-# FUNCIONES CEDIDAS #
-#####################
-## Funciones de la clase que se le cede el funcionamiento a otro script
-
-func canBeGrabbed(grabber) -> bool:
-	return super(grabber) and $Grabbing.canBeGrabbed
-
-func canGrab() -> bool:
-	return $Grabbing.canGrab()
-
-func onGrabbed():
-	$Grabbing.onGrabbed()
-	super()

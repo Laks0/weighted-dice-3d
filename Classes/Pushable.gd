@@ -32,15 +32,26 @@ var color := Color.WHITE
 
 var timer : Timer = Timer.new() # Timer para el grab
 
+var grabbingPaused     := false
+var beingGrabbedPaused := false
+
 func _ready():
 	timer.one_shot = true
 	add_child(timer)
 
+## Pausa por un frame la capacidad de ser agarrado
+func pauseBeingGrabbed():
+	beingGrabbedPaused = true
+
+## Pausa por un frame la capacidad de agarrar
+func pauseGrabbing():
+	grabbingPaused = true
+
 func canBeGrabbed(_grabber) -> bool:
-	return not grabbed
+	return not (grabbed or beingGrabbedPaused)
 
 func canGrab() -> bool:
-	return true
+	return not (grabbed or grabbing or grabbingPaused)
 
 func onGrabbed():
 	grabbed = true
@@ -125,6 +136,10 @@ func _physics_process(delta):
 	# Volver al valor inicial de y
 	velocity.y = y_vel
 	move_and_slide()
+
+func _process(_delta):
+	beingGrabbedPaused = false
+	grabbingPaused = false
 
 func onGrabbing():
 	if not is_instance_valid(grabBody):
