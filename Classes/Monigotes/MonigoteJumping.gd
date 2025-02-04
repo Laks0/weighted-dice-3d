@@ -34,6 +34,8 @@ func _process(delta):
 func jump():
 	if jumping or not $JumpCooldown.is_stopped():
 		return
+	if mon.grabbed:
+		return
 	
 	mon.stun()
 	mon.accelerateUp(verticalInitialSpeed)
