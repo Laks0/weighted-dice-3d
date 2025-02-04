@@ -83,11 +83,11 @@ func editProcess():
 
 func controllersProcess():
 	if _controller == Controllers.KB:
-		%ControlsText.text = "Espacio para agarrar\nspam de espacio para escaparse\nwasd para moverse"
+		%ControlsText.text = "V para agarrar\nspam de V para escaparse\nB para saltar\nwasd para moverse"
 	elif _controller == Controllers.KB2:
-		%ControlsText.text = "Altgr para agarrar\nspam de altgr para escaparse\nflechas para moverse"
+		%ControlsText.text = "Altgr para agarrar\nspam de altgr para escaparse\n- para saltar\nflechas para moverse"
 	else:
-		%ControlsText.text = "X para agarrar\nspam de X para escaparse\njoystick/dpad para moverse"
+		%ControlsText.text = "A para agarrar\nspam de A para escaparse\nX para saltar\njoystick/dpad para moverse"
 
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):
