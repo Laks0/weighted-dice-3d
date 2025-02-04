@@ -55,7 +55,7 @@ func _ready():
 func arenaReady():
 	$AnimatedSprite.arenaReady()
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed(actions.grab):
 		if grabbed:
 			attemptEscape()
@@ -65,8 +65,7 @@ func _process(_delta):
 	if grabbing and Input.is_action_just_released(actions.grab):
 		push()
 	
-	if stageHandler.currentStage != StageHandler.Stages.ARENA:
-		return
+	super(delta)
 
 func _physics_process(delta):
 	if player.inputController != Controllers.AI:
@@ -216,4 +215,3 @@ func unfreeze():
 
 func dance():
 	$AnimatedSprite.dance()
-

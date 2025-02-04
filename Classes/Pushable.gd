@@ -32,26 +32,28 @@ var color := Color.WHITE
 
 var timer : Timer = Timer.new() # Timer para el grab
 
-var grabbingPaused     := false
-var beingGrabbedPaused := false
+var _grabbingPausedFrames     : int = 0
+var _beingGrabbedPausedFrames : int = 0
+## La cantidad de frames que se pausa el agarre cuando se llama a pauseGrabbing o pauseBeingGrabbed
+const _PAUSE_FRAMES           : int = 5
 
 func _ready():
 	timer.one_shot = true
 	add_child(timer)
 
-## Pausa por un frame la capacidad de ser agarrado
+## Pausa por una cantidad corta de frames la capacidad de ser agarrado
 func pauseBeingGrabbed():
-	beingGrabbedPaused = true
+	_beingGrabbedPausedFrames = _PAUSE_FRAMES
 
-## Pausa por un frame la capacidad de agarrar
+## Pausa por una cantidad corta de frames la capacidad de agarrar
 func pauseGrabbing():
-	grabbingPaused = true
+	_grabbingPausedFrames = _PAUSE_FRAMES
 
 func canBeGrabbed(_grabber) -> bool:
-	return not (grabbed or beingGrabbedPaused)
+	return _beingGrabbedPausedFrames <= 0 and not grabbed
 
 func canGrab() -> bool:
-	return not (grabbed or grabbing or grabbingPaused)
+	return _grabbingPausedFrames <= 0 and not (grabbed or grabbing)
 
 func onGrabbed():
 	grabbed = true
@@ -138,8 +140,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(_delta):
-	beingGrabbedPaused = false
-	grabbingPaused = false
+	_beingGrabbedPausedFrames = max(0, _beingGrabbedPausedFrames - 1)
+	_grabbingPausedFrames = max(0, _grabbingPausedFrames - 1)
 
 func onGrabbing():
 	if not is_instance_valid(grabBody):

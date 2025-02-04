@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var mon : Monigote = get_parent()
-@export var verticalInitialSpeed   : float = 7
+@export var verticalInitialSpeed   : float = 5.5
 @export var horizontalInitialSpeed : float = 15
 @export var verticalAcceleration   : float = 22
 @export var horizontalAcceleration : float = 40
@@ -13,6 +13,11 @@ var stillAccelerating := false
 var jumpDirection : Vector2
 
 func _process(delta):
+	if jumping:
+		mon.pauseBeingGrabbed()
+	if stillAccelerating:
+		mon.pauseGrabbing()
+	
 	if not jumping and Input.is_action_just_pressed(mon.actions.jump):
 		jump()
 	
