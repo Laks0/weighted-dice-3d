@@ -15,7 +15,7 @@ func _on_body_entered(body):
 	if not body is Monigote:
 		return
 	var mon := body as Monigote
-	if mon.invincible:
+	if mon.invincible or body.velocity.y > 0:
 		return
 	
 	mon.resetMovement()

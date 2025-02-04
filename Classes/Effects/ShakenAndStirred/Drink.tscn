@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bmgs1d1g0hxqw" path="res://Classes/Effects/ShakenAndStirred/Liquid.png" id="2_djdc4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rdaei"]
-height = 1.22532
+height = 0.428238
 radius = 0.582394
 
 [node name="Drink" type="Area3D" groups=["Drinks"]]
@@ -24,7 +24,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57269, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200922, 0)
 shape = SubResource("CylinderShape3D_rdaei")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

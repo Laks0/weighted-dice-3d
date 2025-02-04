@@ -15,7 +15,7 @@ func _on_body_entered(body):
 	if not body is Monigote:
 		return
 	
-	if body.drunk:
+	if body.drunk or body.velocity.y > 0:
 		return
 	
 	body.drunk = true

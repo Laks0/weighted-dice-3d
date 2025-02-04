@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var mon : Monigote = get_parent()
-@export var verticalInitialSpeed   : float = 5.5
+@export var verticalInitialSpeed   : float = 7
 @export var horizontalInitialSpeed : float = 15
 @export var verticalAcceleration   : float = 22
 @export var horizontalAcceleration : float = 40
