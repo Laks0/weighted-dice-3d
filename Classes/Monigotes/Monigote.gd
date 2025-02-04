@@ -12,6 +12,7 @@ signal hasWon
 
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
+@export var GRAVITY_ACCELERATION     : float = 50
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
 var escapeMovements : int = 0
 
@@ -66,8 +67,6 @@ func _process(_delta):
 	
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
-		
-	position.y = Globals.SPRITE_HEIGHT
 
 func _physics_process(delta):
 	if player.inputController != Controllers.AI:
@@ -95,8 +94,8 @@ func _physics_process(delta):
 		moveVelocity.y = move_toward(moveVelocity.y, 0, FRICTION * delta)
 	
 	var vel2d : Vector2 = moveVelocity + unclampedVelocity
-	
-	velocity = Vector3(vel2d.x, -40*delta, vel2d.y)
+
+	velocity = Vector3(vel2d.x, velocity.y - (GRAVITY_ACCELERATION * delta), vel2d.y)
 	
 	move_and_slide()
 
@@ -118,7 +117,7 @@ func attemptEscape():
 func onGrabbingEscaped(body : Pushable):
 	var bodyPos2d = Vector2(body.position.x, body.position.z)
 	var pos2d = Vector2(position.x, position.z)
-	knockback(bodyPos2d.direction_to(pos2d) * 14)
+	applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
@@ -130,7 +129,7 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 
 func push():
 	moveVelocity = Vector2.ZERO
-	knockback(-grabDir * pow(pushFactor, 2) * 11)
+	applyVelocity(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
 	$Grabbing.onPushed()
 	super()
@@ -141,14 +140,22 @@ func bounce(normal : Vector3):
 	moveVelocity = moveVelocity.bounce(normal2)
 	velocity = velocity.bounce(normal)
 
-func knockback(vel : Vector2):
+## Establece una velocidad aplicada externamente, deteniendo otras velocidades establecidas que no sean internas al monigote
+func applyVelocity(vel : Vector2):
 	unclampedVelocity = vel
 
-func knockbackFrom(pos : Vector3, force : float):
+## Aplica una velocidad externa sin detener otras aplicadas antes
+func applyForce(vel : Vector2):
+	unclampedVelocity += vel
+
+func applyVelocityFrom(pos : Vector3, force : float):
 	var pos2d = Vector2(pos.x, pos.z)
 	var selfPos2d = Vector2(position.x, position.z)
 	
-	knockback(pos2d.direction_to(selfPos2d) * force)
+	applyVelocity(pos2d.direction_to(selfPos2d) * force)
+
+func accelerateUp(accel : float):
+	velocity.y += accel
 
 func hurt() -> bool:
 	if invincible or Debug.vars.inmortalMonigotes:
@@ -184,11 +191,9 @@ func die():
 	$DeathParticles.connect("finished", queue_free)
 
 func stun():
-	if !$StunCooldown.is_stopped():
-		return
-	
-	$StunCooldown.start()
 	stunned = true
+func unstun():
+	stunned = false
 
 func makeInvincible():
 	invincible = true
@@ -208,9 +213,6 @@ func freeze():
 func unfreeze():
 	set_process(true)
 	set_physics_process(true)
-
-func _on_stun_cooldown_timeout():
-	stunned = false
 
 func dance():
 	$AnimatedSprite.dance()

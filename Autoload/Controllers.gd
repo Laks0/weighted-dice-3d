@@ -12,6 +12,7 @@ var controllers = {
 		"ui_ok": "ui_ok_kb",
 		"ui_cancel": "ui_cancel_kb",
 		"ui_edit": "ui_edit_kb",
+		"jump": "jump_kb",
 	},
 	KB2: {
 		"up": "move_up_kb2",
@@ -22,6 +23,7 @@ var controllers = {
 		"ui_ok": "ui_ok_kb2",
 		"ui_cancel": "ui_cancel_kb2",
 		"ui_edit": "ui_edit_kb2",
+		"jump": "jump_kb2",
 	},
 	AI: {
 		"up": "empty",
@@ -32,6 +34,7 @@ var controllers = {
 		"ui_ok": "empty",
 		"ui_cancel": "empty",
 		"ui_edit": "empty",
+		"jump": "empty",
 	},
 }
 
@@ -59,6 +62,10 @@ func addController(id : int):
 	InputMap.add_action("grab_d%s" % id)
 	controllers[id]["grab"] = "grab_d%s" % id
 	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
+
+	InputMap.add_action("jump_d%s" % id)
+	controllers[id]["jump"] = "jump_d%s" % id
+	addButtonToAction("jump_d%s" % id, JOY_BUTTON_X, id)
 	
 	# Botones de UI
 	InputMap.add_action("ui_ok_d%s" % id)

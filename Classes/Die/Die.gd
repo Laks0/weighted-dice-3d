@@ -74,7 +74,7 @@ func _on_area_3d_body_entered(body):
 	
 	if body is Monigote:
 		body.hurt()
-		body.knockback(Vector2(linear_velocity.x, linear_velocity.z) * 2)
+		body.applyVelocity(Vector2(linear_velocity.x, linear_velocity.z) * 2)
 
 ## Los pesos de cada efecto hasta el 5
 var effectOdds : Array[float] = [.2, .2, .2, .2, .2]

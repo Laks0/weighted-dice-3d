@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=45 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dlpq50y3uenix" path="res://Assets/MonigoteSkins/MonigoteHand.png" id="23_oeq53"]
 [ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Script" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
+[ext_resource type="Script" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -50,7 +51,7 @@ points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 0.2, -0.5, 1, 0, -0.5, -0.
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
-height = 0.485603
+height = 0.4202
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7joh5"]
 particle_flag_rotate_y = true
@@ -98,6 +99,9 @@ material = SubResource("StandardMaterial3D_sf838")
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
+size = Vector3(0.29306, 0.176086, 0.236786)
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -196,6 +200,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="Grabbing"]
+visible = false
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grabbing/GrabArea"]
@@ -230,9 +235,6 @@ shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]
 wait_time = 2.0
-one_shot = true
-
-[node name="StunCooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="DeathParticles" type="GPUParticles3D" parent="."]
@@ -285,6 +287,24 @@ explosiveness = 0.06
 process_material = SubResource("ParticleProcessMaterial_l5w31")
 draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 
+[node name="Jumping" type="Node3D" parent="."]
+script = ExtResource("31_nojgr")
+
+[node name="GrabBuffer" type="Timer" parent="Jumping"]
+wait_time = 0.2
+
+[node name="JumpCooldown" type="Timer" parent="Jumping"]
+wait_time = 0.5
+one_shot = true
+
+[node name="FloorArea" type="Area3D" parent="Jumping"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.300812, 0.00160217)
+shape = SubResource("BoxShape3D_8g2ci")
+
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
@@ -296,4 +316,4 @@ draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
-[connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
+[connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
