@@ -103,6 +103,11 @@ func resetMovement() -> void:
 	unclampedVelocity = Vector2.ZERO
 	velocity = Vector3.ZERO
 
+func goMaxSpeed(dir : Vector2) -> void:
+	var vel2d := dir.normalized() * MAX_SPEED
+	velocity.x = vel2d.x
+	velocity.z = vel2d.y
+
 func attemptEscape():
 	$AnimatedSprite.shake()
 	escapeMovements += 1
