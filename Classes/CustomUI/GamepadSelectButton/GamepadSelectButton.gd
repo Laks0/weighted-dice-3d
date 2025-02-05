@@ -7,6 +7,8 @@ signal movedDown
 signal movedLeft
 signal movedRight
 signal pressed
+signal startedFocus
+signal endedFocus
 
 @export var controller : int # Un enum de Controllers
 @export var focused := false
@@ -26,6 +28,10 @@ var canMoveFocus := true
 
 @export var text : String
 
+func _ready():
+	if focused:
+		focus()
+
 func _process(_delta):
 	$Label.text = text
 	if !focused:
@@ -41,6 +47,10 @@ func _process(_delta):
 		texture = focusedTexture
 	else:
 		texture = pressedTexture
+	
+	# No seguir procesando si no está en el juego (para el @tool)
+	if Engine.is_editor_hint():
+		return
 	
 	var actions : Dictionary = Controllers.getActions(controller)
 	
@@ -69,10 +79,12 @@ func _process(_delta):
 
 func unfocus():
 	focused = false
+	endedFocus.emit()
 
 func focus():
 	await get_tree().process_frame
 	focused = true
+	startedFocus.emit()
 
 func changeFocus(newFocus : GamepadSelectButton):
 	unfocus()

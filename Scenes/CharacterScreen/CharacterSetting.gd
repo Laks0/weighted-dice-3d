@@ -38,6 +38,8 @@ func activate(controller : int):
 	await $FromWaitTransition.animation_finished
 	$FromWaitTransition.visible = false
 	%EditNameButton.focus()
+	
+	%ConfigControllers.setControllerId(controller)
 
 func deactivate():
 	active = false
@@ -62,8 +64,6 @@ func _process(_delta):
 		mainProcess()
 	if stage == Stages.NAME_EDIT:
 		editProcess()
-	if stage == Stages.CONTROLLERS:
-		controllersProcess()
 
 func getControllerName() -> String:
 	if _controller < Controllers.KB:
@@ -80,14 +80,6 @@ func mainProcess():
 
 func editProcess():
 	%PlayerNameEditLabel.text = playerName
-
-func controllersProcess():
-	if _controller == Controllers.KB:
-		%ControlsText.text = "Espacio para agarrar\nspam de espacio para escaparse\nwasd para moverse"
-	elif _controller == Controllers.KB2:
-		%ControlsText.text = "Altgr para agarrar\nspam de altgr para escaparse\nflechas para moverse"
-	else:
-		%ControlsText.text = "X para agarrar\nspam de X para escaparse\njoystick/dpad para moverse"
 
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):

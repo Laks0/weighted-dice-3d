@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=84 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="10_60nkq"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="11_731y3"]
 [ext_resource type="Script" path="res://Scenes/CharacterScreen/waiting.gd" id="12_y5xo4"]
+[ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="13_ay5i3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]
 atlas = ExtResource("1_fgyrc")
@@ -42,13 +43,13 @@ font_size = 47
 font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.498039)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m356b"]
-atlas = ExtResource("4_qb4a5")
-region = Rect2(0, 512, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5vv38"]
 atlas = ExtResource("4_qb4a5")
 region = Rect2(0, 576, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m356b"]
+atlas = ExtResource("4_qb4a5")
+region = Rect2(0, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5v3n"]
 atlas = ExtResource("4_qb4a5")
@@ -437,6 +438,7 @@ offset_bottom = 64.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("11_731y3")
 texture = SubResource("AtlasTexture_yt8p0")
 script = ExtResource("1_5if0m")
 
@@ -535,7 +537,7 @@ offset_left = -212.0
 offset_top = -32.0
 offset_right = -148.0
 offset_bottom = 32.0
-texture = SubResource("AtlasTexture_m356b")
+texture = SubResource("AtlasTexture_5vv38")
 focused = true
 downSelect = NodePath("../../HBoxContainer/ControllersButton")
 normalTexture = SubResource("AtlasTexture_m356b")
@@ -664,6 +666,7 @@ text = "JUGAR"
 label_settings = SubResource("LabelSettings_bv6h6")
 
 [node name="NameEdit" type="Control" parent="."]
+visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -830,7 +833,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ControlsStage" type="Control" parent="."]
-visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -839,68 +841,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ControlsText" type="Label" parent="ControlsStage"]
+[node name="ConfigControllers" parent="ControlsStage" instance=ExtResource("13_ay5i3")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("11_731y3")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.498039)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-text = "Espacio para agarrar
-spam de espacio para escaparse
-wasd para moverse"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+offset_left = 25.0
+offset_top = 23.0
+offset_right = -25.0
+offset_bottom = -22.0
 
-[node name="Volver" parent="ControlsStage" instance=ExtResource("3_drg7m")]
-layout_mode = 1
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -73.0
-offset_top = -77.0
-offset_right = -9.0
-offset_bottom = -37.0
-grow_vertical = 0
-texture = SubResource("AtlasTexture_setxt")
-focused = true
-normalTexture = SubResource("AtlasTexture_r0qy1")
-focusedTexture = SubResource("AtlasTexture_setxt")
-pressedTexture = SubResource("AtlasTexture_memns")
-underTexture = SubResource("AtlasTexture_dxwom")
+[node name="VBoxContainer" parent="ControlsStage/ConfigControllers" index="0"]
+offset_left = 48.0
+offset_right = 112.0
+theme_override_constants/separation = -20
 
-[node name="UnderTexture" parent="ControlsStage/Volver" index="2"]
-modulate = Color(1, 1, 1, 0.498039)
-offset_left = -17.0
-offset_top = -17.0
-offset_right = 23.0
-offset_bottom = 23.0
-texture = SubResource("AtlasTexture_dxwom")
-
-[node name="Label2" type="Label" parent="ControlsStage/Volver"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -12.0
-offset_right = 80.0
-offset_bottom = 12.0
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("11_731y3")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-text = "VOLVER"
+[node name="ActionLabel" parent="ControlsStage/ConfigControllers" index="1"]
+offset_left = -204.0
+offset_right = -24.0
+theme_override_font_sizes/font_size = 21
 
 [node name="LockedStage" type="Control" parent="."]
 visible = false
@@ -959,7 +916,7 @@ centered = false
 [connection signal="deleteCharacter" from="NameEdit/VirtualKeyboard" to="." method="onVirtualKeyboardDeleteCharacter"]
 [connection signal="space" from="NameEdit/VirtualKeyboard" to="." method="onVirtualKeyboardCharacterWritten" binds= [" "]]
 [connection signal="pressed" from="ReadyStage/Volver" to="." method="transition" binds= [1]]
-[connection signal="pressed" from="ControlsStage/Volver" to="." method="transition" binds= [1]]
+[connection signal="finished" from="ControlsStage/ConfigControllers" to="." method="transition" binds= [1]]
 [connection signal="animation_finished" from="Transition" to="." method="onTransitionAnimationFinished"]
 [connection signal="frame_changed" from="Transition" to="." method="onTransitionFrameChanged"]
 
@@ -968,4 +925,4 @@ centered = false
 [editable path="MainStage/HBoxContainer/ExitButton"]
 [editable path="MainStage/HBoxContainer/StartButton"]
 [editable path="ReadyStage/Volver"]
-[editable path="ControlsStage/Volver"]
+[editable path="ControlsStage/ConfigControllers"]
