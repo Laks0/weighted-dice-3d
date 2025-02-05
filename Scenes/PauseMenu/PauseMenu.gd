@@ -18,7 +18,6 @@ func _ready():
 	visible = false
 
 func _input(event : InputEvent):
-	print(event.as_text())
 	for id in Controllers.controllers.keys():
 		if not event.is_action_pressed(Controllers.getActions(id)["pause"]):
 			continue

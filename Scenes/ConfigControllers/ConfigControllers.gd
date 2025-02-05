@@ -2,7 +2,7 @@ extends Control
 
 signal finished
 
-var controllerId : int = Controllers.KB
+var controllerId : int = 0
 var actionSelected : String = ""
 
 @export var buttonActionMap : Dictionary
@@ -61,15 +61,31 @@ func singularInputToString(input : InputEvent) -> StringName:
 	
 	return input.as_text()
 
+var actions : Dictionary
+
 func _process(_delta):
-	var actions := Controllers.getActions(controllerId)
+	if editting:
+		%ActionLabel.text = "Apretá algún botón"
+
+		if actionSelected == "up":
+			%ActionLabel.text = "Seleccioná un input para arriba"
+		elif actionSelected == "down":
+			%ActionLabel.text = "Seleccioná un input para abajo"
+		elif actionSelected == "left":
+			%ActionLabel.text = "Seleccioná un input para la izquierda"
+		elif actionSelected == "right":
+			%ActionLabel.text = "Seleccioná un input para la derecha"
+
+		return
+	
+	actions = Controllers.getActions(controllerId)
 	if actions.has(actionSelected):
 		%ActionLabel.text = inputNameFromAction(actions[actionSelected])
 	else:
 		%ActionLabel.text = ""
 	
-	if actionSelected == "Movement":
-		%ActionLabel.text += "Arriba\n"+inputNameFromAction(actions.up)+"\n"
+	if actionSelected == "up":
+		%ActionLabel.text  = "Arriba\n"+inputNameFromAction(actions.up)+"\n"
 		%ActionLabel.text += "Abajo\n"+inputNameFromAction(actions.down)+"\n"
 		%ActionLabel.text += "Izquierda\n"+inputNameFromAction(actions.left)+"\n"
 		%ActionLabel.text += "Derecha\n"+inputNameFromAction(actions.right)+"\n"
@@ -77,14 +93,83 @@ func _process(_delta):
 func onOKPressed():
 	finished.emit()
 
-func onMovementFocus():
-	actionSelected = "Movement"
+func setAction(action : StringName):
+	actionSelected = action
 
-func onGrabFocus():
-	actionSelected = "grab"
+var editting := false
+func startEdit():
+	await get_tree().process_frame
+	editting = true
+	%VBoxContainer.visible = false
+	InputMap.action_erase_events(actions[actionSelected])
+	if actionSelected == "up":
+		InputMap.action_erase_events(actions["down"])
+		InputMap.action_erase_events(actions["left"])
+		InputMap.action_erase_events(actions["right"])
 
-func onPauseFocus():
-	actionSelected = "pause"
+func handleButtonInput(event : InputEvent, actionName : StringName):
+	if not event.is_pressed():
+		return
+	
+	changeAction(event, actionName)
 
-func onOKFocus():
-	actionSelected = "OK"
+func handleJoypadMotion(event : InputEventJoypadMotion, actionName : StringName):
+	if abs(event.axis_value) < .5:
+		return
+	
+	event.axis_value = signf(event.axis_value)
+	changeAction(event, actionName)
+
+func changeAction(event : InputEvent, actionName : StringName):
+	InputMap.action_add_event(actions[actionName], event)
+
+	if actionSelected == "up":
+		actionSelected = "down"
+	elif actionSelected == "down":
+		actionSelected = "left"
+	elif actionSelected == "left":
+		actionSelected = "right"
+	else:
+		if actionSelected == "right":
+			actionSelected = "up"
+		editting = false
+		%VBoxContainer.visible = true
+
+func _input(event : InputEvent):
+	if not editting:
+		return
+	
+	# No se puede mapear un input que ya está mapeado en otro lado
+	# Las acciones que pueden contradecir a esta
+	var actionsToCheck := actions.values()
+	if controllerId in [Controllers.KB, Controllers.KB2]:
+		actionsToCheck = Controllers.getActions(Controllers.KB).values()
+		actionsToCheck.append_array(Controllers.getActions(Controllers.KB2).values())
+
+	# Por cada una de las acciones, verificar que no hay ninguna que coincida
+	for actionName : StringName in actionsToCheck:
+		if not event.is_action(actionName):
+			continue
+		# Los eventos de movimiento de joypad coinciden también en direcciones opuestas
+		if event is InputEventJoypadMotion:
+			for actionEvent : InputEvent in InputMap.action_get_events(actionName):
+				if not actionEvent is InputEventJoypadMotion:
+					continue
+				if signf(actionEvent.axis_value) == signf(event.axis_value):
+					return
+			continue
+
+		return
+
+
+	if event is InputEventKey and controllerId in [Controllers.KB, Controllers.KB2]:
+		handleButtonInput(event, actionSelected)
+		return
+	
+	if controllerId in [Controllers.KB, Controllers.KB2] or event.device != controllerId:
+		return
+	
+	if event is InputEventJoypadButton:
+		handleButtonInput(event, actionSelected)
+	elif event is InputEventJoypadMotion:
+		handleJoypadMotion(event, actionSelected)
