@@ -107,6 +107,9 @@ func getPlayerById(id : int) -> Player:
 func getPlayerByIndex(index : int) -> Player:
 	return players[index]
 
+func getPlayerByController(controllerId : int) -> Player:
+	return players.filter(func (p : Player): return p.inputController == controllerId)[0]
+
 func getPlayerIndex(player : Player) -> int:
 	return getPlayersAlive().find(player)
 

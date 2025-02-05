@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=42 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
 [ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Scenes/Arena/BetHUD/BetHUD.tscn" id="28_4dsfl"]
+[ext_resource type="PackedScene" uid="uid://c1u8x43c7ulq1" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="29_pgv01"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
@@ -382,6 +383,8 @@ chipDrop = ExtResource("27_gjkb2")
 
 [node name="BetHUD" parent="." instance=ExtResource("28_4dsfl")]
 visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("29_pgv01")]
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
 [connection signal="inArena" from="StageHandler" to="BetHUD" method="showBetName"]

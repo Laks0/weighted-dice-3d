@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.gd" id="1_tiixq"]
 
-[node name="Texture" type="TextureRect"]
+[node name="GamepadSelectButton" type="TextureRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
