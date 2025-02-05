@@ -476,7 +476,6 @@ offset_bottom = 288.0
 texture = SubResource("AtlasTexture_esup7")
 
 [node name="MainStage" type="Control" parent="."]
-visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -539,6 +538,7 @@ offset_right = -148.0
 offset_bottom = 32.0
 texture = SubResource("AtlasTexture_5vv38")
 focused = true
+disabled = false
 downSelect = NodePath("../../HBoxContainer/ControllersButton")
 normalTexture = SubResource("AtlasTexture_m356b")
 focusedTexture = SubResource("AtlasTexture_5vv38")
@@ -581,13 +581,17 @@ grow_vertical = 0
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="ControllersButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect") instance=ExtResource("3_drg7m")]
+[node name="ControllersButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_uy2pq")
+disabled = false
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../StartButton")
 rightSelect = NodePath("../ExitButton")
+downFallback = NodePath("../ExitButton")
+leftFallback = NodePath("../../TextBar/EditNameButton")
+rightFallback = NodePath("../../TextBar/EditNameButton")
 normalTexture = SubResource("AtlasTexture_uy2pq")
 focusedTexture = SubResource("AtlasTexture_8her3")
 pressedTexture = SubResource("AtlasTexture_5djdu")
@@ -613,6 +617,7 @@ label_settings = SubResource("LabelSettings_bv6h6")
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_2vlrn")
+disabled = false
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ControllersButton")
 rightSelect = NodePath("../StartButton")
@@ -641,6 +646,7 @@ label_settings = SubResource("LabelSettings_bv6h6")
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_tkesg")
+disabled = false
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ExitButton")
 rightSelect = NodePath("../ControllersButton")
@@ -771,6 +777,7 @@ offset_bottom = -37.0
 grow_vertical = 0
 texture = SubResource("AtlasTexture_setxt")
 focused = true
+disabled = false
 normalTexture = SubResource("AtlasTexture_r0qy1")
 focusedTexture = SubResource("AtlasTexture_setxt")
 pressedTexture = SubResource("AtlasTexture_memns")
@@ -833,6 +840,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ControlsStage" type="Control" parent="."]
+visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15

@@ -1,6 +1,9 @@
 extends TextureRect
 class_name CharacterSetting
 
+signal keyboardStartedEdittingController
+signal keyboardStoppedEdittingController
+
 @export var maxNameLength : int = 10
 
 var _controller : int = 0
@@ -83,6 +86,11 @@ func editProcess():
 
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):
+	if to == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
+		keyboardStartedEdittingController.emit()
+	if stage == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
+		keyboardStoppedEdittingController.emit()
+	
 	$Transition.visible = true
 	$Transition.play()
 	transitioning_stage = to
@@ -102,6 +110,14 @@ func onVirtualKeyboardCharacterWritten(c):
 func onVirtualKeyboardDeleteCharacter():
 	if len(playerName) > 0:
 		playerName = playerName.erase(len(playerName)-1, 1)
+
+func onOtherKeyboardStartedEditting():
+	if Controllers.isKeyboard(_controller):
+		%ControllersButton.disableButton()
+
+func onOtherKeyboardStoppedEditting():
+	if Controllers.isKeyboard(_controller):
+		%ControllersButton.enableButton()
 
 func isActive():
 	return active
