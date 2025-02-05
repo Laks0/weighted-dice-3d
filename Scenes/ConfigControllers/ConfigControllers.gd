@@ -76,6 +76,7 @@ func _process(_delta):
 		elif actionSelected == "right":
 			%ActionLabel.text = "Seleccioná un input para la derecha"
 
+		%Instrucciones.text = ""
 		return
 	
 	actions = Controllers.getActions(controllerId)
@@ -89,6 +90,8 @@ func _process(_delta):
 		%ActionLabel.text += "Abajo\n"+inputNameFromAction(actions.down)+"\n"
 		%ActionLabel.text += "Izquierda\n"+inputNameFromAction(actions.left)+"\n"
 		%ActionLabel.text += "Derecha\n"+inputNameFromAction(actions.right)+"\n"
+
+	%Instrucciones.text = inputNameFromAction(actions.up) + " para arriba " + inputNameFromAction(actions.down) + " para abajo " + inputNameFromAction(actions.grab) + " para seleccionar"
 
 func onOKPressed():
 	finished.emit()

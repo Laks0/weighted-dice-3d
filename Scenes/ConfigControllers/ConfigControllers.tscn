@@ -93,6 +93,19 @@ grow_vertical = 2
 text = "Se mueve moviéndose"
 horizontal_alignment = 1
 
+[node name="Instrucciones" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.0
+offset_right = 203.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "w para arriba, s para abajo, askdjlfa para seleccionar"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/Movement" to="." method="startEdit"]
 [connection signal="startedFocus" from="VBoxContainer/Movement" to="." method="setAction" binds= [&"up"]]
 [connection signal="pressed" from="VBoxContainer/Grab" to="." method="startEdit"]
