@@ -30,6 +30,9 @@ func _process(delta):
 	
 	if jumping and Input.is_action_just_pressed(mon.actions.grab):
 		$GrabBuffer.start()
+	
+	if jumping and mon.grabbing and mon.velocity.y < 0:
+		mon.push()
 
 func jump():
 	if jumping or not $JumpCooldown.is_stopped():
