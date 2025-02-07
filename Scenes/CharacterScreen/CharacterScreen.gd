@@ -9,6 +9,14 @@ func _ready():
 	randomize()
 	PlayerHandler.deleteAllPlayers()
 	BetHandler.round = 0
+	
+	for s1 : CharacterSetting in $Settings.get_children():
+		for s2 : CharacterSetting in $Settings.get_children():
+			if s1 == s2:
+				continue
+			
+			s1.keyboardStartedEdittingController.connect(s2.onOtherKeyboardStartedEditting)
+			s1.keyboardStoppedEdittingController.connect(s2.onOtherKeyboardStoppedEditting)
 
 func _getActiveSettings() -> Array[Node]:
 	return $Settings.get_children().filter(func (c): return c.isActive())

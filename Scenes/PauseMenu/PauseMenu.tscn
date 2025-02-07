@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1u8x43c7ulq1"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_es5up"]
+[ext_resource type="Script" path="res://Scenes/PauseMenu/PauseMenu.gd" id="2_yc4es"]
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="3_a2m5i"]
+[ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="3_oikoa"]
+[ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="4_ovohg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo46p"]
+atlas = ExtResource("4_ovohg")
+region = Rect2(0, 696, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18bil"]
+atlas = ExtResource("4_ovohg")
+region = Rect2(0, 632, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13uov"]
+atlas = ExtResource("4_ovohg")
+region = Rect2(0, 760, 64, 72)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_es5up")
+script = ExtResource("2_yc4es")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.270588)
+
+[node name="Menu" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -836.0
+offset_top = -403.0
+offset_right = 836.0
+offset_bottom = 403.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0571873, 0.501852, 0, 1)
+
+[node name="ConfigControllers" parent="Menu" instance=ExtResource("3_oikoa")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 445.0
+offset_top = 93.0
+offset_right = -445.0
+
+[node name="PlayerName" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -268.0
+offset_top = 16.0
+offset_right = 268.0
+offset_bottom = 83.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 66
+text = "Pausado por pancho"
+
+[node name="Buttons" type="VBoxContainer" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -74.0
+offset_right = 32.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GamepadSelectButton" parent="Menu/Buttons" node_paths=PackedStringArray("downSelect") instance=ExtResource("3_a2m5i")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_uo46p")
+focused = true
+downSelect = NodePath("../Back")
+normalTexture = SubResource("AtlasTexture_18bil")
+focusedTexture = SubResource("AtlasTexture_uo46p")
+pressedTexture = SubResource("AtlasTexture_13uov")
+text = "Editar controles"
+
+[node name="Back" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect") instance=ExtResource("3_a2m5i")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_18bil")
+upSelect = NodePath("../GamepadSelectButton")
+normalTexture = SubResource("AtlasTexture_18bil")
+focusedTexture = SubResource("AtlasTexture_uo46p")
+pressedTexture = SubResource("AtlasTexture_13uov")
+text = "Volver"
+
+[connection signal="finished" from="Menu/ConfigControllers" to="." method="stopEditting"]
+[connection signal="pressed" from="Menu/Buttons/GamepadSelectButton" to="." method="startEditting"]
+[connection signal="pressed" from="Menu/Buttons/Back" to="." method="endPause"]

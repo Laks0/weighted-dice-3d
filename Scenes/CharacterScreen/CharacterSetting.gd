@@ -1,6 +1,9 @@
 extends TextureRect
 class_name CharacterSetting
 
+signal keyboardStartedEdittingController
+signal keyboardStoppedEdittingController
+
 @export var maxNameLength : int = 10
 
 var _controller : int = 0
@@ -38,6 +41,8 @@ func activate(controller : int):
 	await $FromWaitTransition.animation_finished
 	$FromWaitTransition.visible = false
 	%EditNameButton.focus()
+	
+	%ConfigControllers.setControllerId(controller)
 
 func deactivate():
 	active = false
@@ -62,8 +67,6 @@ func _process(_delta):
 		mainProcess()
 	if stage == Stages.NAME_EDIT:
 		editProcess()
-	if stage == Stages.CONTROLLERS:
-		controllersProcess()
 
 func getControllerName() -> String:
 	if _controller < Controllers.KB:
@@ -81,16 +84,13 @@ func mainProcess():
 func editProcess():
 	%PlayerNameEditLabel.text = playerName
 
-func controllersProcess():
-	if _controller == Controllers.KB:
-		%ControlsText.text = "V para agarrar\nspam de V para escaparse\nB para saltar\nwasd para moverse"
-	elif _controller == Controllers.KB2:
-		%ControlsText.text = "Altgr para agarrar\nspam de altgr para escaparse\n- para saltar\nflechas para moverse"
-	else:
-		%ControlsText.text = "A para agarrar\nspam de A para escaparse\nX para saltar\njoystick/dpad para moverse"
-
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):
+	if to == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
+		keyboardStartedEdittingController.emit()
+	if stage == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
+		keyboardStoppedEdittingController.emit()
+	
 	$Transition.visible = true
 	$Transition.play()
 	transitioning_stage = to
@@ -110,6 +110,14 @@ func onVirtualKeyboardCharacterWritten(c):
 func onVirtualKeyboardDeleteCharacter():
 	if len(playerName) > 0:
 		playerName = playerName.erase(len(playerName)-1, 1)
+
+func onOtherKeyboardStartedEditting():
+	if Controllers.isKeyboard(_controller):
+		%ControllersButton.disableButton()
+
+func onOtherKeyboardStoppedEditting():
+	if Controllers.isKeyboard(_controller):
+		%ControllersButton.enableButton()
 
 func isActive():
 	return active

@@ -13,6 +13,7 @@ var controllers = {
 		"ui_cancel": "ui_cancel_kb",
 		"ui_edit": "ui_edit_kb",
 		"jump": "jump_kb",
+		"pause": "pause_kb",
 	},
 	KB2: {
 		"up": "move_up_kb2",
@@ -24,6 +25,7 @@ var controllers = {
 		"ui_cancel": "ui_cancel_kb2",
 		"ui_edit": "ui_edit_kb2",
 		"jump": "jump_kb2",
+		"pause": "pause_kb2",
 	},
 	AI: {
 		"up": "empty",
@@ -35,6 +37,7 @@ var controllers = {
 		"ui_cancel": "empty",
 		"ui_edit": "empty",
 		"jump": "empty",
+		"pause": "empty",
 	},
 }
 
@@ -79,6 +82,10 @@ func addController(id : int):
 	InputMap.add_action("ui_cancel_d%s" % id)
 	controllers[id]["ui_cancel"] = "ui_cancel_d%s" % id
 	addButtonToAction("ui_cancel_d%s" % id, JOY_BUTTON_B, id)
+	
+	InputMap.add_action("pause_d%s" % id)
+	controllers[id]["pause"] = "pause_d%s" % id
+	addButtonToAction("pause_d%s" % id, JOY_BUTTON_START, id)
 
 func addMovementAction(dir : String, button : JoyButton, axis : JoyAxis, axisDir : float, device : int):
 	var action = "move_" + dir + "_d%s" % device
