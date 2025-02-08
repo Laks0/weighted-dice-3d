@@ -83,7 +83,7 @@ var notChosenBonus := .05
 
 func pickNewEffect(oldEffect : int) -> int:
 	if Debug.vars.onlyEffect != "":
-		return 0
+		return Debug.vars.onlyEffectNumber
 	
 	var result = oldEffect
 	var ceiling : float = effectOdds.reduce(func (accum, val): return accum + val)

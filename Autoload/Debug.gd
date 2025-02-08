@@ -3,6 +3,7 @@ extends Node
 var vars := {
 	"onlyBet" : null,
 	"onlyEffect" : "",
+	"onlyEffectNumber": 0,
 	"skipCardAnimation" : false,
 	"skipLobby" : false,
 	"dontStartGame" : false,
@@ -102,7 +103,10 @@ func _printEffects():
 	for s in _getEffectList():
 		LimboConsole.info(s)
 
-func _setOnlyEffect(effectName : String):
+func _setOnlyEffect(effectName : String, dieNumber : int = 1):
+	if dieNumber >= 1 and dieNumber <= 6:
+		Debug.vars.onlyEffectNumber = dieNumber - 1
+	
 	for dir in DirAccess.get_directories_at("res://Classes/Effects"):
 		for file in DirAccess.get_files_at("res://Classes/Effects/%s" % dir):
 			if file.begins_with(effectName) and file.ends_with(".tscn"):
