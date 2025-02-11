@@ -5,18 +5,20 @@ class_name Ball8
 @export var friction        : float = .1
 var direction := Vector3(-1, 0, 0)
 var velocity  := Vector3.ZERO
-
-func _ready():
-	await get_tree().create_timer(2).timeout
-	startPushAnimation()
+var freeToMove := false
 
 func _physics_process(delta):
 	$Bola8.rotation += direction.rotated(Vector3.UP, PI/2) * delta * velocity.abs()
 	velocity = velocity.lerp(Vector3.ZERO, friction)
-	#$HitArea.look_at(global_position + direction)
 	position += velocity * delta
 	
-	$BounceCast.target_position = velocity * delta + direction * 1.5
+	if velocity.is_zero_approx() and not $PoolStickAnimation.is_playing() and freeToMove:
+		startPushAnimation()
+	
+	if velocity.is_zero_approx():
+		return
+	
+	$BounceCast.target_position = direction * 2
 	
 	if $BounceCast.is_colliding() and $BounceCast.get_collider().is_in_group("Walls"):
 		var normal = $BounceCast.get_collision_normal()
@@ -25,9 +27,6 @@ func _physics_process(delta):
 		
 		await get_tree().physics_frame
 		$BounceCast.enabled = true
-	
-	if velocity.is_zero_approx() and not $PoolStickAnimation.is_playing():
-		startPushAnimation()
 
 func push():
 	velocity = direction.normalized() * initialVelocity
@@ -45,6 +44,7 @@ func startPushAnimation():
 	$PoolStick.rotation.y = newAngle - PI/2
 	
 	$PoolStickAnimation.play("Push")
+	$BounceCast.target_position =  direction * 2
 
 func bounceDirectionByNormal(normal : Vector3):
 	direction = direction.bounce(normal)
