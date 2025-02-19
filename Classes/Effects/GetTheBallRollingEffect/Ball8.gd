@@ -1,35 +1,60 @@
 extends StaticBody3D
 class_name Ball8
 
-@export var initialVelocity : float = 100
-@export var friction        : float = .1
+@export var initialForce : float = 100
+## Aceleración negativa en m/s²
+@export var friction : float = 10
+@export var timeBetweenBounces := .05
+
 var direction := Vector3(-1, 0, 0)
-var velocity  := Vector3.ZERO
-var freeToMove := false
+var movingSpeed := 0.0
+
+var moving := false
+var trajectory : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint] = []
 
 func _physics_process(delta):
-	$Bola8.rotation += direction.rotated(Vector3.UP, PI/2) * delta * velocity.abs()
-	velocity = velocity.lerp(Vector3.ZERO, friction)
-	position += velocity * delta
-	
-	if velocity.is_zero_approx() and not $PoolStickAnimation.is_playing() and freeToMove:
-		startPushAnimation()
-	
-	if velocity.is_zero_approx():
-		return
-	
-	$BounceCast.target_position = direction * 2
-	
-	if $BounceCast.is_colliding() and $BounceCast.get_collider().is_in_group("Walls"):
-		var normal = $BounceCast.get_collision_normal()
-		$BounceCast.enabled = false
-		bounceDirectionByNormal(normal)
-		
-		await get_tree().physics_frame
-		$BounceCast.enabled = true
+	if moving:
+		$Bola8.rotation += direction.rotated(Vector3.UP, PI/2) * delta * movingSpeed * 2
 
 func push():
-	velocity = direction.normalized() * initialVelocity
+	if trajectory.is_empty():
+		await $TrajectoryCalculator.trajectoryCalculated
+	
+	var tween := create_tween()
+	for i in range(trajectory.size()):
+		var point := trajectory[i]
+		var initialPosition := global_position
+		var initialSpeed := initialForce
+		if i > 0:
+			initialSpeed = trajectory[i-1].nextSpeed
+			initialPosition = trajectory[i-1].position
+		var movementDir := initialPosition.direction_to(point.position)
+		
+		# Dada una aceleración constante de -friction, cuánto tiempo es necesario
+		# para llegar a una velocidad de point.nextSpeed
+		var transitionTime : float = (initialSpeed - point.nextSpeed) / (friction)
+		
+		# Pre movimiento
+		tween.tween_callback(func ():
+			moving = true)
+		
+		# Movimiento
+		tween.tween_method(_setPosition.bind(initialPosition, movementDir, initialSpeed, -friction),
+			0.0, transitionTime, transitionTime)
+		
+		# Post movimiento
+		tween.tween_callback(func (): 
+			direction = point.nextDirection
+			moving = false)
+		
+		tween.tween_interval(timeBetweenBounces)
+	
+	tween.tween_callback(startPushAnimation)
+
+# MRUV
+func _setPosition(t : float, initialPosition : Vector3, dir : Vector3, initialSpeed : float, acceleration : float):
+	global_position = initialPosition + dir * t * (initialSpeed + acceleration * .5 * t)
+	movingSpeed = initialSpeed + acceleration * t
 
 func startPushAnimation():
 	var newAngle := randf() * 2 * PI
@@ -43,15 +68,17 @@ func startPushAnimation():
 	# en dirección positiva en la x y sacar esta resta
 	$PoolStick.rotation.y = newAngle - PI/2
 	
+	$PoolStickAnimation.stop()
 	$PoolStickAnimation.play("Push")
-	$BounceCast.target_position =  direction * 2
+	
+	trajectory = []
+	$TrajectoryCalculator.startCalculating(direction, initialForce, friction)
 
-func bounceDirectionByNormal(normal : Vector3):
-	direction = direction.bounce(normal)
-	velocity = velocity.bounce(normal)
+func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]):
+	trajectory = points
 
 func _on_hit_area_body_entered(body):
-	if velocity.is_zero_approx():
+	if not moving:
 		return
 	
 	if body is Monigote:

@@ -14,7 +14,7 @@ func start():
 		if not is_instance_valid(ball8):
 			return
 		ball8.set_physics_process(true)
-		ball8.freeToMove = true)
+		ball8.startPushAnimation())
 	
 	$SpotLight3D.visible = true
 	$SpotLight3D.light_energy = 0

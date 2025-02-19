@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=10 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
@@ -61,23 +61,6 @@ tracks/3/keys = {
 "method": &"push"
 }]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BounceCast")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.3, 2.16667),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"startTelegraphing"
-}, {
-"args": [],
-"method": &"endTelegraphing"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_uupdl"]
 length = 0.001
@@ -121,25 +104,12 @@ _data = {
 "RESET": SubResource("Animation_uupdl")
 }
 
-[sub_resource type="Curve" id="Curve_ku7f0"]
-_data = [Vector2(0, 0.923077), 0.0, 0.0, 0, 0, Vector2(0.202381, 1), 0.0, 0.0, 0, 0, Vector2(0.77381, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_5fljk"]
-curve = SubResource("Curve_ku7f0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3cmgk"]
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_5fljk")
-
-[sub_resource type="TorusMesh" id="TorusMesh_bit13"]
-inner_radius = 0.13
-outer_radius = 0.205
-
 [node name="Ball8" type="StaticBody3D"]
 collision_mask = 7
 axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
+initialForce = 50.0
+friction = 60.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_olcpn")
@@ -165,14 +135,10 @@ top_level = true
 [node name="PoolModel" parent="PoolStick" instance=ExtResource("3_inj8a")]
 transform = Transform3D(0.675, 0, 0, 0, -0.207085, 0.642449, 0, -0.642449, -0.207085, 0.0521107, 25.6529, 52.733)
 
-[node name="BounceCast" type="RayCast3D" parent="."]
+[node name="TrajectoryCalculator" type="RayCast3D" parent="." node_paths=PackedStringArray("ballCollisionShape")]
 collision_mask = 4
 script = ExtResource("4_h8td1")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="BounceCast"]
-visible = false
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_3cmgk")
-draw_pass_1 = SubResource("TorusMesh_bit13")
+ballCollisionShape = NodePath("../CollisionShape3D")
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="trajectoryCalculated" from="TrajectoryCalculator" to="." method="setTrajectory"]
