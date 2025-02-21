@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=25 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
 [ext_resource type="PackedScene" uid="uid://br1eurxdqpgpn" path="res://Classes/Effects/GetTheBallRollingEffect/PaloPool.glb" id="3_inj8a"]
 [ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/DirectionTelegraph.gd" id="4_h8td1"]
+[ext_resource type="Shader" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
+[ext_resource type="Shader" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="6_e2j23"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail/defaults/texture.tres" id="7_x4wj2"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://addons/GPUTrail/defaults/curve.tres" id="8_xv4hf"]
+[ext_resource type="Script" path="res://addons/GPUTrail/GPUTrail3D.gd" id="9_bo8vu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 0.615468
@@ -104,6 +109,54 @@ _data = {
 "RESET": SubResource("Animation_uupdl")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7p4we"]
+shader = ExtResource("5_au2xy")
+
+[sub_resource type="Gradient" id="Gradient_gkcgg"]
+colors = PackedColorArray(0.585847, 2.25011e-06, 9.62615e-08, 1, 0.904693, 0.776733, 2.31028e-06, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6qad2"]
+gradient = SubResource("Gradient_gkcgg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_poswv"]
+resource_local_to_scene = true
+render_priority = 2
+shader = ExtResource("6_e2j23")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+shader_parameter/color_ramp = SubResource("GradientTexture1D_6qad2")
+shader_parameter/curve = ExtResource("8_xv4hf")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wfjg6"]
+material = SubResource("ShaderMaterial_poswv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pqqq"]
+shader = ExtResource("5_au2xy")
+
+[sub_resource type="Curve" id="Curve_ffepp"]
+bake_resolution = 16
+_data = [Vector2(0, 0.520321), 0.0, 0.0, 0, 0, Vector2(0.344353, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3708t"]
+curve = SubResource("Curve_ffepp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtyfp"]
+resource_local_to_scene = true
+render_priority = 2
+shader = ExtResource("6_e2j23")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 44
+shader_parameter/tex = ExtResource("7_x4wj2")
+shader_parameter/color_ramp = ExtResource("7_x4wj2")
+shader_parameter/curve = SubResource("CurveTexture_3708t")
+
+[sub_resource type="QuadMesh" id="QuadMesh_xwxyv"]
+material = SubResource("ShaderMaterial_gtyfp")
+size = Vector2(1, 0.5)
+
 [node name="Ball8" type="StaticBody3D"]
 collision_mask = 7
 axis_lock_linear_y = true
@@ -139,6 +192,37 @@ transform = Transform3D(0.675, 0, 0, 0, -0.207085, 0.642449, 0, -0.642449, -0.20
 collision_mask = 4
 script = ExtResource("4_h8td1")
 ballCollisionShape = NodePath("../CollisionShape3D")
+
+[node name="TelegraphTrail" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+visible = false
+amount = 36
+lifetime = 36.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_7p4we")
+draw_pass_1 = SubResource("QuadMesh_wfjg6")
+script = ExtResource("9_bo8vu")
+length = 36
+length_seconds = 0.6
+color_ramp = SubResource("GradientTexture1D_6qad2")
+curve = ExtResource("8_xv4hf")
+_defaults_have_been_set = true
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+amount = 19
+lifetime = 19.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_8pqqq")
+draw_pass_1 = SubResource("QuadMesh_xwxyv")
+script = ExtResource("9_bo8vu")
+length = 19
+length_seconds = 0.316667
+color_ramp = ExtResource("7_x4wj2")
+curve = SubResource("CurveTexture_3708t")
+billboard = true
+_defaults_have_been_set = true
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="trajectoryCalculated" from="TrajectoryCalculator" to="." method="setTrajectory"]

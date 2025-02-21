@@ -76,6 +76,25 @@ func startPushAnimation():
 
 func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]):
 	trajectory = points
+	
+	# Telegraphing
+	
+	$TelegraphTrail.visible = true
+	$TelegraphTrail.restart()
+	var tween := create_tween()
+	for p in points:
+		tween.tween_callback(func ():
+			var dir = $TelegraphTrail.to_local(p.position).normalized()
+			$TelegraphTrail.look_at(dir)
+			$TelegraphTrail.rotation.x -= PI/2
+		)
+		tween.tween_property($TelegraphTrail, "global_position", p.position, .1)
+		tween.tween_interval(.05)
+	tween.tween_interval(.5)
+	tween.tween_callback(func (): 
+		$TelegraphTrail.position = Vector3.ZERO
+		$TelegraphTrail.visible = false
+	)
 
 func _on_hit_area_body_entered(body):
 	if not moving:

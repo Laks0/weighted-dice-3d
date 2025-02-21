@@ -42,7 +42,6 @@ alignment = 1
 layout_mode = 2
 texture = SubResource("AtlasTexture_f7toa")
 focused = true
-disabled = false
 downSelect = NodePath("../Grab")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
@@ -52,7 +51,6 @@ text = "Movimiento"
 [node name="Grab" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-disabled = false
 upSelect = NodePath("../Movement")
 downSelect = NodePath("../Pause")
 normalTexture = SubResource("AtlasTexture_ggv5o")
@@ -63,7 +61,6 @@ text = "Agarrar"
 [node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-disabled = false
 upSelect = NodePath("../Grab")
 downSelect = NodePath("../OK")
 normalTexture = SubResource("AtlasTexture_ggv5o")
@@ -74,7 +71,6 @@ text = "Pausar"
 [node name="OK" parent="VBoxContainer" node_paths=PackedStringArray("upSelect") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-disabled = false
 upSelect = NodePath("../Pause")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")

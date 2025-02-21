@@ -2,7 +2,7 @@ extends Control
 
 signal finished
 
-var controllerId : int = 0
+@onready var controllerId : int = Controllers.KB
 var actionSelected : String = ""
 
 @export var buttonActionMap : Dictionary
