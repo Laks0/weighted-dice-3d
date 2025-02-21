@@ -14,7 +14,7 @@ func _init():
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():
 		if not is_instance_valid(mon.grabBody):
-			return
+			continue
 		if mon.grabbing and mon.grabBody is CrownGrab:
 			_scores[mon.player.id] += delta
 
