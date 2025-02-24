@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bww4tl6fwi7k"]
+[gd_scene load_steps=33 format=3 uid="uid://bww4tl6fwi7k"]
 
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_jeqwd"]
 [ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/PlayerBetCard.tscn" id="2_vnj2t"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_6whhi"]
+[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
+[ext_resource type="Texture2D" uid="uid://dmpfvhqxvkdp3" path="res://Scenes/Arena/BetHUD/RelojPrueba.png" id="6_os5dx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ido6v"]
 atlas = ExtResource("1_5e4j8")
@@ -87,6 +89,120 @@ animations = [{
 atlas = ExtResource("1_5e4j8")
 region = Rect2(0, 236, 220, 120)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbvce"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(0, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltn2w"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(92, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdjav"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(184, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ex3w"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(276, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iscmp"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(368, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esdei"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(460, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqdmp"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(460, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1em3y"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(552, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuw1k"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(644, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goas1"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(736, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w341h"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(828, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k0oy"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(920, 0, 92, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aq0a"]
+atlas = ExtResource("6_os5dx")
+region = Rect2(1012, 0, 92, 102)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_483cn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbvce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltn2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdjav")
+}],
+"loop": false,
+"name": &"0",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ex3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iscmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esdei")
+}],
+"loop": false,
+"name": &"1",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqdmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1em3y")
+}],
+"loop": false,
+"name": &"2",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuw1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goas1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w341h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k0oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aq0a")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}]
+
 [node name="BetHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -96,6 +212,7 @@ offset_top = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jeqwd")
 script = ExtResource("1_c5tys")
 playerCardScene = ExtResource("2_vnj2t")
 
@@ -112,7 +229,7 @@ offset_right = 110.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BetDisplay"]
+[node name="Background" type="AnimatedSprite2D" parent="BetDisplay"]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_buomd")
 autoplay = "default"
@@ -136,19 +253,48 @@ texture = SubResource("AtlasTexture_pgs10")
 
 [node name="BetName" type="Label" parent="BetDisplay"]
 unique_name_in_owner = true
-modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_6whhi")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 41
 text = "TIEMPO DE JUEGO"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="GameTimeDisplay" type="Control" parent="BetDisplay" node_paths=PackedStringArray("backgroundNoise")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_pwo3w")
+backgroundNoise = NodePath("../Background")
+
+[node name="ClockAnimations" type="AnimatedSprite2D" parent="BetDisplay/GameTimeDisplay"]
+position = Vector2(61, 58)
+sprite_frames = SubResource("SpriteFrames_483cn")
+animation = &"0"
+
+[node name="TimeLabel" type="Label" parent="BetDisplay/GameTimeDisplay"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -16.0
+offset_right = -32.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "120s"
 
 [node name="LeftContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -173,3 +319,5 @@ offset_top = -7.68005
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/separation = 30
+
+[connection signal="reseted" from="." to="BetDisplay/GameTimeDisplay" method="reset"]

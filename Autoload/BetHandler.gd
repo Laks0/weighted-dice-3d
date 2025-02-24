@@ -1,6 +1,8 @@
 extends Node
 
 signal pickedNewBet
+## Se llama cuando empieza la ronda de arena
+signal betStarted
 
 ## Al principio de cada ronda se tiene que llamar startRound()
 ## settleBet() reparte las apuestas una vez determinado el candidato ganador
@@ -39,6 +41,7 @@ func startGame(arena : Arena):
 	
 	currentBet.startGame(arena)
 	betOngoing = true
+	betStarted.emit()
 
 func resetGame():
 	round = 0
