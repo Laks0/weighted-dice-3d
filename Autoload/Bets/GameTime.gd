@@ -17,8 +17,8 @@ func startRound():
 	times = [0,0,0]
 	var playersAlive := PlayerHandler.getPlayersAlive().size()
 	times[0] = playersAlive * 5
-	times[1] = (playersAlive + 3) * 5
-	times[2] = (playersAlive + 4) * 5
+	times[1] = playersAlive * 10
+	times[2] = playersAlive * 10 + 5
  
 func settle():
 	if gameTime < times[0]:
@@ -43,6 +43,9 @@ func hasWon(candidate) -> bool:
 func getCandidateOdds(candidate) -> int:
 	if candidate == GameTime.MIDDLE_LONG or candidate == GameTime.LAST:
 		return 2
+	
+	if candidate == GameTime.MIDDLE_SHORT:
+		return 4
 	
 	return 3
 
