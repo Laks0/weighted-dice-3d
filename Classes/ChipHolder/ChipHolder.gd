@@ -317,7 +317,7 @@ func goToNextRound() -> void:
 		
 	
 	nextRound.emit()
-	$RoundNumber.text = ""
+	$RoundNumber.text = "Ronda " + str(BetHandler.round) + " de " + str(BetHandler.roundAmount)
 	$BetResultsLabel.text = ""
 	$SurvivorLabel.text = ""
 	waitingToStart = false
