@@ -4,7 +4,8 @@ class_name Arena
 @warning_ignore("unused_signal")
 signal effectStarted(effect)
 signal gameStarted
-signal gameEnded(winner) # winner : playerId
+signal gameEnded
+signal stageFinished(winner) # winner : playerId
 
 var effects : Array
 
@@ -109,6 +110,9 @@ func endGame(winnerMon : Monigote):
 	SoundtrackHandler.stopTrack()
 	lightsOn() # Por si acaso
 	
+	gameEnded.emit()
+	BetHandler.endGame()
+	
 	effects[activeEffect].end()
 	activeEffect = -1
 	
@@ -126,7 +130,7 @@ func endGame(winnerMon : Monigote):
 	%MultipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	
-	gameEnded.emit(winnerId)
+	stageFinished.emit(winnerId)
 
 func startEffect(n : int):
 	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)

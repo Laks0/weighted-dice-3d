@@ -43,6 +43,9 @@ func startGame(arena : Arena):
 	betOngoing = true
 	betStarted.emit()
 
+func endGame():
+	betOngoing = false
+
 func resetGame():
 	round = 0
 	if Debug.vars.onlyBet != null:
@@ -145,7 +148,6 @@ func settleBet(winnerId : int) -> void:
 		if player.id == winnerId:
 			player.bank += getRoundPrize()
 		player.bank += player.roundBonus
-	betOngoing = false
 
 func hasWon(res) -> bool:
 	var d = currentBet.hasWon(res)

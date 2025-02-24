@@ -48,4 +48,8 @@ func _process(_delta):
 	if (not visible) or (not is_instance_valid(bet)):
 		return
 	
+	if not BetHandler.betOngoing:
+		tween.stop()
+		$ClockAnimations.stop()
+	
 	$TimeLabel.text = str(floor(bet.gameTime)) + "s"

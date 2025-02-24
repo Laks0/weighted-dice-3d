@@ -25,7 +25,7 @@ func onGameStarted():
 	chip.position = arena.getRandomPosition(1, 0)
 	arena.add_child(chip)
 	
-	arena.gameEnded.connect(func (_winner):
+	arena.stageFinished.connect(func (_winner):
 		if not is_instance_valid(chip):
 			return
 		chip.queue_free())

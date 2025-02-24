@@ -29,7 +29,7 @@ func _ready():
 	
 	betDisplay.allPlayersReady.connect(goToArena)
 	
-	arena.gameEnded.connect(arenaToLeaderboard)
+	arena.stageFinished.connect(arenaToLeaderboard)
 	
 	chipHolder.nextRound.connect(leaderboardToBet)
 	chipHolder.resetRequest.connect(resetGame)
