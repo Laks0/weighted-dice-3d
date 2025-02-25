@@ -8,6 +8,7 @@
 [node name="ChipPile" type="Node3D"]
 script = ExtResource("1_4r2t6")
 fichaMesh = ExtResource("2_e5iql")
+maxX4Shake = 5.0
 
 [node name="CandidateLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.03387)
@@ -16,12 +17,13 @@ outline_render_priority = 1
 font = ExtResource("3_al5hg")
 font_size = 82
 uppercase = true
+line_spacing = -25.0
 autowrap_mode = 2
 
 [node name="Odds" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.41169)
-render_priority = 2
-outline_render_priority = 1
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.412)
+render_priority = 4
+outline_render_priority = 2
 font = ExtResource("3_al5hg")
 font_size = 57
 

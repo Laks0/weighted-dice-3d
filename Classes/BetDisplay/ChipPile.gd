@@ -20,6 +20,13 @@ var y = 0
 ## Si se activa, la pila es solo para mostrar fichas y no representa ningún candidato
 @export var isDisplay := false
 
+var candidateOdds : int
+## El color para las odds x3
+@export var x3Color : Color = Color.YELLOW
+## El color para las odds x4+
+@export var x4Color : Color = Color.RED
+@export var maxX4Shake : float = 20
+
 func _ready():
 	for playerId in PlayerHandler.getPlayersAliveById():
 		chips[playerId] = []
@@ -31,13 +38,34 @@ func _ready():
 	
 	$CandidateLabel.text = BetHandler.getCandidateName(candidate)
 	$CandidateLabel.modulate = BetHandler.getCandidateColor(candidate)
+	
+	candidateOdds = BetHandler.getCandidateOdds(candidate)
+	if candidateOdds >= 3:
+		var oddsTween := create_tween().set_loops()\
+			.set_ease(Tween.EASE_IN_OUT)\
+			.set_trans(Tween.TRANS_SINE)
+		oddsTween.tween_property($Odds, "position:y", .1, .5)
+		oddsTween.tween_property($Odds, "position:y", .03, .5)
+	
+	if candidateOdds >= 4:
+		var shakeTween := create_tween().set_loops()
+		shakeTween.tween_callback(func (): $Odds.offset.x = (randf()-.5) * maxX4Shake*2)
+		shakeTween.tween_interval(.05)
+
+var oddsHeightTween : Tween = null
 
 func _process(_delta):
 	if isDisplay:
 		$CandidateLabel.text = str(chips[playerIdDisplay].size())
 		return
 	
-	$Odds.text = "x%s" % BetHandler.getCandidateOdds(candidate)
+	candidateOdds = BetHandler.getCandidateOdds(candidate)
+	$Odds.text = "x%s" % candidateOdds
+	
+	if candidateOdds == 3:
+		$Odds.modulate = x3Color
+	elif candidateOdds >= 4:
+		$Odds.modulate = x4Color
 
 func addChip(playerId : int, withAnimation : bool = true) -> void:
 	var player := PlayerHandler.getPlayerById(playerId)
