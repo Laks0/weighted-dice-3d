@@ -49,10 +49,14 @@ func _on_area_3d_body_entered(body):
 	$FichaMesh.get_surface_override_material(0).albedo_color = mon.player.color
 	mon.player.setRoundBonus(bonus)
 	
-	create_tween().tween_property(self, "scale", Vector3.ZERO, animationLenght)\
+	var outTween := create_tween()
+	
+	outTween.tween_property(self, "scale", scale * 1.3, animationLenght)
+	outTween.tween_interval(animationLenght * 2)
+	outTween.tween_property(self, "scale", Vector3.ZERO, animationLenght)\
 		.set_trans(Tween.TRANS_BOUNCE)\
-		.set_ease(Tween.EASE_IN)\
-		.finished.connect(queue_free)
+		.set_ease(Tween.EASE_IN)
+	outTween.finished.connect(queue_free)
 
 func disable():
 	$Area3D.monitoring = false
