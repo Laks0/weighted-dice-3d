@@ -224,22 +224,24 @@ func startLeaderboardAnimation(winnerId):
 		return
 	
 	var winners : Array[PlayerHandler.Player] = PlayerHandler.getWinningPlayers()
-	if winners.size() != 1:
-		$EndgameButtons.get_children()[0].focused = true
-		gameEnded = true
-		return
-	
 	var winner := winners[0]
 	
-	goToSkyColor(winner.color)
-	getPlayerMonigote(winner.id).dance()
+	for w : PlayerHandler.Player in winners:
+		getPlayerMonigote(w.id).dance()
 	
-	await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+	if winners.size() == 1:
+		await camera.zoomTo(getPositionForMonigote(winner.id)).finished
+		goToSkyColor(winner.color)
+			# Fade in texto de ganador
+		$WinnerLabel.text = "¡GANÓ %s!" % winner.name
+	else:
+		var allButLast := winners
+		var lastName : String = allButLast.pop_back().name
+		var headNames : PackedStringArray = allButLast.map(func (p): return p.name)
+		$WinnerLabel.text = "¡GANARON %s y %s!" % [",".join(headNames), lastName]
 	
-	# Fade in texto de ganador
-	$WinnerLabel.text = "¡GANÓ %s!" % winner.name
 	$WinnerLabel.visible = true
-	if PlayerHandler.getPlayersAlive()[0].name == "Male" or PlayerHandler.getPlayersAlive()[0].name == "Marta":
+	if winner.name == "Male" or winner.name == "Marta":
 		Narrator.playBank("gameend", 2)
 	else:
 		Narrator.playBank("gameend", 1)

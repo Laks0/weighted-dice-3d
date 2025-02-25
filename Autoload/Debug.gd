@@ -20,7 +20,8 @@ func _ready():
 	LimboConsole.register_command(_killMonigote, "matarMonigote", "Matar a un monigote que exista, si no se pasa una skin se mata a todos")
 	LimboConsole.add_argument_autocomplete_source("matarMonigote", 1, func ():
 		return get_tree().get_nodes_in_group("Monigotes")\
-			.map(func(m : Monigote): return m.player.name))
+			.map(func(m : Monigote): return m.player.name)
+	)
 	
 	LimboConsole.register_command(newGame, "nuevaPartida", "Empieza una nueva partida generando una cantidad de jugadores")
 	
@@ -32,6 +33,13 @@ func _ready():
 	LimboConsole.register_command(_printEffects, "listarEfectos", "Los nombres de los efectos")
 	LimboConsole.register_command(_setOnlyEffect, "unicoEfecto", "Pone un efecto como el único posible (para la lista de posibles usar listarEfectos)")
 	LimboConsole.add_argument_autocomplete_source("unicoEfecto", 1, func(): return _getEffectList())
+	
+	LimboConsole.register_command(_setBank, "cambiarFichas", "Camba las fichas de un jugador")
+	LimboConsole.add_argument_autocomplete_source("cambiarFichas", 1, func ():
+		return PlayerHandler.getPlayersAlive().map(func (p): return p.name)
+	)
+	
+	LimboConsole.register_command(_changeRound, "cambiarRonda", "Cambia la ronda actual de la partida")
 
 func _setVar(varName : String, val):
 	if varName == "onlyBet" or varName == "onlyEffect":
@@ -112,6 +120,16 @@ func _setOnlyEffect(effectName : String, dieNumber : int = 1):
 			if file.begins_with(effectName) and file.ends_with(".tscn"):
 				vars.onlyEffect = "res://Classes/Effects/" + dir + "/" + file
 				return
+
+func _setBank(playerName : String, newBank : int):
+	var player := PlayerHandler.getPlayerByName(playerName)
+	if player == null:
+		LimboConsole.error("No existe un jugador que se llame %s" % playerName)
+		return
+	player.bank = newBank
+
+func _changeRound(round : int):
+	BetHandler.round = round
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):
