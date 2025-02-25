@@ -96,14 +96,14 @@ texture = ExtResource("9_ji1er")
 
 [node name="GenericGrid" type="GridContainer" parent="Background"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
-offset_left = 10.0
+offset_left = 41.0
 offset_top = 7.0
-offset_right = 782.0
-offset_bottom = 402.0
-scale = Vector2(0.200818, 0.200818)
-theme_override_constants/h_separation = 145
-theme_override_constants/v_separation = 35
+offset_right = 491.0
+offset_bottom = 371.0
+scale = Vector2(0.220724, 0.220724)
+theme_override_constants/h_separation = -15
 columns = 3
 
 [node name="0" type="TextureRect" parent="Background/GenericGrid"]
