@@ -162,8 +162,9 @@ func onGrabbing():
 	var dir3d := Vector3(grabDir.x, 0, grabDir.y)
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
-	var newPosition = global_position + dir3d.normalized() * grabBody.grabDistance
-	newPosition.y = max(grabBody.global_position.y, global_position.y)
+	dir3d = dir3d.lerp(Vector3.UP, t)
+	var newPosition = global_position + dir3d * grabBody.grabDistance
+	#newPosition.y = max(grabBody.global_position.y, global_position.y)
 	grabBody.global_position = newPosition
 
 func bounce(normal : Vector3) -> void:

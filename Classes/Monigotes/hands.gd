@@ -22,21 +22,20 @@ func _process(_delta):
 func _canUseGrabBody() -> bool:
 	return closed and is_instance_valid(grabBody)
 
-func _planePosition() -> Vector2:
-	return direction * (grabDistance if not _canUseGrabBody() else grabBody.grabDistance)
+func _centerPosition() -> Vector3:
+	if _canUseGrabBody():
+		return to_local(grabBody.global_position)
+	var direction3d := Vector3(direction.x, 0, direction.y)
+	return direction3d * (grabDistance if not _canUseGrabBody() else grabBody.grabDistance)
 
-func _handDifference() -> Vector2:
-	return Vector2(-direction.y, direction.x) * (.0 if not _canUseGrabBody() else grabBody.grabDistance*.9)
+func _handDifference() -> Vector3:
+	return Vector3(-direction.y, 0, direction.x) * (.0 if not _canUseGrabBody() else .3)
 
 func _getClosedPositionL() -> Vector3:
-	var planePosition := _planePosition()
-	planePosition -= _handDifference()
-	return Vector3(planePosition.x, 0, planePosition.y)
+	return _centerPosition() - _handDifference()
 
 func _getClosedPositionR() -> Vector3:
-	var planePosition := _planePosition()
-	planePosition += _handDifference()
-	return Vector3(planePosition.x, 0, planePosition.y)
+	return _centerPosition() + _handDifference()
 
 func attack(time : float) -> void:
 	$R.position = restPositionR

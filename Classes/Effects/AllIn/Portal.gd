@@ -39,5 +39,5 @@ func kill():
 	var lightTween := get_tree().create_tween()
 	lightTween.tween_property($Spotlight, "light_energy", 0, .4)
 	lightTween.set_ease(Tween.EASE_OUT)
-	monitoring = false
+	set_deferred("monitoring", false)
 	$AnimatedSprite3D.play("DeSpawn")

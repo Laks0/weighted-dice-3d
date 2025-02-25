@@ -82,6 +82,9 @@ func _physics_process(delta):
 	if stunned:
 		accFactor = 0
 	
+	if grabbed:
+		return
+	
 	moveVelocity += ACCELERATION * _movementDir * delta * accFactor
 	moveVelocity = moveVelocity.limit_length(MAX_SPEED * accFactor)
 	

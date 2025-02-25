@@ -83,9 +83,10 @@ albedo_color = Color(0.321569, 0.458824, 0.0784314, 1)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_yhn61")
-autoaimAngleDiff = 0.271
-grabDistance = 0.4
+autoaimAngleDiff = 0.351
+grabDistance = 0.6
 maxPushForce = 35.0
+affectedByGravity = true
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.681998, 0.731354, 0, -0.731354, 0.681998, 0, 0, 0)
