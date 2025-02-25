@@ -1,20 +1,32 @@
 extends VBoxContainer
 class_name PlayerBetCard
 
-var player : PlayerHandler.Player = null
+var candidate = null
 
-func setPlayer(id : int):
-	$TextureRect.texture.region.position.x = id * $TextureRect.texture.region.size.x
-	player = PlayerHandler.getPlayerById(id)
-	$NameLabel.text = player.name
+func setCandidate(c):
+	candidate = c
+	$NameLabel.text = BetHandler.getCandidateName(candidate)
+	
+	# 6 es la carta genérica
+	var atlasPosition : int
+	if BetHandler.areCandidatesPlayers():
+		atlasPosition = candidate
+		%PlayerGrid.visible = true
+	else:
+		atlasPosition = 6
+		$Background.self_modulate = BetHandler.getCandidateColor(candidate)
+		%GenericGrid.visible = true
+	$Background.texture.region.position.x = atlasPosition * $Background.texture.region.size.x
 
 func _process(_delta):
-	if player == null:
+	if candidate == null:
 		return
 	
-	if BetHandler.getScores().has(player.id):
-		var isWinning = BetHandler.getCandidatesOnFirst().has(player.id)
-		$TextureRect.modulate.v = 1 if isWinning else .5
+	if BetHandler.getScores().has(candidate):
+		var isWinning = BetHandler.getCandidatesOnFirst().has(candidate)
+		isWinning = isWinning or not BetHandler.betOngoing
+		$Background.modulate.v = 1.0 if isWinning else .5
 	
 	for p in PlayerHandler.getPlayersAlive():
-		%GridContainer.get_child(p.id).visible = p.getAmountBettedOn(player.id) > 0
+		%PlayerGrid.get_child(p.id).visible = p.getAmountBettedOn(candidate) > 0
+		%GenericGrid.get_child(p.id).visible = p.getAmountBettedOn(candidate) > 0

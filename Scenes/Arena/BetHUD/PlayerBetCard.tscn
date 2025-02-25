@@ -21,7 +21,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd2yh"]
 resource_local_to_scene = true
 atlas = ExtResource("1_34mtb")
-region = Rect2(0, 0, 176, 96)
+region = Rect2(1056, 0, 176, 96)
 
 [node name="PlayerBetCard" type="VBoxContainer"]
 anchors_preset = 8
@@ -42,18 +42,19 @@ script = ExtResource("1_pafre")
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_c4ix5")
-text = "Tomás"
+text = "Tomaś"
 label_settings = SubResource("LabelSettings_5cfxs")
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
 texture = SubResource("AtlasTexture_qd2yh")
 
-[node name="GridContainer" type="GridContainer" parent="TextureRect"]
+[node name="PlayerGrid" type="GridContainer" parent="Background"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 10.0
@@ -63,32 +64,74 @@ scale = Vector2(0.200818, 0.200818)
 theme_override_constants/h_separation = -20
 columns = 3
 
-[node name="0" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="0" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("4_ob8l0")
 
-[node name="1" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="1" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("5_ylssp")
 
-[node name="2" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="2" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("6_ce83a")
 
-[node name="3" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="3" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("7_0bbre")
 
-[node name="4" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="4" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("8_jedno")
 
-[node name="5" type="TextureRect" parent="TextureRect/GridContainer"]
+[node name="5" type="TextureRect" parent="Background/PlayerGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("9_ji1er")
+
+[node name="GenericGrid" type="GridContainer" parent="Background"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 782.0
+offset_bottom = 402.0
+scale = Vector2(0.200818, 0.200818)
+theme_override_constants/h_separation = 145
+theme_override_constants/v_separation = 35
+columns = 3
+
+[node name="0" type="TextureRect" parent="Background/GenericGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_ob8l0")
+
+[node name="1" type="TextureRect" parent="Background/GenericGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_ylssp")
+
+[node name="2" type="TextureRect" parent="Background/GenericGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_ce83a")
+
+[node name="3" type="TextureRect" parent="Background/GenericGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_0bbre")
+
+[node name="4" type="TextureRect" parent="Background/GenericGrid"]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_jedno")
+
+[node name="5" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
 texture = ExtResource("9_ji1er")

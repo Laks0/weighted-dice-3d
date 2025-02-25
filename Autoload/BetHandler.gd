@@ -116,6 +116,10 @@ func getCandidateScore(candidate) -> float:
 		return 0
 	return currentBet.getScores()[candidate]
 
+## Responde si los candidatos de la apuesta actual se deben interpretar como jugadores
+func areCandidatesPlayers() -> bool:
+	return currentBet.betType in [Bet.BetType.EXCLUDE_SELF, Bet.BetType.ALL_PLAYERS]
+
 func canBet(playerId : int, candidate) -> bool:
 	return currentBet.canBet(playerId, candidate)
 

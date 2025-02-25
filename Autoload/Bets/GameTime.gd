@@ -21,14 +21,7 @@ func startRound():
 	times[2] = playersAlive * 10 + 5
  
 func settle():
-	if gameTime < times[0]:
-		_result = GameTime.FIRST
-	elif gameTime >= times[0] and gameTime < times[1]:
-		_result = GameTime.MIDDLE_LONG
-	elif gameTime >= times[1] and gameTime < times[2]:
-		_result = GameTime.MIDDLE_SHORT
-	else:
-		_result = GameTime.LAST
+	_result = getCandidatesOnFirst()[0]
 
 func startGame(arena):
 	gameTime = 0
@@ -48,6 +41,16 @@ func getCandidateOdds(candidate) -> int:
 		return 4
 	
 	return 3
+
+func getCandidatesOnFirst() -> Array:
+	if gameTime < times[0]:
+		return [GameTime.FIRST]
+	elif gameTime >= times[0] and gameTime < times[1]:
+		return [GameTime.MIDDLE_LONG]
+	elif gameTime >= times[1] and gameTime < times[2]:
+		return [GameTime.MIDDLE_SHORT]
+	
+	return [GameTime.LAST]
 
 func getCandidates() -> Array:
 	return GameTime.values()

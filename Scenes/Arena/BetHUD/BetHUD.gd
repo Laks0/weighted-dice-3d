@@ -6,6 +6,7 @@ signal reseted
 
 func _ready():
 	BetHandler.pickedNewBet.connect(onNewBetPicked)
+	BetHandler.betStarted.connect(onBetStarted)
 
 func onNewBetPicked():
 	if BetHandler.round == 1:
@@ -15,15 +16,18 @@ func onNewBetPicked():
 	
 	if BetHandler.currentBet.betType == Bet.BetType.CUSTOM:
 		%BetName.visible = false
-		return
-	
-	%BetName.visible = true
-	%BetName.text = BetHandler.getBetName()
+		# Si no es de jugadores, no se presta tanto a la confusión y las cartas
+		# pueden aparecer en la arena
+		$LeftContainer.visible = false
+		$RightContainer.visible = false
+	else:
+		%BetName.visible = true
+		%BetName.text = BetHandler.getBetName()
 	
 	var cards : Array[PlayerBetCard] = []
 	for c in BetHandler.getCandidates():
 		var card : PlayerBetCard = playerCardScene.instantiate()
-		card.setPlayer(c)
+		card.setCandidate(c)
 		cards.append(card)
 	
 	@warning_ignore("integer_division")
@@ -32,6 +36,10 @@ func onNewBetPicked():
 	@warning_ignore("integer_division")
 	for i in range(cards.size()/2, cards.size()):
 		$RightContainer.add_child(cards[i])
+
+func onBetStarted():
+	$LeftContainer.visible = true
+	$RightContainer.visible = true
 
 func showBetName():
 	$BetDisplay.visible = true
