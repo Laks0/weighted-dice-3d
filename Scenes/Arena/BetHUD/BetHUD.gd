@@ -2,7 +2,7 @@ extends Control
 
 signal reseted
 
-@export var playerCardScene : PackedScene
+@export var cardScene : PackedScene
 
 func _ready():
 	BetHandler.pickedNewBet.connect(onNewBetPicked)
@@ -24,9 +24,9 @@ func onNewBetPicked():
 		%BetName.visible = true
 		%BetName.text = BetHandler.getBetName()
 	
-	var cards : Array[PlayerBetCard] = []
+	var cards : Array[BetCard] = []
 	for c in BetHandler.getCandidates():
-		var card : PlayerBetCard = playerCardScene.instantiate()
+		var card : BetCard = cardScene.instantiate()
 		card.setCandidate(c)
 		cards.append(card)
 	

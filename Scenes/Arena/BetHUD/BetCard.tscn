@@ -1,29 +1,29 @@
 [gd_scene load_steps=13 format=3 uid="uid://if5mowox57bo"]
 
-[ext_resource type="Texture2D" uid="uid://hcagaamsg1w6" path="res://Assets/BetsUI/MonigotesUIApuesta-Color-Sheet.png" id="1_34mtb"]
-[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/PlayerBetCard.gd" id="1_pafre"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_dj2iw"]
-[ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="4_ob8l0"]
-[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="5_ylssp"]
-[ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="6_ce83a"]
-[ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="7_0bbre"]
-[ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="8_jedno"]
-[ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="9_ji1er"]
+[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetCard.gd" id="1_6g4d5"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_b7x1u"]
+[ext_resource type="Texture2D" uid="uid://hcagaamsg1w6" path="res://Assets/BetsUI/MonigotesUIApuesta-Color-Sheet.png" id="3_eintv"]
+[ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="4_dyhuk"]
+[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="5_bmkeu"]
+[ext_resource type="Texture2D" uid="uid://qp0xdtgiu1yb" path="res://Assets/IcoJuan.png" id="6_j2ujb"]
+[ext_resource type="Texture2D" uid="uid://c2p7m80nix6bb" path="res://Assets/IcoPedro.png" id="7_ha88j"]
+[ext_resource type="Texture2D" uid="uid://djfe7a8fmo4qv" path="res://Assets/IcoMale.png" id="8_opmtp"]
+[ext_resource type="Texture2D" uid="uid://brr6y3b5pkc6p" path="res://Assets/IcoMarta.png" id="9_f1r2y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4ix5"]
 bg_color = Color(0.907942, 0.907942, 0.907942, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5cfxs"]
-font = ExtResource("2_dj2iw")
+font = ExtResource("2_b7x1u")
 font_size = 21
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd2yh"]
 resource_local_to_scene = true
-atlas = ExtResource("1_34mtb")
+atlas = ExtResource("3_eintv")
 region = Rect2(1056, 0, 176, 96)
 
-[node name="PlayerBetCard" type="VBoxContainer"]
+[node name="BetCard" type="VBoxContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -36,7 +36,7 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
-script = ExtResource("1_pafre")
+script = ExtResource("1_6g4d5")
 
 [node name="NameLabel" type="Label" parent="."]
 layout_mode = 2
@@ -67,32 +67,32 @@ columns = 3
 [node name="0" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("4_ob8l0")
+texture = ExtResource("4_dyhuk")
 
 [node name="1" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_ylssp")
+texture = ExtResource("5_bmkeu")
 
 [node name="2" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("6_ce83a")
+texture = ExtResource("6_j2ujb")
 
 [node name="3" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("7_0bbre")
+texture = ExtResource("7_ha88j")
 
 [node name="4" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("8_jedno")
+texture = ExtResource("8_opmtp")
 
 [node name="5" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("9_ji1er")
+texture = ExtResource("9_f1r2y")
 
 [node name="GenericGrid" type="GridContainer" parent="Background"]
 unique_name_in_owner = true
@@ -109,29 +109,29 @@ columns = 3
 [node name="0" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("4_ob8l0")
+texture = ExtResource("4_dyhuk")
 
 [node name="1" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("5_ylssp")
+texture = ExtResource("5_bmkeu")
 
 [node name="2" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("6_ce83a")
+texture = ExtResource("6_j2ujb")
 
 [node name="3" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("7_0bbre")
+texture = ExtResource("7_ha88j")
 
 [node name="4" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("8_jedno")
+texture = ExtResource("8_opmtp")
 
 [node name="5" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("9_ji1er")
+texture = ExtResource("9_f1r2y")

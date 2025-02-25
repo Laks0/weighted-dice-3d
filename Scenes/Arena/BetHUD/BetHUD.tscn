@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_jeqwd"]
-[ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/PlayerBetCard.tscn" id="2_vnj2t"]
+[ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/BetCard.tscn" id="3_jpmgq"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
 [ext_resource type="Texture2D" uid="uid://dmpfvhqxvkdp3" path="res://Scenes/Arena/BetHUD/RelojPrueba.png" id="6_os5dx"]
 
@@ -214,7 +214,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_jeqwd")
 script = ExtResource("1_c5tys")
-playerCardScene = ExtResource("2_vnj2t")
+cardScene = ExtResource("3_jpmgq")
 
 [node name="BetDisplay" type="Control" parent="."]
 layout_mode = 1

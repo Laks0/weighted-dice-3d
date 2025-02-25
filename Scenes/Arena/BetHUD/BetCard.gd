@@ -1,5 +1,5 @@
 extends VBoxContainer
-class_name PlayerBetCard
+class_name BetCard
 
 var candidate = null
 
