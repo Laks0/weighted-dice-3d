@@ -59,7 +59,7 @@ func _goToPosition(time : float):
 	tween.tween_property($L, "position", _getClosedPositionL(), time)
 	tween.parallel().tween_property($R, "position", _getClosedPositionR(), time)
 
-func go_to_rest(time : float) -> void:
+func _goToRest(time : float) -> void:
 	closed = false
 	var tween := create_tween()
 	var waitTime = time/2
@@ -69,6 +69,14 @@ func go_to_rest(time : float) -> void:
 	tween.parallel().tween_property($R, "position", restPositionR, backTime)
 	await tween.finished
 	visible = false
+
+func onPush(cooldownTime : float) -> void:
+	var pushTime := .05
+	var diff := Vector3(direction.x, 0, direction.y) * mon.pushFactor
+	var pushTween := create_tween().set_parallel()
+	pushTween.tween_property($L, "position", diff, pushTime).as_relative()
+	pushTween.tween_property($R, "position", diff, pushTime).as_relative()
+	pushTween.chain().tween_callback(_goToRest.bind(cooldownTime - pushTime))
 
 func startGrabbing(body):
 	closed = true

@@ -40,7 +40,7 @@ func attemptGrab():
 
 func onPushed():
 	$GrabCooldown.start()
-	hands.go_to_rest($GrabCooldown.wait_time)
+	hands.onPush($GrabCooldown.wait_time)
 
 func onMonigoteGrabbed():
 	mon.escapeMovements = 0
