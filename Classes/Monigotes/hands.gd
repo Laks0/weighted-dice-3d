@@ -26,7 +26,7 @@ func _centerPosition() -> Vector3:
 	if _canUseGrabBody():
 		return to_local(grabBody.global_position)
 	var direction3d := Vector3(direction.x, 0, direction.y)
-	return direction3d * (grabDistance if not _canUseGrabBody() else grabBody.grabDistance)
+	return direction3d * grabDistance
 
 func _handDifference() -> Vector3:
 	return Vector3(-direction.y, 0, direction.x) * (.0 if not _canUseGrabBody() else .3)
@@ -59,7 +59,7 @@ func _goToPosition(time : float):
 	tween.tween_property($L, "position", _getClosedPositionL(), time)
 	tween.parallel().tween_property($R, "position", _getClosedPositionR(), time)
 
-func _goToRest(time : float) -> void:
+func goToRest(time : float) -> void:
 	closed = false
 	var tween := create_tween()
 	var waitTime = time/2
@@ -76,7 +76,7 @@ func onPush(cooldownTime : float) -> void:
 	var pushTween := create_tween().set_parallel()
 	pushTween.tween_property($L, "position", diff, pushTime).as_relative()
 	pushTween.tween_property($R, "position", diff, pushTime).as_relative()
-	pushTween.chain().tween_callback(_goToRest.bind(cooldownTime - pushTime))
+	pushTween.chain().tween_callback(goToRest.bind(cooldownTime - pushTime))
 
 func startGrabbing(body):
 	closed = true
