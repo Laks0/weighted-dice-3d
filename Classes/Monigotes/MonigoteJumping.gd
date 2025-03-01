@@ -5,6 +5,8 @@ extends Node3D
 @export var horizontalInitialSpeed : float = 15
 @export var verticalAcceleration   : float = 22
 @export var horizontalAcceleration : float = 40
+@export var airFriction            : float = 50
+var floorFriction : float
 
 var jumping := false
 ## Marca si se sigue apretando el botón para saltar más
@@ -49,6 +51,8 @@ func jump():
 	
 	# Mientras un monigote está saltando no puede colisionar con otros monigotes
 	mon.set_collision_mask_value(1, false)
+	floorFriction = mon.FRICTION
+	mon.FRICTION = airFriction
 
 func stopJump():
 	jumping = false
@@ -57,6 +61,7 @@ func stopJump():
 	mon.goMaxSpeed(Controllers.getDirection(mon.controller))
 	
 	mon.set_collision_mask_value(1, true)
+	mon.FRICTION = floorFriction
 
 func onFloorCollision(body):
 	if not jumping:
