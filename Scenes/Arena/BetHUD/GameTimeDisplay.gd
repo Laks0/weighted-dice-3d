@@ -33,9 +33,6 @@ func onBetStarted():
 		
 		tween.tween_callback(func ():
 			backgroundNoise.modulate = BetHandler.getCandidateColor(candidate)
-			$ClockAnimations.speed_scale = 1/animationTime
-			$ClockAnimations.play(str(candidate))
-			$ClockAnimations.frame = 0
 		)
 		tween.tween_interval(animationTime)
 
@@ -53,9 +50,10 @@ func _process(_delta):
 	
 	if not BetHandler.betOngoing:
 		tween.stop()
-		$ClockAnimations.stop()
 	
 	$TimeLabel.text = "%s" % floor(bet.gameTime)
+	var anglePerSecond := (PI/2) / bet.times[0]
+	%ClockHand.rotation = clamp(-PI/2 + bet.gameTime * anglePerSecond, -PI/2, 3*PI/2)
 	
 	for t in bet.times:
 		if $Countdown.playing:

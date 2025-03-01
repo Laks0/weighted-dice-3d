@@ -27,5 +27,6 @@ func spikeTimeout():
 	spikesOut = true
 
 func end():
-	layout.queue_free()
 	$SpikeTime.stop()
+	if is_instance_valid(layout):
+		layout.queue_free()

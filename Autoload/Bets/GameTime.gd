@@ -65,8 +65,8 @@ func getCandidateName(time : GameTime) -> String:
 
 func getCandidateColor(time : GameTime) -> Color:
 	match time:
-		GameTime.FIRST: return Color.GREEN
-		GameTime.MIDDLE_LONG: return Color.GREEN_YELLOW
-		GameTime.MIDDLE_SHORT: return Color.YELLOW
-		GameTime.LAST: return Color.RED
+		GameTime.FIRST: return Color("#F7A315")
+		GameTime.MIDDLE_LONG: return Color("#27CD74")
+		GameTime.MIDDLE_SHORT: return Color("#E11A4C")
+		GameTime.LAST: return Color("#FF4000")
 	return Color.WHITE

@@ -1,12 +1,14 @@
-[gd_scene load_steps=34 format=3 uid="uid://bww4tl6fwi7k"]
+[gd_scene load_steps=22 format=3 uid="uid://bww4tl6fwi7k"]
 
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_jeqwd"]
 [ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/BetCard.tscn" id="3_jpmgq"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
-[ext_resource type="Texture2D" uid="uid://dmpfvhqxvkdp3" path="res://Scenes/Arena/BetHUD/RelojPrueba.png" id="6_os5dx"]
 [ext_resource type="AudioStream" uid="uid://cddf3mnertem4" path="res://Scenes/Arena/BetHUD/coundown.mp3" id="7_sv2py"]
+[ext_resource type="Texture2D" uid="uid://bf0okn3lt2kr2" path="res://Scenes/Arena/BetHUD/RelojUI.png" id="8_ayd1w"]
+[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/ClockColors.gd" id="9_081g6"]
+[ext_resource type="Texture2D" uid="uid://clcbinnoh5g8e" path="res://Scenes/Arena/BetHUD/RelojUIAguja.png" id="9_rkhut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ido6v"]
 atlas = ExtResource("1_5e4j8")
@@ -90,120 +92,6 @@ animations = [{
 atlas = ExtResource("1_5e4j8")
 region = Rect2(0, 236, 220, 120)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbvce"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(0, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ltn2w"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(92, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gdjav"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(184, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ex3w"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(276, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iscmp"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(368, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_esdei"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(460, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqdmp"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(460, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1em3y"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(552, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fuw1k"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(644, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_goas1"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(736, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w341h"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(828, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8k0oy"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(920, 0, 92, 102)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5aq0a"]
-atlas = ExtResource("6_os5dx")
-region = Rect2(1012, 0, 92, 102)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_483cn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wbvce")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ltn2w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gdjav")
-}],
-"loop": false,
-"name": &"0",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ex3w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iscmp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_esdei")
-}],
-"loop": false,
-"name": &"1",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqdmp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1em3y")
-}],
-"loop": false,
-"name": &"2",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fuw1k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_goas1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w341h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8k0oy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5aq0a")
-}],
-"loop": false,
-"name": &"3",
-"speed": 5.0
-}]
-
 [node name="BetHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -231,6 +119,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Background" type="AnimatedSprite2D" parent="BetDisplay"]
+z_index = -2
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_buomd")
 autoplay = "default"
@@ -277,11 +166,6 @@ grow_vertical = 2
 script = ExtResource("5_pwo3w")
 backgroundNoise = NodePath("../Background")
 
-[node name="ClockAnimations" type="AnimatedSprite2D" parent="BetDisplay/GameTimeDisplay"]
-position = Vector2(61, 58)
-sprite_frames = SubResource("SpriteFrames_483cn")
-animation = &"0"
-
 [node name="TimeLabel" type="Label" parent="BetDisplay/GameTimeDisplay"]
 layout_mode = 1
 anchors_preset = 6
@@ -301,6 +185,50 @@ text = "120s"
 stream = ExtResource("7_sv2py")
 volume_db = -3.0
 bus = &"SFX"
+
+[node name="ClockOverlay" type="TextureRect" parent="BetDisplay/GameTimeDisplay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -46.5
+offset_right = 116.0
+offset_bottom = 46.5
+grow_vertical = 2
+texture = ExtResource("8_ayd1w")
+
+[node name="ClockHand" type="TextureRect" parent="BetDisplay/GameTimeDisplay/ClockOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -2.5
+offset_right = -5.0
+offset_bottom = 2.5
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(-3.37, 2.5)
+texture = ExtResource("9_rkhut")
+stretch_mode = 2
+
+[node name="Colors" type="Control" parent="BetDisplay/GameTimeDisplay/ClockOverlay"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_081g6")
+radius = 41.7
 
 [node name="LeftContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
