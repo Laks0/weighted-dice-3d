@@ -52,16 +52,26 @@ text = "Movimiento"
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
 upSelect = NodePath("../Movement")
-downSelect = NodePath("../Pause")
+downSelect = NodePath("../Jump")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
 text = "Agarrar"
 
-[node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
+[node name="Jump" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
 upSelect = NodePath("../Grab")
+downSelect = NodePath("../Pause")
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
+text = "Saltar"
+
+[node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ggv5o")
+upSelect = NodePath("../Jump")
 downSelect = NodePath("../OK")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
@@ -95,6 +105,7 @@ horizontal_alignment = 1
 
 [node name="Instrucciones" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -110,6 +121,8 @@ horizontal_alignment = 1
 [connection signal="startedFocus" from="VBoxContainer/Movement" to="." method="setAction" binds= [&"up"]]
 [connection signal="pressed" from="VBoxContainer/Grab" to="." method="startEdit"]
 [connection signal="startedFocus" from="VBoxContainer/Grab" to="." method="setAction" binds= [&"grab"]]
+[connection signal="pressed" from="VBoxContainer/Jump" to="." method="startEdit"]
+[connection signal="startedFocus" from="VBoxContainer/Jump" to="." method="setAction" binds= [&"jump"]]
 [connection signal="pressed" from="VBoxContainer/Pause" to="." method="startEdit"]
 [connection signal="startedFocus" from="VBoxContainer/Pause" to="." method="setAction" binds= [&"pause"]]
 [connection signal="pressed" from="VBoxContainer/OK" to="." method="onOKPressed"]
