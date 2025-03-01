@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bww4tl6fwi7k"]
+[gd_scene load_steps=34 format=3 uid="uid://bww4tl6fwi7k"]
 
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/BetCard.tscn" id="3_jpmgq"]
 [ext_resource type="Script" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
 [ext_resource type="Texture2D" uid="uid://dmpfvhqxvkdp3" path="res://Scenes/Arena/BetHUD/RelojPrueba.png" id="6_os5dx"]
+[ext_resource type="AudioStream" uid="uid://cddf3mnertem4" path="res://Scenes/Arena/BetHUD/coundown.mp3" id="7_sv2py"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ido6v"]
 atlas = ExtResource("1_5e4j8")
@@ -295,6 +296,11 @@ offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "120s"
+
+[node name="Countdown" type="AudioStreamPlayer" parent="BetDisplay/GameTimeDisplay"]
+stream = ExtResource("7_sv2py")
+volume_db = -3.0
+bus = &"SFX"
 
 [node name="LeftContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

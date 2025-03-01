@@ -8,6 +8,9 @@ var tween : Tween
 
 @export var backgroundNoise : AnimatedSprite2D
 
+## Tiempo antes de una marca en el que empieza el sfx
+@export var warningTimeStart : float = 3
+
 func _ready():
 	BetHandler.betStarted.connect(onBetStarted)
 
@@ -52,4 +55,11 @@ func _process(_delta):
 		tween.stop()
 		$ClockAnimations.stop()
 	
-	$TimeLabel.text = str(floor(bet.gameTime)) + "s"
+	$TimeLabel.text = "%s" % floor(bet.gameTime)
+	
+	for t in bet.times:
+		if $Countdown.playing:
+			break
+		if bet.gameTime > t - warningTimeStart and bet.gameTime < t:
+			$Countdown.play()
+			break
