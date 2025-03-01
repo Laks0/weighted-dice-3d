@@ -29,6 +29,8 @@ var grabBody   : Pushable
 var pushFactor : float = 0
 
 var color := Color.WHITE
+## La fuerza con la que está siendo agarrado (de 0 a 1)
+var forceBeingGrabbed := .0
 
 var timer : Timer = Timer.new() # Timer para el grab
 
@@ -149,11 +151,11 @@ func onGrabbing():
 	
 	# Determina la fuerza dependiendo del tiempo
 	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
+	grabBody.forceBeingGrabbed = t
 	
 	var minFactor := .4
 	var offset := .4
 	pushFactor = (pow((t+offset), 3) * ((1-minFactor)/pow(1+offset,3)) + minFactor)
-	grabBody.color = Color(1, 1-pushFactor, 1-pushFactor)
 	
 	# Prohibe al cuerpo colisionar con el que lo agarra
 	grabBody.add_collision_exception_with(self)

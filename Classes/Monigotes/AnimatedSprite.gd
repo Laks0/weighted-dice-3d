@@ -20,6 +20,8 @@ var hurtSkin : SpriteFrames
 
 @export var skins : Dictionary
 
+@export var billboardActive := true
+
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
 	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
@@ -87,7 +89,13 @@ func _process(_delta):
 	if mon.drunk:
 		modulate *= drunkColor
 	
-	billboardUpdate()
+	#if billboardActive:
+		#billboardUpdate()
+	if mon.grabbed:
+		pass
+		#rotation.x = -PI/2 * mon.forceBeingGrabbed
+	else:
+		billboardUpdate()
 	
 	#############
 	# Animaciones
