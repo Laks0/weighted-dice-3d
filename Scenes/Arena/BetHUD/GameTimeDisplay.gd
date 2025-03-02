@@ -50,6 +50,8 @@ func _process(_delta):
 	
 	if not BetHandler.betOngoing:
 		tween.stop()
+		$Countdown.stop()
+		return
 	
 	$TimeLabel.text = "%s" % floor(bet.gameTime)
 	var anglePerSecond := (PI/2) / bet.times[0]
