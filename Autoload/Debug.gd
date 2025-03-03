@@ -12,10 +12,10 @@ var vars := {
 }
 
 func _ready():
-	LimboConsole.register_command(_setVar, "set", "Cambia el valor de una variable de debug")
+	LimboConsole.register_command(_setVar, "set", "Cambia el valor de una variable de debug. Para ver variables posibles usar listarVars")
 	LimboConsole.add_argument_autocomplete_source("set", 1, func(): return vars.keys())
 	
-	LimboConsole.register_command(_printVars, "imprimirVars", "Imprime los nombres y valores de las variables de debug")
+	LimboConsole.register_command(_printVars, "listarVars", "Imprime los nombres y valores de las variables de debug")
 	
 	LimboConsole.register_command(_killMonigote, "matarMonigote", "Matar a un monigote que exista, si no se pasa una skin se mata a todos")
 	LimboConsole.add_argument_autocomplete_source("matarMonigote", 1, func ():
