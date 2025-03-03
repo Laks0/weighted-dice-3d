@@ -50,12 +50,17 @@ func _on_area_3d_body_entered(body):
 	mon.player.setRoundBonus(bonus)
 	
 	var outTween := create_tween()
-	
-	outTween.tween_property(self, "scale", scale * 1.3, animationLenght)
-	outTween.tween_interval(animationLenght * 2)
-	outTween.tween_property(self, "scale", Vector3.ZERO, animationLenght)\
-		.set_trans(Tween.TRANS_BOUNCE)\
-		.set_ease(Tween.EASE_IN)
+	outTween.tween_callback(func (): 
+		$WinnerLabel.visible = true
+		$WinnerLabel.modulate = mon.player.color
+		$WinnerLabel.text = "+%s %s" % [bonus, mon.player.name]
+	)
+	outTween.tween_property($FichaMesh, "scale", Vector3.ZERO, animationLenght)
+	outTween.parallel().tween_property($WinnerLabel, "scale", Vector3.ONE, animationLenght)\
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	outTween.tween_interval(1)
+	outTween.tween_property($WinnerLabel, "scale", Vector3.ZERO, animationLenght)\
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	outTween.finished.connect(queue_free)
 
 func disable():

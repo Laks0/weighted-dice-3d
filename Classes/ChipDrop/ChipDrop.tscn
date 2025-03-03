@@ -73,7 +73,7 @@ shadow_mesh = SubResource("ArrayMesh_3ccru")
 resource_local_to_scene = true
 albedo_color = Color(0.66, 0.1914, 0.1914, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn0ld"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srq2m"]
 resource_local_to_scene = true
 albedo_color = Color(0, 0, 0, 1)
 
@@ -89,7 +89,7 @@ script = ExtResource("1_6jy3f")
 transform = Transform3D(0.6, 0, 0, 0, 0.055, 0, 0, 0, 0.6, 0, 0.728304, 0)
 mesh = SubResource("ArrayMesh_dv470")
 surface_material_override/0 = SubResource("StandardMaterial3D_itfxb")
-surface_material_override/1 = SubResource("StandardMaterial3D_bn0ld")
+surface_material_override/1 = SubResource("StandardMaterial3D_srq2m")
 
 [node name="Label3D" type="Label3D" parent="FichaMesh"]
 transform = Transform3D(1.66667, 0, 0, 0, -7.94752e-07, 18.1818, 0, -1.66667, -7.28523e-08, 0, 0.528156, 0)
@@ -110,5 +110,16 @@ shape = SubResource("CylinderShape3D_jul4d")
 stream = ExtResource("4_uqpu0")
 volume_db = -2.41
 bus = &"SFX"
+
+[node name="WinnerLabel" type="Label3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.760471, 0)
+visible = false
+billboard = 1
+no_depth_test = true
+render_priority = 2
+outline_render_priority = 1
+text = "+3 Juancho"
+font = ExtResource("3_p5qeh")
+font_size = 82
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
