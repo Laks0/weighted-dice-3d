@@ -35,7 +35,8 @@ func _process(_delta):
 	
 	if status == ResourceLoader.THREAD_LOAD_LOADED:
 		await get_tree().create_timer(1).timeout
-		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(arenaPath))
+		var arena : PackedScene = ResourceLoader.load_threaded_get(arenaPath)
+		get_tree().change_scene_to_packed(arena)
 		return
 	if status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		push_error("Error al cargar la escena")
