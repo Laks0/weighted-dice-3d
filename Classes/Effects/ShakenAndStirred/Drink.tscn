@@ -9,6 +9,7 @@ radius = 0.582394
 
 [node name="Drink" type="Area3D" groups=["Drinks"]]
 script = ExtResource("1_oogm3")
+drunkTime = 2.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, -1.74846e-07, 4, 0, -4, -1.74846e-07, 0, 0, 0)
