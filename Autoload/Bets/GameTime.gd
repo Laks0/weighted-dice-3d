@@ -16,9 +16,9 @@ func _init():
 func startRound():
 	times = [0,0,0]
 	var playersAlive := PlayerHandler.getPlayersAlive().size()
-	times[0] = playersAlive * 5
-	times[1] = playersAlive * 10
-	times[2] = playersAlive * 10 + 5
+	times[0] = playersAlive * 10
+	times[1] = playersAlive * 20
+	times[2] = playersAlive * 20 + 10
  
 func settle():
 	_result = getCandidatesOnFirst()[0]
