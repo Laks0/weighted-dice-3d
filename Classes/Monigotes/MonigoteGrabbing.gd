@@ -2,6 +2,8 @@
 ## llamar desde Monigote
 extends Node3D
 
+@export var animatedSprite : AnimatedSprite3D
+
 @onready var mon : Monigote = get_parent()
 @export var hands : Node3D
 
@@ -10,6 +12,8 @@ func _physics_process(_delta):
 	if pointing != Vector2.ZERO:
 		mon.grabDir = pointing
 		$GrabArea.rotation.y = -pointing.angle()
+	if mon.grabbing:
+		onMonigoteGrabbing()
 
 func attemptGrab():
 	if not $GrabCooldown.is_stopped():
@@ -59,3 +63,12 @@ func onGrabAreaBodyEntered(body):
 	
 	if mon.startGrab(body):
 		mon.emit_signal("grab", body)
+
+func onMonigoteGrabbing():
+	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
+	if dir3d == Vector3.ZERO:
+		dir3d = Vector3.RIGHT
+	var target := Vector3.UP.rotated(Vector3(1,0,0), animatedSprite.rotation.x) * 1.1
+	dir3d = dir3d.lerp(target, mon.forceGrabbing)
+	var newPosition = global_position + dir3d * mon.grabBody.grabDistance
+	mon.grabBody.global_position = newPosition

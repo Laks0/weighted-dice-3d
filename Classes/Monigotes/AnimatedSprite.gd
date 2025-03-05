@@ -20,8 +20,6 @@ var hurtSkin : SpriteFrames
 
 @export var skins : Dictionary
 
-@export var billboardActive := true
-
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
 	# La relación ID/Skin se determina en el diccionario exportado skins y acá.
@@ -89,11 +87,10 @@ func _process(_delta):
 	if mon.drunk:
 		modulate *= drunkColor
 	
-	#if billboardActive:
-		#billboardUpdate()
 	if mon.grabbed:
-		pass
-		#rotation.x = -PI/2 * mon.forceBeingGrabbed
+		rotation.x = min(-PI/2 * mon.forceBeingGrabbed, getNewRotation())
+		rotation.y = PI/2-mon.dirBeingGrabbed.angle()
+		modulate.a = .7
 	else:
 		billboardUpdate()
 	
@@ -175,6 +172,8 @@ var rotationAnimationTreshold := PI/8 # La máxima cantidad que se puede rotar e
 func billboardUpdate():
 	if transitioningRotation:
 		return
+	
+	rotation.y = 0
 	
 	var newRotation = getNewRotation()
 	

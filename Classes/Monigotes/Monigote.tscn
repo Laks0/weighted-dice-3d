@@ -183,8 +183,9 @@ outline_render_priority = 1
 text = "Juancho"
 font = ExtResource("21_xwq3q")
 
-[node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("hands")]
+[node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "hands")]
 script = ExtResource("23_jjywh")
+animatedSprite = NodePath("../AnimatedSprite")
 hands = NodePath("Hands")
 
 [node name="GrabCooldown" type="Timer" parent="Grabbing"]

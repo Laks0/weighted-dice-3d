@@ -22,15 +22,17 @@ signal doubled ## Se llama cuando quien lo está agarrando es agarrado
 
 @export var FRICTION : float = 40
 
-var grabbing   := false
-var grabbed    := false
-var grabDir    := Vector2.RIGHT
-var grabBody   : Pushable
-var pushFactor : float = 0
+var grabbing        := false
+var grabbed         := false
+var grabDir         := Vector2.RIGHT
+var dirBeingGrabbed := Vector2.RIGHT
+var grabBody        : Pushable
+var pushFactor      : float = 0
 
 var color := Color.WHITE
 ## La fuerza con la que está siendo agarrado (de 0 a 1)
 var forceBeingGrabbed := .0
+var forceGrabbing     := .0
 
 var timer : Timer = Timer.new() # Timer para el grab
 
@@ -72,8 +74,12 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	# Permite volver a colisionar con el que lo agarró
 	# IMPORTANTE: esto significa que los pushables no pueden tener excepciones
 	# de colisión
-	for e in get_collision_exceptions():
-		remove_collision_exception_with(e)
+	get_tree().create_timer(.1).timeout.connect(func ():
+		if not is_instance_valid(self):
+			return
+		for e in get_collision_exceptions():
+			remove_collision_exception_with(e)
+	)
 	
 	if customMovement:
 		return
@@ -152,6 +158,8 @@ func onGrabbing():
 	# Determina la fuerza dependiendo del tiempo
 	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
 	grabBody.forceBeingGrabbed = t
+	forceGrabbing = t
+	grabBody.dirBeingGrabbed = grabDir
 	
 	var minFactor := .4
 	var offset := .4
@@ -159,14 +167,6 @@ func onGrabbing():
 	
 	# Prohibe al cuerpo colisionar con el que lo agarra
 	grabBody.add_collision_exception_with(self)
-	
-	# Pone el cuerpo agarrado a grabDistance de distancia en la dirección de grabDir
-	var dir3d := Vector3(grabDir.x, 0, grabDir.y)
-	if dir3d == Vector3.ZERO:
-		dir3d = Vector3.RIGHT
-	dir3d = dir3d.lerp(Vector3.UP, t)
-	var newPosition = global_position + dir3d * grabBody.grabDistance
-	grabBody.global_position = newPosition
 
 func bounce(normal : Vector3) -> void:
 	if customMovement:
