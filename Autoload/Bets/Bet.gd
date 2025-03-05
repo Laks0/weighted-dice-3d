@@ -50,16 +50,24 @@ var monigoteSignal : MonigoteSignal = MonigoteSignal.NONE
 ## Para determinar las apuestas con prizeOnFirst
 var _maxBank : int = 0
 
+enum ScoreType {
+	INT,
+	TIME,
+	CUSTOM
+}
+
+var _scoreType = ScoreType.INT
+
 ## Se llama al principio de la ronda
 func startRound():
 	_maxBank = PlayerHandler.getPlayersInOrder()[0].bank
+	
+	for candidate in getCandidates():
+		_scores[candidate] = 0
 
 ## Se llama al final del ready de la arena
 func startGame(arena : Arena):
 	_arena = arena
-
-	for candidate in getCandidates():
-		_scores[candidate] = 0
 
 ## Se llama al final del update de arena. Evitar a menos que sea imposible
 func arenaUpdate(_delta):
@@ -100,6 +108,9 @@ func getCandidatesInOrder() -> Array:
 
 ## Retorna los candidatos que están ganando la apuesta
 func getCandidatesOnFirst() -> Array:
+	if _scoreOrder == Order.NO_SCORE:
+		return []
+	
 	var winnerScore = _scores[getCandidatesInOrder()[0]]
 	return getCandidates().filter(func (candidate):
 		return _scores[candidate] == winnerScore)
@@ -142,3 +153,18 @@ func getCandidateColor(candidate) -> Color:
 			return PlayerHandler.getPlayerById(candidate).color
 	
 	return Color.RED
+
+func usesScore() -> bool:
+	return _scoreOrder != Order.NO_SCORE
+
+func getScoreText(candidate) -> String:
+	if (not usesScore()) or (not _scores.has(candidate)):
+		return ""
+	
+	if _scoreType == ScoreType.INT:
+		return str(int(_scores[candidate]))
+	
+	if _scoreType == ScoreType.TIME:
+		return "%ss" % snappedf(_scores[candidate], .1)
+	
+	return ""

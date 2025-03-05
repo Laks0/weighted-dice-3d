@@ -4,6 +4,7 @@ func _init():
 	betName = "Tiempo quieto"
 	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
+	_scoreType = ScoreType.TIME
 	monigoteSignal = MonigoteSignal.CROWN
 	
 	_resultTextSingular = "%s estuvo más tiempo sin moverse"

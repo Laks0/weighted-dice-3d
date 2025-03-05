@@ -10,6 +10,7 @@ func _init():
 	betType = BetType.ALL_PLAYERS
 	betName = "Rey de la colina"
 	_scoreOrder = Order.ASCENDING
+	_scoreType = ScoreType.TIME
 	monigoteSignal = MonigoteSignal.CROWN
 	
 	_resultTextSingular = "%s fue el rey de la colina"

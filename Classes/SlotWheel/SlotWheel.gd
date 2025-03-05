@@ -4,6 +4,7 @@ class_name SlotWheel
 enum Faces {NONE, NUMBERS, SKINS}
 @export var imageOnFaces : Faces
 
+@warning_ignore("unused_signal")
 signal showAnimationFinished
 
 func _ready():

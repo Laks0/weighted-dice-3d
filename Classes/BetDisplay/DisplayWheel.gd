@@ -10,8 +10,11 @@ func _process(_delta):
 	if not BetHandler.betOngoing:
 		return
 	
-	var firstCandidate = BetHandler.getCandidatesInOrder()[0]
-	var firstScore: float = BetHandler.getScores()[firstCandidate]
+	return
+	
+	@warning_ignore("unreachable_code")
+	var firstCandidate = BetHandler.getCandidatesOnFirst()[0]
+	var firstScore: float = 0#BetHandler.getScores()[firstCandidate]
 
 	if BetHandler.currentBet is GameTimeBet:
 		numberShown = BetHandler.currentBet.gameTime

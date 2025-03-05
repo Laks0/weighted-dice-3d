@@ -93,6 +93,9 @@ func getWinnerCandidates() -> Array:
 func getCandidatesOnFirst() -> Array:
 	return currentBet.getCandidatesOnFirst()
 
+func isCandidateWinning(candidate) -> bool:
+	return currentBet.getCandidatesOnFirst().has(candidate)
+
 func getWinnersText() -> String:
 	return currentBet.getWinnersText()
 
@@ -115,6 +118,9 @@ func getCandidateScore(candidate) -> float:
 	if not currentBet.getScores().has(candidate):
 		return 0
 	return currentBet.getScores()[candidate]
+
+func getScoreText(candidate) -> String:
+	return currentBet.getScoreText(candidate)
 
 ## Responde si los candidatos de la apuesta actual se deben interpretar como jugadores
 func areCandidatesPlayers() -> bool:
