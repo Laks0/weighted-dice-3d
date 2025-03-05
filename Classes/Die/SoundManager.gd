@@ -15,7 +15,7 @@ func onDieHit(_body):
 	$Hit.play()
 	$Roll.play(randf_range(0, 4))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rollSound()
 
 func rollSound():

@@ -128,8 +128,8 @@ func _setBank(playerName : String, newBank : int):
 		return
 	player.bank = newBank
 
-func _changeRound(round : int):
-	BetHandler.round = round
+func _changeRound(_round : int):
+	BetHandler.round = _round
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):
