@@ -80,6 +80,10 @@ func mainProcess():
 		%PlayerNameLabel.text = playerName
 	else:
 		%PlayerNameLabel.text = getControllerName()
+	
+	%PlayerNameLabel.label_settings.font_color = Color.BLACK
+	if %EditNameButton.focused:
+		%PlayerNameLabel.label_settings.font_color = Color.WHITE
 
 func editProcess():
 	%PlayerNameEditLabel.text = playerName
