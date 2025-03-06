@@ -5,6 +5,7 @@ class_name Pushable
 @warning_ignore("unused_signal")
 signal escaped
 signal beenGrabbed
+signal grabbedBody(body : Pushable)
 signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)
 signal pushed
 signal doubled ## Se llama cuando quien lo está agarrando es agarrado
@@ -96,6 +97,7 @@ func startGrab(body : Pushable) -> bool:
 		return false
 	
 	grabbing = true
+	grabbedBody.emit(body)
 	
 	timer.start(maxGrabTime)
 	

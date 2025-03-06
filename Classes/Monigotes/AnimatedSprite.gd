@@ -218,6 +218,12 @@ func onMonigoteHurt():
 	labelTween.tween_property($PlayerName, "modulate:a", 1, .2)
 	shakeName()
 
+func onMonigoteGrab(body : Pushable):
+	rotationRaycast.add_exception(body)
+
+func onMonigotePushed():
+	rotationRaycast.clear_exceptions()
+
 func shakeName():
 	while true:
 		$PlayerName.rotation.z = randf() * (PI/10) - PI/20
