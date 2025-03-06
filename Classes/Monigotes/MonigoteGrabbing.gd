@@ -65,6 +65,8 @@ func onGrabAreaBodyEntered(body):
 		mon.emit_signal("grab", body)
 
 func onMonigoteGrabbing():
+	if not is_instance_valid(mon.grabBody):
+		return
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
