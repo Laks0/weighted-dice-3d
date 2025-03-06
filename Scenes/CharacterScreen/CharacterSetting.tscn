@@ -1,6 +1,6 @@
 [gd_scene load_steps=84 format=3 uid="uid://d23vm7fpygfv7"]
 
-[ext_resource type="Script" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
+[ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
 [ext_resource type="PackedScene" uid="uid://oxxrws4k27pk" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.tscn" id="2_1dgad"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="3_drg7m"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bvctdh7t6udvt" path="res://Scenes/CharacterScreen/Listo!TxtUICharSelect-Sheet.png" id="9_p4xui"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="10_60nkq"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="11_731y3"]
-[ext_resource type="Script" path="res://Scenes/CharacterScreen/waiting.gd" id="12_y5xo4"]
+[ext_resource type="Script" uid="uid://5tc7ntyij5rv" path="res://Scenes/CharacterScreen/waiting.gd" id="12_y5xo4"]
 [ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="13_ay5i3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]

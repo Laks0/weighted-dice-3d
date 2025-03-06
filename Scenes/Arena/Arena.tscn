@@ -1,11 +1,11 @@
 [gd_scene load_steps=42 format=3 uid="uid://bpdrpg3p4qn3t"]
 
-[ext_resource type="Script" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
+[ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
 [ext_resource type="PackedScene" uid="uid://bnxn215f58sus" path="res://Scenes/Arena/CardShowAnimation.tscn" id="3_wm28h"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="4_0von1"]
-[ext_resource type="Script" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
+[ext_resource type="Script" uid="uid://dh3iem70qs4os" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="5_fiigu"]
@@ -24,8 +24,8 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="16_khcf0"]
-[ext_resource type="Script" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
-[ext_resource type="Script" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
+[ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/Arena/StageHandler.gd" id="23_v1elk"]
+[ext_resource type="Script" uid="uid://dgub11lavdcow" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
 [ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Scenes/Arena/BetHUD/BetHUD.tscn" id="28_4dsfl"]
 [ext_resource type="PackedScene" uid="uid://c1u8x43c7ulq1" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="29_pgv01"]
@@ -168,8 +168,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i545o"]
 _data = {
-"LobbyOutAnimation": SubResource("Animation_3y6d5"),
-"RESET": SubResource("Animation_y7ohy")
+&"LobbyOutAnimation": SubResource("Animation_3y6d5"),
+&"RESET": SubResource("Animation_y7ohy")
 }
 
 [node name="Arena" type="Node3D"]
@@ -365,7 +365,7 @@ leaderboardCamera = NodePath("../LeaderboardCamera")
 [node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="StageHandler"]
 root_node = NodePath("../../Lobby")
 libraries = {
-"": SubResource("AnimationLibrary_i545o")
+&"": SubResource("AnimationLibrary_i545o")
 }
 
 [node name="GlobalLight" type="DirectionalLight3D" parent="."]

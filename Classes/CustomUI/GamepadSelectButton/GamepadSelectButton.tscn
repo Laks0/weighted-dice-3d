@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://kps6urduxyub"]
 
-[ext_resource type="Script" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.gd" id="1_tiixq"]
+[ext_resource type="Script" uid="uid://di7uhc0hpdd2f" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.gd" id="1_tiixq"]
 
 [node name="GamepadSelectButton" type="TextureRect"]
 anchors_preset = 8

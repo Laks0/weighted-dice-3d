@@ -1,14 +1,14 @@
 [gd_scene load_steps=25 format=3 uid="uid://5grbkmxqlcab"]
 
-[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
+[ext_resource type="Script" uid="uid://dhb6kl72imaxp" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
 [ext_resource type="PackedScene" uid="uid://br1eurxdqpgpn" path="res://Classes/Effects/GetTheBallRollingEffect/PaloPool.glb" id="3_inj8a"]
-[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/DirectionTelegraph.gd" id="4_h8td1"]
-[ext_resource type="Shader" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
-[ext_resource type="Shader" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="6_e2j23"]
+[ext_resource type="Script" uid="uid://bgicome1h4ftf" path="res://Classes/Effects/GetTheBallRollingEffect/DirectionTelegraph.gd" id="4_h8td1"]
+[ext_resource type="Shader" uid="uid://dfautq6r14n4i" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
+[ext_resource type="Shader" uid="uid://b3m0pus6yj2px" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="6_e2j23"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail/defaults/texture.tres" id="7_x4wj2"]
 [ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://addons/GPUTrail/defaults/curve.tres" id="8_xv4hf"]
-[ext_resource type="Script" path="res://addons/GPUTrail/GPUTrail3D.gd" id="9_bo8vu"]
+[ext_resource type="Script" uid="uid://cqopx7uvu2d5i" path="res://addons/GPUTrail/GPUTrail3D.gd" id="9_bo8vu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 0.615468
@@ -105,8 +105,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwrxg"]
 _data = {
-"Push": SubResource("Animation_sc44p"),
-"RESET": SubResource("Animation_uupdl")
+&"Push": SubResource("Animation_sc44p"),
+&"RESET": SubResource("Animation_uupdl")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7p4we"]
@@ -123,10 +123,10 @@ resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource("6_e2j23")
 shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/flags = 40
 shader_parameter/color_ramp = SubResource("GradientTexture1D_6qad2")
 shader_parameter/curve = ExtResource("8_xv4hf")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
 
 [sub_resource type="QuadMesh" id="QuadMesh_wfjg6"]
 material = SubResource("ShaderMaterial_poswv")
@@ -146,12 +146,12 @@ curve = SubResource("Curve_ffepp")
 resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource("6_e2j23")
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-shader_parameter/flags = 44
 shader_parameter/tex = ExtResource("7_x4wj2")
+shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = ExtResource("7_x4wj2")
 shader_parameter/curve = SubResource("CurveTexture_3708t")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 44
 
 [sub_resource type="QuadMesh" id="QuadMesh_xwxyv"]
 material = SubResource("ShaderMaterial_gtyfp")

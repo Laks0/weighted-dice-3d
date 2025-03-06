@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://oxxrws4k27pk"]
 
-[ext_resource type="Script" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
+[ext_resource type="Script" uid="uid://bpvuwr6ejlynl" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_e8km5"]
 [ext_resource type="PackedScene" uid="uid://cvnn2je0u572l" path="res://Classes/CustomUI/VirtualKeyboard/KeyboardButton.tscn" id="2_12how"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="3_c7ol2"]

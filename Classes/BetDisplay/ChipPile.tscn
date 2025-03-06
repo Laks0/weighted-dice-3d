@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ds2hj3wae03ip"]
 
-[ext_resource type="Script" path="res://Classes/BetDisplay/ChipPile.gd" id="1_4r2t6"]
+[ext_resource type="Script" uid="uid://dcfutdygatoeq" path="res://Classes/BetDisplay/ChipPile.gd" id="1_4r2t6"]
 [ext_resource type="PackedScene" uid="uid://cq5gqlwg77y81" path="res://Classes/BetDisplay/ficha_mesh.tscn" id="2_e5iql"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_al5hg"]
 [ext_resource type="AudioStream" uid="uid://bg1ig3hnvdrcg" path="res://Assets/SFX/chipDown.wav" id="4_65flo"]

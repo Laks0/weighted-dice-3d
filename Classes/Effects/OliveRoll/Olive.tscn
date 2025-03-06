@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://8l23xyx2htpf"]
 
-[ext_resource type="Script" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
+[ext_resource type="Script" uid="uid://cx3addr7idnl3" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
 [ext_resource type="Texture2D" uid="uid://466i7kvr7oj7" path="res://Classes/Effects/OliveRoll/aceituna.png" id="2_8r2dk"]
 [ext_resource type="AudioStream" uid="uid://ba3m8jvebr6fg" path="res://Classes/Effects/OliveRoll/sfx_oliveshot.wav" id="3_fw7dq"]
 [ext_resource type="PackedScene" uid="uid://sdlmgjn7qmrw" path="res://Classes/Effects/OliveRoll/Aceituna.glb" id="4_wall5"]

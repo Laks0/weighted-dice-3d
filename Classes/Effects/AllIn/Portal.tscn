@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://culfgpoe3bjxa"]
 
-[ext_resource type="Script" path="res://Classes/Effects/AllIn/Portal.gd" id="1_8x0fw"]
+[ext_resource type="Script" uid="uid://cknk5glpy26fi" path="res://Classes/Effects/AllIn/Portal.gd" id="1_8x0fw"]
 [ext_resource type="Texture2D" uid="uid://qtt2n6v6w1dc" path="res://Classes/Effects/AllIn/portal ficha-Sheet.png" id="1_k0i47"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3svm"]

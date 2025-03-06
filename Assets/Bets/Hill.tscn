@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce6pak6n3lk6c"]
 
 [ext_resource type="Texture2D" uid="uid://dprptapclgbxj" path="res://Assets/Bets/KingOfTheHill.png" id="1_j4ruj"]
-[ext_resource type="Script" path="res://Assets/Bets/Hill.gd" id="2_0t6u4"]
+[ext_resource type="Script" uid="uid://516qhnbkkjqt" path="res://Assets/Bets/Hill.gd" id="2_0t6u4"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_iuc46"]
 
 [node name="Hill" type="Sprite3D"]

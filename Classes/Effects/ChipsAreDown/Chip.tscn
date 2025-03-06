@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwunvo0y878l1"]
 
-[ext_resource type="Script" path="res://Classes/Effects/ChipsAreDown/Chip.gd" id="1_odypl"]
+[ext_resource type="Script" uid="uid://b5elstmcs5wnn" path="res://Classes/Effects/ChipsAreDown/Chip.gd" id="1_odypl"]
 [ext_resource type="PackedScene" uid="uid://cwrg2u4vd8gyp" path="res://Classes/Effects/ChipsAreDown/Ficha.glb" id="2_k7onw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_65kc1"]

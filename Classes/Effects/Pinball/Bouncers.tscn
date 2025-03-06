@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c32l2ktah81x3"]
 
-[ext_resource type="Script" path="res://Classes/Effects/Pinball/Bouncers.gd" id="1_rv2gn"]
+[ext_resource type="Script" uid="uid://du3epp8f05ach" path="res://Classes/Effects/Pinball/Bouncers.gd" id="1_rv2gn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_om4ex"]
 size = Vector3(11.668, 1.7627, 0.584839)

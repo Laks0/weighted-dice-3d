@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxjh4xet8soqm"]
 
-[ext_resource type="Script" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.gd" id="1_748c0"]
+[ext_resource type="Script" uid="uid://bnf35yy8w10mq" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.gd" id="1_748c0"]
 [ext_resource type="PackedScene" uid="uid://5grbkmxqlcab" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.tscn" id="2_j2s6x"]
 [ext_resource type="Texture2D" uid="uid://cuhwgspnq1lig" path="res://Classes/Effects/GetTheBallRollingEffect/TarotBola8.png" id="4_5b0xi"]
 
@@ -56,8 +56,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ph6er"]
 _data = {
-"BallEnter": SubResource("Animation_qpltu"),
-"RESET": SubResource("Animation_w57vw")
+&"BallEnter": SubResource("Animation_qpltu"),
+&"RESET": SubResource("Animation_w57vw")
 }
 
 [node name="GetTheBallRollingEffect" type="Node"]

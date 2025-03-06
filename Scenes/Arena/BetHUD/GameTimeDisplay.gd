@@ -53,7 +53,7 @@ func _process(_delta):
 		$Countdown.stop()
 		return
 	
-	$TimeLabel.text = "%s" % floor(bet.gameTime)
+	$TimeLabel.text = "%.0f" % floor(bet.gameTime)
 	var anglePerSecond := (PI/2) / bet.times[0]
 	%ClockHand.rotation = clamp(-PI/2 + bet.gameTime * anglePerSecond, -PI/2, 3*PI/2)
 	

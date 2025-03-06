@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce83diidesaw6"]
 
-[ext_resource type="Script" path="res://Classes/BetDisplay/BetScreen.gd" id="1_f684m"]
+[ext_resource type="Script" uid="uid://bic8eox78f4t" path="res://Classes/BetDisplay/BetScreen.gd" id="1_f684m"]
 [ext_resource type="FontFile" uid="uid://cqlagf4oikhim" path="res://Assets/BebasNeue-Regular.ttf" id="2_bdjno"]
 
 [node name="BetScreen" type="Node2D"]

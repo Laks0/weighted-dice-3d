@@ -1,14 +1,14 @@
 [gd_scene load_steps=27 format=4 uid="uid://bu6qub506i5vu"]
 
-[ext_resource type="Script" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
+[ext_resource type="Script" uid="uid://cu3mv4ch16b8n" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_t13lr"]
 [ext_resource type="PackedScene" uid="uid://tsvuh3p747t8" path="res://Classes/BetDisplay/PileSelector.tscn" id="3_clxdh"]
-[ext_resource type="Script" path="res://Classes/BetDisplay/DisplayWheel.gd" id="3_gj3qo"]
+[ext_resource type="Script" uid="uid://cfbffrykair0w" path="res://Classes/BetDisplay/DisplayWheel.gd" id="3_gj3qo"]
 [ext_resource type="FontFile" uid="uid://dfomoacntffo" path="res://Assets/alagard.ttf" id="4_6lq8r"]
 [ext_resource type="PackedScene" uid="uid://bvgyufidhkxmj" path="res://Classes/BetDisplay/TragaMonedas.glb" id="4_vcxxi"]
 [ext_resource type="Texture2D" uid="uid://cvlwu2egkwdaa" path="res://Classes/BetDisplay/TablaApuestasSimples_BordeColorApuestas.png" id="5_bmeg7"]
 [ext_resource type="PackedScene" uid="uid://phhlbau5wrbq" path="res://Classes/SlotWheel/SlotWheel.tscn" id="5_rxriy"]
-[ext_resource type="Shader" path="res://Classes/BetDisplay/SlotScreen.gdshader" id="6_dipb8"]
+[ext_resource type="Shader" uid="uid://cfkk4rb4wqxnv" path="res://Classes/BetDisplay/SlotScreen.gdshader" id="6_dipb8"]
 [ext_resource type="Texture2D" uid="uid://carq68a3vomod" path="res://Classes/BetDisplay/TablaApuestasSimples_BordeTexturaApuestas.png" id="6_jhnol"]
 [ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="7_ctrvp"]
 [ext_resource type="Texture2D" uid="uid://b6e4jth4nfnmb" path="res://Classes/BetDisplay/TablaApuestasSimples_BordeColor2.png" id="7_uas0t"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cystl7jj4igwe" path="res://Classes/BetDisplay/TablaApuestasSimples_ColorTablasSimple.png" id="9_k1crs"]
 [ext_resource type="Texture2D" uid="uid://b8yokpq1w1whl" path="res://Classes/BetDisplay/TablaApuestasSimples_TexturaTablasSimple.png" id="10_755rp"]
 [ext_resource type="PackedScene" uid="uid://ce83diidesaw6" path="res://Classes/BetDisplay/BetScreen.tscn" id="10_xm5ya"]
-[ext_resource type="Script" path="res://Classes/BetDisplay/AIBetController.gd" id="13_o215p"]
+[ext_resource type="Script" uid="uid://dqn0r6k8tjq8o" path="res://Classes/BetDisplay/AIBetController.gd" id="13_o215p"]
 [ext_resource type="PackedScene" uid="uid://cnn332o3ilra4" path="res://Classes/BetDisplay/AllInParticles.tscn" id="18_t55ck"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttvtf"]
@@ -24,8 +24,8 @@ render_priority = 1
 shader = ExtResource("6_dipb8")
 shader_parameter/size = 4.0
 shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/ratio = Vector2(16, 9)
 shader_parameter/screenTexture = ExtResource("7_ctrvp")
+shader_parameter/ratio = Vector2(16, 9)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3k3t7"]
 resource_name = "DetalleBordeApuestas"

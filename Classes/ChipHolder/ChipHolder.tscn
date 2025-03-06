@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://4trc0xhmaen"]
 
 [ext_resource type="PackedScene" uid="uid://cxcu72n5anfbv" path="res://Classes/ChipHolder/Fichero.glb" id="1_7360m"]
-[ext_resource type="Script" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
+[ext_resource type="Script" uid="uid://bakutvpu4d1sv" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_tv04d"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="3_eey3n"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_0rd7g"]

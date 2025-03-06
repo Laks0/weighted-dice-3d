@@ -1,25 +1,25 @@
 [gd_scene load_steps=56 format=3 uid="uid://bu6wud186flga"]
 
-[ext_resource type="Script" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
-[ext_resource type="Script" path="res://addons/xsm/state.gd" id="3_67t0h"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine.gd" id="3_orssd"]
-[ext_resource type="Script" path="res://addons/xsm/state_rand.gd" id="4_m8stm"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/CubileteAnimation.gd" id="5_1r8vo"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/BurstsAttack.gd" id="5_qe015"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Stomp.gd" id="6_krck5"]
+[ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
+[ext_resource type="Script" uid="uid://v0mrx3trqmhq" path="res://addons/xsm/state.gd" id="3_67t0h"]
+[ext_resource type="Script" uid="uid://cqgsf56ye5345" path="res://Classes/Die/StateMachine.gd" id="3_orssd"]
+[ext_resource type="Script" uid="uid://75wre1qo0uug" path="res://addons/xsm/state_rand.gd" id="4_m8stm"]
+[ext_resource type="Script" uid="uid://dweqcj21guits" path="res://Classes/Die/StateMachine/Roll/CubileteAnimation.gd" id="5_1r8vo"]
+[ext_resource type="Script" uid="uid://dr3o6efiskw3r" path="res://Classes/Die/StateMachine/Bursts/BurstsAttack.gd" id="5_qe015"]
+[ext_resource type="Script" uid="uid://tvcjghte5crk" path="res://Classes/Die/StateMachine/Roll/Stomp.gd" id="6_krck5"]
 [ext_resource type="PackedScene" uid="uid://dp1wq6f6qt5up" path="res://Classes/Die/Cubilete/cubilete.tscn" id="6_pxf1m"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/Prepare.gd" id="7_3cl3o"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Wait.gd" id="7_6g04j"]
-[ext_resource type="Script" path="res://Classes/Die/WaitForFloor.gd" id="7_x8flh"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Jumps/JumpsAttack.gd" id="8_81dmh"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Bursts/Burst.gd" id="8_t2h52"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/PickRandom.gd" id="9_btr01"]
-[ext_resource type="Script" path="res://Classes/Die/StateMachine/Roll/Rolled6.gd" id="9_o2hbn"]
+[ext_resource type="Script" uid="uid://bd2ag5pn85vj4" path="res://Classes/Die/StateMachine/Bursts/Prepare.gd" id="7_3cl3o"]
+[ext_resource type="Script" uid="uid://b87fept4v5a3v" path="res://Classes/Die/StateMachine/Roll/Wait.gd" id="7_6g04j"]
+[ext_resource type="Script" uid="uid://caok40ui3fa1b" path="res://Classes/Die/WaitForFloor.gd" id="7_x8flh"]
+[ext_resource type="Script" uid="uid://onw2eqabghno" path="res://Classes/Die/StateMachine/Jumps/JumpsAttack.gd" id="8_81dmh"]
+[ext_resource type="Script" uid="uid://b1to3n0mpd1t8" path="res://Classes/Die/StateMachine/Bursts/Burst.gd" id="8_t2h52"]
+[ext_resource type="Script" uid="uid://ddapxmprw4u3a" path="res://Classes/Die/StateMachine/PickRandom.gd" id="9_btr01"]
+[ext_resource type="Script" uid="uid://d1lob4lskofmj" path="res://Classes/Die/StateMachine/Roll/Rolled6.gd" id="9_o2hbn"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
 [ext_resource type="AudioStream" uid="uid://b4ilyinrb6dqu" path="res://Classes/Die/SFX/sfx_dicestomp.wav" id="15_w3cel"]
 [ext_resource type="AudioStream" uid="uid://cebdr5tnikcfs" path="res://Assets/SFX/Dado/dado 0a.wav" id="19_5t2lp"]
-[ext_resource type="Script" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
+[ext_resource type="Script" uid="uid://bduynf84rdyei" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
 [ext_resource type="AudioStream" uid="uid://dvm4jl44umrm8" path="res://Assets/SFX/Dado/dado 0b.wav" id="20_5gvsa"]
 [ext_resource type="AudioStream" uid="uid://cnu46v3hx7wh1" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
 [ext_resource type="AudioStream" uid="uid://dsgodc7ab7sjk" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
@@ -62,6 +62,7 @@ emission_ring_axis = Vector3(1, 1, 1)
 emission_ring_height = 0.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0

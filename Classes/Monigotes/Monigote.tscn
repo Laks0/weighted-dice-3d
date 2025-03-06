@@ -1,16 +1,16 @@
 [gd_scene load_steps=45 format=3 uid="uid://tvx16p1qmmjc"]
 
-[ext_resource type="Script" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
+[ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
 [ext_resource type="SpriteFrames" uid="uid://bpol0b7jqb23h" path="res://Assets/MonigoteSkins/BlueFrames.tres" id="3_3t8bt"]
 [ext_resource type="SpriteFrames" uid="uid://b11arb6b3rmrh" path="res://Assets/MonigoteSkins/GreenFrames.tres" id="4_nq8eh"]
 [ext_resource type="SpriteFrames" uid="uid://bw6etl8g70clq" path="res://Assets/MonigoteSkins/RedFrames.tres" id="5_xljsg"]
 [ext_resource type="SpriteFrames" uid="uid://chjguk5lutn5h" path="res://Assets/MonigoteSkins/YellowFrames.tres" id="6_2h8rt"]
-[ext_resource type="Script" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
+[ext_resource type="Script" uid="uid://b55orp4x5aadl" path="res://Classes/Monigotes/DeathParticles.gd" id="6_f2n3y"]
 [ext_resource type="PrismMesh" uid="uid://ju22yih214mi" path="res://Classes/Monigotes/DeathParticle.tres" id="6_jppmt"]
 [ext_resource type="SpriteFrames" uid="uid://cfd6alplor6mc" path="res://Assets/MonigoteSkins/OrangeFrames.tres" id="7_gdamn"]
-[ext_resource type="Shader" path="res://Classes/Monigotes/Monigote.gdshader" id="7_tb5pk"]
-[ext_resource type="Script" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
+[ext_resource type="Shader" uid="uid://cc2a0cwkuiiqf" path="res://Classes/Monigotes/Monigote.gdshader" id="7_tb5pk"]
+[ext_resource type="Script" uid="uid://c45d8mh6h6omc" path="res://Classes/Monigotes/AnimatedSprite.gd" id="8_au5v3"]
 [ext_resource type="SpriteFrames" uid="uid://cg1y2mis11sum" path="res://Assets/MonigoteSkins/PurpleFrames.tres" id="8_ppcco"]
 [ext_resource type="SpriteFrames" uid="uid://d1kvn7fksstc8" path="res://Assets/MonigoteSkins/BlueFramesBloody.tres" id="10_8e2x8"]
 [ext_resource type="Texture2D" uid="uid://m3yx40btq1cp" path="res://Classes/Monigotes/AnimacionesMonigotes.png" id="11_f1njw"]
@@ -20,17 +20,17 @@
 [ext_resource type="SpriteFrames" uid="uid://c3xlub6ostpq" path="res://Assets/MonigoteSkins/OrangeFramesBloody.tres" id="14_1xbeh"]
 [ext_resource type="Texture2D" uid="uid://pylm0uplpf13" path="res://Assets/Bets/MostGrabbed.png" id="14_wqmb4"]
 [ext_resource type="SpriteFrames" uid="uid://gpx3mko75y5v" path="res://Assets/MonigoteSkins/YellowFramesBloody.tres" id="15_0kk3g"]
-[ext_resource type="Script" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
+[ext_resource type="Script" uid="uid://dsntn1mihe5ug" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
-[ext_resource type="Script" path="res://Classes/Monigotes/hands.gd" id="21_3gcfk"]
-[ext_resource type="Script" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
+[ext_resource type="Script" uid="uid://do450poldhd24" path="res://Classes/Monigotes/hands.gd" id="21_3gcfk"]
+[ext_resource type="Script" uid="uid://cebjjj1crpddc" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
-[ext_resource type="Script" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
-[ext_resource type="Script" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
+[ext_resource type="Script" uid="uid://h61k6apralwn" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
+[ext_resource type="Script" uid="uid://bheshddugi8vk" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
 [ext_resource type="Texture2D" uid="uid://dlpq50y3uenix" path="res://Assets/MonigoteSkins/MonigoteHand.png" id="23_oeq53"]
-[ext_resource type="Script" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
-[ext_resource type="Script" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
-[ext_resource type="Script" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
+[ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
+[ext_resource type="Script" uid="uid://rftkc7u0y45" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
+[ext_resource type="Script" uid="uid://dglfv1rvi8ory" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -40,11 +40,11 @@ region = Rect2(32, 392, 32, 48)
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("7_tb5pk")
+shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 shader_parameter/borderAlpha = 0.98
 shader_parameter/width = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/modulate = Color(1, 1, 1, 1)
-shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 0.5, -0.5, 1, 0, -0.5, -0.5, 0.5, -0.5, -1, 0, 0.5, 0.5, 0.5, 0.5, 1, 0, 0.5, -0.5, 0.5, 0.5, -1)

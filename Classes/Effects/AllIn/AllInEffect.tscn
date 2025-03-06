@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1vq3q5rv3j3a"]
 
-[ext_resource type="Script" path="res://Classes/Effects/AllIn/AllInEffect.gd" id="1_pbkt0"]
+[ext_resource type="Script" uid="uid://7kwyoms106e7" path="res://Classes/Effects/AllIn/AllInEffect.gd" id="1_pbkt0"]
 [ext_resource type="PackedScene" uid="uid://culfgpoe3bjxa" path="res://Classes/Effects/AllIn/Portal.tscn" id="2_d8hlu"]
 [ext_resource type="Texture2D" uid="uid://b266smjwm2a21" path="res://Classes/Effects/AllIn/TarotPortal.png" id="3_c0ovy"]
 

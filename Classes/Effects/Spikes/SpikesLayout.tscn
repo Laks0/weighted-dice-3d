@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1wca58rqkpw7"]
 
-[ext_resource type="Script" path="res://Classes/Effects/Spikes/SpikesLayout.gd" id="1_s86o3"]
+[ext_resource type="Script" uid="uid://d55f2im77pfe" path="res://Classes/Effects/Spikes/SpikesLayout.gd" id="1_s86o3"]
 [ext_resource type="PackedScene" uid="uid://o4qvulj5o50g" path="res://Classes/Effects/Spikes/Spike.tscn" id="3_6fsq6"]
 [ext_resource type="AudioStream" uid="uid://dxjdyts2kubt7" path="res://Classes/Effects/Spikes/sfx_spike.wav" id="3_l63si"]
 

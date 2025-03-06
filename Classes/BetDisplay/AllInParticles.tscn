@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnn332o3ilra4"]
 
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="1_f63wg"]
-[ext_resource type="Script" path="res://Classes/BetDisplay/AllInParticles.gd" id="1_govoa"]
+[ext_resource type="Script" uid="uid://drtwmq2kqnmbw" path="res://Classes/BetDisplay/AllInParticles.gd" id="1_govoa"]
 [ext_resource type="AudioStream" uid="uid://dbrtj52hfeyjo" path="res://Assets/SFX/allin.wav" id="3_4jhuv"]
 
 [sub_resource type="Curve" id="Curve_0psm0"]

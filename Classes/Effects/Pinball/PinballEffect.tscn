@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgln6bpylui5h"]
 
-[ext_resource type="Script" path="res://Classes/Effects/Pinball/PinballEffect.gd" id="1_cd2g7"]
+[ext_resource type="Script" uid="uid://dfnig8010vxgk" path="res://Classes/Effects/Pinball/PinballEffect.gd" id="1_cd2g7"]
 [ext_resource type="PackedScene" uid="uid://dry1p0k0elo86" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.tscn" id="2_s8npj"]
 [ext_resource type="PackedScene" uid="uid://c32l2ktah81x3" path="res://Classes/Effects/Pinball/Bouncers.tscn" id="3_x7nvd"]
 [ext_resource type="Texture2D" uid="uid://dsw35li84ud4u" path="res://Assets/Cards/TarotPinball.png" id="4_lrdqe"]

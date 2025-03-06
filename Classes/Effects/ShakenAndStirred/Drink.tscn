@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b42mamlf6pkm3"]
 
-[ext_resource type="Script" path="res://Classes/Effects/ShakenAndStirred/Drink.gd" id="1_oogm3"]
+[ext_resource type="Script" uid="uid://b8vciglgjjreh" path="res://Classes/Effects/ShakenAndStirred/Drink.gd" id="1_oogm3"]
 [ext_resource type="Texture2D" uid="uid://bmgs1d1g0hxqw" path="res://Classes/Effects/ShakenAndStirred/Liquid.png" id="2_djdc4"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rdaei"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bbg4fcgpv31yt"]
 
-[ext_resource type="Script" path="res://Classes/Effects/FullHouse/FullHouseEffect.gd" id="1_3hme3"]
+[ext_resource type="Script" uid="uid://cjkqkh3c6vmcv" path="res://Classes/Effects/FullHouse/FullHouseEffect.gd" id="1_3hme3"]
 [ext_resource type="PackedScene" uid="uid://cbr1kxsjhj32d" path="res://Classes/Effects/FullHouse/Card.tscn" id="2_kkwc2"]
 [ext_resource type="AudioStream" uid="uid://cpy40ag5gegu8" path="res://Classes/Effects/FullHouse/sfx_stampede.wav" id="3_2xv2m"]
 [ext_resource type="Texture2D" uid="uid://csu4tkab2toxr" path="res://Classes/Effects/FullHouse/TarotFullHouse.png" id="3_o1itp"]
@@ -109,10 +109,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rihy"]
 _data = {
-"BottomUp": SubResource("Animation_08o78"),
-"CrissCross": SubResource("Animation_g31iu"),
-"SEtoNW": SubResource("Animation_au5ns"),
-"TopDown": SubResource("Animation_o864y")
+&"BottomUp": SubResource("Animation_08o78"),
+&"CrissCross": SubResource("Animation_g31iu"),
+&"SEtoNW": SubResource("Animation_au5ns"),
+&"TopDown": SubResource("Animation_o864y")
 }
 
 [node name="FullHouseEffect" type="Node"]

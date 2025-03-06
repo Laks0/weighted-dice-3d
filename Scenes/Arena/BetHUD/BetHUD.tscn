@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=3 uid="uid://bww4tl6fwi7k"]
 
 [ext_resource type="Texture2D" uid="uid://dvqci7k7lhnih" path="res://Assets/BetsUI/CartelUIApuesta_Sheet.png" id="1_5e4j8"]
-[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
+[ext_resource type="Script" uid="uid://bq81qxwf8cko7" path="res://Scenes/Arena/BetHUD/BetHUD.gd" id="1_c5tys"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_jeqwd"]
 [ext_resource type="PackedScene" uid="uid://if5mowox57bo" path="res://Scenes/Arena/BetHUD/BetCard.tscn" id="3_jpmgq"]
-[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
+[ext_resource type="Script" uid="uid://d3oxxbe8ree3i" path="res://Scenes/Arena/BetHUD/GameTimeDisplay.gd" id="5_pwo3w"]
 [ext_resource type="AudioStream" uid="uid://cddf3mnertem4" path="res://Scenes/Arena/BetHUD/coundown.mp3" id="7_sv2py"]
 [ext_resource type="Texture2D" uid="uid://bf0okn3lt2kr2" path="res://Scenes/Arena/BetHUD/RelojUI.png" id="8_ayd1w"]
-[ext_resource type="Script" path="res://Scenes/Arena/BetHUD/ClockColors.gd" id="9_081g6"]
+[ext_resource type="Script" uid="uid://dym3j72418g07" path="res://Scenes/Arena/BetHUD/ClockColors.gd" id="9_081g6"]
 [ext_resource type="Texture2D" uid="uid://clcbinnoh5g8e" path="res://Scenes/Arena/BetHUD/RelojUIAguja.png" id="9_rkhut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ido6v"]

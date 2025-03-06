@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://bo27kf00e07sv"]
 
 [ext_resource type="PackedScene" uid="uid://cq5gqlwg77y81" path="res://Classes/BetDisplay/ficha_mesh.tscn" id="1_5lib2"]
-[ext_resource type="Script" path="res://Classes/ChipDrop/ChipDrop.gd" id="1_6jy3f"]
+[ext_resource type="Script" uid="uid://b25ru1vkxop5x" path="res://Classes/ChipDrop/ChipDrop.gd" id="1_6jy3f"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_p5qeh"]
 [ext_resource type="AudioStream" uid="uid://rdjvuiu23hmb" path="res://Classes/ChipDrop/grab.wav" id="4_uqpu0"]
 

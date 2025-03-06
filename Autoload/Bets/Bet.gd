@@ -165,6 +165,6 @@ func getScoreText(candidate) -> String:
 		return str(int(_scores[candidate]))
 	
 	if _scoreType == ScoreType.TIME:
-		return "%ss" % snappedf(_scores[candidate], .1)
+		return "%.1fs" % _scores[candidate]
 	
 	return ""

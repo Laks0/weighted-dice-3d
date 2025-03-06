@@ -57,10 +57,10 @@ func getCandidates() -> Array:
 
 func getCandidateName(time : GameTime) -> String:
 	match time:
-		GameTime.FIRST: return "Menos de %ss" % times[0]
-		GameTime.MIDDLE_LONG: return "Entre %ss y %ss" % [times[0], times[1]]
-		GameTime.MIDDLE_SHORT: return "Entre %ss y %ss" % [times[1], times[2]]
-		GameTime.LAST: return "Más de %ss" % times[2]
+		GameTime.FIRST: return "Menos de %.0fs" % times[0]
+		GameTime.MIDDLE_LONG: return "Entre %.0fs y %.0fs" % [times[0], times[1]]
+		GameTime.MIDDLE_SHORT: return "Entre %.0fs y %.0fs" % [times[1], times[2]]
+		GameTime.LAST: return "Más de %.0fs" % times[2]
 	return ""
 
 func getCandidateColor(time : GameTime) -> Color:

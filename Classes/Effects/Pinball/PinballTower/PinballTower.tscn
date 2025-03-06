@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dry1p0k0elo86"]
 
-[ext_resource type="Script" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.gd" id="1_ws2rw"]
+[ext_resource type="Script" uid="uid://gpim6ryi3ci0" path="res://Classes/Effects/Pinball/PinballTower/PinballTower.gd" id="1_ws2rw"]
 [ext_resource type="PackedScene" uid="uid://da07o7woomim2" path="res://Classes/Effects/Pinball/PinballTower/CosoPinball_v2.glb" id="2_vkloh"]
 [ext_resource type="AudioStream" uid="uid://cqwg1p5ooxdt" path="res://Assets/SFX/fx_pinball_bumper.wav" id="3_heh04"]
 [ext_resource type="AudioStream" uid="uid://civ8kj6kjn1au" path="res://Assets/SFX/fx_pinball_bumper_bell.wav" id="4_o8dfq"]

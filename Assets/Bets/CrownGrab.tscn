@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://i54nt5afhxnf"]
 
-[ext_resource type="Script" path="res://Assets/Bets/CrownGrab.gd" id="1_jlkdb"]
+[ext_resource type="Script" uid="uid://cbwafg8ue732m" path="res://Assets/Bets/CrownGrab.gd" id="1_jlkdb"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="1_plhlc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3r4vu"]

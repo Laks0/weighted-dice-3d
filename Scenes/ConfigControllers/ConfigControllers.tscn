@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dekyiuf4skj47"]
 
-[ext_resource type="Script" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
+[ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_gs04o"]
 [ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="3_esr5x"]
 

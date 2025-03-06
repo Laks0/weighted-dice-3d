@@ -28,7 +28,8 @@ func _ready():
 	for fileName in DirAccess.get_files_at(betPath):
 		if fileName == "Bet.gd":
 			continue
-		
+		if not fileName.ends_with(".gd"):
+			continue
 		bets.append(load(betPath+fileName).new())
 
 ## Empieza la ronda de arena

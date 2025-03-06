@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c66esfi8xr0k2"]
 
-[ext_resource type="Script" path="res://Scenes/CharacterScreen/RigidBall.gd" id="1_2gvo7"]
+[ext_resource type="Script" uid="uid://djra3jy8hqxd2" path="res://Scenes/CharacterScreen/RigidBall.gd" id="1_2gvo7"]
 [ext_resource type="PackedScene" uid="uid://ccqu0sum0ar4c" path="res://Scenes/CharacterScreen/Pelotita.glb" id="1_xbrlg"]
 [ext_resource type="Texture2D" uid="uid://cv02t15y6bned" path="res://Assets/IcoTomi.png" id="2_delqi"]
 [ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="3_qnxay"]
