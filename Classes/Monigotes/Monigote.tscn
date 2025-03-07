@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=51 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -31,6 +31,9 @@
 [ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Script" uid="uid://rftkc7u0y45" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
 [ext_resource type="Script" uid="uid://dglfv1rvi8ory" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
+[ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
+[ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
+[ext_resource type="Texture2D" uid="uid://44laiid6xirl" path="res://Classes/Monigotes/arrowTailBorder.png" id="34_1m0wj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -102,6 +105,18 @@ height = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
 size = Vector3(0.29306, 0.049835, 0.236786)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gc1lk"]
+viewport_path = NodePath("PushArrow/ArrowViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x3ft"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_gc1lk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gc1lk"]
+size = Vector2(3.2, 0.8)
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -306,6 +321,33 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.291262, 0.00160217)
 shape = SubResource("BoxShape3D_8g2ci")
+
+[node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
+material_override = SubResource("StandardMaterial3D_3x3ft")
+mesh = SubResource("QuadMesh_gc1lk")
+script = ExtResource("32_uuku0")
+progressBar = NodePath("ArrowViewport/ProgressBar")
+progressBarBorder = NodePath("ArrowViewport/ProgressBar/Border")
+
+[node name="ArrowViewport" type="SubViewport" parent="PushArrow"]
+transparent_bg = true
+size = Vector2i(400, 100)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="PushArrow/ArrowViewport"]
+offset_left = 250.0
+offset_right = 350.0
+offset_bottom = 100.0
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = ExtResource("32_gc1lk")
+
+[node name="Border" type="TextureRect" parent="PushArrow/ArrowViewport/ProgressBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("34_1m0wj")
 
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]

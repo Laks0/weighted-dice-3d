@@ -13,13 +13,16 @@ signal doubled ## Se llama cuando quien lo está agarrando es agarrado
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
 
-@export var maxPushForce : float = 20 ## La fuerza máxima a la que _es empujado_
-@export var failedPushFactor : float = .3 ## El factor de la fuerza máxima que se usa cuando el objeto agarrado se escapa
+## La fuerza máxima a la que _es empujado_
+@export var maxPushForce : float = 20
+## El factor de la fuerza máxima que se usa cuando el objeto agarrado se escapa
+@export var failedPushFactor : float = .3
 
 @export var customMovement    : bool = false
 @export var affectedByGravity : bool = false
 
-@export var grabSpeedFactor : float = .08 ## El factor de la velocidad de un monigote cuando está agarrando el objeto
+## El factor de la velocidad de un monigote cuando está agarrando el objeto
+@export var grabSpeedFactor : float = .08
 
 @export var FRICTION : float = 40
 
@@ -33,6 +36,7 @@ var pushFactor      : float = 0
 var color := Color.WHITE
 ## La fuerza con la que está siendo agarrado (de 0 a 1)
 var forceBeingGrabbed := .0
+## La fuerza con la que está agarrando (de 0 a 1)
 var forceGrabbing     := .0
 
 var timer : Timer = Timer.new() # Timer para el grab

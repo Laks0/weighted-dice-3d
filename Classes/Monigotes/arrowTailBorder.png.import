@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwrxcspucbd12"
-path="res://.godot/imported/arrowHead.png-b7fa0aecf57c44ef5cb456961e85b145.ctex"
+uid="uid://44laiid6xirl"
+path="res://.godot/imported/arrowTailBorder.png-c6b2bcee8e25a967948ad5a5d52bb80d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Classes/Monigotes/arrowHead.png"
-dest_files=["res://.godot/imported/arrowHead.png-b7fa0aecf57c44ef5cb456961e85b145.ctex"]
+source_file="res://Classes/Monigotes/arrowTailBorder.png"
+dest_files=["res://.godot/imported/arrowTailBorder.png-c6b2bcee8e25a967948ad5a5d52bb80d.ctex"]
 
 [params]
 
