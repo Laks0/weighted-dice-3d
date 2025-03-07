@@ -219,10 +219,12 @@ func onMonigoteHurt():
 	shakeName()
 
 func onMonigoteGrab(body : Pushable):
-	rotationRaycast.add_exception(body)
+	$RotationRaycast.add_exception(body)
+	$RotationRaycastSignal.add_exception(body)
 
 func onMonigotePushed():
-	rotationRaycast.clear_exceptions()
+	$RotationRaycast.clear_exceptions()
+	$RotationRaycastSignal.clear_exceptions()
 
 func shakeName():
 	while true:
