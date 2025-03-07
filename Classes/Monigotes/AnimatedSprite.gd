@@ -12,7 +12,7 @@ var onArena := false
 @export var shakeMagnitude := .4
 @export var shakeTime := .1
 
-@onready var rotationRaycast := $RotationRaycast
+@onready var currentRotationRaycast := $RotationRaycastNoSignal
 
 @export var drunkColor : Color = Color.DARK_MAGENTA
 
@@ -48,7 +48,7 @@ func _ready():
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 	
 	# Para la función de rotación
-	$RotationRaycast.add_exception(get_parent())
+	$RotationRaycastNoSignal.add_exception(get_parent())
 
 func arenaReady():
 	onArena = true
@@ -155,15 +155,15 @@ func getNewRotation() -> float:
 	# Billboard normal
 	var billboardRotation := get_viewport().get_camera_3d().rotation.x + PI/8
 	
-	if not rotationRaycast.is_colliding():
-		rotationRaycast.rotation.x = 0
+	if not currentRotationRaycast.is_colliding():
+		currentRotationRaycast.rotation.x = 0
 		return billboardRotation
 	
-	var collisionPoint : Vector3 = rotationRaycast.get_collision_point()
+	var collisionPoint : Vector3 = currentRotationRaycast.get_collision_point()
 	# angulo = arcos(A/H)
-	var rayLength : float = rotationRaycast.target_position.y
+	var rayLength : float = currentRotationRaycast.target_position.y
 	var newRotation := acos(abs(collisionPoint.z - global_position.z) / rayLength) - PI/2
-	rotationRaycast.rotation.x = billboardRotation - newRotation
+	currentRotationRaycast.rotation.x = billboardRotation - newRotation
 	return newRotation
 
 var transitioningRotation := false
@@ -207,9 +207,9 @@ func changeBetSignalStatus(isVisible : bool):
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
 	
 	# Para la función de rotación
-	$RotationRaycast.enabled = !isVisible
+	$RotationRaycastNoSignal.enabled = !isVisible
 	$RotationRaycastSignal.enabled = isVisible
-	rotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycast
+	currentRotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycastNoSignal
 
 func onMonigoteHurt():
 	sprite_frames = hurtSkin
@@ -219,11 +219,11 @@ func onMonigoteHurt():
 	shakeName()
 
 func onMonigoteGrab(body : Pushable):
-	$RotationRaycast.add_exception(body)
+	$RotationRaycastNoSignal.add_exception(body)
 	$RotationRaycastSignal.add_exception(body)
 
 func onMonigotePushed():
-	$RotationRaycast.clear_exceptions()
+	$RotationRaycastNoSignal.clear_exceptions()
 	$RotationRaycastSignal.clear_exceptions()
 
 func shakeName():
