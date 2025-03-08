@@ -112,8 +112,8 @@ func goMaxSpeed(dir : Vector2) -> void:
 	velocity.z = vel2d.y
 
 func attemptEscape():
-	$AnimatedSprite.shake()
 	escapeMovements += 1
+	attemptedEscape.emit()
 	Input.start_joy_vibration(controller, .3, 0, .2)
 	
 	if escapeMovements >= MOVEMENTS_TO_ESCAPE_GRAB:
@@ -126,6 +126,7 @@ func onGrabbingEscaped(body : Pushable):
 	var pos2d = Vector2(position.x, position.z)
 	applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
+	$AnimatedSprite.axisShake()
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce

@@ -173,8 +173,6 @@ func billboardUpdate():
 	if transitioningRotation:
 		return
 	
-	rotation.y = 0
-	
 	var newRotation = getNewRotation()
 	
 	# Reajuste de altura
@@ -216,7 +214,7 @@ func onMonigoteHurt():
 	var labelTween = create_tween().set_loops()
 	labelTween.tween_property($PlayerName, "modulate:a", .4, .2)
 	labelTween.tween_property($PlayerName, "modulate:a", 1, .2)
-	shakeName()
+	startNameShake()
 
 func onMonigoteGrab(body : Pushable):
 	$RotationRaycastNoSignal.add_exception(body)
@@ -226,12 +224,14 @@ func onMonigotePushed():
 	$RotationRaycastNoSignal.clear_exceptions()
 	$RotationRaycastSignal.clear_exceptions()
 
-func shakeName():
+## Empieza el temblor de la nametag, una vez que se llama no se detiene
+func startNameShake():
 	while true:
 		$PlayerName.rotation.z = randf() * (PI/10) - PI/20
 		await get_tree().create_timer(.05).timeout
 
-func shake() -> void:
+## Un temblor corto planar al sprite
+func planarShake() -> void:
 	var elapsedTime := .0
 	while elapsedTime < shakeTime:
 		position = Vector3.RIGHT * randf_range(-shakeMagnitude, shakeMagnitude)\
@@ -240,6 +240,11 @@ func shake() -> void:
 		await get_tree().process_frame
 	
 	position = Vector3.ZERO
+
+## Un temblor corto en el eje y
+func axisShake(maxAngle : float = PI/10, totalRotations : int = 4, time : float = 1):
+	var localYAxis := basis.y.normalized()
+	rotate(localYAxis, PI/2)
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 
