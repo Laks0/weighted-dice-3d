@@ -88,11 +88,9 @@ func _process(_delta):
 		modulate *= drunkColor
 	
 	if mon.grabbed:
-		rotation.x = min(-PI/2 * mon.forceBeingGrabbed, getNewRotation())
+		rotation.x = min(-PI/2 * mon.forceBeingGrabbed, 0)#_getNewRotation())
 		rotation.y = PI/2-mon.dirBeingGrabbed.angle()
 		modulate.a = .7
-	else:
-		billboardUpdate()
 	
 	#############
 	# Animaciones
@@ -145,56 +143,6 @@ func dance():
 	dancing = true
 	play("Dancing")
 
-############
-# Rotación
-############
-
-## Retorna cuál debería ser la rotación en el eje x del sprite en su posición, con el efecto
-## secundario de rotar el raycast lo que sea necesario
-func getNewRotation() -> float:
-	# Billboard normal
-	var billboardRotation := get_viewport().get_camera_3d().rotation.x + PI/8
-	
-	if not currentRotationRaycast.is_colliding():
-		currentRotationRaycast.rotation.x = 0
-		return billboardRotation
-	
-	var collisionPoint : Vector3 = currentRotationRaycast.get_collision_point()
-	# angulo = arcos(A/H)
-	var rayLength : float = currentRotationRaycast.target_position.y
-	var newRotation := acos(abs(collisionPoint.z - global_position.z) / rayLength) - PI/2
-	currentRotationRaycast.rotation.x = billboardRotation - newRotation
-	return newRotation
-
-var transitioningRotation := false
-var rotationAnimationTreshold := PI/8 # La máxima cantidad que se puede rotar en un frame sin tween
-## Rota el sprite como billboard a menos que se choque contra un cuerpo
-func billboardUpdate():
-	if transitioningRotation:
-		return
-	
-	var newRotation = getNewRotation()
-	
-	# Reajuste de altura
-	var spriteHalfHeight := .05
-	var feetHeight := cos(newRotation) * spriteHalfHeight
-	
-	# Si la rotación nueva es lo suficientemente parecida se puede pasar en un solo frame
-	if abs(newRotation - rotation.x) < rotationAnimationTreshold:
-		position.y = feetHeight
-		rotation.x = newRotation
-		return
-	
-	# Si no, se anima la rotación
-	transitioningRotation = true
-	var tween = create_tween().set_parallel(true)
-	var time := .08
-	tween.tween_property(self, "rotation:x", newRotation, time)
-	tween.tween_property(self, "position:y", feetHeight, time)
-	
-	await tween.finished
-	
-	transitioningRotation = false
 
 func changeBetSignalStatus(isVisible : bool):
 	$BetSignalSprite.visible = true
@@ -243,25 +191,24 @@ func planarShake() -> void:
 
 ## Un temblor corto en el eje y
 func axisShake(maxAngle : float = PI/10, totalRotations : int = 4, time : float = 1):
-	var localYAxis := basis.y.normalized()
-	rotate(localYAxis, PI/2)
+	basis.x = Vector3(1,0,1).normalized() * basis.x.length()
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 
 ## Saca ángulos de la forma normal (desde 0 hasta 2PI), Godot lo hace de una manera rara
-func normalAngle(vector : Vector2) -> float:
+func _regularAngle(vector : Vector2) -> float:
 	var angle = -vector.angle()
 	if angle < 0:
 		angle += 2*PI
 	return angle
 
 func vecTo8Dir(vector : Vector2) -> Cardinal:
-	var angle = normalAngle(vector)
+	var angle = _regularAngle(vector)
 	angle += PI/8
 	return floor( angle / (PI/4) )
 
 func vecTo4Dir(vector : Vector2) -> Cardinal:
-	var angle = normalAngle(vector)
+	var angle = _regularAngle(vector)
 	if angle > 7*PI/4 or angle < PI/4:
 		return Cardinal.E
 	elif angle > PI/4 and angle < 3*PI/4:
