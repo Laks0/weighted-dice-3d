@@ -375,6 +375,7 @@ texture = ExtResource("34_1m0wj")
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
 [connection signal="grabbedBody" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigoteGrab"]
+[connection signal="grabbedBody" from="." to="PushArrow" method="onGrabbedBody"]
 [connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]
 [connection signal="pushed" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigotePushed"]
 [connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
