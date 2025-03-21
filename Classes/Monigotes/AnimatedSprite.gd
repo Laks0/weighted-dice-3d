@@ -1,5 +1,7 @@
 extends AnimatedSprite3D
 
+signal betSignalStatusChanged(isVisible : bool)
+
 var onArena := false
 
 @export var mon : Monigote
@@ -11,8 +13,6 @@ var onArena := false
 
 @export var shakeMagnitude := .4
 @export var shakeTime := .1
-
-@onready var currentRotationRaycast := $RotationRaycastNoSignal
 
 @export var drunkColor : Color = Color.DARK_MAGENTA
 
@@ -46,9 +46,6 @@ func _ready():
 			hurtSkin = skins.get("PurpleBloody")
 	
 	material_override.set_shader_parameter("outline_color", mon.player.color)
-	
-	# Para la función de rotación
-	$RotationRaycastNoSignal.add_exception(get_parent())
 
 func arenaReady():
 	onArena = true
@@ -87,10 +84,6 @@ func _process(_delta):
 	if mon.drunk:
 		modulate *= drunkColor
 	
-	if mon.grabbed:
-		rotation.x = min(-PI/2 * mon.forceBeingGrabbed, 0)#_getNewRotation())
-		rotation.y = PI/2-mon.dirBeingGrabbed.angle()
-		modulate.a = .7
 	
 	#############
 	# Animaciones
@@ -143,7 +136,6 @@ func dance():
 	dancing = true
 	play("Dancing")
 
-
 func changeBetSignalStatus(isVisible : bool):
 	$BetSignalSprite.visible = true
 	
@@ -155,7 +147,7 @@ func changeBetSignalStatus(isVisible : bool):
 	# Para la función de rotación
 	$RotationRaycastNoSignal.enabled = !isVisible
 	$RotationRaycastSignal.enabled = isVisible
-	currentRotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycastNoSignal
+	betSignalStatusChanged.emit(isVisible)
 
 func onMonigoteHurt():
 	sprite_frames = hurtSkin
@@ -163,14 +155,6 @@ func onMonigoteHurt():
 	labelTween.tween_property($PlayerName, "modulate:a", .4, .2)
 	labelTween.tween_property($PlayerName, "modulate:a", 1, .2)
 	startNameShake()
-
-func onMonigoteGrab(body : Pushable):
-	$RotationRaycastNoSignal.add_exception(body)
-	$RotationRaycastSignal.add_exception(body)
-
-func onMonigotePushed():
-	$RotationRaycastNoSignal.clear_exceptions()
-	$RotationRaycastSignal.clear_exceptions()
 
 ## Empieza el temblor de la nametag, una vez que se llama no se detiene
 func startNameShake():
