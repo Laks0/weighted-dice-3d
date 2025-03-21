@@ -9,11 +9,14 @@ signal died
 signal grab(body)
 @warning_ignore("unused_signal")
 signal hasWon
+signal wasStunned
+signal wasUnstunned
 
 @export var MAX_SPEED    : float = 7
 @export var ACCELERATION : float = 20
 @export var GRAVITY_ACCELERATION     : float = 50
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
+@export var STUN_TIME_AFTER_ESCAPE : float = .5
 var escapeMovements : int = 0
 
 var _movementDir : Vector2
@@ -126,7 +129,9 @@ func onGrabbingEscaped(body : Pushable):
 	var pos2d = Vector2(position.x, position.z)
 	applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
-	$AnimatedSprite.axisShake()
+	stun()
+	await get_tree().create_timer(STUN_TIME_AFTER_ESCAPE).timeout
+	unstun()
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce
@@ -198,10 +203,17 @@ func die():
 	
 	$DeathParticles.connect("finished", queue_free)
 
-func stun():
+## Empieza un stun, si visual es false, no emite la señal wasStunned y no hay
+## efectos visuales (o cualquier otro que se ligue a esa señal)
+func stun(visual := true):
 	stunned = true
-func unstun():
+	if visual:
+		wasStunned.emit()
+## Ver stun
+func unstun(visual := true):
 	stunned = false
+	if visual:
+		wasUnstunned.emit()
 
 func makeInvincible():
 	invincible = true

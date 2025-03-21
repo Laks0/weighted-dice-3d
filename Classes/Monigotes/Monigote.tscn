@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=54 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://cebjjj1crpddc" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" uid="uid://h61k6apralwn" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
+[ext_resource type="Script" uid="uid://c0x6cvlhovtdm" path="res://Classes/Monigotes/3DVisualAnimations/YAxisShake.gd" id="23_ibisb"]
 [ext_resource type="Script" uid="uid://bheshddugi8vk" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
 [ext_resource type="Texture2D" uid="uid://dlpq50y3uenix" path="res://Assets/MonigoteSkins/MonigoteHand.png" id="23_oeq53"]
 [ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
@@ -128,6 +129,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
 ACCELERATION = 80.0
 MOVEMENTS_TO_ESCAPE_GRAB = 5
+STUN_TIME_AFTER_ESCAPE = 0.7
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
@@ -210,6 +212,9 @@ target_position = Vector3(0, 0.73, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
+
+[node name="YAxisShake" type="Node3D" parent="AnimatedSprite/Animations3D"]
+script = ExtResource("23_ibisb")
 
 [node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "hands")]
 script = ExtResource("23_jjywh")
@@ -365,6 +370,7 @@ texture = ExtResource("34_1m0wj")
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
+[connection signal="beenGrabbed" from="." to="." method="unstun" binds= [true]]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
@@ -376,6 +382,8 @@ texture = ExtResource("34_1m0wj")
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
+[connection signal="wasStunned" from="." to="AnimatedSprite/Animations3D/YAxisShake" method="play"]
+[connection signal="wasUnstunned" from="." to="AnimatedSprite/Animations3D/YAxisShake" method="stop"]
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]

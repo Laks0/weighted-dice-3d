@@ -21,7 +21,7 @@ func _process(_delta):
 		animatedBasis *= c.resultBasis
 	
 	if mon.grabbed:
-		var baseRotation := baseAnimation.resultBasis.get_euler().y
+		var baseRotation := baseAnimation.resultBasis.get_euler().x
 		animatedSprite.rotation.x = min(-PI/2 * mon.forceBeingGrabbed, baseRotation)
 		animatedSprite.rotation.y = PI/2-mon.dirBeingGrabbed.angle()
 		animatedSprite.modulate.a = .7

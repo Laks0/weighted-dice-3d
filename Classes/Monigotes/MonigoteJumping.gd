@@ -42,7 +42,7 @@ func jump():
 	if mon.grabbed:
 		return
 	
-	mon.stun()
+	mon.stun(false)
 	mon.accelerateUp(verticalInitialSpeed)
 	jumpDirection = Controllers.getDirection(mon.controller)
 	mon.applyVelocity(jumpDirection * horizontalInitialSpeed)
@@ -57,7 +57,7 @@ func jump():
 func stopJump():
 	jumping = false
 	$JumpCooldown.start()
-	mon.unstun()
+	mon.unstun(false)
 	mon.goMaxSpeed(Controllers.getDirection(mon.controller))
 	
 	mon.set_collision_mask_value(1, true)

@@ -173,10 +173,6 @@ func planarShake() -> void:
 	
 	position = Vector3.ZERO
 
-## Un temblor corto en el eje y
-func axisShake(maxAngle : float = PI/10, totalRotations : int = 4, time : float = 1):
-	basis.x = Vector3(1,0,1).normalized() * basis.x.length()
-
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 
 ## Saca ángulos de la forma normal (desde 0 hasta 2PI), Godot lo hace de una manera rara

@@ -9,7 +9,9 @@ signal beenGrabbed
 signal grabbedBody(body : Pushable)
 signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)
 signal pushed
-signal doubled ## Se llama cuando quien lo está agarrando es agarrado
+## Se llama cuando quien lo está agarrando es agarrado
+signal doubled
+signal grabbingBodyEscaped(body : Pushable)
 
 @export_range(0, 3) var maxGrabTime  : float = 1
 @export             var grabDistance : float = .3
@@ -114,6 +116,7 @@ func startGrab(body : Pushable) -> bool:
 		if not body.grabbed:
 			return
 		onGrabbingEscaped(body)
+		grabbingBodyEscaped.emit(body)
 		pushFactor = failedPushFactor
 		push())
 
