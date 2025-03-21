@@ -1,8 +1,6 @@
 extends MonigoteAnimation3D
 
-## Qué tan lejos tienen que estar dos ángulos para que se consideren iguales y no se anime
-## la transición (donde 0 es igual y 1 es 90 grados) 
-@export_range(0, .5) var similarAngleThreshold := .025
+@export_range(0,PI/8) var minAngleFromFloor := PI/8
 
 @onready var currentRotationRaycast : RayCast3D = $RotationRaycastNoSignal
 
@@ -48,8 +46,10 @@ func physicsUpdate(delta):
 	var scaleY := animatedSprite.scale.y
 	var targetDirection := getTargetDirection()
 	
-	if (not targetDirection.is_finite()) or Vector3.FORWARD.dot(targetDirection) > 1 - similarAngleThreshold:
-		targetDirection = animatedSprite.basis.y.normalized()
+	var directionOfMinAngle := Vector3.FORWARD.rotated(Vector3.RIGHT, minAngleFromFloor)
+	var minDotFromFloor := Vector3.FORWARD.dot(directionOfMinAngle)
+	if (not targetDirection.is_finite()) or Vector3.FORWARD.dot(targetDirection) > minDotFromFloor:
+		targetDirection = directionOfMinAngle
 	
 	resultBasis.y = scaleY * (targetDirection * Vector3(0,1,1)).normalized()
 	resultBasis.z = animatedSprite.basis.y.rotated(Vector3.RIGHT, PI/2)
