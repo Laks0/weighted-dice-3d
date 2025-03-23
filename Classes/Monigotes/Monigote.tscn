@@ -324,6 +324,7 @@ shape = SubResource("BoxShape3D_8g2ci")
 
 [node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
+visible = false
 material_override = SubResource("StandardMaterial3D_3x3ft")
 mesh = SubResource("QuadMesh_gc1lk")
 script = ExtResource("32_uuku0")
