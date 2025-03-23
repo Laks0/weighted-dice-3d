@@ -33,12 +33,12 @@ func _process(_delta):
 	
 	$ProgressBar.value = floor(progress[0] * 100)
 	
-	if status == ResourceLoader.THREAD_LOAD_LOADED:
-		await get_tree().create_timer(1).timeout
-		var arena : PackedScene = ResourceLoader.load_threaded_get(arenaPath)
-		if arena == null:
-			arena = load(arenaPath)
-		get_tree().change_scene_to_packed(arena)
+	if status == ResourceLoader.THREAD_LOAD_LOADED and $WaitAfterArenaLoadedTimer.is_stopped():
+		$WaitAfterArenaLoadedTimer.start()
+		$WaitAfterArenaLoadedTimer.timeout.connect(func(): 
+			var arena : PackedScene = ResourceLoader.load_threaded_get(arenaPath)
+			get_tree().change_scene_to_packed(arena)
+		, CONNECT_ONE_SHOT)
 		return
 	if status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		push_error("Error al cargar la escena")

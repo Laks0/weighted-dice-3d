@@ -78,3 +78,6 @@ offset_right = 350.0
 offset_bottom = -164.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="WaitAfterArenaLoadedTimer" type="Timer" parent="LoadingScreen"]
+one_shot = true

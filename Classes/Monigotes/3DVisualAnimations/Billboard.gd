@@ -34,11 +34,8 @@ func updateSpriteHeight():
 	var currentFeetPosition := animatedSprite.basis.y.normalized() * defaultFeetHeight
 	animatedSprite.position.y = (defaultFeetHeight - currentFeetPosition.y) * (animatedSprite.scale.y)
 
-func physicsUpdate(delta):
+func physicsUpdate(_delta):
 	rotation = -animatedSprite.rotation
-	var trueBillboard := getTrueBillboardDirection()
-	var rayLength := currentRotationRaycast.target_position.length()
-	currentRotationRaycast.target_position = trueBillboard * rayLength
 	
 	if mon.grabbed:
 		return
@@ -56,6 +53,11 @@ func physicsUpdate(delta):
 	resultBasis.x = scaleY * Vector3.RIGHT
 	
 	updateSpriteHeight()
+
+func _process(_delta):
+	var trueBillboard := getTrueBillboardDirection()
+	var rayLength := currentRotationRaycast.target_position.length()
+	currentRotationRaycast.target_position = trueBillboard * rayLength
 
 func onBetSignalSatatusChanged(isVisible : bool):
 	currentRotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycastNoSignal
