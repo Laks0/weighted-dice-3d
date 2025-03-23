@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=64 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -30,9 +30,11 @@
 [ext_resource type="Script" uid="uid://h61k6apralwn" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 [ext_resource type="Script" uid="uid://c0x6cvlhovtdm" path="res://Classes/Monigotes/3DVisualAnimations/YAxisShake.gd" id="23_ibisb"]
 [ext_resource type="Script" uid="uid://bheshddugi8vk" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
-[ext_resource type="Texture2D" uid="uid://dlpq50y3uenix" path="res://Assets/MonigoteSkins/MonigoteHand.png" id="23_oeq53"]
 [ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
+[ext_resource type="Texture2D" uid="uid://qsk44i3anti4" path="res://Classes/Monigotes/AniManosAgarre_Sprite-sheet.png" id="26_x0xae"]
+[ext_resource type="Shader" uid="uid://df32anwenwtf4" path="res://Assets/ColorSwap.gdshader" id="26_xceo0"]
 [ext_resource type="Script" uid="uid://rftkc7u0y45" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
+[ext_resource type="Texture2D" uid="uid://d0lnh51kq10pm" path="res://Classes/Monigotes/TablaCromaticaMonigotes.png" id="27_xceo0"]
 [ext_resource type="Script" uid="uid://dglfv1rvi8ory" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
@@ -54,6 +56,67 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 0.5, -0.5, 1, 0, -0.5, -0.5, 0.5, -0.5, -1, 0, 0.5, 0.5, 0.5, 0.5, 1, 0, 0.5, -0.5, 0.5, 0.5, -1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q1msd"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("26_xceo0")
+shader_parameter/spriteTexture = ExtResource("26_x0xae")
+shader_parameter/palette = ExtResource("27_xceo0")
+shader_parameter/rows = 6.0
+shader_parameter/columns = 10.0
+shader_parameter/swap_from = 0.0
+shader_parameter/swap_to = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xceo0"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1msd"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bylv"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bh4i"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvk2m"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56ln2"]
+atlas = ExtResource("26_x0xae")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5uyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xceo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1msd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bylv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bh4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvk2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56ln2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
@@ -247,15 +310,21 @@ script = ExtResource("21_3gcfk")
 mon = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite")
 
-[node name="L" type="Sprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190014, -0.3, 0)
-render_priority = 1
-texture = ExtResource("23_oeq53")
+[node name="L" type="AnimatedSprite3D" parent="Grabbing/Hands"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.190014, -0.3, 0)
+material_override = SubResource("ShaderMaterial_q1msd")
+alpha_cut = 2
+render_priority = 10
+sprite_frames = SubResource("SpriteFrames_v5uyt")
 
-[node name="R" type="Sprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.1, 0)
-render_priority = 1
-texture = ExtResource("23_oeq53")
+[node name="R" type="AnimatedSprite3D" parent="Grabbing/Hands"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.3, 0.1, 0)
+sorting_offset = 7.0
+material_override = SubResource("ShaderMaterial_q1msd")
+flip_h = true
+alpha_cut = 2
+render_priority = 10
+sprite_frames = SubResource("SpriteFrames_v5uyt")
 
 [node name="ReadyL" type="Marker3D" parent="Grabbing/Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336886, -0.101809, 0)

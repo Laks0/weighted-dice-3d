@@ -144,9 +144,7 @@ func changeBetSignalStatus(isVisible : bool):
 		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
 	
-	# Para la función de rotación
-	$RotationRaycastNoSignal.enabled = !isVisible
-	$RotationRaycastSignal.enabled = isVisible
+	
 	betSignalStatusChanged.emit(isVisible)
 
 func onMonigoteHurt():

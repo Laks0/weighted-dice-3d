@@ -11,9 +11,14 @@ var closed := false
 var direction : Vector2
 var grabBody : Pushable
 
+func _ready():
+	$L.material_override.set_shader_parameter("swap_to", mon.player.id)
+
 func _process(_delta):
 	$L.rotation = sprite.rotation
 	$R.rotation = sprite.rotation
+	$L.rotation.z = -direction.angle() - PI/2
+	$R.rotation.z = -direction.angle() - PI/2
 	if closed:
 		direction = mon.grabDir
 		$L.position = _getClosedPositionL()
@@ -29,7 +34,7 @@ func _centerPosition() -> Vector3:
 	return direction3d * grabDistance
 
 func _handDifference() -> Vector3:
-	return Vector3(-direction.y, 0, direction.x) * (.0 if not _canUseGrabBody() else .3)
+	return Vector3(-direction.y, 0, direction.x) * (.1 if not _canUseGrabBody() else .3)
 
 func _getClosedPositionL() -> Vector3:
 	return _centerPosition() - _handDifference()
@@ -54,12 +59,16 @@ func attack(time : float) -> void:
 	tween.tween_callback(_goToPosition.bind(attackTime))
 
 func _goToPosition(time : float):
+	$L.play()
+	$R.play()
 	direction = mon.grabDir
 	var tween := create_tween()
 	tween.tween_property($L, "position", _getClosedPositionL(), time)
 	tween.parallel().tween_property($R, "position", _getClosedPositionR(), time)
 
 func goToRest(time : float) -> void:
+	$L.play_backwards()
+	$R.play_backwards()
 	closed = false
 	var tween := create_tween()
 	var waitTime = time/2

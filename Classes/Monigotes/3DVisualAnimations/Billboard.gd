@@ -66,6 +66,8 @@ func _onAnimatedSpriteSet():
 func onBetSignalSatatusChanged(isVisible : bool):
 	currentRotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycastNoSignal
 	currentRotationRaycast.enabled = true
+	$RotationRaycastNoSignal.enabled = !isVisible
+	$RotationRaycastSignal.enabled = isVisible
 
 func onMonigoteGrab(body : Pushable):
 	$RotationRaycastNoSignal.add_exception(body)
