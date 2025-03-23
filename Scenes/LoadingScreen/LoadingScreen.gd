@@ -40,5 +40,5 @@ func _process(_delta):
 			get_tree().change_scene_to_packed(arena)
 		, CONNECT_ONE_SHOT)
 		return
-	if status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+	if $WaitAfterArenaLoadedTimer.is_stopped() and status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		push_error("Error al cargar la escena")

@@ -4,6 +4,8 @@ extends MonigoteAnimation3D
 
 @onready var currentRotationRaycast : RayCast3D = $RotationRaycastNoSignal
 
+var uniformScale := .5
+
 func _ready():
 	play()
 
@@ -40,7 +42,6 @@ func physicsUpdate(_delta):
 	if mon.grabbed:
 		return
 	
-	var scaleY := animatedSprite.scale.y
 	var targetDirection := getTargetDirection()
 	
 	var directionOfMinAngle := Vector3.FORWARD.rotated(Vector3.RIGHT, minAngleFromFloor)
@@ -48,9 +49,9 @@ func physicsUpdate(_delta):
 	if (not targetDirection.is_finite()) or Vector3.FORWARD.dot(targetDirection) > minDotFromFloor:
 		targetDirection = directionOfMinAngle
 	
-	resultBasis.y = scaleY * (targetDirection * Vector3(0,1,1)).normalized()
+	resultBasis.y = uniformScale * (targetDirection * Vector3(0,1,1)).normalized()
 	resultBasis.z = animatedSprite.basis.y.rotated(Vector3.RIGHT, PI/2)
-	resultBasis.x = scaleY * Vector3.RIGHT
+	resultBasis.x = uniformScale * Vector3.RIGHT
 	
 	updateSpriteHeight()
 
@@ -58,6 +59,9 @@ func _process(_delta):
 	var trueBillboard := getTrueBillboardDirection()
 	var rayLength := currentRotationRaycast.target_position.length()
 	currentRotationRaycast.target_position = trueBillboard * rayLength
+
+func _onAnimatedSpriteSet():
+	uniformScale = animatedSprite.scale.y
 
 func onBetSignalSatatusChanged(isVisible : bool):
 	currentRotationRaycast = $RotationRaycastSignal if isVisible else $RotationRaycastNoSignal

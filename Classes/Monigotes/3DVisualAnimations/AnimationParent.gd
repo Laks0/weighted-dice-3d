@@ -12,7 +12,7 @@ func _ready():
 		c.mon = mon
 		c.animatedSprite = animatedSprite
 
-func _process(_delta):
+func _physics_process(_delta):
 	var animatedBasis := baseAnimation.resultBasis
 	for c : MonigoteAnimation3D in get_children():
 		if c == baseAnimation or not c.playing:
