@@ -31,6 +31,7 @@ var moveVelocity      := Vector2.ZERO
 var unclampedVelocity := Vector2.ZERO
 
 var stunned := false
+var movementStopped := false
 var health : int = 2
 
 var invincible  := false
@@ -82,8 +83,11 @@ func _physics_process(delta):
 		accFactor = grabBody.grabSpeedFactor
 		onGrabbing()
 	
-	if stunned:
+	if stunned or movementStopped:
 		accFactor = 0
+	
+	if stunned:
+		pauseGrabbing()
 	
 	if grabbed:
 		return
@@ -129,9 +133,7 @@ func onGrabbingEscaped(body : Pushable):
 	var pos2d = Vector2(position.x, position.z)
 	applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
-	stun()
-	await get_tree().create_timer(STUN_TIME_AFTER_ESCAPE).timeout
-	unstun()
+	stun(STUN_TIME_AFTER_ESCAPE)
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	unclampedVelocity += dir * factor * maxPushForce
@@ -203,17 +205,22 @@ func die():
 	
 	$DeathParticles.connect("finished", queue_free)
 
-## Empieza un stun, si visual es false, no emite la señal wasStunned y no hay
-## efectos visuales (o cualquier otro que se ligue a esa señal)
-func stun(visual := true):
+func stun(timeout := 5.0):
 	stunned = true
-	if visual:
-		wasStunned.emit()
-## Ver stun
-func unstun(visual := true):
+	$StunTimeout.start(timeout)
+	wasStunned.emit()
+
+func unstun():
 	stunned = false
-	if visual:
-		wasUnstunned.emit()
+	wasUnstunned.emit()
+
+func stopMovement():
+	movementStopped = true
+
+## Similar a stun pero permite agarrar mientras está quieto, además no hace la señal
+## ni la animación
+func resumeMovement():
+	movementStopped = false
 
 func makeInvincible():
 	invincible = true

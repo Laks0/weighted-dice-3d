@@ -437,9 +437,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("34_1m0wj")
 
+[node name="StunTimeout" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
+[connection signal="beenGrabbed" from="." to="." method="unstun"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
-[connection signal="beenGrabbed" from="." to="." method="unstun" binds= [true]]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
@@ -458,3 +461,4 @@ texture = ExtResource("34_1m0wj")
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
+[connection signal="timeout" from="StunTimeout" to="." method="unstun"]
