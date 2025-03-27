@@ -30,6 +30,98 @@
 [ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Scenes/Arena/BetHUD/BetHUD.tscn" id="28_4dsfl"]
 [ext_resource type="PackedScene" uid="uid://c1u8x43c7ulq1" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="29_pgv01"]
 
+[sub_resource type="Animation" id="Animation_3y6d5"]
+resource_name = "LobbyOutAnimation"
+length = 2.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ChipHolder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.348, -10.6)
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:z")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-10.2745, -0.25, 0, 0.25, 0, -10.2745, -0.25, 0, 0.25, 0, -32.8975, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ChipHolder:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 1.34845, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"startExitAnimation"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"goToArena"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y7ohy"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-10.274, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ChipHolder:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i545o"]
+_data = {
+&"LobbyOutAnimation": SubResource("Animation_3y6d5"),
+&"RESET": SubResource("Animation_y7ohy")
+}
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k7w7e"]
 rough = true
 bounce = 0.89
@@ -80,193 +172,146 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_3y6d5"]
-resource_name = "LobbyOutAnimation"
-length = 2.0
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ChipHolder")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.348, -10.6)
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:z")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-10.2745, -0.25, 0, 0.25, 0, -10.2745, -0.25, 0, 0.25, 0, -32.8975, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../ChipHolder:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 1.34845, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1, 1.5)
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"startExitAnimation"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../StageHandler")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"goToArena"
-}]
+[node name="StageHandler" type="Node3D" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera") groups=["StageHandler"]]
+script = ExtResource("23_v1elk")
+arena = NodePath("Arena")
+lobby = NodePath("Lobby")
+chipHolder = NodePath("ChipHolder")
+betDisplay = NodePath("BetDisplaySimple")
+camera = NodePath("MultipleResCamera")
+betCamera = NodePath("ChipHolder/BetSceneCamera")
+leaderboardCamera = NodePath("BetDisplaySimple/LeaderboardCamera")
+
+[node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Lobby")
+libraries = {
+&"": SubResource("AnimationLibrary_i545o")
 }
 
-[sub_resource type="Animation" id="Animation_y7ohy"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:z")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-10.274, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../ChipHolder:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
+[node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("16_khcf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
+camera = NodePath("../MultipleResCamera")
+worldEnvironment = NodePath("../Arena/WorldEnvironment")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i545o"]
-_data = {
-&"LobbyOutAnimation": SubResource("Animation_3y6d5"),
-&"RESET": SubResource("Animation_y7ohy")
-}
+[node name="BetSceneCamera" type="Camera3D" parent="ChipHolder"]
+transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 6.30425, 11.3)
+cull_mask = 1048573
+fov = 47.0
 
-[node name="Arena" type="Node3D"]
+[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("15_2h2ha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -10.274)
+lobbyOutAnimationPlayer = NodePath("../LobbyOutAnimationPlayer")
+
+[node name="LobbyCamera" type="Camera3D" parent="Lobby"]
+transform = Transform3D(1, 0, 0, 0, 0.514395, 0.857553, 0, -0.857553, 0.514395, 0, 8.9294, 1.45245)
+cull_mask = 3
+fov = 47.0
+
+[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("13_ta5lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -5.066)
+chipHolder = NodePath("../ChipHolder")
+stageHandler = NodePath("..")
+
+[node name="LeaderboardCamera" type="Camera3D" parent="BetDisplaySimple"]
+transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 0, 4.60326, 3.03699)
+fov = 47.0
+
+[node name="Arena" type="Node3D" parent="." node_paths=PackedStringArray("stageHandler", "multipleResCamera")]
 script = ExtResource("1_txoyd")
 dieScene = ExtResource("2_gkaff")
 dieScreenShakeMagnitude = 0.5
 cardShowAnimationScene = ExtResource("3_wm28h")
+stageHandler = NodePath("..")
+multipleResCamera = NodePath("../MultipleResCamera")
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 2.19614, 0.0490575)
-current = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Arena"]
 environment = ExtResource("4_0von1")
 
-[node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
+[node name="Floor" type="StaticBody3D" parent="Arena" groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)
 collision_layer = 4
 collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena/Floor"]
 visible = false
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena/Floor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
 visible = false
 shape = SubResource("ConcavePolygonShape3D_wruqs")
 
-[node name="Mesa" parent="Floor" instance=ExtResource("3_h7err")]
+[node name="Mesa" parent="Arena/Floor" instance=ExtResource("3_h7err")]
 transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 0, 0, 0)
 
-[node name="MesaEx" parent="Floor/Mesa" index="0"]
+[node name="MesaEx" parent="Arena/Floor/Mesa" index="0"]
 transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0, 3.41221, 0, 0, 0)
 
-[node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
+[node name="Felpa" parent="Arena/Floor/Mesa/MesaEx" index="0"]
 material_override = SubResource("StandardMaterial3D_foc0n")
 
-[node name="MesaInt" parent="Floor/Mesa/MesaEx" index="2"]
+[node name="MesaInt" parent="Arena/Floor/Mesa/MesaEx" index="2"]
 material_override = SubResource("StandardMaterial3D_fdnf3")
 
-[node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
+[node name="Walls" type="StaticBody3D" parent="Arena" groups=["Walls"]]
 visible = false
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena/Walls"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.23876e-08, 0, 3.08275)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08842)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arena/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.33235, 0, 4.60371e-08)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Arena/Walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.33645, 0, 0.228)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Walls"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Arena/Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.81665, 4.97332, -2.50054)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-0.5656, -0.110056, -0.457004, 0.176244, -0.183867, 0.400019, 0.227483, 0.564559, 0.480875, 0.600758, 0.474294, 1.09438, -1.23363, 1.02527, -1.39817, -0.152837)
 
-[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Walls"]
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Arena/Walls"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 4.79981, 4.97332, 2.46345)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-0.5656, -0.110056, -0.457004, 0.176244, -0.183867, 0.400019, 0.227483, 0.564559, 0.480875, 0.600758, 0.474294, 1.09438, -1.23363, 1.02527, -1.39817, -0.152837)
 
-[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="Walls"]
+[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="Arena/Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.96782, 2.18557e-07)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
 
-[node name="CollisionPolygon3D4" type="CollisionPolygon3D" parent="Walls"]
+[node name="CollisionPolygon3D4" type="CollisionPolygon3D" parent="Arena/Walls"]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 4.96782, 2.18557e-07)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
 
-[node name="Effects" type="Node" parent="."]
+[node name="Effects" type="Node" parent="Arena"]
 script = ExtResource("4_rx763")
 regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5pfw"), ExtResource("12_yk85d"), ExtResource("5_ed70i"), ExtResource("4_tqem7"), ExtResource("10_vf6cn"), ExtResource("14_0dm7k")])
 specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("15_qr7s2")])
 
-[node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
+[node name="PrepareArrow" type="AnimatedSprite3D" parent="Arena"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
 visible = false
 centered = false
@@ -278,7 +323,7 @@ render_priority = 1
 sprite_frames = SubResource("SpriteFrames_i2qvo")
 autoplay = "default"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8088, -0.209616)
 layers = 3
 light_color = Color(0.999998, 0.997464, 0.742191, 1)
@@ -286,11 +331,11 @@ light_cull_mask = 4294967291
 shadow_enabled = true
 shadow_opacity = 0.82
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.999542, 0.0167236)
 size = Vector3(11.5972, 2, 6.95972)
 
-[node name="CurrentEffectName" type="Label3D" parent="."]
+[node name="CurrentEffectName" type="Label3D" parent="Arena"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.64939, 1.0914)
 visible = false
 layers = 3
@@ -304,90 +349,44 @@ uppercase = true
 autowrap_mode = 2
 width = 800.0
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera", "cubileteCamera") instance=ExtResource("5_fiigu")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
-cull_mask = 1048575
-environment = null
-startGameAnimationTime = 0.2
-lobbyCamera = NodePath("../LobbyCamera")
-cubileteCamera = NodePath("../CubileteCamera")
-
-[node name="LobbyCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.514395, 0.857553, 0, -0.857553, 0.514395, 0, 11.0294, -8.82155)
-cull_mask = 3
-fov = 47.0
-
-[node name="CubileteCamera" type="Camera3D" parent="."]
+[node name="CubileteCamera" type="Camera3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.532567, 0.846388, 0, -0.846388, 0.532567, 0, 8.67915, 4.94487)
 cull_mask = 3
 fov = 47.0
 
-[node name="CardsCamera" type="Camera3D" parent="."]
+[node name="CardsCamera" type="Camera3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.673904, 0.738819, 0, -0.738819, 0.673904, 0, 8.11205, 6.56296)
 cull_mask = 3
 fov = 47.0
 
-[node name="LeaderboardCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 0, 4.90326, -2.02901)
-fov = 47.0
-
-[node name="BetSceneCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 7.65225, 0.7)
-cull_mask = 1048573
-fov = 47.0
-
-[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("13_ta5lr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -5.066)
-chipHolder = NodePath("../ChipHolder")
-stageHandler = NodePath("../StageHandler")
-
-[node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("16_khcf0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
-camera = NodePath("../MultipleResCamera")
-worldEnvironment = NodePath("../WorldEnvironment")
-
-[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("15_2h2ha")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -10.274)
-lobbyOutAnimationPlayer = NodePath("../StageHandler/LobbyOutAnimationPlayer")
-
-[node name="StageHandler" type="Node" parent="." node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera")]
-unique_name_in_owner = true
-script = ExtResource("23_v1elk")
-arena = NodePath("..")
-lobby = NodePath("../Lobby")
-chipHolder = NodePath("../ChipHolder")
-betDisplay = NodePath("../BetDisplaySimple")
-camera = NodePath("../MultipleResCamera")
-betCamera = NodePath("../BetSceneCamera")
-leaderboardCamera = NodePath("../LeaderboardCamera")
-
-[node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="StageHandler"]
-root_node = NodePath("../../Lobby")
-libraries = {
-&"": SubResource("AnimationLibrary_i545o")
-}
-
-[node name="GlobalLight" type="DirectionalLight3D" parent="."]
+[node name="GlobalLight" type="DirectionalLight3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)
 visible = false
 light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Arena"]
 bus = &"SFX"
 
-[node name="ChipDropper" type="Node" parent="."]
+[node name="ChipDropper" type="Node" parent="Arena"]
 script = ExtResource("26_sgy0k")
 chipDrop = ExtResource("27_gjkb2")
+
+[node name="PauseMenu" parent="Arena" instance=ExtResource("29_pgv01")]
+
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera", "cubileteCamera") instance=ExtResource("5_fiigu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
+cull_mask = 1048575
+startGameAnimationTime = 0.2
+lobbyCamera = NodePath("../Lobby/LobbyCamera")
+cubileteCamera = NodePath("../Arena/CubileteCamera")
 
 [node name="BetHUD" parent="." instance=ExtResource("28_4dsfl")]
 visible = false
 
-[node name="PauseMenu" parent="." instance=ExtResource("29_pgv01")]
+[connection signal="inArena" from="." to="BetHUD" method="showBetName"]
+[connection signal="inLeaderboard" from="." to="BetHUD" method="reset"]
+[connection signal="gameStarted" from="Arena" to="Arena/ChipDropper" method="onGameStarted"]
 
-[connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
-[connection signal="inArena" from="StageHandler" to="BetHUD" method="showBetName"]
-[connection signal="inLeaderboard" from="StageHandler" to="BetHUD" method="reset"]
-
-[editable path="Floor/Mesa"]
+[editable path="Arena/Floor/Mesa"]

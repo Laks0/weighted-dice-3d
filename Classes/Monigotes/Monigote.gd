@@ -46,7 +46,8 @@ var drunk := false
 func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
 	
-	stageHandler = get_parent().get_node_or_null("StageHandler")
+	if get_tree().get_nodes_in_group("StageHandler").size() > 0:
+		stageHandler = get_tree().get_nodes_in_group("StageHandler")[0]
 	
 	if player.inputController == Controllers.AI:
 		var controllerNode := Node.new()

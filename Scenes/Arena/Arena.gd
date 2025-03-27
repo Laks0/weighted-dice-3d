@@ -27,18 +27,17 @@ var monigotes : Array[Monigote]
 
 var gameRunning := false
 
-func _ready():
-	startNewGame()
+@export var stageHandler : StageHandler
+@export var multipleResCamera : MultipleResCamera
 
-func startNewGame():
-	BetHandler.resetGame()
+func _ready():
 	$Effects.pickEffects()
 	effects = $Effects.get_children()
 	for e in effects:
 		e.create(self)
 
 func _process(delta):
-	if %StageHandler.currentStage != StageHandler.Stages.ARENA:
+	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
 	
 	if activeEffect != -1:
@@ -62,14 +61,14 @@ func setTableRender(val : bool) -> void:
 # Se llama para empezar la ronda de juego
 func startArena():
 	if BetHandler.round == 1 and not Debug.vars.skipCardAnimation:
-		$MultipleResCamera.goToCamera($CardsCamera, .1)
+		multipleResCamera.goToCamera($CardsCamera, .1)
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
 		cardAnimation.arena = self
 		add_child(cardAnimation)
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
-		$MultipleResCamera.returnToArena()
+		multipleResCamera.returnToArena()
 	
 	
 	for mon in monigotes:
@@ -92,10 +91,10 @@ func startArena():
 	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(startEffect)
 	die.onCubilete.connect(func():
-		%MultipleResCamera.showCubilete()
+		multipleResCamera.showCubilete()
 		if activeEffect != -1:
 			effects[activeEffect].end())
-	die.dropped.connect(%MultipleResCamera.returnToArena)
+	die.dropped.connect(multipleResCamera.returnToArena)
 	
 	gameStarted.emit()
 
@@ -127,13 +126,13 @@ func endGame(winnerMon : Monigote):
 		die.queue_free()
 	
 	winnerMon.freeze()
-	%MultipleResCamera.zoomTo(winnerMon.position)
+	multipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	
 	stageFinished.emit(winnerId)
 
 func startEffect(n : int):
-	%MultipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
+	multipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
 	for i in Input.get_connected_joypads():
 		Input.start_joy_vibration(i, .6, .6, dieScreenShakeTime)
 	
@@ -220,7 +219,7 @@ func fogOff(time : float = .5):
 
 ## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
 func getScreenPos(pos3d : Vector3) -> Vector2:
-	return $MultipleResCamera.unproject_position(pos3d)
+	return multipleResCamera.unproject_position(pos3d)
 
 ## PLACEHOLDER
 func changeWallHue(color : Color):

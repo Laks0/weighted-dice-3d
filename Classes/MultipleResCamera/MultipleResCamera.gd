@@ -12,12 +12,12 @@ var restPosition : Vector3
 
 func _ready():
 	restRotation = rotation_degrees
-	restPosition = position
+	restPosition = global_position
 	
 	if not is_instance_valid(lobbyCamera):
 		return
 	
-	position = lobbyCamera.position
+	position = lobbyCamera.global_position
 	rotation_degrees = lobbyCamera.rotation_degrees
 
 func showCubilete() -> void:
@@ -31,13 +31,13 @@ func startGameAnimation() -> Tween:
 	return moveTo(restPosition, restRotation.x, .4)
 
 func goToCamera(obj : Camera3D, time := .3) -> Tween:
-	return moveTo(obj.position, obj.rotation_degrees.x, time)
+	return moveTo(obj.global_position, obj.rotation_degrees.x, time)
 
 func moveTo(newPos : Vector3, rotationDegreesX : float, time := .3) -> Tween:
 	$wooshPlayer.playSound("wooshTrans")
 	var transformTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, time)
-	transformTween.parallel().tween_property(self, "position", newPos, time)
+	transformTween.parallel().tween_property(self, "global_position", newPos, time)
 	return transformTween
 
 func zoomTo(targetPos : Vector3, zoomDistance : float = 2.5, zoomTime : float = .5) -> Tween:

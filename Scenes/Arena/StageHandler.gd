@@ -2,7 +2,7 @@
 ## El StageHandler es responsable de la comunicación entre stages y de mantener
 ## a los monigotes, avisándole a cada stage cuándo es su responsabilidad manejarlos
 
-extends Node
+extends Node3D
 class_name StageHandler
 
 signal inLeaderboard
@@ -25,7 +25,7 @@ var currentStage := Stages.LOBBY
 var monigotes : Array[Monigote]
 
 func _ready():
-	await arena.ready
+	BetHandler.resetGame()
 	
 	betDisplay.allPlayersReady.connect(goToArena)
 	
