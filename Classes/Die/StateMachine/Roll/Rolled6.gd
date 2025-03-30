@@ -14,4 +14,4 @@ func _on_enter(_args):
 
 func _on_exit(_args):
 	target.freeze = false
-	target.get_parent().lightsOn()
+	target.get_parent().environment.lightsOn()

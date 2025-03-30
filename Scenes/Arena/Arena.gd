@@ -29,6 +29,7 @@ var gameRunning := false
 
 @export var stageHandler : StageHandler
 @export var multipleResCamera : MultipleResCamera
+@export var environment : WorldEnvironment
 
 func _ready():
 	$Effects.pickEffects()
@@ -64,7 +65,7 @@ func startArena():
 		multipleResCamera.goToCamera($CardsCamera, .1)
 		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
 		cardAnimation.effects = effects
-		cardAnimation.arena = self
+		cardAnimation.environment = environment
 		add_child(cardAnimation)
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
@@ -107,7 +108,7 @@ func endGame(winnerMon : Monigote):
 		Narrator.playBank("roundend", 1)
 	winnerMon.hasWon.emit()
 	SoundtrackHandler.stopTrack()
-	lightsOn() # Por si acaso
+	environment.lightsOn() # Por si acaso
 	
 	gameEnded.emit()
 	BetHandler.endGame()
@@ -194,32 +195,7 @@ func onMonigoteDeath(mon : Monigote):
 	if monigotes.size() == 0:
 		endGame(mon)
 
-func lightsOff():
-	var lightTween := get_tree().create_tween().parallel()
-	lightTween.tween_property($DirectionalLight3D, "light_energy", .3, 1)
-	$GlobalLight.visible = false
-	lightTween.set_ease(Tween.EASE_OUT)
 
-func lightsOn():
-	var lightTween := get_tree().create_tween().parallel()
-	lightTween.tween_property($DirectionalLight3D, "light_energy", 1, 1)
-	$GlobalLight.visible = true
-	lightTween.set_ease(Tween.EASE_OUT)
-
-func fogOn(density : float = .01, time : float = .5):
-	var env : Environment = $WorldEnvironment.environment
-	env.volumetric_fog_enabled = true
-	var tween := get_tree().create_tween()
-	tween.tween_property(env, "volumetric_fog_density", density, time)
-
-func fogOff(time : float = .5):
-	var env : Environment = $WorldEnvironment.environment
-	var tween := get_tree().create_tween()
-	tween.tween_property(env, "volumetric_fog_density", 0, time)
-
-## Dado un punto en el mundo 3d, devuelve la posición 2d que ocupa ese punto en pantalla 
-func getScreenPos(pos3d : Vector3) -> Vector2:
-	return multipleResCamera.unproject_position(pos3d)
 
 ## PLACEHOLDER
 func changeWallHue(color : Color):

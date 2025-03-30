@@ -1,7 +1,7 @@
 extends AnimationPlayer
 
 var effects : Array
-var arena : Arena
+var environment : WorldEnvironment
 
 func _ready():
 	for i in range(6):
@@ -9,12 +9,12 @@ func _ready():
 		card.setEffect(i+1, effects[i].effectName, effects[i].cardTexture)
 	
 	play("ShowCards")
-	arena.lightsOff()
-	arena.fogOn()
+	environment.lightsOff()
+	environment.fogOn()
 
 func startExit():
-	arena.lightsOn()
-	arena.fogOff()
+	environment.lightsOn()
+	environment.fogOff()
 	
 	var tween := create_tween()
 	tween.tween_property($SpotLight3D, "light_energy", 0, .2)

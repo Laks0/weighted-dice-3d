@@ -38,7 +38,7 @@ func _on_update(_delta):
 	target.emit_signal("rolled", result)
 	
 	if result == 5:
-		target.get_parent().lightsOff()
+		target.get_parent().environment.lightsOff()
 	
 	await get_tree().create_timer(target.timeAfterRoll).timeout
 	
