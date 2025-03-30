@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://b2x2hh13chxg7" path="res://Scenes/GameWorld/GameWorldEnvironment.gd" id="7_vvqcd"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="8_ahv6l"]
 [ext_resource type="PackedScene" uid="uid://c1u8x43c7ulq1" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="9_obf4j"]
-[ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Scenes/Arena/BetHUD/BetHUD.tscn" id="10_8foli"]
+[ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Classes/BetHUD/BetHUD.tscn" id="10_8foli"]
 
 [sub_resource type="Animation" id="Animation_3y6d5"]
 resource_name = "LobbyOutAnimation"

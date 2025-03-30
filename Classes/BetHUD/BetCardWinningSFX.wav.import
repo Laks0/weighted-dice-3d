@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dg50ug1jjdsjw"
-path="res://.godot/imported/BetCardWinningSFX.wav-401cf3535b7f7b09ec2cdcdf90e5d926.sample"
+path="res://.godot/imported/BetCardWinningSFX.wav-2c7a29f6c088b39a3a26e51e9be58845.sample"
 
 [deps]
 
-source_file="res://Scenes/Arena/BetHUD/BetCardWinningSFX.wav"
-dest_files=["res://.godot/imported/BetCardWinningSFX.wav-401cf3535b7f7b09ec2cdcdf90e5d926.sample"]
+source_file="res://Classes/BetHUD/BetCardWinningSFX.wav"
+dest_files=["res://.godot/imported/BetCardWinningSFX.wav-2c7a29f6c088b39a3a26e51e9be58845.sample"]
 
 [params]
 

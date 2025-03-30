@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf0okn3lt2kr2"
-path="res://.godot/imported/RelojUI.png-144b46bd68da3b37157726f5817d66d1.ctex"
+uid="uid://clcbinnoh5g8e"
+path="res://.godot/imported/RelojUIAguja.png-ccc5172c55d7ae7e5effd210ba63ae1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Arena/BetHUD/RelojUI.png"
-dest_files=["res://.godot/imported/RelojUI.png-144b46bd68da3b37157726f5817d66d1.ctex"]
+source_file="res://Classes/BetHUD/RelojUIAguja.png"
+dest_files=["res://.godot/imported/RelojUIAguja.png-ccc5172c55d7ae7e5effd210ba63ae1f.ctex"]
 
 [params]
 
