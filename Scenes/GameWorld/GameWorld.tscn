@@ -103,7 +103,7 @@ _data = {
 &"RESET": SubResource("Animation_y7ohy")
 }
 
-[node name="StageHandler" type="Node3D" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera") groups=["StageHandler"]]
+[node name="StageHandler" type="Node3D" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera", "arenaCamera") groups=["StageHandler"]]
 script = ExtResource("1_hrf5g")
 arena = NodePath("Arena")
 lobby = NodePath("Lobby")
@@ -112,6 +112,7 @@ betDisplay = NodePath("BetDisplaySimple")
 camera = NodePath("MultipleResCamera")
 betCamera = NodePath("ChipHolder/BetSceneCamera")
 leaderboardCamera = NodePath("BetDisplaySimple/LeaderboardCamera")
+arenaCamera = NodePath("Arena/ArenaCamera")
 
 [node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Lobby")
@@ -152,6 +153,12 @@ stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
+[node name="ArenaCamera" type="Camera3D" parent="Arena"]
+transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
+environment = ExtResource("6_l7hxi")
+current = true
+fov = 47.0
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("controllingLights")]
 environment = ExtResource("6_l7hxi")
 script = ExtResource("7_vvqcd")
@@ -163,13 +170,12 @@ visible = false
 light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("lobbyCamera", "cubileteCamera") instance=ExtResource("8_ahv6l")]
+[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("startCamera") instance=ExtResource("8_ahv6l")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
 cull_mask = 1048575
 startGameAnimationTime = 0.2
-lobbyCamera = NodePath("../Lobby/LobbyCamera")
-cubileteCamera = NodePath("../Arena/CubileteCamera")
+startCamera = NodePath("../Lobby/LobbyCamera")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_obf4j")]
 

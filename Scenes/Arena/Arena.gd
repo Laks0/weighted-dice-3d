@@ -69,7 +69,7 @@ func startArena():
 		add_child(cardAnimation)
 		await cardAnimation.animation_finished
 		cardAnimation.queue_free()
-		multipleResCamera.returnToArena()
+		multipleResCamera.goToCamera($ArenaCamera)
 	
 	
 	for mon in monigotes:
@@ -92,10 +92,10 @@ func startArena():
 	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(startEffect)
 	die.onCubilete.connect(func():
-		multipleResCamera.showCubilete()
+		multipleResCamera.goToCamera($CubileteCamera)
 		if activeEffect != -1:
 			effects[activeEffect].end())
-	die.dropped.connect(multipleResCamera.returnToArena)
+	die.dropped.connect(multipleResCamera.goToCamera.bind($ArenaCamera))
 	
 	gameStarted.emit()
 

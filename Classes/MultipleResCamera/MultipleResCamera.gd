@@ -3,32 +3,18 @@ class_name MultipleResCamera
 
 @export var startGameAnimationTime : float = 1
 
-@export var lobbyCamera : Camera3D
-@export var cubileteCamera : Camera3D
+@export var startCamera : Camera3D
 
 ## La rotación por defecto
 var restRotation : Vector3
 var restPosition : Vector3
 
 func _ready():
-	restRotation = rotation_degrees
-	restPosition = global_position
-	
-	if not is_instance_valid(lobbyCamera):
+	if not is_instance_valid(startCamera):
 		return
 	
-	position = lobbyCamera.global_position
-	rotation_degrees = lobbyCamera.rotation_degrees
-
-func showCubilete() -> void:
-	goToCamera(cubileteCamera)
-
-func returnToArena() -> void:
-	return moveTo(restPosition, restRotation.x)
-
-func startGameAnimation() -> Tween:
-#	$wooshPlayer.playSound("zoomToGame")
-	return moveTo(restPosition, restRotation.x, .4)
+	position = startCamera.global_position
+	rotation_degrees = startCamera.rotation_degrees
 
 func goToCamera(obj : Camera3D, time := .3) -> Tween:
 	return moveTo(obj.global_position, obj.rotation_degrees.x, time)

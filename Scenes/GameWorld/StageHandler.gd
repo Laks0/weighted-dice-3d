@@ -18,6 +18,7 @@ signal inBetting
 
 @export var betCamera : Camera3D
 @export var leaderboardCamera : Camera3D
+@export var arenaCamera : Camera3D
 
 enum Stages {LOBBY, BETTING, ARENA, LEADERBOARD, TRANSITION}
 var currentStage := Stages.LOBBY
@@ -87,7 +88,7 @@ func goToArena():
 	# Delay del monigote saltando antes de que cambie la cámara
 	await get_tree().create_timer(.1).timeout
 	
-	await camera.startGameAnimation().finished
+	await camera.goToCamera(arenaCamera, .4).finished
 	
 	chipHolder.visible = false
 	arena.setWallsDisabled(false)
