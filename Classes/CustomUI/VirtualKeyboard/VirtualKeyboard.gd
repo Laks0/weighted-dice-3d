@@ -26,6 +26,8 @@ func _ready():
 	
 	for y in get_child_count():
 		var row : HBoxContainer = get_child(y)
+		row.get_child(0).leftSelect = row.get_child(row.get_child_count()-1)
+		row.get_child(row.get_child_count()-1).rightSelect = row.get_child(0)
 		for x in range(row.get_child_count()):
 			var button : GamepadSelectButton = row.get_child(x)
 			if x < row.get_child_count() - 1:
