@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://oxxrws4k27pk"]
+[gd_scene load_steps=31 format=3 uid="uid://oxxrws4k27pk"]
 
 [ext_resource type="Script" uid="uid://bpvuwr6ejlynl" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_e8km5"]
 [ext_resource type="PackedScene" uid="uid://cvnn2je0u572l" path="res://Classes/CustomUI/VirtualKeyboard/KeyboardButton.tscn" id="2_12how"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="3_c7ol2"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="4_4ajbi"]
 [ext_resource type="Texture2D" uid="uid://drtxe3cocrgr6" path="res://Classes/CustomUI/VirtualKeyboard/TeclasEspacioUICharSelect-Sheet.png" id="5_6dgbs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d1od"]
@@ -61,6 +62,11 @@ region = Rect2(128, 140, 64, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ef463"]
 atlas = ExtResource("3_c7ol2")
 region = Rect2(0, 140, 64, 40)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gkxnh"]
+font = ExtResource("4_4ajbi")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oeiyo"]
 atlas = ExtResource("3_c7ol2")
@@ -250,6 +256,22 @@ texture = SubResource("AtlasTexture_ef463")
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 3
+
+[node name="Accent" parent="Row2" instance=ExtResource("2_12how")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("AtlasTexture_lwb6n")
+normalTexture = SubResource("AtlasTexture_lwb6n")
+text = "´"
+
+[node name="Label" parent="Row2/Accent" index="0"]
+offset_top = -20.0
+offset_bottom = 26.0
+text = "´"
+label_settings = SubResource("LabelSettings_gkxnh")
 
 [node name="A" parent="Row2" instance=ExtResource("2_12how")]
 layout_mode = 2
@@ -460,3 +482,4 @@ focusedTexture = SubResource("AtlasTexture_4dnms")
 pressedTexture = SubResource("AtlasTexture_3yova")
 
 [editable path="Row1/Delete"]
+[editable path="Row2/Accent"]

@@ -22,7 +22,7 @@ region = Rect2(16, 8, 32, 40)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w3vtb"]
 font = ExtResource("3_sfhw1")
-font_size = 45
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [node name="KeyboardButton" instance=ExtResource("1_22euv")]
@@ -39,9 +39,9 @@ text = "Q"
 
 [node name="Label" parent="." index="0"]
 offset_left = -18.0
-offset_top = -23.0
+offset_top = -19.38
 offset_right = 22.0
-offset_bottom = 23.0
+offset_bottom = 26.62
 text = "Q"
 label_settings = SubResource("LabelSettings_w3vtb")
 

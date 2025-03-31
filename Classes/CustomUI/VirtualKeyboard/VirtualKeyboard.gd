@@ -18,8 +18,11 @@ signal space
 @export var lowerTextureFocus : Texture
 @export var lowerTexturePressed : Texture
 
+const ACCENT_UNICODE := 0x0301
+
 var capsLock := false
 var upper := true
+var accentsOn := false
 
 func _ready():
 	%Space.pressed.connect(space.emit)
@@ -39,6 +42,8 @@ func _ready():
 			if y < get_child_count() - 1:
 				button.downSelect = get_child(y+1).get_child(min(x, get_child(y+1).get_child_count()-1))
 			
+			if button.text == "E":
+				button.text += char(0x0301)
 			button.pressed.connect(func ():
 				if button == %Shift:
 					if capsLock:
@@ -55,10 +60,16 @@ func _ready():
 				if button == %OK:
 					accept.emit()
 					return
+				if button == %Accent:
+					switchAccents()
+					return
+				
 				characterWritten.emit(button.text)
 				
 				if upper and not capsLock:
 					setLowercase()
+				if accentsOn:
+					switchAccents()
 			)
 	
 	await get_tree().process_frame
@@ -88,6 +99,18 @@ func setLowercase():
 	for row in get_children():
 		for button in row.get_children():
 			button.text = button.text.to_lower()
+
+func switchAccents():
+	accentsOn = not accentsOn
+	%Accent/Label.label_settings.font_color = Color.WHITE if accentsOn else Color.BLACK
+	for row in get_children():
+		for button in row.get_children():
+			if not "aeiou".containsn(button.text.left(1)):
+				continue
+			if accentsOn:
+				button.text += char(ACCENT_UNICODE)
+			else:
+				button.text = button.text.left(1)
 
 func focus():
 	unfocus()
