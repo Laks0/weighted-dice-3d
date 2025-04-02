@@ -133,12 +133,16 @@ lowerTexturePressed = SubResource("AtlasTexture_ha8ie")
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="Q" parent="Row1" instance=ExtResource("2_12how")]
+[node name="Q" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_lwb6n")
+leftSelect = NodePath("../Delete")
+rightSelect = NodePath("../W")
+leftFallback = NodePath("../Delete")
+rightFallback = NodePath("../W")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 
 [node name="W" parent="Row1" instance=ExtResource("2_12how")]
@@ -168,21 +172,29 @@ texture = SubResource("AtlasTexture_lwb6n")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "R"
 
-[node name="T" parent="Row1" instance=ExtResource("2_12how")]
+[node name="T" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_lwb6n")
+leftSelect = NodePath("../R")
+rightSelect = NodePath("../Y")
+leftFallback = NodePath("../R")
+rightFallback = NodePath("../Y")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "T"
 
-[node name="Y" parent="Row1" instance=ExtResource("2_12how")]
+[node name="Y" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_lwb6n")
+leftSelect = NodePath("../T")
+rightSelect = NodePath("../U")
+leftFallback = NodePath("../T")
+rightFallback = NodePath("../U")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "Y"
 
@@ -213,12 +225,16 @@ texture = SubResource("AtlasTexture_lwb6n")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "O"
 
-[node name="P" parent="Row1" instance=ExtResource("2_12how")]
+[node name="P" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_lwb6n")
+leftSelect = NodePath("../O")
+rightSelect = NodePath("../Delete")
+leftFallback = NodePath("../O")
+rightFallback = NodePath("../Delete")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "P"
 
@@ -273,12 +289,16 @@ offset_bottom = 26.0
 text = "´"
 label_settings = SubResource("LabelSettings_gkxnh")
 
-[node name="A" parent="Row2" instance=ExtResource("2_12how")]
+[node name="A" parent="Row2" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_lwb6n")
+leftSelect = NodePath("../Accent")
+rightSelect = NodePath("../S")
+leftFallback = NodePath("../Accent")
+rightFallback = NodePath("../S")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 text = "A"
 
