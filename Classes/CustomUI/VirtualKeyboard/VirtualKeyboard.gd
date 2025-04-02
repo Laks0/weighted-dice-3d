@@ -42,8 +42,6 @@ func _ready():
 			if y < get_child_count() - 1:
 				button.downSelect = get_child(y+1).get_child(min(x, get_child(y+1).get_child_count()-1))
 			
-			if button.text == "E":
-				button.text += char(0x0301)
 			button.pressed.connect(func ():
 				if button == %Shift:
 					if capsLock:
