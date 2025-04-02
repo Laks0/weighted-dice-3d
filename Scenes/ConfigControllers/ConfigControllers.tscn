@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_gs04o"]
-[ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="3_esr5x"]
+[ext_resource type="Texture2D" uid="uid://dwbgi0x4kqpqi" path="res://Scenes/CharacterScreen/BotonesHorizontales.png" id="3_mj7yo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7toa"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 696, 64, 72)
+atlas = ExtResource("3_mj7yo")
+region = Rect2(0, 0, 128, 71)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggv5o"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 632, 64, 72)
+atlas = ExtResource("3_mj7yo")
+region = Rect2(0, 71, 128, 71)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dot5b"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 760, 64, 72)
+atlas = ExtResource("3_mj7yo")
+region = Rect2(0, 142, 128, 71)
 
 [node name="ConfigControllers" type="Control"]
 layout_mode = 3
@@ -25,63 +25,75 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8fhsc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 24.0
-offset_top = -540.0
-offset_right = 88.0
-offset_bottom = 540.0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 16.0
+offset_right = 168.0
+offset_bottom = 88.0
+grow_horizontal = 2
 alignment = 1
 
-[node name="Movement" parent="VBoxContainer" node_paths=PackedStringArray("downSelect") instance=ExtResource("2_gs04o")]
+[node name="Movement" parent="VBoxContainer" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_f7toa")
 focused = true
-downSelect = NodePath("../Grab")
+leftSelect = NodePath("../OK")
+rightSelect = NodePath("../Grab")
+leftFallback = NodePath("../OK")
+rightFallback = NodePath("../Grab")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
 text = "Movimiento"
 
-[node name="Grab" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
+[node name="Grab" parent="VBoxContainer" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-upSelect = NodePath("../Movement")
-downSelect = NodePath("../Jump")
+leftSelect = NodePath("../Movement")
+rightSelect = NodePath("../Jump")
+leftFallback = NodePath("../Movement")
+rightFallback = NodePath("../Jump")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
 text = "Agarrar"
 
-[node name="Jump" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
+[node name="Jump" parent="VBoxContainer" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-upSelect = NodePath("../Grab")
-downSelect = NodePath("../Pause")
+leftSelect = NodePath("../Grab")
+rightSelect = NodePath("../Pause")
+leftFallback = NodePath("../Grab")
+rightFallback = NodePath("../Pause")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
 text = "Saltar"
 
-[node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect") instance=ExtResource("2_gs04o")]
+[node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-upSelect = NodePath("../Jump")
-downSelect = NodePath("../OK")
+leftSelect = NodePath("../Jump")
+rightSelect = NodePath("../OK")
+leftFallback = NodePath("../Jump")
+rightFallback = NodePath("../OK")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
 text = "Pausar"
 
-[node name="OK" parent="VBoxContainer" node_paths=PackedStringArray("upSelect") instance=ExtResource("2_gs04o")]
+[node name="OK" parent="VBoxContainer" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ggv5o")
-upSelect = NodePath("../Pause")
+leftSelect = NodePath("../Pause")
+rightSelect = NodePath("../Movement")
+leftFallback = NodePath("../Pause")
+rightFallback = NodePath("../Movement")
 normalTexture = SubResource("AtlasTexture_ggv5o")
 focusedTexture = SubResource("AtlasTexture_f7toa")
 pressedTexture = SubResource("AtlasTexture_dot5b")
