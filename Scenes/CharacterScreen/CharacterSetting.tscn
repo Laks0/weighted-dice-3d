@@ -588,8 +588,8 @@ upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../StartButton")
 rightSelect = NodePath("../ExitButton")
 downFallback = NodePath("../ExitButton")
-leftFallback = NodePath("../../TextBar/EditNameButton")
-rightFallback = NodePath("../../TextBar/EditNameButton")
+leftFallback = NodePath("../StartButton")
+rightFallback = NodePath("../ExitButton")
 normalTexture = SubResource("AtlasTexture_uy2pq")
 focusedTexture = SubResource("AtlasTexture_8her3")
 pressedTexture = SubResource("AtlasTexture_5djdu")
@@ -611,13 +611,15 @@ offset_bottom = 81.0
 text = "CONTROLES"
 label_settings = SubResource("LabelSettings_bv6h6")
 
-[node name="ExitButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect") instance=ExtResource("3_drg7m")]
+[node name="ExitButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_2vlrn")
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ControllersButton")
 rightSelect = NodePath("../StartButton")
+leftFallback = NodePath("../ControllersButton")
+rightFallback = NodePath("../StartButton")
 normalTexture = SubResource("AtlasTexture_2vlrn")
 focusedTexture = SubResource("AtlasTexture_1k0bd")
 pressedTexture = SubResource("AtlasTexture_6shnf")
@@ -639,13 +641,15 @@ offset_bottom = 81.0
 text = "SALIR"
 label_settings = SubResource("LabelSettings_bv6h6")
 
-[node name="StartButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect") instance=ExtResource("3_drg7m")]
+[node name="StartButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_tkesg")
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ExitButton")
 rightSelect = NodePath("../ControllersButton")
+leftFallback = NodePath("../ExitButton")
+rightFallback = NodePath("../ControllersButton")
 normalTexture = SubResource("AtlasTexture_tkesg")
 focusedTexture = SubResource("AtlasTexture_sbpaj")
 pressedTexture = SubResource("AtlasTexture_5xvuw")
