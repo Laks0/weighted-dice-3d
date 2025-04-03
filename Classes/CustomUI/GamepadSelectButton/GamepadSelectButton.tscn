@@ -2,40 +2,57 @@
 
 [ext_resource type="Script" uid="uid://di7uhc0hpdd2f" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.gd" id="1_tiixq"]
 
-[node name="GamepadSelectButton" type="TextureRect"]
+[node name="GamepadSelectButton" type="MarginContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_tiixq")
 
-[node name="Label" type="Label" parent="."]
+[node name="OverTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OnclickedTime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.4
+one_shot = true
+
+[node name="UncontainedNodes" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="UncontainedNodes"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = -0.5
 offset_top = -11.5
-offset_right = 20.0
+offset_right = 0.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 horizontal_alignment = 1
 
-[node name="OnclickedTime" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
-
-[node name="UnderTexture" type="TextureRect" parent="."]
+[node name="UnderTexture" type="TextureRect" parent="UncontainedNodes"]
+unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
 anchors_preset = 8
@@ -43,9 +60,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

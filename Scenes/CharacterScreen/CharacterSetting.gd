@@ -117,11 +117,11 @@ func onVirtualKeyboardDeleteCharacter():
 
 func onOtherKeyboardStartedEditting():
 	if Controllers.isKeyboard(_controller):
-		%ControllersButton.disableButton()
+		%ControllersButton.disable()
 
 func onOtherKeyboardStoppedEditting():
 	if Controllers.isKeyboard(_controller):
-		%ControllersButton.enableButton()
+		%ControllersButton.enable()
 
 func isActive():
 	return active

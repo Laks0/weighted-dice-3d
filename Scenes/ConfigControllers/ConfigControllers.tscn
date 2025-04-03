@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_gs04o"]
 [ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="3_esr5x"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7toa"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 696, 64, 72)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ggv5o"]
 atlas = ExtResource("3_esr5x")
 region = Rect2(0, 632, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7toa"]
+atlas = ExtResource("3_esr5x")
+region = Rect2(0, 696, 64, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dot5b"]
 atlas = ExtResource("3_esr5x")
@@ -40,64 +40,59 @@ alignment = 1
 
 [node name="Movement" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_f7toa")
+text = "Movimiento"
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
 focused = true
 upSelect = NodePath("../OK")
 downSelect = NodePath("../Grab")
 upFallback = NodePath("../OK")
 downFallback = NodePath("../Grab")
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-text = "Movimiento"
 
 [node name="Grab" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_ggv5o")
+text = "Agarrar"
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../Movement")
 downSelect = NodePath("../Jump")
 upFallback = NodePath("../Movement")
 downFallback = NodePath("../Jump")
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-text = "Agarrar"
 
 [node name="Jump" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_ggv5o")
+text = "Saltar"
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../Grab")
 downSelect = NodePath("../Pause")
 upFallback = NodePath("../Grab")
 downFallback = NodePath("../Pause")
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-text = "Saltar"
 
 [node name="Pause" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_ggv5o")
+text = "Pausar"
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../Jump")
 downSelect = NodePath("../OK")
 upFallback = NodePath("../Jump")
 downFallback = NodePath("../OK")
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-text = "Pausar"
 
 [node name="OK" parent="VBoxContainer" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("2_gs04o")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_ggv5o")
+text = "OK"
+normalTexture = SubResource("AtlasTexture_ggv5o")
+focusedTexture = SubResource("AtlasTexture_f7toa")
+pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../Pause")
 downSelect = NodePath("../Movement")
 upFallback = NodePath("../Pause")
 downFallback = NodePath("../Movement")
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-text = "OK"
 
 [node name="ActionLabel" type="Label" parent="."]
 unique_name_in_owner = true
