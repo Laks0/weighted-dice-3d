@@ -25,7 +25,7 @@ func _game_and_editor_process(_delta):
 	%HBoxContainer.position.x = boxPositionX
 	
 	for label : Label in %HBoxContainer.get_children():
-		label.modulate.a = 1.0 if label == selectedLabel else .2
+		label.modulate.a = 1.0 if label == selectedLabel else .5
 	
 	$Arrows.modulate = Color.WHITE if focused else Color.BLACK
 
@@ -67,7 +67,7 @@ func moveCarousel(dir : int):
 
 func moveToSelected(time := .1):
 	updateSelectedLabel()
-	var newPosition := -selectedLabel.position.x - selectedLabel.size.x / 2 + size.x/2
+	var newPosition :float= -selectedLabel.position.x - selectedLabel.size.x/2 + $SubViewportContainer.size.x/2
 	create_tween().tween_property(self, "boxPositionX", newPosition, time)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
@@ -82,7 +82,7 @@ func setSize():
 	for label : Label in %HBoxContainer.get_children():
 		maxLabelWidth = max(maxLabelWidth, label.size.x)
 	
-	custom_minimum_size.x = maxLabelWidth * 4
+	custom_minimum_size.x = maxLabelWidth * 2
 	%SubViewport.size.x = custom_minimum_size.x
 
 func _animateArrow(dir : int):

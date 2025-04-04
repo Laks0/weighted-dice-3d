@@ -102,9 +102,6 @@ func _process(_delta):
 		%Cancel.visible = true
 		%Accept.visible = true
 
-func onOKPressed():
-	finished.emit()
-
 func setAction(action : StringName):
 	actionSelected = action
 
@@ -190,3 +187,8 @@ func applyChanges():
 		InputMap.action_add_event(actions[actionName], actionChanges[actionName])
 	actionChanges.clear()
 	finished.emit()
+
+func onFinished():
+	for c : GamepadSelectButton in $HBoxContainer.get_children():
+		c.unfocus()
+	$GamepadSelectCarousel.focus()
