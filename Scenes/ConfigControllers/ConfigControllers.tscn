@@ -43,6 +43,7 @@ options = Dictionary[String, String]({
 "Pausar": "pause",
 "Saltar": "jump"
 })
+autoSetNeighbours = null
 downSelect = NodePath("../HBoxContainer/Edit")
 
 [node name="ActionLabel" type="Label" parent="."]
