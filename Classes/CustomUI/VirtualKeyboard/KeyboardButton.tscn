@@ -20,36 +20,29 @@ region = Rect2(144, 8, 32, 40)
 atlas = ExtResource("1_dd6sj")
 region = Rect2(16, 8, 32, 40)
 
-[sub_resource type="LabelSettings" id="LabelSettings_w3vtb"]
+[sub_resource type="LabelSettings" id="LabelSettings_k40kn"]
 font = ExtResource("3_sfhw1")
-font_size = 40
+font_size = 34
 font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.498039)
 
 [node name="KeyboardButton" instance=ExtResource("1_22euv")]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-texture = SubResource("AtlasTexture_lwb6n")
 normalTexture = SubResource("AtlasTexture_lwb6n")
 focusedTexture = SubResource("AtlasTexture_1mkpf")
 pressedTexture = SubResource("AtlasTexture_bikv2")
 underTexture = SubResource("AtlasTexture_uo0p7")
 text = "Q"
 
-[node name="Label" parent="." index="0"]
-offset_left = -18.0
-offset_top = -19.38
-offset_right = 22.0
-offset_bottom = 26.62
-text = "Q"
-label_settings = SubResource("LabelSettings_w3vtb")
+[node name="OverTexture" parent="." index="0"]
+texture = SubResource("AtlasTexture_lwb6n")
 
-[node name="UnderTexture" parent="." index="2"]
-modulate = Color(1, 1, 1, 0.498039)
-offset_left = -15.0
-offset_top = -19.0
-offset_right = 25.0
-offset_bottom = 21.0
-scale = Vector2(0.786325, 1.02316)
+[node name="Label" parent="UncontainedNodes" index="0"]
+text = "Q"
+label_settings = SubResource("LabelSettings_k40kn")
+
+[node name="UnderTexture" parent="UncontainedNodes" index="1"]
 texture = SubResource("AtlasTexture_uo0p7")

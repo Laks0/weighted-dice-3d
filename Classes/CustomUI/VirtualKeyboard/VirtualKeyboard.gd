@@ -94,7 +94,7 @@ func setLowercase():
 
 func switchAccents():
 	accentsOn = not accentsOn
-	%Accent/Label.label_settings.font_color = Color.WHITE if accentsOn else Color.BLACK
+	%Accent.setLabelColor(Color.WHITE if accentsOn else Color.BLACK)
 	for row in get_children():
 		for button in row.get_children():
 			if not "aeiou".containsn(button.text.left(1)):

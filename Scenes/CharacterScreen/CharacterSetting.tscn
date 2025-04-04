@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="4_qb4a5"]
 [ext_resource type="Texture2D" uid="uid://cvxd42pn3payj" path="res://Scenes/CharacterScreen/BarradeTxtUICharSelect-Sheet.png" id="4_qekjp"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="5_xcq4e"]
+[ext_resource type="LabelSettings" uid="uid://dkc7trk17t0v0" path="res://Scenes/CharacterScreen/ScreenLabelSettings.tres" id="8_4ejbx"]
 [ext_resource type="Texture2D" uid="uid://btus2xi4vyfxc" path="res://Scenes/CharacterScreen/Listo!AnimacionUICharSelect-Sheet.png" id="8_lp614"]
 [ext_resource type="Texture2D" uid="uid://bvctdh7t6udvt" path="res://Scenes/CharacterScreen/Listo!TxtUICharSelect-Sheet.png" id="9_p4xui"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="10_60nkq"]
@@ -43,13 +44,13 @@ font_size = 47
 font_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.498039)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vv38"]
-atlas = ExtResource("4_qb4a5")
-region = Rect2(0, 576, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m356b"]
 atlas = ExtResource("4_qb4a5")
 region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vv38"]
+atlas = ExtResource("4_qb4a5")
+region = Rect2(0, 576, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5v3n"]
 atlas = ExtResource("4_qb4a5")
@@ -74,12 +75,6 @@ region = Rect2(0, 896, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c2ctj"]
 atlas = ExtResource("4_qb4a5")
 region = Rect2(0, 256, 64, 64)
-
-[sub_resource type="LabelSettings" id="LabelSettings_bv6h6"]
-font = ExtResource("5_xcq4e")
-font_size = 22
-font_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.498039)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vlrn"]
 atlas = ExtResource("4_qb4a5")
@@ -202,13 +197,13 @@ region = Rect2(0, 0, 256, 128)
 atlas = ExtResource("9_p4xui")
 region = Rect2(3, 131, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_setxt"]
-atlas = ExtResource("10_60nkq")
-region = Rect2(64, 140, 64, 40)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_r0qy1"]
 atlas = ExtResource("10_60nkq")
 region = Rect2(0, 140, 64, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_setxt"]
+atlas = ExtResource("10_60nkq")
+region = Rect2(64, 140, 64, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_memns"]
 atlas = ExtResource("10_60nkq")
@@ -536,19 +531,17 @@ offset_left = -212.0
 offset_top = -32.0
 offset_right = -148.0
 offset_bottom = 32.0
-texture = SubResource("AtlasTexture_5vv38")
-focused = true
-downSelect = NodePath("../../HBoxContainer/ControllersButton")
 normalTexture = SubResource("AtlasTexture_m356b")
 focusedTexture = SubResource("AtlasTexture_5vv38")
 pressedTexture = SubResource("AtlasTexture_b5v3n")
 underTexture = SubResource("AtlasTexture_pwkxv")
+focused = true
+downSelect = NodePath("../../HBoxContainer/ControllersButton")
 
-[node name="UnderTexture" parent="MainStage/TextBar/EditNameButton" index="2"]
-offset_left = -19.0
-offset_top = -19.0
-offset_right = 21.0
-offset_bottom = 21.0
+[node name="OverTexture" parent="MainStage/TextBar/EditNameButton" index="0"]
+texture = SubResource("AtlasTexture_5vv38")
+
+[node name="UnderTexture" parent="MainStage/TextBar/EditNameButton/UncontainedNodes" index="1"]
 texture = SubResource("AtlasTexture_pwkxv")
 
 [node name="Sadow" type="TextureRect" parent="MainStage/TextBar"]
@@ -583,93 +576,99 @@ alignment = 1
 [node name="ControllersButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_uy2pq")
+text = "CONTROLES"
+normalTexture = SubResource("AtlasTexture_uy2pq")
+focusedTexture = SubResource("AtlasTexture_8her3")
+pressedTexture = SubResource("AtlasTexture_5djdu")
+underTexture = SubResource("AtlasTexture_c2ctj")
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../StartButton")
 rightSelect = NodePath("../ExitButton")
 downFallback = NodePath("../ExitButton")
 leftFallback = NodePath("../StartButton")
 rightFallback = NodePath("../ExitButton")
-normalTexture = SubResource("AtlasTexture_uy2pq")
-focusedTexture = SubResource("AtlasTexture_8her3")
-pressedTexture = SubResource("AtlasTexture_5djdu")
-underTexture = SubResource("AtlasTexture_c2ctj")
 
-[node name="UnderTexture" parent="MainStage/HBoxContainer/ControllersButton" index="2"]
+[node name="OverTexture" parent="MainStage/HBoxContainer/ControllersButton" index="0"]
+texture = SubResource("AtlasTexture_uy2pq")
+
+[node name="Label" parent="MainStage/HBoxContainer/ControllersButton/UncontainedNodes" index="0"]
+offset_left = -42.0
+offset_top = 27.0
+offset_right = 42.0
+offset_bottom = 59.0
+text = "CONTROLES"
+label_settings = ExtResource("8_4ejbx")
+
+[node name="UnderTexture" parent="MainStage/HBoxContainer/ControllersButton/UncontainedNodes" index="1"]
 offset_left = -31.0
 offset_top = -31.0
 offset_right = 33.0
 offset_bottom = 33.0
 texture = SubResource("AtlasTexture_c2ctj")
 
-[node name="Label2" type="Label" parent="MainStage/HBoxContainer/ControllersButton"]
-layout_mode = 0
-offset_left = -15.0
-offset_top = 58.0
-offset_right = 83.0
-offset_bottom = 81.0
-text = "CONTROLES"
-label_settings = SubResource("LabelSettings_bv6h6")
-
 [node name="ExitButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_2vlrn")
+text = "SALIR"
+normalTexture = SubResource("AtlasTexture_2vlrn")
+focusedTexture = SubResource("AtlasTexture_1k0bd")
+pressedTexture = SubResource("AtlasTexture_6shnf")
+underTexture = SubResource("AtlasTexture_1d68x")
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ControllersButton")
 rightSelect = NodePath("../StartButton")
 leftFallback = NodePath("../ControllersButton")
 rightFallback = NodePath("../StartButton")
-normalTexture = SubResource("AtlasTexture_2vlrn")
-focusedTexture = SubResource("AtlasTexture_1k0bd")
-pressedTexture = SubResource("AtlasTexture_6shnf")
-underTexture = SubResource("AtlasTexture_1d68x")
 
-[node name="UnderTexture" parent="MainStage/HBoxContainer/ExitButton" index="2"]
+[node name="OverTexture" parent="MainStage/HBoxContainer/ExitButton" index="0"]
+texture = SubResource("AtlasTexture_2vlrn")
+
+[node name="Label" parent="MainStage/HBoxContainer/ExitButton/UncontainedNodes" index="0"]
+offset_left = -26.0
+offset_top = 27.0
+offset_right = 26.0
+offset_bottom = 50.0
+text = "SALIR"
+label_settings = ExtResource("8_4ejbx")
+
+[node name="UnderTexture" parent="MainStage/HBoxContainer/ExitButton/UncontainedNodes" index="1"]
 offset_left = -31.0
 offset_top = -31.0
 offset_right = 33.0
 offset_bottom = 33.0
 texture = SubResource("AtlasTexture_1d68x")
 
-[node name="Label3" type="Label" parent="MainStage/HBoxContainer/ExitButton"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 58.0
-offset_right = 78.0
-offset_bottom = 81.0
-text = "SALIR"
-label_settings = SubResource("LabelSettings_bv6h6")
-
 [node name="StartButton" parent="MainStage/HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("3_drg7m")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = SubResource("AtlasTexture_tkesg")
+text = "JUGAR"
+normalTexture = SubResource("AtlasTexture_tkesg")
+focusedTexture = SubResource("AtlasTexture_sbpaj")
+pressedTexture = SubResource("AtlasTexture_5xvuw")
+underTexture = SubResource("AtlasTexture_huyio")
 upSelect = NodePath("../../TextBar/EditNameButton")
 leftSelect = NodePath("../ExitButton")
 rightSelect = NodePath("../ControllersButton")
 leftFallback = NodePath("../ExitButton")
 rightFallback = NodePath("../ControllersButton")
-normalTexture = SubResource("AtlasTexture_tkesg")
-focusedTexture = SubResource("AtlasTexture_sbpaj")
-pressedTexture = SubResource("AtlasTexture_5xvuw")
-underTexture = SubResource("AtlasTexture_huyio")
 
-[node name="UnderTexture" parent="MainStage/HBoxContainer/StartButton" index="2"]
+[node name="OverTexture" parent="MainStage/HBoxContainer/StartButton" index="0"]
+texture = SubResource("AtlasTexture_tkesg")
+
+[node name="Label" parent="MainStage/HBoxContainer/StartButton/UncontainedNodes" index="0"]
+offset_left = -29.0
+offset_top = 27.0
+offset_right = 29.0
+offset_bottom = 50.0
+text = "JUGAR"
+label_settings = ExtResource("8_4ejbx")
+
+[node name="UnderTexture" parent="MainStage/HBoxContainer/StartButton/UncontainedNodes" index="1"]
 offset_left = -31.0
 offset_top = -31.0
 offset_right = 33.0
 offset_bottom = 33.0
 texture = SubResource("AtlasTexture_huyio")
-
-[node name="Label4" type="Label" parent="MainStage/HBoxContainer/StartButton"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 58.0
-offset_right = 73.0
-offset_bottom = 81.0
-text = "JUGAR"
-label_settings = SubResource("LabelSettings_bv6h6")
 
 [node name="NameEdit" type="Control" parent="."]
 visible = false
@@ -775,39 +774,33 @@ offset_top = -77.0
 offset_right = -19.0
 offset_bottom = -37.0
 grow_vertical = 0
-texture = SubResource("AtlasTexture_setxt")
-focused = true
+text = "VOLVER"
 normalTexture = SubResource("AtlasTexture_r0qy1")
 focusedTexture = SubResource("AtlasTexture_setxt")
 pressedTexture = SubResource("AtlasTexture_memns")
 underTexture = SubResource("AtlasTexture_dxwom")
+focused = true
 
-[node name="UnderTexture" parent="ReadyStage/Volver" index="2"]
-modulate = Color(1, 1, 1, 0.498039)
-offset_left = -17.0
-offset_top = -17.0
-offset_right = 23.0
-offset_bottom = 23.0
-texture = SubResource("AtlasTexture_dxwom")
+[node name="OverTexture" parent="ReadyStage/Volver" index="0"]
+texture = SubResource("AtlasTexture_setxt")
 
-[node name="Label2" type="Label" parent="ReadyStage/Volver"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 13.0
-offset_top = -16.0
-offset_right = 107.0
-offset_bottom = 16.0
-grow_horizontal = 0
-grow_vertical = 2
-theme = ExtResource("11_731y3")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.454902)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+[node name="Label" parent="ReadyStage/Volver/UncontainedNodes" index="0"]
+offset_left = 45.0
+offset_top = -20.0
+offset_right = 110.0
+offset_bottom = 3.0
+scale = Vector2(1.664, 1.664)
 text = "VOLVER"
+label_settings = ExtResource("8_4ejbx")
+vertical_alignment = 1
+
+[node name="UnderTexture" parent="ReadyStage/Volver/UncontainedNodes" index="1"]
+modulate = Color(1, 1, 1, 0.333333)
+offset_left = -30.0
+offset_top = -18.0
+offset_right = 34.0
+offset_bottom = 22.0
+texture = SubResource("AtlasTexture_dxwom")
 
 [node name="WaitingStage" type="Control" parent="."]
 visible = false
@@ -855,23 +848,10 @@ offset_top = 23.0
 offset_right = -25.0
 offset_bottom = -22.0
 
-[node name="VBoxContainer" parent="ControlsStage/ConfigControllers" index="0"]
-offset_left = 48.0
-offset_right = 112.0
-theme_override_constants/separation = -28
-
 [node name="ActionLabel" parent="ControlsStage/ConfigControllers" index="1"]
-offset_left = -204.0
-offset_right = -24.0
+offset_left = -90.0
+offset_right = 90.0
 theme_override_font_sizes/font_size = 21
-
-[node name="Instrucciones" parent="ControlsStage/ConfigControllers" index="2"]
-offset_left = -212.0
-offset_top = 9.0
-offset_right = 212.0
-offset_bottom = 32.0
-theme_override_font_sizes/font_size = 19
-autowrap_mode = 2
 
 [node name="LockedStage" type="Control" parent="."]
 visible = false
