@@ -1,5 +1,5 @@
 @tool
-extends Container
+extends Control
 class_name GamepadSelectUI
 
 signal startedFocus
@@ -16,17 +16,17 @@ signal movedRight
 @export var disabled := false
 
 @export_group("Vecinos")
-@export var upSelect    : GamepadSelectButton
-@export var downSelect  : GamepadSelectButton
-@export var leftSelect  : GamepadSelectButton
-@export var rightSelect : GamepadSelectButton
+@export var upSelect    : GamepadSelectUI
+@export var downSelect  : GamepadSelectUI
+@export var leftSelect  : GamepadSelectUI
+@export var rightSelect : GamepadSelectUI
 
-@export var upFallback    : GamepadSelectButton
-@export var downFallback  : GamepadSelectButton
-@export var leftFallback  : GamepadSelectButton
-@export var rightFallback : GamepadSelectButton
+@export var upFallback    : GamepadSelectUI
+@export var downFallback  : GamepadSelectUI
+@export var leftFallback  : GamepadSelectUI
+@export var rightFallback : GamepadSelectUI
 
-enum {UP, DOWN, LEFT, RIGHT}
+enum {UP, DOWN, LEFT, RIGHT, NONE}
 
 var actions : Dictionary
 
@@ -51,25 +51,37 @@ func _in_game_process(_delta):
 func _game_and_editor_process(_dela):
 	pass
 
-func _handle_movement():
+func _get_current_movement() -> int:
 	if Input.is_action_just_pressed(actions["left"]):
+		return LEFT
+	elif Input.is_action_just_pressed(actions["right"]):
+		return RIGHT
+	elif Input.is_action_just_pressed(actions["down"]):
+		return DOWN
+	elif Input.is_action_just_pressed(actions["up"]):
+		return UP
+	return NONE
+
+func _handle_movement():
+	var movement := _get_current_movement()
+	if movement == LEFT:
 		movedLeft.emit()
 		if is_instance_valid(leftSelect):
 			changeFocus(leftSelect, LEFT)
-	elif Input.is_action_just_pressed(actions["right"]):
+	elif movement == RIGHT:
 		movedRight.emit()
 		if is_instance_valid(rightSelect):
 			changeFocus(rightSelect, RIGHT)
-	elif Input.is_action_just_pressed(actions["down"]):
+	elif movement == DOWN:
 		movedDown.emit()
 		if is_instance_valid(downSelect):
 			changeFocus(downSelect, DOWN)
-	elif Input.is_action_just_pressed(actions["up"]):
+	elif movement == UP:
 		movedUp.emit()
 		if is_instance_valid(upSelect):
 			changeFocus(upSelect, UP)
 
-func changeFocus(newFocus : GamepadSelectButton, dir : int):
+func changeFocus(newFocus : GamepadSelectUI, dir : int):
 	unfocus()
 	newFocus.focus(dir)
 

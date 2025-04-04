@@ -8,8 +8,8 @@ var actionSelected : String = ""
 @export var buttonActionMap : Dictionary
 
 func setControllerId(id : int):
-	for button : GamepadSelectButton in %VBoxContainer.get_children():
-		button.controller = id
+	$OK.controller = id
+	$GamepadSelectCarousel.controller = id
 	
 	controllerId = id
 
