@@ -63,7 +63,8 @@ func startRound() -> void:
 		currentBet.startRound()
 		pickedNewBet.emit()
 		return
-	
+	if round != 1:
+		SoundtrackHandler.playTrack(round)
 	# Si se reelige la misma apuesta que antes hay solo un 5% de chances de dejarla
 	while currentBet == _lastBet:
 		currentBet = bets.pick_random()

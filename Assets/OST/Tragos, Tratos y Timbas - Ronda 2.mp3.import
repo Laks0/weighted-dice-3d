@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dx34k7atp6pvv"
+path="res://.godot/imported/Tragos, Tratos y Timbas - Ronda 2.mp3-dcbaaae5adc6b34fab3d3c4e759a5b92.mp3str"
+
+[deps]
+
+source_file="res://Assets/OST/Tragos, Tratos y Timbas - Ronda 2.mp3"
+dest_files=["res://.godot/imported/Tragos, Tratos y Timbas - Ronda 2.mp3-dcbaaae5adc6b34fab3d3c4e759a5b92.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=92.0
+beat_count=0
+bar_beats=4
