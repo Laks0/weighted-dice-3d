@@ -4,17 +4,21 @@ signal finished
 
 @onready var controllerId : int = Controllers.KB
 var actionSelected : String = ""
-
-@export var buttonActionMap : Dictionary
+var actions : Dictionary
+var actionChanges : Dictionary[String, InputEvent]
 
 func setControllerId(id : int):
-	$OK.controller = id
+	for c : GamepadSelectButton in $HBoxContainer.get_children():
+		c.controller = id
 	$GamepadSelectCarousel.controller = id
 	
 	controllerId = id
 
 func inputNameFromAction(actionName : StringName) -> StringName:
-	var names : Array = InputMap.action_get_events(actionName).map(singularInputToString)
+	var actionEvents : Array[InputEvent] = InputMap.action_get_events(actions[actionName])
+	if actionChanges.has(actionName):
+		actionEvents = [actionChanges[actionName]]
+	var names : Array = actionEvents.map(singularInputToString)
 	return " / ".join(names)
 
 func getStickDirectionName(inputName : StringName) -> StringName:
@@ -61,8 +65,6 @@ func singularInputToString(input : InputEvent) -> StringName:
 	
 	return input.as_text()
 
-var actions : Dictionary
-
 func _process(_delta):
 	if editting:
 		%ActionLabel.text = "Apretá algún botón"
@@ -75,23 +77,30 @@ func _process(_delta):
 			%ActionLabel.text = "Seleccioná un input para la izquierda"
 		elif actionSelected == "right":
 			%ActionLabel.text = "Seleccioná un input para la derecha"
-
-		%Instrucciones.text = ""
 		return
+	
+	setAction($GamepadSelectCarousel.getSelectedId())
 	
 	actions = Controllers.getActions(controllerId)
 	if actions.has(actionSelected):
-		%ActionLabel.text = inputNameFromAction(actions[actionSelected])
+		%ActionLabel.text = inputNameFromAction(actionSelected)
 	else:
 		%ActionLabel.text = ""
 	
 	if actionSelected == "up":
-		%ActionLabel.text  = "Arriba\n"+inputNameFromAction(actions.up)+"\n"
-		%ActionLabel.text += "Abajo\n"+inputNameFromAction(actions.down)+"\n"
-		%ActionLabel.text += "Izquierda\n"+inputNameFromAction(actions.left)+"\n"
-		%ActionLabel.text += "Derecha\n"+inputNameFromAction(actions.right)+"\n"
-
-	%Instrucciones.text = inputNameFromAction(actions.up) + " para arriba " + inputNameFromAction(actions.down) + " para abajo " + inputNameFromAction(actions.grab) + " para seleccionar"
+		%ActionLabel.text  = "Arriba: "+inputNameFromAction("up")+"    "
+		%ActionLabel.text += "Abajo: "+inputNameFromAction("down")+"\n"
+		%ActionLabel.text += "Izquierda: "+inputNameFromAction("left")+"    "
+		%ActionLabel.text += "Derecha: "+inputNameFromAction("right")+"\n"
+	
+	if actionChanges.is_empty():
+		%Back.visible = true
+		%Cancel.visible = false
+		%Accept.visible = false
+	else:
+		%Back.visible = false
+		%Cancel.visible = true
+		%Accept.visible = true
 
 func onOKPressed():
 	finished.emit()
@@ -101,14 +110,9 @@ func setAction(action : StringName):
 
 var editting := false
 func startEdit():
+	$HBoxContainer.visible = false
 	await get_tree().process_frame
 	editting = true
-	%VBoxContainer.visible = false
-	InputMap.action_erase_events(actions[actionSelected])
-	if actionSelected == "up":
-		InputMap.action_erase_events(actions["down"])
-		InputMap.action_erase_events(actions["left"])
-		InputMap.action_erase_events(actions["right"])
 
 func handleButtonInput(event : InputEvent, actionName : StringName):
 	if not event.is_pressed():
@@ -124,8 +128,8 @@ func handleJoypadMotion(event : InputEventJoypadMotion, actionName : StringName)
 	changeAction(event, actionName)
 
 func changeAction(event : InputEvent, actionName : StringName):
-	InputMap.action_add_event(actions[actionName], event)
-
+	actionChanges[actionName] = event
+	
 	if actionSelected == "up":
 		actionSelected = "down"
 	elif actionSelected == "down":
@@ -136,7 +140,7 @@ func changeAction(event : InputEvent, actionName : StringName):
 		if actionSelected == "right":
 			actionSelected = "up"
 		editting = false
-		%VBoxContainer.visible = true
+		$HBoxContainer.visible = true
 
 func _input(event : InputEvent):
 	if not editting:
@@ -148,7 +152,7 @@ func _input(event : InputEvent):
 	if controllerId in [Controllers.KB, Controllers.KB2]:
 		actionsToCheck = Controllers.getActions(Controllers.KB).values()
 		actionsToCheck.append_array(Controllers.getActions(Controllers.KB2).values())
-
+	
 	# Por cada una de las acciones, verificar que no hay ninguna que coincida
 	for actionName : StringName in actionsToCheck:
 		if not event.is_action(actionName):
@@ -161,10 +165,9 @@ func _input(event : InputEvent):
 				if signf(actionEvent.axis_value) == signf(event.axis_value):
 					return
 			continue
-
+		
 		return
-
-
+	
 	if event is InputEventKey and controllerId in [Controllers.KB, Controllers.KB2]:
 		handleButtonInput(event, actionSelected)
 		return
@@ -176,3 +179,14 @@ func _input(event : InputEvent):
 		handleButtonInput(event, actionSelected)
 	elif event is InputEventJoypadMotion:
 		handleJoypadMotion(event, actionSelected)
+
+func cancelChanges():
+	actionChanges.clear()
+	finished.emit()
+
+func applyChanges():
+	for actionName : StringName in actionChanges.keys():
+		InputMap.action_erase_events(actions[actionName])
+		InputMap.action_add_event(actions[actionName], actionChanges[actionName])
+	actionChanges.clear()
+	finished.emit()
