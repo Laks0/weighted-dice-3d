@@ -119,7 +119,7 @@ func endGame(winnerMon : Monigote):
 	gameRunning = false
 	
 	await get_tree().create_timer(.3).timeout
-	SoundtrackHandler.playTrack(0)
+	SoundtrackHandler.playTrack(5)
 	
 	$PrepareArrow.visible = false
 	

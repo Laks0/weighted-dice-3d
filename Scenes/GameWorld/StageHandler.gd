@@ -141,6 +141,7 @@ func arenaToLeaderboard(winnerId):
 	inLeaderboard.emit()
 	await camera.goToCamera(leaderboardCamera).finished
 	chipHolder.startLeaderboardAnimation(winnerId)
+	SoundtrackHandler.playTrack(6)
 
 func leaderboardToBet():
 	currentStage = Stages.TRANSITION

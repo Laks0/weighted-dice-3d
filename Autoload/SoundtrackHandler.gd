@@ -7,10 +7,12 @@ var currentTrack : int
 
 var setList : Dictionary = {
 	"Do You Like Kazz" : ["res://Assets/OST/Do You Like Kazz - Intro.mp3", "res://Assets/OST/Do You Like Kazz - Loop.mp3"],
-	"Modales Monigotes" :  ["res://Assets/OST/Modales Monigotes.mp3"],
+	"Modales Monigotes" :  ["res://Assets/OST/Modales Monigotes - Intro.mp3", "res://Assets/OST/Modales Monigotes - Loop.mp3"],
 	"Tragos, Tratos y Timbas - Ronda 2" : ["res://Assets/OST/Tragos, Tratos y Timbas - Ronda 2.mp3"],
 	"Tragos, Tratos y Timbas - Ronda 3" :["res://Assets/OST/Tragos, Tratos y Timbas - Ronda 3.mp3"],
-	"Tragos, Tratos y Timbas - Ronda 4" :["res://Assets/OST/Tragos, Tratos y Timbas - Ronda 4.mp3"]
+	"Tragos, Tratos y Timbas - Ronda 4" :["res://Assets/OST/Tragos, Tratos y Timbas - Ronda 4.mp3"],
+	"Victoria" : ["res://Assets/OST/Victoria.mp3"],
+	"Cuente y Cobre" : ["res://Assets/OST/Cuente y Cobre.mp3"]
 }
 
 func _ready():
@@ -20,11 +22,13 @@ func _ready():
 	loadedTracks.append(loadTrack("Tragos, Tratos y Timbas - Ronda 2")) #2
 	loadedTracks.append(loadTrack("Tragos, Tratos y Timbas - Ronda 3")) #3
 	loadedTracks.append(loadTrack("Tragos, Tratos y Timbas - Ronda 4")) #4
+	loadedTracks.append(loadTrack("Victoria")) #5
+	loadedTracks.append(loadTrack("Cuente y Cobre")) #6
 	connect("finished", onFinished)
 	volume_db = -4
 
 func onFinished():
-	if !stream.loop:
+	if !stream.loop && currentTrack != 5:
 		currentClip += 1
 		playTrack(currentTrack)
 
@@ -51,6 +55,5 @@ func playTrack(track : int = 0):
 #despues exportar a volumen correcto y sacar esto
 	if track == 0:
 		volume_db = 0
-	elif track >= 2 && track <=4:
+	else:
 		volume_db = 3
-	else: volume_db = -4
