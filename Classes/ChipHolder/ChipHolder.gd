@@ -241,6 +241,7 @@ func startLeaderboardAnimation(winnerId):
 		$WinnerLabel.text = "¡GANARON %s y %s!" % [",".join(headNames), lastName]
 	
 	$WinnerLabel.visible = true
+	SoundtrackHandler.playTrack(0)
 	if winner.name == "Male" or winner.name == "Marta":
 		Narrator.playBank("gameend", 2)
 	else:
