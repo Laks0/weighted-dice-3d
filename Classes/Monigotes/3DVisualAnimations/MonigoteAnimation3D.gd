@@ -12,7 +12,7 @@ var animatedSprite : AnimatedSprite3D:
 
 ## La transformación que se tiene que aplicar al monigote,
 ## todas las animaciones mutiplican sus transformaciones
-var resultBasis    : Basis
+var resultBasis    : Basis = Basis.IDENTITY
 var playing := false
 
 func play():

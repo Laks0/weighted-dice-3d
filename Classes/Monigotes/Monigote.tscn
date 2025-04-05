@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=66 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -30,6 +30,8 @@
 [ext_resource type="Script" uid="uid://h61k6apralwn" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
 [ext_resource type="Script" uid="uid://c0x6cvlhovtdm" path="res://Classes/Monigotes/3DVisualAnimations/YAxisShake.gd" id="23_ibisb"]
 [ext_resource type="Script" uid="uid://bheshddugi8vk" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
+[ext_resource type="Script" uid="uid://cj0m5sdwwn1rf" path="res://Classes/Monigotes/3DVisualAnimations/RunningSkewAnimation.gd" id="24_q1msd"]
+[ext_resource type="Script" uid="uid://bu6evpd3a6q4k" path="res://Classes/Monigotes/3DVisualAnimations/JumpingScaleAnimation.gd" id="25_8bylv"]
 [ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Texture2D" uid="uid://qsk44i3anti4" path="res://Classes/Monigotes/AniManosAgarre_Sprite-sheet.png" id="26_x0xae"]
 [ext_resource type="Shader" uid="uid://df32anwenwtf4" path="res://Assets/ColorSwap.gdshader" id="26_xceo0"]
@@ -279,6 +281,15 @@ debug_shape_thickness = 5
 [node name="YAxisShake" type="Node3D" parent="AnimatedSprite/Animations3D"]
 script = ExtResource("23_ibisb")
 
+[node name="RunningSkew" type="Node3D" parent="AnimatedSprite/Animations3D"]
+script = ExtResource("24_q1msd")
+skewLength = 0.15
+
+[node name="JumpingScale" type="Node3D" parent="AnimatedSprite/Animations3D"]
+script = ExtResource("25_8bylv")
+squashHeight = 0.71
+strechFactor = 0.076
+
 [node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "hands")]
 script = ExtResource("23_jjywh")
 animatedSprite = NodePath("../AnimatedSprite")
@@ -460,5 +471,7 @@ one_shot = true
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
+[connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="stop"]
+[connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="play"]
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="StunTimeout" to="." method="unstun"]

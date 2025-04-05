@@ -1,5 +1,8 @@
 extends Node3D
 
+signal jumpStarted
+signal jumpEnded
+
 @onready var mon : Monigote = get_parent()
 @export var verticalInitialSpeed   : float = 5.5
 @export var horizontalInitialSpeed : float = 15
@@ -53,6 +56,7 @@ func jump():
 	mon.set_collision_mask_value(1, false)
 	floorFriction = mon.FRICTION
 	mon.FRICTION = airFriction
+	jumpStarted.emit()
 
 func stopJump():
 	jumping = false
@@ -62,6 +66,7 @@ func stopJump():
 	
 	mon.set_collision_mask_value(1, true)
 	mon.FRICTION = floorFriction
+	jumpEnded.emit()
 
 func onFloorCollision(body):
 	if not jumping:
