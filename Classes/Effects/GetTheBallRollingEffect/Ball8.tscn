@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=29 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" uid="uid://dhb6kl72imaxp" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://xqxtguh14iav" path="res://Assets/SFX/fx_8-ball_bump.wav" id="10_bdm74"]
 [ext_resource type="Script" uid="uid://b3nyed6c3gm7f" path="res://Classes/Effects/GetTheBallRollingEffect/bump_sfx.gd" id="11_cy3r1"]
 [ext_resource type="Script" uid="uid://b82vtaa82vnu8" path="res://Classes/Effects/GetTheBallRollingEffect/roll_sfx.gd" id="11_esx3y"]
+[ext_resource type="AudioStream" uid="uid://cckauaga756oy" path="res://Assets/SFX/fx_8-ball_stomp.wav" id="13_ekfuq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 0.615468
@@ -240,6 +241,10 @@ volume_db = 6.0
 bus = &"SFX"
 script = ExtResource("11_esx3y")
 rollFadeOut = 0.2
+
+[node name="StompSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("13_ekfuq")
+volume_db = 8.0
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="trajectoryCalculated" from="TrajectoryCalculator" to="." method="setTrajectory"]

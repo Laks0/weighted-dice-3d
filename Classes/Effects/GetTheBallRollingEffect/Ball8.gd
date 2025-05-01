@@ -106,4 +106,6 @@ func _on_hit_area_body_entered(body):
 	if not moving:
 		return
 	if body is Monigote:
-		body.hurt()
+		if body.hurt():
+			$StompSFX.play()
+			$BumpSFX.playSFX()
