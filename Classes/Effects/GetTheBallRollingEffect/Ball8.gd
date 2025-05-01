@@ -6,6 +6,8 @@ class_name Ball8
 @export var friction : float = 10
 @export var timeBetweenBounces := .05
 
+var rollCounter = 0
+
 var direction := Vector3(-1, 0, 0)
 var movingSpeed := 0.0
 
@@ -36,6 +38,9 @@ func push():
 		
 		# Pre movimiento
 		tween.tween_callback(func ():
+			$RollSFX.playSFX()
+			$BumpSFX.playSFX()
+			rollCounter += 1
 			moving = true)
 		
 		# Movimiento
@@ -75,6 +80,7 @@ func startPushAnimation():
 	$TrajectoryCalculator.startCalculating(direction, initialForce, friction)
 
 func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]):
+	rollCounter = 0
 	trajectory = points
 	
 	# Telegraphing
@@ -99,6 +105,5 @@ func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]
 func _on_hit_area_body_entered(body):
 	if not moving:
 		return
-	
 	if body is Monigote:
 		body.hurt()

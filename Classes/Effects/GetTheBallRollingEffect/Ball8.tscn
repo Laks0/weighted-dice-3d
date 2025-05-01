@@ -1,14 +1,17 @@
-[gd_scene load_steps=25 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=28 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" uid="uid://dhb6kl72imaxp" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
 [ext_resource type="PackedScene" uid="uid://br1eurxdqpgpn" path="res://Classes/Effects/GetTheBallRollingEffect/PaloPool.glb" id="3_inj8a"]
 [ext_resource type="Script" uid="uid://bgicome1h4ftf" path="res://Classes/Effects/GetTheBallRollingEffect/DirectionTelegraph.gd" id="4_h8td1"]
-[ext_resource type="Shader" uid="uid://dfautq6r14n4i" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
-[ext_resource type="Shader" uid="uid://b3m0pus6yj2px" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="6_e2j23"]
+[ext_resource type="Shader" uid="uid://cmpsfevl7ajs4" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
+[ext_resource type="Shader" uid="uid://dcohhdx40it07" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="6_e2j23"]
 [ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail/defaults/texture.tres" id="7_x4wj2"]
 [ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://addons/GPUTrail/defaults/curve.tres" id="8_xv4hf"]
-[ext_resource type="Script" uid="uid://cqopx7uvu2d5i" path="res://addons/GPUTrail/GPUTrail3D.gd" id="9_bo8vu"]
+[ext_resource type="Script" uid="uid://dn1v06eq7r2v0" path="res://addons/GPUTrail/GPUTrail3D.gd" id="9_bo8vu"]
+[ext_resource type="AudioStream" uid="uid://xqxtguh14iav" path="res://Assets/SFX/fx_8-ball_bump.wav" id="10_bdm74"]
+[ext_resource type="Script" uid="uid://b3nyed6c3gm7f" path="res://Classes/Effects/GetTheBallRollingEffect/bump_sfx.gd" id="11_cy3r1"]
+[ext_resource type="Script" uid="uid://b82vtaa82vnu8" path="res://Classes/Effects/GetTheBallRollingEffect/roll_sfx.gd" id="11_esx3y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 0.615468
@@ -178,7 +181,7 @@ shape = SubResource("SphereShape3D_anmdh")
 
 [node name="PoolStickAnimation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gwrxg")
+&"": SubResource("AnimationLibrary_gwrxg")
 }
 
 [node name="PoolStick" type="Node3D" parent="."]
@@ -223,6 +226,20 @@ color_ramp = ExtResource("7_x4wj2")
 curve = SubResource("CurveTexture_3708t")
 billboard = true
 _defaults_have_been_set = true
+
+[node name="BumpSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_bdm74")
+volume_db = 20.0
+bus = &"SFX"
+script = ExtResource("11_cy3r1")
+pitchScaleFactor = 0.92
+initialPitch = 1.05
+
+[node name="RollSFX" type="AudioStreamPlayer3D" parent="."]
+volume_db = 6.0
+bus = &"SFX"
+script = ExtResource("11_esx3y")
+rollFadeOut = 0.2
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="trajectoryCalculated" from="TrajectoryCalculator" to="." method="setTrajectory"]
