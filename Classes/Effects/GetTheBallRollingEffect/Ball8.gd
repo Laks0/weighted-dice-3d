@@ -82,14 +82,16 @@ func startPushAnimation():
 func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]):
 	rollCounter = 0
 	trajectory = points
-	
+	$TrailSFX.maxTrails = points.size()
 	# Telegraphing
 	
 	$TelegraphTrail.visible = true
 	$TelegraphTrail.restart()
 	var tween := create_tween()
+	
 	for p in points:
 		tween.tween_callback(func ():
+			$TrailSFX.playSFX(points.find(p))
 			var dir = $TelegraphTrail.to_local(p.position).normalized()
 			$TelegraphTrail.look_at(dir)
 			$TelegraphTrail.rotation.x -= PI/2
