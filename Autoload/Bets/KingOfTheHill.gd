@@ -2,6 +2,7 @@ extends Bet
 class_name KingOfTheHillBet
 
 var hill : Sprite3D
+var hillGlobalPosition := Vector3.ZERO
 
 ## El tamaño de la zona en la que hay que estar
 const HILL_RADIUS := 1
@@ -18,15 +19,20 @@ func _init():
 
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():
-		if mon.position.distance_to(Vector3(0, Globals.SPRITE_HEIGHT, 0)) < HILL_RADIUS:
+		if _getDistanceToHillFor(mon) < HILL_RADIUS:
 			_scores[mon.player.id] += delta
 
 func startGame(arena : Arena):
 	hill = load("res://Assets/Bets/Hill.tscn").instantiate()
 	arena.add_child(hill)
+	hillGlobalPosition = hill.global_position
 	super(arena)
 
 func settle():
 	if is_instance_valid(hill):
 		hill.queue_free()
 	super()
+
+func _getDistanceToHillFor(monigote : Monigote):
+	var target := monigote.global_position * Vector3(0,1,0) + hillGlobalPosition * Vector3(1,0,1)
+	return monigote.global_position.distance_to(target)
