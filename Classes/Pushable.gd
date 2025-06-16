@@ -4,6 +4,7 @@ class_name Pushable
 ## Se emite cuando se escapa de un grab
 @warning_ignore("unused_signal")
 signal escaped
+@warning_ignore("unused_signal")
 signal attemptedEscape
 signal beenGrabbed
 signal grabbedBody(body : Pushable)

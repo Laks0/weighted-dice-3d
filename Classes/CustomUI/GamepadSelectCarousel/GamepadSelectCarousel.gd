@@ -41,7 +41,7 @@ func _handle_movement():
 
 func changeOptions(val : Dictionary[String, String]):
 	options = val
-	if is_instance_valid(%HBoxContainer):
+	if get_node_or_null("%HBoxContainer") != null:
 		resetOptionLabels()
 		moveToSelected()
 
