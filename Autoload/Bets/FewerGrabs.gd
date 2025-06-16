@@ -7,6 +7,7 @@ func _init():
 	_scoreOrder = Order.DESCENDING
 	monigoteSignal = MonigoteSignal.JOKER_HAT
 	
+	betDescription = "¿Quién va a agarrar menos a los demás esta ronda?"
 	_resultTextSingular = "%s agarró menos"
 	_resultTextPlural = "%s agarraron menos"
 

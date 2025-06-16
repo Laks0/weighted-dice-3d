@@ -86,6 +86,9 @@ func startRound() -> void:
 func getBetName() -> String:
 	return currentBet.betName
 
+func getBetDescription() -> String:
+	return currentBet.betDescription
+
 func getCandidates() -> Array:
 	return currentBet.getCandidates()
 

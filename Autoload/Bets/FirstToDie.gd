@@ -10,6 +10,7 @@ func _init():
 	betType = BetType.EXCLUDE_SELF
 	_prizeOnFirst = true
 	
+	betDescription = "¿Qién va a morir primero esta ronda?"
 	_resultTextSingular = "%s murió primero"
 
 func hasWon(candidate : int) -> bool:

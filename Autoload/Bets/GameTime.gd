@@ -11,6 +11,7 @@ func _init():
 	betName = "Tiempo de juego"
 	betType = BetType.CUSTOM
 	
+	betDescription = "¿Cuánto va a durar esta ronda?"
 	_resultTextSingular = "La partida duró %s"
 
 func startRound():

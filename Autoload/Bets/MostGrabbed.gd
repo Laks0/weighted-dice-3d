@@ -8,6 +8,7 @@ func _init():
 	monigoteSignal = MonigoteSignal.JOKER_HAT
 	_prizeOnFirst = true
 	
+	betDescription = "¿Qué jugador va a ser el más agarrado por los demás esta ronda?"
 	_resultTextSingular = "%s fue el más agarrado"
 	_resultTextPlural   = "%s fueron los más agarrados"
 

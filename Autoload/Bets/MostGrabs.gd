@@ -7,6 +7,7 @@ func _init():
 	_scoreOrder = Order.ASCENDING
 	monigoteSignal = MonigoteSignal.CROWN
 	
+	betDescription = "¿Quién va a agarrar más a los demás esta ronda?"
 	_resultTextSingular = "%s agarró más"
 	_resultTextPlural = "%s agarraron más"
 
@@ -18,4 +19,3 @@ func startGame(arena : Arena):
 						_scores[mon.player.id] += 1)
 	
 	super(arena)
-

@@ -9,6 +9,7 @@ func _init():
 	_scoreType = ScoreType.TIME
 	monigoteSignal = MonigoteSignal.CROWN
 	
+	betDescription = "¿Quién va a sostener por más tiempo la corona?"
 	_resultTextSingular = "%s agarró más la corona"
 	_resultTextPlural = "%s agarraron más la corona"
 

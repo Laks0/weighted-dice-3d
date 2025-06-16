@@ -80,11 +80,15 @@ func startBetting():
 			player.setBet(0, candidate)
 	
 	_repositionSelectors()
+	
+	$BetDescription.text = BetHandler.getBetDescription()
+	$BetDescription.visible = true
 
 func endBetting():
 	SfxHandler.playSound("displayReady")
 	for sel in selectors.values():
 		sel.queue_free()
+	$BetDescription.visible = false
 
 @export var timeToHoldBet : float = .5
 var holdTimers : PackedFloat32Array = [.0, .0, .0, .0, .0, .0]

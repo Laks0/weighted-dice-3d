@@ -7,6 +7,7 @@ func _init():
 	_scoreType = ScoreType.TIME
 	monigoteSignal = MonigoteSignal.CROWN
 	
+	betDescription = "¿Quién va a estar más tiempo sin moverse?"
 	_resultTextSingular = "%s estuvo más tiempo sin moverse"
 	_resultTextPlural   = "%s estuvieron más tiempo sin moverse"
 

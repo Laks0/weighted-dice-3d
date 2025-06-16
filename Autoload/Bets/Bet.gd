@@ -40,6 +40,8 @@ var _prizeOnFirst := false
 var _resultTextSingular : String = "El resultado de la apuesta es: %s"
 var _resultTextPlural   : String = "Los resultados de la apuesta son: %s"
 
+var betDescription : String = "Apostar al candidato que te de la gana"
+
 enum MonigoteSignal {
 	CROWN,
 	JOKER_HAT,

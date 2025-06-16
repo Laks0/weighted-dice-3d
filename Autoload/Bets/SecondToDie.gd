@@ -12,6 +12,7 @@ func _init():
 	
 	_result = 0
 	
+	betDescription = "¿Quién va a ser la segunda persona en morir esta ronda?"
 	_resultTextSingular = "%s murió segundo"
 
 func hasWon(candidate : int) -> bool:
