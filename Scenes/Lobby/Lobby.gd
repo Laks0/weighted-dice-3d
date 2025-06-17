@@ -20,7 +20,7 @@ signal monigoteUnready(mon)
 func positionMonigotes(mons : Array[Monigote]) -> void:
 	var xPos = -3
 	for m : Monigote in mons:
-		m.global_position = to_global(Vector3(xPos, Globals.SPRITE_HEIGHT, -3))
+		m.global_position = to_global(Vector3(xPos, Globals.SPRITE_HEIGHT, -8.5))
 		xPos += 1
 	
 	for mon : Monigote in mons:
@@ -46,7 +46,7 @@ func _ready():
 	var i = 0
 	for id in PlayerHandler.getPlayersAliveById():
 		var chip = readyChipScene.instantiate()
-		chip.position = Vector3(-3 + i, .3, -8)
+		chip.position = Vector3(-3 + i, .3, -6)
 		chip.playerId = id
 		add_child(chip)
 		i += 1

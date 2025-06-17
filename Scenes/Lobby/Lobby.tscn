@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vj4n1f7bc5hh"]
+[gd_scene load_steps=19 format=3 uid="uid://vj4n1f7bc5hh"]
 
 [ext_resource type="Script" uid="uid://cf2cw3pmn2hm" path="res://Scenes/Lobby/Lobby.gd" id="1_fk22e"]
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://1vsjqwkprn18" path="res://Scenes/Lobby/ReadyChip.tscn" id="6_7yocg"]
 [ext_resource type="Script" uid="uid://bqyehrs0ki788" path="res://Scenes/Lobby/ReadyArea.gd" id="7_8yebe"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="7_i56w4"]
+[ext_resource type="Texture2D" uid="uid://bqsnocbsnohs3" path="res://Classes/BetDisplay/Selector.png" id="9_1pw17"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2dfve"]
 
@@ -22,6 +23,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_nrlme"]
 size = Vector3(7.00488, 6.28406, 0.730469)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dfve"]
+size = Vector3(7.34277, 0.702637, 0.327148)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qy7bc"]
+shading_mode = 2
+albedo_color = Color(0.592081, 0.380545, 0.3019, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2dfve"]
+material = SubResource("StandardMaterial3D_qy7bc")
+size = Vector3(7.17, 0.395, 0.345)
+
 [node name="Lobby" type="Node3D"]
 script = ExtResource("1_fk22e")
 buttonHintScene = ExtResource("2_jj814")
@@ -34,15 +46,6 @@ transform = Transform3D(4.17233e-07, 0, -3, 0, 3, 0, 3, 0, 4.17233e-07, 0, -0.14
 
 [node name="MaletinA" parent="Maletin" index="6"]
 transform = Transform3D(-4.6964e-07, -0.903297, 0.434974, 1.38428e-07, 1.37005, 0.286786, -2.32243, 2.64325e-07, -7.08663e-08, -3.02536, 0.151344, -0.160745)
-
-[node name="Label3D" type="Label3D" parent="Maletin/MaletinA" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0594533, 0.120215, -0.153842)
-render_priority = 2
-outline_render_priority = 1
-modulate = Color(1, 0, 1, 1)
-text = "Mover las fichas al fichero para arrancar"
-font = ExtResource("7_i56w4")
-font_size = 20
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Maletin"]
 
@@ -79,6 +82,62 @@ script = ExtResource("7_8yebe")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ReadyArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64203, 0.134766)
 shape = SubResource("BoxShape3D_nrlme")
+
+[node name="Obstacle" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.44247)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.148682, 0)
+shape = SubResource("BoxShape3D_2dfve")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle"]
+mesh = SubResource("BoxMesh_2dfve")
+
+[node name="JumpInstructions" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, -7.433)
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(1, 0, 0, 1)
+text = "SALTAR: N / - / Xbox A"
+font = ExtResource("7_i56w4")
+font_size = 102
+outline_size = 32
+line_spacing = -22.0
+
+[node name="ChipInstructions" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.07928, 0.365277, -2.68621)
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(1, 0, 0, 1)
+text = "Fichas acá para
+arrancar"
+font = ExtResource("7_i56w4")
+font_size = 102
+outline_size = 32
+line_spacing = -22.0
+
+[node name="Arrow" type="Sprite3D" parent="ChipInstructions"]
+transform = Transform3D(1.81926, 3.03676, 1.32741e-07, -3.03676, 1.81926, -7.52159e-08, -1.32741e-07, -7.52159e-08, 3.54, -1.54443, -0.430854, -1.49012e-07)
+modulate = Color(1, 0, 0, 1)
+shaded = true
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("9_1pw17")
+
+[node name="GrabInstructions" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.004, -5.023)
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(1, 0, 0, 0.588235)
+outline_modulate = Color(0, 0, 0, 0.588235)
+text = "AGARRAR: 
+mantener B / Alt / Xbox X"
+font = ExtResource("7_i56w4")
+font_size = 97
+outline_size = 27
+line_spacing = -22.0
 
 [connection signal="body_entered" from="ReadyArea" to="ReadyArea" method="onBodyEntered"]
 
