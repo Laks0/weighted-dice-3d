@@ -412,6 +412,9 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
+[node name="JumpMaxTimeTimer" type="Timer" parent="Jumping"]
+one_shot = true
+
 [node name="FloorArea" type="Area3D" parent="Jumping"]
 collision_layer = 7
 collision_mask = 7

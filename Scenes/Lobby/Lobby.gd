@@ -56,6 +56,8 @@ func _ready():
 	$Maletin/AudioStreamPlayer.play()
 
 func startExitAnimation():
+	for wall : CollisionShape3D in $Paredes.get_children():
+		wall.disabled = true
 	$Maletin/AudioStreamPlayer.stream = maletin_cierra
 	get_tree().create_timer(.5).timeout.connect($Maletin/AudioStreamPlayer.play)
 	$Maletin/AnimationPlayer.play_backwards("MaletinAAction_001")

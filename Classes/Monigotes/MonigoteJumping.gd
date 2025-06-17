@@ -38,6 +38,9 @@ func _process(delta):
 	
 	if jumping and mon.grabbing and mon.velocity.y < 0:
 		mon.push()
+	
+	if jumping and $JumpMaxTimeTimer.is_stopped():
+		stopJump()
 
 func jump():
 	if jumping or not $JumpCooldown.is_stopped():
@@ -52,6 +55,8 @@ func jump():
 	jumping = true
 	stillAccelerating = true
 	
+	$JumpMaxTimeTimer.start()
+	
 	# Mientras un monigote está saltando no puede colisionar con otros monigotes
 	mon.set_collision_mask_value(1, false)
 	floorFriction = mon.FRICTION
@@ -59,6 +64,7 @@ func jump():
 	jumpStarted.emit()
 
 func stopJump():
+	$JumpMaxTimeTimer.stop()
 	jumping = false
 	$JumpCooldown.start()
 	mon.resumeMovement()
