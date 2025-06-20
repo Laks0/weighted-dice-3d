@@ -1,4 +1,4 @@
-extends AudioStreamPlayer3D
+extends AudioStreamPlayer2D
 
 
 @export var pitchScaleFactor := 0.97
