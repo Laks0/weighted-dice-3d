@@ -59,6 +59,14 @@ func destroyMonigotes():
 			mon.queue_free()
 	monigotes.clear()
 
+func destroyMonigotesOfLoosingPlayers():
+	monigotes = monigotes.filter(func (mon : Monigote): 
+		if mon.player.isStillPlaying():
+			return true
+		mon.queue_free()
+		return false
+	)
+
 ## Hace saltar el monigote desde su posición a pos (global)
 func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 	var height := 5.0
@@ -145,22 +153,22 @@ func arenaToLeaderboard(winnerId):
 
 func leaderboardToBet():
 	currentStage = Stages.TRANSITION
-	# Hace falta matar a los monigotes que perdieron, avisarle a chipHolder que
-	# no existen más, y eliminarlos de nuestra lista. Para eso lo hacemos desde
-	# chipHolder y después copiamos el resultado de ahí
-	for mon in monigotes:
-		if not mon.player.isStillPlaying():
-			chipHolder.disownMonigote(mon)
-			mon.queue_free()
-	monigotes = chipHolder.ownedMonigotes.duplicate()
+	
+	destroyMonigotesOfLoosingPlayers()
+	
+	arena.setTableRender(false)
 	
 	# Hay que poner a betDisplay en su lugar (se saca en arenaToLeaderboard)
 	#create_tween().tween_property(betDisplay, "position:y", -betDisplayHeight, .1)
 	# Por alguna razón tweeneando no funciona pero así sí
 	betDisplay.position.y = betDisplayHeight
 	
-	arena.setTableRender(true)
 	betDisplay.startBetting()
+	
+	await betDisplay.showBetNameAnimation(camera)
+	
+	arena.setTableRender(true)
+	
 	currentStage = Stages.BETTING
 	
 	await camera.goToCamera(betCamera).finished

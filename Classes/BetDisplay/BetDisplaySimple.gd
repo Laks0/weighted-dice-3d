@@ -14,6 +14,8 @@ signal allPlayersReady
 @export var chipHolder : ChipHolder
 @export var stageHandler : StageHandler
 
+@export var betScreen2d : Node2D
+
 var piles : Array
 var candidatesOnLeft : int
 var candidatesOnRight : int
@@ -275,3 +277,22 @@ func shakeSelector(playerId : int):
 		time -= get_process_delta_time()
 	
 	_repositionSelectors()
+
+func showBetNameCameraAnimation(currentCamera : MultipleResCamera) -> Signal:
+	return currentCamera.goToCamera($ShowBetNameCamera).finished
+
+func showBetDescriptionCameraAnimation(currentCamera : MultipleResCamera) -> Signal:
+	return currentCamera.goToCamera($ShowBetDescriptionCamera).finished
+
+func showBetNameAnimation(currentCamera : MultipleResCamera):
+	await showBetNameCameraAnimation(currentCamera)
+	await get_tree().create_timer(.7).timeout
+	await betScreen2d.revealBetNameAnimation()
+	await get_tree().create_timer(1.5).timeout
+	$CloseupBetDescription.visible = true
+	$CloseupBetDescription.text = BetHandler.getBetDescription()
+	await showBetDescriptionCameraAnimation(currentCamera)
+	#create_tween().tween_property($CloseupBetDescription, "position:y", $CloseupBetDescription.position.y, 1)\
+	#	.from($CloseupBetDescription.position.y - 10)
+	await get_tree().create_timer(3).timeout
+	$CloseupBetDescription.visible = false
