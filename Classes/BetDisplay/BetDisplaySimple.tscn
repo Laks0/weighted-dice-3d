@@ -233,6 +233,7 @@ width = 1300.0
 
 [node name="CloseupBetDescription" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50857)
+visible = false
 billboard = 1
 render_priority = 2
 outline_render_priority = 1

@@ -45,7 +45,7 @@ func _process(delta):
 func jump():
 	if jumping or not $JumpCooldown.is_stopped():
 		return
-	if mon.grabbed:
+	if mon.grabbed or mon.movementStopped:
 		return
 	
 	mon.stopMovement()

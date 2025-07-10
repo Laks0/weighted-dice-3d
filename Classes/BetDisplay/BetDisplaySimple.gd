@@ -142,11 +142,11 @@ func _process(delta):
 		if selected[player.id] == -1:
 			selector.get_node("NumberLabel").text = "OK" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
-				isReady[player.id] = not isReady[player.id]
-				if isReady[player.id]:
-					SfxHandler.playSound("playerReady")
-				else:
-					SfxHandler.playSound("readyCancel") 
+				isReady[player.id] = true
+				SfxHandler.playSound("playerReady")
+			if Input.is_action_just_pressed(playerActions["jump"]):
+				isReady[player.id] = false
+				SfxHandler.playSound("readyCancel")
 			continue
 		
 		var selectedPile = piles[selected[player.id]]
@@ -156,16 +156,16 @@ func _process(delta):
 			selector.get_node("NumberLabel").text = "X"
 		
 		# Bajar apuesta
-		if Input.is_action_just_pressed(playerActions["up"]):
+		if Input.is_action_just_pressed(playerActions["up"]) or Input.is_action_just_pressed(playerActions["jump"]):
 			decreaseCandidateBet(player, candidate)
 		
 		# Mantener para sacar apuesta
-		if Input.is_action_pressed(playerActions["up"]):
+		if Input.is_action_pressed(playerActions["up"]) or Input.is_action_just_pressed(playerActions["jump"]):
 			holdRemoveTimers[player.id] += delta
 			if holdRemoveTimers[player.id] > timeToHoldBet:
 				decreaseCandidateBet(player, candidate)
 				holdRemoveTimers[player.id] = timeToHoldBet * .9
-		if Input.is_action_just_released(playerActions["up"]):
+		if Input.is_action_just_released(playerActions["up"]) or Input.is_action_just_released(playerActions["jump"]):
 			holdRemoveTimers[player.id] = 0.0
 		
 		# Subir apuesta

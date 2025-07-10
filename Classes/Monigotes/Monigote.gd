@@ -229,6 +229,7 @@ func makeInvincible():
 
 ## Detiene todo movimiento e interrumpe los controles, se usa en las transiciones de estado
 func freeze():
+	stopMovement()
 	set_process(false)
 	set_physics_process(false)
 	moveVelocity = Vector2.ZERO
@@ -239,6 +240,7 @@ func freeze():
 		escaped.emit()
 
 func unfreeze():
+	resetMovement()
 	set_process(true)
 	set_physics_process(true)
 
