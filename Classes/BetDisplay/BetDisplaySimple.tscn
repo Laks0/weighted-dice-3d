@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bu6qub506i5vu"]
+[gd_scene load_steps=29 format=4 uid="uid://bu6qub506i5vu"]
 
 [ext_resource type="Script" uid="uid://cu3mv4ch16b8n" path="res://Classes/BetDisplay/BetDisplaySimple.gd" id="1_76y5o"]
 [ext_resource type="PackedScene" uid="uid://ds2hj3wae03ip" path="res://Classes/BetDisplay/ChipPile.tscn" id="2_t13lr"]
@@ -19,11 +19,12 @@
 [ext_resource type="Script" uid="uid://dqn0r6k8tjq8o" path="res://Classes/BetDisplay/AIBetController.gd" id="13_o215p"]
 [ext_resource type="PackedScene" uid="uid://cnn332o3ilra4" path="res://Classes/BetDisplay/AllInParticles.tscn" id="18_t55ck"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="19_knuuy"]
+[ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="20_meb6x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ttvtf"]
-render_priority = 1
+render_priority = 3
 shader = ExtResource("6_dipb8")
-shader_parameter/size = 4.0
+shader_parameter/size = 5.0
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/screenTexture = ExtResource("7_ctrvp")
 shader_parameter/ratio = Vector2(16, 9)
@@ -138,11 +139,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cgtsm")
 
-[node name="BetDisplaySimple" type="Node3D"]
+[node name="BetDisplaySimple" type="Node3D" node_paths=PackedStringArray("betScreen2d")]
 script = ExtResource("1_76y5o")
 chipPileScene = ExtResource("2_t13lr")
 selectorScene = ExtResource("3_clxdh")
 playerPileZ = -5.0
+betScreen2d = NodePath("Slotmachine/ScreenViewport/BetScreen")
 allInParticlesScene = ExtResource("18_t55ck")
 
 [node name="Slotmachine" parent="." instance=ExtResource("4_vcxxi")]
@@ -228,5 +230,30 @@ font = ExtResource("19_knuuy")
 outline_size = 22
 autowrap_mode = 2
 width = 1300.0
+
+[node name="CloseupBetDescription" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50857)
+visible = false
+billboard = 1
+render_priority = 2
+outline_render_priority = 1
+text = "¿Quién va a permanecer más tiempo en la colina?"
+font = ExtResource("19_knuuy")
+font_size = 54
+outline_size = 24
+autowrap_mode = 2
+width = 700.0
+
+[node name="ShowBetDescriptionCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.867305, 0.497777, 0, -0.497777, 0.867305, 1.81198e-05, 1.74093, 3.18732)
+environment = ExtResource("20_meb6x")
+current = true
+fov = 47.0
+
+[node name="ShowBetNameCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.752104, 0.659044, 0, -0.659044, 0.752104, 1.81198e-05, 1.89843, 1.89628)
+environment = ExtResource("20_meb6x")
+current = true
+fov = 47.0
 
 [editable path="Slotmachine"]

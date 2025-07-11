@@ -14,6 +14,8 @@ signal allPlayersReady
 @export var chipHolder : ChipHolder
 @export var stageHandler : StageHandler
 
+@export var betScreen2d : Node2D
+
 var piles : Array
 var candidatesOnLeft : int
 var candidatesOnRight : int
@@ -140,11 +142,11 @@ func _process(delta):
 		if selected[player.id] == -1:
 			selector.get_node("NumberLabel").text = "OK" if isReady[player.id] else ""
 			if Input.is_action_just_pressed(playerActions["grab"]):
-				isReady[player.id] = not isReady[player.id]
-				if isReady[player.id]:
-					SfxHandler.playSound("playerReady")
-				else:
-					SfxHandler.playSound("readyCancel") 
+				isReady[player.id] = true
+				SfxHandler.playSound("playerReady")
+			if Input.is_action_just_pressed(playerActions["jump"]):
+				isReady[player.id] = false
+				SfxHandler.playSound("readyCancel")
 			continue
 		
 		var selectedPile = piles[selected[player.id]]
@@ -154,16 +156,16 @@ func _process(delta):
 			selector.get_node("NumberLabel").text = "X"
 		
 		# Bajar apuesta
-		if Input.is_action_just_pressed(playerActions["up"]):
+		if Input.is_action_just_pressed(playerActions["up"]) or Input.is_action_just_pressed(playerActions["jump"]):
 			decreaseCandidateBet(player, candidate)
 		
 		# Mantener para sacar apuesta
-		if Input.is_action_pressed(playerActions["up"]):
+		if Input.is_action_pressed(playerActions["up"]) or Input.is_action_just_pressed(playerActions["jump"]):
 			holdRemoveTimers[player.id] += delta
 			if holdRemoveTimers[player.id] > timeToHoldBet:
 				decreaseCandidateBet(player, candidate)
 				holdRemoveTimers[player.id] = timeToHoldBet * .9
-		if Input.is_action_just_released(playerActions["up"]):
+		if Input.is_action_just_released(playerActions["up"]) or Input.is_action_just_released(playerActions["jump"]):
 			holdRemoveTimers[player.id] = 0.0
 		
 		# Subir apuesta
@@ -275,3 +277,22 @@ func shakeSelector(playerId : int):
 		time -= get_process_delta_time()
 	
 	_repositionSelectors()
+
+func showBetNameCameraAnimation(currentCamera : MultipleResCamera) -> Signal:
+	return currentCamera.goToCamera($ShowBetNameCamera).finished
+
+func showBetDescriptionCameraAnimation(currentCamera : MultipleResCamera) -> Signal:
+	return currentCamera.goToCamera($ShowBetDescriptionCamera).finished
+
+func showBetNameAnimation(currentCamera : MultipleResCamera):
+	await showBetNameCameraAnimation(currentCamera)
+	await get_tree().create_timer(.7).timeout
+	await betScreen2d.revealBetNameAnimation()
+	await get_tree().create_timer(1.5).timeout
+	$CloseupBetDescription.visible = true
+	$CloseupBetDescription.text = BetHandler.getBetDescription()
+	await showBetDescriptionCameraAnimation(currentCamera)
+	#create_tween().tween_property($CloseupBetDescription, "position:y", $CloseupBetDescription.position.y, 1)\
+	#	.from($CloseupBetDescription.position.y - 10)
+	await get_tree().create_timer(3).timeout
+	$CloseupBetDescription.visible = false

@@ -19,3 +19,14 @@ func _process(_delta):
 
 func betChanged():
 	$ReferenceRect/BetName.text = BetHandler.getBetName()
+	%BetName.visible = false
+	%PresentationLabel.position = Vector2.ZERO
+
+func revealBetNameAnimation() -> Signal:
+	var tween := create_tween()
+	%BetName.position.x = 1300
+	%BetName.visible = true
+	tween.tween_interval(1)
+	tween.tween_property(%PresentationLabel, "position:x", -1000, 1)
+	tween.parallel().tween_property(%BetName, "position:x", 0, 1)
+	return tween.finished
