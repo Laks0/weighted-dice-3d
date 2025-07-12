@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://1ctlywd3w2wt"]
+
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="1_p0ank"]
+
+[resource]
+default_font = ExtResource("1_p0ank")
+default_font_size = 32
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 9
+HBoxContainer/constants/separation = 25
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 0)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.294118)
+Label/constants/outline_size = 10
+Label/constants/shadow_outline_size = 2
+Label/font_sizes/font_size = 22
