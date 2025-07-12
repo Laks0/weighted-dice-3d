@@ -8,6 +8,7 @@ signal allPlayersReady
 @export var selectorScene : PackedScene
 @export var selectorZ : float = -1.5
 @export var selectorZHeight : float = .5
+@export var horizontalSelectorSeparation : float = 1.7
 
 @export var playerPileZ : float = -8
 
@@ -15,6 +16,8 @@ signal allPlayersReady
 @export var stageHandler : StageHandler
 
 @export var betScreen2d : Node2D
+
+
 
 var piles : Array
 var candidatesOnLeft : int
@@ -187,10 +190,9 @@ func _repositionSelectors() -> void:
 			.filter(func (id : int): return selected[id] == i)\
 			.map(func (id : int): return selectors[id])
 		
-		var selectorSpaceWidth : float = 1.4
 		
-		var spaceBetweenSelectorsBottom : float = selectorSpaceWidth/(min(3,pileSelectors.size())+1)
-		var spaceBetweenSelectorsTop : float = selectorSpaceWidth/(max(0,pileSelectors.size()-3)+1)
+		var spaceBetweenSelectorsBottom : float = horizontalSelectorSeparation/(min(3,pileSelectors.size())+1)
+		var spaceBetweenSelectorsTop : float = horizontalSelectorSeparation/(max(0,pileSelectors.size()-3)+1)
 		
 		var centerX
 		var centerY
@@ -203,10 +205,10 @@ func _repositionSelectors() -> void:
 		
 		for l in range(pileSelectors.size()):
 			var newZ := selectorZ
-			var newX = centerX - selectorSpaceWidth/2 + spaceBetweenSelectorsBottom * (l+1)
+			var newX = centerX - horizontalSelectorSeparation/2 + spaceBetweenSelectorsBottom * (l+1)
 			if l >= 3:
 				newZ -= selectorZHeight
-				newX = centerX - selectorSpaceWidth/2 + spaceBetweenSelectorsTop * (l-2)
+				newX = centerX - horizontalSelectorSeparation/2 + spaceBetweenSelectorsTop * (l-2)
 			
 			var sel = pileSelectors[l]
 			var positionTween = create_tween().set_ease(Tween.EASE_IN_OUT)

@@ -6,25 +6,25 @@
 [node name="pileSelector" type="Node3D"]
 
 [node name="NumberLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -0.165425)
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, -0.211461)
 layers = 2
 render_priority = 2
 outline_render_priority = 1
+text = "255"
 font = ExtResource("1_rpv1x")
-font_size = 72
-outline_size = 20
+font_size = 87
+outline_size = 25
 
 [node name="ArrowSprite" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0)
 layers = 2
 texture_filter = 0
 render_priority = 1
 texture = ExtResource("2_jg5n8")
 
 [node name="Background" type="Sprite3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, -0.00665753, -0.00745644)
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, 2, 0, -2, -8.74228e-08, 0, -0.00665753, -0.0303766)
 layers = 2
-modulate = Color(0, 0, 0, 1)
 texture_filter = 0
 render_priority = 1
 texture = ExtResource("2_jg5n8")
