@@ -1,4 +1,4 @@
-extends AudioStreamPlayer3D
+extends AudioStreamPlayer2D
 @onready var trailSound = []
 var maxTrails := 5
 
