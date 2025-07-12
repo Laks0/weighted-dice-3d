@@ -240,7 +240,7 @@ func freeze():
 		escaped.emit()
 
 func unfreeze():
-	resetMovement()
+	resumeMovement()
 	set_process(true)
 	set_physics_process(true)
 
