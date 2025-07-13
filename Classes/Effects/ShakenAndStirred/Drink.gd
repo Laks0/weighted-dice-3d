@@ -1,4 +1,8 @@
 extends Area3D
+class_name ShakenAndStirredDrink
+
+signal monigoteGotDrunk(mon : Monigote)
+signal monigoteGotSober(mon : Monigote)
 
 @export var drunkTime : float = 1
 
@@ -19,6 +23,11 @@ func _on_body_entered(body):
 		return
 	
 	body.drunk = true
-	get_tree().create_timer(drunkTime).timeout.connect(func(): 
-		if is_instance_valid(body):
-			body.drunk = false)
+	monigoteGotDrunk.emit(body)
+	get_tree().create_timer(drunkTime).timeout.connect(getMonigoteSober.bind(body))
+	tree_exiting.connect(getMonigoteSober.bind(body))
+
+func getMonigoteSober(mon : Monigote):
+	if is_instance_valid(mon):
+		mon.drunk = false
+		monigoteGotSober.emit(mon)

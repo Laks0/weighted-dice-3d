@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw1tks58sjjrv"]
+
+[sub_resource type="Curve" id="Curve_8bylv"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(0.507042, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_5bh4i"]
+curve_x = SubResource("Curve_8bylv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lvk2m"]
+lifetime_randomness = 0.2
+emission_shape_offset = Vector3(0, 1.1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(0.4, 0.01, 0.1)
+directional_velocity_min = -1.50002
+directional_velocity_max = 1.49998
+directional_velocity_curve = SubResource("CurveXYZTexture_5bh4i")
+gravity = Vector3(0, 1.2, 0)
+scale_min = 0.3
+turbulence_noise_strength = 7.35
+turbulence_noise_speed = Vector3(1, 0, 0)
+turbulence_influence_min = 0.13
+turbulence_influence_max = 0.369
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56ln2"]
+albedo_color = Color(0.75, 0.0975, 0.75, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_v5uyt"]
+material = SubResource("StandardMaterial3D_56ln2")
+radius = 0.24
+height = 0.48
+
+[node name="DrunkParticles" type="GPUParticles3D"]
+emitting = false
+amount = 3
+randomness = 0.15
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_lvk2m")
+draw_pass_1 = SubResource("SphereMesh_v5uyt")

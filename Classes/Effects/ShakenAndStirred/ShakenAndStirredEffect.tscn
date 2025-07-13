@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1nh5obk35kds"]
+[gd_scene load_steps=5 format=3 uid="uid://d1nh5obk35kds"]
 
 [ext_resource type="Script" uid="uid://bu41un86n12s0" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.gd" id="1_dccme"]
 [ext_resource type="PackedScene" uid="uid://b42mamlf6pkm3" path="res://Classes/Effects/ShakenAndStirred/Drink.tscn" id="2_tii4k"]
 [ext_resource type="Texture2D" uid="uid://c5mxdpcbm2van" path="res://Classes/Effects/ShakenAndStirred/TarotHangover.png" id="3_6ji2n"]
+[ext_resource type="PackedScene" uid="uid://dw1tks58sjjrv" path="res://Classes/Effects/ShakenAndStirred/DrunkParticles.tscn" id="3_ktk52"]
 
 [node name="ShakenAndStirredEffect" type="Node"]
 script = ExtResource("1_dccme")
 drinkScene = ExtResource("2_tii4k")
+drunkParticlesScene = ExtResource("3_ktk52")
 drinksAmount = 4
 effectName = "Batido y mezclado"
 cardTexture = ExtResource("3_6ji2n")
