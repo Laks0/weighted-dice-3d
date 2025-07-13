@@ -45,17 +45,13 @@ script = ExtResource("1_tiixq")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_pf7fp")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+pressTime = null
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 horizontal_alignment = 1
-
-[node name="OnclickedTime" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.4
-one_shot = true
 
 [node name="UncontainedNodes" type="Control" parent="."]
 layout_mode = 2

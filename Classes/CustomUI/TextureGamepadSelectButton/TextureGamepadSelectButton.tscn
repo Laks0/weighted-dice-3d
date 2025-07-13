@@ -9,6 +9,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qroxh")
+pressTime = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -40,11 +41,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch_mode = 3
-
-[node name="OnclickedTime" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.4
-one_shot = true
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true

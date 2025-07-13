@@ -71,15 +71,15 @@ region = Rect2(128, 140, 64, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4fvnn"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(0, 64, 64, 64)
+region = Rect2(4, 68, 56, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hmxa"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(192, 64, 64, 64)
+region = Rect2(196, 68, 56, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i18fn"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(384, 64, 64, 64)
+region = Rect2(388, 68, 56, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4qgpm"]
 atlas = ExtResource("3_c7ol2")
@@ -242,6 +242,7 @@ layout_mode = 2
 normalTexture = SubResource("AtlasTexture_4ajbi")
 focusedTexture = SubResource("AtlasTexture_a536m")
 pressedTexture = SubResource("AtlasTexture_onsve")
+pressTime = null
 leftSelect = NodePath("../P")
 rightSelect = NodePath("../Q")
 leftFallback = NodePath("../P")
@@ -358,9 +359,12 @@ theme_override_constants/separation = 2
 [node name="Shift" parent="Row3" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("6_puy8y")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 normalTexture = SubResource("AtlasTexture_4fvnn")
 focusedTexture = SubResource("AtlasTexture_4hmxa")
 pressedTexture = SubResource("AtlasTexture_i18fn")
+pressTime = null
 upSelect = NodePath(".")
 downSelect = NodePath(".")
 leftSelect = NodePath("../OK")
@@ -439,6 +443,7 @@ layout_mode = 2
 normalTexture = SubResource("AtlasTexture_4qgpm")
 focusedTexture = SubResource("AtlasTexture_afpii")
 pressedTexture = SubResource("AtlasTexture_d8qam")
+pressTime = null
 upSelect = NodePath(".")
 downSelect = NodePath(".")
 leftSelect = NodePath("../M")
@@ -450,7 +455,6 @@ rightFallback = NodePath("../Shift")
 
 [node name="Row4" type="HBoxContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_constants/separation = 2
 alignment = 1
 
@@ -460,6 +464,7 @@ layout_mode = 2
 normalTexture = SubResource("AtlasTexture_gkxnh")
 focusedTexture = SubResource("AtlasTexture_puy8y")
 pressedTexture = SubResource("AtlasTexture_x4b8j")
+pressTime = null
 leftSelect = NodePath(".")
 rightSelect = NodePath(".")
 leftFallback = NodePath(".")
