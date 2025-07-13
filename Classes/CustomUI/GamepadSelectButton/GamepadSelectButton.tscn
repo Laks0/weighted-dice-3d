@@ -45,7 +45,6 @@ script = ExtResource("1_tiixq")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_pf7fp")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-pressTime = null
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
