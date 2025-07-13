@@ -81,9 +81,9 @@ func mainProcess():
 	else:
 		%PlayerNameLabel.text = getControllerName()
 	
-	%PlayerNameLabel.label_settings.font_color = Color.BLACK
+	%PlayerNameLabel.add_theme_color_override("font_color", Color.BLACK)
 	if %EditNameButton.focused:
-		%PlayerNameLabel.label_settings.font_color = Color.WHITE
+		%PlayerNameLabel.add_theme_color_override("font_color", Color.WHITE)
 
 func editProcess():
 	%PlayerNameEditLabel.text = playerName
