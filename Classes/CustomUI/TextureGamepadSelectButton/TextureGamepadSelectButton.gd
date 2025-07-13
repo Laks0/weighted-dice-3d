@@ -9,9 +9,18 @@ class_name TextureGamepadSelectButton
 @export var focusedTexture : Texture
 @export var pressedTexture : Texture
 
+@export_group("Shadow")
+@export var showShadow := true
+@export_range(0, 1) var shadowStrength := .5
+@export var shadowOffset := Vector2.ONE * 2
+
 func _game_and_editor_process(_delta):
 	super(_delta)
 	$Label.text = text
+	if showShadow:
+		%ShadowRect.texture = $TextureRect.texture
+		%ShadowRect.modulate.a = shadowStrength
+		%ShadowRect.position = shadowOffset
 
 func onNormalUpdate(_delta):
 	$TextureRect.texture = normalTexture

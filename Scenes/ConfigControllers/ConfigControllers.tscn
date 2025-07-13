@@ -30,7 +30,7 @@ options = Dictionary[String, String]({
 "Pausar": "pause",
 "Saltar": "jump"
 })
-downSelect = NodePath("../HBoxContainer/Edit")
+downSelect = NodePath("../HBoxContainer/Back")
 
 [node name="ActionLabel" type="Label" parent="."]
 unique_name_in_owner = true
