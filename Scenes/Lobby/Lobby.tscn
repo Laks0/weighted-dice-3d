@@ -109,10 +109,11 @@ outline_size = 32
 line_spacing = -22.0
 
 [node name="ChipInstructions" type="Label3D" parent="Tutorial"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.07928, 0.365277, -2.68621)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.004, -2.817)
 render_priority = 2
 outline_render_priority = 1
-modulate = Color(1, 1, 0.8, 1)
+modulate = Color(1, 1, 0.8, 0.588235)
+outline_modulate = Color(0, 0, 0, 0.588235)
 text = "Fichas acá para
 arrancar"
 font = ExtResource("7_i56w4")
@@ -121,8 +122,8 @@ outline_size = 32
 line_spacing = -22.0
 
 [node name="Arrow" type="Sprite3D" parent="Tutorial/ChipInstructions"]
-transform = Transform3D(1.81926, 3.03676, 1.32741e-07, -3.03676, 1.81926, -7.52159e-08, -1.32741e-07, -7.52159e-08, 3.54, -1.54443, -0.430854, -1.49012e-07)
-modulate = Color(1, 1, 0.8, 1)
+transform = Transform3D(3.54, 0, 0, 0, 3.54, 0, 0, 0, 3.54, 0, -0.431, 0)
+modulate = Color(1, 1, 0.8, 0.588235)
 shaded = true
 texture_filter = 0
 render_priority = 1
