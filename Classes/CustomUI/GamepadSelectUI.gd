@@ -161,7 +161,7 @@ func setAutomaticNeighbours():
 	var container := get_parent()
 	for i in range(container.get_child_count()):
 		var child = container.get_child(i)
-		if not child is GamepadSelectButton:
+		if not child is BaseGamepadSelectButton:
 			continue
 		if not child.visible:
 			continue

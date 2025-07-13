@@ -1,48 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvnn2je0u572l"]
+[gd_scene load_steps=8 format=3 uid="uid://cvnn2je0u572l"]
 
-[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_22euv"]
+[ext_resource type="PackedScene" uid="uid://7ox7b7yt4wo5" path="res://Classes/CustomUI/TextureGamepadSelectButton/TextureGamepadSelectButton.tscn" id="1_1gh0c"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="1_dd6sj"]
-[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="3_sfhw1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lwb6n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq6qv"]
 atlas = ExtResource("1_dd6sj")
 region = Rect2(16, 8, 32, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1mkpf"]
-atlas = ExtResource("1_dd6sj")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lq6qv"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k40kn"]
+atlas = SubResource("CompressedTexture2D_lq6qv")
 region = Rect2(80, 8, 32, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bikv2"]
-atlas = ExtResource("1_dd6sj")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_glp25"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02vhq"]
+atlas = SubResource("CompressedTexture2D_glp25")
 region = Rect2(144, 8, 32, 40)
+margin = Rect2(0, 5, 0, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo0p7"]
-atlas = ExtResource("1_dd6sj")
-region = Rect2(16, 8, 32, 40)
-
-[sub_resource type="LabelSettings" id="LabelSettings_k40kn"]
-font = ExtResource("3_sfhw1")
-font_size = 34
-font_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.498039)
-
-[node name="KeyboardButton" instance=ExtResource("1_22euv")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-normalTexture = SubResource("AtlasTexture_lwb6n")
-focusedTexture = SubResource("AtlasTexture_1mkpf")
-pressedTexture = SubResource("AtlasTexture_bikv2")
-underTexture = SubResource("AtlasTexture_uo0p7")
+[node name="TextureGamepadSelectButton" instance=ExtResource("1_1gh0c")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 text = "Q"
+normalTexture = SubResource("AtlasTexture_lq6qv")
+focusedTexture = SubResource("AtlasTexture_k40kn")
+pressedTexture = SubResource("AtlasTexture_02vhq")
 
-[node name="OverTexture" parent="." index="0"]
-texture = SubResource("AtlasTexture_lwb6n")
+[node name="TextureRect" parent="." index="0"]
+texture = SubResource("AtlasTexture_lq6qv")
 
-[node name="Label" parent="UncontainedNodes" index="0"]
+[node name="Label" parent="." index="2"]
 text = "Q"
-label_settings = SubResource("LabelSettings_k40kn")
-
-[node name="UnderTexture" parent="UncontainedNodes" index="1"]
-texture = SubResource("AtlasTexture_uo0p7")

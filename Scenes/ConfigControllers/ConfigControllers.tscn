@@ -1,21 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=4 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://d851kct203w3" path="res://Classes/CustomUI/GamepadSelectCarousel/GamepadSelectCarousel.tscn" id="2_6tkn5"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_gs04o"]
-[ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="3_esr5x"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggv5o"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 632, 64, 72)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7toa"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 696, 64, 72)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dot5b"]
-atlas = ExtResource("3_esr5x")
-region = Rect2(0, 760, 64, 72)
 
 [node name="ConfigControllers" type="Control"]
 layout_mode = 3
@@ -76,60 +63,48 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
 
-[node name="Edit" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "EDITAR"
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
-upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Accept")
-rightSelect = NodePath("../Back")
-leftFallback = NodePath("../Accept")
-rightFallback = NodePath("../Back")
-
 [node name="Back" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "VOLVER"
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Edit")
+leftSelect = NodePath("../Accept")
+rightSelect = NodePath("../Edit")
+leftFallback = NodePath("../Accept")
+rightFallback = NodePath("../Edit")
+
+[node name="Edit" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EDITAR"
+upSelect = NodePath("../../GamepadSelectCarousel")
+leftSelect = NodePath("../Back")
 rightSelect = NodePath("../Cancel")
-leftFallback = NodePath("../Edit")
+leftFallback = NodePath("../Back")
 rightFallback = NodePath("../Cancel")
 
 [node name="Cancel" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CANCELAR"
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Back")
+leftSelect = NodePath("../Edit")
 rightSelect = NodePath("../Accept")
-leftFallback = NodePath("../Back")
+leftFallback = NodePath("../Edit")
 rightFallback = NodePath("../Accept")
 
 [node name="Accept" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ACEPTAR"
-normalTexture = SubResource("AtlasTexture_ggv5o")
-focusedTexture = SubResource("AtlasTexture_f7toa")
-pressedTexture = SubResource("AtlasTexture_dot5b")
 upSelect = NodePath("../../GamepadSelectCarousel")
 leftSelect = NodePath("../Cancel")
-rightSelect = NodePath("../Edit")
+rightSelect = NodePath("../Back")
 leftFallback = NodePath("../Cancel")
-rightFallback = NodePath("../Edit")
+rightFallback = NodePath("../Back")
 
 [connection signal="finished" from="." to="." method="onFinished"]
-[connection signal="pressed" from="HBoxContainer/Edit" to="." method="startEdit"]
 [connection signal="pressed" from="HBoxContainer/Back" to="." method="cancelChanges"]
+[connection signal="pressed" from="HBoxContainer/Edit" to="." method="startEdit"]
 [connection signal="pressed" from="HBoxContainer/Cancel" to="." method="cancelChanges"]
 [connection signal="pressed" from="HBoxContainer/Accept" to="." method="applyChanges"]

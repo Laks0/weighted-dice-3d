@@ -1,10 +1,19 @@
-[gd_scene load_steps=29 format=3 uid="uid://oxxrws4k27pk"]
+[gd_scene load_steps=35 format=3 uid="uid://oxxrws4k27pk"]
 
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="1_4ajbi"]
 [ext_resource type="Script" uid="uid://bpvuwr6ejlynl" path="res://Classes/CustomUI/VirtualKeyboard/VirtualKeyboard.gd" id="1_bhw5p"]
-[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="1_e8km5"]
 [ext_resource type="PackedScene" uid="uid://cvnn2je0u572l" path="res://Classes/CustomUI/VirtualKeyboard/KeyboardButton.tscn" id="2_12how"]
 [ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="3_c7ol2"]
 [ext_resource type="Texture2D" uid="uid://drtxe3cocrgr6" path="res://Classes/CustomUI/VirtualKeyboard/TeclasEspacioUICharSelect-Sheet.png" id="5_6dgbs"]
+[ext_resource type="PackedScene" uid="uid://7ox7b7yt4wo5" path="res://Classes/CustomUI/TextureGamepadSelectButton/TextureGamepadSelectButton.tscn" id="6_puy8y"]
+
+[sub_resource type="Theme" id="Theme_gkxnh"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.462745)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 2
+Label/font_sizes/font_size = 27
+Label/fonts/font = ExtResource("1_4ajbi")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d1od"]
 atlas = ExtResource("3_c7ol2")
@@ -42,60 +51,70 @@ region = Rect2(196, 68, 56, 56)
 atlas = ExtResource("3_c7ol2")
 region = Rect2(388, 68, 56, 56)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lwb6n"]
-atlas = ExtResource("3_c7ol2")
-region = Rect2(16, 8, 32, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq77p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ajbi"]
 atlas = ExtResource("3_c7ol2")
 region = Rect2(0, 140, 64, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_skruo"]
-atlas = ExtResource("3_c7ol2")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4ajbi"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a536m"]
+atlas = SubResource("CompressedTexture2D_4ajbi")
 region = Rect2(64, 140, 64, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cwfo5"]
-atlas = ExtResource("3_c7ol2")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_afpii"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onsve"]
+atlas = SubResource("CompressedTexture2D_afpii")
 region = Rect2(128, 140, 64, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ef463"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fvnn"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(0, 140, 64, 40)
+region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oeiyo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hmxa"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(4, 68, 56, 56)
+region = Rect2(192, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e542e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i18fn"]
 atlas = ExtResource("3_c7ol2")
-region = Rect2(196, 68, 56, 56)
+region = Rect2(384, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iws8t"]
-atlas = ExtResource("3_c7ol2")
-region = Rect2(388, 68, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhhl7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qgpm"]
 atlas = ExtResource("3_c7ol2")
 region = Rect2(4, 196, 56, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_10lp6"]
-atlas = ExtResource("3_c7ol2")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gkxnh"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpii"]
+atlas = SubResource("CompressedTexture2D_gkxnh")
 region = Rect2(68, 196, 56, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8uxo"]
-atlas = ExtResource("3_c7ol2")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_onsve"]
+load_path = "res://.godot/imported/TeclasUICharSelect-Sheet.png-858197746c35f7ae11129ef667a8211d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8qam"]
+atlas = SubResource("CompressedTexture2D_onsve")
 region = Rect2(132, 196, 56, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fraqs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkxnh"]
 atlas = ExtResource("5_6dgbs")
 region = Rect2(0, 0, 192, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4dnms"]
-atlas = ExtResource("5_6dgbs")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4hmxa"]
+load_path = "res://.godot/imported/TeclasEspacioUICharSelect-Sheet.png-9383a8aeeb66b867b959db138cf0be3d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puy8y"]
+atlas = SubResource("CompressedTexture2D_4hmxa")
 region = Rect2(192, 0, 192, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3yova"]
-atlas = ExtResource("5_6dgbs")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_itppl"]
+load_path = "res://.godot/imported/TeclasEspacioUICharSelect-Sheet.png-9383a8aeeb66b867b959db138cf0be3d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4b8j"]
+atlas = SubResource("CompressedTexture2D_itppl")
 region = Rect2(384, 0, 192, 40)
 
 [node name="VirtualKeyboard" type="VBoxContainer"]
@@ -105,11 +124,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -207.0
-offset_top = -89.0
+offset_top = -89.5
 offset_right = 207.0
-offset_bottom = 90.0
+offset_bottom = 89.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_gkxnh")
 theme_override_constants/separation = 1
 alignment = 1
 script = ExtResource("1_bhw5p")
@@ -125,12 +145,11 @@ lowerTexturePressed = SubResource("AtlasTexture_ha8ie")
 
 [node name="Row1" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
 
 [node name="Q" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 mouse_filter = 2
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Delete")
 rightSelect = NodePath("../W")
 leftFallback = NodePath("../Delete")
@@ -140,7 +159,6 @@ rightFallback = NodePath("../W")
 layout_mode = 2
 mouse_filter = 2
 text = "W"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Q")
 rightSelect = NodePath("../E")
 leftFallback = NodePath("../Q")
@@ -150,7 +168,6 @@ rightFallback = NodePath("../E")
 layout_mode = 2
 mouse_filter = 2
 text = "E"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../W")
 rightSelect = NodePath("../R")
 leftFallback = NodePath("../W")
@@ -160,7 +177,6 @@ rightFallback = NodePath("../R")
 layout_mode = 2
 mouse_filter = 2
 text = "R"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../E")
 rightSelect = NodePath("../T")
 leftFallback = NodePath("../E")
@@ -170,7 +186,6 @@ rightFallback = NodePath("../T")
 layout_mode = 2
 mouse_filter = 2
 text = "T"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../R")
 rightSelect = NodePath("../Y")
 leftFallback = NodePath("../R")
@@ -180,7 +195,6 @@ rightFallback = NodePath("../Y")
 layout_mode = 2
 mouse_filter = 2
 text = "Y"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../T")
 rightSelect = NodePath("../U")
 leftFallback = NodePath("../T")
@@ -190,7 +204,6 @@ rightFallback = NodePath("../U")
 layout_mode = 2
 mouse_filter = 2
 text = "U"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Y")
 rightSelect = NodePath("../I")
 leftFallback = NodePath("../Y")
@@ -200,7 +213,6 @@ rightFallback = NodePath("../I")
 layout_mode = 2
 mouse_filter = 2
 text = "I"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../U")
 rightSelect = NodePath("../O")
 leftFallback = NodePath("../U")
@@ -210,7 +222,6 @@ rightFallback = NodePath("../O")
 layout_mode = 2
 mouse_filter = 2
 text = "O"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../I")
 rightSelect = NodePath("../P")
 leftFallback = NodePath("../I")
@@ -220,64 +231,40 @@ rightFallback = NodePath("../P")
 layout_mode = 2
 mouse_filter = 2
 text = "P"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../O")
 rightSelect = NodePath("../Delete")
 leftFallback = NodePath("../O")
 rightFallback = NodePath("../Delete")
 
-[node name="Delete" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
+[node name="Delete" parent="Row1" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_puy8y")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-text = ""
-normalTexture = SubResource("AtlasTexture_sq77p")
-focusedTexture = SubResource("AtlasTexture_skruo")
-pressedTexture = SubResource("AtlasTexture_cwfo5")
-underTexture = SubResource("AtlasTexture_ef463")
+normalTexture = SubResource("AtlasTexture_4ajbi")
+focusedTexture = SubResource("AtlasTexture_a536m")
+pressedTexture = SubResource("AtlasTexture_onsve")
 leftSelect = NodePath("../P")
 rightSelect = NodePath("../Q")
 leftFallback = NodePath("../P")
 rightFallback = NodePath("../Q")
 
-[node name="OverTexture" parent="Row1/Delete" index="0"]
-texture = SubResource("AtlasTexture_sq77p")
-
-[node name="OnclickedTime" parent="Row1/Delete" index="1"]
-wait_time = 0.3
-
-[node name="Label" parent="Row1/Delete/UncontainedNodes" index="0"]
-text = ""
-
-[node name="UnderTexture" parent="Row1/Delete/UncontainedNodes" index="1"]
-texture = SubResource("AtlasTexture_ef463")
-
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
 
 [node name="Accent" parent="Row2" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 text = "´"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Ñ")
 rightSelect = NodePath("../A")
 leftFallback = NodePath("../Ñ")
 rightFallback = NodePath("../A")
 
-[node name="OverTexture" parent="Row2/Accent" index="0"]
-texture = SubResource("AtlasTexture_lwb6n")
-
-[node name="Label" parent="Row2/Accent/UncontainedNodes" index="0"]
-text = "´"
-
 [node name="A" parent="Row2" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 mouse_filter = 2
 text = "A"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Accent")
 rightSelect = NodePath("../S")
 leftFallback = NodePath("../Accent")
@@ -287,7 +274,6 @@ rightFallback = NodePath("../S")
 layout_mode = 2
 mouse_filter = 2
 text = "S"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../A")
 rightSelect = NodePath("../D")
 leftFallback = NodePath("../A")
@@ -297,7 +283,6 @@ rightFallback = NodePath("../D")
 layout_mode = 2
 mouse_filter = 2
 text = "D"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../S")
 rightSelect = NodePath("../F")
 leftFallback = NodePath("../S")
@@ -307,7 +292,6 @@ rightFallback = NodePath("../F")
 layout_mode = 2
 mouse_filter = 2
 text = "F"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../D")
 rightSelect = NodePath("../G")
 leftFallback = NodePath("../D")
@@ -317,7 +301,6 @@ rightFallback = NodePath("../G")
 layout_mode = 2
 mouse_filter = 2
 text = "G"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../F")
 rightSelect = NodePath("../H")
 leftFallback = NodePath("../F")
@@ -327,7 +310,6 @@ rightFallback = NodePath("../H")
 layout_mode = 2
 mouse_filter = 2
 text = "H"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../G")
 rightSelect = NodePath("../J")
 leftFallback = NodePath("../G")
@@ -337,7 +319,6 @@ rightFallback = NodePath("../J")
 layout_mode = 2
 mouse_filter = 2
 text = "J"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../H")
 rightSelect = NodePath("../K")
 leftFallback = NodePath("../H")
@@ -347,7 +328,6 @@ rightFallback = NodePath("../K")
 layout_mode = 2
 mouse_filter = 2
 text = "K"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../J")
 rightSelect = NodePath("../L")
 leftFallback = NodePath("../J")
@@ -357,7 +337,6 @@ rightFallback = NodePath("../L")
 layout_mode = 2
 mouse_filter = 2
 text = "L"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../K")
 rightSelect = NodePath("../Ñ")
 leftFallback = NodePath("../K")
@@ -367,7 +346,6 @@ rightFallback = NodePath("../Ñ")
 layout_mode = 2
 mouse_filter = 2
 text = "Ñ"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../L")
 rightSelect = NodePath("../Accent")
 leftFallback = NodePath("../L")
@@ -375,31 +353,23 @@ rightFallback = NodePath("../Accent")
 
 [node name="Row3" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
 
-[node name="Shift" parent="Row3" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("1_e8km5")]
+[node name="Shift" parent="Row3" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_puy8y")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-normalTexture = SubResource("AtlasTexture_oeiyo")
-focusedTexture = SubResource("AtlasTexture_e542e")
-pressedTexture = SubResource("AtlasTexture_iws8t")
+normalTexture = SubResource("AtlasTexture_4fvnn")
+focusedTexture = SubResource("AtlasTexture_4hmxa")
+pressedTexture = SubResource("AtlasTexture_i18fn")
 leftSelect = NodePath("../OK")
 rightSelect = NodePath("../Z")
 leftFallback = NodePath("../OK")
 rightFallback = NodePath("../Z")
 
-[node name="TextureRect" type="TextureRect" parent="Row3/Shift"]
-modulate = Color(1, 1, 1, 0.498039)
-z_index = -1
-layout_mode = 2
-texture = SubResource("AtlasTexture_oeiyo")
-
 [node name="Z" parent="Row3" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_12how")]
 layout_mode = 2
 mouse_filter = 2
 text = "Z"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Shift")
 rightSelect = NodePath("../X")
 leftFallback = NodePath("../Shift")
@@ -409,7 +379,6 @@ rightFallback = NodePath("../X")
 layout_mode = 2
 mouse_filter = 2
 text = "X"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../Z")
 rightSelect = NodePath("../C")
 leftFallback = NodePath("../Z")
@@ -419,7 +388,6 @@ rightFallback = NodePath("../C")
 layout_mode = 2
 mouse_filter = 2
 text = "C"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../X")
 rightSelect = NodePath("../V")
 leftFallback = NodePath("../X")
@@ -429,7 +397,6 @@ rightFallback = NodePath("../V")
 layout_mode = 2
 mouse_filter = 2
 text = "V"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../C")
 rightSelect = NodePath("../B")
 leftFallback = NodePath("../C")
@@ -439,7 +406,6 @@ rightFallback = NodePath("../B")
 layout_mode = 2
 mouse_filter = 2
 text = "B"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../V")
 rightSelect = NodePath("../N")
 leftFallback = NodePath("../V")
@@ -449,7 +415,6 @@ rightFallback = NodePath("../N")
 layout_mode = 2
 mouse_filter = 2
 text = "N"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../B")
 rightSelect = NodePath("../M")
 leftFallback = NodePath("../B")
@@ -459,45 +424,39 @@ rightFallback = NodePath("../M")
 layout_mode = 2
 mouse_filter = 2
 text = "M"
-normalTexture = SubResource("AtlasTexture_lwb6n")
 leftSelect = NodePath("../N")
 rightSelect = NodePath("../OK")
 leftFallback = NodePath("../N")
 rightFallback = NodePath("../OK")
 
-[node name="OK" parent="Row3" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("1_e8km5")]
+[node name="OK" parent="Row3" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("6_puy8y")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-normalTexture = SubResource("AtlasTexture_bhhl7")
-focusedTexture = SubResource("AtlasTexture_10lp6")
-pressedTexture = SubResource("AtlasTexture_u8uxo")
+normalTexture = SubResource("AtlasTexture_4qgpm")
+focusedTexture = SubResource("AtlasTexture_afpii")
+pressedTexture = SubResource("AtlasTexture_d8qam")
+upSelect = NodePath(".")
+downSelect = NodePath(".")
 leftSelect = NodePath("../M")
 rightSelect = NodePath("../Shift")
+upFallback = NodePath(".")
+downFallback = NodePath(".")
 leftFallback = NodePath("../M")
 rightFallback = NodePath("../Shift")
-
-[node name="TextureRect" type="TextureRect" parent="Row3/OK"]
-modulate = Color(1, 1, 1, 0.498039)
-z_index = -1
-layout_mode = 2
-texture = SubResource("AtlasTexture_bhhl7")
 
 [node name="Row4" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
+alignment = 1
 
-[node name="Space" parent="Row4" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("1_e8km5")]
+[node name="Space" parent="Row4" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_puy8y")]
 unique_name_in_owner = true
 layout_mode = 2
-normalTexture = SubResource("AtlasTexture_fraqs")
-focusedTexture = SubResource("AtlasTexture_4dnms")
-pressedTexture = SubResource("AtlasTexture_3yova")
+normalTexture = SubResource("AtlasTexture_gkxnh")
+focusedTexture = SubResource("AtlasTexture_puy8y")
+pressedTexture = SubResource("AtlasTexture_x4b8j")
 leftSelect = NodePath(".")
 rightSelect = NodePath(".")
 leftFallback = NodePath(".")
 rightFallback = NodePath(".")
-
-[editable path="Row1/Delete"]
-[editable path="Row2/Accent"]

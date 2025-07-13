@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ox7b7yt4wo5"]
+
+[ext_resource type="Script" uid="uid://bcc3lpe85m3jx" path="res://Classes/CustomUI/TextureGamepadSelectButton/TextureGamepadSelectButton.gd" id="1_qroxh"]
+
+[node name="TextureGamepadSelectButton" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qroxh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch_mode = 3
+
+[node name="OnclickedTime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.4
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
