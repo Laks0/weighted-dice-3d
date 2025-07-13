@@ -30,5 +30,8 @@ func start():
 func end():
 	for drink in get_tree().get_nodes_in_group("Drinks"):
 		drink.queue_free()
+	for particles in particlesArray:
+		if is_instance_valid(particles):
+			particles.queue_free()
 	drinks.clear()
 	particlesArray.clear()
