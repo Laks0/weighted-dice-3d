@@ -28,9 +28,7 @@ func start():
 		particlesArray.append(particles)
 
 func end():
-	for drink in drinks:
+	for drink in get_tree().get_nodes_in_group("Drinks"):
 		drink.queue_free()
-	for particles in particlesArray:
-		particles.queue_free()
 	drinks.clear()
 	particlesArray.clear()
