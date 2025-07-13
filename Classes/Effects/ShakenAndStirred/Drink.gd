@@ -25,7 +25,8 @@ func _on_body_entered(body):
 	body.drunk = true
 	monigoteGotDrunk.emit(body)
 	get_tree().create_timer(drunkTime).timeout.connect(getMonigoteSober.bind(body))
-	tree_exiting.connect(getMonigoteSober.bind(body))
+	if not tree_exiting.is_connected(getMonigoteSober.bind(body)):
+		tree_exiting.connect(getMonigoteSober.bind(body))
 
 func getMonigoteSober(mon : Monigote):
 	if is_instance_valid(mon):
