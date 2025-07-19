@@ -57,7 +57,7 @@ shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
-points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 0.5, -0.5, 1, 0, -0.5, -0.5, 0.5, -0.5, -1, 0, 0.5, 0.5, 0.5, 0.5, 1, 0, 0.5, -0.5, 0.5, 0.5, -1)
+points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 1, -0.5, 1, 0, -0.5, -0.5, 1, -0.5, -1, 0, 0.5, 0.5, 1, 0.5, 1, 0, 0.5, -0.5, 1, 0.5, -1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q1msd"]
 resource_local_to_scene = true
@@ -198,6 +198,7 @@ STUN_TIME_AFTER_ESCAPE = 0.7
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
+grabDistance = 0.5
 maxPushForce = 32.0
 customMovement = true
 grabSpeedFactor = 0.05
@@ -308,7 +309,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="GrabArea" type="Area3D" parent="Grabbing"]
-visible = false
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grabbing/GrabArea"]
@@ -322,14 +322,14 @@ mon = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite")
 
 [node name="L" type="AnimatedSprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.190014, -0.3, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0.190014, -0.3, 0)
 material_override = SubResource("ShaderMaterial_q1msd")
 alpha_cut = 2
 render_priority = 10
 sprite_frames = SubResource("SpriteFrames_v5uyt")
 
 [node name="R" type="AnimatedSprite3D" parent="Grabbing/Hands"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.3, 0.1, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -0.3, 0.1, 0)
 sorting_offset = 7.0
 material_override = SubResource("ShaderMaterial_q1msd")
 flip_h = true
