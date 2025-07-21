@@ -2,7 +2,7 @@ extends Effect
 
 @export var drinkScene : PackedScene
 @export var drunkParticlesScene : PackedScene
-@export var drinksAmount : int = 3
+@export var drinksAmount : int = 1
 
 var drinks : Array[ShakenAndStirredDrink]
 var particlesArray : Array[GPUParticles3D]
@@ -35,3 +35,5 @@ func end():
 			particles.queue_free()
 	drinks.clear()
 	particlesArray.clear()
+	for mon in get_tree().get_nodes_in_group("Monigotes"):
+		mon.drunk = false

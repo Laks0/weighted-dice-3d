@@ -9,6 +9,6 @@
 script = ExtResource("1_dccme")
 drinkScene = ExtResource("2_tii4k")
 drunkParticlesScene = ExtResource("3_ktk52")
-drinksAmount = 4
+drinksAmount = 2
 effectName = "Batido y mezclado"
 cardTexture = ExtResource("3_6ji2n")
