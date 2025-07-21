@@ -14,6 +14,7 @@ var die : Die
 
 @export var dieScreenShakeMagnitude := .6
 @export var dieScreenShakeTime := .3
+@export var timeBeforeStartingEffect := 1.0
 
 @export var cardShowAnimationScene : PackedScene
 
@@ -95,7 +96,11 @@ func startArena():
 		multipleResCamera.goToCamera($CubileteCamera)
 		if activeEffect != -1:
 			effects[activeEffect].end())
-	die.dropped.connect(multipleResCamera.goToCamera.bind($ArenaCamera))
+	die.dropped.connect(func():
+		multipleResCamera.goToCamera($RolledNumberCamera)
+		await get_tree().create_timer(timeBeforeStartingEffect).timeout
+		multipleResCamera.goToCamera($ArenaCamera)
+	)
 	
 	gameStarted.emit()
 
@@ -138,7 +143,6 @@ func startEffect(n : int):
 		Input.start_joy_vibration(i, .6, .6, dieScreenShakeTime)
 	
 	activeEffect = n
-	effects[activeEffect].start()
 	Narrator.announceEffect(effects[activeEffect].effectName)
 	# Animación del nombre del efecto
 	$CurrentEffectName.visible = true
@@ -155,6 +159,9 @@ func startEffect(n : int):
 	nameSizeTween.tween_property($CurrentEffectName, "scale", Vector3.ZERO, animationTime)
 	
 	nameSizeTween.connect("finished", func(): $CurrentEffectName.visible = false)
+	
+	await get_tree().create_timer(timeBeforeStartingEffect).timeout
+	effects[activeEffect].start()
 	
 	emit_signal("effectStarted", effects[activeEffect])
 
