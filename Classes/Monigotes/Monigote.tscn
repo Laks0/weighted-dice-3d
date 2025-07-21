@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=76 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -22,15 +22,20 @@
 [ext_resource type="SpriteFrames" uid="uid://gpx3mko75y5v" path="res://Assets/MonigoteSkins/YellowFramesBloody.tres" id="15_0kk3g"]
 [ext_resource type="Script" uid="uid://dsntn1mihe5ug" path="res://Classes/Monigotes/AIController.gd" id="17_e2qqq"]
 [ext_resource type="Texture2D" uid="uid://cai7kc7gmjkk7" path="res://Assets/Bets/Crown.png" id="19_0df27"]
+[ext_resource type="Shader" uid="uid://cmpsfevl7ajs4" path="res://addons/GPUTrail/shaders/trail.gdshader" id="20_cdii0"]
 [ext_resource type="Script" uid="uid://do450poldhd24" path="res://Classes/Monigotes/hands.gd" id="21_3gcfk"]
+[ext_resource type="Shader" uid="uid://dcohhdx40it07" path="res://addons/GPUTrail/shaders/trail_draw_pass.gdshader" id="21_58d0a"]
 [ext_resource type="Script" uid="uid://mjouoijlcr57" path="res://Classes/Monigotes/3DVisualAnimations/Billboard.gd" id="21_d464q"]
 [ext_resource type="Script" uid="uid://wb6btmjm6ml" path="res://Classes/Monigotes/3DVisualAnimations/AnimationParent.gd" id="21_mas6a"]
 [ext_resource type="Script" uid="uid://cebjjj1crpddc" path="res://Classes/Monigotes/PushedParticles.gd" id="21_tvbga"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="21_xwq3q"]
 [ext_resource type="Script" uid="uid://h61k6apralwn" path="res://Classes/Monigotes/CameraEffects.gd" id="22_cfqdd"]
+[ext_resource type="Texture2D" uid="uid://crk6pkb7e5rwc" path="res://addons/GPUTrail/defaults/texture.tres" id="22_u86hc"]
 [ext_resource type="Script" uid="uid://c0x6cvlhovtdm" path="res://Classes/Monigotes/3DVisualAnimations/YAxisShake.gd" id="23_ibisb"]
 [ext_resource type="Script" uid="uid://bheshddugi8vk" path="res://Classes/Monigotes/MonigoteGrabbing.gd" id="23_jjywh"]
+[ext_resource type="Texture2D" uid="uid://ct31fhxvcragr" path="res://addons/GPUTrail/defaults/curve.tres" id="23_n5b14"]
 [ext_resource type="Script" uid="uid://cj0m5sdwwn1rf" path="res://Classes/Monigotes/3DVisualAnimations/RunningSkewAnimation.gd" id="24_q1msd"]
+[ext_resource type="Script" uid="uid://de3ct6wexs7y" path="res://Classes/Monigotes/JumpTrail.gd" id="24_sfrhx"]
 [ext_resource type="Script" uid="uid://bu6evpd3a6q4k" path="res://Classes/Monigotes/3DVisualAnimations/JumpingScaleAnimation.gd" id="25_8bylv"]
 [ext_resource type="Script" uid="uid://ybdbcqltjkuw" path="res://Classes/Monigotes/BitesPlayer.gd" id="25_tld37"]
 [ext_resource type="Texture2D" uid="uid://qsk44i3anti4" path="res://Classes/Monigotes/AniManosAgarre_Sprite-sheet.png" id="26_x0xae"]
@@ -55,6 +60,32 @@ shader_parameter/borderAlpha = 0.98
 shader_parameter/width = 1.0
 shader_parameter/outline_color = Color(1, 0, 0, 1)
 shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdii0"]
+shader = ExtResource("20_cdii0")
+
+[sub_resource type="Gradient" id="Gradient_cdii0"]
+resource_local_to_scene = true
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.701856, 0.654242, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58d0a"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_cdii0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58d0a"]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource("21_58d0a")
+shader_parameter/tex = SubResource("GradientTexture1D_58d0a")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = ExtResource("22_u86hc")
+shader_parameter/curve = ExtResource("23_n5b14")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+
+[sub_resource type="QuadMesh" id="QuadMesh_u86hc"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_58d0a")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 1, -0.5, 1, 0, -0.5, -0.5, 1, -0.5, -1, 0, 0.5, 0.5, 1, 0.5, 1, 0, 0.5, -0.5, 1, 0.5, -1)
@@ -238,6 +269,25 @@ skins = {
 "Yellow": ExtResource("6_2h8rt"),
 "YellowBloody": ExtResource("15_0kk3g")
 }
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="AnimatedSprite" node_paths=PackedStringArray("mon")]
+transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+amount = 9
+lifetime = 9.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_cdii0")
+draw_pass_1 = SubResource("QuadMesh_u86hc")
+script = ExtResource("24_sfrhx")
+mon = NodePath("../..")
+length = 9
+length_seconds = 0.15
+texture = SubResource("GradientTexture1D_58d0a")
+color_ramp = ExtResource("22_u86hc")
+curve = ExtResource("23_n5b14")
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://dn1v06eq7r2v0"
 
 [node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)
@@ -474,7 +524,9 @@ one_shot = true
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
+[connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpEnded"]
 [connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="stop"]
+[connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpStarted"]
 [connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="play"]
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="StunTimeout" to="." method="unstun"]
