@@ -18,8 +18,9 @@ func inputNameFromAction(actionName : StringName) -> StringName:
 	var actionEvents : Array[InputEvent] = InputMap.action_get_events(actions[actionName])
 	if actionChanges.has(actionName):
 		actionEvents = [actionChanges[actionName]]
-	var names : Array = actionEvents.map(singularInputToString)
-	return " / ".join(names)
+	var names : Array = actionEvents.map(singularInputToString).map(func(s : String):
+		return s.split(" ")[-1])
+	return "/".join(names)
 
 func getStickDirectionName(inputName : StringName) -> StringName:
 	if inputName.contains("Y") and inputName.contains("-1"):

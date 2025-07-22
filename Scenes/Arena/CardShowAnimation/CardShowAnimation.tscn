@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnxn215f58sus"]
 
-[ext_resource type="Script" uid="uid://bauhaq254h6et" path="res://Scenes/Arena/CardShowAnimation.gd" id="1_x7ohg"]
+[ext_resource type="Script" uid="uid://bauhaq254h6et" path="res://Scenes/Arena/CardShowAnimation/CardShowAnimation.gd" id="1_x7ohg"]
 [ext_resource type="PackedScene" uid="uid://bk4jkhkej1lvs" path="res://Classes/DisplayCard/DisplayCard.tscn" id="2_qy1gx"]
 
 [sub_resource type="Animation" id="Animation_uhtyh"]
@@ -824,7 +824,7 @@ _data = {
 
 [node name="CardShowAnimation" type="AnimationPlayer"]
 libraries = {
-"": SubResource("AnimationLibrary_6pfkn")
+&"": SubResource("AnimationLibrary_6pfkn")
 }
 script = ExtResource("1_x7ohg")
 
