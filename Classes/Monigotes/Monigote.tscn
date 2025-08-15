@@ -453,6 +453,9 @@ draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 
 [node name="Jumping" type="Node3D" parent="."]
 script = ExtResource("31_nojgr")
+verticalInitialSpeed = 7.0
+verticalAcceleration = 15.0
+horizontalAcceleration = 60.0
 
 [node name="GrabBuffer" type="Timer" parent="Jumping"]
 wait_time = 0.2
