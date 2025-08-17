@@ -32,6 +32,7 @@ var unclampedVelocity := Vector2.ZERO
 
 var stunned := false
 var movementStopped := false
+var gravityStopped := false
 var health : int = 2
 
 var invincible  := false
@@ -105,7 +106,9 @@ func _physics_process(delta):
 	
 	var vel2d : Vector2 = moveVelocity + unclampedVelocity
 
-	velocity = Vector3(vel2d.x, velocity.y - (GRAVITY_ACCELERATION * delta), vel2d.y)
+	velocity = Vector3(vel2d.x, velocity.y, vel2d.y)
+	if not gravityStopped:
+		velocity.y -= GRAVITY_ACCELERATION * delta
 	
 	move_and_slide()
 
