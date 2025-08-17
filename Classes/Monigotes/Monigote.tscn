@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=80 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -204,6 +204,24 @@ height = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
 size = Vector3(0.29306, 0.049835, 0.236786)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdii0"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0.48, 0.152, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_58d0a"]
+spread = 180.0
+initial_velocity_min = 0.6
+initial_velocity_max = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_u86hc"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdii0"]
+spread = 180.0
+initial_velocity_min = 0.6
+initial_velocity_max = 3.0
+gravity = Vector3(0, -4, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gc1lk"]
 viewport_path = NodePath("PushArrow/ArrowViewport")
@@ -454,8 +472,10 @@ draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 [node name="Jumping" type="Node3D" parent="."]
 script = ExtResource("31_nojgr")
 verticalInitialSpeed = 7.0
+horizontalInitialSpeed = 25.0
 verticalAcceleration = 15.0
-horizontalAcceleration = 60.0
+horizontalAcceleration = 22.0
+airFriction = 70.0
 
 [node name="GrabBuffer" type="Timer" parent="Jumping"]
 wait_time = 0.2
@@ -475,6 +495,28 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.291262, 0.00160217)
 shape = SubResource("BoxShape3D_8g2ci")
+
+[node name="LandParticles" type="GPUParticles3D" parent="Jumping"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0110669, -0.162909, 0)
+material_override = SubResource("StandardMaterial3D_cdii0")
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_58d0a")
+draw_pass_1 = SubResource("BoxMesh_u86hc")
+
+[node name="JumpParticles" type="GPUParticles3D" parent="Jumping"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0110669, -0.162909, 0)
+material_override = SubResource("StandardMaterial3D_cdii0")
+emitting = false
+amount = 4
+lifetime = 0.84
+interp_to_end = 1.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cdii0")
+draw_pass_1 = SubResource("BoxMesh_u86hc")
 
 [node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
@@ -529,7 +571,9 @@ one_shot = true
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
 [connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpEnded"]
 [connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="stop"]
+[connection signal="jumpEnded" from="Jumping" to="Jumping/LandParticles" method="restart"]
 [connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpStarted"]
 [connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="play"]
+[connection signal="jumpStarted" from="Jumping" to="Jumping/JumpParticles" method="restart"]
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="StunTimeout" to="." method="unstun"]

@@ -17,6 +17,9 @@ var stillAccelerating := false
 
 var jumpDirection : Vector2
 
+func _ready():
+	$LandParticles.material_override.albedo_color = mon.player.color
+
 func _process(delta):
 	if jumping:
 		mon.pauseBeingGrabbed()
