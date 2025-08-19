@@ -489,7 +489,6 @@ wait_time = 0.1
 [node name="Moving" type="Node3D" parent="." node_paths=PackedStringArray("mon")]
 script = ExtResource("40_58d0a")
 mon = NodePath("..")
-ACCELERATION = 80.0
 
 [node name="StunTimeout" type="Timer" parent="Moving"]
 one_shot = true

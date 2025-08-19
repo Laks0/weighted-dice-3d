@@ -30,7 +30,7 @@ func playSFX():
 	volume_db = defaultRollVolume
 	newRollVolume = defaultRollVolume
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ball8.movingSpeed < 10:
 		var volumeTarget : float = defaultRollVolume+(volumeDecreaseFactor*(ball8.movingSpeed-10)/10)
 		if not isRollSFXTweening:

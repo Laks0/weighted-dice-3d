@@ -6,11 +6,11 @@ signal wasUnstunned
 
 @export var mon : Monigote
 
-@export var MAX_SPEED    : float = 7
-@export var ACCELERATION : float = 20
-@export var GRAVITY_ACCELERATION     : float = 50
+@export var MAX_SPEED            : float = 7
+@export var ACCELERATION         : float = 80
+@export var GRAVITY_ACCELERATION : float = 50
 
-var moveVelocity      := Vector2.ZERO
+var moveVelocity := Vector2.ZERO
 
 var unclampedVelocities : Dictionary[String, Vector2]
 
