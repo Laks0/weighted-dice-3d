@@ -64,19 +64,10 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdii0"]
 shader = ExtResource("20_cdii0")
 
-[sub_resource type="Gradient" id="Gradient_cdii0"]
-resource_local_to_scene = true
-colors = PackedColorArray(1, 0, 0, 1, 1, 0.701856, 0.654242, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_58d0a"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_cdii0")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_58d0a"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 2
 shader = ExtResource("21_58d0a")
-shader_parameter/tex = SubResource("GradientTexture1D_58d0a")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = ExtResource("22_u86hc")
 shader_parameter/curve = ExtResource("23_n5b14")
@@ -86,6 +77,14 @@ shader_parameter/flags = 40
 [sub_resource type="QuadMesh" id="QuadMesh_u86hc"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_58d0a")
+
+[sub_resource type="Gradient" id="Gradient_cdii0"]
+resource_local_to_scene = true
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.701856, 0.654242, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58d0a"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_cdii0")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 1, -0.5, 1, 0, -0.5, -0.5, 1, -0.5, -1, 0, 0.5, 0.5, 1, 0.5, 1, 0, 0.5, -0.5, 1, 0.5, -1)
@@ -292,7 +291,7 @@ skins = {
 "YellowBloody": ExtResource("15_0kk3g")
 }
 
-[node name="GPUTrail3D" type="GPUParticles3D" parent="AnimatedSprite" node_paths=PackedStringArray("mon")]
+[node name="JumpTrail" type="GPUParticles3D" parent="AnimatedSprite" node_paths=PackedStringArray("mon")]
 transform = Transform3D(2, 0, 0, 0, 0.3, 0, 0, 0, 2, 0, 0, 0)
 visible = false
 amount = 9
@@ -477,7 +476,7 @@ draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 script = ExtResource("31_nojgr")
 verticalSpeedCurve = SubResource("Curve_cdii0")
 horizontalSpeedCurve = SubResource("Curve_58d0a")
-maxVerticalSpeed = 2.0
+maxVerticalSpeed = 3.5
 
 [node name="FloorArea" type="Area3D" parent="Jumping"]
 collision_layer = 7
@@ -510,6 +509,9 @@ one_shot = true
 [node name="DirectionPickGraceTime" type="Timer" parent="Jumping"]
 wait_time = 0.1
 one_shot = true
+
+[node name="TimeToResumeGrabbing" type="Timer" parent="Jumping"]
+wait_time = 0.1
 
 [node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
@@ -562,11 +564,14 @@ one_shot = true
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
-[connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpEnded"]
+[connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/JumpTrail" method="onJumpEnded"]
 [connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="stop"]
-[connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/GPUTrail3D" method="onJumpStarted"]
+[connection signal="jumpEnded" from="Jumping" to="Jumping/TimeToResumeGrabbing" method="start"]
+[connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/JumpTrail" method="onJumpStarted"]
 [connection signal="jumpStarted" from="Jumping" to="AnimatedSprite/Animations3D/JumpingScale" method="play"]
 [connection signal="jumpStarted" from="Jumping" to="Jumping/JumpParticles" method="restart"]
+[connection signal="jumpStarted" from="Jumping" to="Jumping/TimeToResumeGrabbing" method="stop"]
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="Jumping/JumpTimer" to="Jumping" method="endJump"]
+[connection signal="timeout" from="Jumping/TimeToResumeGrabbing" to="." method="resumeGrabbing"]
 [connection signal="timeout" from="StunTimeout" to="." method="unstun"]

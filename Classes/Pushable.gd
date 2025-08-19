@@ -62,6 +62,12 @@ func pauseBeingGrabbed():
 func pauseGrabbing():
 	_grabbingPausedFrames = _PAUSE_FRAMES
 
+func stopGrabbing():
+	_grabbingPausedFrames = 9223372036854775800
+
+func resumeGrabbing():
+	_grabbingPausedFrames = 0
+
 func canBeGrabbed(_grabber) -> bool:
 	return _beingGrabbedPausedFrames <= 0 and not grabbed
 

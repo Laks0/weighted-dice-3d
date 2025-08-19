@@ -42,8 +42,11 @@ func jump():
 	if not $JumpCooldown.is_stopped():
 		return
 	
+	$TimeToResumeGrabbing.stop()
+	
 	mon.stopMovement()
 	mon.gravityStopped = true
+	mon.stopGrabbing()
 	
 	$DirectionPickGraceTime.start()
 	
