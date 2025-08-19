@@ -15,7 +15,7 @@ func _process(delta):
 			continue
 		var dir3D = mon.position.direction_to(position)
 		var dist = 2/mon.position.distance_to(position)
-		mon.applyAcceleraction(Vector2(dir3D.x, dir3D.z).normalized() * atractAcceleration * dist)
+		mon.movement.applyAcceleraction(Vector2(dir3D.x, dir3D.z).normalized() * atractAcceleration * dist)
 
 func isOnRay(mon : Monigote):
 	var dir2d := Vector2.from_angle(-rayDir.y - PI/2)

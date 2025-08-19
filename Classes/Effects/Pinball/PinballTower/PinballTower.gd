@@ -13,7 +13,7 @@ func _on_area_3d_body_entered(body):
 	bumpCount += 1
 	
 	
-	body.applyVelocityFrom(position, throwForce)
+	body.movement.applyVelocityFrom(position, throwForce)
 	
 	var original_scale : Vector3 = $Mesh.scale
 	create_tween().tween_property($Mesh, "scale", original_scale * 1.5, .1)

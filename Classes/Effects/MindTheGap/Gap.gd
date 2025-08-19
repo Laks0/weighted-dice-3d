@@ -18,7 +18,7 @@ func _on_body_entered(body):
 	if mon.invincible or body.velocity.y > 0:
 		return
 	
-	mon.resetMovement()
+	mon.movement.resetMovement()
 	$YellVoid.play()
 	
 	$Sprite.play("BW")

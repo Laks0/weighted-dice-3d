@@ -240,7 +240,7 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
 
-[node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
+[node name="Monigote" type="CharacterBody3D" node_paths=PackedStringArray("movement") groups=["Monigotes"]]
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -251,13 +251,14 @@ STUN_TIME_AFTER_ESCAPE = 0.7
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
+movement = NodePath("Moving")
 grabDistance = 0.5
 maxPushForce = 32.0
 customMovement = true
 grabSpeedFactor = 0.05
 FRICTION = 80.0
 
-[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon", "movingNode")]
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0209794, 0)
@@ -272,7 +273,6 @@ sprite_frames = ExtResource("3_3t8bt")
 animation = &"Pushed"
 script = ExtResource("8_au5v3")
 mon = NodePath("..")
-movingNode = NodePath("../Moving")
 crownTexture = ExtResource("19_0df27")
 jokerHatTexture = ExtResource("14_wqmb4")
 shakeMagnitude = 0.15
@@ -491,6 +491,9 @@ script = ExtResource("40_58d0a")
 mon = NodePath("..")
 ACCELERATION = 80.0
 
+[node name="StunTimeout" type="Timer" parent="Moving"]
+one_shot = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
@@ -549,12 +552,9 @@ explosiveness = 0.06
 process_material = SubResource("ParticleProcessMaterial_l5w31")
 draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 
-[node name="StunTimeout" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
-[connection signal="beenGrabbed" from="." to="." method="unstun"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
+[connection signal="beenGrabbed" from="." to="Moving" method="unstun"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
@@ -567,8 +567,6 @@ one_shot = true
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
-[connection signal="wasStunned" from="." to="AnimatedSprite/Animations3D/YAxisShake" method="play"]
-[connection signal="wasUnstunned" from="." to="AnimatedSprite/Animations3D/YAxisShake" method="stop"]
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
@@ -582,4 +580,6 @@ one_shot = true
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="Jumping/JumpTimer" to="Jumping" method="endJump"]
 [connection signal="timeout" from="Jumping/TimeToResumeGrabbing" to="." method="resumeGrabbing"]
-[connection signal="timeout" from="StunTimeout" to="." method="unstun"]
+[connection signal="wasStunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="play"]
+[connection signal="wasUnstunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="stop"]
+[connection signal="timeout" from="Moving/StunTimeout" to="Moving" method="unstun"]

@@ -9,8 +9,6 @@ signal died
 signal grab(body)
 @warning_ignore("unused_signal")
 signal hasWon
-signal wasStunned
-signal wasUnstunned
 
 @export var MOVEMENTS_TO_ESCAPE_GRAB : int = 20
 @export var STUN_TIME_AFTER_ESCAPE : float = .5
@@ -22,7 +20,6 @@ var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
 @onready var controller : int = player.inputController
 @onready var actions    : Dictionary = Controllers.getActions(controller)
 
-var stunned := false
 var movementStopped := false
 var gravityStopped := false
 var health : int = 2
@@ -35,6 +32,8 @@ var invincible  := false
 var stageHandler : StageHandler
 
 var drunk := false
+
+@export var movement : MonigoteMovement
 
 func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
@@ -53,7 +52,7 @@ func _physics_process(_delta):
 	if grabbing and is_instance_valid(grabBody):
 		onGrabbing()
 	
-	if stunned:
+	if movement.stunned:
 		pauseGrabbing()
 
 ## Se llama desde la arena cuando el monigote es reparentado
@@ -85,20 +84,20 @@ func attemptEscape():
 func onGrabbingEscaped(body : Pushable):
 	var bodyPos2d = Vector2(body.position.x, body.position.z)
 	var pos2d = Vector2(position.x, position.z)
-	applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
+	movement.applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
-	stun(STUN_TIME_AFTER_ESCAPE)
+	movement.stun(STUN_TIME_AFTER_ESCAPE)
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
-	$Moving.resetMovement()
-	$Moving.applyVelocity(dir * factor * maxPushForce)
+	movement.resetMovement()
+	movement.applyVelocity(dir * factor * maxPushForce)
 	$Grabbing/GrabCooldown.start()
 	invincible = false
 	
 	super(dir, factor, _pusher)
 
 func push():
-	applyVelocity(-grabDir * pow(pushFactor, 2) * 11)
+	movement.applyVelocity(-grabDir * pow(pushFactor, 2) * 11)
 	Input.start_joy_vibration(controller, pushFactor, 0, .1)
 	$Grabbing.onPushed()
 	super()
@@ -107,10 +106,7 @@ func applyVelocityFrom(pos : Vector3, force : float):
 	var pos2d = Vector2(pos.x, pos.z)
 	var selfPos2d = Vector2(position.x, position.z)
 	
-	applyVelocity(pos2d.direction_to(selfPos2d) * force)
-
-func accelerateUp(accel : float):
-	velocity.y += accel
+	movement.applyVelocity(pos2d.direction_to(selfPos2d) * force)
 
 func hurt() -> bool:
 	if invincible or Debug.vars.inmortalMonigotes:
@@ -145,14 +141,6 @@ func die():
 	
 	$DeathParticles.connect("finished", queue_free)
 
-func stun(timeout := 5.0):
-	stunned = true
-	$StunTimeout.start(timeout)
-	wasStunned.emit()
-
-func unstun():
-	stunned = false
-	wasUnstunned.emit()
 
 func stopMovement():
 	movementStopped = true
@@ -168,11 +156,11 @@ func makeInvincible():
 
 ## Detiene todo movimiento e interrumpe los controles, se usa en las transiciones de estado
 func freeze():
-	$Moving.resetMovement()
+	movement.resetMovement()
 	stopMovement()
 	set_process(false)
 	set_physics_process(false)
-	$Moving.set_physics_process(false)
+	movement.set_physics_process(false)
 	
 	push()
 	if grabbed:
@@ -182,26 +170,10 @@ func unfreeze():
 	resumeMovement()
 	set_process(true)
 	set_physics_process(true)
-	$Moving.set_physics_process(true)
+	movement.set_physics_process(true)
 
 func dance():
 	$AnimatedSprite.dance()
 
-func resetMovement() -> void:
-	$Moving.resetMovement()
-
-func goMaxSpeed(dir : Vector2) -> void:
-	$Moving.goMaxSpeed(dir)
-
 func bounce(normal : Vector3):
-	$Moving.bounce(normal)
-
-## Aplica una velocidad unclamped que solo dura un frame
-func applyFrameVelocity(vel : Vector2):
-	$Moving.applyFrameVelocity(vel)
-
-func applyVelocity(vel : Vector2):
-	$Moving.applyVelocity(vel)
-
-func applyAcceleraction(acc : Vector2):
-	$Moving.applyAcceleraction(acc)
+	movement.bounce(normal)

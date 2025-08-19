@@ -1,6 +1,9 @@
 extends Node3D
 class_name MonigoteMovement
 
+signal wasStunned
+signal wasUnstunned
+
 @export var mon : Monigote
 
 @export var MAX_SPEED    : float = 7
@@ -12,6 +15,8 @@ var unclampedVelocity := Vector2.ZERO
 var frameVelocity     := Vector2.ZERO
 
 var _movementDir : Vector2
+
+var stunned := false
 
 func resetMovement() -> void:
 	moveVelocity = Vector2.ZERO
@@ -44,6 +49,15 @@ func getMovementDir() -> Vector2:
 func getUnclampedVelocity() -> Vector2:
 	return unclampedVelocity
 
+func stun(timeout := 5.0):
+	stunned = true
+	$StunTimeout.start(timeout)
+	wasStunned.emit()
+
+func unstun():
+	stunned = false
+	wasUnstunned.emit()
+
 func _physics_process(delta):
 	if mon.player.inputController != Controllers.AI:
 		_movementDir = Controllers.getDirection(mon.controller)
@@ -55,7 +69,7 @@ func _physics_process(delta):
 	if mon.grabbing and is_instance_valid(mon.grabBody):
 		accFactor = mon.grabBody.grabSpeedFactor
 	
-	if mon.stunned or mon.movementStopped:
+	if stunned or mon.movementStopped:
 		accFactor = 0
 	
 	if mon.grabbed:

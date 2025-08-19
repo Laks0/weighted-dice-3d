@@ -12,7 +12,7 @@ func _on_body_entered(body):
 		
 		var direction = position.direction_to(body.position)
 		var dir2d := Vector2(direction.x, direction.z).normalized()
-		body.applyVelocity(dir2d * PUSH_SPEED)
+		body.movement.applyVelocity(dir2d * PUSH_SPEED)
 
 func _on_dead_time_timeout():
 	queue_free()

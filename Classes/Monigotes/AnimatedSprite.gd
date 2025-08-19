@@ -5,7 +5,6 @@ signal betSignalStatusChanged(isVisible : bool)
 var onArena := false
 
 @export var mon : Monigote
-@export var movingNode : MonigoteMovement
 
 @export var crownTexture : Texture
 @export var jokerHatTexture : Texture
@@ -77,7 +76,7 @@ func _process(_delta):
 	modulate = mon.color
 	if mon.invincible and not mon.grabbed:
 		modulate.a = .7
-	elif mon.stunned:
+	elif mon.movement.stunned:
 		modulate = Color.GRAY
 	else:
 		modulate.a = 1
@@ -99,8 +98,8 @@ func _process(_delta):
 		play("Idle")
 		return
 
-	if not movingNode.getMovementDir().is_zero_approx():
-		match vecTo4Dir(movingNode.getMovementDir()):
+	if not mon.movement.getMovementDir().is_zero_approx():
+		match vecTo4Dir(mon.movement.getMovementDir()):
 			Cardinal.E: play("RunningRight")
 			Cardinal.W: play("RunningLeft")
 			Cardinal.S: play("RunningDown")
@@ -108,9 +107,9 @@ func _process(_delta):
 	else:
 		play("Idle")
 
-	if not movingNode.getUnclampedVelocity().is_zero_approx():
+	if not mon.movement.getUnclampedVelocity().is_zero_approx():
 		play("Pushed")
-		frame = vecTo8Dir(movingNode.getUnclampedVelocity())
+		frame = vecTo8Dir(mon.movement.getUnclampedVelocity())
 	
 	if mon.grabbing:
 		play("Grabbing")

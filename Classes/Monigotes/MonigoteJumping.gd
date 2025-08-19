@@ -34,7 +34,7 @@ func _process(_delta):
 	jumpProgression = 1 - ($JumpTimer.time_left/$JumpTimer.wait_time)
 	
 	mon.velocity.y = maxVerticalSpeed * verticalSpeedCurve.sample(jumpProgression)
-	mon.applyFrameVelocity(currentVelocitySpeed())
+	mon.movement.applyFrameVelocity(currentVelocitySpeed())
 	
 	if jumpProgression >= minJumpProgression and not Input.is_action_pressed(mon.actions["jump"]):
 		endJump()

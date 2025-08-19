@@ -75,5 +75,5 @@ func _on_body_entered(body):
 	
 	var knockSpeed = 15
 	var knockDir = position.direction_to(mon.position)
-	mon.applyVelocity(Vector2(knockDir.x, knockDir.z).normalized() * knockSpeed)
+	mon.movement.applyVelocity(Vector2(knockDir.x, knockDir.z).normalized() * knockSpeed)
 	mon.hurt()
