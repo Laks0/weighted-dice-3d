@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=82 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Texture2D" uid="uid://44laiid6xirl" path="res://Classes/Monigotes/arrowTailBorder.png" id="34_1m0wj"]
+[ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -64,10 +65,19 @@ shader_parameter/modulate = Color(1, 1, 1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdii0"]
 shader = ExtResource("20_cdii0")
 
+[sub_resource type="Gradient" id="Gradient_cdii0"]
+resource_local_to_scene = true
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.701856, 0.654242, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58d0a"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_cdii0")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_58d0a"]
 resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource("21_58d0a")
+shader_parameter/tex = SubResource("GradientTexture1D_58d0a")
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/color_ramp = ExtResource("22_u86hc")
 shader_parameter/curve = ExtResource("23_n5b14")
@@ -77,14 +87,6 @@ shader_parameter/flags = 40
 [sub_resource type="QuadMesh" id="QuadMesh_u86hc"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_58d0a")
-
-[sub_resource type="Gradient" id="Gradient_cdii0"]
-resource_local_to_scene = true
-colors = PackedColorArray(1, 0, 0, 1, 1, 0.701856, 0.654242, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_58d0a"]
-resource_local_to_scene = true
-gradient = SubResource("Gradient_cdii0")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 1, -0.5, 1, 0, -0.5, -0.5, 1, -0.5, -1, 0, 0.5, 0.5, 1, 0.5, 1, 0, 0.5, -0.5, 1, 0.5, -1)
@@ -150,6 +152,43 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_gc1lk"]
+viewport_path = NodePath("PushArrow/ArrowViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x3ft"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_gc1lk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gc1lk"]
+size = Vector2(3.2, 0.8)
+
+[sub_resource type="Curve" id="Curve_cdii0"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 0.754098), -4.6918, 2.97892, 0, 0, Vector2(1, -0.734478), 0.646253, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_58d0a"]
+_data = [Vector2(0, 0.991414), 0.0, 0.806743, 0, 0, Vector2(0.137255, 0.562087), -0.543616, -0.543616, 0, 0, Vector2(1, 0.416116), -0.0681452, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
+size = Vector3(0.29306, 0.049835, 0.236786)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdii0"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0.48, 0.152, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdii0"]
+spread = 180.0
+initial_velocity_min = 0.6
+initial_velocity_max = 3.0
+gravity = Vector3(0, -4, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u86hc"]
+size = Vector3(0.1, 0.1, 0.1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
 height = 0.4202
@@ -201,50 +240,12 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
 
-[sub_resource type="Curve" id="Curve_cdii0"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 0.754098), -4.6918, 2.97892, 0, 0, Vector2(1, -0.734478), 0.646253, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_58d0a"]
-_data = [Vector2(0, 0.991414), 0.0, 0.806743, 0, 0, Vector2(0.137255, 0.562087), -0.543616, -0.543616, 0, 0, Vector2(1, 0.416116), -0.0681452, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
-size = Vector3(0.29306, 0.049835, 0.236786)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdii0"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0.48, 0.152, 1)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdii0"]
-spread = 180.0
-initial_velocity_min = 0.6
-initial_velocity_max = 3.0
-gravity = Vector3(0, -4, 0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_u86hc"]
-size = Vector3(0.1, 0.1, 0.1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_gc1lk"]
-viewport_path = NodePath("PushArrow/ArrowViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x3ft"]
-resource_local_to_scene = true
-render_priority = 1
-transparency = 1
-albedo_texture = SubResource("ViewportTexture_gc1lk")
-
-[sub_resource type="QuadMesh" id="QuadMesh_gc1lk"]
-size = Vector2(3.2, 0.8)
-
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
-ACCELERATION = 80.0
 MOVEMENTS_TO_ESCAPE_GRAB = 5
 STUN_TIME_AFTER_ESCAPE = 0.7
 aiControllerScript = ExtResource("17_e2qqq")
@@ -256,7 +257,7 @@ customMovement = true
 grabSpeedFactor = 0.05
 FRICTION = 80.0
 
-[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon", "movingNode")]
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0209794, 0)
@@ -271,6 +272,7 @@ sprite_frames = ExtResource("3_3t8bt")
 animation = &"Pushed"
 script = ExtResource("8_au5v3")
 mon = NodePath("..")
+movingNode = NodePath("../Moving")
 crownTexture = ExtResource("19_0df27")
 jokerHatTexture = ExtResource("14_wqmb4")
 shakeMagnitude = 0.15
@@ -353,9 +355,10 @@ debug_shape_thickness = 5
 [node name="YAxisShake" type="Node3D" parent="AnimatedSprite/Animations3D"]
 script = ExtResource("23_ibisb")
 
-[node name="RunningSkew" type="Node3D" parent="AnimatedSprite/Animations3D"]
+[node name="RunningSkew" type="Node3D" parent="AnimatedSprite/Animations3D" node_paths=PackedStringArray("movementNode")]
 script = ExtResource("24_q1msd")
 skewLength = 0.15
+movementNode = NodePath("../../../Moving")
 
 [node name="JumpingScale" type="Node3D" parent="AnimatedSprite/Animations3D"]
 script = ExtResource("25_8bylv")
@@ -414,6 +417,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336886, -0.101809, 0)
 [node name="RestL" type="Marker3D" parent="Grabbing/Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
 
+[node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
+visible = false
+material_override = SubResource("StandardMaterial3D_3x3ft")
+mesh = SubResource("QuadMesh_gc1lk")
+script = ExtResource("32_uuku0")
+progressBar = NodePath("ArrowViewport/ProgressBar")
+progressBarBorder = NodePath("ArrowViewport/ProgressBar/Border")
+
+[node name="ArrowViewport" type="SubViewport" parent="PushArrow"]
+transparent_bg = true
+size = Vector2i(400, 100)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="PushArrow/ArrowViewport"]
+offset_left = 250.0
+offset_right = 350.0
+offset_bottom = 100.0
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = ExtResource("32_gc1lk")
+
+[node name="Border" type="TextureRect" parent="PushArrow/ArrowViewport/ProgressBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("34_1m0wj")
+
+[node name="Jumping" type="Node3D" parent="."]
+script = ExtResource("31_nojgr")
+verticalSpeedCurve = SubResource("Curve_cdii0")
+horizontalSpeedCurve = SubResource("Curve_58d0a")
+maxVerticalSpeed = 3.5
+
+[node name="FloorArea" type="Area3D" parent="Jumping"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.291262, 0.00160217)
+shape = SubResource("BoxShape3D_8g2ci")
+
+[node name="JumpParticles" type="GPUParticles3D" parent="Jumping"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0110669, -0.162909, 0)
+material_override = SubResource("StandardMaterial3D_cdii0")
+emitting = false
+amount = 4
+lifetime = 0.84
+interp_to_end = 1.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cdii0")
+draw_pass_1 = SubResource("BoxMesh_u86hc")
+
+[node name="JumpTimer" type="Timer" parent="Jumping"]
+wait_time = 0.5
+one_shot = true
+
+[node name="JumpCooldown" type="Timer" parent="Jumping"]
+wait_time = 0.1
+one_shot = true
+
+[node name="DirectionPickGraceTime" type="Timer" parent="Jumping"]
+wait_time = 0.1
+one_shot = true
+
+[node name="TimeToResumeGrabbing" type="Timer" parent="Jumping"]
+wait_time = 0.1
+
+[node name="Moving" type="Node3D" parent="." node_paths=PackedStringArray("mon")]
+script = ExtResource("40_58d0a")
+mon = NodePath("..")
+ACCELERATION = 80.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0423204, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
@@ -471,75 +548,6 @@ lifetime = 1.54
 explosiveness = 0.06
 process_material = SubResource("ParticleProcessMaterial_l5w31")
 draw_pass_1 = SubResource("CylinderMesh_dvb8s")
-
-[node name="Jumping" type="Node3D" parent="."]
-script = ExtResource("31_nojgr")
-verticalSpeedCurve = SubResource("Curve_cdii0")
-horizontalSpeedCurve = SubResource("Curve_58d0a")
-maxVerticalSpeed = 3.5
-
-[node name="FloorArea" type="Area3D" parent="Jumping"]
-collision_layer = 7
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Jumping/FloorArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00621033, -0.291262, 0.00160217)
-shape = SubResource("BoxShape3D_8g2ci")
-
-[node name="JumpParticles" type="GPUParticles3D" parent="Jumping"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0110669, -0.162909, 0)
-material_override = SubResource("StandardMaterial3D_cdii0")
-emitting = false
-amount = 4
-lifetime = 0.84
-interp_to_end = 1.0
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_cdii0")
-draw_pass_1 = SubResource("BoxMesh_u86hc")
-
-[node name="JumpTimer" type="Timer" parent="Jumping"]
-wait_time = 0.5
-one_shot = true
-
-[node name="JumpCooldown" type="Timer" parent="Jumping"]
-wait_time = 0.1
-one_shot = true
-
-[node name="DirectionPickGraceTime" type="Timer" parent="Jumping"]
-wait_time = 0.1
-one_shot = true
-
-[node name="TimeToResumeGrabbing" type="Timer" parent="Jumping"]
-wait_time = 0.1
-
-[node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
-visible = false
-material_override = SubResource("StandardMaterial3D_3x3ft")
-mesh = SubResource("QuadMesh_gc1lk")
-script = ExtResource("32_uuku0")
-progressBar = NodePath("ArrowViewport/ProgressBar")
-progressBarBorder = NodePath("ArrowViewport/ProgressBar/Border")
-
-[node name="ArrowViewport" type="SubViewport" parent="PushArrow"]
-transparent_bg = true
-size = Vector2i(400, 100)
-
-[node name="ProgressBar" type="TextureProgressBar" parent="PushArrow/ArrowViewport"]
-offset_left = 250.0
-offset_right = 350.0
-offset_bottom = 100.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-texture_progress = ExtResource("32_gc1lk")
-
-[node name="Border" type="TextureRect" parent="PushArrow/ArrowViewport/ProgressBar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("34_1m0wj")
 
 [node name="StunTimeout" type="Timer" parent="."]
 one_shot = true

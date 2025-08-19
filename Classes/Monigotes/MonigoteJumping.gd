@@ -21,6 +21,9 @@ var jumpProgression : float
 func _ready():
 	$JumpParticles.material_override.albedo_color = mon.player.color
 
+func currentVelocitySpeed() -> Vector2:
+	return maxHorizontalSpeed * jumpDirection * horizontalSpeedCurve.sample(jumpProgression)
+
 func _process(_delta):
 	if $JumpTimer.is_stopped():
 		return
@@ -31,7 +34,7 @@ func _process(_delta):
 	jumpProgression = 1 - ($JumpTimer.time_left/$JumpTimer.wait_time)
 	
 	mon.velocity.y = maxVerticalSpeed * verticalSpeedCurve.sample(jumpProgression)
-	mon.applyVelocity(maxHorizontalSpeed * jumpDirection * horizontalSpeedCurve.sample(jumpProgression))
+	mon.applyFrameVelocity(currentVelocitySpeed())
 	
 	if jumpProgression >= minJumpProgression and not Input.is_action_pressed(mon.actions["jump"]):
 		endJump()

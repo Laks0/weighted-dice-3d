@@ -5,7 +5,6 @@ extends GPUParticles3D
 func _physics_process(_delta):
 	if mon.velocity.is_zero_approx():
 		emitting = false
-		mon.unclampedVelocity = Vector2.ZERO
 
 func _on_monigote_pushed(_dir, factor : float, _pusher):
 	# Solo las genera a partir de factor .5

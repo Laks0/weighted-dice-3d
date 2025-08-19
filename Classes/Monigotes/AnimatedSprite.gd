@@ -5,6 +5,7 @@ signal betSignalStatusChanged(isVisible : bool)
 var onArena := false
 
 @export var mon : Monigote
+@export var movingNode : MonigoteMovement
 
 @export var crownTexture : Texture
 @export var jokerHatTexture : Texture
@@ -98,8 +99,8 @@ func _process(_delta):
 		play("Idle")
 		return
 
-	if not mon._movementDir.is_zero_approx():
-		match vecTo4Dir(mon._movementDir):
+	if not movingNode.getMovementDir().is_zero_approx():
+		match vecTo4Dir(movingNode.getMovementDir()):
 			Cardinal.E: play("RunningRight")
 			Cardinal.W: play("RunningLeft")
 			Cardinal.S: play("RunningDown")
@@ -107,9 +108,9 @@ func _process(_delta):
 	else:
 		play("Idle")
 
-	if not mon.unclampedVelocity.is_zero_approx():
+	if not movingNode.getUnclampedVelocity().is_zero_approx():
 		play("Pushed")
-		frame = vecTo8Dir(mon.unclampedVelocity)
+		frame = vecTo8Dir(movingNode.getUnclampedVelocity())
 	
 	if mon.grabbing:
 		play("Grabbing")

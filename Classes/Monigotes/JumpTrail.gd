@@ -13,7 +13,7 @@ func _ready():
 
 func _process(delta):
 	if not Engine.is_editor_hint():
-		var vel2d : Vector2 = mon.unclampedVelocity.normalized()
+		var vel2d := Vector2(mon.velocity.x, mon.velocity.z).normalized()
 		var angleToVertical = acos(vel2d.dot(Vector2.UP))
 		if (angleToVertical >= 0 and angleToVertical < PI/4) or \
 			(angleToVertical > .75*PI and angleToVertical <= PI): 
