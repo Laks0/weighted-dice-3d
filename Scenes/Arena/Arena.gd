@@ -88,6 +88,7 @@ func startArena():
 	
 	die = dieScene.instantiate()
 	die.position.y = 1
+	die.position = Vector3(0, 1, 0)
 	add_child(die)
 	
 	die.prepareArrow = $PrepareArrow

@@ -43,10 +43,6 @@ func enableCollision():
 	$Area3D.monitoring = true
 	$CollisionShape3D.disabled = false
 
-func _ready():
-	disableCollision()
-	visible = false
-
 func _process(_delta):
 	if prepareArrow.visible:
 		prepareArrow.position = position

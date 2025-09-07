@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cisd5j6j4ibdp"]
+
+[ext_resource type="Script" uid="uid://wpnke37j2fbm" path="res://Classes/Die/DefaultDieBehaviour/DieBehaviour.gd" id="1_x73j1"]
+
+[node name="RollingDieBehaviour" type="Node3D"]
+script = ExtResource("1_x73j1")
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
