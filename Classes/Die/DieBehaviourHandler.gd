@@ -5,7 +5,7 @@ extends Node3D
 var currentBehaviour : DieBehaviour
 
 func _ready():
-	startRandomDefaultBehaviour()
+	$RollingDieBehaviour.start(get_parent())
 
 func startRandomDefaultBehaviour():
 	var scene : PackedScene = defaultBehaviour.pick_random()

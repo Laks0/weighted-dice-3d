@@ -1,7 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cisd5j6j4ibdp"]
+[gd_scene load_steps=9 format=3 uid="uid://cisd5j6j4ibdp"]
 
-[ext_resource type="Script" uid="uid://wpnke37j2fbm" path="res://Classes/Die/DefaultDieBehaviour/DieBehaviour.gd" id="1_x73j1"]
+[ext_resource type="Script" uid="uid://gtmq3mnprkcj" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingDieBehaviour.gd" id="1_7iehs"]
+[ext_resource type="Script" uid="uid://dbopcmm5nppdr" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingAnimation.gd" id="2_cabyf"]
+[ext_resource type="Script" uid="uid://cyq80mjyps22k" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/WaitForFloor.gd" id="3_ek7s8"]
+[ext_resource type="Script" uid="uid://bd5366vqa07ui" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/CubileteAnimation.gd" id="4_ek7s8"]
+[ext_resource type="PackedScene" uid="uid://dp1wq6f6qt5up" path="res://Classes/Die/Cubilete/cubilete.tscn" id="5_1dpbd"]
+[ext_resource type="Script" uid="uid://cs8oqrrrkiae1" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/Stomp.gd" id="6_cabyf"]
+[ext_resource type="Script" uid="uid://c7ivgv6dfmiv1" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/Wait.gd" id="7_ktrwv"]
+[ext_resource type="Script" uid="uid://cxfw12mmgfmfb" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/Rolled6.gd" id="8_7iehs"]
 
 [node name="RollingDieBehaviour" type="Node3D"]
-script = ExtResource("1_x73j1")
+script = ExtResource("1_7iehs")
 metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="RollingAnimation" type="Node3D" parent="."]
+script = ExtResource("2_cabyf")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="WaitForFloor" type="Node3D" parent="RollingAnimation"]
+script = ExtResource("3_ek7s8")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="CubileteAnimation" type="Node3D" parent="RollingAnimation"]
+script = ExtResource("4_ek7s8")
+cubileteScene = ExtResource("5_1dpbd")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Stomp" type="Node3D" parent="RollingAnimation"]
+script = ExtResource("6_cabyf")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Wait" type="Node3D" parent="RollingAnimation"]
+script = ExtResource("7_ktrwv")
+waitTimeBeforeEnd = 1.4
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Rolled6" type="Node3D" parent="RollingAnimation"]
+script = ExtResource("8_7iehs")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[connection signal="finished" from="RollingAnimation" to="." method="emit_signal" binds= ["finished"]]

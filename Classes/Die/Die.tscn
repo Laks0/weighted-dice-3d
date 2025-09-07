@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=59 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
 [ext_resource type="Script" uid="uid://v0mrx3trqmhq" path="res://addons/xsm/state.gd" id="3_67t0h"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://bduynf84rdyei" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
 [ext_resource type="AudioStream" uid="uid://dvm4jl44umrm8" path="res://Assets/SFX/Dado/dado 0b.wav" id="20_5gvsa"]
 [ext_resource type="PackedScene" uid="uid://cpk2ybry8qadp" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsDieBehaviour.tscn" id="20_bo1wm"]
+[ext_resource type="PackedScene" uid="uid://cisd5j6j4ibdp" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingDieBehaviour.tscn" id="21_orjyj"]
 [ext_resource type="AudioStream" uid="uid://cnu46v3hx7wh1" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
 [ext_resource type="AudioStream" uid="uid://dsgodc7ab7sjk" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
 [ext_resource type="AudioStream" uid="uid://fdgbmkmt63ki" path="res://Assets/SFX/Dado/dado 2a.wav" id="23_65i7b"]
@@ -356,6 +357,8 @@ omni_range = 1.5141
 [node name="BehaviourHandler" type="Node3D" parent="."]
 script = ExtResource("19_25xo5")
 defaultBehaviour = Array[PackedScene]([ExtResource("20_bo1wm")])
+
+[node name="RollingDieBehaviour" parent="BehaviourHandler" instance=ExtResource("21_orjyj")]
 
 [node name="SoundManager" type="Node3D" parent="."]
 script = ExtResource("19_dqn45")
