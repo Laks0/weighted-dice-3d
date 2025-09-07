@@ -35,6 +35,8 @@ var drunk := false
 
 @export var movement : MonigoteMovement
 
+@onready var jumping : MonigoteJumping = $Jumping
+
 func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
 	

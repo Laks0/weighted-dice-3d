@@ -12,10 +12,6 @@ func _process(_delta):
 	if not BetHandler.betOngoing:
 		return
 	return
-	@warning_ignore("unreachable_code")
-	if not (BetHandler.currentBet is FirstToDieBet or BetHandler.currentBet is SecondToDieBet):
-		var firstCandidate = BetHandler.getCandidatesOnFirst()[0]
-		%ColorRect.color = BetHandler.getCandidateColor(firstCandidate)
 
 func betChanged():
 	$ReferenceRect/BetName.text = BetHandler.getBetName()
