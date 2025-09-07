@@ -177,7 +177,6 @@ point_count = 3
 size = Vector3(0.29306, 0.049835, 0.236786)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdii0"]
-resource_local_to_scene = true
 albedo_color = Color(0, 0.48, 0.152, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdii0"]

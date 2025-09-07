@@ -19,9 +19,6 @@ var jumpDirection : Vector2
 
 var jumpProgression : float
 
-func _ready():
-	$JumpParticles.material_override.albedo_color = mon.player.color
-
 func currentVelocitySpeed() -> Vector2:
 	return maxHorizontalSpeed * jumpDirection * horizontalSpeedCurve.sample(jumpProgression)
 
