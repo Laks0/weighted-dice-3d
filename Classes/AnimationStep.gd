@@ -18,6 +18,8 @@ func breakAnimation():
 func end():
 	await _endStep()
 	if not _isThereNextStep():
+		if not get_parent() is AnimationStep:
+			return
 		get_parent().animationFinished()
 	else:
 		_getNextStep().start()

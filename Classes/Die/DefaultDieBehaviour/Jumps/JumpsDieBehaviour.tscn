@@ -1,7 +1,79 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpk2ybry8qadp"]
+[gd_scene load_steps=12 format=3 uid="uid://cpk2ybry8qadp"]
 
 [ext_resource type="Script" uid="uid://xnf4bfgin1j6" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsDieBehaviour.gd" id="1_pnied"]
+[ext_resource type="Script" uid="uid://cdygpnjyges8x" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsAnimation.gd" id="2_13t55"]
+[ext_resource type="Script" uid="uid://k1sewwy5o5xr" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Preparation.gd" id="3_ep4f8"]
+[ext_resource type="Script" uid="uid://50pohyi3dtns" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Targeting.gd" id="4_sb34c"]
+[ext_resource type="Script" uid="uid://b0o5dd4c7ifrd" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Shoot.gd" id="5_sb34c"]
+[ext_resource type="Shader" uid="uid://byh2yte6ywsju" path="res://Classes/Die/DefaultDieBehaviour/Jumps/TargetLineShader.gdshader" id="6_cakj5"]
+[ext_resource type="Script" uid="uid://duyhslovnj6a5" path="res://Classes/Die/DefaultDieBehaviour/Jumps/LinePointer.gd" id="7_yg35l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb34c"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_sb34c"]
+material = SubResource("StandardMaterial3D_sb34c")
+inner_radius = 0.197
+outer_radius = 0.278
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cakj5"]
+render_priority = 0
+shader = ExtResource("6_cakj5")
+shader_parameter/size = 1.0
+shader_parameter/speed = 8.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/segment_length = 40.0
+shader_parameter/spacing = 0.045
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yg35l"]
+material = SubResource("ShaderMaterial_cakj5")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 1.0
+radial_segments = 8
+rings = 1
+cap_top = false
+cap_bottom = false
 
 [node name="JumpsDieBehaviour" type="Node3D"]
 script = ExtResource("1_pnied")
 metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="JumpsAnimation" type="Node3D" parent="."]
+script = ExtResource("2_13t55")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Preparation" type="Node3D" parent="JumpsAnimation"]
+script = ExtResource("3_ep4f8")
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Targeting" type="Node3D" parent="JumpsAnimation" node_paths=PackedStringArray("pointer", "linePointer")]
+script = ExtResource("4_sb34c")
+pointer = NodePath("../../Pointer")
+linePointer = NodePath("../../LinePointer")
+waitTimeBeforeEnd = 1.0
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="SwitchTimer" type="Timer" parent="JumpsAnimation/Targeting"]
+one_shot = true
+
+[node name="Shoot" type="Node3D" parent="JumpsAnimation" node_paths=PackedStringArray("pointer", "linePointer")]
+script = ExtResource("5_sb34c")
+pointer = NodePath("../../Pointer")
+linePointer = NodePath("../../LinePointer")
+waitTimeBeforeEnd = 0.5
+metadata/_custom_type_script = "uid://pisn2tkx8kfu"
+
+[node name="Pointer" type="MeshInstance3D" parent="."]
+top_level = true
+visible = false
+cast_shadow = 0
+mesh = SubResource("TorusMesh_sb34c")
+
+[node name="LinePointer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.268346, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_yg35l")
+script = ExtResource("7_yg35l")
+
+[connection signal="finished" from="JumpsAnimation" to="." method="emit_signal" binds= ["finished"]]
+[connection signal="timeout" from="JumpsAnimation/Targeting/SwitchTimer" to="JumpsAnimation/Targeting" method="pickNewMonigote"]
