@@ -1,9 +1,11 @@
 extends AnimationStep
 
-@onready var die : Die = get_parent().die
+var die : Die
 var targetPosition : Vector3
-
 @export var attacks : int = 3
+
+func _ready():
+	die = get_parent().die
 
 func animationFinished():
 	attacks -= 1

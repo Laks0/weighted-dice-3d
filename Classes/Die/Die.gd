@@ -24,6 +24,8 @@ var prepareArrow : AnimatedSprite3D
 
 @export var numberLightPosition : float = 2
 
+var hitting := false
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()
@@ -65,7 +67,7 @@ func _getClosestMonigoteDirection() -> Vector2:
 	return Vector2(dir3d.x, dir3d.z)
 
 func _on_area_3d_body_entered(body):
-	if linear_velocity.length() < minMovementToHurt:
+	if linear_velocity.length() < minMovementToHurt and not hitting:
 		return
 	
 	if body is Monigote:
