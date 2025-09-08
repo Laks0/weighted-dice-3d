@@ -48,6 +48,7 @@ metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Targeting" type="Node3D" parent="JumpsAnimation" node_paths=PackedStringArray("pointer", "linePointer")]
 script = ExtResource("4_sb34c")
+time = 0.7
 pointer = NodePath("../../Pointer")
 linePointer = NodePath("../../LinePointer")
 waitTimeBeforeEnd = 1.0
@@ -56,11 +57,15 @@ metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 [node name="SwitchTimer" type="Timer" parent="JumpsAnimation/Targeting"]
 one_shot = true
 
+[node name="TargetingTimer" type="Timer" parent="JumpsAnimation/Targeting"]
+wait_time = 3.0
+one_shot = true
+
 [node name="Shoot" type="Node3D" parent="JumpsAnimation" node_paths=PackedStringArray("pointer", "linePointer")]
 script = ExtResource("5_sb34c")
 pointer = NodePath("../../Pointer")
 linePointer = NodePath("../../LinePointer")
-waitTimeBeforeEnd = 0.5
+waitTimeBeforeEnd = 1.0
 metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Pointer" type="MeshInstance3D" parent="."]

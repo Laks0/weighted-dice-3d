@@ -10,5 +10,5 @@ func start():
 	if currentPosition.distance_squared_to(preparationPosition) > currentPosition.distance_squared_to(altPosition):
 		preparationPosition = altPosition
 	
-	positionTween.tween_property(animationRoot().die, "position", preparationPosition, .6)
+	positionTween.tween_property(animationRoot().die, "position", preparationPosition, .3)
 	positionTween.finished.connect(end)

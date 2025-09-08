@@ -9,3 +9,9 @@ func point(from : Vector3, to : Vector3):
 	global_position = (to+from)*.5
 	look_at(to)
 	rotate_x(PI/2)
+
+func setSpeed(speed : float):
+	mesh.material.set_shader_parameter("speed", speed)
+
+func freezeAnimation():
+	setSpeed(0)
