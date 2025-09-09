@@ -5,6 +5,9 @@ var effectStarted : bool
 
 @onready var die : Die = animationRoot().die
 
+@export var shakeMagnitude := .6
+@export var shakeTime := .3
+
 func start() :
 	die = animationRoot().die
 	result = animationRoot().result
@@ -39,6 +42,11 @@ func _onActiveProcess(_delta):
 	lightTween.tween_property(light, "light_energy", 0, waitTimeBeforeEnd/2)
 	
 	die.emit_signal("rolled", result)
+
+	get_viewport().get_camera_3d().startShake(shakeMagnitude,shakeTime)
+	for i in Input.get_connected_joypads():
+		Input.start_joy_vibration(i, .6, .6, shakeTime)
+	
 	
 	if result == 5:
 		die.get_parent().environment.lightsOff()

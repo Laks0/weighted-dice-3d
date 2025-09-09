@@ -21,9 +21,6 @@ var die : Die
 const WIDTH  : float = 11
 const HEIGHT : float = 6.4
 
-# Active effect va de 0 a 5
-var activeEffect   : int = -1
-
 var monigotes : Array[Monigote]
 
 var gameRunning := false
@@ -42,10 +39,10 @@ func _process(delta):
 	if stageHandler.currentStage != StageHandler.Stages.ARENA:
 		return
 	
-	if activeEffect != -1:
-		effects[activeEffect].update(delta)
-	
 	BetHandler.arenaUpdate(delta)
+
+func currentStage() -> StageHandler.Stages:
+	return stageHandler.currentStage
 
 func recieveMonigotes(arr : Array[Monigote]) -> void:
 	monigotes = arr
@@ -92,11 +89,11 @@ func startArena():
 	add_child(die)
 	
 	die.prepareArrow = $PrepareArrow
-	die.rolled.connect(startEffect)
+	die.rolled.connect(dieRolled)
+	die.rolled.connect($Effects.startEffect)
 	die.onCubilete.connect(func():
 		multipleResCamera.goToCamera($CubileteCamera)
-		if activeEffect != -1:
-			effects[activeEffect].end())
+		$Effects.stopActiveEffect())
 	die.dropped.connect(func():
 		multipleResCamera.goToCamera($RolledNumberCamera)
 		await get_tree().create_timer(timeBeforeStartingEffect).timeout
@@ -119,8 +116,7 @@ func endGame(winnerMon : Monigote):
 	gameEnded.emit()
 	BetHandler.endGame()
 	
-	effects[activeEffect].end()
-	activeEffect = -1
+	$Effects.stopActiveEffect()
 	
 	gameRunning = false
 	
@@ -138,18 +134,12 @@ func endGame(winnerMon : Monigote):
 	
 	stageFinished.emit(winnerId)
 
-func startEffect(n : int):
-	multipleResCamera.startShake(dieScreenShakeMagnitude,dieScreenShakeTime)
-	for i in Input.get_connected_joypads():
-		Input.start_joy_vibration(i, .6, .6, dieScreenShakeTime)
-	
-	activeEffect = n
-	Narrator.announceEffect(effects[activeEffect].effectName)
+func dieRolled(n : int):
 	# Animación del nombre del efecto
 	$CurrentEffectName.visible = true
 	$CurrentEffectName.position = die.position + Vector3.BACK
 	$CurrentEffectName.position.y = 1.4
-	$CurrentEffectName.text = str(activeEffect + 1) + ". " + effects[activeEffect].effectName
+	$CurrentEffectName.text = str(n + 1) + ". " + $Effects.getEffect(n).effectName
 	
 	var animationTime = .5
 	var waitTime = 1
@@ -160,11 +150,6 @@ func startEffect(n : int):
 	nameSizeTween.tween_property($CurrentEffectName, "scale", Vector3.ZERO, animationTime)
 	
 	nameSizeTween.connect("finished", func(): $CurrentEffectName.visible = false)
-	
-	await get_tree().create_timer(timeBeforeStartingEffect).timeout
-	effects[activeEffect].start()
-	
-	emit_signal("effectStarted", effects[activeEffect])
 
 # Esta función queda Legacy pero sigue teniendo sentido como un getter
 func getLivingMonigotes() -> Array[Monigote]:
