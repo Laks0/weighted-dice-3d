@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
-[ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DefaultDieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
+[ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
 [ext_resource type="AudioStream" uid="uid://b4ilyinrb6dqu" path="res://Classes/Die/SFX/sfx_dicestomp.wav" id="15_w3cel"]

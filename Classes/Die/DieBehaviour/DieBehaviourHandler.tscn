@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://peym0yulmxyv"]
 
 [ext_resource type="Script" uid="uid://dl3fn6fsho4j2" path="res://Classes/Die/DieBehaviourHandler.gd" id="1_h0ay2"]
-[ext_resource type="PackedScene" uid="uid://cisd5j6j4ibdp" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingDieBehaviour.tscn" id="2_3g520"]
-[ext_resource type="Script" uid="uid://b3qkgfvuyn5nw" path="res://Classes/Die/DefaultDieBehaviour/NoDice/NoDiceBehaviour.gd" id="3_7mn8k"]
-[ext_resource type="PackedScene" uid="uid://cpk2ybry8qadp" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsDieBehaviour.tscn" id="4_edatt"]
+[ext_resource type="PackedScene" uid="uid://cisd5j6j4ibdp" path="res://Classes/Die/DieBehaviour/RollingBehaviour/RollingDieBehaviour.tscn" id="2_3g520"]
+[ext_resource type="Script" uid="uid://b3qkgfvuyn5nw" path="res://Classes/Die/DieBehaviour/NoDice/NoDiceBehaviour.gd" id="3_7mn8k"]
+[ext_resource type="PackedScene" uid="uid://cpk2ybry8qadp" path="res://Classes/Die/DieBehaviour/Jumps/JumpsDieBehaviour.tscn" id="4_edatt"]
 
 [node name="BehaviourHandler" type="Node3D"]
 script = ExtResource("1_h0ay2")

@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cisd5j6j4ibdp"]
 
-[ext_resource type="Script" uid="uid://gtmq3mnprkcj" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingDieBehaviour.gd" id="1_7iehs"]
-[ext_resource type="Script" uid="uid://dbopcmm5nppdr" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingAnimation.gd" id="2_cabyf"]
-[ext_resource type="Script" uid="uid://cyq80mjyps22k" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/WaitForFloor.gd" id="3_ek7s8"]
-[ext_resource type="Script" uid="uid://bd5366vqa07ui" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/CubileteAnimation.gd" id="4_ek7s8"]
+[ext_resource type="Script" uid="uid://gtmq3mnprkcj" path="res://Classes/Die/DieBehaviour/RollingBehaviour/RollingDieBehaviour.gd" id="1_7iehs"]
+[ext_resource type="Script" uid="uid://dbopcmm5nppdr" path="res://Classes/Die/DieBehaviour/RollingBehaviour/RollingAnimation.gd" id="2_cabyf"]
+[ext_resource type="Script" uid="uid://cyq80mjyps22k" path="res://Classes/Die/DieBehaviour/RollingBehaviour/WaitForFloor.gd" id="3_ek7s8"]
+[ext_resource type="Script" uid="uid://bd5366vqa07ui" path="res://Classes/Die/DieBehaviour/RollingBehaviour/CubileteAnimation.gd" id="4_ek7s8"]
 [ext_resource type="PackedScene" uid="uid://dp1wq6f6qt5up" path="res://Classes/Die/Cubilete/cubilete.tscn" id="5_1dpbd"]
-[ext_resource type="Script" uid="uid://cs8oqrrrkiae1" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/Stomp.gd" id="6_cabyf"]
-[ext_resource type="Script" uid="uid://c7ivgv6dfmiv1" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/Wait.gd" id="7_ktrwv"]
+[ext_resource type="Script" uid="uid://cs8oqrrrkiae1" path="res://Classes/Die/DieBehaviour/RollingBehaviour/Stomp.gd" id="6_cabyf"]
+[ext_resource type="Script" uid="uid://c7ivgv6dfmiv1" path="res://Classes/Die/DieBehaviour/RollingBehaviour/Wait.gd" id="7_ktrwv"]
 
 [node name="RollingDieBehaviour" type="Node3D"]
 script = ExtResource("1_7iehs")

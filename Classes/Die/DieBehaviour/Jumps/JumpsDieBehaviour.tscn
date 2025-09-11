@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://cpk2ybry8qadp"]
 
-[ext_resource type="Script" uid="uid://xnf4bfgin1j6" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsDieBehaviour.gd" id="1_pnied"]
-[ext_resource type="Script" uid="uid://cdygpnjyges8x" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsAnimation.gd" id="2_13t55"]
-[ext_resource type="Script" uid="uid://k1sewwy5o5xr" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Preparation.gd" id="3_ep4f8"]
-[ext_resource type="Script" uid="uid://50pohyi3dtns" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Targeting.gd" id="4_sb34c"]
-[ext_resource type="Script" uid="uid://b0o5dd4c7ifrd" path="res://Classes/Die/DefaultDieBehaviour/Jumps/Shoot.gd" id="5_sb34c"]
-[ext_resource type="Shader" uid="uid://byh2yte6ywsju" path="res://Classes/Die/DefaultDieBehaviour/Jumps/TargetLineShader.gdshader" id="6_cakj5"]
-[ext_resource type="Script" uid="uid://duyhslovnj6a5" path="res://Classes/Die/DefaultDieBehaviour/Jumps/LinePointer.gd" id="7_yg35l"]
+[ext_resource type="Script" uid="uid://xnf4bfgin1j6" path="res://Classes/Die/DieBehaviour/Jumps/JumpsDieBehaviour.gd" id="1_pnied"]
+[ext_resource type="Script" uid="uid://cdygpnjyges8x" path="res://Classes/Die/DieBehaviour/Jumps/JumpsAnimation.gd" id="2_13t55"]
+[ext_resource type="Script" uid="uid://k1sewwy5o5xr" path="res://Classes/Die/DieBehaviour/Jumps/Preparation.gd" id="3_ep4f8"]
+[ext_resource type="Script" uid="uid://50pohyi3dtns" path="res://Classes/Die/DieBehaviour/Jumps/Targeting.gd" id="4_sb34c"]
+[ext_resource type="Script" uid="uid://b0o5dd4c7ifrd" path="res://Classes/Die/DieBehaviour/Jumps/Shoot.gd" id="5_sb34c"]
+[ext_resource type="Shader" uid="uid://byh2yte6ywsju" path="res://Classes/Die/DieBehaviour/Jumps/TargetLineShader.gdshader" id="6_cakj5"]
+[ext_resource type="Script" uid="uid://duyhslovnj6a5" path="res://Classes/Die/DieBehaviour/Jumps/LinePointer.gd" id="7_yg35l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb34c"]
 
