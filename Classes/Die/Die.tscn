@@ -1,31 +1,14 @@
-[gd_scene load_steps=60 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=43 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
-[ext_resource type="Script" uid="uid://v0mrx3trqmhq" path="res://addons/xsm/state.gd" id="3_67t0h"]
-[ext_resource type="Script" uid="uid://cqgsf56ye5345" path="res://Classes/Die/StateMachine.gd" id="3_orssd"]
-[ext_resource type="Script" uid="uid://75wre1qo0uug" path="res://addons/xsm/state_rand.gd" id="4_m8stm"]
-[ext_resource type="Script" uid="uid://dweqcj21guits" path="res://Classes/Die/StateMachine/Roll/CubileteAnimation.gd" id="5_1r8vo"]
-[ext_resource type="Script" uid="uid://dr3o6efiskw3r" path="res://Classes/Die/StateMachine/Bursts/BurstsAttack.gd" id="5_qe015"]
-[ext_resource type="Script" uid="uid://tvcjghte5crk" path="res://Classes/Die/StateMachine/Roll/Stomp.gd" id="6_krck5"]
-[ext_resource type="PackedScene" uid="uid://dp1wq6f6qt5up" path="res://Classes/Die/Cubilete/cubilete.tscn" id="6_pxf1m"]
-[ext_resource type="Script" uid="uid://bd2ag5pn85vj4" path="res://Classes/Die/StateMachine/Bursts/Prepare.gd" id="7_3cl3o"]
-[ext_resource type="Script" uid="uid://b87fept4v5a3v" path="res://Classes/Die/StateMachine/Roll/Wait.gd" id="7_6g04j"]
-[ext_resource type="Script" uid="uid://caok40ui3fa1b" path="res://Classes/Die/WaitForFloor.gd" id="7_x8flh"]
-[ext_resource type="Script" uid="uid://onw2eqabghno" path="res://Classes/Die/StateMachine/Jumps/JumpsAttack.gd" id="8_81dmh"]
-[ext_resource type="Script" uid="uid://b1to3n0mpd1t8" path="res://Classes/Die/StateMachine/Bursts/Burst.gd" id="8_t2h52"]
-[ext_resource type="Script" uid="uid://ddapxmprw4u3a" path="res://Classes/Die/StateMachine/PickRandom.gd" id="9_btr01"]
-[ext_resource type="Script" uid="uid://d1lob4lskofmj" path="res://Classes/Die/StateMachine/Roll/Rolled6.gd" id="9_o2hbn"]
+[ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DefaultDieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
 [ext_resource type="AudioStream" uid="uid://b4ilyinrb6dqu" path="res://Classes/Die/SFX/sfx_dicestomp.wav" id="15_w3cel"]
 [ext_resource type="AudioStream" uid="uid://cebdr5tnikcfs" path="res://Assets/SFX/Dado/dado 0a.wav" id="19_5t2lp"]
-[ext_resource type="Script" uid="uid://dl3fn6fsho4j2" path="res://Classes/Die/DieBehaviourHandler.gd" id="19_25xo5"]
 [ext_resource type="Script" uid="uid://bduynf84rdyei" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
 [ext_resource type="AudioStream" uid="uid://dvm4jl44umrm8" path="res://Assets/SFX/Dado/dado 0b.wav" id="20_5gvsa"]
-[ext_resource type="PackedScene" uid="uid://cpk2ybry8qadp" path="res://Classes/Die/DefaultDieBehaviour/Jumps/JumpsDieBehaviour.tscn" id="20_bo1wm"]
-[ext_resource type="PackedScene" uid="uid://cisd5j6j4ibdp" path="res://Classes/Die/DefaultDieBehaviour/RollingBehaviour/RollingDieBehaviour.tscn" id="21_orjyj"]
 [ext_resource type="AudioStream" uid="uid://cnu46v3hx7wh1" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
-[ext_resource type="Script" uid="uid://b3qkgfvuyn5nw" path="res://Classes/Die/DefaultDieBehaviour/NoDice/NoDiceBehaviour.gd" id="22_7a64f"]
 [ext_resource type="AudioStream" uid="uid://dsgodc7ab7sjk" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
 [ext_resource type="AudioStream" uid="uid://fdgbmkmt63ki" path="res://Assets/SFX/Dado/dado 2a.wav" id="23_65i7b"]
 [ext_resource type="AudioStream" uid="uid://dk03hap748og0" path="res://Assets/SFX/Dado/dado 2b.wav" id="24_drw72"]
@@ -152,173 +135,6 @@ script = ExtResource("1_qjoqg")
 rotations = Array[Vector3]([Vector3(90, 0, 0), Vector3(0, 90, 90), Vector3(0, 90, 180), Vector3(0, 0, 0), Vector3(0, 0, -90), Vector3(-90, 0, 0)])
 numberLightPosition = 30.0
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_orssd")
-history_size = 0
-disabled = true
-debug_mode = false
-target_path = NodePath("..")
-timed = false
-next_state = NodePath("")
-
-[node name="Roll" type="Node" parent="StateMachine"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath(".")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../CubileteAnimation")
-
-[node name="CubileteAnimation" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("5_1r8vo")
-cubileteScene = ExtResource("6_pxf1m")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Stomp")
-
-[node name="Stomp" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("6_krck5")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
-[node name="Wait" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("7_6g04j")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Rolled6")
-
-[node name="Rolled6" type="Node" parent="StateMachine/Roll"]
-script = ExtResource("9_o2hbn")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../CubileteAnimation")
-
-[node name="RandomAttack" type="Node" parent="StateMachine"]
-script = ExtResource("4_m8stm")
-randomized = true
-priorities = {
-"Bursts": 1,
-"Jumps": 1,
-"PickRandom": 1
-}
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath(".")
-
-[node name="PickRandom" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("9_btr01")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Bursts")
-
-[node name="Jumps" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 10.0
-on_timer_finished = 3
-next_state = NodePath("../../Roll")
-
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../Skip")
-
-[node name="Skip" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("8_81dmh")
-UP_FORCE = 60
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.2
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Jumps"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
-[node name="Bursts" type="Node" parent="StateMachine/RandomAttack"]
-script = ExtResource("5_qe015")
-loop_mode = 1
-exit_state = NodePath("")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../../Roll")
-
-[node name="Wait" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("3_67t0h")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 1.0
-on_timer_finished = 3
-next_state = NodePath("../Prepare")
-
-[node name="Prepare" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("7_3cl3o")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 1.0
-on_timer_finished = 0
-next_state = NodePath("../Burst")
-
-[node name="Burst" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("8_t2h52")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = true
-waiting_time = 0.5
-on_timer_finished = 3
-next_state = NodePath("../WaitForFloor")
-
-[node name="WaitForFloor" type="Node" parent="StateMachine/RandomAttack/Bursts"]
-script = ExtResource("7_x8flh")
-disabled = false
-debug_mode = false
-target_path = NodePath("")
-timed = false
-next_state = NodePath("../Wait")
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -355,18 +171,7 @@ light_energy = 0.0
 light_volumetric_fog_energy = 5.414
 omni_range = 1.5141
 
-[node name="BehaviourHandler" type="Node3D" parent="."]
-script = ExtResource("19_25xo5")
-
-[node name="RollingDieBehaviour" parent="BehaviourHandler" instance=ExtResource("21_orjyj")]
-
-[node name="NoDiceBehaviour" type="Node3D" parent="BehaviourHandler"]
-script = ExtResource("22_7a64f")
-metadata/_custom_type_script = "uid://wpnke37j2fbm"
-
-[node name="DefaultBehaviours" type="Node3D" parent="BehaviourHandler"]
-
-[node name="JumpsDieBehaviour" parent="BehaviourHandler/DefaultBehaviours" instance=ExtResource("20_bo1wm")]
+[node name="BehaviourHandler" parent="." instance=ExtResource("5_6qi4a")]
 
 [node name="SoundManager" type="Node3D" parent="."]
 script = ExtResource("19_dqn45")
@@ -401,4 +206,3 @@ stream = SubResource("AudioStreamRandomizer_1q82g")
 
 [connection signal="body_entered" from="." to="SoundManager" method="onDieHit"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="finished" from="BehaviourHandler/NoDiceBehaviour" to="BehaviourHandler" method="startRollAnimation"]
