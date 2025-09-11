@@ -1,7 +1,4 @@
 extends DieBehaviour
 
-func _ready():
+func _onStart():
 	$JumpsAnimation.start()
-
-func _onStop():
-	queue_free()

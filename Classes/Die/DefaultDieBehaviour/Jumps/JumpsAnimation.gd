@@ -2,10 +2,13 @@ extends AnimationStep
 
 var die : Die
 var targetPosition : Vector3
-@export var attacks : int = 3
+@export var maxAttacks : int = 3
 
-func _ready():
+var attacks : int
+
+func _onStart():
 	die = get_parent().die
+	attacks = maxAttacks
 
 func animationFinished():
 	attacks -= 1

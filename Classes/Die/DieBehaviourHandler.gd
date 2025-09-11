@@ -1,18 +1,16 @@
 extends Node3D
 
-@export var defaultBehaviour : Array[PackedScene]
-
 var currentBehaviour : DieBehaviour
 
 func _ready():
 	startRollAnimation()
+	
+	for behaviour : DieBehaviour in $DefaultBehaviours.get_children():
+		behaviour.finished.connect(startRollAnimation)
 
 func startRandomDefaultBehaviour():
-	var scene : PackedScene = defaultBehaviour.pick_random()
-	var behaviour : DieBehaviour = scene.instantiate()
+	var behaviour : DieBehaviour = $DefaultBehaviours.get_children().pick_random()
 	_startBehaviour(behaviour)
-	add_child(behaviour)
-	behaviour.finished.connect(startRollAnimation)
 
 func startRollAnimation():
 	_startBehaviour($RollingDieBehaviour)

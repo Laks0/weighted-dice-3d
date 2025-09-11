@@ -34,4 +34,4 @@ script = ExtResource("7_ktrwv")
 waitTimeBeforeEnd = 1.4
 metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
-[connection signal="finished" from="RollingAnimation" to="." method="emit_signal" binds= ["finished"]]
+[connection signal="finished" from="RollingAnimation" to="." method="stop"]

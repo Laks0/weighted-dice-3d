@@ -3,6 +3,7 @@ class_name Effect
 
 # Por defecto los comportamientos del dado ignoran esta señal. El comportamiento
 # de NO_DICE espera a esta señal para terminar
+@warning_ignore("unused_signal")
 signal effectFinished
 
 @export var effectName : String

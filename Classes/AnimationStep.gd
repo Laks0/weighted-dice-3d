@@ -8,8 +8,12 @@ signal finished
 var active := false
 
 func start():
-	_startChildAnimationIfExists()
 	active = true
+	_onStart()
+	_startChildAnimationIfExists()
+
+func _onStart():
+	pass
 
 func breakAnimation():
 	await _endStep()

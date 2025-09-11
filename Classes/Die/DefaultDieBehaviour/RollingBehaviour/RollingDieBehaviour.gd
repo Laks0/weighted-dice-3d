@@ -1,5 +1,4 @@
 extends DieBehaviour
 
-func start(parentDie : Die):
-	super(parentDie)
+func _onStart():
 	$RollingAnimation.start()

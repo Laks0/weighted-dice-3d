@@ -9,7 +9,7 @@ extends AnimationStep
 
 @onready var die : Die = animationRoot().die
 
-func start():
+func _onStart():
 	die = animationRoot().die
 	# Espera a que empiece la animación para desabilitar las colisiones
 	get_tree().create_timer(timeForMiddle - animationTime)\

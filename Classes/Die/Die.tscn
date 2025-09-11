@@ -357,13 +357,16 @@ omni_range = 1.5141
 
 [node name="BehaviourHandler" type="Node3D" parent="."]
 script = ExtResource("19_25xo5")
-defaultBehaviour = Array[PackedScene]([ExtResource("20_bo1wm")])
 
 [node name="RollingDieBehaviour" parent="BehaviourHandler" instance=ExtResource("21_orjyj")]
 
 [node name="NoDiceBehaviour" type="Node3D" parent="BehaviourHandler"]
 script = ExtResource("22_7a64f")
 metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="DefaultBehaviours" type="Node3D" parent="BehaviourHandler"]
+
+[node name="JumpsDieBehaviour" parent="BehaviourHandler/DefaultBehaviours" instance=ExtResource("20_bo1wm")]
 
 [node name="SoundManager" type="Node3D" parent="."]
 script = ExtResource("19_dqn45")

@@ -80,5 +80,5 @@ visible = false
 mesh = SubResource("CylinderMesh_yg35l")
 script = ExtResource("7_yg35l")
 
-[connection signal="finished" from="JumpsAnimation" to="." method="emit_signal" binds= ["finished"]]
+[connection signal="finished" from="JumpsAnimation" to="." method="stop"]
 [connection signal="timeout" from="JumpsAnimation/Targeting/SwitchTimer" to="JumpsAnimation/Targeting" method="pickNewMonigote"]
