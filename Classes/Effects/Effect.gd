@@ -1,13 +1,18 @@
 extends Node
 class_name Effect
 
+# Por defecto los comportamientos del dado ignoran esta señal. El comportamiento
+# de NO_DICE espera a esta señal para terminar
+signal effectFinished
+
 @export var effectName : String
 @export var cardTexture : Texture
 
-var arena : Arena
+enum DieBehaviourType {RANDOM_DEFAULT, NO_DICE, CUSTOM}
+@export var dieBehaviour : DieBehaviourType = DieBehaviourType.RANDOM_DEFAULT
+var customDieBehaviour : PackedScene
 
-## Solo para los efectos del 6
-@export var duration : float = 15
+var arena : Arena
 
 func create(_arena : Arena) -> void:
 	arena = _arena

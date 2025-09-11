@@ -100,6 +100,9 @@ func startArena():
 		multipleResCamera.goToCamera($ArenaCamera)
 	)
 	
+	$Effects.currentEffectFinished.connect(die._onCurrentEffectFinished)
+	$Effects.effectStarted.connect(die._onEffectStarted)
+	
 	gameStarted.emit()
 
 func endGame(winnerMon : Monigote):

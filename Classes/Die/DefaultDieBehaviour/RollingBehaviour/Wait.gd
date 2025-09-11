@@ -47,11 +47,4 @@ func _onActiveProcess(_delta):
 	for i in Input.get_connected_joypads():
 		Input.start_joy_vibration(i, .6, .6, shakeTime)
 	
-	
-	if result == 5:
-		die.get_parent().environment.lightsOff()
-	
-	if result != 5:
-		breakAnimation()
-	else:
-		end()
+	end()

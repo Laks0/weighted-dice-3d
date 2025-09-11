@@ -65,14 +65,14 @@ script = ExtResource("1_748c0")
 ball8Scene = ExtResource("2_j2s6x")
 effectName = "Corran la bola"
 cardTexture = ExtResource("4_5b0xi")
-duration = 20.0
+dieBehaviour = 1
 
 [node name="BallAnimationPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.34924, 2.17066, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ph6er")
+&"": SubResource("AnimationLibrary_ph6er")
 }
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]

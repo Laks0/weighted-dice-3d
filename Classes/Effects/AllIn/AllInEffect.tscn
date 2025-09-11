@@ -9,4 +9,4 @@ script = ExtResource("1_pbkt0")
 PortalScene = ExtResource("2_d8hlu")
 effectName = "ALL IN!"
 cardTexture = ExtResource("3_c0ovy")
-duration = 10.0
+dieBehaviour = 1

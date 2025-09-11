@@ -7,6 +7,8 @@ extends Node
 
 signal effectStarted(effect : Effect)
 
+signal currentEffectFinished
+
 var activeEffect : int
 
 func pickEffects():
@@ -28,11 +30,20 @@ func pickEffects():
 		pickedEffects[Debug.vars.onlyEffectNumber] = effectScene
 	
 	for i in range(6):
-		add_child(pickedEffects[i].instantiate())
+		var effect : Effect = pickedEffects[i].instantiate()
+		
+		effect.effectFinished.connect(func ():
+			if activeEffect == i:
+				currentEffectFinished.emit())
+		
+		add_child(effect)
 
 func startEffect(n : int):
 	activeEffect = n
 	Narrator.announceEffect(get_child(activeEffect).effectName)
+
+	if n == 5:
+		get_parent().environment.lightsOff()
 
 	await get_tree().create_timer(1).timeout
 
@@ -41,6 +52,7 @@ func startEffect(n : int):
 
 func stopActiveEffect():
 	get_child(activeEffect).end()
+	get_parent().environment.lightsOn()
 	activeEffect = -1
 
 func _process(delta):

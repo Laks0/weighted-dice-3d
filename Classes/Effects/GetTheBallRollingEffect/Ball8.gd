@@ -1,6 +1,8 @@
 extends StaticBody3D
 class_name Ball8
 
+signal finishedRolling
+
 @export var initialForce : float = 100
 ## Aceleración negativa en m/s²
 @export var friction : float = 10
@@ -54,6 +56,7 @@ func push():
 		
 		tween.tween_interval(timeBetweenBounces)
 	
+	tween.tween_callback(finishedRolling.emit)
 	tween.tween_callback(startPushAnimation)
 
 # MRUV

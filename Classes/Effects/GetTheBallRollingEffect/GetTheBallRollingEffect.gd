@@ -3,7 +3,11 @@ extends Effect
 @export var ball8Scene : PackedScene
 var ball8 : StaticBody3D
 
+@export var maxRolls := 4
+var _rolls = 0
+
 func start():
+	_rolls = 0
 	ball8 = ball8Scene.instantiate()
 	
 	ball8.set_physics_process(false)
@@ -19,6 +23,11 @@ func start():
 	$SpotLight3D.visible = true
 	$SpotLight3D.light_energy = 0
 	create_tween().tween_property($SpotLight3D, "light_energy", 11, .2)
+	
+	ball8.finishedRolling.connect(func ():
+		_rolls += 1
+		if _rolls >= maxRolls:
+			effectFinished.emit())
 
 func _process(_delta):
 	if not is_instance_valid(ball8):
@@ -30,6 +39,7 @@ func _process(_delta):
 	var targetDir = $SpotLight3D.position.direction_to(ball8.position)
 	var targetBasis = Basis.looking_at(targetDir)
 	$SpotLight3D.basis = $SpotLight3D.basis.slerp(targetBasis, .1)
+	
 
 func end():
 	if is_instance_valid(ball8):

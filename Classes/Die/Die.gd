@@ -107,3 +107,9 @@ func pickNewEffect(oldEffect : int) -> int:
 			effectOdds[i] += notChosenBonus
 	
 	return result
+
+func _onCurrentEffectFinished():
+	$BehaviourHandler._onCurrentEffectFinished()
+
+func _onEffectStarted(effect : Effect):
+	$BehaviourHandler._onEffectStarted(effect)
