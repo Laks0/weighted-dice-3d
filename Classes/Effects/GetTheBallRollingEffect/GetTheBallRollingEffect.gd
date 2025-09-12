@@ -3,12 +3,11 @@ extends Effect
 @export var ball8Scene : PackedScene
 var ball8 : StaticBody3D
 
-@export var maxRolls := 4
-var _rolls = 0
+@export var maxPushes := 4
 
 func start():
-	_rolls = 0
 	ball8 = ball8Scene.instantiate()
+	ball8.setMaxPushes(maxPushes)
 	
 	ball8.set_physics_process(false)
 	arena.add_child(ball8)
@@ -24,10 +23,7 @@ func start():
 	$SpotLight3D.light_energy = 0
 	create_tween().tween_property($SpotLight3D, "light_energy", 11, .2)
 	
-	ball8.finishedRolling.connect(func ():
-		_rolls += 1
-		if _rolls >= maxRolls:
-			effectFinished.emit())
+	ball8.finished.connect(effectFinished.emit)
 
 func _process(_delta):
 	if not is_instance_valid(ball8):

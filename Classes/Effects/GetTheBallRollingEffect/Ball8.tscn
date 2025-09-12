@@ -215,6 +215,7 @@ curve = ExtResource("8_xv4hf")
 _defaults_have_been_set = true
 
 [node name="Trail" type="GPUParticles3D" parent="."]
+visible = false
 amount = 19
 lifetime = 19.0
 explosiveness = 1.0
