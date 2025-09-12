@@ -40,6 +40,7 @@ metadata/_custom_type_script = "uid://wpnke37j2fbm"
 
 [node name="JumpsAnimation" type="Node3D" parent="."]
 script = ExtResource("2_13t55")
+maxAttacks = 5
 metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Preparation" type="Node3D" parent="JumpsAnimation"]

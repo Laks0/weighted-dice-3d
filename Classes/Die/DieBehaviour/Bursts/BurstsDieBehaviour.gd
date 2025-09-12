@@ -47,7 +47,7 @@ func _burst():
 	tween.tween_method(func (t : float):
 		die.rotate_object_local(Vector3.LEFT,maxRotationSpeed*t*get_physics_process_delta_time()),
 	.1, 1, 3*preparationTime/4).set_ease(Tween.EASE_IN)
-	tween.tween_interval(.2)
+	tween.tween_interval(.17)
 	
 	$AfterBurstTime.start()
 	
