@@ -149,12 +149,13 @@ transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 
 fov = 47.0
 
 [node name="Arena" parent="." node_paths=PackedStringArray("stageHandler", "multipleResCamera", "environment") instance=ExtResource("5_ryftk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.63622)
 stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
 [node name="ArenaCamera" type="Camera3D" parent="Arena"]
-transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
+transform = Transform3D(1, 0, 0, 0, 0.469671, 0.882841, 0, -0.882841, 0.469671, 2.0504e-05, 9.35171, 4.78558)
 environment = ExtResource("6_l7hxi")
 current = true
 fov = 47.0

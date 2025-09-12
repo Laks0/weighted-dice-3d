@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=21 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -7,10 +7,7 @@
 [ext_resource type="Script" uid="uid://dh3iem70qs4os" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
-[ext_resource type="Texture2D" uid="uid://db3gatvig6t0c" path="res://Scenes/Arena/Mesa_FelpaMesaTexN.png" id="6_o0cy5"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
-[ext_resource type="Texture2D" uid="uid://b4igh3861gbtw" path="res://Scenes/Arena/Mesa_ColorMesaInt.png" id="7_qljs3"]
-[ext_resource type="Texture2D" uid="uid://c8iscn744p8fr" path="res://Scenes/Arena/Mesa_TexturaMesaIntN.png" id="8_pfx7u"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/SpikesEffect.tscn" id="10_vf6cn"]
 [ext_resource type="PackedScene" uid="uid://cxjh4xet8soqm" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.tscn" id="11_7goy4"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
@@ -27,24 +24,6 @@ bounce = 0.89
 absorbent = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kbgdt"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wruqs"]
-data = PackedVector3Array(-11.28, 0.147, -6.58, 11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.147, 6.58, 12, 0.7, 7, 12, -0.7, 7, -12, 0.7, 7, -12, 0.7, 7, 12, -0.7, 7, -12, -0.7, 7, -12, 0.7, 7, -12, -0.7, 7, -12, 0.7, -7, -12, 0.7, -7, -12, -0.7, 7, -12, -0.7, -7, 12, -0.7, -7, -12, -0.7, -7, 12, -0.7, 7, 12, -0.7, 7, -12, -0.7, -7, -12, -0.7, 7, 12, 0.7, -7, 12, -0.7, -7, 12, 0.7, 7, 12, 0.7, 7, 12, -0.7, -7, 12, -0.7, 7, -12, 0.7, -7, -12, -0.7, -7, 12, 0.7, -7, 12, 0.7, -7, -12, -0.7, -7, 12, -0.7, -7, -11.28, 0.7, 6.58, 11.28, 0.7, 6.58, -12, 0.7, 7, -12, 0.7, 7, 11.28, 0.7, 6.58, 12, 0.7, 7, 11.28, 0.7, 6.58, 11.28, 0.7, -6.58, 12, 0.7, 7, 12, 0.7, 7, 11.28, 0.7, -6.58, 12, 0.7, -7, -11.28, 0.7, -6.58, -11.28, 0.7, 6.58, -12, 0.7, -7, -12, 0.7, -7, -11.28, 0.7, 6.58, -12, 0.7, 7, 11.28, 0.7, -6.58, -11.28, 0.7, -6.58, 12, 0.7, -7, 12, 0.7, -7, -11.28, 0.7, -6.58, -12, 0.7, -7, -11.28, 0.147, 6.58, 11.28, 0.147, 6.58, -11.28, 0.7, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, 6.58, 11.28, 0.7, 6.58, 11.28, 0.147, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, -6.58, -11.28, 0.7, -6.58, -11.28, 0.147, 6.58, -11.28, 0.7, 6.58, 11.28, 0.147, -6.58, -11.28, 0.147, -6.58, 11.28, 0.7, -6.58, 11.28, 0.7, -6.58, -11.28, 0.147, -6.58, -11.28, 0.7, -6.58)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_foc0n"]
-resource_name = "FelpaMesa"
-cull_mode = 2
-albedo_color = Color(0.381616, 0.406012, 0.100887, 1)
-normal_enabled = true
-normal_scale = 0.43
-normal_texture = ExtResource("6_o0cy5")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fdnf3"]
-resource_name = "MesaInt"
-cull_mode = 2
-albedo_texture = ExtResource("7_qljs3")
-normal_enabled = true
-normal_texture = ExtResource("8_pfx7u")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -65,25 +44,13 @@ collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-visible = false
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0205946, 0)
-visible = false
-shape = SubResource("ConcavePolygonShape3D_wruqs")
 
 [node name="Mesa" parent="Floor" instance=ExtResource("3_h7err")]
 transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 0, 0, 0)
 
-[node name="MesaEx" parent="Floor/Mesa" index="0"]
-transform = Transform3D(1.98263, 0, 2.84217e-14, 0, 2.99339, 0, -1.42109e-14, 0, 3.41221, 0, 0, 0)
-
-[node name="Felpa" parent="Floor/Mesa/MesaEx" index="0"]
-material_override = SubResource("StandardMaterial3D_foc0n")
-
-[node name="MesaInt" parent="Floor/Mesa/MesaEx" index="2"]
-material_override = SubResource("StandardMaterial3D_fdnf3")
+[node name="MesaConcept2_002" parent="Floor/Mesa" index="0"]
+transform = Transform3D(2.65727, 0, 0, 0, 0.182865, 0, 0, 0, 3.84118, 0, -0.182794, 0)
 
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
 visible = false
@@ -91,45 +58,45 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.23876e-08, 0, 3.08275)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.05108e-07, 0, 3.6858)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.08842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.68564)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.33235, 0, 4.60371e-08)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.64741, 0, -0.0404129)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.33645, 0, 0.228)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.62408, 0, 0.228)
 shape = SubResource("WorldBoundaryShape3D_7a2co")
 disabled = true
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4.81665, 4.97332, -2.50054)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.26175, 4.78548, -3.16995)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-0.5656, -0.110056, -0.457004, 0.176244, -0.183867, 0.400019, 0.227483, 0.564559, 0.480875, 0.600758, 0.474294, 1.09438, -1.23363, 1.02527, -1.39817, -0.152837)
 
 [node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Walls"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 4.79981, 4.97332, 2.46345)
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 5.2945, 4.97332, 3.21204)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-0.5656, -0.110056, -0.457004, 0.176244, -0.183867, 0.400019, 0.227483, 0.564559, 0.480875, 0.600758, 0.474294, 1.09438, -1.23363, 1.02527, -1.39817, -0.152837)
 
 [node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.96782, 2.18557e-07)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.495384, 4.96782, 0.681573)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
 
 [node name="CollisionPolygon3D4" type="CollisionPolygon3D" parent="Walls"]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 4.96782, 2.18557e-07)
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.500439, 4.96782, -0.617826)
 depth = 10.0
 disabled = true
 polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.88604, -5.26715, 2.66148, -5.3507, 2.37427, -6.63252, 2.09086, -6.77871, 4.16255, -4.09617, 4.44145)
