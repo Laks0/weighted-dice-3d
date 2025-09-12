@@ -15,10 +15,10 @@ script = ExtResource("1_h0ay2")
 script = ExtResource("3_7mn8k")
 metadata/_custom_type_script = "uid://wpnke37j2fbm"
 
+[node name="JumpsDieBehaviour" parent="." instance=ExtResource("4_edatt")]
+
 [node name="DefaultBehaviours" type="Node3D" parent="."]
 
 [node name="BurstsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("5_rjvhq")]
-
-[node name="JumpsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("4_edatt")]
 
 [connection signal="finished" from="NoDiceBehaviour" to="." method="startRollAnimation"]
