@@ -11,6 +11,7 @@ extends AnimationStep
 
 func _onStart():
 	die = animationRoot().die
+	die.visible = false
 	# Espera a que empiece la animación para desabilitar las colisiones
 	get_tree().create_timer(timeForMiddle - animationTime)\
 		.connect("timeout", die.disableCollision)
