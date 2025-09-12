@@ -27,5 +27,12 @@ func stop():
 func _onStop():
 	pass
 
+func _process(delta):
+	if running:
+		_onActiveProcess(delta)
+
+func _onActiveProcess(_delta):
+	pass
+
 func _onCurrentEffectFinished():
 	pass

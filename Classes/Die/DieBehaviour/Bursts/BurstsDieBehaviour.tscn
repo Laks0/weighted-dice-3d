@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctxpwr7vay6pa"]
+
+[ext_resource type="Script" uid="uid://dp54ntpuo3ay5" path="res://Classes/Die/DieBehaviour/Bursts/BurstsDieBehaviour.gd" id="1_orhcs"]
+
+[node name="BurstsDieBehaviour" type="Node3D"]
+script = ExtResource("1_orhcs")
+maxRotationSpeed = 40.0
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="AfterBurstTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

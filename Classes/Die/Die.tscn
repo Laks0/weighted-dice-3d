@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://bu6wud186flga"]
 
-[ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_qjoqg"]
+[ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_6qi4a"]
 [ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
@@ -28,8 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://cw77ynneyguf4" path="res://Assets/SFX/Dado/fx_dado_golpe_5.wav" id="39_xp5k2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lf240"]
-friction = 0.65
-bounce = 0.8
+bounce = 0.44
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2hqq"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -128,10 +127,11 @@ collision_layer = 4
 collision_mask = 4
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_lf240")
+gravity_scale = 2.0
 inertia = Vector3(1, 1, 1)
 contact_monitor = true
 max_contacts_reported = 5
-script = ExtResource("1_qjoqg")
+script = ExtResource("1_6qi4a")
 rotations = Array[Vector3]([Vector3(90, 0, 0), Vector3(0, 90, 90), Vector3(0, 90, 180), Vector3(0, 0, 0), Vector3(0, 0, -90), Vector3(-90, 0, 0)])
 numberLightPosition = 30.0
 

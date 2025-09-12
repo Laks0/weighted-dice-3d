@@ -88,7 +88,6 @@ func startArena():
 	die.position = Vector3(0, 1, 0)
 	add_child(die)
 	
-	die.prepareArrow = $PrepareArrow
 	die.rolled.connect(dieRolled)
 	die.rolled.connect($Effects.startEffect)
 	die.onCubilete.connect(func():
@@ -125,8 +124,6 @@ func endGame(winnerMon : Monigote):
 	
 	await get_tree().create_timer(.3).timeout
 	SoundtrackHandler.playTrack(5)
-	
-	$PrepareArrow.visible = false
 	
 	if is_instance_valid(die):
 		die.queue_free()

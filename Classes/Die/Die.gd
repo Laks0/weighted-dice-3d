@@ -10,8 +10,6 @@ signal onCubilete
 @warning_ignore("unused_signal")
 signal dropped
 
-var prepareArrow : AnimatedSprite3D
-
 @export var rotations : Array[Vector3]
 
 ## La velocidad mínima que necesita el dado para poder herir a un monigote
@@ -45,18 +43,14 @@ func enableCollision():
 	$Area3D.monitoring = true
 	$CollisionShape3D.disabled = false
 
-func _process(_delta):
-	if prepareArrow.visible:
-		prepareArrow.position = position
-
 func _getRandomMonigoteDirection() -> Vector2:
 	var monigote : Monigote = get_parent().getRandomMonigote()
-	if not is_instance_valid(get_parent().getRandomMonigote()):
+	if not is_instance_valid(monigote):
 		return Vector2.LEFT
 	
-	var dir3d : Vector3 = position.direction_to(monigote.position)
+	var dir3d : Vector3 = global_position.direction_to(monigote.global_position)
 	
-	return Vector2(dir3d.x, dir3d.z)
+	return Vector2(dir3d.x, dir3d.z).normalized()
 
 func _getClosestMonigoteDirection() -> Vector2:
 	if not is_instance_valid(get_parent().getClosestMonigote(position)):

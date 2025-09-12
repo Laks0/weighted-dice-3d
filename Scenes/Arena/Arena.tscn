@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=27 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
 [ext_resource type="Texture2D" uid="uid://b4igh3861gbtw" path="res://Scenes/Arena/Mesa_ColorMesaInt.png" id="7_qljs3"]
 [ext_resource type="Texture2D" uid="uid://c8iscn744p8fr" path="res://Scenes/Arena/Mesa_TexturaMesaIntN.png" id="8_pfx7u"]
-[ext_resource type="Texture2D" uid="uid://bl4bjeh13ejhs" path="res://Classes/Die/Arrow.png" id="8_renas"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/SpikesEffect.tscn" id="10_vf6cn"]
 [ext_resource type="PackedScene" uid="uid://cxjh4xet8soqm" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.tscn" id="11_7goy4"]
 [ext_resource type="PackedScene" uid="uid://bbg4fcgpv31yt" path="res://Classes/Effects/FullHouse/FullHouseEffect.tscn" id="12_v5pfw"]
@@ -49,28 +48,6 @@ normal_texture = ExtResource("8_pfx7u")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2bchx"]
-atlas = ExtResource("8_renas")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p2pnj"]
-atlas = ExtResource("8_renas")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_i2qvo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2bchx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p2pnj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
@@ -161,18 +138,6 @@ polygon = PackedVector2Array(-4.20706, 3.11581, -4.5935, 3.05836, -4.9956, 2.886
 script = ExtResource("4_rx763")
 regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5pfw"), ExtResource("12_yk85d"), ExtResource("5_ed70i"), ExtResource("4_tqem7"), ExtResource("10_vf6cn"), ExtResource("14_0dm7k")])
 specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("15_qr7s2")])
-
-[node name="PrepareArrow" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.922723, 0)
-visible = false
-centered = false
-offset = Vector2(-64, 32)
-modulate = Color(1, 1, 1, 0.396078)
-axis = 1
-texture_filter = 0
-render_priority = 1
-sprite_frames = SubResource("SpriteFrames_i2qvo")
-autoplay = "default"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8088, -0.209616)
