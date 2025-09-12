@@ -1,7 +1,7 @@
 extends AnimationStep
 
 var die : Die
-var targetPosition : Vector3
+var targetPosition : Vector3 = Vector3.ZERO
 @export var maxAttacks : int = 3
 
 var attacks : int

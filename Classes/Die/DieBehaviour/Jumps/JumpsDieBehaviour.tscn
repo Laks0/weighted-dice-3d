@@ -49,7 +49,7 @@ metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Targeting" type="Node3D" parent="JumpsAnimation" node_paths=PackedStringArray("pointer", "linePointer")]
 script = ExtResource("4_sb34c")
-time = 0.7
+time = 2.0
 pointer = NodePath("../../Pointer")
 linePointer = NodePath("../../LinePointer")
 waitTimeBeforeEnd = 1.0

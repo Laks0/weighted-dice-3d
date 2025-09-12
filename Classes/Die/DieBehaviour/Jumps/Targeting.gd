@@ -9,8 +9,7 @@ var targetMonigote : Monigote
 
 @onready var root = animationRoot()
 
-func start():
-	super()
+func _onStart():
 	pointer.visible = true
 	linePointer.visible = true
 	$TargetingTimer.start(time)
@@ -33,7 +32,9 @@ func _onActiveProcess(delta):
 	root.targetPosition = lerp(
 		root.targetPosition, newTargetPosition, 10*delta)
 	
-	root.die.look_at(root.targetPosition)
+	var die : Die = root.die
+	
+	die.look_at(root.targetPosition)
 	pointer.global_position = root.targetPosition
 	linePointer.point(root.die.global_position, root.targetPosition)
 
@@ -41,9 +42,9 @@ func pickNewMonigote():
 	if not active:
 		return
 	
-	var newTime = randf_range(.5,1)
-	#if (not $TargetingTimer.is_stopped()) and newTime + .2 > $TargetingTimer.time_left:
-		#return
+	var newTime = randf_range(.4,.7)
+	if (not $TargetingTimer.is_stopped()) and newTime + .2 > $TargetingTimer.time_left:
+		return
 	
 	targetMonigote = root.die.get_parent().getRandomMonigote()
 	$SwitchTimer.start(newTime)

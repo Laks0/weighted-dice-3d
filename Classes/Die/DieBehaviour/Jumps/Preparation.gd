@@ -10,5 +10,11 @@ func start():
 	if currentPosition.distance_squared_to(preparationPosition) > currentPosition.distance_squared_to(altPosition):
 		preparationPosition = altPosition
 	
-	positionTween.tween_property(animationRoot().die, "position", preparationPosition, .3)
+	var die : Die = animationRoot().die
+	
+	var traslation := preparationPosition - die.global_position
+	
+	positionTween.tween_property(die, "transform", 
+		die.transform.looking_at(animationRoot().targetPosition)\
+		.translated(traslation), .3)
 	positionTween.finished.connect(end)
