@@ -14,7 +14,7 @@ func spawnSpikes(dir : int) -> void:
 	# Warning
 	var attackPosition : Vector3 = spikes.position
 	var warningPosition := attackPosition
-	var displacement := .7
+	var displacement := .45
 	if dir == 0:
 		warningPosition += Vector3(1,0,0) * displacement
 	elif dir == 1:

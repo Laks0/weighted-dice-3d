@@ -146,6 +146,9 @@ stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
+[node name="Mesa" parent="Arena/Floor" index="1"]
+transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 0, -0.0177641, 0)
+
 [node name="ArenaCamera" type="Camera3D" parent="Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.469671, 0.882841, 0, -0.882841, 0.469671, 2.0504e-05, 9.35171, 4.78558)
 environment = ExtResource("6_l7hxi")
