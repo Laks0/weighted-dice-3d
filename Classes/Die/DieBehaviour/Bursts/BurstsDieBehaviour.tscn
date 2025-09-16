@@ -4,9 +4,10 @@
 
 [node name="BurstsDieBehaviour" type="Node3D"]
 script = ExtResource("1_orhcs")
-maxRotationSpeed = 40.0
+maxRotationSpeed = 50.0
+preparationTime = 2.0
 metadata/_custom_type_script = "uid://wpnke37j2fbm"
 
 [node name="AfterBurstTime" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true

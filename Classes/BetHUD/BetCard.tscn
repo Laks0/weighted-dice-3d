@@ -102,12 +102,12 @@ texture = ExtResource("5_bmkeu")
 [node name="2" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("6_j2ujb")
+texture = ExtResource("7_ha88j")
 
 [node name="3" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("7_ha88j")
+texture = ExtResource("6_j2ujb")
 
 [node name="4" type="TextureRect" parent="Background/PlayerGrid"]
 visible = false
@@ -144,12 +144,12 @@ texture = ExtResource("5_bmkeu")
 [node name="2" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("6_j2ujb")
+texture = ExtResource("7_ha88j")
 
 [node name="3" type="TextureRect" parent="Background/GenericGrid"]
 visible = false
 layout_mode = 2
-texture = ExtResource("7_ha88j")
+texture = ExtResource("6_j2ujb")
 
 [node name="4" type="TextureRect" parent="Background/GenericGrid"]
 visible = false

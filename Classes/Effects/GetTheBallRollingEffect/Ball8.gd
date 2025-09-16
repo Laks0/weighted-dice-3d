@@ -1,12 +1,14 @@
 extends StaticBody3D
 class_name Ball8
 
-signal finishedRolling
+signal finished
 
 @export var initialForce : float = 100
 ## Aceleración negativa en m/s²
 @export var friction : float = 10
 @export var timeBetweenBounces := .05
+
+var pushesLeft : int
 
 var rollCounter = 0
 
@@ -16,11 +18,17 @@ var movingSpeed := 0.0
 var moving := false
 var trajectory : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint] = []
 
+func setMaxPushes(i : int):
+	pushesLeft = i
+
 func _physics_process(delta):
 	if moving:
 		$Bola8.rotation += direction.rotated(Vector3.UP, PI/2) * delta * movingSpeed * 2
 
 func push():
+	pushesLeft -= 1
+	$Trail.restart()
+	$Trail.visible = true
 	if trajectory.is_empty():
 		await $TrajectoryCalculator.trajectoryCalculated
 	
@@ -56,8 +64,11 @@ func push():
 		
 		tween.tween_interval(timeBetweenBounces)
 	
-	tween.tween_callback(finishedRolling.emit)
-	tween.tween_callback(startPushAnimation)
+	tween.tween_callback(func ():
+		if pushesLeft > 0:
+			startPushAnimation()
+		else:
+			finished.emit())
 
 # MRUV
 func _setPosition(t : float, initialPosition : Vector3, dir : Vector3, initialSpeed : float, acceleration : float):

@@ -1,6 +1,6 @@
 extends AnimationStep
 
-func start():
+func _onStart():
 	animationRoot().die.freeze = true
 	var positionTween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	
@@ -10,5 +10,11 @@ func start():
 	if currentPosition.distance_squared_to(preparationPosition) > currentPosition.distance_squared_to(altPosition):
 		preparationPosition = altPosition
 	
-	positionTween.tween_property(animationRoot().die, "position", preparationPosition, .3)
+	var die : Die = animationRoot().die
+	
+	var traslation := preparationPosition - die.global_position
+	
+	positionTween.tween_property(die, "transform", 
+		die.transform.looking_at(animationRoot().targetPosition)\
+		.translated(traslation), .3)
 	positionTween.finished.connect(end)

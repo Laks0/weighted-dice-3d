@@ -10,7 +10,7 @@ signal onCubilete
 @warning_ignore("unused_signal")
 signal dropped
 
-@export var rotations : Array[Vector3]
+@onready var rotations : DieRotations = $Rotations
 
 ## La velocidad mínima que necesita el dado para poder herir a un monigote
 @export var minMovementToHurt : float = .1
@@ -23,6 +23,9 @@ signal dropped
 @export var numberLightPosition : float = 2
 
 var hitting := false
+
+func _ready():
+	visible = false
 
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)

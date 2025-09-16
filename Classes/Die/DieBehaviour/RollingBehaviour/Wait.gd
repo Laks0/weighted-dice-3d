@@ -8,11 +8,10 @@ var effectStarted : bool
 @export var shakeMagnitude := .6
 @export var shakeTime := .3
 
-func start() :
+func _onStart() :
 	die = animationRoot().die
 	result = animationRoot().result
 	effectStarted = false
-	super()
 
 func _onActiveProcess(_delta):
 	if (not die.onFloor()) or effectStarted:

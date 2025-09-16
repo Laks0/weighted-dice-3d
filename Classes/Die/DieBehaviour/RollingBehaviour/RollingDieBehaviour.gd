@@ -1,4 +1,3 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
-func _onStart():
-	$RollingAnimation.start()
+var result : int

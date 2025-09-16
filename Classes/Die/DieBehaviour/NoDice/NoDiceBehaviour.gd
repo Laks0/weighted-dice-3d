@@ -1,4 +1,4 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
 func _onStart():
 	die.freeze = true
@@ -6,8 +6,9 @@ func _onStart():
 	outTween.tween_property(die, "scale", Vector3.ZERO, .4)
 	outTween.tween_callback(func(): 
 		die.position = Vector3(-10, 3, 0)
-		die.scale = Vector3.ONE)
+		die.scale = Vector3.ONE
+		die.visible = false)
 
 func _onCurrentEffectFinished():
 	die.freeze = false
-	stop()
+	end()

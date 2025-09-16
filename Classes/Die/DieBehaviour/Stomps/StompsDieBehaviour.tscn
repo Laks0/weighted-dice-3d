@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmw8mw7fs7prr"]
+
+[ext_resource type="Script" uid="uid://dm10ewf504dmb" path="res://Classes/Die/DieBehaviour/Stomps/StompsDieBehaviour.gd" id="1_bll8v"]
+[ext_resource type="Script" uid="uid://3srglipmbj4y" path="res://Classes/Die/DieBehaviour/Stomps/LevitateDie.gd" id="2_bll8v"]
+[ext_resource type="Script" uid="uid://bbgi55raguuga" path="res://Classes/Die/DieBehaviour/Stomps/TranslateToRandomPos.gd" id="3_fw2pl"]
+[ext_resource type="Script" uid="uid://rwcamc3m5ecn" path="res://Classes/Die/DieBehaviour/Stomps/MakeStomps.gd" id="4_xflf2"]
+
+[node name="StompsDieBehaviour" type="Node3D"]
+script = ExtResource("1_bll8v")
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="LevitateDie" type="Node3D" parent="."]
+script = ExtResource("2_bll8v")
+time = 0.3
+waitTimeBeforeEnd = 0.2
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="TranslateToRandomPos" type="Node3D" parent="."]
+script = ExtResource("3_fw2pl")
+time = 0.3
+waitTimeBeforeEnd = 1.0
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
+
+[node name="MakeStomps" type="Node3D" parent="."]
+script = ExtResource("4_xflf2")
+downTime = 0.05
+waitTimeBeforeEnd = 1.0
+metadata/_custom_type_script = "uid://wpnke37j2fbm"
