@@ -9,6 +9,8 @@ extends AnimationStep
 
 @onready var die : Die = animationRoot().die
 
+var cubilete
+
 func _onStart():
 	die = animationRoot().die
 	# Espera a que empiece la animación para desabilitar las colisiones
@@ -24,7 +26,7 @@ func _onStart():
 	
 	positionTween.connect("finished", func(): die.visible = false)
 	
-	var cubilete = cubileteScene.instantiate()
+	cubilete = cubileteScene.instantiate()
 	cubilete.position = Vector3(-10,0,0)
 	die.get_parent().add_child(cubilete)
 	
@@ -34,3 +36,7 @@ func _onStart():
 		die.enableCollision()
 		die.emit_signal("dropped")
 		end())
+
+func _onActiveProcess(_delta):
+	if not die.visible:
+		die.position = cubilete.position
