@@ -1,6 +1,6 @@
 extends AnimationStep
 
-func start():
+func _onStart():
 	animationRoot().die.freeze = true
 	var positionTween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	

@@ -5,8 +5,13 @@ var currentBehaviour : DieBehaviour
 func _ready():
 	startRollAnimation()
 	
-	for behaviour : DieBehaviour in $DefaultBehaviours.get_children():
-		behaviour.finished.connect(startRollAnimation)
+	for child in get_children():
+		if child is DieBehaviour:
+			child.setDie(get_parent())
+	
+	for defaultBehaviour : DieBehaviour in $DefaultBehaviours.get_children():
+		defaultBehaviour.finished.connect(startRollAnimation)
+		defaultBehaviour.setDie(get_parent())
 
 func startRandomDefaultBehaviour():
 	var behaviour : DieBehaviour = $DefaultBehaviours.get_children().pick_random()
@@ -28,4 +33,4 @@ func _onEffectStarted(effect : Effect):
 
 func _startBehaviour(behaviour : DieBehaviour):
 	currentBehaviour = behaviour
-	currentBehaviour.start(get_parent())
+	currentBehaviour.start()

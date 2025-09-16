@@ -11,4 +11,4 @@ func _onStart():
 
 func _onCurrentEffectFinished():
 	die.freeze = false
-	stop()
+	end()

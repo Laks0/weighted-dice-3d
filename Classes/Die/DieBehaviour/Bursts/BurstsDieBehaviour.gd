@@ -29,7 +29,7 @@ func _onActiveProcess(_delta):
 		burstCounter += 1
 		_burst()
 	else:
-		stop()
+		end()
 
 func _burst():
 	rotationSpeedFactor = 0

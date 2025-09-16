@@ -1,38 +1,7 @@
-extends Node3D
+extends AnimationStep
 class_name DieBehaviour
-
-signal finished
 
 var die : Die
 
-var running := false
-
-func start(parentDie : Die):
-	if running:
-		return
+func setDie(parentDie : Die):
 	die = parentDie
-	running = true
-	_onStart()
-
-func _onStart():
-	pass
-
-func stop():
-	if not running:
-		return
-	running = false
-	_onStop()
-	finished.emit()
-
-func _onStop():
-	pass
-
-func _process(delta):
-	if running:
-		_onActiveProcess(delta)
-
-func _onActiveProcess(_delta):
-	pass
-
-func _onCurrentEffectFinished():
-	pass

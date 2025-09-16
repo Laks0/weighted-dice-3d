@@ -8,6 +8,8 @@ signal finished
 var active := false
 
 func start():
+	if active:
+		return
 	active = true
 	_onStart()
 	_startChildAnimationIfExists()
@@ -20,6 +22,8 @@ func breakAnimation():
 	get_parent().animationFinished()
 
 func end():
+	if not active:
+		return
 	await _endStep()
 	if not _isThereNextStep():
 		if not get_parent() is AnimationStep:
@@ -34,6 +38,9 @@ func _endStep():
 	finished.emit()
 
 func _isThereNextStep() -> bool:
+	if not get_parent() is AnimationStep:
+		return false
+	
 	for i in range(get_index()+1, get_parent().get_child_count()):
 		var c = get_parent().get_child(i)
 		if c is AnimationStep:

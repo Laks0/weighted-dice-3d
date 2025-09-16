@@ -17,8 +17,8 @@ metadata/_custom_type_script = "uid://wpnke37j2fbm"
 
 [node name="DefaultBehaviours" type="Node3D" parent="."]
 
-[node name="BurstsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("5_rjvhq")]
-
 [node name="JumpsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("4_edatt")]
+
+[node name="BurstsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("5_rjvhq")]
 
 [connection signal="finished" from="NoDiceBehaviour" to="." method="startRollAnimation"]
