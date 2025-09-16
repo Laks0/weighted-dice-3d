@@ -1,4 +1,4 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
 @export var maxBursts : int = 5
 var burstCounter : int

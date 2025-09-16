@@ -1,3 +1,3 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
 var result : int

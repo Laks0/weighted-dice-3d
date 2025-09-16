@@ -1,4 +1,4 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
 func _onStart():
 	die.freeze = true

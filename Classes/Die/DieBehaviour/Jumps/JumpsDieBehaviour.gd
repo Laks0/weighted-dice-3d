@@ -1,4 +1,4 @@
-extends DieBehaviour
+extends DieBehaviourStep
 
 var targetPosition : Vector3 = Vector3.ZERO
 @export var maxAttacks : int = 3

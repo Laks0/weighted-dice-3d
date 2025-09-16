@@ -1,20 +1,20 @@
 extends Node3D
 
-var currentBehaviour : DieBehaviour
+var currentBehaviour : DieBehaviourStep
 
 func _ready():
 	startRollAnimation()
 	
 	for child in get_children():
-		if child is DieBehaviour:
+		if child is DieBehaviourStep:
 			child.setDie(get_parent())
 	
-	for defaultBehaviour : DieBehaviour in $DefaultBehaviours.get_children():
+	for defaultBehaviour : DieBehaviourStep in $DefaultBehaviours.get_children():
 		defaultBehaviour.finished.connect(startRollAnimation)
 		defaultBehaviour.setDie(get_parent())
 
 func startRandomDefaultBehaviour():
-	var behaviour : DieBehaviour = $DefaultBehaviours.get_children().pick_random()
+	var behaviour : DieBehaviourStep = $DefaultBehaviours.get_children().pick_random()
 	_startBehaviour(behaviour)
 
 func startRollAnimation():
@@ -31,6 +31,6 @@ func _onEffectStarted(effect : Effect):
 	elif effect.dieBehaviour == Effect.DieBehaviourType.CUSTOM:
 		pass
 
-func _startBehaviour(behaviour : DieBehaviour):
+func _startBehaviour(behaviour : DieBehaviourStep):
 	currentBehaviour = behaviour
 	currentBehaviour.start()
