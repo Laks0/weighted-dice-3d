@@ -35,7 +35,11 @@ func end():
 func _endStep():
 	active = false
 	await get_tree().create_timer(waitTimeBeforeEnd).timeout
+	_onEnd()
 	finished.emit()
+
+func _onEnd():
+	pass
 
 func _isThereNextStep() -> bool:
 	if not get_parent() is AnimationStep:

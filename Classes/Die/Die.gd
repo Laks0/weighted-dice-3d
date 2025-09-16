@@ -24,6 +24,9 @@ signal dropped
 
 var hitting := false
 
+func _ready():
+	visible = false
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()

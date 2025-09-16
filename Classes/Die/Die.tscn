@@ -123,7 +123,6 @@ stream_3/stream = ExtResource("38_bny11")
 stream_4/stream = ExtResource("39_xp5k2")
 
 [node name="Die" type="RigidBody3D"]
-visible = false
 collision_layer = 4
 collision_mask = 4
 mass = 10.0

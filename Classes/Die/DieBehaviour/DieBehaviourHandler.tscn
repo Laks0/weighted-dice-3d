@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://peym0yulmxyv"]
+[gd_scene load_steps=7 format=3 uid="uid://peym0yulmxyv"]
 
 [ext_resource type="Script" uid="uid://dl3fn6fsho4j2" path="res://Classes/Die/DieBehaviourHandler.gd" id="1_h0ay2"]
 [ext_resource type="PackedScene" uid="uid://cisd5j6j4ibdp" path="res://Classes/Die/DieBehaviour/RollingBehaviour/RollingDieBehaviour.tscn" id="2_3g520"]
 [ext_resource type="Script" uid="uid://b3qkgfvuyn5nw" path="res://Classes/Die/DieBehaviour/NoDice/NoDiceBehaviour.gd" id="3_7mn8k"]
+[ext_resource type="PackedScene" uid="uid://cmw8mw7fs7prr" path="res://Classes/Die/DieBehaviour/Stomps/StompsDieBehaviour.tscn" id="4_b0t8c"]
 [ext_resource type="PackedScene" uid="uid://cpk2ybry8qadp" path="res://Classes/Die/DieBehaviour/Jumps/JumpsDieBehaviour.tscn" id="4_edatt"]
 [ext_resource type="PackedScene" uid="uid://ctxpwr7vay6pa" path="res://Classes/Die/DieBehaviour/Bursts/BurstsDieBehaviour.tscn" id="5_rjvhq"]
 
@@ -17,8 +18,10 @@ metadata/_custom_type_script = "uid://wpnke37j2fbm"
 
 [node name="DefaultBehaviours" type="Node3D" parent="."]
 
-[node name="JumpsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("4_edatt")]
+[node name="StompsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("4_b0t8c")]
 
-[node name="BurstsDieBehaviour" parent="DefaultBehaviours" instance=ExtResource("5_rjvhq")]
+[node name="JumpsDieBehaviour" parent="." instance=ExtResource("4_edatt")]
+
+[node name="BurstsDieBehaviour" parent="." instance=ExtResource("5_rjvhq")]
 
 [connection signal="finished" from="NoDiceBehaviour" to="." method="startRollAnimation"]
