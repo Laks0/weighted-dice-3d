@@ -19,7 +19,10 @@ func _onStart():
 		
 		if i > 0:
 			tween.tween_interval(restTime)
-			tween.tween_property(die, "position:y", levitationHeight, upTime)
+			tween.tween_property(die, "transform",
+				die.rotations.getTransformHavingRolled(animationRoot().stomps-i)\
+					.translated(Vector3.UP * (levitationHeight-.6)),
+				upTime)
 		
 		tween.tween_property(die, "position:y", .6, downTime)
 		

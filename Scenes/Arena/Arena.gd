@@ -171,7 +171,7 @@ func getClosestMonigote(from : Vector3, exclude : Array = []) -> Monigote:
 
 	return closest
 
-func getRandomPosition(padding := 1, yPos : float = .1) -> Vector3:
+func getRandomPosition(padding : float = 1, yPos : float = .1) -> Vector3:
 	return Vector3(randf_range(-WIDTH/2 + padding, WIDTH/2 - padding),
 		yPos,
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))

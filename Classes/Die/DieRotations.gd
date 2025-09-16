@@ -29,7 +29,7 @@ func getTransformHavingRolled(i : int) -> Transform3D:
 	faceOneDirection *= 3
 	faceFourDirection *= 3
 	
-	return die.transform.looking_at(to_global(faceOneDirection), faceFourDirection)
+	return Transform3D(Basis.looking_at(faceOneDirection, faceFourDirection), die.position)
 
 func setRotationToFace(i : int):
 	die.transform = getTransformHavingRolled(i)
