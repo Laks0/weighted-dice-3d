@@ -121,7 +121,7 @@ libraries = {
 }
 
 [node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("2_v4p10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -10.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -16.2433)
 camera = NodePath("../MultipleResCamera")
 worldEnvironment = NodePath("../WorldEnvironment")
 
@@ -140,7 +140,7 @@ cull_mask = 3
 fov = 47.0
 
 [node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("4_yresm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -5.066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -10.7093)
 chipHolder = NodePath("../ChipHolder")
 stageHandler = NodePath("..")
 
@@ -149,7 +149,6 @@ transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 
 fov = 47.0
 
 [node name="Arena" parent="." node_paths=PackedStringArray("stageHandler", "multipleResCamera", "environment") instance=ExtResource("5_ryftk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.63622)
 stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
