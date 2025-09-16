@@ -133,12 +133,12 @@ autowrap_mode = 2
 width = 800.0
 
 [node name="CubileteCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.532567, 0.846388, 0, -0.846388, 0.532567, 0, 8.67915, 4.94487)
+transform = Transform3D(1, 0, 0, 0, 0.852458, 0.522795, 0, -0.522795, 0.852458, 0, 8.44158, 12.0778)
 cull_mask = 3
 fov = 47.0
 
 [node name="RolledNumberCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.285204, 0.958467, 0, -0.958467, 0.285204, 0, 6.29169, 2.39426)
+transform = Transform3D(1, 0, 0, 0, 0.285204, 0.958467, 0, -0.958467, 0.285204, 0, 5.28551, 1.64157)
 cull_mask = 3
 fov = 47.0
 
