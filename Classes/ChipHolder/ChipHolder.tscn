@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4trc0xhmaen"]
+[gd_scene load_steps=9 format=3 uid="uid://4trc0xhmaen"]
 
 [ext_resource type="PackedScene" uid="uid://cxcu72n5anfbv" path="res://Classes/ChipHolder/Fichero.glb" id="1_7360m"]
 [ext_resource type="Script" uid="uid://bakutvpu4d1sv" path="res://Classes/ChipHolder/ChipHolder.gd" id="1_j6y70"]
@@ -8,19 +8,6 @@
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="5_y7e1f"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="6_c82te"]
 [ext_resource type="AudioStream" uid="uid://bhf1c6xefgidm" path="res://Classes/Monigotes/SFX/sfx_yellstomp.wav" id="8_44tda"]
-[ext_resource type="Texture2D" uid="uid://cj7ek1o6nwsok" path="res://Classes/CustomUI/VirtualKeyboard/TeclasUICharSelect-Sheet.png" id="8_u1lkr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xqshr"]
-atlas = ExtResource("8_u1lkr")
-region = Rect2(16, 8, 32, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qnnhn"]
-atlas = ExtResource("8_u1lkr")
-region = Rect2(80, 8, 32, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a2b10"]
-atlas = ExtResource("8_u1lkr")
-region = Rect2(144, 8, 32, 40)
 
 [node name="ChipHolder" type="Node3D"]
 script = ExtResource("1_j6y70")
@@ -138,46 +125,28 @@ theme = ExtResource("5_y7e1f")
 theme_override_constants/separation = 425
 alignment = 1
 
-[node name="PlayAgain" parent="EndgameButtons" node_paths=PackedStringArray("rightSelect") instance=ExtResource("6_c82te")]
+[node name="PlayAgain" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_c82te")]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_xqshr")
-rightSelect = NodePath("../ReselectCharacters")
-normalTexture = SubResource("AtlasTexture_xqshr")
-focusedTexture = SubResource("AtlasTexture_qnnhn")
-pressedTexture = SubResource("AtlasTexture_a2b10")
 text = "Volver a jugar"
+leftSelect = NodePath("../ReselectCharacters")
+rightSelect = NodePath("../ReselectCharacters")
+leftFallback = NodePath("../ReselectCharacters")
+rightFallback = NodePath("../ReselectCharacters")
 
 [node name="Label" parent="EndgameButtons/PlayAgain" index="0"]
-offset_left = -70.5
-offset_top = 20.0
-offset_right = 70.5
-offset_bottom = 44.0
 text = "Volver a jugar"
 
-[node name="ReselectCharacters" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect") instance=ExtResource("6_c82te")]
+[node name="ReselectCharacters" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_c82te")]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_xqshr")
-leftSelect = NodePath("../PlayAgain")
-normalTexture = SubResource("AtlasTexture_xqshr")
-focusedTexture = SubResource("AtlasTexture_qnnhn")
-pressedTexture = SubResource("AtlasTexture_a2b10")
 text = "Cambiar jugadores"
+leftSelect = NodePath(".")
+rightSelect = NodePath(".")
+leftFallback = NodePath(".")
+rightFallback = NodePath(".")
 
 [node name="Label" parent="EndgameButtons/ReselectCharacters" index="0"]
-anchors_preset = 7
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -91.5
-offset_top = 1.0
-offset_right = 91.5
-offset_bottom = 25.0
-grow_vertical = 0
 text = "Cambiar jugadores"
 
 [node name="WinnerLabel" type="Label" parent="."]

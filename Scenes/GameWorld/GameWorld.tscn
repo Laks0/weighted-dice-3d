@@ -14,42 +14,35 @@
 [sub_resource type="Animation" id="Animation_3y6d5"]
 resource_name = "LobbyOutAnimation"
 length = 2.0
-tracks/0/type = "position_3d"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../ChipHolder")
+tracks/0/path = NodePath(".:position:z")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.348, -10.6)
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-14.615, -0.25, 0, 0.25, 0, -14.615, -0.25, 0, 0.25, 0, -30.556, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1.5)
+}
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:z")
+tracks/1/path = NodePath("../ChipHolder:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-10.2745, -0.25, 0, 0.25, 0, -10.2745, -0.25, 0, 0.25, 0, -32.8975, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../ChipHolder:position:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(1.348, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 3.36802, -0.25, 0, 0.25, 0, 1.34845, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1, 1.5)
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -57,13 +50,13 @@ tracks/3/keys = {
 "method": &"startExitAnimation"
 }]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("..")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(1.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -82,7 +75,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-10.274, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-14.615, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -121,7 +114,7 @@ libraries = {
 }
 
 [node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("2_v4p10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -16.2433)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -15.0314)
 camera = NodePath("../MultipleResCamera")
 worldEnvironment = NodePath("../WorldEnvironment")
 
@@ -131,7 +124,7 @@ cull_mask = 1048573
 fov = 47.0
 
 [node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("3_q76ww")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -10.274)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -14.615)
 lobbyOutAnimationPlayer = NodePath("../LobbyOutAnimationPlayer")
 
 [node name="LobbyCamera" type="Camera3D" parent="Lobby"]
@@ -140,7 +133,7 @@ cull_mask = 3
 fov = 47.0
 
 [node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("4_yresm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -10.7093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -9.40732)
 chipHolder = NodePath("../ChipHolder")
 stageHandler = NodePath("..")
 
