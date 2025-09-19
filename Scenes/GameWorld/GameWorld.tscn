@@ -146,11 +146,8 @@ stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
-[node name="Mesa" parent="Arena/Floor" index="1"]
-transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 0, -0.0177641, 0)
-
 [node name="ArenaCamera" type="Camera3D" parent="Arena"]
-transform = Transform3D(1, 0, 0, 0, 0.469671, 0.882841, 0, -0.882841, 0.469671, 2.0504e-05, 9.35171, 4.78558)
+transform = Transform3D(1, 0, 0, 0, 0.419293, 0.907851, 0, -0.907851, 0.419293, 2.0504e-05, 8.924157, 4.157646)
 environment = ExtResource("6_l7hxi")
 current = true
 fov = 47.0
@@ -158,7 +155,7 @@ fov = 47.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("controllingLights")]
 environment = ExtResource("6_l7hxi")
 script = ExtResource("7_vvqcd")
-controllingLights = [NodePath("../Arena/DirectionalLight3D")]
+controllingLights = [null]
 
 [node name="GlobalLight" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)

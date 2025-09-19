@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
-[ext_resource type="PackedScene" uid="uid://bn5pd17w3f50g" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
+[ext_resource type="PackedScene" uid="uid://darmjw342doj5" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
 [ext_resource type="PackedScene" uid="uid://bnxn215f58sus" path="res://Scenes/Arena/CardShowAnimation/CardShowAnimation.tscn" id="3_wm28h"]
 [ext_resource type="Script" uid="uid://dh3iem70qs4os" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
@@ -47,10 +47,7 @@ physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
 [node name="Mesa" parent="Floor" instance=ExtResource("3_h7err")]
-transform = Transform3D(-7.43094e-08, 0, -1.7, 0, 1.7, 0, 1.7, 0, -7.43094e-08, 0, -0.0177641, 0)
-
-[node name="MesaConcept2_002" parent="Floor/Mesa" index="0"]
-transform = Transform3D(2.65727, 0, 0, 0, 0.182865, 0, 0, 0, 3.84118, 0, -0.182794, 0)
+transform = Transform3D(-2.3009637e-08, 0, -0.52639914, 0, 0.52639914, 0, 0.52639914, 0, -2.3009637e-08, 0, -0.8096213, 0)
 
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
 visible = false
@@ -155,5 +152,3 @@ script = ExtResource("26_sgy0k")
 chipDrop = ExtResource("27_gjkb2")
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
-
-[editable path="Floor/Mesa"]
