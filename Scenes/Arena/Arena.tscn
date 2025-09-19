@@ -112,7 +112,7 @@ shadow_enabled = true
 shadow_opacity = 0.82
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -0.999542, 0.0167236)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -1.0896239, 0.0167236)
 size = Vector3(11.5972, 2, 6.95972)
 
 [node name="CurrentEffectName" type="Label3D" parent="."]

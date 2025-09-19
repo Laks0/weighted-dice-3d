@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=16 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/GameWorld/StageHandler.gd" id="1_hrf5g"]
+[ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="1_v4p10"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="2_v4p10"]
 [ext_resource type="PackedScene" uid="uid://vj4n1f7bc5hh" path="res://Scenes/Lobby/Lobby.tscn" id="3_q76ww"]
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="4_yresm"]
@@ -10,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="8_ahv6l"]
 [ext_resource type="PackedScene" uid="uid://c1u8x43c7ulq1" path="res://Scenes/PauseMenu/PauseMenu.tscn" id="9_obf4j"]
 [ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Classes/BetHUD/BetHUD.tscn" id="10_8foli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q76ww"]
+shader = ExtResource("1_v4p10")
+shader_parameter/amount = 3.0
+shader_parameter/grain_amount = 0.010000000475
+shader_parameter/grain_size = 0.90000003949012
 
 [sub_resource type="Animation" id="Animation_3y6d5"]
 resource_name = "LobbyOutAnimation"
@@ -96,7 +103,20 @@ _data = {
 &"RESET": SubResource("Animation_y7ohy")
 }
 
-[node name="StageHandler" type="Node3D" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera", "arenaCamera") groups=["StageHandler"]]
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_q76ww")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="StageHandler" type="Node3D" parent="SubViewport" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera", "arenaCamera") groups=["StageHandler"]]
 script = ExtResource("1_hrf5g")
 arena = NodePath("Arena")
 lobby = NodePath("Lobby")
@@ -107,76 +127,79 @@ betCamera = NodePath("ChipHolder/BetSceneCamera")
 leaderboardCamera = NodePath("BetDisplaySimple/LeaderboardCamera")
 arenaCamera = NodePath("Arena/ArenaCamera")
 
-[node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="LobbyOutAnimationPlayer" type="AnimationPlayer" parent="SubViewport/StageHandler"]
 root_node = NodePath("../Lobby")
 libraries = {
 &"": SubResource("AnimationLibrary_i545o")
 }
 
-[node name="ChipHolder" parent="." node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("2_v4p10")]
+[node name="ChipHolder" parent="SubViewport/StageHandler" node_paths=PackedStringArray("camera", "worldEnvironment") instance=ExtResource("2_v4p10")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.348, -15.0314)
 camera = NodePath("../MultipleResCamera")
 worldEnvironment = NodePath("../WorldEnvironment")
 
-[node name="BetSceneCamera" type="Camera3D" parent="ChipHolder"]
+[node name="BetSceneCamera" type="Camera3D" parent="SubViewport/StageHandler/ChipHolder"]
 transform = Transform3D(1, 0, 0, 0, 0.798636, 0.601815, 0, -0.601815, 0.798636, 0, 6.30425, 11.3)
 cull_mask = 1048573
 fov = 47.0
 
-[node name="Lobby" parent="." node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("3_q76ww")]
+[node name="Lobby" parent="SubViewport/StageHandler" node_paths=PackedStringArray("lobbyOutAnimationPlayer") instance=ExtResource("3_q76ww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -14.615)
 lobbyOutAnimationPlayer = NodePath("../LobbyOutAnimationPlayer")
 
-[node name="LobbyCamera" type="Camera3D" parent="Lobby"]
+[node name="LobbyCamera" type="Camera3D" parent="SubViewport/StageHandler/Lobby"]
 transform = Transform3D(1, 0, 0, 0, 0.514395, 0.857553, 0, -0.857553, 0.514395, 0, 8.9294, 1.45245)
 cull_mask = 3
 fov = 47.0
 
-[node name="BetDisplaySimple" parent="." node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("4_yresm")]
+[node name="BetDisplaySimple" parent="SubViewport/StageHandler" node_paths=PackedStringArray("chipHolder", "stageHandler") instance=ExtResource("4_yresm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -9.40732)
 chipHolder = NodePath("../ChipHolder")
 stageHandler = NodePath("..")
 
-[node name="LeaderboardCamera" type="Camera3D" parent="BetDisplaySimple"]
+[node name="LeaderboardCamera" type="Camera3D" parent="SubViewport/StageHandler/BetDisplaySimple"]
 transform = Transform3D(1, 0, 0, 0, 0.945853, 0.324594, 0, -0.324594, 0.945853, 0, 4.60326, 3.03699)
 fov = 47.0
 
-[node name="Arena" parent="." node_paths=PackedStringArray("stageHandler", "multipleResCamera", "environment") instance=ExtResource("5_ryftk")]
+[node name="Arena" parent="SubViewport/StageHandler" node_paths=PackedStringArray("stageHandler", "multipleResCamera", "environment") instance=ExtResource("5_ryftk")]
 stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
-[node name="ArenaCamera" type="Camera3D" parent="Arena"]
+[node name="AudioListener3D" parent="SubViewport/StageHandler/Arena" index="0"]
+current = true
+
+[node name="ArenaCamera" type="Camera3D" parent="SubViewport/StageHandler/Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.419293, 0.907851, 0, -0.907851, 0.419293, 2.0504e-05, 8.924157, 4.157646)
 environment = ExtResource("6_l7hxi")
 current = true
 fov = 47.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("controllingLights")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/StageHandler" node_paths=PackedStringArray("controllingLights")]
 environment = ExtResource("6_l7hxi")
 script = ExtResource("7_vvqcd")
 controllingLights = [null]
 
-[node name="GlobalLight" type="DirectionalLight3D" parent="WorldEnvironment"]
+[node name="GlobalLight" type="DirectionalLight3D" parent="SubViewport/StageHandler/WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)
 visible = false
 light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
 
-[node name="MultipleResCamera" parent="." node_paths=PackedStringArray("startCamera") instance=ExtResource("8_ahv6l")]
+[node name="MultipleResCamera" parent="SubViewport/StageHandler" node_paths=PackedStringArray("startCamera") instance=ExtResource("8_ahv6l")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.294457, 0.955665, 0, -0.955665, 0.294457, 1.90735e-05, 8.19389, 2.9289)
 cull_mask = 1048575
 startGameAnimationTime = 0.2
 startCamera = NodePath("../Lobby/LobbyCamera")
 
-[node name="PauseMenu" parent="." instance=ExtResource("9_obf4j")]
+[node name="PauseMenu" parent="SubViewport/StageHandler" instance=ExtResource("9_obf4j")]
 
-[node name="BetHUD" parent="." instance=ExtResource("10_8foli")]
+[node name="BetHUD" parent="SubViewport/StageHandler" instance=ExtResource("10_8foli")]
 visible = false
 
-[connection signal="inArena" from="." to="BetHUD" method="showBetName"]
-[connection signal="inLeaderboard" from="." to="BetHUD" method="reset"]
+[connection signal="inArena" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="showBetName"]
+[connection signal="inLeaderboard" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="reset"]
 
-[editable path="Arena"]
-[editable path="Arena/Floor/Mesa"]
+[editable path="SubViewport/StageHandler/Arena"]
+[editable path="SubViewport/StageHandler/Arena/Floor/Mesa"]
