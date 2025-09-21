@@ -156,6 +156,8 @@ func getLivingMonigotes() -> Array[Monigote]:
 	return monigotes
 
 func getRandomMonigote() -> Monigote:
+	if monigotes.is_empty():
+		return Monigote.new()
 	return monigotes[randi() % len(monigotes)]
 
 func getClosestMonigote(from : Vector3, exclude : Array = []) -> Monigote:

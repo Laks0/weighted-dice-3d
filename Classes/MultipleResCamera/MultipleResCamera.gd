@@ -52,3 +52,8 @@ func startShake(magnitude : float, time : float) -> void:
 	
 	v_offset = 0
 	h_offset = 0
+
+func getBillboardTransformForScreenPos(screenPos : Vector2, zDistance : float) -> Transform3D:
+	var origin := project_position(screenPos, zDistance)
+	var newBasis := Basis.looking_at(global_position - origin)
+	return Transform3D(newBasis, origin)

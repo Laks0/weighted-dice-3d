@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd4lw0cotymgb"]
+
+[ext_resource type="Script" uid="uid://g28h2lcexb2r" path="res://Classes/CandidateLabel/CandidateLabel.gd" id="1_ts5jm"]
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_qc37a"]
+
+[node name="NameLabel" type="Label3D"]
+render_priority = 2
+outline_render_priority = 1
+font = ExtResource("2_qc37a")
+font_size = 82
+uppercase = true
+line_spacing = -25.0
+autowrap_mode = 2
+script = ExtResource("1_ts5jm")
+
+[node name="OddsLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35112524, 0)
+render_priority = 2
+outline_render_priority = 1
+font = ExtResource("2_qc37a")
+font_size = 57

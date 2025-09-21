@@ -15,7 +15,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q76ww"]
 shader = ExtResource("1_v4p10")
 shader_parameter/amount = 5.0
-shader_parameter/grain_amount = 0.010000000475
+shader_parameter/grain_amount = 0.030000001425
 shader_parameter/grain_size = 0.90000003949012
 
 [sub_resource type="Animation" id="Animation_3y6d5"]

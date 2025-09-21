@@ -11,13 +11,14 @@ signal allPlayersReady
 @export var horizontalSelectorSeparation : float = 1.7
 
 @export var playerPileZ : float = -8
+@export var candidateOddsZDisplacement : float = 1.42
 
 @export var chipHolder : ChipHolder
 @export var stageHandler : StageHandler
 
 @export var betScreen2d : Node2D
 
-
+@export var _candidateLabelScene : PackedScene
 
 var piles : Array
 var candidatesOnLeft : int
@@ -27,6 +28,17 @@ var selectors : Dictionary
 var selected : Dictionary
 var betted : Dictionary
 var isReady : Dictionary
+
+func createLabelForCandidate(candidate) -> Label3D:
+	var label : Label3D = _candidateLabelScene.instantiate()
+	label.setCandidate(candidate)
+	label.position.z = candidateOddsZDisplacement
+	for pile in piles:
+		if pile.candidate == candidate:
+			pile.add_child(label)
+			break
+	label.look_at(label.to_global(Vector3.DOWN), Vector3.FORWARD)
+	return label
 
 func startBetting():
 	Narrator.playBank("bets")
@@ -67,6 +79,10 @@ func startBetting():
 		
 		add_child(chipPile)
 		piles.append(chipPile)
+		
+		# Solo agrega las labels de los x2, los más altos se agregan en la animación
+		if BetHandler.getCandidateOdds(candidates[i]) <= 2:
+			createLabelForCandidate(candidates[i])
 	
 	for i in range(PlayerHandler.getPlayersAlive().size()):
 		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
@@ -297,4 +313,7 @@ func showBetNameAnimation(currentCamera : MultipleResCamera):
 	#create_tween().tween_property($CloseupBetDescription, "position:y", $CloseupBetDescription.position.y, 1)\
 	#	.from($CloseupBetDescription.position.y - 10)
 	await get_tree().create_timer(3).timeout
+	#$ShowSpecialMultipliersAnimation.camera = currentCamera
+	#$ShowSpecialMultipliersAnimation.start()
+	#await $ShowSpecialMultipliersAnimation.finished
 	$CloseupBetDescription.visible = false
