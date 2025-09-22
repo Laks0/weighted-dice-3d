@@ -85,6 +85,7 @@ cardShowAnimationScene = ExtResource("3_wm28h")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.62932, 0.777146, 0, -0.777146, 0.62932, 0, 2.19614, 0.0490575)
+current = true
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["Table"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0321802, 0)

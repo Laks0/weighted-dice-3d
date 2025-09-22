@@ -179,30 +179,39 @@ maxVelocity = 13.0
 
 [node name="0" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_42w8b")
+attenuation_model = 3
 
 [node name="1" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_ooxoi")
+attenuation_model = 3
 
 [node name="2" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_a6ncq")
+attenuation_model = 3
 
 [node name="3" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_atnvo")
+attenuation_model = 3
 
 [node name="4" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_bpx0u")
+attenuation_model = 3
 
 [node name="5" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_50ttr")
+attenuation_model = 3
 
 [node name="6" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_ugk4b")
+attenuation_model = 3
 
 [node name="Roll" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("34_f1ohy")
+attenuation_model = 3
 
 [node name="Hit" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_1q82g")
+attenuation_model = 3
 
 [node name="Rotations" type="Node3D" parent="."]
 script = ExtResource("27_73orw")
