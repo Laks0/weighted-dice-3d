@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=23 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dgln6bpylui5h" path="res://Classes/Effects/Pinball/PinballEffect.tscn" id="14_0dm7k"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
+[ext_resource type="PackedScene" uid="uid://dwt6isov5c6n5" path="res://Scenes/Arena/Audience/AudienceRow.tscn" id="18_vimpm"]
 [ext_resource type="Script" uid="uid://dgub11lavdcow" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
 
@@ -27,6 +28,14 @@ absorbent = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="Curve3D" id="Curve3D_vimpm"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_txoyd")
@@ -150,6 +159,34 @@ bus = &"SFX"
 [node name="ChipDropper" type="Node" parent="."]
 script = ExtResource("26_sgy0k")
 chipDrop = ExtResource("27_gjkb2")
+
+[node name="Audience" type="Node3D" parent="."]
+
+[node name="AudienceRow" parent="Audience" instance=ExtResource("18_vimpm")]
+curve = SubResource("Curve3D_vimpm")
+
+[node name="AudienceRow2" parent="Audience" instance=ExtResource("18_vimpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4922366, 0.20111203, 0)
+curve = SubResource("Curve3D_vimpm")
+
+[node name="AudienceRow3" parent="Audience" instance=ExtResource("18_vimpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8531208, 0.41187692, 0)
+curve = SubResource("Curve3D_vimpm")
+
+[node name="AudienceRow4" parent="Audience" instance=ExtResource("18_vimpm")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 11.720608, 0, -2.0492962e-06)
+curve = SubResource("Curve3D_vimpm")
+flipH = true
+
+[node name="AudienceRow5" parent="Audience" instance=ExtResource("18_vimpm")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12.16028, 0.20111203, -2.1307662e-06)
+curve = SubResource("Curve3D_vimpm")
+flipH = true
+
+[node name="AudienceRow6" parent="Audience" instance=ExtResource("18_vimpm")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12.554284, 0.41187692, -2.1967608e-06)
+curve = SubResource("Curve3D_vimpm")
+flipH = true
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
 

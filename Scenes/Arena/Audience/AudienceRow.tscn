@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwt6isov5c6n5"]
+
+[ext_resource type="Script" uid="uid://cfg8faakf8qdp" path="res://Scenes/Arena/Audience/AudienceRow.gd" id="1_5ahec"]
+[ext_resource type="PackedScene" uid="uid://bc6iqeu1atfo" path="res://Scenes/Arena/Audience/AudienceMember.tscn" id="2_n2bls"]
+
+[sub_resource type="Curve3D" id="Curve3D_qc4gg"]
+resource_local_to_scene = true
+
+[node name="AudienceRow" type="Path3D"]
+curve = SubResource("Curve3D_qc4gg")
+script = ExtResource("1_5ahec")
+minSeparation = 0.03
+maxSeparation = 0.060000000000000005
+audienceMemberScene = ExtResource("2_n2bls")
