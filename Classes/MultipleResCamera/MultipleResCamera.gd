@@ -57,3 +57,10 @@ func getBillboardTransformForScreenPos(screenPos : Vector2, zDistance : float) -
 	var origin := project_position(screenPos, zDistance)
 	var newBasis := Basis.looking_at(global_position - origin, basis.y)
 	return Transform3D(newBasis, origin)
+
+func _process(_delta):
+	%GhostCamera.transform = transform
+	if get_tree().get_nodes_in_group("Transparent3D").is_empty():
+		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	else:
+		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE

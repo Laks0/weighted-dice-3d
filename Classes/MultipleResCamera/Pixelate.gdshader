@@ -4,6 +4,8 @@ render_mode unshaded, fog_disabled;
 uniform vec3 shadow_color : source_color = vec3(0.0);
 uniform float shadow_thickness = 2.0;
 
+uniform sampler2D transparent_texture : hint_default_transparent;
+
 vec2 getDepth(vec2 screen_pos, sampler2D depth_texture, mat4 inv_projection_matrix){
 	float raw_depth = texture(depth_texture, screen_pos)[0];
 	vec3 normalized_device_coordinates = vec3(screen_pos * 2.0 - 1.0, raw_depth);
@@ -81,5 +83,7 @@ void fragment() {
 	depth_diff = smoothstep(0.5, 0.7, depth_diff) * .95;
 
 	ALBEDO = texture(SCREEN_TEXTURE, pixelated_uv).rgb;
+	vec4 ghost_overlay = texture(transparent_texture, pixelated_uv);
+	ALBEDO = mix(ALBEDO, ghost_overlay.rgb ,ghost_overlay.a);
 	ALBEDO = mix(ALBEDO, shadow_color, depth_diff);
 }

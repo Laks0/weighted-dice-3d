@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh13re66e6e63"]
+[gd_scene load_steps=8 format=3 uid="uid://bh13re66e6e63"]
 
 [ext_resource type="Script" uid="uid://d1yhm2hembdrk" path="res://Classes/MultipleResCamera/MultipleResCamera.gd" id="1_0nyod"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_22qtq"]
@@ -8,11 +8,16 @@
 [sub_resource type="QuadMesh" id="QuadMesh_lq1p7"]
 size = Vector2(2, 2)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_71dho"]
+viewport_path = NodePath("GhostViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_suf3b"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_4k3cc")
 shader_parameter/shadow_color = Color(0, 0, 0, 1)
 shader_parameter/shadow_thickness = 2.0
+shader_parameter/transparent_texture = SubResource("ViewportTexture_71dho")
 
 [node name="MultipleResCamera" type="Camera3D"]
 cull_mask = 1048573
@@ -23,9 +28,18 @@ script = ExtResource("1_0nyod")
 
 [node name="OutlineMesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.41108, 0, 0, 0, 1.41108, 0, 0, 0, 1, 0, -0.0412301, -1.31479)
-layers = 3
 mesh = SubResource("QuadMesh_lq1p7")
 surface_material_override/0 = SubResource("ShaderMaterial_suf3b")
 
 [node name="wooshPlayer" type="AudioStreamPlayer" parent="."]
 script = ExtResource("4_ugo5d")
+
+[node name="GhostViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_cull_mask = 4294966274
+size = Vector2i(1920, 1080)
+
+[node name="GhostCamera" type="Camera3D" parent="GhostViewport"]
+unique_name_in_owner = true
+cull_mask = 2
+fov = 47.0
