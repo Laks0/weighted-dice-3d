@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=17 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" uid="uid://cimbev8wy8bfh" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_o0boa"]
+[ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="3_2ixd4"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="3_sgvmr"]
 [ext_resource type="Script" uid="uid://deryo7mrmvudq" path="res://Scenes/CharacterScreen/CharacterScene3d.gd" id="6_2b0u8"]
 [ext_resource type="PackedScene" uid="uid://c66esfi8xr0k2" path="res://Scenes/CharacterScreen/RigidBall.tscn" id="6_j45k1"]
@@ -11,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://x3gdoknllcg2" path="res://Scenes/CharacterScreen/Gacha_Image_1.png" id="8_88s8u"]
 [ext_resource type="Texture2D" uid="uid://bxd4g0qww21b2" path="res://Scenes/CharacterScreen/Gacha_Image_2.png" id="9_py5a4"]
 [ext_resource type="AudioStream" uid="uid://ccygglvm1sguu" path="res://Scenes/CharacterScreen/gacha.wav" id="11_or6ru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vx763"]
+shader = ExtResource("3_2ixd4")
+shader_parameter/fishEyeAmount = 3.0
+shader_parameter/grain_amount = 0.03
+shader_parameter/grain_size = 0.9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y7ii"]
 
@@ -43,6 +50,7 @@ theme = ExtResource("1_o0boa")
 script = ExtResource("1_70uiy")
 
 [node name="Viewport3D" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_vx763")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
