@@ -218,9 +218,6 @@ stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
-[node name="AudioListener3D" parent="SubViewport/StageHandler/Arena" index="0"]
-current = true
-
 [node name="AudienceRow" parent="SubViewport/StageHandler/Arena/Audience" index="0"]
 curve = SubResource("Curve3D_vimpm")
 
