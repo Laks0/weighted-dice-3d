@@ -1,11 +1,11 @@
 shader_type canvas_item;
 
-uniform float amount = 0.0;
+uniform float fishEyeAmount = 0.0;
 uniform float grain_amount : hint_range(0.0, 1.0) = 0.05; // Adjust the amount of grain
 uniform float grain_size : hint_range(0.1, 10.0) = 1.0; // Adjust the size of the grain
 
 void fragment() {
-	float newAmount = (amount / 100.0) + 1.0;
+	float newAmount = (fishEyeAmount / 100.0) + 1.0;
 
 	vec2 texcoord0 = UV;
 	vec2 kCenter = vec2(0.5);
