@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float fishEyeAmount = 5.0;
+uniform float fishEyeAmount = 3.0;
 uniform float grain_amount : hint_range(0.0, 1.0) = 0.03; // Adjust the amount of grain
 uniform float grain_size : hint_range(0.1, 10.0) = 0.9; // Adjust the size of the grain
 

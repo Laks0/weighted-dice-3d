@@ -190,9 +190,8 @@ func onMonigoteDeath(mon : Monigote):
 	if monigotes.size() == 0:
 		endGame(mon)
 
-
-
 ## PLACEHOLDER
-func changeWallHue(color : Color):
-	var tween = create_tween()
-	tween.tween_property($Floor/Mesa/MesaEx/MesaInt, "material_override:albedo_color", color, .5)
+func changeWallHue(_color : Color):
+	pass
+	#var tween = create_tween()
+	#tween.tween_property($Floor/Mesa/Mesa_v2, "material_override:albedo_color", color, .5)

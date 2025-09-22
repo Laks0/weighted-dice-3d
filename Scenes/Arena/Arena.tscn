@@ -152,3 +152,5 @@ script = ExtResource("26_sgy0k")
 chipDrop = ExtResource("27_gjkb2")
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
+
+[editable path="Floor/Mesa"]
