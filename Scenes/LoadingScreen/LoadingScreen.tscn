@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjm023a5mmwvy"]
+[gd_scene load_steps=8 format=3 uid="uid://bjm023a5mmwvy"]
 
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_1rcnr"]
 [ext_resource type="Script" uid="uid://g2ibll564x1o" path="res://Scenes/LoadingScreen/LoadingScreen.gd" id="1_6dlsn"]
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_dda77"]
 [ext_resource type="PackedScene" uid="uid://bh13re66e6e63" path="res://Classes/MultipleResCamera/MultipleResCamera.tscn" id="2_sioe6"]
 [ext_resource type="PackedScene" uid="uid://tvx16p1qmmjc" path="res://Classes/Monigotes/Monigote.tscn" id="3_j3vqa"]
+[ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="4_4uhvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhjn8"]
+shader = ExtResource("4_4uhvq")
+shader_parameter/fishEyeAmount = 0.0
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 1.0
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.881752)
@@ -24,6 +31,7 @@ factsFile = "res://Assets/FunFacts.json"
 arenaPath = "uid://bpdrpg3p4qn3t"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="LoadingScreen"]
+material = SubResource("ShaderMaterial_dhjn8")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
