@@ -1,11 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd4lw0cotymgb"]
+[gd_scene load_steps=10 format=3 uid="uid://bd4lw0cotymgb"]
 
 [ext_resource type="Script" uid="uid://g28h2lcexb2r" path="res://Classes/CandidateLabel/CandidateLabel.gd" id="1_ts5jm"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_qc37a"]
 
+[sub_resource type="Curve" id="Curve_ts5jm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5224914, 0), 0.0, 0.0, 0, 0, Vector2(0.98961943, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_qc37a"]
+curve_x = SubResource("Curve_ts5jm")
+
+[sub_resource type="Curve" id="Curve_qc37a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 1.4, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_krj8p"]
+curve = SubResource("Curve_qc37a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_krj8p"]
+emission_shape_scale = Vector3(0.155, 0.14, 0.06)
+emission_shape = 1
+emission_sphere_radius = 1.0
+directional_velocity_min = -1.0000161
+directional_velocity_max = 0.9999839
+directional_velocity_curve = SubResource("CurveXYZTexture_qc37a")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.59999996
+scale_max = 1.3
+scale_curve = SubResource("CurveTexture_krj8p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxymv"]
+resource_local_to_scene = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_71abv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_mxymv")
+size = Vector2(0.05, 0.05)
+orientation = 2
+
 [node name="NameLabel" type="Label3D"]
-render_priority = 2
-outline_render_priority = 1
+render_priority = 3
+outline_render_priority = 2
 font = ExtResource("2_qc37a")
 font_size = 82
 uppercase = true
@@ -15,7 +52,16 @@ script = ExtResource("1_ts5jm")
 
 [node name="OddsLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35112524, 0)
-render_priority = 2
-outline_render_priority = 1
+render_priority = 4
+outline_render_priority = 3
+text = "x3"
 font = ExtResource("2_qc37a")
 font_size = 57
+
+[node name="OddsParticles" type="GPUParticles3D" parent="OddsLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.07474079)
+emitting = false
+amount = 20
+lifetime = 1.1300000000000001
+process_material = SubResource("ParticleProcessMaterial_krj8p")
+draw_pass_1 = SubResource("PlaneMesh_71abv")

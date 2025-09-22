@@ -21,6 +21,7 @@ signal allPlayersReady
 @export var _candidateLabelScene : PackedScene
 
 var piles : Array
+var labels : Array
 var candidatesOnLeft : int
 var candidatesOnRight : int
 
@@ -36,6 +37,7 @@ func createLabelForCandidate(candidate) -> Label3D:
 	for pile in piles:
 		if pile.candidate == candidate:
 			pile.add_child(label)
+			labels.append(label)
 			break
 	label.look_at(label.to_global(Vector3.DOWN), Vector3.FORWARD)
 	return label
@@ -80,9 +82,7 @@ func startBetting():
 		add_child(chipPile)
 		piles.append(chipPile)
 		
-		# Solo agrega las labels de los x2, los más altos se agregan en la animación
-		if BetHandler.getCandidateOdds(candidates[i]) <= 2:
-			createLabelForCandidate(candidates[i])
+		createLabelForCandidate(candidates[i])
 	
 	for i in range(PlayerHandler.getPlayersAlive().size()):
 		var player : PlayerHandler.Player = PlayerHandler.getPlayersAlive()[i]
@@ -109,6 +109,7 @@ func endBetting():
 	SfxHandler.playSound("displayReady")
 	for sel in selectors.values():
 		sel.queue_free()
+	labels.clear()
 	$BetDescription.visible = false
 
 @export var timeToHoldBet : float = .5
@@ -313,7 +314,19 @@ func showBetNameAnimation(currentCamera : MultipleResCamera):
 	#create_tween().tween_property($CloseupBetDescription, "position:y", $CloseupBetDescription.position.y, 1)\
 	#	.from($CloseupBetDescription.position.y - 10)
 	await get_tree().create_timer(3).timeout
-	#$ShowSpecialMultipliersAnimation.camera = currentCamera
-	#$ShowSpecialMultipliersAnimation.start()
-	#await $ShowSpecialMultipliersAnimation.finished
+	_startOddsAnimations()
 	$CloseupBetDescription.visible = false
+
+func _startOddsAnimations():
+	var delayBetweenAnimations := .2
+	for i in range(2, 6):
+		var lastTween : Tween = null
+		var delay := 0.0
+		for l in labels:
+			if l.odds == i:
+				lastTween = l.startOddsAnimation(delay)
+				delay += delayBetweenAnimations
+		
+		if lastTween != null:
+			await lastTween.finished
+			await get_tree().create_timer(delayBetweenAnimations).timeout
