@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=28 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -30,6 +30,46 @@ absorbent = true
 plane = Plane(0, 0, 1, 0)
 
 [sub_resource type="Curve3D" id="Curve3D_vimpm"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ja8rw"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_pioo0"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_50kmb"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_av3tb"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_am0bh"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
@@ -167,25 +207,25 @@ curve = SubResource("Curve3D_vimpm")
 
 [node name="AudienceRow2" parent="Audience" instance=ExtResource("18_vimpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4922366, 0.20111203, 0)
-curve = SubResource("Curve3D_vimpm")
+curve = SubResource("Curve3D_ja8rw")
 
 [node name="AudienceRow3" parent="Audience" instance=ExtResource("18_vimpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8531208, 0.41187692, 0)
-curve = SubResource("Curve3D_vimpm")
+curve = SubResource("Curve3D_pioo0")
 
 [node name="AudienceRow4" parent="Audience" instance=ExtResource("18_vimpm")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 11.720608, 0, -2.0492962e-06)
-curve = SubResource("Curve3D_vimpm")
+curve = SubResource("Curve3D_50kmb")
 flipH = true
 
 [node name="AudienceRow5" parent="Audience" instance=ExtResource("18_vimpm")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12.16028, 0.20111203, -2.1307662e-06)
-curve = SubResource("Curve3D_vimpm")
+curve = SubResource("Curve3D_av3tb")
 flipH = true
 
 [node name="AudienceRow6" parent="Audience" instance=ExtResource("18_vimpm")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12.554284, 0.41187692, -2.1967608e-06)
-curve = SubResource("Curve3D_vimpm")
+curve = SubResource("Curve3D_am0bh")
 flipH = true
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]

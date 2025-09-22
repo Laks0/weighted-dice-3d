@@ -1,12 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc6iqeu1atfo"]
+[gd_scene load_steps=19 format=3 uid="uid://bc6iqeu1atfo"]
 
 [ext_resource type="Texture2D" uid="uid://8yhfmn1q5bh7" path="res://Scenes/Arena/Audience/AudienceMonigotes .png" id="1_cja5k"]
 [ext_resource type="Script" uid="uid://bw04dap4f7f7i" path="res://Scenes/Arena/Audience/AudienceMember.gd" id="2_o0h5n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qtkb"]
-resource_local_to_scene = true
 atlas = ExtResource("1_cja5k")
 region = Rect2(-2, 7, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cja5k"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 39, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0h5n"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 71, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebl4w"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 103, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63oqa"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 135, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvh7r"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 167, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg3gr"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 199, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lp25"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(-2, 231, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eks0d"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 7, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa5eh"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 39, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmv5a"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 71, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43d21"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 103, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck0ft"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 135, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ard41"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 167, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4juif"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 199, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wabk2"]
+atlas = ExtResource("1_cja5k")
+region = Rect2(126, 231, 32, 32)
 
 [node name="AudienceMember" type="Sprite3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
@@ -16,6 +75,8 @@ texture_filter = 0
 render_priority = 1
 texture = SubResource("AtlasTexture_7qtkb")
 script = ExtResource("2_o0h5n")
+idleTextures = Array[Texture2D]([SubResource("AtlasTexture_7qtkb"), SubResource("AtlasTexture_cja5k"), SubResource("AtlasTexture_o0h5n"), SubResource("AtlasTexture_ebl4w"), SubResource("AtlasTexture_63oqa"), SubResource("AtlasTexture_yvh7r"), SubResource("AtlasTexture_gg3gr"), SubResource("AtlasTexture_5lp25")])
+jumpingTextures = Array[Texture2D]([SubResource("AtlasTexture_eks0d"), SubResource("AtlasTexture_oa5eh"), SubResource("AtlasTexture_pmv5a"), SubResource("AtlasTexture_43d21"), SubResource("AtlasTexture_ck0ft"), SubResource("AtlasTexture_ard41"), SubResource("AtlasTexture_4juif"), SubResource("AtlasTexture_wabk2")])
 
 [node name="JumpingTimer" type="Timer" parent="."]
 one_shot = true

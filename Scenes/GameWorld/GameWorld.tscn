@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/GameWorld/StageHandler.gd" id="1_hrf5g"]
 [ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="1_v4p10"]
@@ -105,6 +105,54 @@ _data = {
 &"RESET": SubResource("Animation_y7ohy")
 }
 
+[sub_resource type="Curve3D" id="Curve3D_vimpm"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_yresm"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ryftk"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_l7hxi"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_vvqcd"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_ahv6l"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [node name="SubViewportContainer" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_q76ww")
 anchors_preset = 15
@@ -170,6 +218,24 @@ environment = NodePath("../WorldEnvironment")
 
 [node name="AudioListener3D" parent="SubViewport/StageHandler/Arena" index="0"]
 current = true
+
+[node name="AudienceRow" parent="SubViewport/StageHandler/Arena/Audience" index="0"]
+curve = SubResource("Curve3D_vimpm")
+
+[node name="AudienceRow2" parent="SubViewport/StageHandler/Arena/Audience" index="1"]
+curve = SubResource("Curve3D_yresm")
+
+[node name="AudienceRow3" parent="SubViewport/StageHandler/Arena/Audience" index="2"]
+curve = SubResource("Curve3D_ryftk")
+
+[node name="AudienceRow4" parent="SubViewport/StageHandler/Arena/Audience" index="3"]
+curve = SubResource("Curve3D_l7hxi")
+
+[node name="AudienceRow5" parent="SubViewport/StageHandler/Arena/Audience" index="4"]
+curve = SubResource("Curve3D_vvqcd")
+
+[node name="AudienceRow6" parent="SubViewport/StageHandler/Arena/Audience" index="5"]
+curve = SubResource("Curve3D_ahv6l")
 
 [node name="ArenaCamera" type="Camera3D" parent="SubViewport/StageHandler/Arena"]
 transform = Transform3D(1, 0, 0, 0, 0.419293, 0.907851, 0, -0.907851, 0.419293, 2.0504e-05, 8.924157, 4.157646)

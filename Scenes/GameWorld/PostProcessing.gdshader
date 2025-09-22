@@ -21,7 +21,7 @@ void fragment() {
     vec4 original_color = texture(TEXTURE, texcoord0);
 
     // Generate random noise
-    float noise = (fract(sin(dot(UV, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 2.0;
+    float noise = (fract(sin(dot(UV + sin(TIME*.000001), vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 2.0;
 
     // Add noise to the original color
     original_color.rgb += noise * grain_amount * grain_size;
