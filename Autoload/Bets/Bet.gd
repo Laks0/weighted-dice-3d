@@ -35,6 +35,7 @@ var _scoreOrder : Order = Order.NO_SCORE
 
 ## Si el que va primero devuelve triple y el resto doble
 var _prizeOnFirst := false
+var _secondaryPrize : int
 
 ## Los textos para anunciar el resultado de la apuesta. Debe tener un %s donde va el resultado
 var _resultTextSingular : String = "El resultado de la apuesta es: %s"
@@ -60,9 +61,21 @@ enum ScoreType {
 
 var _scoreType = ScoreType.INT
 
+func _pickSecondaryPrize():
+	var pickablePlayers := PlayerHandler.getPlayersAlive()\
+		.filter(func (p : PlayerHandler.Player): return p.bank < _maxBank)
+	
+	if pickablePlayers.size() == 0:
+		_secondaryPrize = -1
+		return
+	
+	_secondaryPrize = pickablePlayers.pick_random().id
+
 ## Se llama al principio de la ronda
 func startRound():
 	_maxBank = PlayerHandler.getPlayersInOrder()[0].bank
+	if _prizeOnFirst:
+		_pickSecondaryPrize()
 	
 	for candidate in getCandidates():
 		_scores[candidate] = 0
@@ -84,6 +97,8 @@ func hasWon(candidate) -> bool:
 
 func getCandidateOdds(candidate) -> int:
 	if _prizeOnFirst and PlayerHandler.getPlayerById(candidate).bank == _maxBank:
+		return 4
+	if _prizeOnFirst and candidate == _secondaryPrize:
 		return 3
 	return 2
 
