@@ -1,26 +1,15 @@
-[gd_scene load_steps=44 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=27 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_6qi4a"]
 [ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
+[ext_resource type="AudioStream" uid="uid://cs1jyi7f08veo" path="res://Classes/Die/SFX/sfx_dicestomp_1.wav" id="6_w4jd8"]
+[ext_resource type="AudioStream" uid="uid://c7ovmsq77vqb3" path="res://Classes/Die/SFX/sfx_dicestomp_2.wav" id="7_p3wqm"]
+[ext_resource type="AudioStream" uid="uid://crsrvc2s07uil" path="res://Classes/Die/SFX/sfx_dicestomp_3.wav" id="8_8terr"]
+[ext_resource type="AudioStream" uid="uid://ddn245moabeib" path="res://Classes/Die/SFX/sfx_dicestomp_4.wav" id="9_00hyw"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
 [ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
-[ext_resource type="AudioStream" uid="uid://b4ilyinrb6dqu" path="res://Classes/Die/SFX/sfx_dicestomp.wav" id="15_w3cel"]
-[ext_resource type="AudioStream" uid="uid://cebdr5tnikcfs" path="res://Assets/SFX/Dado/dado 0a.wav" id="19_5t2lp"]
 [ext_resource type="Script" uid="uid://bduynf84rdyei" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
-[ext_resource type="AudioStream" uid="uid://dvm4jl44umrm8" path="res://Assets/SFX/Dado/dado 0b.wav" id="20_5gvsa"]
-[ext_resource type="AudioStream" uid="uid://cnu46v3hx7wh1" path="res://Assets/SFX/Dado/dado 1a.wav" id="21_umdam"]
-[ext_resource type="AudioStream" uid="uid://dsgodc7ab7sjk" path="res://Assets/SFX/Dado/dado 1b.wav" id="22_uv4sw"]
-[ext_resource type="AudioStream" uid="uid://fdgbmkmt63ki" path="res://Assets/SFX/Dado/dado 2a.wav" id="23_65i7b"]
-[ext_resource type="AudioStream" uid="uid://dk03hap748og0" path="res://Assets/SFX/Dado/dado 2b.wav" id="24_drw72"]
-[ext_resource type="AudioStream" uid="uid://cyh45imtjn7dj" path="res://Assets/SFX/Dado/dado 3a.wav" id="25_k74yy"]
-[ext_resource type="AudioStream" uid="uid://uijvm4d7kcyr" path="res://Assets/SFX/Dado/dado 3b.wav" id="26_i8mxh"]
 [ext_resource type="Script" uid="uid://diw2isqf0noxx" path="res://Classes/Die/DieRotations.gd" id="27_73orw"]
-[ext_resource type="AudioStream" uid="uid://bebq2m68o2fjf" path="res://Assets/SFX/Dado/dado 4a.wav" id="27_r4hgl"]
-[ext_resource type="AudioStream" uid="uid://c7rgs8j2d65md" path="res://Assets/SFX/Dado/dado 4b.wav" id="28_kslf3"]
-[ext_resource type="AudioStream" uid="uid://cgfm34ffnwhqc" path="res://Assets/SFX/Dado/dado 5a.wav" id="29_0afo5"]
-[ext_resource type="AudioStream" uid="uid://e33ibluqvtr2" path="res://Assets/SFX/Dado/dado 5b.wav" id="30_tg0rf"]
-[ext_resource type="AudioStream" uid="uid://b4s44ykualug8" path="res://Assets/SFX/Dado/dado 6a.wav" id="31_gsky6"]
-[ext_resource type="AudioStream" uid="uid://cyb48xxsmydh2" path="res://Assets/SFX/Dado/dado 6b.wav" id="32_23sig"]
 [ext_resource type="AudioStream" uid="uid://1erbglbkgytx" path="res://Assets/SFX/Dado/fx_dado_roll.wav" id="34_f1ohy"]
 [ext_resource type="AudioStream" uid="uid://bdkhu50arradd" path="res://Assets/SFX/Dado/fx_dado_golpe_1.wav" id="35_p3iqn"]
 [ext_resource type="AudioStream" uid="uid://cqaqf3ned3x0y" path="res://Assets/SFX/Dado/fx_dado_golpe_2.wav" id="36_iveqe"]
@@ -71,47 +60,12 @@ material = SubResource("StandardMaterial3D_bmhk7")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ijiam"]
 points = PackedVector3Array(-0.893276, -0.985924, -0.862587, 0.893277, 0.985925, 0.862588, 0.893276, 0.985924, -0.862587, -0.955132, 0.955132, -0.862669, -0.955132, -0.862669, 0.955132, 0.955132, -0.955132, 0.862669, 0.924803, -0.924803, -0.955707, -0.92482, 0.92482, 0.955725, 0.955132, 0.862669, 0.955132, -0.893273, 0.862583, -0.98592, 0.985896, 0.862562, -0.893444, -0.955132, -0.862669, -0.955132, 0.862561, -0.893443, 0.985895, -0.862558, -0.985891, 0.89344, 0.862559, 0.89344, -0.985892, -0.985896, 0.893444, 0.862562, -0.893276, 0.985924, 0.862587, 0.893273, -0.98592, -0.862583, -0.985896, -0.893444, -0.862562, -0.862559, -0.89344, -0.985892, 0.985896, -0.862562, 0.893444, 0.985892, -0.89344, -0.862559, -0.862561, 0.893443, 0.985895, -0.862562, 0.985896, -0.893444, -0.985895, -0.893443, 0.862561, -0.985895, 0.862561, -0.893443, 0.985937, 0.893288, 0.862405, 0.862562, 0.893444, 0.985896, -0.862562, -0.893444, 0.985896, 0.862561, -0.985895, 0.893443, 0.893273, -0.862583, -0.98592, 0.862669, 0.955132, 0.955132)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_42w8b"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("19_5t2lp")
-stream_1/stream = ExtResource("20_5gvsa")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ooxoi"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("21_umdam")
-stream_1/stream = ExtResource("22_uv4sw")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a6ncq"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("23_65i7b")
-stream_1/stream = ExtResource("24_drw72")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_atnvo"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("25_k74yy")
-stream_1/stream = ExtResource("26_i8mxh")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bpx0u"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("27_r4hgl")
-stream_1/stream = ExtResource("28_kslf3")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_50ttr"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("29_0afo5")
-stream_1/stream = ExtResource("30_tg0rf")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ugk4b"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("31_gsky6")
-stream_1/stream = ExtResource("32_23sig")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h26t5"]
+streams_count = 4
+stream_0/stream = ExtResource("6_w4jd8")
+stream_1/stream = ExtResource("7_p3wqm")
+stream_2/stream = ExtResource("8_8terr")
+stream_3/stream = ExtResource("9_00hyw")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1q82g"]
 random_pitch = 1.5
@@ -158,12 +112,6 @@ mesh = ExtResource("13_wyhdg")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ijiam")
 
-[node name="Buildup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_e70v7")
-
-[node name="Stomp" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_w3cel")
-
 [node name="NumberLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.792503, 0)
 light_color = Color(1, 1, 0, 1)
@@ -177,41 +125,23 @@ omni_range = 1.5141
 script = ExtResource("19_dqn45")
 maxVelocity = 13.0
 
-[node name="0" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_42w8b")
-attenuation_model = 3
+[node name="Buildup" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = ExtResource("14_e70v7")
+bus = &"SFX"
 
-[node name="1" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_ooxoi")
-attenuation_model = 3
-
-[node name="2" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_a6ncq")
-attenuation_model = 3
-
-[node name="3" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_atnvo")
-attenuation_model = 3
-
-[node name="4" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_bpx0u")
-attenuation_model = 3
-
-[node name="5" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_50ttr")
-attenuation_model = 3
-
-[node name="6" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = SubResource("AudioStreamRandomizer_ugk4b")
-attenuation_model = 3
+[node name="Stomp" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = SubResource("AudioStreamRandomizer_h26t5")
+bus = &"SFX"
 
 [node name="Roll" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("34_f1ohy")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_1q82g")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="Rotations" type="Node3D" parent="."]
 script = ExtResource("27_73orw")

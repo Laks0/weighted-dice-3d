@@ -24,3 +24,6 @@ func rollSound():
 		$Roll.volume_db = -18 + 6*(position.y*6/2 + magnitude/2)
 	else:
 		$Roll.volume_db = -90
+
+func playStomp():
+	$Stomp.play()

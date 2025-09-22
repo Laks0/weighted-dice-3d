@@ -32,6 +32,7 @@ func start():
 	pointer.visible = false
 	linePointer.visible = false
 	get_viewport().get_camera_3d().startShake(.2,.1)
+	die.get_node("SoundManager").playStomp()
 	end()
 
 func _onActiveProcess(_delta):

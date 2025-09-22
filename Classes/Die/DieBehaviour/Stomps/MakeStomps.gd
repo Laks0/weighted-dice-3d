@@ -28,6 +28,7 @@ func _onStart():
 		
 		tween.tween_callback(func ():
 			get_viewport().get_camera_3d().startShake(shakeMagnitude,shakeTime)
+			die.get_node("SoundManager").playStomp()
 			die.hitting = false
 		)
 
