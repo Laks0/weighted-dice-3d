@@ -40,7 +40,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_ja8rw"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.843441, 1.7074105, -3.6992567),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -48,7 +48,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_pioo0"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.8163977, 1.6906195, 3.6586967, 0, 0, 0, 0, 0, 0, -5.8436804, 1.707559, -3.7643085),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -64,7 +64,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_av3tb"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.816553, 1.6907159, 3.6164393, 0, 0, 0, 0, 0, 0, -5.843493, 1.7074425, -3.7132866),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -72,7 +72,7 @@ point_count = 2
 [sub_resource type="Curve3D" id="Curve3D_am0bh"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.817695, 1.691425, 3.305704, 0, 0, 0, 0, 0, 0, -5.8424706, 1.7068079, -3.43518),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.8164454, 1.690649, 3.6457145, 0, 0, 0, 0, 0, 0, -5.843678, 1.7075576, -3.7637193),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2

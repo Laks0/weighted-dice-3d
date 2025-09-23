@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=2 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
-[ext_resource type="PackedScene" uid="uid://d851kct203w3" path="res://Classes/CustomUI/GamepadSelectCarousel/GamepadSelectCarousel.tscn" id="2_6tkn5"]
-[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_gs04o"]
 
 [node name="ConfigControllers" type="Control"]
 layout_mode = 3
@@ -12,42 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8fhsc")
-
-[node name="GamepadSelectCarousel" parent="." node_paths=PackedStringArray("downSelect") instance=ExtResource("2_6tkn5")]
-custom_minimum_size = Vector2(288, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = -186.0
-offset_top = 40.0
-offset_right = 186.0
-offset_bottom = 40.0
-grow_vertical = 1
-options = Dictionary[String, String]({
-"Agarrar": "grab",
-"Movimiento": "up",
-"Pausar": "pause",
-"Saltar": "jump"
-})
-downSelect = NodePath("../HBoxContainer/Back")
-
-[node name="ActionLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -11.5
-offset_right = 87.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Se mueve moviéndose"
-horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -62,49 +24,3 @@ offset_right = 32.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
-
-[node name="Back" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "VOLVER"
-upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Accept")
-rightSelect = NodePath("../Edit")
-leftFallback = NodePath("../Accept")
-rightFallback = NodePath("../Edit")
-
-[node name="Edit" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "EDITAR"
-upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Back")
-rightSelect = NodePath("../Cancel")
-leftFallback = NodePath("../Back")
-rightFallback = NodePath("../Cancel")
-
-[node name="Cancel" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "CANCELAR"
-upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Edit")
-rightSelect = NodePath("../Accept")
-leftFallback = NodePath("../Edit")
-rightFallback = NodePath("../Accept")
-
-[node name="Accept" parent="HBoxContainer" node_paths=PackedStringArray("upSelect", "leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("2_gs04o")]
-unique_name_in_owner = true
-layout_mode = 2
-text = "ACEPTAR"
-upSelect = NodePath("../../GamepadSelectCarousel")
-leftSelect = NodePath("../Cancel")
-rightSelect = NodePath("../Back")
-leftFallback = NodePath("../Cancel")
-rightFallback = NodePath("../Back")
-
-[connection signal="finished" from="." to="." method="onFinished"]
-[connection signal="pressed" from="HBoxContainer/Back" to="." method="cancelChanges"]
-[connection signal="pressed" from="HBoxContainer/Edit" to="." method="startEdit"]
-[connection signal="pressed" from="HBoxContainer/Cancel" to="." method="cancelChanges"]
-[connection signal="pressed" from="HBoxContainer/Accept" to="." method="applyChanges"]

@@ -119,3 +119,47 @@ func getDirection(controller : int) -> Vector2:
 
 func getActions(inputController : int) -> Dictionary:
 	return controllers[inputController]
+
+func inputNameFromAction(actionName : StringName, controllerId : int) -> StringName:
+	var actionEvents : Array[InputEvent] = InputMap.action_get_events(controllers[controllerId][actionName])
+	var names : Array = actionEvents.map(singularInputToString).map(func(s : String):
+		return s.split(" ")[-1])
+	return "/".join(names)
+
+func _getStickDirectionName(inputName : StringName) -> StringName:
+	if inputName.contains("Y") and inputName.contains("-1"):
+		return "up"
+	if inputName.contains("Y") and inputName.contains("1"):
+		return "down"
+	if inputName.contains("X") and inputName.contains("-1"):
+		return "left"
+	if inputName.contains("X") and inputName.contains("1"):
+		return "right"
+	return ""
+
+func singularInputToString(input : InputEvent) -> StringName:
+	# Si es un botón de joystick
+	var xboxRegex := RegEx.new()
+	xboxRegex.compile("Xbox \\w+")
+	var result := xboxRegex.search(input.as_text())
+	
+	if result:
+		return result.get_string()
+	
+	# Si es un D-Pad
+	var dpadRegex := RegEx.new()
+	dpadRegex.compile("D-pad \\w+")
+	result = dpadRegex.search(input.as_text())
+	
+	if result:
+		return result.get_string()
+	
+	# Si es un stick
+	var stick := RegEx.new()
+	stick.compile("\\w+ Stick")
+	result = stick.search(input.as_text())
+	
+	if result:
+		return result.get_string() + " " + _getStickDirectionName(input.as_text())
+	
+	return input.as_text().split(" (")[0]
