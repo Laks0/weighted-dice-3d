@@ -11,3 +11,8 @@ metadata/_custom_type_script = "uid://wpnke37j2fbm"
 [node name="AfterBurstTime" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+collision_mask = 4
+debug_shape_custom_color = Color(0, 1, 0, 1)

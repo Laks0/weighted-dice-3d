@@ -40,6 +40,14 @@ func _burst():
 	
 	die.freeze = true
 	
+	$RayCast3D.target_position = preTravel.normalized() * 1.2
+	$RayCast3D.global_position = global_position
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if $RayCast3D.is_colliding():
+		preTravel = Vector3.UP*.3
+	
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
 	tween.tween_interval(.1)
 	tween.tween_property(die, "transform",

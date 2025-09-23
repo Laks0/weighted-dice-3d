@@ -10,10 +10,11 @@ height = 1.21997
 radius = 0.9448242
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_q3ea0"]
-height = 0.81018066
+height = 0.9260864
 radius = 0.9267578
 
 [node name="PinballTower" type="StaticBody3D"]
+collision_layer = 4
 script = ExtResource("1_ws2rw")
 
 [node name="Mesh" parent="." instance=ExtResource("2_vkloh")]
@@ -34,7 +35,7 @@ stream = ExtResource("4_o8dfq")
 bus = &"SFX"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40252686, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46047974, 0)
 shape = SubResource("CylinderShape3D_q3ea0")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

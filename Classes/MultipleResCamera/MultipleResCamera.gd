@@ -64,3 +64,5 @@ func _process(_delta):
 		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	else:
 		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	
+	$OutlineMesh2.visible = Debug.vars["pixelate"]
