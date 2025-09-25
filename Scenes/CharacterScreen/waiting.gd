@@ -9,16 +9,20 @@ extends Control
 @export var psButtonDisplay : Control
 
 func _process(_delta: float) -> void:
+	var waiting : Array[int] = get_parent().devicesWaiting
+	
 	mainKeyboardButtonDisplay.setBinding(
 		Controllers.getEventsForAction("grab", Controllers.KB)[0], Controllers.KB
 	)
 	secondaryKeyboardButtonDisplay.setBinding(
 		Controllers.getEventsForAction("grab", Controllers.KB2)[0], Controllers.KB2
 	)
+	mainKeyboardHint.visible = waiting.has(Controllers.KB)
+	secondaryKeyboardHint.visible = waiting.has(Controllers.KB2)
 	
 	var hasXbox = false
 	var hasPS = false
-	for id in Input.get_connected_joypads():
+	for id in waiting:
 		if Controllers.getControllerType(id) == Controllers.ControllerType.XBOX:
 			hasXbox = true
 			

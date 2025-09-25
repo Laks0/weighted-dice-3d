@@ -12,6 +12,8 @@ var playerName := ""
 enum Stages { WAITING, MAIN, NAME_EDIT, CONTROLLERS, READY, LOCKED, ALLREADY}
 var stage := Stages.WAITING
 
+var devicesWaiting : Array[int]
+
 var active := false
 
 @export_range(1,6) var color : int = 1

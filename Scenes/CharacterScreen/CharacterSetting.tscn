@@ -855,7 +855,6 @@ text = "Agregar teclado principal"
 [node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/MainKeyboard" instance=ExtResource("14_pf7fp")]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = null
 _inputDisplayed = SubResource("InputEventKey_8644k")
 
 [node name="SecondaryKeyboard" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
@@ -872,7 +871,6 @@ text = "Agregar teclado secundario"
 [node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/SecondaryKeyboard" instance=ExtResource("14_pf7fp")]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = null
 
 [node name="Controller" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
 layout_mode = 2

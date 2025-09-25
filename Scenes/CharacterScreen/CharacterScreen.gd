@@ -48,9 +48,18 @@ func _process(_delta):
 		_startContdown()
 	if (not allPlayersReady) and $Countdown.visible:
 		_stopCountdown()
+	
+	for setting in $Settings.get_children():
+		setting.devicesWaiting = _getDevicesWaiting()
 
 func _isDeviceActive(device : int) -> bool:
 	return _getActiveSettings().any(func(c): return c.getController() == device)
+
+func _getDevicesWaiting() -> Array[int]:
+	var allDevices = Input.get_connected_joypads()
+	allDevices.append(Controllers.KB)
+	allDevices.append(Controllers.KB2)
+	return allDevices.filter(func (id : int): return not _isDeviceActive(id))
 
 func _addPlayerSetting(device : int):
 	if _isDeviceActive(device):
