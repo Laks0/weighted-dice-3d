@@ -11,7 +11,6 @@ func _ready():
 
 func onDieHit(_body):
 	var magnitude := die.linear_velocity.length() #en este momento magnitude va más o menos entre 0 y 8. Vamos a dividir en 8 para tener una suerte de normalización aproximada
-	print(magnitude)
 	$Hit.volume_db = -17 + 14*magnitude/8
 	$Hit.play()
 	$Roll.play(randf_range(0, 4))
