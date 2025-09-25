@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=94 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -13,8 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bvctdh7t6udvt" path="res://Scenes/CharacterScreen/Listo!TxtUICharSelect-Sheet.png" id="9_p4xui"]
 [ext_resource type="Script" uid="uid://5tc7ntyij5rv" path="res://Scenes/CharacterScreen/waiting.gd" id="12_y5xo4"]
 [ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="13_ay5i3"]
-[ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="13_r72d5"]
 [ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="14_4ejbx"]
+[ext_resource type="PackedScene" uid="uid://c7eaajhtx0bon" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.tscn" id="14_pf7fp"]
+[ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="15_j7xmq"]
+[ext_resource type="Texture2D" uid="uid://cu23d52ln5g7t" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/X.png" id="16_ak0sa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]
 atlas = ExtResource("1_fgyrc")
@@ -226,16 +228,13 @@ load_path = "res://.godot/imported/IconosUICharSelect-Sheet.png-0d619d6470e2f0af
 atlas = SubResource("CompressedTexture2D_4ejbx")
 region = Rect2(0, 448, 64, 64)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ejbx"]
-texture = ExtResource("13_r72d5")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="InputEventKey" id="InputEventKey_8644k"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fm0ag"]
+pressed = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqmmy"]
 atlas = ExtResource("1_fgyrc")
@@ -496,6 +495,7 @@ offset_bottom = 288.0
 texture = SubResource("AtlasTexture_esup7")
 
 [node name="MainStage" type="Control" parent="."]
+visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -809,8 +809,7 @@ offset_right = 62.0
 offset_bottom = 66.0
 texture = SubResource("AtlasTexture_pf7fp")
 
-[node name="WaitingStage" type="Control" parent="."]
-visible = false
+[node name="WaitingStage" type="Control" parent="." node_paths=PackedStringArray("mainKeyboardHint", "mainKeyboardButtonDisplay", "secondaryKeyboardHint", "secondaryKeyboardButtonDisplay", "controllerHint", "xboxButtonDisplay", "psButtonDisplay")]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -819,23 +818,90 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_y5xo4")
+mainKeyboardHint = NodePath("ControllerOptions/MainKeyboard")
+mainKeyboardButtonDisplay = NodePath("ControllerOptions/MainKeyboard/InputDisplayTexture")
+secondaryKeyboardHint = NodePath("ControllerOptions/SecondaryKeyboard")
+secondaryKeyboardButtonDisplay = NodePath("ControllerOptions/SecondaryKeyboard/InputDisplayTexture")
+controllerHint = NodePath("ControllerOptions/Controller")
+xboxButtonDisplay = NodePath("ControllerOptions/Controller/HBoxContainer/Xbox")
+psButtonDisplay = NodePath("ControllerOptions/Controller/HBoxContainer/PS")
 
-[node name="Label" type="Label" parent="WaitingStage"]
+[node name="ControllerOptions" type="VBoxContainer" parent="WaitingStage"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_r72d5")
-theme_override_colors/font_color = Color(0.808998, 0.808998, 0.808998, 1)
-theme_override_colors/font_shadow_color = Color(0.427451, 0.427451, 0.427451, 0.470588)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+alignment = 2
+
+[node name="MainKeyboard" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label" type="Label" parent="WaitingStage/ControllerOptions/MainKeyboard"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8646751, 0.86467516, 0.8646751, 1)
 theme_override_font_sizes/font_size = 32
-text = "APRETÁ B/ALTGR/XBOX A
-PARA ARRANCAR"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Agregar teclado principal"
+
+[node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/MainKeyboard" instance=ExtResource("14_pf7fp")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = null
+_inputDisplayed = SubResource("InputEventKey_8644k")
+
+[node name="SecondaryKeyboard" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label" type="Label" parent="WaitingStage/ControllerOptions/SecondaryKeyboard"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8646751, 0.86467516, 0.8646751, 1)
+theme_override_font_sizes/font_size = 32
+text = "Agregar teclado secundario"
+
+[node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/SecondaryKeyboard" instance=ExtResource("14_pf7fp")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = null
+
+[node name="Controller" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label" type="Label" parent="WaitingStage/ControllerOptions/Controller"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8646751, 0.86467516, 0.8646751, 1)
+theme_override_font_sizes/font_size = 32
+text = "Agregar control"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WaitingStage/ControllerOptions/Controller"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Xbox" parent="WaitingStage/ControllerOptions/Controller/HBoxContainer" instance=ExtResource("14_pf7fp")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("15_j7xmq")
+type = 1
+_inputDisplayed = SubResource("InputEventJoypadButton_fm0ag")
+
+[node name="PS" parent="WaitingStage/ControllerOptions/Controller/HBoxContainer" instance=ExtResource("14_pf7fp")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("16_ak0sa")
+type = 2
+_inputDisplayed = SubResource("InputEventJoypadButton_fm0ag")
 
 [node name="ControlsStage" type="Control" parent="."]
 visible = false
@@ -855,16 +921,7 @@ offset_top = 23.0
 offset_right = -25.0
 offset_bottom = -22.0
 
-[node name="ActionLabel" parent="ControlsStage/ConfigControllers" index="1"]
-offset_left = -215.0
-offset_top = -41.5
-offset_right = 215.0
-offset_bottom = 41.5
-theme_override_font_sizes/font_size = 30
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="HBoxContainer" parent="ControlsStage/ConfigControllers" index="2"]
+[node name="HBoxContainer" parent="ControlsStage/ConfigControllers" index="0"]
 anchors_preset = 12
 anchor_left = 0.0
 anchor_right = 1.0
@@ -874,30 +931,6 @@ offset_right = 85.0
 offset_bottom = -34.0
 theme_override_constants/separation = 26
 alignment = 1
-
-[node name="Back" parent="ControlsStage/ConfigControllers/HBoxContainer" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
-normalTexture = SubResource("StyleBoxTexture_4ejbx")
-focusedTexture = SubResource("StyleBoxTexture_pf7fp")
-pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-
-[node name="Edit" parent="ControlsStage/ConfigControllers/HBoxContainer" index="1"]
-theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
-normalTexture = SubResource("StyleBoxTexture_4ejbx")
-focusedTexture = SubResource("StyleBoxTexture_pf7fp")
-pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-
-[node name="Cancel" parent="ControlsStage/ConfigControllers/HBoxContainer" index="2"]
-theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
-normalTexture = SubResource("StyleBoxTexture_4ejbx")
-focusedTexture = SubResource("StyleBoxTexture_pf7fp")
-pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-
-[node name="Accept" parent="ControlsStage/ConfigControllers/HBoxContainer" index="3"]
-theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
-normalTexture = SubResource("StyleBoxTexture_4ejbx")
-focusedTexture = SubResource("StyleBoxTexture_pf7fp")
-pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 
 [node name="LockedStage" type="Control" parent="."]
 visible = false

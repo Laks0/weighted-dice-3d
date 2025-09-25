@@ -1,0 +1,73 @@
+[gd_scene load_steps=25 format=3 uid="uid://c7eaajhtx0bon"]
+
+[ext_resource type="Script" uid="uid://ccly4fxfnhyd" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.gd" id="1_je7k3"]
+[ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="2_3vl07"]
+[ext_resource type="Texture2D" uid="uid://c2ta1wpm84nof" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/B.png" id="3_y7267"]
+[ext_resource type="Texture2D" uid="uid://c1gynhx1obts2" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/X.png" id="4_xj20m"]
+[ext_resource type="Texture2D" uid="uid://bj7sbs74n2406" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/Y.png" id="5_255pf"]
+[ext_resource type="Texture2D" uid="uid://dtr2kgmw3opvo" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/L.png" id="6_n78gm"]
+[ext_resource type="Texture2D" uid="uid://bwmdx62cls3y2" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/R.png" id="7_55vib"]
+[ext_resource type="Texture2D" uid="uid://dxqwfq73q6b7o" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/BACK.png" id="8_hohoe"]
+[ext_resource type="Texture2D" uid="uid://bj7g46nctdtp8" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/LT.png" id="8_psp1g"]
+[ext_resource type="Texture2D" uid="uid://cumugfi04q8iy" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/GUIDE.png" id="9_bji4g"]
+[ext_resource type="Texture2D" uid="uid://1g8opqaqkul2" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/START.png" id="10_pt5vy"]
+[ext_resource type="Texture2D" uid="uid://cu23d52ln5g7t" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/X.png" id="11_ernio"]
+[ext_resource type="Texture2D" uid="uid://ctehhatgflehn" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/CIRCLE.png" id="12_7vkw2"]
+[ext_resource type="Texture2D" uid="uid://bijyj7o3psm8j" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/SQUARE.png" id="13_5bfa3"]
+[ext_resource type="Texture2D" uid="uid://7vmviu0tqdje" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/TRIANGLE.png" id="14_6it1k"]
+[ext_resource type="Texture2D" uid="uid://c2ngwm1pv5sqa" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/L1.png" id="15_ht50k"]
+[ext_resource type="Texture2D" uid="uid://dk0pxufoo1fiy" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/R1.png" id="16_d45r7"]
+[ext_resource type="Texture2D" uid="uid://bq145dt2j8c7y" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/SELECT.png" id="17_7vkw2"]
+[ext_resource type="Texture2D" uid="uid://dxmow8j0bhjv2" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/L2.png" id="17_jvw7t"]
+[ext_resource type="Texture2D" uid="uid://6b31273dk643" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/HOME.png" id="18_5bfa3"]
+[ext_resource type="Texture2D" uid="uid://bacib0campjm0" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/R2.png" id="18_skdcx"]
+[ext_resource type="Texture2D" uid="uid://ct30gm4psht4h" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/START.png" id="19_5bfa3"]
+[ext_resource type="Texture2D" uid="uid://bayuuvrydd644" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/RT.png" id="19_pt5vy"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_5bfa3"]
+device = -1
+keycode = 44
+unicode = 44
+
+[node name="InputDisplayTexture" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+script = ExtResource("1_je7k3")
+xboxTextures = Dictionary[int, Texture]({
+0: ExtResource("2_3vl07"),
+1: ExtResource("3_y7267"),
+2: ExtResource("4_xj20m"),
+3: ExtResource("5_255pf"),
+4: ExtResource("8_hohoe"),
+5: ExtResource("9_bji4g"),
+6: ExtResource("10_pt5vy"),
+9: ExtResource("6_n78gm"),
+10: ExtResource("7_55vib"),
+100: ExtResource("8_psp1g"),
+101: ExtResource("19_pt5vy")
+})
+psTextures = Dictionary[int, Texture]({
+0: ExtResource("11_ernio"),
+1: ExtResource("12_7vkw2"),
+2: ExtResource("13_5bfa3"),
+3: ExtResource("14_6it1k"),
+4: ExtResource("17_7vkw2"),
+5: ExtResource("18_5bfa3"),
+6: ExtResource("19_5bfa3"),
+9: ExtResource("15_ht50k"),
+10: ExtResource("16_d45r7"),
+100: ExtResource("17_jvw7t"),
+101: ExtResource("18_skdcx")
+})
+_inputDisplayed = SubResource("InputEventKey_5bfa3")
+keysPath = "res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/KEYBOARD/KEYS"

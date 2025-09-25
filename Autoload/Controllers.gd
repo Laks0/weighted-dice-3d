@@ -1,5 +1,6 @@
 extends Node
 
+enum ControllerType {KEYBOARD, XBOX, PS}
 enum {KB = 100, KB2, AI}
 
 var controllers = {
@@ -51,6 +52,13 @@ func _ready():
 
 func isKeyboard(id : int) -> bool:
 	return id == KB or id == KB2
+
+func getControllerType(id : int) -> ControllerType:
+	if isKeyboard(id):
+		return ControllerType.KEYBOARD
+	if Input.get_joy_name(id).containsn("PS"):
+		return ControllerType.PS
+	return ControllerType.XBOX
 
 func addController(id : int):
 	if controllers.has(id):
@@ -121,10 +129,13 @@ func getActions(inputController : int) -> Dictionary:
 	return controllers[inputController]
 
 func inputNameFromAction(actionName : StringName, controllerId : int) -> StringName:
-	var actionEvents : Array[InputEvent] = InputMap.action_get_events(controllers[controllerId][actionName])
+	var actionEvents := getEventsForAction(actionName, controllerId)
 	var names : Array = actionEvents.map(singularInputToString).map(func(s : String):
 		return s.split(" ")[-1])
 	return "/".join(names)
+
+func getEventsForAction(actionName : StringName, controllerId : int) -> Array[InputEvent]:
+	return InputMap.action_get_events(controllers[controllerId][actionName])
 
 func _getStickDirectionName(inputName : StringName) -> StringName:
 	if inputName.contains("Y") and inputName.contains("-1"):
