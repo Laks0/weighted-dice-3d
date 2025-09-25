@@ -13,6 +13,14 @@ enum {LT = 100, RT}
 
 var _lastKeySet : int
 
+var images : Dictionary[StringName, CompressedTexture2D]
+
+func _ready() -> void:
+	var files := DirAccess.get_files_at(keysPath)
+	for file : String in files:
+		if file.ends_with(".png"):
+			images[file] = load("%s/%s" % [keysPath, file])
+
 func _process(_delta: float) -> void:
 	if type == Controllers.ControllerType.KEYBOARD:
 		if _inputDisplayed.physical_keycode == _lastKeySet:
@@ -35,11 +43,9 @@ func _process(_delta: float) -> void:
 			texture = dictionary[RT]
 
 func _getTextureForKey(event : InputEventKey) -> Texture:
-	var images := DirAccess.get_files_at(keysPath)
-	for file : String in images:
-		if file == event.as_text_physical_keycode().to_upper()+".png":
-			var image := Image.load_from_file(keysPath+"/"+file)
-			return ImageTexture.create_from_image(image)
+	var filename = event.as_text_physical_keycode().to_upper()+".png"
+	if images.has(filename):
+		return images[filename]
 	return null
 
 func isValidBinding(event: InputEvent) -> bool:
