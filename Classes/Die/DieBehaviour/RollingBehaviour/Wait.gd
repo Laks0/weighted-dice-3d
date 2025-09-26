@@ -24,7 +24,7 @@ func _onActiveProcess(_delta):
 	die.axis_lock_angular_z = false
 	
 	var particles : GPUParticles3D = die.get_node("StompParticles")
-	die.get_node("SoundManager").playStomp()
+	die.get_node("SoundManager").playChangeStomp()
 	# Hace que las partículas apunten hacia abajo, ignorando la rotación del dado
 	particles.rotation = -die.rotation
 	particles.rotation.y = 0

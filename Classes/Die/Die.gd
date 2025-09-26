@@ -68,6 +68,7 @@ func _on_area_3d_body_entered(body):
 		return
 	
 	if body is Monigote:
+		$SoundManager.playSplat() #Esto está mal en realidad, debería solo sonar cuando el monigote es aplastado
 		body.hurt()
 		body.movement.applyVelocity(Vector2(linear_velocity.x, linear_velocity.z) * 2)
 
