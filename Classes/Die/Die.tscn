@@ -86,7 +86,6 @@ stream_4/stream = ExtResource("15_56gku")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vqjl7"]
 random_pitch = 1.25
-random_volume_offset_db = 4.93
 streams_count = 1
 stream_0/stream = ExtResource("17_6sblm")
 
