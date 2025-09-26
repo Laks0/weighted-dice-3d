@@ -27,3 +27,16 @@ func rollSound():
 
 func playStomp():
 	$Stomp.play()
+
+func playChangeStomp():
+	$ChangeStomp.play()
+	print("stomp")
+
+func playSplat():
+	$Splat.play()
+	
+func playFelt():
+	$Felt.play()
+
+func playWall():
+	$Wall.play()
