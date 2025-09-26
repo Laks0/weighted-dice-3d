@@ -13,9 +13,11 @@ func _onStart():
 	pointer.visible = true
 	linePointer.visible = true
 	$TargetingTimer.start(time)
+	root.die.get_node("SoundManager").playTargeting()
 	pickNewMonigote()
 	await $TargetingTimer.timeout
 	linePointer.freezeAnimation()
+	root.die.get_node("SoundManager").playTargetLock()
 	var tween := create_tween().set_loops(3)
 	tween.tween_callback(func (): pointer.visible = false)
 	tween.tween_interval(.1)
@@ -33,7 +35,6 @@ func _onActiveProcess(delta):
 		root.targetPosition, newTargetPosition, 10*delta)
 	
 	var die : Die = root.die
-	
 	die.look_at(root.targetPosition)
 	pointer.global_position = root.targetPosition
 	linePointer.point(root.die.global_position, root.targetPosition)

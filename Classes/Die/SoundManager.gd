@@ -45,3 +45,22 @@ func playFelt():
 
 func playWall():
 	$Wall.play()
+	
+func playTargeting():
+	#if !$TargetSearchRiser.playing:
+	$TargetSearchRiser.play()
+	
+	await get_tree().create_timer(0.25).timeout
+	$TargetSearchBeep.play()
+
+func playTargetLock():
+	$TargetSearchBeep.stop()
+	$TargetLock.play()
+	await get_tree().create_timer(0.3).timeout
+	$TargetSearchRiser.stop()
+	#await get_tree().create_timer(0.15).timeout
+	#playTargetBurst()
+	
+func playTargetBurst():
+	await get_tree().create_timer(0.25).timeout
+	$TargetBurst.play()

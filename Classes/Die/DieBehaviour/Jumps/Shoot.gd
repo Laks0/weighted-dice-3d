@@ -23,6 +23,7 @@ func start():
 	var targetTweenPosition : Vector3 = lerp(die.global_position, targetPosition,.9)
 	
 	var positionTween := create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	root.die.get_node("SoundManager").playTargetBurst()
 	positionTween.tween_property(die, "global_position", 
 		targetTweenPosition, .5)
 	

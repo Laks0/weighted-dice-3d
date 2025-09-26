@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=41 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_6qi4a"]
 [ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
@@ -20,6 +20,10 @@
 [ext_resource type="Script" uid="uid://bduynf84rdyei" path="res://Classes/Die/SoundManager.gd" id="19_dqn45"]
 [ext_resource type="AudioStream" uid="uid://b1wm5451hp5a5" path="res://Assets/SFX/Dado/fx_die_wall_3.wav" id="19_vqjl7"]
 [ext_resource type="AudioStream" uid="uid://b73k1sfa3y0l8" path="res://Assets/SFX/Dado/fx_die_felt_1.wav" id="20_t6vrk"]
+[ext_resource type="AudioStream" uid="uid://c2ds1v4o7ayiy" path="res://Assets/SFX/Dado/fx_die_target_search_beep.wav" id="22_5j6fi"]
+[ext_resource type="AudioStream" uid="uid://cx0rts3u02fn3" path="res://Assets/SFX/Dado/fx_die_target_search_riser.wav" id="23_6qi4a"]
+[ext_resource type="AudioStream" uid="uid://bm0v8p477yp0h" path="res://Assets/SFX/Dado/fx_die_target_lock.wav" id="24_73orw"]
+[ext_resource type="AudioStream" uid="uid://qqdq1mivb4q8" path="res://Assets/SFX/Dado/fx_die_target_burst.wav" id="25_6qi4a"]
 [ext_resource type="Script" uid="uid://diw2isqf0noxx" path="res://Classes/Die/DieRotations.gd" id="27_73orw"]
 [ext_resource type="AudioStream" uid="uid://1erbglbkgytx" path="res://Assets/SFX/Dado/fx_die_roll.wav" id="34_f1ohy"]
 
@@ -100,6 +104,11 @@ stream_2/stream = ExtResource("19_vqjl7")
 random_pitch = 1.15
 streams_count = 2
 stream_0/stream = ExtResource("20_t6vrk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_73orw"]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("23_6qi4a")
 
 [node name="Die" type="RigidBody3D"]
 collision_layer = 4
@@ -184,6 +193,24 @@ attenuation_model = 3
 [node name="Felt" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_6qi4a")
 attenuation_model = 3
+
+[node name="TargetSearchBeep" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = ExtResource("22_5j6fi")
+volume_db = -4.0
+
+[node name="TargetSearchRiser" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = SubResource("AudioStreamRandomizer_73orw")
+volume_db = -15.0
+
+[node name="TargetLock" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = ExtResource("24_73orw")
+volume_db = 2.0
+
+[node name="TargetBurst" type="AudioStreamPlayer3D" parent="SoundManager"]
+stream = ExtResource("25_6qi4a")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="SoundManager"]
 
 [node name="Rotations" type="Node3D" parent="."]
 script = ExtResource("27_73orw")
