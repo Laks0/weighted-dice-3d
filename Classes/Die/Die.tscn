@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_6qi4a"]
 [ext_resource type="PackedScene" uid="uid://peym0yulmxyv" path="res://Classes/Die/DieBehaviour/DieBehaviourHandler.tscn" id="5_6qi4a"]
+[ext_resource type="AudioStream" uid="uid://brfssyimofkwp" path="res://Assets/SFX/Dado/fx_die_change_buildup.wav" id="5_6sblm"]
 [ext_resource type="AudioStream" uid="uid://dxt833n2m2ye5" path="res://Assets/SFX/Dado/fx_die_stomp_1.wav" id="6_p3wqm"]
 [ext_resource type="AudioStream" uid="uid://bna2jgvjmi07g" path="res://Assets/SFX/Dado/fx_die_stomp_2.wav" id="7_8terr"]
 [ext_resource type="AudioStream" uid="uid://60h1di44ike1" path="res://Assets/SFX/Dado/fx_die_stomp_3.wav" id="8_00hyw"]
@@ -10,7 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://dwc1olw066mx2" path="res://Assets/SFX/Dado/fx_die_hit_2.wav" id="12_8terr"]
 [ext_resource type="AudioStream" uid="uid://cidxyvtftgivf" path="res://Assets/SFX/Dado/fx_die_hit_3.wav" id="13_00hyw"]
 [ext_resource type="ArrayMesh" uid="uid://dgcb0orwcy1jn" path="res://Classes/Die/dado d6.obj" id="13_wyhdg"]
-[ext_resource type="AudioStream" uid="uid://bd4flyi5no0mt" path="res://Classes/Die/SFX/sfx_dicebuildupandstomp.wav" id="14_e70v7"]
 [ext_resource type="AudioStream" uid="uid://bgr43vd4jy5f7" path="res://Assets/SFX/Dado/fx_die_hit_4.wav" id="14_h26t5"]
 [ext_resource type="AudioStream" uid="uid://bhyefssiaieqk" path="res://Assets/SFX/Dado/fx_die_hit_5.wav" id="15_56gku"]
 [ext_resource type="AudioStream" uid="uid://di6re3vd2tqkj" path="res://Assets/SFX/Dado/fx_die_stomp_change.wav" id="16_56gku"]
@@ -150,7 +150,7 @@ script = ExtResource("19_dqn45")
 maxVelocity = 13.0
 
 [node name="Buildup" type="AudioStreamPlayer3D" parent="SoundManager"]
-stream = ExtResource("14_e70v7")
+stream = ExtResource("5_6sblm")
 attenuation_model = 3
 bus = &"SFX"
 
