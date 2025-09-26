@@ -8,7 +8,14 @@ extends Control
 @export var xboxButtonDisplay : Control
 @export var psButtonDisplay : Control
 
+func _ready() -> void:
+	_visibility[mainKeyboardHint] = true
+	_updateElements()
+
 func _process(_delta: float) -> void:
+	_updateElements()
+
+func _updateElements():
 	var waiting : Array[int] = get_parent().devicesWaiting
 	
 	mainKeyboardButtonDisplay.setBindingOnControllersAction("grab", Controllers.KB)
@@ -31,3 +38,5 @@ func _process(_delta: float) -> void:
 	controllerHint.visible = hasXbox or hasPS
 	xboxButtonDisplay.visible = hasXbox
 	psButtonDisplay.visible = hasPS
+
+var _visibility : Dictionary[Control, bool]

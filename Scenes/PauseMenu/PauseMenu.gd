@@ -3,9 +3,12 @@ extends Control
 var pausedController : int
 
 func startPause(controllerId : int):
+	var player := PlayerHandler.getPlayerByController(controllerId)
+	if player == null:
+		return
+	
 	get_tree().set_pause(true)
 	pausedController = controllerId
-	var player := PlayerHandler.getPlayerByController(controllerId)
 	$Menu/PlayerName.text = "Pausado por " + player.name
 	$Menu/PlayerName.modulate = player.color
 	

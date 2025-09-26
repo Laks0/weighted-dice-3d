@@ -108,7 +108,10 @@ func getPlayerByIndex(index : int) -> Player:
 	return players[index]
 
 func getPlayerByController(controllerId : int) -> Player:
-	return players.filter(func (p : Player): return p.inputController == controllerId)[0]
+	var playersWithController := players.filter(func (p : Player): return p.inputController == controllerId)
+	if playersWithController.is_empty():
+		return null
+	return playersWithController[0]
 
 func getPlayerByName(playerName : String) -> Player:
 	var list := players.filter(func (p : Player): return p.name == playerName)

@@ -72,12 +72,19 @@ func acceptChanges():
 	%AcceptButton.unfocus()
 	for a in _newEvents.keys():
 		Controllers.editEvent(a, controllerId, _newEvents[a])
+	await get_tree().physics_frame
 	stopEditting()
 
 func cancelChanges():
 	%CancelButton.unfocus()
 	_showSetBindings()
 	stopEditting()
+
+func promptAcceptChanges():
+	$ControlButtons.visible = false
+	$EditButtons.visible = false
+	
+	$Warning.visible = true
 
 var _waitingToEdit := false
 var _selectedAction := ""
@@ -96,10 +103,30 @@ func _startedEditting(action : String):
 			c.modulate.a = 0
 
 func _input(event: InputEvent) -> void:
-	if not _waitingToEdit:
+	if event.is_released():
 		return
 	
-	if event.is_released():
+	# LT y RT son movimientos de ejes, pero registran muchas veces entonces hay que
+	# darles un cooldown
+	if event is InputEventJoypadMotion and inputDisplayTexture.isValidBinding(event):
+		if $TriggerCooldown.is_stopped():
+			$TriggerCooldown.start()
+		else:
+			return
+	
+	if $Warning.visible:
+		if event.is_match(_newEvents["grab"]):
+			$Warning.visible = false
+			$ControlButtons.visible = true
+			$EditButtons.visible = true
+			acceptChanges()
+		if event.is_match(_newEvents["jump"]):
+			$Warning.visible = false
+			$ControlButtons.visible = true
+			$EditButtons.visible = true
+		return
+	
+	if not _waitingToEdit:
 		return
 	
 	if not inputDisplayTexture.isValidBinding(event):

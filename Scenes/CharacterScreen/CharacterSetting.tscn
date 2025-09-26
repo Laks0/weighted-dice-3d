@@ -962,15 +962,13 @@ offset_left = -239.0
 offset_top = -93.0
 offset_right = -19.0
 offset_bottom = 93.0
-theme_override_constants/separation = 19
+theme_override_constants/separation = 14
 
 [node name="GrabButton" parent="ControlsStage/ConfigControllers/EditButtons" index="0"]
 custom_minimum_size = Vector2(220, 0)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/GrabButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -978,11 +976,9 @@ uppercase = true
 
 [node name="JumpButton" parent="ControlsStage/ConfigControllers/EditButtons" index="1"]
 custom_minimum_size = Vector2(220, 0)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/JumpButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -990,11 +986,9 @@ uppercase = true
 
 [node name="PauseButton" parent="ControlsStage/ConfigControllers/EditButtons" index="2"]
 custom_minimum_size = Vector2(220, 0)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/PauseButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -1010,7 +1004,6 @@ normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_6mbts")
-focused = true
 
 [node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/EditButton" index="0"]
 custom_minimum_size = Vector2(140, 0)
@@ -1020,6 +1013,7 @@ theme_override_font_sizes/font_size = 45
 text = "EDITAR"
 
 [node name="BackButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="1"]
+theme_override_styles/panel = SubResource("StyleBoxTexture_frc6q")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
@@ -1036,7 +1030,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-focused = false
 
 [node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/CancelButton" index="0"]
 custom_minimum_size = Vector2(140, 0)
@@ -1057,6 +1050,24 @@ custom_minimum_size = Vector2(140, 0)
 [node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/AcceptButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 37
 text = "ACEPTAR"
+
+[node name="Warning" parent="ControlsStage/ConfigControllers" index="2"]
+visible = false
+
+[node name="WarningLabel" parent="ControlsStage/ConfigControllers/Warning" index="0"]
+theme_override_constants/line_spacing = -16
+theme_override_constants/paragraph_spacing = -2
+theme_override_font_sizes/font_size = 39
+autowrap_mode = 2
+
+[node name="Label" parent="ControlsStage/ConfigControllers/Warning/AcceptAction" index="0"]
+theme_override_font_sizes/font_size = 36
+
+[node name="CancelAction" parent="ControlsStage/ConfigControllers/Warning" index="2"]
+theme_override_constants/separation = 16
+
+[node name="Label" parent="ControlsStage/ConfigControllers/Warning/CancelAction" index="0"]
+theme_override_font_sizes/font_size = 36
 
 [node name="LockedStage" type="Control" parent="."]
 visible = false

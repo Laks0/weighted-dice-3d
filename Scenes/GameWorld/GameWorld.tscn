@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/GameWorld/StageHandler.gd" id="1_hrf5g"]
 [ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="1_v4p10"]
+[ext_resource type="Script" uid="uid://b63oyvubiyltp" path="res://Scenes/GameWorld/GameSubViewportContainer.gd" id="2_ryftk"]
 [ext_resource type="PackedScene" uid="uid://4trc0xhmaen" path="res://Classes/ChipHolder/ChipHolder.tscn" id="2_v4p10"]
 [ext_resource type="PackedScene" uid="uid://vj4n1f7bc5hh" path="res://Scenes/Lobby/Lobby.tscn" id="3_q76ww"]
 [ext_resource type="PackedScene" uid="uid://bu6qub506i5vu" path="res://Classes/BetDisplay/BetDisplaySimple.tscn" id="4_yresm"]
@@ -154,12 +155,15 @@ _data = {
 point_count = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
+process_mode = 3
 material = SubResource("ShaderMaterial_q76ww")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_target = true
+script = ExtResource("2_ryftk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -169,6 +173,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="StageHandler" type="Node3D" parent="SubViewport" node_paths=PackedStringArray("arena", "lobby", "chipHolder", "betDisplay", "camera", "betCamera", "leaderboardCamera", "arenaCamera") groups=["StageHandler"]]
+process_mode = 1
 script = ExtResource("1_hrf5g")
 arena = NodePath("Arena")
 lobby = NodePath("Lobby")

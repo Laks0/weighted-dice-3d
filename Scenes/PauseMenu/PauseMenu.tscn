@@ -1,22 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1u8x43c7ulq1"]
+[gd_scene load_steps=7 format=3 uid="uid://c1u8x43c7ulq1"]
 
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_es5up"]
 [ext_resource type="Script" uid="uid://cxoh4s5kbi1d6" path="res://Scenes/PauseMenu/PauseMenu.gd" id="2_yc4es"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="3_a2m5i"]
 [ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="3_oikoa"]
-[ext_resource type="Texture2D" uid="uid://vy6qjgu3o0b5" path="res://Scenes/CharacterScreen/IconosUICharSelect-Sheet.png" id="4_ovohg"]
+[ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="5_ifvnd"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uo46p"]
-atlas = ExtResource("4_ovohg")
-region = Rect2(0, 696, 64, 72)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_18bil"]
-atlas = ExtResource("4_ovohg")
-region = Rect2(0, 632, 64, 72)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13uov"]
-atlas = ExtResource("4_ovohg")
-region = Rect2(0, 760, 64, 72)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pf7fp"]
+texture = ExtResource("5_ifvnd")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -90,24 +89,23 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="GamepadSelectButton" parent="Menu/Buttons" node_paths=PackedStringArray("downSelect") instance=ExtResource("3_a2m5i")]
+[node name="GamepadSelectButton" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("3_a2m5i")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_uo46p")
-focused = true
-downSelect = NodePath("../Back")
-normalTexture = SubResource("AtlasTexture_18bil")
-focusedTexture = SubResource("AtlasTexture_uo46p")
-pressedTexture = SubResource("AtlasTexture_13uov")
+theme_override_styles/panel = SubResource("StyleBoxTexture_pf7fp")
 text = "Editar controles"
+focused = true
+upSelect = NodePath("../Back")
+downSelect = NodePath("../Back")
+upFallback = NodePath("../Back")
+downFallback = NodePath("../Back")
 
-[node name="Back" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect") instance=ExtResource("3_a2m5i")]
+[node name="Back" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("3_a2m5i")]
 layout_mode = 2
-texture = SubResource("AtlasTexture_18bil")
-upSelect = NodePath("../GamepadSelectButton")
-normalTexture = SubResource("AtlasTexture_18bil")
-focusedTexture = SubResource("AtlasTexture_uo46p")
-pressedTexture = SubResource("AtlasTexture_13uov")
 text = "Volver"
+upSelect = NodePath("../GamepadSelectButton")
+downSelect = NodePath("../GamepadSelectButton")
+upFallback = NodePath("../GamepadSelectButton")
+downFallback = NodePath("../GamepadSelectButton")
 
 [connection signal="finished" from="Menu/ConfigControllers" to="." method="stopEditting"]
 [connection signal="pressed" from="Menu/Buttons/GamepadSelectButton" to="." method="startEditting"]

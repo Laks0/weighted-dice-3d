@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=15 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_6tkn5"]
@@ -6,8 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="3_heetp"]
 [ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="4_heetp"]
 [ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="5_2l8do"]
+[ext_resource type="Texture2D" uid="uid://bayuuvrydd644" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/RT.png" id="6_0rvxw"]
+[ext_resource type="Script" uid="uid://dvtnqg76q16sj" path="res://Common/CloneTexture.gd" id="7_2ntk4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjyro"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ejbx"]
 texture = ExtResource("3_heetp")
@@ -30,6 +36,8 @@ expand_margin_left = 2.0
 expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_em7n8"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_2ntk4"]
 
@@ -72,12 +80,11 @@ alignment = 1
 [node name="GrabButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 text = "Agarrar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../PauseButton")
@@ -96,19 +103,18 @@ text = "Agarrar"
 [node name="GrabButtonTexture" parent="EditButtons/GrabButton/HBoxContainer" index="1" instance=ExtResource("3_2l8do")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("4_heetp")
+texture = ExtResource("6_0rvxw")
 type = 1
-_inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
+_inputDisplayed = SubResource("InputEventJoypadMotion_em7n8")
 
 [node name="JumpButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 text = "Saltar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../GrabButton")
@@ -134,12 +140,11 @@ _inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
 [node name="PauseButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 text = "Pausar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../JumpButton")
@@ -182,7 +187,6 @@ text = "EDITAR"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 focused = true
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../BackButton")
@@ -247,13 +251,71 @@ downFallback = NodePath("../EditButton")
 leftFallback = NodePath("../EditButton")
 rightFallback = NodePath("../EditButton")
 
+[node name="Warning" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WarningLabel" type="Label" parent="Warning"]
+layout_mode = 2
+text = "¡GUARDA!
+
+Esto va a afectar el control de la interfaz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptAction" type="HBoxContainer" parent="Warning"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Warning/AcceptAction"]
+layout_mode = 2
+text = "Aceptar:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Warning/AcceptAction" node_paths=PackedStringArray("toClone")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("6_0rvxw")
+stretch_mode = 4
+script = ExtResource("7_2ntk4")
+toClone = NodePath("../../../EditButtons/GrabButton/HBoxContainer/GrabButtonTexture")
+
+[node name="CancelAction" type="HBoxContainer" parent="Warning"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Warning/CancelAction"]
+layout_mode = 2
+text = "Cancelar:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Warning/CancelAction" node_paths=PackedStringArray("toClone")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("4_heetp")
+stretch_mode = 4
+script = ExtResource("7_2ntk4")
+toClone = NodePath("../../../EditButtons/JumpButton/HBoxContainer/JumpButtonTexture")
+
+[node name="TriggerCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="pressed" from="EditButtons/GrabButton" to="." method="_startedEditting" binds= ["grab"]]
 [connection signal="pressed" from="EditButtons/JumpButton" to="." method="_startedEditting" binds= ["jump"]]
 [connection signal="pressed" from="EditButtons/PauseButton" to="." method="_startedEditting" binds= ["pause"]]
 [connection signal="pressed" from="ControlButtons/EditButton" to="." method="startEditting"]
 [connection signal="pressed" from="ControlButtons/BackButton" to="." method="finish"]
 [connection signal="pressed" from="ControlButtons/CancelButton" to="." method="cancelChanges"]
-[connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="acceptChanges"]
+[connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="promptAcceptChanges"]
 
 [editable path="EditButtons/GrabButton"]
 [editable path="EditButtons/JumpButton"]

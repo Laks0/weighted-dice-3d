@@ -12,7 +12,8 @@ var playerName := ""
 enum Stages { WAITING, MAIN, NAME_EDIT, CONTROLLERS, READY, LOCKED, ALLREADY}
 var stage := Stages.WAITING
 
-var devicesWaiting : Array[int]
+# Se cambia desde afuera
+var devicesWaiting : Array[int] = [Controllers.KB, Controllers.KB2]
 
 var active := false
 
