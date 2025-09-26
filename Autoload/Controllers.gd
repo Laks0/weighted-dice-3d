@@ -3,7 +3,7 @@ extends Node
 enum ControllerType {KEYBOARD, XBOX, PS}
 enum {KB = 100, KB2, AI}
 
-var controllers = {
+var controllers : Dictionary[int, Dictionary] = {
 	KB: {
 		"up": "move_up_kb",
 		"down": "move_down_kb",
@@ -136,6 +136,21 @@ func inputNameFromAction(actionName : StringName, controllerId : int) -> StringN
 
 func getEventsForAction(actionName : StringName, controllerId : int) -> Array[InputEvent]:
 	return InputMap.action_get_events(controllers[controllerId][actionName])
+
+func actionHasEvent(actionName : StringName, controllerId : int, event : InputEvent) -> bool:
+	return InputMap.event_is_action(event, controllers[controllerId][actionName])
+
+func controllerHasEvent(controllerId : int, event : InputEvent) -> bool:
+	return controllers[controllerId].keys().any(actionHasEvent.bind(controllerId, event))
+
+func editEvent(actionName : StringName, controllerId : int, newEvent : InputEvent) -> void:
+	var action = controllers[controllerId][actionName]
+	InputMap.action_erase_events(action)
+	InputMap.action_add_event(action, newEvent)
+
+func clearEvent(actionName : StringName, controllerId : int) -> void:
+	var action = controllers[controllerId][actionName]
+	InputMap.action_erase_events(action)
 
 func _getStickDirectionName(inputName : StringName) -> StringName:
 	if inputName.contains("Y") and inputName.contains("-1"):

@@ -11,12 +11,8 @@ extends Control
 func _process(_delta: float) -> void:
 	var waiting : Array[int] = get_parent().devicesWaiting
 	
-	mainKeyboardButtonDisplay.setBinding(
-		Controllers.getEventsForAction("grab", Controllers.KB)[0], Controllers.KB
-	)
-	secondaryKeyboardButtonDisplay.setBinding(
-		Controllers.getEventsForAction("grab", Controllers.KB2)[0], Controllers.KB2
-	)
+	mainKeyboardButtonDisplay.setBindingOnControllersAction("grab", Controllers.KB)
+	secondaryKeyboardButtonDisplay.setBindingOnControllersAction("grab", Controllers.KB2)
 	mainKeyboardHint.visible = waiting.has(Controllers.KB)
 	secondaryKeyboardHint.visible = waiting.has(Controllers.KB2)
 	
@@ -26,15 +22,11 @@ func _process(_delta: float) -> void:
 		if Controllers.getControllerType(id) == Controllers.ControllerType.XBOX:
 			hasXbox = true
 			
-			xboxButtonDisplay.setBinding(
-				Controllers.getEventsForAction("grab", id)[0], id
-			)
+			xboxButtonDisplay.setBindingOnControllersAction("grab", id)
 		elif Controllers.getControllerType(id) == Controllers.ControllerType.PS:
 			hasPS = true
 			
-			psButtonDisplay.setBinding(
-				Controllers.getEventsForAction("grab", id)[0], id
-			)
+			psButtonDisplay.setBindingOnControllersAction("grab", id)
 	
 	controllerHint.visible = hasXbox or hasPS
 	xboxButtonDisplay.visible = hasXbox

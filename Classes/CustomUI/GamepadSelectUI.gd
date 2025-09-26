@@ -120,6 +120,8 @@ func focus(dir : int = LEFT):
 
 func disable():
 	disabled = true
+	if not focused:
+		return
 	if is_instance_valid(leftFallback):
 		changeFocus(leftFallback, LEFT)
 	elif is_instance_valid(rightFallback):

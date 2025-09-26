@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=99 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c7eaajhtx0bon" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.tscn" id="14_pf7fp"]
 [ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="15_j7xmq"]
 [ext_resource type="Texture2D" uid="uid://cu23d52ln5g7t" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/X.png" id="16_ak0sa"]
+[ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="18_frc6q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]
 atlas = ExtResource("1_fgyrc")
@@ -46,6 +47,8 @@ shadow_color = Color(0, 0, 0, 0.498039)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf7fp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7xmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m356b"]
 atlas = ExtResource("4_qb4a5")
@@ -215,6 +218,17 @@ expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_frc6q"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ak0sa"]
+texture = ExtResource("14_4ejbx")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8644k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjyro"]
@@ -235,6 +249,28 @@ unicode = 98
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fm0ag"]
 pressed = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ejbx"]
+texture = ExtResource("18_frc6q")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_frc6q"]
+texture = ExtResource("14_4ejbx")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqmmy"]
 atlas = ExtResource("1_fgyrc")
@@ -564,6 +600,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_4ejbx")
 normalTexture = SubResource("StyleBoxEmpty_pf7fp")
 focusedTexture = SubResource("StyleBoxEmpty_4ejbx")
 pressedTexture = SubResource("StyleBoxEmpty_j7xmq")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 movableIconNormalTexture = SubResource("AtlasTexture_m356b")
 movableIconFocusedTexture = SubResource("AtlasTexture_5vv38")
 movableIconPressedTexture = SubResource("AtlasTexture_b5v3n")
@@ -605,6 +642,7 @@ text = "CONTROLES"
 normalTexture = SubResource("StyleBoxEmpty_pf7fp")
 focusedTexture = SubResource("StyleBoxEmpty_4ejbx")
 pressedTexture = SubResource("StyleBoxEmpty_j7xmq")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 movableIconNormalTexture = SubResource("AtlasTexture_uy2pq")
 movableIconFocusedTexture = SubResource("AtlasTexture_8her3")
 movableIconPressedTexture = SubResource("AtlasTexture_5djdu")
@@ -626,6 +664,7 @@ text = "SALIR"
 normalTexture = SubResource("StyleBoxEmpty_pf7fp")
 focusedTexture = SubResource("StyleBoxEmpty_4ejbx")
 pressedTexture = SubResource("StyleBoxEmpty_j7xmq")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 movableIconNormalTexture = SubResource("AtlasTexture_2vlrn")
 movableIconFocusedTexture = SubResource("AtlasTexture_1k0bd")
 movableIconPressedTexture = SubResource("AtlasTexture_6shnf")
@@ -646,6 +685,7 @@ text = "JUGAR"
 normalTexture = SubResource("StyleBoxEmpty_pf7fp")
 focusedTexture = SubResource("StyleBoxEmpty_4ejbx")
 pressedTexture = SubResource("StyleBoxEmpty_j7xmq")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 movableIconNormalTexture = SubResource("AtlasTexture_tkesg")
 movableIconFocusedTexture = SubResource("AtlasTexture_sbpaj")
 movableIconPressedTexture = SubResource("AtlasTexture_5xvuw")
@@ -782,7 +822,9 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_pf7fp")
 text = "VOLVER"
 normalTexture = SubResource("StyleBoxEmpty_frc6q")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxEmpty_8644k")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 movableIconNormalTexture = SubResource("AtlasTexture_rjyro")
 movableIconFocusedTexture = SubResource("AtlasTexture_rjyro")
 movableIconPressedTexture = SubResource("AtlasTexture_rjyro")
@@ -791,7 +833,7 @@ movableIconPosition = Vector2(-50, -32)
 movableIconScale = Vector2(-1, 1)
 focused = true
 
-[node name="Label" parent="ReadyStage/Volver" index="0"]
+[node name="Label" parent="ReadyStage/Volver/HBoxContainer" index="0"]
 text = "VOLVER"
 
 [node name="MovableIcon" parent="ReadyStage/Volver/UncontainedNodes" index="0"]
@@ -810,6 +852,7 @@ offset_bottom = 66.0
 texture = SubResource("AtlasTexture_pf7fp")
 
 [node name="WaitingStage" type="Control" parent="." node_paths=PackedStringArray("mainKeyboardHint", "mainKeyboardButtonDisplay", "secondaryKeyboardHint", "secondaryKeyboardButtonDisplay", "controllerHint", "xboxButtonDisplay", "psButtonDisplay")]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -853,7 +896,6 @@ theme_override_font_sizes/font_size = 32
 text = "Agregar teclado principal"
 
 [node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/MainKeyboard" instance=ExtResource("14_pf7fp")]
-custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 _inputDisplayed = SubResource("InputEventKey_8644k")
 
@@ -869,7 +911,6 @@ theme_override_font_sizes/font_size = 32
 text = "Agregar teclado secundario"
 
 [node name="InputDisplayTexture" parent="WaitingStage/ControllerOptions/SecondaryKeyboard" instance=ExtResource("14_pf7fp")]
-custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
 [node name="Controller" type="HBoxContainer" parent="WaitingStage/ControllerOptions"]
@@ -888,21 +929,18 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="Xbox" parent="WaitingStage/ControllerOptions/Controller/HBoxContainer" instance=ExtResource("14_pf7fp")]
-custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("15_j7xmq")
 type = 1
 _inputDisplayed = SubResource("InputEventJoypadButton_fm0ag")
 
 [node name="PS" parent="WaitingStage/ControllerOptions/Controller/HBoxContainer" instance=ExtResource("14_pf7fp")]
-custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("16_ak0sa")
 type = 2
 _inputDisplayed = SubResource("InputEventJoypadButton_fm0ag")
 
 [node name="ControlsStage" type="Control" parent="."]
-visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -919,16 +957,106 @@ offset_top = 23.0
 offset_right = -25.0
 offset_bottom = -22.0
 
-[node name="HBoxContainer" parent="ControlsStage/ConfigControllers" index="0"]
-anchors_preset = 12
-anchor_left = 0.0
-anchor_right = 1.0
-offset_left = -85.0
-offset_top = -57.0
-offset_right = 85.0
-offset_bottom = -34.0
-theme_override_constants/separation = 26
-alignment = 1
+[node name="EditButtons" parent="ControlsStage/ConfigControllers" index="0"]
+offset_left = -239.0
+offset_top = -93.0
+offset_right = -19.0
+offset_bottom = 93.0
+theme_override_constants/separation = 19
+
+[node name="GrabButton" parent="ControlsStage/ConfigControllers/EditButtons" index="0"]
+custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+
+[node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/GrabButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 38
+uppercase = true
+
+[node name="JumpButton" parent="ControlsStage/ConfigControllers/EditButtons" index="1"]
+custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+
+[node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/JumpButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 38
+uppercase = true
+
+[node name="PauseButton" parent="ControlsStage/ConfigControllers/EditButtons" index="2"]
+custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+
+[node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/PauseButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 38
+uppercase = true
+
+[node name="ControlButtons" parent="ControlsStage/ConfigControllers" index="1"]
+offset_right = 196.0
+theme_override_constants/separation = 19
+
+[node name="EditButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+focused = true
+
+[node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/EditButton" index="0"]
+custom_minimum_size = Vector2(140, 0)
+
+[node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/EditButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 45
+text = "EDITAR"
+
+[node name="BackButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="1"]
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+
+[node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/BackButton" index="0"]
+custom_minimum_size = Vector2(140, 0)
+
+[node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/BackButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 45
+text = "VOLVER"
+
+[node name="CancelButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="2"]
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+focused = false
+
+[node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/CancelButton" index="0"]
+custom_minimum_size = Vector2(140, 0)
+
+[node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/CancelButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 33
+text = "CANCELAR"
+
+[node name="AcceptButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="3"]
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+
+[node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/AcceptButton" index="0"]
+custom_minimum_size = Vector2(140, 0)
+
+[node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/AcceptButton/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 37
+text = "ACEPTAR"
 
 [node name="LockedStage" type="Control" parent="."]
 visible = false
@@ -993,3 +1121,10 @@ centered = false
 
 [editable path="ReadyStage/Volver"]
 [editable path="ControlsStage/ConfigControllers"]
+[editable path="ControlsStage/ConfigControllers/EditButtons/GrabButton"]
+[editable path="ControlsStage/ConfigControllers/EditButtons/JumpButton"]
+[editable path="ControlsStage/ConfigControllers/EditButtons/PauseButton"]
+[editable path="ControlsStage/ConfigControllers/ControlButtons/EditButton"]
+[editable path="ControlsStage/ConfigControllers/ControlButtons/BackButton"]
+[editable path="ControlsStage/ConfigControllers/ControlButtons/CancelButton"]
+[editable path="ControlsStage/ConfigControllers/ControlButtons/AcceptButton"]

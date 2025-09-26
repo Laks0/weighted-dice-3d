@@ -44,8 +44,11 @@ func _process(_delta: float) -> void:
 
 func _getTextureForKey(event : InputEventKey) -> Texture:
 	var filename = event.as_text_physical_keycode().to_upper()+".png"
+	var altFilename = event.as_text_keycode().to_upper()+".png"
 	if images.has(filename):
 		return images[filename]
+	if images.has(altFilename):
+		return images[altFilename]
 	return null
 
 func isValidBinding(event: InputEvent) -> bool:
@@ -58,8 +61,21 @@ func isValidBinding(event: InputEvent) -> bool:
 	return false
 
 func setBinding(input : InputEvent, controllerId : int) -> void:
+	if input == null:
+		modulate.a = 0
+		return
+	modulate.a = 1
 	if input == _inputDisplayed or not isValidBinding(input):
 		return
 	
 	_inputDisplayed = input
 	type = Controllers.getControllerType(controllerId)
+
+func setBindingOnControllersAction(actionName : String, controllerId: int) -> void:
+	var events := Controllers.getEventsForAction(actionName, controllerId)
+	
+	if events.is_empty():
+		modulate.a = 0
+	else:
+		modulate.a = 1
+		setBinding(events[0], controllerId)

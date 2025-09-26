@@ -1,8 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=12 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
+[ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_6tkn5"]
+[ext_resource type="PackedScene" uid="uid://c7eaajhtx0bon" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.tscn" id="3_2l8do"]
+[ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="3_heetp"]
+[ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="4_heetp"]
+[ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="5_2l8do"]
 
-[node name="ConfigControllers" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ejbx"]
+texture = ExtResource("3_heetp")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ak0sa"]
+texture = ExtResource("5_2l8do")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_2ntk4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_frc6q"]
+texture = ExtResource("5_2l8do")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="ConfigControllers" type="Control" node_paths=PackedStringArray("inputDisplayTexture")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,17 +52,209 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8fhsc")
+inputDisplayTexture = NodePath("EditButtons/PauseButton/HBoxContainer/PauseButtonTexture")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="EditButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -72.0
-offset_right = 32.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 100
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -118.0
+offset_bottom = 118.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="GrabButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+text = "Agarrar"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+greyOnDisabled = false
+disabled = true
+upSelect = NodePath("../PauseButton")
+downSelect = NodePath("../JumpButton")
+leftSelect = NodePath("../../ControlButtons/CancelButton")
+upFallback = NodePath("../PauseButton")
+downFallback = NodePath("../JumpButton")
+
+[node name="HBoxContainer" parent="EditButtons/GrabButton" index="0"]
+theme_override_constants/separation = 14
+alignment = 2
+
+[node name="Label" parent="EditButtons/GrabButton/HBoxContainer" index="0"]
+text = "Agarrar"
+
+[node name="GrabButtonTexture" parent="EditButtons/GrabButton/HBoxContainer" index="1" instance=ExtResource("3_2l8do")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_heetp")
+type = 1
+_inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
+
+[node name="JumpButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+text = "Saltar"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+greyOnDisabled = false
+disabled = true
+upSelect = NodePath("../GrabButton")
+downSelect = NodePath("../PauseButton")
+leftSelect = NodePath("../../ControlButtons/CancelButton")
+upFallback = NodePath("../GrabButton")
+downFallback = NodePath("../PauseButton")
+
+[node name="HBoxContainer" parent="EditButtons/JumpButton" index="0"]
+theme_override_constants/separation = 14
+alignment = 2
+
+[node name="Label" parent="EditButtons/JumpButton/HBoxContainer" index="0"]
+text = "Saltar"
+
+[node name="JumpButtonTexture" parent="EditButtons/JumpButton/HBoxContainer" index="1" instance=ExtResource("3_2l8do")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_heetp")
+type = 1
+_inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
+
+[node name="PauseButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
+text = "Pausar"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+greyOnDisabled = false
+disabled = true
+upSelect = NodePath("../JumpButton")
+downSelect = NodePath("../GrabButton")
+leftSelect = NodePath("../../ControlButtons/CancelButton")
+upFallback = NodePath("../JumpButton")
+downFallback = NodePath("../GrabButton")
+
+[node name="HBoxContainer" parent="EditButtons/PauseButton" index="0"]
+theme_override_constants/separation = 14
+alignment = 2
+
+[node name="Label" parent="EditButtons/PauseButton/HBoxContainer" index="0"]
+text = "Pausar"
+
+[node name="PauseButtonTexture" parent="EditButtons/PauseButton/HBoxContainer" index="1" instance=ExtResource("3_2l8do")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_heetp")
+type = 1
+_inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
+
+[node name="ControlButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -55.5
+offset_right = 182.0
+offset_bottom = 55.5
+grow_vertical = 2
+theme_override_constants/separation = 49
+alignment = 1
+
+[node name="EditButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
+text = "EDITAR"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_ak0sa")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
+focused = true
+upSelect = NodePath("../BackButton")
+downSelect = NodePath("../BackButton")
+leftSelect = NodePath("../BackButton")
+rightSelect = NodePath("../BackButton")
+upFallback = NodePath("../BackButton")
+downFallback = NodePath("../BackButton")
+leftFallback = NodePath("../BackButton")
+rightFallback = NodePath("../BackButton")
+
+[node name="BackButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_frc6q")
+text = "VOLVER"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+focused = true
+upSelect = NodePath("../EditButton")
+downSelect = NodePath("../EditButton")
+leftSelect = NodePath("../EditButton")
+rightSelect = NodePath("../EditButton")
+upFallback = NodePath("../EditButton")
+downFallback = NodePath("../EditButton")
+leftFallback = NodePath("../EditButton")
+rightFallback = NodePath("../EditButton")
+
+[node name="CancelButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
+text = "CANCELAR"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+upSelect = NodePath("../BackButton")
+downSelect = NodePath("../EditButton")
+leftSelect = NodePath("../EditButton")
+rightSelect = NodePath("../../EditButtons/GrabButton")
+upFallback = NodePath("../BackButton")
+downFallback = NodePath("../EditButton")
+leftFallback = NodePath("../EditButton")
+rightFallback = NodePath("../EditButton")
+
+[node name="AcceptButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
+text = "ACEPTAR"
+normalTexture = SubResource("StyleBoxTexture_4ejbx")
+focusedTexture = SubResource("StyleBoxTexture_frc6q")
+pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+upSelect = NodePath("../BackButton")
+downSelect = NodePath("../EditButton")
+leftSelect = NodePath("../EditButton")
+rightSelect = NodePath("../../EditButtons/GrabButton")
+upFallback = NodePath("../BackButton")
+downFallback = NodePath("../EditButton")
+leftFallback = NodePath("../EditButton")
+rightFallback = NodePath("../EditButton")
+
+[connection signal="pressed" from="EditButtons/GrabButton" to="." method="_startedEditting" binds= ["grab"]]
+[connection signal="pressed" from="EditButtons/JumpButton" to="." method="_startedEditting" binds= ["jump"]]
+[connection signal="pressed" from="EditButtons/PauseButton" to="." method="_startedEditting" binds= ["pause"]]
+[connection signal="pressed" from="ControlButtons/EditButton" to="." method="startEditting"]
+[connection signal="pressed" from="ControlButtons/BackButton" to="." method="finish"]
+[connection signal="pressed" from="ControlButtons/CancelButton" to="." method="cancelChanges"]
+[connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="acceptChanges"]
+
+[editable path="EditButtons/GrabButton"]
+[editable path="EditButtons/JumpButton"]
+[editable path="EditButtons/PauseButton"]

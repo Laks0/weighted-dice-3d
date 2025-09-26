@@ -8,6 +8,7 @@ class_name GamepadSelectButton
 @export var normalTexture  : StyleBox
 @export var focusedTexture : StyleBox
 @export var pressedTexture : StyleBox
+@export var disabledTexture : StyleBox
 
 @export_group("Icon")
 @export var movableIconNormalTexture  : Texture
@@ -39,3 +40,6 @@ func onFocusedUpdate(_delta):
 
 func onPressedTimeUpdate(_delta):
 	_updateTexture(focusedTexture, movableIconFocusedTexture)
+
+func onDisabledUpdate(_delta):
+	_updateTexture(disabledTexture, movableIconNormalTexture)

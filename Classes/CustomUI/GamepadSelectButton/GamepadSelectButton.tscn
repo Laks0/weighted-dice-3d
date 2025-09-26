@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://kps6urduxyub"]
+[gd_scene load_steps=7 format=3 uid="uid://kps6urduxyub"]
 
 [ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="1_6mbts"]
 [ext_resource type="Script" uid="uid://di7uhc0hpdd2f" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.gd" id="1_tiixq"]
@@ -10,10 +10,10 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pf7fp"]
 texture = ExtResource("3_am0p3")
@@ -21,10 +21,12 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
 
 [node name="GamepadSelectButton" type="PanelContainer"]
 anchors_preset = 8
@@ -45,8 +47,13 @@ script = ExtResource("1_tiixq")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_pf7fp")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 
-[node name="Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
