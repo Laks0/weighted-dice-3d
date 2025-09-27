@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs1h7cfuyhx81"]
+[gd_scene load_steps=8 format=3 uid="uid://bs1h7cfuyhx81"]
 
 [ext_resource type="Script" uid="uid://bxxiy7h0wlcp3" path="res://Classes/Effects/MindTheGap/MindTheGapEffect.gd" id="1_1xma8"]
 [ext_resource type="PackedScene" uid="uid://6k85bif87r1q" path="res://Classes/Effects/MindTheGap/Gap.tscn" id="2_bnwej"]
-[ext_resource type="AudioStream" uid="uid://cntmhu36556wh" path="res://Classes/Effects/MindTheGap/sfx_Agujero.wav" id="3_5x5qq"]
 [ext_resource type="Texture2D" uid="uid://1k4k72eee278" path="res://Classes/Effects/MindTheGap/TarotMindTheGap.png" id="3_y6g6p"]
+[ext_resource type="AudioStream" uid="uid://cgabem2qrcwim" path="res://Classes/Effects/MindTheGap/fx_mindTheGap_open_1.wav" id="4_n8pmb"]
+[ext_resource type="AudioStream" uid="uid://cnekm04o3ryx2" path="res://Classes/Effects/MindTheGap/fx_mindTheGap_open_2.wav" id="5_td3vk"]
+[ext_resource type="AudioStream" uid="uid://cwwdquic5qrmo" path="res://Classes/Effects/MindTheGap/fx_mindTheGap_open_3.wav" id="6_hy4lg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yc7an"]
+streams_count = 3
+stream_0/stream = ExtResource("4_n8pmb")
+stream_1/stream = ExtResource("5_td3vk")
+stream_2/stream = ExtResource("6_hy4lg")
 
 [node name="MindTheGapEffect" type="Node"]
 script = ExtResource("1_1xma8")
@@ -11,5 +19,10 @@ GapScene = ExtResource("2_bnwej")
 effectName = "Cuidado Abajo"
 cardTexture = ExtResource("3_y6g6p")
 
-[node name="Startup" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5x5qq")
+[node name="Open" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yc7an")
+attenuation_model = 3
+volume_db = -12.0
+max_polyphony = 8
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20500.0

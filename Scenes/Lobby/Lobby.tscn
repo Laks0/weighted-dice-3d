@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bdlp0ah8dxynb" path="res://Scenes/Lobby/Maletin.glb" id="1_k3tbe"]
 [ext_resource type="PackedScene" uid="uid://b27nwsetse046" path="res://Scenes/Lobby/ButtonHint/ButtonHint.tscn" id="2_jj814"]
 [ext_resource type="AudioStream" uid="uid://cn2xcq3skr5hm" path="res://Assets/SFX/sfx_maletin_abre.wav" id="3_ue778"]
-[ext_resource type="AudioStream" uid="uid://chpiswyfaare" path="res://Assets/SFX/sfx_malinete_cierra.wav" id="4_7um5u"]
+[ext_resource type="AudioStream" uid="uid://chpiswyfaare" path="res://Assets/SFX/sfx_maletin_cierra.wav" id="4_7um5u"]
 [ext_resource type="PackedScene" uid="uid://1vsjqwkprn18" path="res://Scenes/Lobby/ReadyChip.tscn" id="6_7yocg"]
 [ext_resource type="Script" uid="uid://bqyehrs0ki788" path="res://Scenes/Lobby/ReadyArea.gd" id="7_8yebe"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="7_i56w4"]

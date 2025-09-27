@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://chpiswyfaare"
-path="res://.godot/imported/sfx_malinete_cierra.wav-8969a6c73109d6630321a52e99a73c57.sample"
+path="res://.godot/imported/sfx_maletin_cierra.wav-8712cba7141986ef101d99eacd445a21.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/sfx_malinete_cierra.wav"
-dest_files=["res://.godot/imported/sfx_malinete_cierra.wav-8969a6c73109d6630321a52e99a73c57.sample"]
+source_file="res://Assets/SFX/sfx_maletin_cierra.wav"
+dest_files=["res://.godot/imported/sfx_maletin_cierra.wav-8712cba7141986ef101d99eacd445a21.sample"]
 
 [params]
 

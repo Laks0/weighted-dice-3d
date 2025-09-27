@@ -8,14 +8,16 @@ var gaps : Array[Gap]
 var padding = 1
 
 func start():
-	$Startup.play()
 	for _i in range(GAP_AMMOUNT):
+		$Open.pitch_scale *= 1.15
+		$Open.play()
 		var gap : Gap = GapScene.instantiate()
 		gaps.append(gap)
 		
 		gap.position = arena.getRandomPosition(1, 0.1)
 		
 		arena.add_child(gap)
+		await get_tree().create_timer(0.2).timeout
 
 func end():
 	for gap in gaps:
