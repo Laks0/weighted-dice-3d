@@ -33,6 +33,7 @@ func onPressedTimeUpdate(_delta):
 	$TextureRect.texture = pressedTexture
 
 func changeFocus(newFocus : GamepadSelectUI, dir : int):
-	if newFocus.get_parent().get_parent() is VirtualKeyboard:
-		SfxHandler.playSound("keyboardScroll")
+	var keyboard = newFocus.get_parent().get_parent()
+	if keyboard is VirtualKeyboard:
+		keyboard.get_parent().get_parent().get_parent().get_parent().get_node("KeyboardSFX").play()
 	super.changeFocus(newFocus, dir)
