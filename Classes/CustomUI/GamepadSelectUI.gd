@@ -95,6 +95,7 @@ func _handle_movement():
 			changeFocus(upSelect, UP)
 
 func changeFocus(newFocus : GamepadSelectUI, dir : int):
+	SfxHandler.playSound("focus")
 	unfocus()
 	newFocus.focus(dir)
 

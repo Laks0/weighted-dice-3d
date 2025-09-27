@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 var sounds : Dictionary = {
 	"buttonHighlight" : preload("res://Assets/SFX/buttonHighlight.wav"),
 	"buttonSelect" : preload("res://Assets/SFX/buttonSelect.wav"),
-	"controllerLogin" : preload("res://Assets/SFX/controllerLogin.wav"),
+	"controllerLogin" : preload("res://Assets/SFX/fx_charscreen_login.wav"),
 	"playerReady" : preload("res://Assets/SFX/playerReady.wav"),
 	"pointerSelect" : preload("res://Assets/SFX/pointerSelect.wav"),
 	"pointerCancel" : preload("res://Assets/SFX/pointerCancel.wav"),
@@ -11,6 +11,7 @@ var sounds : Dictionary = {
 	"readyCancel" : preload("res://Assets/SFX/pointerCancel.wav"),
 	"displayReady" : preload("res://Assets/SFX/displayReady.wav"),
 	"pointerCantMove" : preload("res://Assets/SFX/pointerCantMove.wav"),
+	"focus" : preload("res://Assets/SFX/fx_charscreen_focus.wav")
 }
 
 func _ready():

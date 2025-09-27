@@ -49,6 +49,7 @@ func activate(controller : int):
 
 func deactivate():
 	active = false
+	$Logout.play()
 	$FromWaitTransition.visible = true
 	$FromWaitTransition.play_backwards()
 	await $FromWaitTransition.animation_finished
@@ -93,14 +94,18 @@ func editProcess():
 
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):
-	if to == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
-		keyboardStartedEdittingController.emit()
+	if to == Stages.CONTROLLERS :
+		$ControllerSetting.play()
+		if Controllers.isKeyboard(_controller):
+			keyboardStartedEdittingController.emit()
 	if stage == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
 		keyboardStoppedEdittingController.emit()
 	
 	$Transition.visible = true
 	$Transition.play()
 	transitioning_stage = to
+	if to == Stages.READY:
+		$Ready.play()
 
 func onTransitionFrameChanged():
 	if $Transition.frame == 5:
@@ -110,11 +115,13 @@ func onTransitionAnimationFinished():
 	$Transition.visible = false
 
 func onVirtualKeyboardCharacterWritten(c):
+	$KeyboardClick.play()
 	if len(playerName) >= maxNameLength:
 		return
 	playerName += c
 
 func onVirtualKeyboardDeleteCharacter():
+	$KeyboardDel.play()
 	if len(playerName) > 0:
 		playerName = playerName.erase(len(playerName)-1, 1)
 

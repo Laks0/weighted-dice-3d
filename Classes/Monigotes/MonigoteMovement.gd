@@ -86,7 +86,14 @@ func unstun():
 func _physics_process(delta):
 	if mon.player.inputController != Controllers.AI:
 		_movementDir = Controllers.getDirection(mon.controller)
-	
+		
+		#Sonido de Pisadas
+#		var stepsPlayer : AudioStreamPlayer3D = get_parent().get_node("Steps")
+#		if _movementDir != Vector2(0.0,0.0):
+#			if !stepsPlayer.playing:
+#				stepsPlayer.play()
+#		else: stepsPlayer.stop()
+			
 	if mon.drunk:
 		_movementDir = _movementDir.rotated(PI)
 	

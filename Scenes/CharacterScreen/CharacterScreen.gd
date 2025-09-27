@@ -68,9 +68,9 @@ func _addPlayerSetting(device : int):
 	for s : CharacterSetting in $Settings.get_children():
 		if not s.isActive():
 			s.activate(device)
+			s.get_node("Login").play()
 			break
 	
-	SfxHandler.playSound("controllerLogin")
 
 var countdownTween : Tween
 func _startContdown():

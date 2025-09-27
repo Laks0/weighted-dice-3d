@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cq54i4r3w1hj4"]
+[gd_scene load_steps=17 format=3 uid="uid://cq54i4r3w1hj4"]
 
 [ext_resource type="PackedScene" uid="uid://d23vm7fpygfv7" path="res://Scenes/CharacterScreen/CharacterSetting.tscn" id="1_8jvhf"]
 [ext_resource type="Script" uid="uid://cimbev8wy8bfh" path="res://Scenes/CharacterScreen/CharacterScreen.gd" id="1_70uiy"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://x3gdoknllcg2" path="res://Scenes/CharacterScreen/Gacha_Image_1.png" id="8_88s8u"]
 [ext_resource type="Texture2D" uid="uid://bxd4g0qww21b2" path="res://Scenes/CharacterScreen/Gacha_Image_2.png" id="9_py5a4"]
 [ext_resource type="AudioStream" uid="uid://ccygglvm1sguu" path="res://Scenes/CharacterScreen/gacha.wav" id="11_or6ru"]
-[ext_resource type="AudioStream" uid="uid://cr263wwhf2c0g" path="res://Assets/SFX/fx_menu_keyboard_scroll.wav" id="13_vx763"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vx763"]
 shader = ExtResource("3_2ixd4")
@@ -266,8 +265,5 @@ theme_override_font_sizes/font_size = 500
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="KeyboardSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_vx763")
 
 [editable path="Viewport3D/SubViewport/Scene3D/Gacha"]

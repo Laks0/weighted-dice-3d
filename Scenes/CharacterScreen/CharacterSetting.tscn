@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=108 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -11,6 +11,9 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="5_xcq4e"]
 [ext_resource type="Texture2D" uid="uid://btus2xi4vyfxc" path="res://Scenes/CharacterScreen/Listo!AnimacionUICharSelect-Sheet.png" id="8_lp614"]
 [ext_resource type="Texture2D" uid="uid://bvctdh7t6udvt" path="res://Scenes/CharacterScreen/Listo!TxtUICharSelect-Sheet.png" id="9_p4xui"]
+[ext_resource type="AudioStream" uid="uid://b7osd6cvu017o" path="res://Assets/SFX/fx_charscreen_kb_upper.wav" id="10_vufmf"]
+[ext_resource type="AudioStream" uid="uid://r6xermhanuli" path="res://Assets/SFX/fx_charscreen_kb_lower.wav" id="11_cnsgs"]
+[ext_resource type="AudioStream" uid="uid://dya04r3yhd5n1" path="res://Assets/SFX/fx_charscreen_OK.wav" id="12_cnsgs"]
 [ext_resource type="Script" uid="uid://5tc7ntyij5rv" path="res://Scenes/CharacterScreen/waiting.gd" id="12_y5xo4"]
 [ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="13_ay5i3"]
 [ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="14_4ejbx"]
@@ -18,6 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="15_j7xmq"]
 [ext_resource type="Texture2D" uid="uid://cu23d52ln5g7t" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/PS4/X.png" id="16_ak0sa"]
 [ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="18_frc6q"]
+[ext_resource type="AudioStream" uid="uid://m2vhn7ptxtyr" path="res://Assets/SFX/fx_charscreen_kb_click.wav" id="19_2wrae"]
+[ext_resource type="AudioStream" uid="uid://fabm64l3dm57" path="res://Assets/SFX/playerReady.wav" id="19_8644k"]
+[ext_resource type="AudioStream" uid="uid://bog3mwwmuu5r4" path="res://Assets/SFX/fx_charscreen_kb_del.wav" id="20_fm0ag"]
+[ext_resource type="AudioStream" uid="uid://cky8rdk03g83m" path="res://Assets/SFX/fx_charscreen_logout.wav" id="22_5vich"]
+[ext_resource type="AudioStream" uid="uid://11g1qael3234" path="res://Assets/SFX/fx_charscreen_login.wav" id="22_agqq6"]
+[ext_resource type="AudioStream" uid="uid://7607nmtjprmt" path="res://Assets/SFX/fx_charscreen_controller.wav" id="22_fm0ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]
 atlas = ExtResource("1_fgyrc")
@@ -205,7 +214,7 @@ region = Rect2(0, 0, 256, 128)
 atlas = ExtResource("9_p4xui")
 region = Rect2(3, 131, 256, 128)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pf7fp"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ak0sa"]
 texture = ExtResource("14_4ejbx")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
@@ -217,17 +226,6 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_frc6q"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ak0sa"]
-texture = ExtResource("14_4ejbx")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8644k"]
 
@@ -249,6 +247,12 @@ unicode = 98
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fm0ag"]
 pressed = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjyro"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ejbx"]
 texture = ExtResource("18_frc6q")
@@ -766,6 +770,18 @@ text = "ELJORGE"
 vertical_alignment = 1
 clip_text = true
 
+[node name="KBUpper" type="AudioStreamPlayer" parent="NameEdit"]
+stream = ExtResource("10_vufmf")
+volume_db = -4.0
+
+[node name="KBLower" type="AudioStreamPlayer" parent="NameEdit"]
+stream = ExtResource("11_cnsgs")
+volume_db = -4.0
+
+[node name="KBOK" type="AudioStreamPlayer" parent="NameEdit"]
+stream = ExtResource("12_cnsgs")
+volume_db = -12.0
+
 [node name="ReadyStage" type="Control" parent="."]
 visible = false
 z_index = -2
@@ -819,7 +835,7 @@ offset_right = -177.0
 offset_bottom = -33.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_pf7fp")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
 text = "VOLVER"
 normalTexture = SubResource("StyleBoxEmpty_frc6q")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
@@ -966,9 +982,11 @@ theme_override_constants/separation = 14
 
 [node name="GrabButton" parent="ControlsStage/ConfigControllers/EditButtons" index="0"]
 custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/GrabButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -976,9 +994,11 @@ uppercase = true
 
 [node name="JumpButton" parent="ControlsStage/ConfigControllers/EditButtons" index="1"]
 custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/JumpButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -986,9 +1006,11 @@ uppercase = true
 
 [node name="PauseButton" parent="ControlsStage/ConfigControllers/EditButtons" index="2"]
 custom_minimum_size = Vector2(220, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/PauseButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
@@ -1017,6 +1039,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_frc6q")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/BackButton" index="0"]
 custom_minimum_size = Vector2(140, 0)
@@ -1030,6 +1053,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/CancelButton" index="0"]
 custom_minimum_size = Vector2(140, 0)
@@ -1043,6 +1067,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_rjyro")
 
 [node name="HBoxContainer" parent="ControlsStage/ConfigControllers/ControlButtons/AcceptButton" index="0"]
 custom_minimum_size = Vector2(140, 0)
@@ -1050,9 +1075,6 @@ custom_minimum_size = Vector2(140, 0)
 [node name="Label" parent="ControlsStage/ConfigControllers/ControlButtons/AcceptButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 37
 text = "ACEPTAR"
-
-[node name="Warning" parent="ControlsStage/ConfigControllers" index="2"]
-visible = false
 
 [node name="WarningLabel" parent="ControlsStage/ConfigControllers/Warning" index="0"]
 theme_override_constants/line_spacing = -16
@@ -1116,6 +1138,28 @@ visible = false
 z_index = -2
 sprite_frames = SubResource("SpriteFrames_sboqm")
 centered = false
+
+[node name="KeyboardClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_2wrae")
+volume_db = -3.0
+
+[node name="KeyboardDel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_fm0ag")
+volume_db = -6.0
+
+[node name="Ready" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_8644k")
+
+[node name="Login" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_agqq6")
+
+[node name="Logout" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_5vich")
+volume_db = -6.0
+
+[node name="ControllerSetting" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_fm0ag")
+volume_db = -7.0
 
 [connection signal="pressed" from="MainStage/TextBar/EditNameButton" to="." method="transition" binds= [2]]
 [connection signal="pressed" from="MainStage/HBoxContainer/ControllersButton" to="." method="transition" binds= [3]]

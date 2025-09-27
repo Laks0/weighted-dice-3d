@@ -31,9 +31,3 @@ func onFocusedUpdate(_delta):
 
 func onPressedTimeUpdate(_delta):
 	$TextureRect.texture = pressedTexture
-
-func changeFocus(newFocus : GamepadSelectUI, dir : int):
-	var keyboard = newFocus.get_parent().get_parent()
-	if keyboard is VirtualKeyboard:
-		keyboard.get_parent().get_parent().get_parent().get_parent().get_node("KeyboardSFX").play() #Ayuda lakso esto no puede estar bien
-	super.changeFocus(newFocus, dir)

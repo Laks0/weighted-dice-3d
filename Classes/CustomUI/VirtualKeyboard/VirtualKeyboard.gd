@@ -39,16 +39,20 @@ func _ready():
 				if button == %Shift:
 					if capsLock:
 						setLowercase()
+						get_parent().get_node("KBLower").play()
 						return
 					if upper:
+						get_parent().get_node("KBUpper").play()
 						setCapsLock()
 						return
 					setUppercase()
+					get_parent().get_node("KBUpper").play()
 					return
 				if button == %Delete:
 					deleteCharacter.emit()
 					return
 				if button == %OK:
+					get_parent().get_node("KBOK").play()
 					accept.emit()
 					return
 				if button == %Accent:
@@ -85,6 +89,7 @@ func setLowercase():
 	%Shift.focusedTexture = lowerTextureFocus
 	%Shift.pressedTexture = lowerTexturePressed
 	%Shift.normalTexture = lowerTextureNormal
+
 	upper = false
 	capsLock = false
 	for row in get_children():

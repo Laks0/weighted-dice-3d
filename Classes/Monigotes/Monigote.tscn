@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=83 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -47,6 +47,7 @@
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Texture2D" uid="uid://44laiid6xirl" path="res://Classes/Monigotes/arrowTailBorder.png" id="34_1m0wj"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
+[ext_resource type="AudioStream" uid="uid://sow3ekvb4i8d" path="res://Assets/SFX/fx_steps_1.wav" id="48_u86hc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -548,6 +549,13 @@ lifetime = 1.54
 explosiveness = 0.06
 process_material = SubResource("ParticleProcessMaterial_l5w31")
 draw_pass_1 = SubResource("CylinderMesh_dvb8s")
+
+[node name="Steps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("48_u86hc")
+attenuation_model = 3
+volume_db = -6.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20500.0
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
