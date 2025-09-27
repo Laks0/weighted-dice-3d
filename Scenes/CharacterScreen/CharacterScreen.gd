@@ -70,7 +70,7 @@ func _addPlayerSetting(device : int):
 			s.activate(device)
 			break
 	
-	SfxHandler.playSound("getController()Login")
+	SfxHandler.playSound("controllerLogin")
 
 var countdownTween : Tween
 func _startContdown():

@@ -47,7 +47,6 @@ func playWall():
 	$Wall.play()
 	
 func playTargeting():
-	#if !$TargetSearchRiser.playing:
 	$TargetSearchRiser.play()
 	
 	await get_tree().create_timer(0.25).timeout

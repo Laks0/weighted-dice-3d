@@ -14,6 +14,7 @@ class_name TextureGamepadSelectButton
 @export_range(0, 1) var shadowStrength := .5
 @export var shadowOffset := Vector2.ONE * 2
 
+
 func _game_and_editor_process(_delta):
 	super(_delta)
 	$Label.text = text
@@ -30,3 +31,8 @@ func onFocusedUpdate(_delta):
 
 func onPressedTimeUpdate(_delta):
 	$TextureRect.texture = pressedTexture
+
+func changeFocus(newFocus : GamepadSelectUI, dir : int):
+	if newFocus.get_parent().get_parent() is VirtualKeyboard:
+		SfxHandler.playSound("keyboardScroll")
+	super.changeFocus(newFocus, dir)

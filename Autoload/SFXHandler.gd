@@ -10,7 +10,8 @@ var sounds : Dictionary = {
 	"pointerMove" : preload("res://Assets/SFX/pointerMove.wav"),
 	"readyCancel" : preload("res://Assets/SFX/pointerCancel.wav"),
 	"displayReady" : preload("res://Assets/SFX/displayReady.wav"),
-	"pointerCantMove" : preload("res://Assets/SFX/pointerCantMove.wav")
+	"pointerCantMove" : preload("res://Assets/SFX/pointerCantMove.wav"),
+	"keyboardScroll" : preload("res://Assets/SFX/fx_menu_keyboard_scroll.wav")
 }
 
 func _ready():

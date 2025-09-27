@@ -26,7 +26,6 @@ var accentsOn := false
 
 func _ready():
 	%Space.pressed.connect(space.emit)
-	
 	for y in get_child_count():
 		var row : HBoxContainer = get_child(y)
 		for x in range(row.get_child_count()):
