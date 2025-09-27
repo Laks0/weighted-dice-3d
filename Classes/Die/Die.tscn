@@ -181,36 +181,45 @@ bus = &"SFX"
 [node name="ChangeStomp" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("16_56gku")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="Splat" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_vqjl7")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="Wall" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_5j6fi")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="Felt" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_6qi4a")
 attenuation_model = 3
+bus = &"SFX"
 
 [node name="TargetSearchBeep" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("22_5j6fi")
 volume_db = -4.0
+bus = &"SFX"
 
 [node name="TargetSearchRiser" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = SubResource("AudioStreamRandomizer_73orw")
 volume_db = -15.0
+bus = &"SFX"
 
 [node name="TargetLock" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("24_73orw")
 volume_db = 2.0
+bus = &"SFX"
 
 [node name="TargetBurst" type="AudioStreamPlayer3D" parent="SoundManager"]
 stream = ExtResource("25_6qi4a")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="SoundManager"]
+bus = &"SFX"
 
 [node name="Rotations" type="Node3D" parent="."]
 script = ExtResource("27_73orw")

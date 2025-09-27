@@ -15,10 +15,13 @@ func _ready():
 		Narrator.playBank("menu_titulo")
 func _on_start_button_pressed():
 	Narrator.get_node("VOX").volume_db = -3
-	Narrator.playBank("menu_timba")
+	
 	dijoTimba = true
-	await get_tree().create_timer(1.5).timeout
 	SfxHandler.playSound("buttonSelect")
+	await get_tree().create_timer(0.3).timeout
+	Narrator.playBank("menu_timba")
+	await get_tree().create_timer(1.2).timeout
+	
 	
 	get_tree().change_scene_to_packed(startScene)
 
