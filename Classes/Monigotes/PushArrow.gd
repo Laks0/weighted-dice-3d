@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var mon : Monigote = get_parent()
+@export var mon : Monigote
 
 @export var progressBar : TextureProgressBar
 @export var progressBarBorder : TextureRect
@@ -10,13 +10,13 @@ func _ready():
 
 func _process(_delta):
 	visible = mon.grabbing
-	progressBar.value = mon.forceGrabbing if mon.grabbing else .0
+	progressBar.value = get_parent().forcePercentage if mon.grabbing else .0
 	if not visible:
 		progressBarBorder.visible = false
 		return
 	
 	rotation.z = -mon.grabDir.angle()
-	progressBarBorder.visible = mon.forceGrabbing == 1.0
+	progressBarBorder.visible = get_parent().forcePercentage == 1.0
 
 func onGrabbedBody(body : Pushable):
 	body.attemptedEscape.connect(shake)

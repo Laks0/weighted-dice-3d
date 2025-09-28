@@ -1,4 +1,5 @@
 extends AnimatedSprite3D
+class_name MonigoteSprite
 
 signal betSignalStatusChanged(isVisible : bool)
 
@@ -19,6 +20,8 @@ var onArena := false
 var hurtSkin : SpriteFrames
 
 @export var skins : Dictionary
+
+@onready var animationHandler : MonigoteAnimation3DHandler = $Animations3D
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -79,7 +82,7 @@ func _process(_delta):
 	elif mon.movement.stunned:
 		modulate = Color.GRAY
 	else:
-		modulate.a = 1
+		modulate.a = .95
 	
 	if mon.drunk:
 		modulate *= drunkColor
@@ -143,7 +146,6 @@ func changeBetSignalStatus(isVisible : bool):
 	scaleTween.tween_property($BetSignalSprite, "scale",\
 		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
-	
 	
 	betSignalStatusChanged.emit(isVisible)
 

@@ -7,13 +7,22 @@ extends Node3D
 @onready var mon : Monigote = get_parent()
 @export var hands : Node3D
 
-func _physics_process(_delta):
+@export_category("Push charge curves")
+@export var firstChargeCurve : Curve
+@export var oscillationChargeCurve : Curve
+var _currentChargeCurve : Curve
+var _curveSampleTime : float
+
+var forcePercentage : float = 0
+
+func _physics_process(delta):
 	var pointing := Controllers.getDirection(mon.controller)
 	if pointing != Vector2.ZERO:
 		mon.grabDir = pointing
 		$GrabArea.rotation.y = -pointing.angle()
+	
 	if mon.grabbing:
-		onMonigoteGrabbing()
+		onGrabbing(delta)
 
 func attemptGrab():
 	if not $GrabCooldown.is_stopped():
@@ -37,6 +46,9 @@ func attemptGrab():
 		
 		couldGrab = true
 		mon.emit_signal("grab", body)
+		forcePercentage = 0
+		_currentChargeCurve = firstChargeCurve
+		_curveSampleTime = 0
 		break
 	
 	if not couldGrab:
@@ -48,6 +60,42 @@ func onPushed():
 		hands.onPush($GrabCooldown.wait_time)
 	else:
 		hands.goToRest($GrabCooldown.wait_time)
+
+func onGrabbing(delta : float):
+	if not is_instance_valid(mon.grabBody):
+		return
+	
+	# Determina la fuerza dependiendo del tiempo
+	_curveSampleTime += delta
+	forcePercentage = _currentChargeCurve.sample_baked(_curveSampleTime)
+	
+	if _curveSampleTime >= _currentChargeCurve.max_domain:
+		if _currentChargeCurve == firstChargeCurve:
+			_currentChargeCurve = oscillationChargeCurve
+		_curveSampleTime = 0
+	
+	mon.pushFactor = forcePercentage
+	
+	# Prohibe al cuerpo colisionar con el que lo agarra
+	mon.grabBody.add_collision_exception_with(mon)
+	
+	
+	var elevationPercentage = forcePercentage
+	if _currentChargeCurve == oscillationChargeCurve:
+		elevationPercentage = 1
+	
+	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
+	if dir3d == Vector3.ZERO:
+		dir3d = Vector3.RIGHT
+	var target := Vector3.UP.rotated(Vector3(1,0,0), animatedSprite.rotation.x) * 1.1
+	dir3d = dir3d.lerp(target, elevationPercentage)
+	var newPosition = global_position + dir3d * mon.grabBody.grabDistance
+	mon.grabBody.global_position = newPosition
+	
+	if mon.grabBody is Monigote:
+		var grabbedMon := mon.grabBody as Monigote
+		grabbedMon.animatedSprite.animationHandler\
+			.animateGrabbing(mon.grabDir, elevationPercentage)
 
 func onMonigoteGrabbed():
 	mon.escapeMovements = 0
@@ -63,14 +111,3 @@ func onGrabAreaBodyEntered(body):
 	
 	if mon.startGrab(body):
 		mon.emit_signal("grab", body)
-
-func onMonigoteGrabbing():
-	if not is_instance_valid(mon.grabBody):
-		return
-	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
-	if dir3d == Vector3.ZERO:
-		dir3d = Vector3.RIGHT
-	var target := Vector3.UP.rotated(Vector3(1,0,0), animatedSprite.rotation.x) * 1.1
-	dir3d = dir3d.lerp(target, mon.forceGrabbing)
-	var newPosition = global_position + dir3d * mon.grabBody.grabDistance
-	mon.grabBody.global_position = newPosition

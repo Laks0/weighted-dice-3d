@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=84 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -45,7 +45,6 @@
 [ext_resource type="Script" uid="uid://dglfv1rvi8ory" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
-[ext_resource type="Texture2D" uid="uid://44laiid6xirl" path="res://Classes/Monigotes/arrowTailBorder.png" id="34_1m0wj"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
 [ext_resource type="AudioStream" uid="uid://sow3ekvb4i8d" path="res://Assets/SFX/fx_steps_1.wav" id="48_u86hc"]
 
@@ -88,6 +87,15 @@ shader_parameter/flags = 40
 [sub_resource type="QuadMesh" id="QuadMesh_u86hc"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_58d0a")
+
+[sub_resource type="Curve" id="Curve_u86hc"]
+_limits = [0.0, 1.0, 0.0, 1.3]
+_data = [Vector2(0, 0), 0.0, 1.0357825, 0, 0, Vector2(0.7818506, 0.47191018), 0.13652281, 0.13652281, 0, 0, Vector2(1.3, 1), 2.1017752, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_n5b14"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.13861385, 1), 0.0, 0.0, 0, 0, Vector2(0.49504948, 0.49438208), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.6839432, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vg6q7"]
 points = PackedVector3Array(-0.1, 0, 0, 0, -0.5, 0.5, 1, -0.5, 1, 0, -0.5, -0.5, 1, -0.5, -1, 0, 0.5, 0.5, 1, 0.5, 1, 0, 0.5, -0.5, 1, 0.5, -1)
@@ -154,7 +162,7 @@ animations = [{
 }]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gc1lk"]
-viewport_path = NodePath("PushArrow/ArrowViewport")
+viewport_path = NodePath("Grabbing/PushArrow/ArrowViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x3ft"]
 resource_local_to_scene = true
@@ -240,7 +248,7 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
 
-[node name="Monigote" type="CharacterBody3D" node_paths=PackedStringArray("movement") groups=["Monigotes"]]
+[node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -251,7 +259,6 @@ STUN_TIME_AFTER_ESCAPE = 0.7
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5
-movement = NodePath("Moving")
 grabDistance = 0.5
 maxPushForce = 32.0
 customMovement = true
@@ -338,7 +345,7 @@ script = ExtResource("21_d464q")
 
 [node name="RotationRaycastNoSignal" type="RayCast3D" parent="AnimatedSprite/Animations3D/Billboard"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-target_position = Vector3(0, 0.33, 0)
+target_position = Vector3(0, 0.43, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
@@ -346,7 +353,7 @@ debug_shape_thickness = 5
 [node name="RotationRaycastSignal" type="RayCast3D" parent="AnimatedSprite/Animations3D/Billboard"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 enabled = false
-target_position = Vector3(0, 0.73, 0)
+target_position = Vector3(0, 0.79, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
@@ -368,6 +375,8 @@ strechFactor = 0.076
 script = ExtResource("23_jjywh")
 animatedSprite = NodePath("../AnimatedSprite")
 hands = NodePath("Hands")
+firstChargeCurve = SubResource("Curve_u86hc")
+oscillationChargeCurve = SubResource("Curve_n5b14")
 
 [node name="GrabCooldown" type="Timer" parent="Grabbing"]
 wait_time = 0.3
@@ -416,33 +425,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336886, -0.101809, 0)
 [node name="RestL" type="Marker3D" parent="Grabbing/Hands"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, -0.3, 0)
 
-[node name="PushArrow" type="MeshInstance3D" parent="." node_paths=PackedStringArray("progressBar", "progressBarBorder")]
+[node name="PushArrow" type="MeshInstance3D" parent="Grabbing" node_paths=PackedStringArray("mon", "progressBar", "progressBarBorder")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.235313, 1.02858e-08)
 visible = false
 material_override = SubResource("StandardMaterial3D_3x3ft")
 mesh = SubResource("QuadMesh_gc1lk")
+skeleton = NodePath("../..")
 script = ExtResource("32_uuku0")
+mon = NodePath("../..")
 progressBar = NodePath("ArrowViewport/ProgressBar")
 progressBarBorder = NodePath("ArrowViewport/ProgressBar/Border")
 
-[node name="ArrowViewport" type="SubViewport" parent="PushArrow"]
+[node name="ArrowViewport" type="SubViewport" parent="Grabbing/PushArrow"]
 transparent_bg = true
 size = Vector2i(400, 100)
 
-[node name="ProgressBar" type="TextureProgressBar" parent="PushArrow/ArrowViewport"]
-offset_left = 250.0
-offset_right = 350.0
+[node name="ProgressBar" type="TextureProgressBar" parent="Grabbing/PushArrow/ArrowViewport"]
+offset_left = 210.0
+offset_right = 310.0
 offset_bottom = 100.0
 max_value = 1.0
 step = 0.0
 value = 1.0
 texture_progress = ExtResource("32_gc1lk")
 
-[node name="Border" type="TextureRect" parent="PushArrow/ArrowViewport/ProgressBar"]
+[node name="Border" type="TextureRect" parent="Grabbing/PushArrow/ArrowViewport/ProgressBar"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("34_1m0wj")
 
 [node name="Jumping" type="Node3D" parent="."]
 script = ExtResource("31_nojgr")
@@ -558,13 +568,14 @@ bus = &"SFX"
 attenuation_filter_cutoff_hz = 20500.0
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
+[connection signal="beenGrabbed" from="." to="AnimatedSprite/Animations3D" method="startMonigoteGrabbedAnimation"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
 [connection signal="beenGrabbed" from="." to="Moving" method="unstun"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
 [connection signal="grabbedBody" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigoteGrab"]
-[connection signal="grabbedBody" from="." to="PushArrow" method="onGrabbedBody"]
+[connection signal="grabbedBody" from="." to="Grabbing/PushArrow" method="onGrabbedBody"]
 [connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]
 [connection signal="pushed" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigotePushed"]
 [connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
@@ -572,6 +583,7 @@ attenuation_filter_cutoff_hz = 20500.0
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
+[connection signal="wasPushed" from="." to="AnimatedSprite/Animations3D" method="endMonigoteGrabbedAnimation" unbinds=3]
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]

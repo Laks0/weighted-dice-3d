@@ -33,9 +33,9 @@ var stageHandler : StageHandler
 
 var drunk := false
 
-@export var movement : MonigoteMovement
-
+@onready var movement : MonigoteMovement = $Moving
 @onready var jumping : MonigoteJumping = $Jumping
+@onready var animatedSprite : MonigoteSprite = %AnimatedSprite
 
 func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
@@ -47,13 +47,8 @@ func _ready():
 		var controllerNode := Node.new()
 		controllerNode.set_script(aiControllerScript)
 		add_child(controllerNode)
-	
-	super._ready()
 
 func _physics_process(_delta):
-	if grabbing and is_instance_valid(grabBody):
-		onGrabbing()
-	
 	if movement.stunned:
 		pauseGrabbing()
 
