@@ -1,12 +1,12 @@
 extends Control
 
 var pausedController : int
-
+var isPaused : bool = false #Esto me resultó necesario para hacer los sonidos de pausa
+# y despausa porque las funciones start y end Pause ambas se disparan a la vez siempre que se (des)pausa
 func startPause(controllerId : int):
 	var player := PlayerHandler.getPlayerByController(controllerId)
 	if player == null:
 		return
-	
 	get_tree().set_pause(true)
 	pausedController = controllerId
 	$Menu/PlayerName.text = "Pausado por " + player.name
@@ -17,6 +17,14 @@ func startPause(controllerId : int):
 	%ConfigControllers.setControllerId(controllerId)
 	
 	visible = true
+	if !isPaused && !$Unpause.playing:
+		$Pause.play()
+		isPaused = true
+	elif isPaused && !$Pause.playing:
+		$Unpause.play()
+		isPaused = false
+
+
 
 func endPause():
 	get_tree().set_pause(false)

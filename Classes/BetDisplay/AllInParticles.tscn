@@ -47,3 +47,4 @@ font_size = 50
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4jhuv")
+volume_db = -13.0

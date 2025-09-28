@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1u8x43c7ulq1"]
+[gd_scene load_steps=9 format=3 uid="uid://c1u8x43c7ulq1"]
 
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_es5up"]
 [ext_resource type="Script" uid="uid://cxoh4s5kbi1d6" path="res://Scenes/PauseMenu/PauseMenu.gd" id="2_yc4es"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="3_a2m5i"]
 [ext_resource type="PackedScene" uid="uid://dekyiuf4skj47" path="res://Scenes/ConfigControllers/ConfigControllers.tscn" id="3_oikoa"]
 [ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="5_ifvnd"]
+[ext_resource type="AudioStream" uid="uid://bfxaaxpty45aa" path="res://Assets/SFX/fx_menu_pause.wav" id="6_blrd7"]
+[ext_resource type="AudioStream" uid="uid://du6kyo2c8xwio" path="res://Assets/SFX/fx_menu_unpause.wav" id="7_x6lxg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pf7fp"]
 texture = ExtResource("5_ifvnd")
@@ -106,6 +108,16 @@ upSelect = NodePath("../GamepadSelectButton")
 downSelect = NodePath("../GamepadSelectButton")
 upFallback = NodePath("../GamepadSelectButton")
 downFallback = NodePath("../GamepadSelectButton")
+
+[node name="Pause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_blrd7")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="Unpause" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x6lxg")
+volume_db = -6.0
+bus = &"SFX"
 
 [connection signal="finished" from="Menu/ConfigControllers" to="." method="stopEditting"]
 [connection signal="pressed" from="Menu/Buttons/GamepadSelectButton" to="." method="startEditting"]
