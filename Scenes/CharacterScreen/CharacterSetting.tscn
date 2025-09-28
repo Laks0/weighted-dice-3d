@@ -773,14 +773,17 @@ clip_text = true
 [node name="KBUpper" type="AudioStreamPlayer" parent="NameEdit"]
 stream = ExtResource("10_vufmf")
 volume_db = -4.0
+bus = &"SFX"
 
 [node name="KBLower" type="AudioStreamPlayer" parent="NameEdit"]
 stream = ExtResource("11_cnsgs")
 volume_db = -4.0
+bus = &"SFX"
 
 [node name="KBOK" type="AudioStreamPlayer" parent="NameEdit"]
 stream = ExtResource("12_cnsgs")
 volume_db = -12.0
+bus = &"SFX"
 
 [node name="ReadyStage" type="Control" parent="."]
 visible = false
@@ -1142,24 +1145,30 @@ centered = false
 [node name="KeyboardClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_2wrae")
 volume_db = -3.0
+bus = &"SFX"
 
 [node name="KeyboardDel" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_fm0ag")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="Ready" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_8644k")
+bus = &"SFX"
 
 [node name="Login" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_agqq6")
+bus = &"SFX"
 
 [node name="Logout" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_5vich")
 volume_db = -6.0
+bus = &"SFX"
 
 [node name="ControllerSetting" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_fm0ag")
 volume_db = -7.0
+bus = &"SFX"
 
 [connection signal="pressed" from="MainStage/TextBar/EditNameButton" to="." method="transition" binds= [2]]
 [connection signal="pressed" from="MainStage/HBoxContainer/ControllersButton" to="." method="transition" binds= [3]]
