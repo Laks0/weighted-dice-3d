@@ -8,7 +8,7 @@ signal keyboardStoppedEdittingController
 
 var _controller : int = 0
 var playerName := ""
-
+var screenOn = false
 enum Stages { WAITING, MAIN, NAME_EDIT, CONTROLLERS, READY, LOCKED, ALLREADY}
 var stage := Stages.WAITING
 
@@ -44,7 +44,7 @@ func activate(controller : int):
 	await $FromWaitTransition.animation_finished
 	$FromWaitTransition.visible = false
 	%EditNameButton.focus()
-	
+	screenOn = true
 	%ConfigControllers.setControllerId(controller)
 
 func deactivate():
@@ -95,17 +95,21 @@ func editProcess():
 var transitioning_stage := Stages.MAIN
 func transition(to : Stages):
 	if to == Stages.CONTROLLERS :
-		$ControllerSetting.play()
+		$TransitionSFX.play()
 		if Controllers.isKeyboard(_controller):
 			keyboardStartedEdittingController.emit()
 	if stage == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
 		keyboardStoppedEdittingController.emit()
-	
+	if screenOn:
+		if to == Stages.MAIN && stage == Stages.CONTROLLERS: $TransitionSFX.play()
+		if to == Stages.NAME_EDIT && stage == Stages.MAIN: $TransitionSFX.play()
 	$Transition.visible = true
 	$Transition.play()
 	transitioning_stage = to
 	if to == Stages.READY:
 		$Ready.play()
+
+
 
 func onTransitionFrameChanged():
 	if $Transition.frame == 5:

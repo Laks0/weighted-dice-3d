@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://7607nmtjprmt"
-path="res://.godot/imported/fx_charscreen_controller.wav-c28e087773286b565fca7ed56de22b3a.sample"
+path="res://.godot/imported/fx_charscreen_transition.wav-a9f214443e6ac0b1a5613d0ea640eeb9.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/fx_charscreen_controller.wav"
-dest_files=["res://.godot/imported/fx_charscreen_controller.wav-c28e087773286b565fca7ed56de22b3a.sample"]
+source_file="res://Assets/SFX/fx_charscreen_transition.wav"
+dest_files=["res://.godot/imported/fx_charscreen_transition.wav-a9f214443e6ac0b1a5613d0ea640eeb9.sample"]
 
 [params]
 

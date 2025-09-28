@@ -26,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bog3mwwmuu5r4" path="res://Assets/SFX/fx_charscreen_kb_del.wav" id="20_fm0ag"]
 [ext_resource type="AudioStream" uid="uid://cky8rdk03g83m" path="res://Assets/SFX/fx_charscreen_logout.wav" id="22_5vich"]
 [ext_resource type="AudioStream" uid="uid://11g1qael3234" path="res://Assets/SFX/fx_charscreen_login.wav" id="22_agqq6"]
-[ext_resource type="AudioStream" uid="uid://7607nmtjprmt" path="res://Assets/SFX/fx_charscreen_controller.wav" id="22_fm0ag"]
+[ext_resource type="AudioStream" uid="uid://7607nmtjprmt" path="res://Assets/SFX/fx_charscreen_transition.wav" id="22_fm0ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt8p0"]
 atlas = ExtResource("1_fgyrc")
@@ -1165,7 +1165,7 @@ stream = ExtResource("22_5vich")
 volume_db = -6.0
 bus = &"SFX"
 
-[node name="ControllerSetting" type="AudioStreamPlayer" parent="."]
+[node name="TransitionSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_fm0ag")
 volume_db = -7.0
 bus = &"SFX"
