@@ -151,7 +151,8 @@ func allReady():
 	stage = Stages.ALLREADY
 	texture = null
 	for c in get_children():
-		c.visible = false
+		if c is not AudioStreamPlayer:
+			c.visible = false
 	%AllReadyPlayerName.text = playerName
 	if playerName == "" and active:
 		%AllReadyPlayerName.text = getControllerName()
