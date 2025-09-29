@@ -10,7 +10,7 @@ extends Node3D
 @export_category("Push charge curves")
 @export var firstChargeCurve : Curve
 @export var oscillationChargeCurve : Curve
-var _currentChargeCurve : Curve
+@onready var _currentChargeCurve : Curve = firstChargeCurve
 var _curveSampleTime : float
 
 var forcePercentage : float = 0
@@ -35,6 +35,10 @@ func attemptGrab():
 		onPushed()
 		return
 	
+	forcePercentage = 0
+	_currentChargeCurve = firstChargeCurve
+	_curveSampleTime = 0
+	
 	var couldGrab := false
 	for body in $GrabArea.get_overlapping_bodies():
 		if not body is Pushable or body == self:
@@ -46,9 +50,6 @@ func attemptGrab():
 		
 		couldGrab = true
 		mon.emit_signal("grab", body)
-		forcePercentage = 0
-		_currentChargeCurve = firstChargeCurve
-		_curveSampleTime = 0
 		break
 	
 	if not couldGrab:
@@ -63,6 +64,13 @@ func onPushed():
 
 func onGrabbing(delta : float):
 	if not is_instance_valid(mon.grabBody):
+		return
+	
+	if Input.is_action_just_released(mon.actions.grab):
+		pushAnimation()
+		return
+	
+	if not Input.is_action_pressed(mon.actions.grab):
 		return
 	
 	# Determina la fuerza dependiendo del tiempo
@@ -95,7 +103,7 @@ func onGrabbing(delta : float):
 	if mon.grabBody is Monigote:
 		var grabbedMon := mon.grabBody as Monigote
 		grabbedMon.animatedSprite.animationHandler\
-			.animateGrabbing(mon.grabDir, elevationPercentage)
+			.manualAnimate(mon.grabDir, elevationPercentage)
 
 func onMonigoteGrabbed():
 	mon.escapeMovements = 0
@@ -111,3 +119,12 @@ func onGrabAreaBodyEntered(body):
 	
 	if mon.startGrab(body):
 		mon.emit_signal("grab", body)
+
+func pushAnimation():
+	var tween := mon.grabBody.create_tween()
+	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y).normalized()
+	var displacement := forcePercentage * .5
+	tween.tween_property(mon.grabBody, "global_position", -displacement*dir3d, .08).as_relative()
+	tween.tween_interval(.2*forcePercentage)
+	tween.tween_property(mon.grabBody, "global_position", 2*displacement*dir3d, .05).as_relative()
+	tween.tween_callback(mon.push)

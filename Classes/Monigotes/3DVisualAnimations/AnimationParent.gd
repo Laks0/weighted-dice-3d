@@ -10,7 +10,7 @@ class_name MonigoteAnimation3DHandler
 
 var _dirBeingGrabbed              := Vector2.LEFT
 var _elevationPercentage          : float
-var _isBeingGrabbedAnimationGoing := false
+var _isAnimationManual := false
 
 func _ready():
 	for c : MonigoteAnimation3D in get_children():
@@ -25,21 +25,24 @@ func _physics_process(_delta):
 		
 		animatedBasis *= c.resultBasis
 	
-	if _isBeingGrabbedAnimationGoing:
+	if _isAnimationManual:
 		var baseRotation := baseAnimation.resultBasis.get_euler().x
 		animatedSprite.rotation.x = min(-PI/2 * _elevationPercentage, baseRotation)
 		animatedSprite.rotation.y = PI/2-_dirBeingGrabbed.angle()
 		animatedSprite.modulate.a = .7
+		
+		if not mon.grabbed and not mon.movement.isBeingPushed():
+			endManualAnimation()
 	else:
 		animatedSprite.basis = animatedBasis
 
-func startMonigoteGrabbedAnimation():
-	_isBeingGrabbedAnimationGoing = true
+func startManualAnimation():
+	_isAnimationManual = true
 	_elevationPercentage = 0
 
-func endMonigoteGrabbedAnimation():
-	_isBeingGrabbedAnimationGoing = false
+func endManualAnimation():
+	_isAnimationManual = false
 
-func animateGrabbing(dirBeingGrabbed : Vector2, elevationPercentage : float):
+func manualAnimate(dirBeingGrabbed : Vector2, elevationPercentage : float):
 	_dirBeingGrabbed = dirBeingGrabbed
 	_elevationPercentage = elevationPercentage

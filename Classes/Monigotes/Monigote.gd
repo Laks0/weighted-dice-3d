@@ -14,6 +14,10 @@ signal hasWon
 @export var STUN_TIME_AFTER_ESCAPE : float = .5
 var escapeMovements : int = 0
 
+## El mínimo factor para que, después de ser empujado, tenga un rato de stun
+@export var minPushFactorForStun := .6
+@export var afterPushStunTime := .5
+
 @export var aiControllerScript : Script
 
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
@@ -63,8 +67,6 @@ func _process(delta):
 		else:
 			$Grabbing.attemptGrab()
 	
-	if grabbing and Input.is_action_just_released(actions.grab):
-		push()
 	
 	super(delta)
 
@@ -87,7 +89,8 @@ func onGrabbingEscaped(body : Pushable):
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	movement.resetMovement()
-	movement.applyVelocity(dir * factor * maxPushForce)
+	stopMovement()
+	movement.applyPushedVelocity(dir * factor * maxPushForce)
 	$Grabbing/GrabCooldown.start()
 	invincible = false
 	
@@ -137,7 +140,6 @@ func die():
 	Input.start_joy_vibration(controller, 1, 1, .4)
 	
 	$DeathParticles.connect("finished", queue_free)
-
 
 func stopMovement():
 	movementStopped = true

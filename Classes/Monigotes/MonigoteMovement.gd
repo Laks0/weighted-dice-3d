@@ -12,7 +12,7 @@ signal wasUnstunned
 
 var moveVelocity := Vector2.ZERO
 
-var unclampedVelocities : Dictionary[String, Vector2]
+var _unclampedVelocities : Dictionary[String, Vector2]
 
 var _movementDir : Vector2
 
@@ -20,7 +20,7 @@ var stunned := false
 
 func resetMovement() -> void:
 	moveVelocity = Vector2.ZERO
-	unclampedVelocities.clear()
+	_unclampedVelocities.clear()
 	mon.velocity = Vector3.ZERO
 
 func goMaxSpeed(dir : Vector2) -> void:
@@ -30,23 +30,34 @@ func goMaxSpeed(dir : Vector2) -> void:
 
 func bounce(normal : Vector3):
 	var normal2 := Vector2(normal.x, normal.z)
-	for k in unclampedVelocities.keys():
-		unclampedVelocities[k] = unclampedVelocities[k].bounce(normal2)
+	for k in _unclampedVelocities.keys():
+		_unclampedVelocities[k] = _unclampedVelocities[k].bounce(normal2)
 	moveVelocity = moveVelocity.bounce(normal2)
 	mon.velocity = mon.velocity.bounce(normal)
 
-func applyChannelVelocity(channelSource : Node, vel : Vector2):
+func _applyNodeChannelVelocity(channelSource : Node, vel : Vector2):
 	var channel := str(channelSource.get_path())
-	if not unclampedVelocities.has(channel):
-		unclampedVelocities.set(channel, Vector2.ZERO)
-	unclampedVelocities[channel] += vel
+	applyChannelVelocity(channel, vel)
+
+func applyChannelVelocity(channel : String, vel : Vector2):
+	if not _unclampedVelocities.has(channel):
+		_unclampedVelocities.set(channel, Vector2.ZERO)
+	_unclampedVelocities[channel] += vel
 
 func setChannelVelocity(channelSource : Node, vel : Vector2):
 	var channel := str(channelSource.get_path())
-	unclampedVelocities.set(channel, vel)
+	_unclampedVelocities.set(channel, vel)
 
 func applyVelocity(vel : Vector2):
-	applyChannelVelocity(self, vel)
+	_applyNodeChannelVelocity(self, vel)
+
+const _PUSH_CHANNEL := "Push"
+
+func applyPushedVelocity(vel : Vector2):
+	applyChannelVelocity(_PUSH_CHANNEL, vel)
+
+func isBeingPushed() -> bool:
+	return _unclampedVelocities.has(_PUSH_CHANNEL) and not _unclampedVelocities[_PUSH_CHANNEL].is_zero_approx()
 
 func applyVelocityFrom(pos : Vector3, force : float):
 	var pos2d = Vector2(pos.x, pos.z)
@@ -61,18 +72,18 @@ func getMovementDir() -> Vector2:
 	return _movementDir
 
 func getUnclampedVelocity() -> Vector2:
-	return unclampedVelocities.values()\
+	return _unclampedVelocities.values()\
 		.reduce((func (accum : Vector2, x : Vector2): return accum + x), Vector2.ZERO)
 
 func applyFrictionToUnclampedVelocities(delta : float):
 	var keysToDelete := []
-	for k in unclampedVelocities.keys():
-		unclampedVelocities.set(k, unclampedVelocities[k].move_toward(Vector2.ZERO, mon.FRICTION * delta))
-		if unclampedVelocities[k].is_zero_approx():
+	for k in _unclampedVelocities.keys():
+		_unclampedVelocities.set(k, _unclampedVelocities[k].move_toward(Vector2.ZERO, mon.FRICTION * delta))
+		if _unclampedVelocities[k].is_zero_approx():
 			keysToDelete.append(k)
 	
 	for k in keysToDelete:
-		unclampedVelocities.erase(k)
+		_unclampedVelocities.erase(k)
 
 func stun(timeout := 5.0):
 	stunned = true

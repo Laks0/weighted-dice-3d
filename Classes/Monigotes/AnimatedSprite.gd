@@ -109,8 +109,11 @@ func _process(_delta):
 			Cardinal.N: play("RunningUp")
 	else:
 		play("Idle")
-
-	if not mon.movement.getUnclampedVelocity().is_zero_approx():
+	
+	if mon.movement.isBeingPushed():
+		play("Pushed")
+		frame = 6
+	elif not mon.movement.getUnclampedVelocity().is_zero_approx():
 		play("Pushed")
 		frame = vecTo8Dir(mon.movement.getUnclampedVelocity())
 	
