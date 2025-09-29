@@ -94,6 +94,8 @@ func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	$Grabbing/GrabCooldown.start()
 	invincible = false
 	
+	animatedSprite.animationHandler.thrownFactor = factor
+	
 	super(dir, factor, _pusher)
 
 func push():

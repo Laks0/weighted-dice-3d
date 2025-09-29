@@ -256,6 +256,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
 MOVEMENTS_TO_ESCAPE_GRAB = 5
 STUN_TIME_AFTER_ESCAPE = 0.7
+afterPushStunTime = 1.0
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
 invincibleAfterPushTime = 0.5

@@ -112,7 +112,7 @@ func _process(_delta):
 	
 	if mon.movement.isBeingPushed():
 		play("Pushed")
-		frame = 6
+		frame = 2
 	elif not mon.movement.getUnclampedVelocity().is_zero_approx():
 		play("Pushed")
 		frame = vecTo8Dir(mon.movement.getUnclampedVelocity())

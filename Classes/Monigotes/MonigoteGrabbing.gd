@@ -127,4 +127,7 @@ func pushAnimation():
 	tween.tween_property(mon.grabBody, "global_position", -displacement*dir3d, .08).as_relative()
 	tween.tween_interval(.2*forcePercentage)
 	tween.tween_property(mon.grabBody, "global_position", 2*displacement*dir3d, .05).as_relative()
+	tween.tween_callback(func ():
+		mon.grabBody.animatedSprite.animationHandler\
+			.manualAnimate(mon.grabDir, 1))
 	tween.tween_callback(mon.push)
