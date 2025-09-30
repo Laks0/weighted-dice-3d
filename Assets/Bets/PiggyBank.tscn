@@ -32,7 +32,7 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
 
-[node name="CrownGrab" type="CharacterBody3D"]
+[node name="PiggyBank" type="CharacterBody3D"]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_jlkdb")
@@ -43,6 +43,7 @@ maxElevation = 0.3
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 billboard = 1
+shaded = true
 texture_filter = 0
 render_priority = 1
 texture = ExtResource("2_owl41")
