@@ -13,7 +13,6 @@ signal wasUnstunned
 var moveVelocity := Vector2.ZERO
 
 var _unclampedVelocities : Dictionary[String, Vector2]
-var _verticalAppliedVelocity : float = 0
 
 var _movementDir : Vector2
 

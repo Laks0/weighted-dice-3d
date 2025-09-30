@@ -14,7 +14,7 @@ func _init():
 	_resultTextPlural = "%s sacaron más del chanchito"
 
 func startGame(arena : Arena):
-	crown = load("res://Assets/Bets/CrownGrab.tscn").instantiate()
+	crown = load("res://Assets/Bets/PiggyBank.tscn").instantiate()
 	crown.position = arena.getRandomPosition()
 	arena.add_child(crown)
 	
