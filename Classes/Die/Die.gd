@@ -64,6 +64,8 @@ func _getClosestMonigoteDirection() -> Vector2:
 	return Vector2(dir3d.x, dir3d.z)
 
 func _on_area_3d_body_entered(body):
+	if not visible:
+		return
 	if linear_velocity.length() < minMovementToHurt and not hitting:
 		return
 	
