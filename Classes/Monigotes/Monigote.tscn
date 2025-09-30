@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=98 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -47,7 +47,15 @@
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
-[ext_resource type="AudioStream" uid="uid://sow3ekvb4i8d" path="res://Assets/SFX/fx_steps_1.wav" id="48_u86hc"]
+[ext_resource type="Script" path="res://Classes/Monigotes/steps.gd" id="49_n5b14"]
+[ext_resource type="AudioStream" uid="uid://62qildldgujf" path="res://Assets/SFX/Steps/fx_steps_l1.wav" id="49_u33gx"]
+[ext_resource type="AudioStream" uid="uid://c1spexosvny77" path="res://Assets/SFX/Steps/fx_steps_l2.wav" id="50_r5ite"]
+[ext_resource type="AudioStream" uid="uid://cmc0hyrp0fd0q" path="res://Assets/SFX/Steps/fx_steps_l3.wav" id="51_1labf"]
+[ext_resource type="AudioStream" uid="uid://bf0avdnvhxbvy" path="res://Assets/SFX/Steps/fx_steps_l4.wav" id="52_mr8r7"]
+[ext_resource type="AudioStream" uid="uid://c4xtnj1o4w8nu" path="res://Assets/SFX/Steps/fx_steps_r1.wav" id="53_63dgn"]
+[ext_resource type="AudioStream" uid="uid://oslx8g1476m0" path="res://Assets/SFX/Steps/fx_steps_r2.wav" id="54_ck18g"]
+[ext_resource type="AudioStream" uid="uid://by8s7286d8cgg" path="res://Assets/SFX/Steps/fx_steps_r3.wav" id="55_st7g8"]
+[ext_resource type="AudioStream" uid="uid://cwcr31517buxl" path="res://Assets/SFX/Steps/fx_steps_r4.wav" id="56_7i38e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8m1s"]
 atlas = ExtResource("11_f1njw")
@@ -274,6 +282,20 @@ material = SubResource("StandardMaterial3D_sf838")
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ipal2"]
+streams_count = 4
+stream_0/stream = ExtResource("49_u33gx")
+stream_1/stream = ExtResource("50_r5ite")
+stream_2/stream = ExtResource("51_1labf")
+stream_3/stream = ExtResource("52_mr8r7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sii44"]
+streams_count = 4
+stream_0/stream = ExtResource("53_63dgn")
+stream_1/stream = ExtResource("54_ck18g")
+stream_2/stream = ExtResource("55_st7g8")
+stream_3/stream = ExtResource("56_7i38e")
 
 [node name="Monigote" type="CharacterBody3D" groups=["Monigotes"]]
 collision_mask = 7
@@ -615,12 +637,16 @@ explosiveness = 0.06
 process_material = SubResource("ParticleProcessMaterial_l5w31")
 draw_pass_1 = SubResource("CylinderMesh_dvb8s")
 
-[node name="Steps" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("48_u86hc")
-attenuation_model = 3
-volume_db = -6.0
-bus = &"SFX"
-attenuation_filter_cutoff_hz = 20500.0
+[node name="Steps" type="Node3D" parent="."]
+script = ExtResource("49_n5b14")
+
+[node name="LStep" type="AudioStreamPlayer3D" parent="Steps"]
+stream = SubResource("AudioStreamRandomizer_ipal2")
+volume_db = -2.0
+
+[node name="RStep" type="AudioStreamPlayer3D" parent="Steps"]
+stream = SubResource("AudioStreamRandomizer_sii44")
+volume_db = -2.0
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
 [connection signal="beenGrabbed" from="." to="GrabbedAndPushedSequences" method="onMonigoteBeenGrabbed"]
@@ -657,3 +683,5 @@ attenuation_filter_cutoff_hz = 20500.0
 [connection signal="wasStunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="play"]
 [connection signal="wasUnstunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="stop"]
 [connection signal="timeout" from="Moving/StunTimeout" to="Moving" method="unstun"]
+[connection signal="finished" from="Steps/LStep" to="Steps" method="_on_l_step_finished"]
+[connection signal="finished" from="Steps/RStep" to="Steps" method="_on_r_step_finished"]

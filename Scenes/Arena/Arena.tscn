@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=28 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
@@ -16,7 +16,6 @@
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="15_ovhl6"]
 [ext_resource type="PackedScene" uid="uid://1vq3q5rv3j3a" path="res://Classes/Effects/AllIn/AllInEffect.tscn" id="15_qr7s2"]
 [ext_resource type="PackedScene" uid="uid://dwt6isov5c6n5" path="res://Scenes/Arena/Audience/AudienceRow.tscn" id="18_vimpm"]
-[ext_resource type="PackedScene" uid="uid://6k85bif87r1q" path="res://Classes/Effects/MindTheGap/Gap.tscn" id="19_ja8rw"]
 [ext_resource type="Script" uid="uid://dgub11lavdcow" path="res://Scenes/Arena/ChipDropper.gd" id="26_sgy0k"]
 [ext_resource type="PackedScene" uid="uid://bo27kf00e07sv" path="res://Classes/ChipDrop/ChipDrop.tscn" id="27_gjkb2"]
 
@@ -229,9 +228,6 @@ flipH = true
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 12.554284, 0.41187692, -2.1967608e-06)
 curve = SubResource("Curve3D_am0bh")
 flipH = true
-
-[node name="Gap" parent="." instance=ExtResource("19_ja8rw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9580802, -0.0321802, 0.6683154)
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
 

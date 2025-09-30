@@ -58,6 +58,7 @@ func startEditting():
 		c.disabled = false
 
 func stopEditting():
+	get_parent().get_parent().get_node("OKFX").play()
 	%EditButton.visible = true
 	%BackButton.visible = true
 	%CancelButton.visible = false

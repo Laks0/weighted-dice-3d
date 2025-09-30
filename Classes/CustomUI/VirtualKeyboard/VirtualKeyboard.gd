@@ -52,7 +52,7 @@ func _ready():
 					deleteCharacter.emit()
 					return
 				if button == %OK:
-					get_parent().get_node("KBOK").play()
+					get_parent().get_node("KBOK").play() #sería mejor que esto dependa del OKFX child de CharacterSetting, pero...
 					accept.emit()
 					return
 				if button == %Accent:

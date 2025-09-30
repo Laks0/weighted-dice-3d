@@ -100,12 +100,13 @@ func _physics_process(delta):
 		_movementDir = Controllers.getDirection(mon.controller)
 		
 		#Sonido de Pisadas
-#		var stepsPlayer : AudioStreamPlayer3D = get_parent().get_node("Steps")
-#		if _movementDir != Vector2(0.0,0.0):
-#			if !stepsPlayer.playing:
-#				stepsPlayer.play()
-#		else: stepsPlayer.stop()
-			
+		var stepsPlayer : Node3D = get_parent().get_node("Steps")
+		if _movementDir != Vector2(0.0,0.0) && !mon.invincible && mon.is_on_floor() && !mon.grabbed:
+			if !mon.grabbing:
+				stepsPlayer.running()
+			else:
+				stepsPlayer.walkingAndGrabbing()
+		else: stepsPlayer.none()
 	if mon.drunk:
 		_movementDir = _movementDir.rotated(PI)
 	
