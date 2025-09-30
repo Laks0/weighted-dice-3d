@@ -13,6 +13,7 @@ signal wasUnstunned
 var moveVelocity := Vector2.ZERO
 
 var _unclampedVelocities : Dictionary[String, Vector2]
+var _verticalAppliedVelocity : float = 0
 
 var _movementDir : Vector2
 
@@ -133,5 +134,6 @@ func _physics_process(delta):
 	mon.velocity = Vector3(vel2d.x, mon.velocity.y, vel2d.y)
 	if not mon.gravityStopped:
 		mon.velocity.y -= GRAVITY_ACCELERATION * delta
+		
 	
 	mon.move_and_slide()
