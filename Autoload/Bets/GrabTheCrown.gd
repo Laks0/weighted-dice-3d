@@ -4,26 +4,23 @@ var crown : CharacterBody3D
 
 func _init():
 	betType = BetType.ALL_PLAYERS
-	betName = "Agarrar la corona"
+	betName = "Agarrar el chanchito"
 	_scoreOrder = Order.ASCENDING
-	_scoreType = ScoreType.TIME
+	_scoreType = ScoreType.INT
 	monigoteSignal = MonigoteSignal.CROWN
 	
-	betDescription = "¿Quién va a sostener por más tiempo la corona?"
-	_resultTextSingular = "%s agarró más la corona"
-	_resultTextPlural = "%s agarraron más la corona"
-
-func arenaUpdate(delta):
-	for mon : Monigote in _arena.getLivingMonigotes():
-		if not is_instance_valid(mon.grabBody):
-			continue
-		if mon.grabbing and mon.grabBody is CrownGrab:
-			_scores[mon.player.id] += delta
+	betDescription = "¿Quién va a sacar más monedas del chanchito?"
+	_resultTextSingular = "%s sacó más del chanchito"
+	_resultTextPlural = "%s sacaron más del chanchito"
 
 func startGame(arena : Arena):
 	crown = load("res://Assets/Bets/CrownGrab.tscn").instantiate()
 	crown.position = arena.getRandomPosition()
 	arena.add_child(crown)
+	
+	crown.coinOut.connect(func (holder : Monigote):
+		_scores[holder.player.id] += 1)
+	
 	super(arena)
 
 func settle():

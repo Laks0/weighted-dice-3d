@@ -58,14 +58,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j2qry"]
-radius = 0.260333
-height = 0.693766
+radius = 0.42578125
+height = 0.89941406
 
 [node name="Gap" type="Area3D"]
 script = ExtResource("1_uhis5")
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 axis = 1
 shaded = true
 texture_filter = 0
@@ -77,7 +77,7 @@ frame = 3
 frame_progress = 1.0
 
 [node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0363523, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.031030513, 0)
 shape = SubResource("CapsuleShape3D_j2qry")
 disabled = true
 

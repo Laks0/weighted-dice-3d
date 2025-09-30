@@ -178,6 +178,30 @@ func getRandomPosition(padding : float = 1, yPos : float = .1) -> Vector3:
 		yPos,
 		randf_range(-HEIGHT/2 + padding, HEIGHT/2 - padding))
 
+func sampleRandomPositions(n : int, minDistance : float = 1, padding : float = 1, yPos : float = .1) -> PackedVector3Array:
+	var res : PackedVector3Array
+	var grid : Dictionary[Vector2i, bool]
+	
+	var realHalfWidth  := WIDTH/2 - padding
+	var realHalfHeight := HEIGHT/2 - padding
+	
+	var gridHalfWidth : int = floor(realHalfWidth/minDistance)
+	var gridHalfHeight : int = floor(realHalfHeight/minDistance)
+	
+	for x in range(-gridHalfWidth, gridHalfWidth+1):
+		for y in range(-gridHalfHeight, gridHalfHeight+1):
+			grid.set(Vector2i(x,y), true)
+	
+	for _i in range(n):
+		var pick = grid.keys().pick_random()
+		var vec3pick := Vector3(pick.x, 0, pick.y) * minDistance + Vector3(0, yPos, 0)
+		res.append(vec3pick)
+		for dx in range(-1,2):
+			for dy in range(-1,2):
+				grid.erase(pick + Vector2i(dx,dy))
+	
+	return res
+
 func onMonigoteDeath(mon : Monigote):
 	Narrator.announceKill("generic")
 	monigotes.erase(mon)

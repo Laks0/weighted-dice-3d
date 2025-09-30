@@ -1,4 +1,5 @@
 extends AnimatedSprite3D
+class_name MonigoteSprite
 
 signal betSignalStatusChanged(isVisible : bool)
 
@@ -19,6 +20,10 @@ var onArena := false
 var hurtSkin : SpriteFrames
 
 @export var skins : Dictionary
+
+@onready var animationHandler : MonigoteAnimation3DHandler = $Animations3D
+
+var _animationStopped := false
 
 func _ready():
 	# El id del objeto player determina la skin que usa el monigote.
@@ -67,8 +72,6 @@ func arenaReady():
 ## Si se muestra un señalizador de apuesta
 var hasSignal := false
 
-var dancing = false
-
 func _process(_delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
 	material_override.set_shader_parameter("modulate", modulate)
@@ -79,7 +82,7 @@ func _process(_delta):
 	elif mon.movement.stunned:
 		modulate = Color.GRAY
 	else:
-		modulate.a = 1
+		modulate.a = .95
 	
 	if mon.drunk:
 		modulate *= drunkColor
@@ -89,7 +92,7 @@ func _process(_delta):
 	# Animaciones
 	#############
 	
-	if dancing:
+	if _animationStopped:
 		return
 	
 	# Si el monigote está pausado no hay animaciones
@@ -106,7 +109,7 @@ func _process(_delta):
 			Cardinal.N: play("RunningUp")
 	else:
 		play("Idle")
-
+	
 	if not mon.movement.getUnclampedVelocity().is_zero_approx():
 		play("Pushed")
 		frame = vecTo8Dir(mon.movement.getUnclampedVelocity())
@@ -133,7 +136,8 @@ func _process(_delta):
 		hasSignal = signalVisible
 
 func dance():
-	dancing = true
+	stopAnimations()
+	speed_scale = 1
 	play("Dancing")
 
 func changeBetSignalStatus(isVisible : bool):
@@ -143,7 +147,6 @@ func changeBetSignalStatus(isVisible : bool):
 	scaleTween.tween_property($BetSignalSprite, "scale",\
 		Vector3.ONE * (betSignalScale if isVisible else 0), .1)
 	scaleTween.tween_callback(func (): $BetSignalSprite.visible = isVisible)
-	
 	
 	betSignalStatusChanged.emit(isVisible)
 
@@ -170,6 +173,14 @@ func planarShake() -> void:
 		await get_tree().process_frame
 	
 	position = Vector3.ZERO
+
+func stopAnimations() -> void:
+	_animationStopped = true
+	speed_scale = 0
+
+func resumeAnimations() -> void:
+	_animationStopped = false
+	speed_scale = 1
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 

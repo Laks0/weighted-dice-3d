@@ -14,6 +14,10 @@ signal hasWon
 @export var STUN_TIME_AFTER_ESCAPE : float = .5
 var escapeMovements : int = 0
 
+## El mínimo factor para que, después de ser empujado, tenga un rato de stun
+@export var minPushFactorForStun := .6
+@export var afterPushStunTime := .5
+
 @export var aiControllerScript : Script
 
 var player : PlayerHandler.Player = PlayerHandler.Player.new("Juan")
@@ -33,9 +37,10 @@ var stageHandler : StageHandler
 
 var drunk := false
 
-@export var movement : MonigoteMovement
-
+@onready var movement : MonigoteMovement = $Moving
 @onready var jumping : MonigoteJumping = $Jumping
+@onready var grabbingHandler : MonigoteGrabbingHandler = $Grabbing
+@onready var animatedSprite : MonigoteSprite = %AnimatedSprite
 
 func _ready():
 	$HurtTime.timeout.connect(func(): invincible = false)
@@ -47,13 +52,8 @@ func _ready():
 		var controllerNode := Node.new()
 		controllerNode.set_script(aiControllerScript)
 		add_child(controllerNode)
-	
-	super._ready()
 
 func _physics_process(_delta):
-	if grabbing and is_instance_valid(grabBody):
-		onGrabbing()
-	
 	if movement.stunned:
 		pauseGrabbing()
 
@@ -68,8 +68,6 @@ func _process(delta):
 		else:
 			$Grabbing.attemptGrab()
 	
-	if grabbing and Input.is_action_just_released(actions.grab):
-		push()
 	
 	super(delta)
 
@@ -92,7 +90,7 @@ func onGrabbingEscaped(body : Pushable):
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	movement.resetMovement()
-	movement.applyVelocity(dir * factor * maxPushForce)
+	movement.applyPushedVelocity(dir * factor * maxPushForce)
 	$Grabbing/GrabCooldown.start()
 	invincible = false
 	
@@ -142,7 +140,6 @@ func die():
 	Input.start_joy_vibration(controller, 1, 1, .4)
 	
 	$DeathParticles.connect("finished", queue_free)
-
 
 func stopMovement():
 	movementStopped = true

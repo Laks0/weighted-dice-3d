@@ -7,6 +7,8 @@ signal escaped
 @warning_ignore("unused_signal")
 signal attemptedEscape
 signal beenGrabbed
+@warning_ignore("unused_signal")
+signal onBeingGrabbed(dir : Vector2, factor : float, _pusher : Pushable)
 signal grabbedBody(body : Pushable)
 signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)
 signal pushed
@@ -14,8 +16,7 @@ signal pushed
 signal doubled
 signal grabbingBodyEscaped(body : Pushable)
 
-@export_range(0, 3) var maxGrabTime  : float = 1
-@export             var grabDistance : float = .3
+@export var grabDistance : float = .3
 
 ## La fuerza máxima a la que _es empujado_
 @export var maxPushForce : float = 20
@@ -28,31 +29,22 @@ signal grabbingBodyEscaped(body : Pushable)
 ## El factor de la velocidad de un monigote cuando está agarrando el objeto
 @export var grabSpeedFactor : float = .08
 
+@export var maxElevation : float = 1
+
 @export var FRICTION : float = 40
 
 var grabbing        := false
 var grabbed         := false
 var grabDir         := Vector2.RIGHT
-var dirBeingGrabbed := Vector2.RIGHT
 var grabBody        : Pushable
 var pushFactor      : float = 0
 
 var color := Color.WHITE
-## La fuerza con la que está siendo agarrado (de 0 a 1)
-var forceBeingGrabbed := .0
-## La fuerza con la que está agarrando (de 0 a 1)
-var forceGrabbing     := .0
-
-var timer : Timer = Timer.new() # Timer para el grab
 
 var _grabbingPausedFrames     : int = 0
 var _beingGrabbedPausedFrames : int = 0
 ## La cantidad de frames que se pausa el agarre cuando se llama a pauseGrabbing o pauseBeingGrabbed
 const _PAUSE_FRAMES           : int = 5
-
-func _ready():
-	timer.one_shot = true
-	add_child(timer)
 
 ## Pausa por una cantidad corta de frames la capacidad de ser agarrado
 func pauseBeingGrabbed():
@@ -113,14 +105,14 @@ func startGrab(body : Pushable) -> bool:
 	grabbing = true
 	grabbedBody.emit(body)
 	
-	timer.start(maxGrabTime)
-	
 	grabBody = body
 	body.onGrabbed()
 
 	# En caso de que se escape
 	body.connect("escaped", func ():
 		if not body.grabbed:
+			return
+		if not grabbing or grabBody != body:
 			return
 		onGrabbingEscaped(body)
 		grabbingBodyEscaped.emit(body)
@@ -137,7 +129,6 @@ func push():
 		return
 	
 	grabbing = false
-	timer.stop()
 	
 	if not is_instance_valid(grabBody):
 		return
@@ -167,23 +158,6 @@ func _physics_process(delta):
 func _process(_delta):
 	_beingGrabbedPausedFrames = max(0, _beingGrabbedPausedFrames - 1)
 	_grabbingPausedFrames = max(0, _grabbingPausedFrames - 1)
-
-func onGrabbing():
-	if not is_instance_valid(grabBody):
-		return
-	
-	# Determina la fuerza dependiendo del tiempo
-	var t = (grabBody.maxGrabTime - timer.time_left) / grabBody.maxGrabTime # Para que vaya del 0 al 1
-	grabBody.forceBeingGrabbed = t
-	forceGrabbing = t
-	grabBody.dirBeingGrabbed = grabDir
-	
-	var minFactor := .4
-	var offset := .4
-	pushFactor = (pow((t+offset), 3) * ((1-minFactor)/pow(1+offset,3)) + minFactor)
-	
-	# Prohibe al cuerpo colisionar con el que lo agarra
-	grabBody.add_collision_exception_with(self)
 
 func bounce(normal : Vector3) -> void:
 	if customMovement:

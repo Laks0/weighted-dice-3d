@@ -166,19 +166,20 @@ size = Vector2(1, 0.5)
 collision_mask = 7
 axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
-initialForce = 50.0
+initialForce = 70.0
 friction = 60.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
 shape = SubResource("SphereShape3D_olcpn")
 
 [node name="Bola8" parent="." instance=ExtResource("2_e3sye")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
 [node name="HitArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-7.86805e-08, 0, -1.8, 0, 1.8, 0, 1.8, 0, -7.86805e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_anmdh")
 
 [node name="PoolStickAnimation" type="AnimationPlayer" parent="."]
@@ -224,7 +225,7 @@ process_material = SubResource("ShaderMaterial_8pqqq")
 draw_pass_1 = SubResource("QuadMesh_xwxyv")
 script = ExtResource("9_bo8vu")
 length = 19
-length_seconds = 0.316667
+length_seconds = 0.31666666666666665
 color_ramp = ExtResource("7_x4wj2")
 curve = SubResource("CurveTexture_3708t")
 billboard = true
