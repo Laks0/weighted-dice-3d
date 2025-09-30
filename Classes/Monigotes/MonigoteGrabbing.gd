@@ -8,10 +8,7 @@ class_name MonigoteGrabbingHandler
 @onready var mon : Monigote = get_parent()
 @export var hands : Node3D
 
-@export_category("Push charge curves")
 @export var firstChargeCurve : Curve
-@export var oscillationChargeCurve : Curve
-@onready var _currentChargeCurve : Curve = firstChargeCurve
 var _curveSampleTime : float
 
 var forcePercentage : float = 0
@@ -37,7 +34,6 @@ func attemptGrab():
 		return
 	
 	forcePercentage = 0
-	_currentChargeCurve = firstChargeCurve
 	_curveSampleTime = 0
 	
 	var couldGrab := false
@@ -83,12 +79,7 @@ func onGrabbing(delta : float):
 	
 	# Determina la fuerza dependiendo del tiempo
 	_curveSampleTime += delta
-	forcePercentage = _currentChargeCurve.sample_baked(_curveSampleTime)
-	
-	if _curveSampleTime >= _currentChargeCurve.max_domain:
-		if _currentChargeCurve == firstChargeCurve:
-			_currentChargeCurve = oscillationChargeCurve
-		_curveSampleTime = 0
+	forcePercentage = firstChargeCurve.sample_baked(_curveSampleTime)
 	
 	mon.pushFactor = forcePercentage
 	
@@ -96,8 +87,6 @@ func onGrabbing(delta : float):
 	mon.grabBody.add_collision_exception_with(mon)
 	
 	_elevationPercentage = forcePercentage
-	if _currentChargeCurve == oscillationChargeCurve:
-		_elevationPercentage = 1
 	_elevationPercentage = clamp(_elevationPercentage, 0, mon.grabBody.maxElevation)
 	
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)

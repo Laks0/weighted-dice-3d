@@ -8,9 +8,10 @@ var drinks : Array[ShakenAndStirredDrink]
 var particlesArray : Array[GPUParticles3D]
 
 func start():
-	for _i in range(drinksAmount):
+	var drinkPositions := arena.sampleRandomPositions(drinksAmount) 
+	for pos in drinkPositions:
 		var drink = drinkScene.instantiate()
-		drink.position = arena.getRandomPosition()
+		drink.position = pos
 		arena.add_child(drink)
 		drinks.append(drink)
 	
