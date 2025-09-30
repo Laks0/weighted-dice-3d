@@ -22,6 +22,7 @@ func onMonigoteBeenGrabbed() -> void:
 	animatedSprite.stopAnimations()
 	animatedSprite.play("Pushed")
 	animatedSprite.frame = 6
+	animatedSprite.setNameToGlobalSpace()
 
 func onMonigoteWasPushed(dir: Vector2, factor: float, _pusher: Pushable) -> void:
 	_forceThrown = factor
@@ -39,7 +40,6 @@ func onMonigoteWasPushed(dir: Vector2, factor: float, _pusher: Pushable) -> void
 
 func onPushTravelEnded():
 	_floorParticles.emitting = false
-	collisionShape.rotation = Vector3.ZERO
 	_beingPushed = false
 	if _forceThrown >= stunThreshold:
 		$AfterPushStunTimer.start(maxStunTime * _forceThrown)
@@ -47,6 +47,8 @@ func onPushTravelEnded():
 		onStuntimeEnded()
 
 func onStuntimeEnded():
+	animatedSprite.setNameToLocalSpace()
+	collisionShape.rotation = Vector3.ZERO
 	mon.resumeMovement()
 	spriteAnimationHandler.endManualAnimation()
 	animatedSprite.resumeAnimations()

@@ -72,7 +72,11 @@ func arenaReady():
 ## Si se muestra un señalizador de apuesta
 var hasSignal := false
 
-func _process(_delta):
+
+@onready var _localLabelPosition = $PlayerName.position
+var _nameInLocalSpace := true
+
+func _process(delta):
 	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
 	material_override.set_shader_parameter("modulate", modulate)
 	
@@ -87,6 +91,10 @@ func _process(_delta):
 	if mon.drunk:
 		modulate *= drunkColor
 	
+	if _nameInLocalSpace:
+		$PlayerName.position = lerp($PlayerName.position, _localLabelPosition, 20*delta)
+	else:
+		$PlayerName.global_position = lerp($PlayerName.global_position, global_position+Vector3.UP*.3, 20*delta)
 	
 	#############
 	# Animaciones
@@ -181,6 +189,16 @@ func stopAnimations() -> void:
 func resumeAnimations() -> void:
 	_animationStopped = false
 	speed_scale = 1
+
+
+func setNameToGlobalSpace() -> void:
+	$PlayerName.billboard = BaseMaterial3D.BillboardMode.BILLBOARD_ENABLED
+	_nameInLocalSpace = false
+
+
+func setNameToLocalSpace() -> void:
+	$PlayerName.billboard = BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED
+	_nameInLocalSpace = true
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 

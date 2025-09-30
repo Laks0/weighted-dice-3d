@@ -14,7 +14,7 @@ var _curveSampleTime : float
 var forcePercentage : float = 0
 
 func _physics_process(delta):
-	var pointing := Controllers.getDirection(mon.controller)
+	var pointing := Controllers.getDirection(mon.controller).normalized()
 	if pointing != Vector2.ZERO:
 		mon.grabDir = pointing
 		$GrabArea.rotation.y = -pointing.angle()
