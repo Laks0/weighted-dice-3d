@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=85 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -43,6 +43,7 @@
 [ext_resource type="Script" uid="uid://rftkc7u0y45" path="res://Classes/Monigotes/ScoreParticles.gd" id="27_j86kv"]
 [ext_resource type="Texture2D" uid="uid://d0lnh51kq10pm" path="res://Classes/Monigotes/TablaCromaticaMonigotes.png" id="27_xceo0"]
 [ext_resource type="Script" uid="uid://dglfv1rvi8ory" path="res://Classes/Monigotes/MonigoteJumping.gd" id="31_nojgr"]
+[ext_resource type="Script" uid="uid://bup4vap6l5an2" path="res://Classes/Monigotes/GrabbedAndPushedSequences.gd" id="31_u86hc"]
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
@@ -372,6 +373,15 @@ script = ExtResource("25_8bylv")
 squashHeight = 0.71
 strechFactor = 0.076
 
+[node name="GrabbedAndPushedSequences" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "mon", "spriteAnimationHandler")]
+script = ExtResource("31_u86hc")
+animatedSprite = NodePath("../AnimatedSprite")
+mon = NodePath("..")
+spriteAnimationHandler = NodePath("../AnimatedSprite/Animations3D")
+maxStunTime = 1.3
+
+[node name="AfterPushStunTimer" type="Timer" parent="GrabbedAndPushedSequences"]
+
 [node name="Grabbing" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "hands")]
 script = ExtResource("23_jjywh")
 animatedSprite = NodePath("../AnimatedSprite")
@@ -569,7 +579,7 @@ bus = &"SFX"
 attenuation_filter_cutoff_hz = 20500.0
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
-[connection signal="beenGrabbed" from="." to="AnimatedSprite/Animations3D" method="startManualAnimation"]
+[connection signal="beenGrabbed" from="." to="GrabbedAndPushedSequences" method="onMonigoteBeenGrabbed"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
 [connection signal="beenGrabbed" from="." to="Moving" method="unstun"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
@@ -578,13 +588,16 @@ attenuation_filter_cutoff_hz = 20500.0
 [connection signal="grabbedBody" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigoteGrab"]
 [connection signal="grabbedBody" from="." to="Grabbing/PushArrow" method="onGrabbedBody"]
 [connection signal="hasWon" from="." to="BitesPlayer" method="_on_monigote_has_won"]
+[connection signal="onBeingGrabbed" from="." to="GrabbedAndPushedSequences" method="onMonigoteBeingGrabbed"]
 [connection signal="pushed" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigotePushed"]
 [connection signal="pushed" from="." to="BitesPlayer" method="_on_monigote_pushed"]
 [connection signal="wasHurt" from="." to="AnimatedSprite" method="onMonigoteHurt"]
 [connection signal="wasHurt" from="." to="BitesPlayer" method="_on_monigote_was_hurt"]
+[connection signal="wasPushed" from="." to="GrabbedAndPushedSequences" method="onMonigoteWasPushed"]
 [connection signal="wasPushed" from="." to="PushedParticles" method="_on_monigote_pushed"]
 [connection signal="wasPushed" from="." to="BitesPlayer" method="_on_monigote_was_pushed"]
 [connection signal="betSignalStatusChanged" from="AnimatedSprite" to="AnimatedSprite/Animations3D/Billboard" method="onBetSignalSatatusChanged"]
+[connection signal="timeout" from="GrabbedAndPushedSequences/AfterPushStunTimer" to="GrabbedAndPushedSequences" method="onStuntimeEnded"]
 [connection signal="timeout" from="Grabbing/GrabGraceTime" to="Grabbing" method="onGrabGraceTimeTimeout"]
 [connection signal="body_entered" from="Grabbing/GrabArea" to="Grabbing" method="onGrabAreaBodyEntered"]
 [connection signal="jumpEnded" from="Jumping" to="AnimatedSprite/JumpTrail" method="onJumpEnded"]

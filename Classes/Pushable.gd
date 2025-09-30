@@ -7,6 +7,8 @@ signal escaped
 @warning_ignore("unused_signal")
 signal attemptedEscape
 signal beenGrabbed
+@warning_ignore("unused_signal")
+signal onBeingGrabbed(dir : Vector2, factor : float, _pusher : Pushable)
 signal grabbedBody(body : Pushable)
 signal wasPushed(dir : Vector2, factor : float, _pusher : Pushable)
 signal pushed

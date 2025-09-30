@@ -1,6 +1,7 @@
 ## El script interactua con la API de Pushable del monigote, sus funciones se siguen teniendo que
 ## llamar desde Monigote
 extends Node3D
+class_name MonigoteGrabbingHandler
 
 @export var animatedSprite : AnimatedSprite3D
 
@@ -62,6 +63,10 @@ func onPushed():
 	else:
 		hands.goToRest($GrabCooldown.wait_time)
 
+var _elevationPercentage : float
+func getCurrentElevationPercentage() -> float:
+	return _elevationPercentage
+
 func onGrabbing(delta : float):
 	if not is_instance_valid(mon.grabBody):
 		return
@@ -69,6 +74,8 @@ func onGrabbing(delta : float):
 	if Input.is_action_just_released(mon.actions.grab):
 		pushAnimation()
 		return
+	
+	mon.grabBody.onBeingGrabbed.emit(mon.grabDir, forcePercentage, mon)
 	
 	if not Input.is_action_pressed(mon.actions.grab):
 		return
@@ -87,23 +94,17 @@ func onGrabbing(delta : float):
 	# Prohibe al cuerpo colisionar con el que lo agarra
 	mon.grabBody.add_collision_exception_with(mon)
 	
-	
-	var elevationPercentage = forcePercentage
+	_elevationPercentage = forcePercentage
 	if _currentChargeCurve == oscillationChargeCurve:
-		elevationPercentage = 1
+		_elevationPercentage = 1
 	
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
 	if dir3d == Vector3.ZERO:
 		dir3d = Vector3.RIGHT
 	var target := Vector3.UP.rotated(Vector3(1,0,0), animatedSprite.rotation.x) * 1.1
-	dir3d = dir3d.lerp(target, elevationPercentage)
+	dir3d = dir3d.lerp(target, _elevationPercentage)
 	var newPosition = global_position + dir3d * mon.grabBody.grabDistance
 	mon.grabBody.global_position = newPosition
-	
-	if mon.grabBody is Monigote:
-		var grabbedMon := mon.grabBody as Monigote
-		grabbedMon.animatedSprite.animationHandler\
-			.manualAnimate(mon.grabDir, elevationPercentage)
 
 func onMonigoteGrabbed():
 	mon.escapeMovements = 0
@@ -127,7 +128,4 @@ func pushAnimation():
 	tween.tween_property(mon.grabBody, "global_position", -displacement*dir3d, .08).as_relative()
 	tween.tween_interval(.2*forcePercentage)
 	tween.tween_property(mon.grabBody, "global_position", 2*displacement*dir3d, .05).as_relative()
-	tween.tween_callback(func ():
-		mon.grabBody.animatedSprite.animationHandler\
-			.manualAnimate(mon.grabDir, 1))
 	tween.tween_callback(mon.push)

@@ -39,6 +39,7 @@ var drunk := false
 
 @onready var movement : MonigoteMovement = $Moving
 @onready var jumping : MonigoteJumping = $Jumping
+@onready var grabbingHandler : MonigoteGrabbingHandler = $Grabbing
 @onready var animatedSprite : MonigoteSprite = %AnimatedSprite
 
 func _ready():
@@ -89,12 +90,9 @@ func onGrabbingEscaped(body : Pushable):
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	movement.resetMovement()
-	stopMovement()
 	movement.applyPushedVelocity(dir * factor * maxPushForce)
 	$Grabbing/GrabCooldown.start()
 	invincible = false
-	
-	animatedSprite.animationHandler.thrownFactor = factor
 	
 	super(dir, factor, _pusher)
 
