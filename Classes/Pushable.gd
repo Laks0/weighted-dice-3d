@@ -112,6 +112,8 @@ func startGrab(body : Pushable) -> bool:
 	body.connect("escaped", func ():
 		if not body.grabbed:
 			return
+		if not grabbing or grabBody != body:
+			return
 		onGrabbingEscaped(body)
 		grabbingBodyEscaped.emit(body)
 		pushFactor = failedPushFactor

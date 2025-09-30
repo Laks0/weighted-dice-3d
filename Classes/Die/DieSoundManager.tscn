@@ -75,7 +75,9 @@ bus = &"SFX"
 [node name="Stomp" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_h26t5")
 attenuation_model = 3
+volume_db = 9.0
 bus = &"SFX"
+attenuation_filter_cutoff_hz = 20000.0
 
 [node name="Roll" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_4w1qr")
@@ -85,11 +87,13 @@ bus = &"SFX"
 [node name="Hit" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1q82g")
 attenuation_model = 3
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="ChangeStomp" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_5v5d0")
 attenuation_model = 3
+volume_db = 9.0
 bus = &"SFX"
 
 [node name="Splat" type="AudioStreamPlayer3D" parent="."]
@@ -100,6 +104,7 @@ bus = &"SFX"
 [node name="Wall" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5j6fi")
 attenuation_model = 3
+volume_db = -6.0
 bus = &"SFX"
 
 [node name="Felt" type="AudioStreamPlayer3D" parent="."]

@@ -44,7 +44,7 @@ metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Targeting" type="Node3D" parent="." node_paths=PackedStringArray("pointer", "linePointer")]
 script = ExtResource("4_sb34c")
-time = 2.0
+time = 1.6
 pointer = NodePath("../Pointer")
 linePointer = NodePath("../LinePointer")
 waitTimeBeforeEnd = 1.0
@@ -61,7 +61,7 @@ one_shot = true
 script = ExtResource("5_sb34c")
 pointer = NodePath("../Pointer")
 linePointer = NodePath("../LinePointer")
-waitTimeBeforeEnd = 1.0
+waitTimeBeforeEnd = 0.8
 metadata/_custom_type_script = "uid://pisn2tkx8kfu"
 
 [node name="Pointer" type="MeshInstance3D" parent="."]

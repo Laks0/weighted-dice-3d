@@ -3,6 +3,9 @@ class_name Gap
 
 @export var monigoteFallHeight := 6.0
 
+func _ready() -> void:
+	scale = Vector3.ONE * randf_range(.9,1.1)
+
 func delete():
 	$Sprite.play("BW")
 	$Sprite.animation_finished.connect(queue_free)

@@ -69,6 +69,7 @@ func getCurrentElevationPercentage() -> float:
 
 func onGrabbing(delta : float):
 	if not is_instance_valid(mon.grabBody):
+		mon.push()
 		return
 	
 	if Input.is_action_just_released(mon.actions.grab):

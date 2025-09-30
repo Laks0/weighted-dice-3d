@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bayuuvrydd644" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/RT.png" id="6_0rvxw"]
 [ext_resource type="Script" uid="uid://dvtnqg76q16sj" path="res://Common/CloneTexture.gd" id="7_2ntk4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjyro"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -80,7 +80,7 @@ alignment = 1
 [node name="GrabButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 text = "Agarrar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
@@ -110,7 +110,7 @@ _inputDisplayed = SubResource("InputEventJoypadMotion_em7n8")
 [node name="JumpButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 text = "Saltar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
@@ -140,7 +140,7 @@ _inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
 [node name="PauseButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
 text = "Pausar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
