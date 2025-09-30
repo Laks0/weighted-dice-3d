@@ -208,11 +208,11 @@ size = Vector2(3.2, 0.8)
 
 [sub_resource type="Curve" id="Curve_cdii0"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 0.754098), -4.6918, 2.97892, 0, 0, Vector2(1, -0.734478), 0.646253, 0.0, 0, 0]
+_data = [Vector2(0, 0.754098), -4.6918, 2.97892, 0, 0, Vector2(0.87665206, -1), 0.646253, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_58d0a"]
-_data = [Vector2(0, 0.991414), 0.0, 0.806743, 0, 0, Vector2(0.137255, 0.562087), -0.543616, -0.543616, 0, 0, Vector2(1, 0.416116), -0.0681452, 0.0, 0, 0]
+_data = [Vector2(0, 0.991414), 0.0, 0.806743, 0, 0, Vector2(0.40088105, 0.6847211), -0.543616, -0.543616, 0, 0, Vector2(1, 0.416116), -0.0681452, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8g2ci"]
@@ -512,7 +512,8 @@ offset_bottom = 40.0
 script = ExtResource("31_nojgr")
 verticalSpeedCurve = SubResource("Curve_cdii0")
 horizontalSpeedCurve = SubResource("Curve_58d0a")
-maxVerticalSpeed = 3.5
+maxVerticalSpeed = 6.0
+minJumpProgression = 1.0
 
 [node name="FloorArea" type="Area3D" parent="Jumping"]
 collision_layer = 7
@@ -535,7 +536,7 @@ process_material = SubResource("ParticleProcessMaterial_cdii0")
 draw_pass_1 = SubResource("BoxMesh_u86hc")
 
 [node name="JumpTimer" type="Timer" parent="Jumping"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="JumpCooldown" type="Timer" parent="Jumping"]
