@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=36 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" uid="uid://dhb6kl72imaxp" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
@@ -12,8 +12,13 @@
 [ext_resource type="AudioStream" uid="uid://xqxtguh14iav" path="res://Assets/SFX/fx_8-ball_bump.wav" id="10_bdm74"]
 [ext_resource type="Script" uid="uid://b3nyed6c3gm7f" path="res://Classes/Effects/GetTheBallRollingEffect/bump_sfx.gd" id="11_cy3r1"]
 [ext_resource type="Script" uid="uid://b82vtaa82vnu8" path="res://Classes/Effects/GetTheBallRollingEffect/roll_sfx.gd" id="11_esx3y"]
+[ext_resource type="AudioStream" uid="uid://0q2n7u3rclft" path="res://Assets/SFX/fx_8-ball_roll_1.wav" id="12_urnco"]
+[ext_resource type="AudioStream" uid="uid://bfsayln8py65a" path="res://Assets/SFX/fx_8-ball_roll_2.wav" id="13_e06u1"]
 [ext_resource type="AudioStream" uid="uid://cckauaga756oy" path="res://Assets/SFX/fx_8-ball_stomp.wav" id="13_ekfuq"]
+[ext_resource type="AudioStream" uid="uid://w4dl5of3twjr" path="res://Assets/SFX/fx_8-ball_roll_3.wav" id="14_ax4v0"]
 [ext_resource type="Script" uid="uid://b8jyjj63the7u" path="res://Classes/Effects/GetTheBallRollingEffect/trail_sfx.gd" id="14_ns6qw"]
+[ext_resource type="AudioStream" uid="uid://dfe5q4nan5upp" path="res://Assets/SFX/fx_8-ball_roll_4.wav" id="15_nn2tj"]
+[ext_resource type="AudioStream" uid="uid://sbeqvn3mpe77" path="res://Assets/SFX/fx_8-ball_roll_5.wav" id="16_juj65"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_olcpn"]
 radius = 0.615468
@@ -162,6 +167,14 @@ shader_parameter/flags = 44
 material = SubResource("ShaderMaterial_gtyfp")
 size = Vector2(1, 0.5)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_snijo"]
+streams_count = 5
+stream_0/stream = ExtResource("12_urnco")
+stream_1/stream = ExtResource("13_e06u1")
+stream_2/stream = ExtResource("14_ax4v0")
+stream_3/stream = ExtResource("15_nn2tj")
+stream_4/stream = ExtResource("16_juj65")
+
 [node name="Ball8" type="StaticBody3D"]
 collision_mask = 7
 axis_lock_linear_y = true
@@ -240,9 +253,11 @@ pitchScaleFactor = 0.92
 initialPitch = 1.05
 
 [node name="RollSFX" type="AudioStreamPlayer2D" parent="."]
-volume_db = 6.0
+stream = SubResource("AudioStreamRandomizer_snijo")
+volume_db = 12.0
 bus = &"SFX"
 script = ExtResource("11_esx3y")
+defaultRollVolume = 12
 rollFadeOut = 0.2
 
 [node name="StompSFX" type="AudioStreamPlayer2D" parent="."]
