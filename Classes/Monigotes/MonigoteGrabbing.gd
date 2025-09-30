@@ -97,6 +97,7 @@ func onGrabbing(delta : float):
 	_elevationPercentage = forcePercentage
 	if _currentChargeCurve == oscillationChargeCurve:
 		_elevationPercentage = 1
+	_elevationPercentage = clamp(_elevationPercentage, 0, mon.grabBody.maxElevation)
 	
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y)
 	if dir3d == Vector3.ZERO:

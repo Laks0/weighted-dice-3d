@@ -47,7 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://cnd4ke6jval8a" path="res://Classes/Monigotes/arrowTail.png" id="32_gc1lk"]
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
-[ext_resource type="Script" path="res://Classes/Monigotes/steps.gd" id="49_n5b14"]
+[ext_resource type="Script" uid="uid://c3vo2pkidvh5n" path="res://Classes/Monigotes/steps.gd" id="49_n5b14"]
 [ext_resource type="AudioStream" uid="uid://62qildldgujf" path="res://Assets/SFX/Steps/fx_steps_l1.wav" id="49_u33gx"]
 [ext_resource type="AudioStream" uid="uid://c1spexosvny77" path="res://Assets/SFX/Steps/fx_steps_l2.wav" id="50_r5ite"]
 [ext_resource type="AudioStream" uid="uid://cmc0hyrp0fd0q" path="res://Assets/SFX/Steps/fx_steps_l3.wav" id="51_1labf"]

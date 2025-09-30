@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://if5mowox57bo"]
+[gd_scene load_steps=16 format=3 uid="uid://if5mowox57bo"]
 
 [ext_resource type="Script" uid="uid://co1d8x6brpntf" path="res://Classes/BetHUD/BetCard.gd" id="1_6g4d5"]
 [ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="2_b7x1u"]
@@ -14,9 +14,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4ix5"]
 bg_color = Color(0.907942, 0.907942, 0.907942, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_5cfxs"]
+[sub_resource type="LabelSettings" id="LabelSettings_bx82s"]
 font = ExtResource("2_b7x1u")
-font_size = 21
+font_size = 29
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bb1p"]
@@ -24,6 +24,11 @@ bg_color = Color(0.907942, 0.907942, 0.907942, 1)
 border_width_left = 3
 border_width_right = 3
 border_color = Color(0.909804, 0.909804, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5cfxs"]
+font = ExtResource("2_b7x1u")
+font_size = 46
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qd2yh"]
 resource_local_to_scene = true
@@ -58,19 +63,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_c4ix5")
 text = "Tomaś"
-label_settings = SubResource("LabelSettings_5cfxs")
+label_settings = SubResource("LabelSettings_bx82s")
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
 [node name="ScoreLabel" type="Label" parent="NameContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_styles/normal = SubResource("StyleBoxFlat_6bb1p")
 text = "10"
 label_settings = SubResource("LabelSettings_5cfxs")
-horizontal_alignment = 2
+horizontal_alignment = 1
 uppercase = true
 
 [node name="Background" type="TextureRect" parent="."]

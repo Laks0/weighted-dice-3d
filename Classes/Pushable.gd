@@ -29,6 +29,8 @@ signal grabbingBodyEscaped(body : Pushable)
 ## El factor de la velocidad de un monigote cuando está agarrando el objeto
 @export var grabSpeedFactor : float = .08
 
+@export var maxElevation : float = 1
+
 @export var FRICTION : float = 40
 
 var grabbing        := false
