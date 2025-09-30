@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bh13re66e6e63"]
+[gd_scene load_steps=9 format=3 uid="uid://bh13re66e6e63"]
 
 [ext_resource type="Script" uid="uid://d1yhm2hembdrk" path="res://Classes/MultipleResCamera/MultipleResCamera.gd" id="1_0nyod"]
 [ext_resource type="Environment" uid="uid://dh2efkygayqvn" path="res://Scenes/Arena/arenaEnvironment.tres" id="1_22qtq"]
 [ext_resource type="Shader" uid="uid://c6500i3gb13hi" path="res://Classes/MultipleResCamera/Pixelate.gdshader" id="4_4k3cc"]
 [ext_resource type="Script" uid="uid://h7f5ssynlyc0" path="res://Classes/MultipleResCamera/wooshPlayer.gd" id="4_ugo5d"]
+[ext_resource type="AudioStream" uid="uid://cgbt10acd3iae" path="res://Assets/SFX/fx_transition_base.wav" id="5_etil7"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lq1p7"]
 size = Vector2(2, 2)
@@ -31,8 +32,14 @@ transform = Transform3D(1.41108, 0, 0, 0, 1.41108, 0, 0, 0, 1, 0, -0.0412301, -1
 mesh = SubResource("QuadMesh_lq1p7")
 surface_material_override/0 = SubResource("ShaderMaterial_suf3b")
 
-[node name="wooshPlayer" type="AudioStreamPlayer" parent="."]
+[node name="wooshPlayer" type="Node" parent="."]
 script = ExtResource("4_ugo5d")
+
+[node name="Transition" type="AudioStreamPlayer" parent="wooshPlayer"]
+stream = ExtResource("5_etil7")
+bus = &"SFX"
+
+[node name="Zoom" type="AudioStreamPlayer" parent="wooshPlayer"]
 
 [node name="GhostViewport" type="SubViewport" parent="."]
 transparent_bg = true
