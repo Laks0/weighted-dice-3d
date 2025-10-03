@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://44laiid6xirl"
-path="res://.godot/imported/arrowTailBorder.png-c6b2bcee8e25a967948ad5a5d52bb80d.ctex"
+path="res://.godot/imported/pushProgressBorder.png-18f3b9a4fc8f87de3024ac57af9eb9aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Classes/Monigotes/arrowTailBorder.png"
-dest_files=["res://.godot/imported/arrowTailBorder.png-c6b2bcee8e25a967948ad5a5d52bb80d.ctex"]
+source_file="res://Classes/Monigotes/pushProgressBorder.png"
+dest_files=["res://.godot/imported/pushProgressBorder.png-18f3b9a4fc8f87de3024ac57af9eb9aa.ctex"]
 
 [params]
 

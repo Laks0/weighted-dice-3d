@@ -5,21 +5,40 @@ extends MeshInstance3D
 @export var progressBar : TextureProgressBar
 @export var progressBarBorder : TextureRect
 
-func _ready():
-	material_override.albedo_color = mon.player.color
+var _flashing := false
+var _flashTimer := 0.0
+@export var timeBetweenFlashes := .3
+@export var flashLength := .1
 
-func _process(_delta):
+func _ready():
+	progressBar.self_modulate = mon.player.color
+
+func _process(delta):
 	visible = mon.grabbing
 	progressBar.value = get_parent().forcePercentage if mon.grabbing else .0
-	if not visible:
-		progressBarBorder.visible = false
-		return
+	progressBarBorder.visible = visible
 	
 	rotation.z = -mon.grabDir.angle()
-	progressBarBorder.visible = get_parent().forcePercentage == 1.0
+	
+	if get_parent().forcePercentage < 1.0:
+		progressBarBorder.self_modulate = Color.BLACK
+	else:
+		_flashTimer += delta
+		if _flashing:
+			progressBarBorder.self_modulate = Color.WHITE
+			if _flashTimer >= flashLength:
+				_flashTimer = 0
+				_flashing = false
+		else:
+			progressBarBorder.self_modulate = Color.BLACK
+			if _flashTimer >= timeBetweenFlashes:
+				_flashTimer = 0
+				_flashing = true
 
 func onGrabbedBody(body : Pushable):
 	body.attemptedEscape.connect(shake)
+	_flashTimer = 0
+	_flashing = false
 	await mon.pushed
 	if not is_instance_valid(body):
 		return

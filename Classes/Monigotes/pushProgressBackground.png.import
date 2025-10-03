@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnd4ke6jval8a"
-path="res://.godot/imported/arrowTail.png-37a58f2b6840db98fa71e8004f0c7c7e.ctex"
+path="res://.godot/imported/pushProgressBackground.png-139080b143437e2ebb2cf5a67fcc3816.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Classes/Monigotes/arrowTail.png"
-dest_files=["res://.godot/imported/arrowTail.png-37a58f2b6840db98fa71e8004f0c7c7e.ctex"]
+source_file="res://Classes/Monigotes/pushProgressBackground.png"
+dest_files=["res://.godot/imported/pushProgressBackground.png-139080b143437e2ebb2cf5a67fcc3816.ctex"]
 
 [params]
 
