@@ -85,14 +85,24 @@ func applyFrictionToUnclampedVelocities(delta : float):
 	for k in keysToDelete:
 		_unclampedVelocities.erase(k)
 
-func stun(timeout := 5.0):
+func stun(timeout := 5.0, directionToLookAt := Vector2.UP, rotationPercentage := 1.0, facingDown := false):
 	stunned = true
 	$StunTimeout.start(timeout)
 	wasStunned.emit()
+	
+	mon.animatedSprite.startManualAnimation()
+	mon.animatedSprite.setFeetLookingAt(directionToLookAt, rotationPercentage, facingDown)
+	mon.setCollisionHorizontal(directionToLookAt)
 
 func unstun():
+	if not stunned:
+		return
 	stunned = false
 	wasUnstunned.emit()
+	mon.animatedSprite.endManualAnimation()
+	mon.setCollisionVertical()
+	$StunTimeout.stop()
+	mon.velocity.y = 8
 
 func _physics_process(delta):
 	if mon.player.inputController != Controllers.AI:

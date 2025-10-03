@@ -14,6 +14,12 @@ var _curveSampleTime : float
 var forcePercentage : float = 0
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed(mon.actions.grab) and not mon.grabbed:
+		attemptGrab()
+	
+	if Input.is_action_just_pressed(mon.actions.jump) and mon.grabbed:
+		mon.attemptEscape()
+	
 	var pointing := Controllers.getDirection(mon.controller).normalized()
 	if pointing != Vector2.ZERO:
 		mon.grabDir = pointing

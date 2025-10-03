@@ -61,15 +61,6 @@ func _physics_process(_delta):
 func arenaReady():
 	$AnimatedSprite.arenaReady()
 
-func _process(delta):
-	if Input.is_action_just_pressed(actions.grab) and not grabbed:
-		$Grabbing.attemptGrab()
-	
-	if Input.is_action_just_pressed(actions.jump):
-		attemptEscape()
-	
-	super(delta)
-
 func attemptEscape():
 	escapeMovements += 1
 	attemptedEscape.emit()
@@ -80,12 +71,10 @@ func attemptEscape():
 		escaped.emit()
 		Input.start_joy_vibration(controller, 1, 0, .1)
 
-func onGrabbingEscaped(body : Pushable):
-	var bodyPos2d = Vector2(body.position.x, body.position.z)
-	var pos2d = Vector2(position.x, position.z)
-	movement.applyVelocity(bodyPos2d.direction_to(pos2d) * 14)
+func onGrabbingEscaped(_body : Pushable):
+	movement.applyVelocity(-grabDir * 14)
 	Input.start_joy_vibration(controller, 1, 0, .25)
-	movement.stun(STUN_TIME_AFTER_ESCAPE)
+	movement.stun(STUN_TIME_AFTER_ESCAPE, grabDir)
 
 func onPushed(dir : Vector2, factor : float, _pusher : Pushable):
 	movement.resetMovement()
@@ -175,3 +164,9 @@ func dance():
 
 func bounce(normal : Vector3):
 	movement.bounce(normal)
+
+func setCollisionHorizontal(direction : Vector2) -> void:
+	$CollisionShape3D.look_at(Vector3.DOWN, Vector3(direction.x,0,direction.y))
+
+func setCollisionVertical() -> void:
+	$CollisionShape3D.rotation = Vector3.ZERO

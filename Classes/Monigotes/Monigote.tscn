@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=107 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -210,6 +210,53 @@ albedo_texture = SubResource("ViewportTexture_gc1lk")
 [sub_resource type="QuadMesh" id="QuadMesh_gc1lk"]
 size = Vector2(3.2, 0.8)
 
+[sub_resource type="Curve" id="Curve_1labf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mr8r7"]
+curve = SubResource("Curve_1labf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_63dgn"]
+particle_flag_align_y = true
+spread = 180.0
+flatness = 0.88
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mr8r7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ck18g"]
+resource_local_to_scene = true
+render_priority = 2
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_st7g8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ck18g")
+flip_faces = true
+radius = 0.05
+
+[sub_resource type="Curve" id="Curve_u33gx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.24660909), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r5ite"]
+curve = SubResource("Curve_u33gx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1labf"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_r5ite")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mr8r7"]
+resource_local_to_scene = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_63dgn"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_mr8r7")
+inner_radius = 1.637
+outer_radius = 1.914
+
 [sub_resource type="Curve" id="Curve_cdii0"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0.754098), -4.6918, 2.97892, 0, 0, Vector2(0.87665206, -1), 0.646253, 0.0, 0, 0]
@@ -300,7 +347,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_kvmu2")
 MOVEMENTS_TO_ESCAPE_GRAB = 5
-STUN_TIME_AFTER_ESCAPE = 0.7
+STUN_TIME_AFTER_ESCAPE = 0.9
 afterPushStunTime = 1.0
 aiControllerScript = ExtResource("17_e2qqq")
 invincibleAfterHurtTime = 1.5
@@ -314,7 +361,7 @@ FRICTION = 80.0
 [node name="AnimatedSprite" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("mon")]
 unique_name_in_owner = true
 process_mode = 3
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.0209794, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_xk8un")
 extra_cull_margin = 1.0
 pixel_size = 0.04
@@ -427,12 +474,10 @@ script = ExtResource("25_8bylv")
 squashHeight = 0.71
 strechFactor = 0.076
 
-[node name="GrabbedAndPushedSequences" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "mon", "spriteAnimationHandler", "collisionShape", "_floorParticles")]
+[node name="GrabbedAndPushedSequences" type="Node3D" parent="." node_paths=PackedStringArray("animatedSprite", "mon", "_floorParticles")]
 script = ExtResource("31_u86hc")
 animatedSprite = NodePath("../AnimatedSprite")
 mon = NodePath("..")
-spriteAnimationHandler = NodePath("../AnimatedSprite/Animations3D")
-collisionShape = NodePath("../CollisionShape3D")
 maxStunTime = 0.8
 _floorParticles = NodePath("../AnimatedSprite/HeadFloorParticles")
 
@@ -525,6 +570,25 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="EscapeAttemptParticles" type="GPUParticles3D" parent="Grabbing"]
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.06
+process_material = SubResource("ParticleProcessMaterial_63dgn")
+draw_pass_1 = SubResource("TubeTrailMesh_st7g8")
+
+[node name="EscapeParticle" type="GPUParticles3D" parent="Grabbing"]
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_1labf")
+draw_pass_1 = SubResource("TorusMesh_63dgn")
+
 [node name="Jumping" type="Node3D" parent="."]
 script = ExtResource("31_nojgr")
 verticalSpeedCurve = SubResource("Curve_cdii0")
@@ -575,7 +639,6 @@ mon = NodePath("..")
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012639731, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]
@@ -644,10 +707,12 @@ stream = SubResource("AudioStreamRandomizer_sii44")
 volume_db = -2.0
 
 [connection signal="attemptedEscape" from="." to="AnimatedSprite" method="planarShake"]
+[connection signal="attemptedEscape" from="." to="Grabbing/EscapeAttemptParticles" method="restart"]
 [connection signal="beenGrabbed" from="." to="GrabbedAndPushedSequences" method="onMonigoteBeenGrabbed"]
 [connection signal="beenGrabbed" from="." to="Grabbing" method="onMonigoteGrabbed"]
 [connection signal="beenGrabbed" from="." to="Moving" method="unstun"]
 [connection signal="died" from="." to="BitesPlayer" method="_on_monigote_died"]
+[connection signal="escaped" from="." to="Grabbing/EscapeParticle" method="restart"]
 [connection signal="grab" from="." to="Grabbing/Hands" method="startGrabbing"]
 [connection signal="grab" from="." to="BitesPlayer" method="onMonigoteGrab"]
 [connection signal="grabbedBody" from="." to="AnimatedSprite/Animations3D/Billboard" method="onMonigoteGrab"]
@@ -675,8 +740,6 @@ volume_db = -2.0
 [connection signal="body_entered" from="Jumping/FloorArea" to="Jumping" method="onFloorCollision"]
 [connection signal="timeout" from="Jumping/JumpTimer" to="Jumping" method="endJump"]
 [connection signal="timeout" from="Jumping/TimeToResumeGrabbing" to="." method="resumeGrabbing"]
-[connection signal="wasStunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="play"]
-[connection signal="wasUnstunned" from="Moving" to="AnimatedSprite/Animations3D/YAxisShake" method="stop"]
 [connection signal="timeout" from="Moving/StunTimeout" to="Moving" method="unstun"]
 [connection signal="finished" from="Steps/LStep" to="Steps" method="_on_l_step_finished"]
 [connection signal="finished" from="Steps/RStep" to="Steps" method="_on_r_step_finished"]

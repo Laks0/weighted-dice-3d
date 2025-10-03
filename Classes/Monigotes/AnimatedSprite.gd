@@ -190,15 +190,35 @@ func resumeAnimations() -> void:
 	_animationStopped = false
 	speed_scale = 1
 
-
 func setNameToGlobalSpace() -> void:
 	$PlayerName.billboard = BaseMaterial3D.BillboardMode.BILLBOARD_ENABLED
 	_nameInLocalSpace = false
 
-
 func setNameToLocalSpace() -> void:
 	$PlayerName.billboard = BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED
 	_nameInLocalSpace = true
+
+var _manualAnimationLock : int = 0
+
+func startManualAnimation() -> void:
+	_manualAnimationLock += 1
+	if _manualAnimationLock <= 1:
+		$Animations3D.startManualAnimation()
+		stopAnimations()
+
+func endManualAnimation() -> void:
+	_manualAnimationLock -= 1
+	_manualAnimationLock = max(_manualAnimationLock, 0)
+	if _manualAnimationLock <= 0:
+		$Animations3D.endManualAnimation()
+		resumeAnimations()
+
+## Solo tiene efecto cuando están activadas las animaciones manuales
+func setFeetLookingAt(dir2dToLookAt : Vector2, rotationPercentage : float, faceDown := false) -> void:
+	$Animations3D.setFeetLookingAt(dir2dToLookAt, rotationPercentage)
+	
+	play("Pushed")
+	frame = 2 if faceDown else 6
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 

@@ -45,6 +45,6 @@ func startManualAnimation():
 func endManualAnimation():
 	_isAnimationManual = false
 
-func manualAnimate(dirBeingGrabbed : Vector2, elevationPercentage : float):
+func setFeetLookingAt(dirBeingGrabbed : Vector2, elevationPercentage : float):
 	_dirBeingGrabbed = dirBeingGrabbed
 	_elevationPercentage = elevationPercentage
