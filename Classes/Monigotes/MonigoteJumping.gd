@@ -38,6 +38,7 @@ func _process(_delta):
 		endJump()
 
 func jump():
+	get_parent().get_node("BitesPlayer").bitePlay("jump")
 	if mon.grabbed or mon.movementStopped:
 		return
 	if not $JumpCooldown.is_stopped():

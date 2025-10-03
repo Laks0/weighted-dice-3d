@@ -20,7 +20,7 @@ func goToCamera(obj : Camera3D, time := .3) -> Tween:
 	return moveTo(obj.global_position, obj.rotation_degrees.x, time)
 
 func moveTo(newPos : Vector3, rotationDegreesX : float, time := .3) -> Tween:
-	$wooshPlayer.playSound("wooshTrans")
+	if  newPos.distance_to(global_position) > 15.0: $wooshPlayer.playSound("wooshTrans") #Provisorio, hay que wooshear por separado cada movimiento
 	var transformTween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	transformTween.tween_property(self, "rotation_degrees:x", rotationDegreesX, time)
 	transformTween.parallel().tween_property(self, "global_position", newPos, time)

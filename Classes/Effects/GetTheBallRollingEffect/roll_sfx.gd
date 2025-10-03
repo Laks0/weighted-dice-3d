@@ -1,6 +1,5 @@
 extends AudioStreamPlayer2D
 
-@onready var rollSound = []
 var internalCount = 0
 
 
@@ -15,17 +14,9 @@ var internalCount = 0
 var isRollSFXMute := false
 var isRollSFXTweening := false
 
-func _ready() -> void:
-	for i in 5:
-		rollSound.append(load("res://Assets/SFX/fx_8-ball_roll_" + str(i+1) + ".wav"))
 	
 
 func playSFX():
-	var count = ball8.rollCounter
-	if count > 4:
-		internalCount = 4   #se asegura de repetir el último sonido disponible si hay demasiados bumps
-	else: internalCount = count
-	stream = rollSound[internalCount]
 	play()
 	volume_db = defaultRollVolume
 	newRollVolume = defaultRollVolume
