@@ -9,7 +9,8 @@ var vars := {
 	"dontStartGame" : false,
 	"dropAllChips" : false,
 	"inmortalMonigotes" : false,
-	"pixelate" : true
+	"pixelate" : true,
+	"noDieBehaviour" : false
 }
 
 func _ready():

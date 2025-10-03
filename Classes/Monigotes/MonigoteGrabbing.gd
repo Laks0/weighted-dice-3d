@@ -98,6 +98,8 @@ func onGrabbing(delta : float):
 	mon.grabBody.global_position = newPosition
 
 func onMonigoteGrabbed():
+	mon.pushFactor = 0
+	mon.push()
 	mon.escapeMovements = 0
 	mon.invincible = true
 

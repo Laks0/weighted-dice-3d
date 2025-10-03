@@ -62,12 +62,11 @@ func arenaReady():
 	$AnimatedSprite.arenaReady()
 
 func _process(delta):
-	if Input.is_action_just_pressed(actions.grab):
-		if grabbed:
-			attemptEscape()
-		else:
-			$Grabbing.attemptGrab()
+	if Input.is_action_just_pressed(actions.grab) and not grabbed:
+		$Grabbing.attemptGrab()
 	
+	if Input.is_action_just_pressed(actions.jump):
+		attemptEscape()
 	
 	super(delta)
 
