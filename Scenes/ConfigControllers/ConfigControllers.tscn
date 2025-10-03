@@ -179,7 +179,7 @@ grow_vertical = 2
 theme_override_constants/separation = 49
 alignment = 1
 
-[node name="EditButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+[node name="EditButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "rightSelect", "upFallback", "downFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
@@ -190,14 +190,12 @@ pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 focused = true
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../BackButton")
-leftSelect = NodePath("../BackButton")
 rightSelect = NodePath("../BackButton")
 upFallback = NodePath("../BackButton")
 downFallback = NodePath("../BackButton")
-leftFallback = NodePath("../BackButton")
 rightFallback = NodePath("../BackButton")
 
-[node name="BackButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+[node name="BackButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "rightSelect", "upFallback", "downFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_frc6q")
@@ -208,14 +206,12 @@ pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 focused = true
 upSelect = NodePath("../EditButton")
 downSelect = NodePath("../EditButton")
-leftSelect = NodePath("../EditButton")
 rightSelect = NodePath("../EditButton")
 upFallback = NodePath("../EditButton")
 downFallback = NodePath("../EditButton")
-leftFallback = NodePath("../EditButton")
 rightFallback = NodePath("../EditButton")
 
-[node name="CancelButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+[node name="CancelButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "rightSelect", "upFallback", "downFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -226,14 +222,12 @@ focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../EditButton")
-leftSelect = NodePath("../EditButton")
 rightSelect = NodePath("../../EditButtons/GrabButton")
 upFallback = NodePath("../BackButton")
 downFallback = NodePath("../EditButton")
-leftFallback = NodePath("../EditButton")
 rightFallback = NodePath("../EditButton")
 
-[node name="AcceptButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "rightSelect", "upFallback", "downFallback", "leftFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
+[node name="AcceptButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "rightSelect", "upFallback", "downFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -244,11 +238,9 @@ focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../EditButton")
-leftSelect = NodePath("../EditButton")
 rightSelect = NodePath("../../EditButtons/GrabButton")
 upFallback = NodePath("../BackButton")
 downFallback = NodePath("../EditButton")
-leftFallback = NodePath("../EditButton")
 rightFallback = NodePath("../EditButton")
 
 [node name="Warning" type="VBoxContainer" parent="."]

@@ -14,6 +14,9 @@ func _ready():
 		defaultBehaviour.setDie(get_parent())
 
 func startRandomDefaultBehaviour():
+	if Debug.vars.noDieBehaviour:
+		return
+	
 	var behaviour : DieBehaviourStep = $DefaultBehaviours.get_children().pick_random()
 	_startBehaviour(behaviour)
 
