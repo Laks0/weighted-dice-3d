@@ -38,7 +38,7 @@ func _process(delta):
 func onGrabbedBody(body : Pushable):
 	body.attemptedEscape.connect(shake)
 	_flashTimer = 0
-	_flashing = false
+	_flashing = true
 	await mon.pushed
 	if not is_instance_valid(body):
 		return
