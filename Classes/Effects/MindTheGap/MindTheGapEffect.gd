@@ -8,6 +8,7 @@ var gaps : Array[Gap]
 var padding = 1
 
 func start():
+	$Open.pitch_scale = 1
 	var positions := arena.sampleRandomPositions(GAP_AMMOUNT)
 	for pos in positions:
 		$Open.pitch_scale *= 1.15
