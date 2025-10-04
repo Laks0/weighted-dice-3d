@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://tvx16p1qmmjc"]
+[gd_scene load_steps=110 format=3 uid="uid://tvx16p1qmmjc"]
 
 [ext_resource type="Script" uid="uid://6aoqon7cthho" path="res://Classes/Monigotes/Monigote.gd" id="1_kvmu2"]
 [ext_resource type="PackedScene" uid="uid://csxfgtngaoajh" path="res://Classes/Monigotes/score_particle.tscn" id="2_qu674"]
@@ -48,6 +48,7 @@
 [ext_resource type="Script" uid="uid://cfw4rkqrw0gti" path="res://Classes/Monigotes/PushArrow.gd" id="32_uuku0"]
 [ext_resource type="Texture2D" uid="uid://44laiid6xirl" path="res://Classes/Monigotes/pushProgressBorder.png" id="39_r5ite"]
 [ext_resource type="Script" uid="uid://dptqj012jsy3d" path="res://Classes/Monigotes/MonigoteMovement.gd" id="40_58d0a"]
+[ext_resource type="AudioStream" uid="uid://dfhrs40wya5rb" path="res://Assets/SFX/Steps/fx_land.wav" id="41_1labf"]
 [ext_resource type="Script" uid="uid://c3vo2pkidvh5n" path="res://Classes/Monigotes/steps.gd" id="49_n5b14"]
 [ext_resource type="AudioStream" uid="uid://62qildldgujf" path="res://Assets/SFX/Steps/fx_steps_l1.wav" id="49_u33gx"]
 [ext_resource type="AudioStream" uid="uid://c1spexosvny77" path="res://Assets/SFX/Steps/fx_steps_l2.wav" id="50_r5ite"]
@@ -275,6 +276,11 @@ spread = 180.0
 initial_velocity_min = 0.6
 initial_velocity_max = 3.0
 gravity = Vector3(0, -4, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mr8r7"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("41_1labf")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
@@ -633,6 +639,11 @@ one_shot = true
 
 [node name="TimeToResumeGrabbing" type="Timer" parent="Jumping"]
 wait_time = 0.1
+
+[node name="LandSFX" type="AudioStreamPlayer3D" parent="Jumping"]
+stream = SubResource("AudioStreamRandomizer_mr8r7")
+attenuation_model = 3
+bus = &"SFX"
 
 [node name="Moving" type="Node3D" parent="." node_paths=PackedStringArray("mon")]
 script = ExtResource("40_58d0a")

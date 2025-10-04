@@ -65,6 +65,7 @@ func onFloorCollision(_body):
 		endJump()
 
 func endJump():
+	$LandSFX.play()
 	mon.resumeMovement()
 	mon.set_collision_mask_value(1, true)
 	mon.gravityStopped = false
