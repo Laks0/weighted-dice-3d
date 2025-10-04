@@ -31,7 +31,7 @@ class Player:
 		_createBite("hit")
 		_createBite("dead")
 		_createBite("grab")
-		_createBite("jump")
+		_createBite("hop")
 		_createBite("throwc")
 		_createBite("thrown")
 		_createBite("salute")
