@@ -110,7 +110,7 @@ func _physics_process(delta):
 		
 		#Sonido de Pisadas
 		var stepsPlayer : Node3D = get_parent().get_node("Steps")
-		if _movementDir != Vector2(0.0,0.0) && !mon.invincible && mon.is_on_floor() && !mon.grabbed:
+		if _movementDir != Vector2(0.0,0.0) && !mon.invincible && mon.is_on_floor() && !mon.grabbed && !stunned:
 			if !mon.grabbing:
 				stepsPlayer.running()
 			else:
