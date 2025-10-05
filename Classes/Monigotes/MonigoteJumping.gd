@@ -56,7 +56,9 @@ func jump():
 	# Mientras un monigote está saltando no puede colisionar con otros monigotes
 	mon.set_collision_mask_value(1, false)
 	jumpStarted.emit()
+	$DashSFX.play()
 	get_parent().get_node("BitesPlayer").bitePlay("hop")
+		
 	$JumpTimer.start()
 
 func onFloorCollision(_body):
