@@ -159,6 +159,13 @@ light_color = Color(0.999998, 0.997464, 0.742191, 1)
 light_cull_mask = 4294967291
 shadow_enabled = true
 shadow_opacity = 0.82
+shadow_blur = 0.2
+shadow_caster_mask = 4294967263
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.401
+directional_shadow_fade_start = 0.911
+directional_shadow_max_distance = 19.5
+sky_mode = 1
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0539551, -1.0896239, 0.0167236)

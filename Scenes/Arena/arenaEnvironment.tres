@@ -45,20 +45,25 @@ shader_parameter/star_mask_noise = SubResource("NoiseTexture2D_utr0e")
 
 [sub_resource type="Sky" id="Sky_uapgf"]
 sky_material = SubResource("ShaderMaterial_wwmae")
-process_mode = 3
+process_mode = 2
+radiance_size = 0
 
 [resource]
 background_mode = 2
 background_energy_multiplier = 1.4
 sky = SubResource("Sky_uapgf")
 sky_custom_fov = 16.5
+ambient_light_source = 2
+ambient_light_color = Color(0.64589995, 0.15723294, 0.59788316, 1)
+reflected_light_source = 2
 tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 3.6
 sdfgi_read_sky_light = false
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.8
 glow_normalized = true
 fog_sky_affect = 0.173
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_length = 105.94
 volumetric_fog_ambient_inject = 0.23

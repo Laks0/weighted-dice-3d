@@ -69,6 +69,7 @@ region = Rect2(126, 231, 32, 32)
 
 [node name="AudienceMember" type="Sprite3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+layers = 32
 billboard = 1
 shaded = true
 texture_filter = 0
