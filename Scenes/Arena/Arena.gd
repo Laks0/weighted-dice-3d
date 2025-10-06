@@ -134,6 +134,21 @@ func endGame(winnerMon : Monigote):
 	
 	stageFinished.emit(winnerId)
 
+## Reinicia la ronda actual solo teniendo en cuenta lo que le incumbe a la arena
+func restartArena():
+	$Effects.stopActiveEffect()
+	SoundtrackHandler.stopTrack()
+	environment.lightsOn() # Por si acaso
+	if is_instance_valid(die):
+		die.queue_free()
+	for mon in monigotes:
+		if is_instance_valid(mon):
+			mon.queue_free()
+	monigotes.clear()
+	gameRunning = false
+	
+	startArena()
+
 func dieRolled(n : int):
 	# Animación del nombre del efecto
 	$CurrentEffectName.visible = true

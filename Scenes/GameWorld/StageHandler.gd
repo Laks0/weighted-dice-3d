@@ -187,6 +187,9 @@ func resetGame():
 		#chipHolder.ownMonigote(mon)
 	get_tree().change_scene_to_file("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 
+func restartRound():
+	$Arena.restartArena()
+
 ######################
 # Señal desde lobby #
 ######################

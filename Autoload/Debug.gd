@@ -42,6 +42,9 @@ func _ready():
 	)
 	
 	LimboConsole.register_command(_changeRound, "cambiarRonda", "Cambia la ronda actual de la partida")
+	
+	LimboConsole.register_command(_restartRound, "reiniciarRonda", "Reinicia la ronda actual")
+
 
 func _setVar(varName : String, val):
 	if varName == "onlyBet" or varName == "onlyEffect":
@@ -132,6 +135,12 @@ func _setBank(playerName : String, newBank : int):
 
 func _changeRound(_round : int):
 	BetHandler.round = _round
+
+func _restartRound():
+	if get_tree().get_nodes_in_group("StageHandler").is_empty():
+		LimboConsole.error("No estás en una partida")
+		return
+	get_tree().get_nodes_in_group("StageHandler")[0].restartRound()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_mute_ost"):
