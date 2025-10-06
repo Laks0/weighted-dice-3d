@@ -284,7 +284,6 @@ streams_count = 1
 stream_0/stream = ExtResource("41_1labf")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_63dgn"]
-random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("42_mr8r7")
 
@@ -655,7 +654,6 @@ bus = &"SFX"
 [node name="DashSFX" type="AudioStreamPlayer3D" parent="Jumping"]
 stream = SubResource("AudioStreamRandomizer_63dgn")
 attenuation_model = 3
-volume_db = -3.0
 bus = &"SFX"
 
 [node name="Moving" type="Node3D" parent="." node_paths=PackedStringArray("mon")]

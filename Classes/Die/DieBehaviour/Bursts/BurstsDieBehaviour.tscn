@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctxpwr7vay6pa"]
+[gd_scene load_steps=5 format=3 uid="uid://ctxpwr7vay6pa"]
 
 [ext_resource type="Script" uid="uid://dp54ntpuo3ay5" path="res://Classes/Die/DieBehaviour/Bursts/BurstsDieBehaviour.gd" id="1_orhcs"]
+[ext_resource type="AudioStream" uid="uid://os6id2fnkkt3" path="res://Assets/SFX/fx_die_burst_position.wav" id="2_d42xi"]
+[ext_resource type="AudioStream" uid="uid://cougr438idrcy" path="res://Assets/SFX/fx_die_burst_buildup.wav" id="3_xgg63"]
+[ext_resource type="AudioStream" uid="uid://qqdq1mivb4q8" path="res://Assets/SFX/Dado/fx_die_target_burst.wav" id="4_tp7rw"]
 
 [node name="BurstsDieBehaviour" type="Node3D"]
 script = ExtResource("1_orhcs")
@@ -16,3 +19,18 @@ one_shot = true
 top_level = true
 collision_mask = 4
 debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="Position" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_d42xi")
+attenuation_model = 3
+bus = &"SFX"
+
+[node name="Buildup" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_xgg63")
+attenuation_model = 3
+bus = &"SFX"
+
+[node name="Burst" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_tp7rw")
+attenuation_model = 3
+bus = &"SFX"

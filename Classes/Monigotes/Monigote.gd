@@ -130,6 +130,8 @@ func die():
 	$DeathParticles.connect("finished", queue_free)
 
 func stopMovement():
+	$Steps/LStep.stop()
+	$Steps/RStep.stop()
 	movementStopped = true
 
 ## Similar a stun pero permite agarrar mientras está quieto, además no hace la señal
@@ -145,6 +147,8 @@ func makeInvincible():
 func freeze():
 	movement.resetMovement()
 	stopMovement()
+	
+	
 	set_process(false)
 	set_physics_process(false)
 	movement.set_physics_process(false)
@@ -152,7 +156,7 @@ func freeze():
 	push()
 	if grabbed:
 		escaped.emit()
-
+	
 func unfreeze():
 	resumeMovement()
 	set_process(true)
