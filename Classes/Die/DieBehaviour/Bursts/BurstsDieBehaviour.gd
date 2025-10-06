@@ -50,9 +50,11 @@ func _burst():
 	
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
 	tween.tween_interval(.1)
+	tween.tween_callback($Position.play)
 	tween.tween_property(die, "transform",
 		die.transform.looking_at(die.global_position + shootDirection).translated(preTravel),
 		preparationTime/4)
+	tween.tween_callback($Buildup.play)
 	tween.tween_method(func (t : float):
 		die.rotate_object_local(Vector3.LEFT,maxRotationSpeed*t*get_physics_process_delta_time()),
 	.1, 1, 3*preparationTime/4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
@@ -61,6 +63,6 @@ func _burst():
 	tween.tween_callback($AfterBurstTime.start)
 	
 	await tween.finished
-	
+	$Burst.play()
 	die.freeze = false
 	die.throw(shootDirection * burstForce)
