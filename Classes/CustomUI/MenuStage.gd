@@ -24,6 +24,8 @@ var _active := false
 func start(menu : Node):
 	if _active:
 		return
+	if not is_instance_valid(menu):
+		return
 	_menuParent = menu
 	_active = true
 	for n in invisibleNodes:

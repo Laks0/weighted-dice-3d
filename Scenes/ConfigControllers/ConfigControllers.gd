@@ -73,9 +73,11 @@ func _input(event: InputEvent) -> void:
 			return
 	
 	if $Warning.visible:
-		if event.is_match(_newEvents["grab"]):
+		# Solo se llega acá si es un teclado
+		var keyEvent := event as InputEventKey
+		if keyEvent.physical_keycode == _newEvents["grab"].physical_keycode:
 			acceptChanges()
-		if event.is_match(_newEvents["jump"]):
+		if keyEvent.physical_keycode == _newEvents["jump"].physical_keycode:
 			cancelChanges()
 		return
 	
