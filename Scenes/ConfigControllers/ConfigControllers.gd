@@ -1,4 +1,5 @@
-extends Control
+@tool
+extends MultiStageMenu
 
 signal finished
 
@@ -42,44 +43,17 @@ func _showTempBindings():
 	%JumpButtonTexture.setBinding(_newEvents["jump"], controllerId)
 	%PauseButtonTexture.setBinding(_newEvents["pause"], controllerId)
 
-func startEditting():
-	for k in _newEvents.keys():
-		_newEvents[k] = Controllers.getEventsForAction(k, controllerId)[0]
-	
-	%EditButton.visible = false
-	%BackButton.visible = false
-	%CancelButton.visible = true
-	%AcceptButton.visible = true
-	
-	%CancelButton.focus()
-	%EditButton.unfocus()
-	
-	for c in $EditButtons.get_children():
-		c.disabled = false
-
-func stopEditting():
-	#get_parent().get_parent().get_node("OKFX").play()
-	%EditButton.visible = true
-	%BackButton.visible = true
-	%CancelButton.visible = false
-	%AcceptButton.visible = false
-	
-	%EditButton.focus()
-	
-	for c in $EditButtons.get_children():
-		c.disabled = true
-
 func acceptChanges():
 	%AcceptButton.unfocus()
 	for a in _newEvents.keys():
 		Controllers.editEvent(a, controllerId, _newEvents[a])
 	await get_tree().physics_frame
-	stopEditting()
+	finished.emit()
 
 func cancelChanges():
 	%CancelButton.unfocus()
 	_showSetBindings()
-	stopEditting()
+	finished.emit()
 
 func promptAcceptChanges():
 	$ControlButtons.visible = false
@@ -91,6 +65,9 @@ var _waitingToEdit := false
 var _selectedAction := ""
 
 func _startedEditting(action : String):
+	for k in _newEvents.keys():
+		_newEvents[k] = Controllers.getEventsForAction(k, controllerId)[0]
+	
 	_selectedAction = action
 	_waitingToEdit = true
 	

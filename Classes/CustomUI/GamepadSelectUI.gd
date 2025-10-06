@@ -105,15 +105,19 @@ func unfocus():
 	focused = false
 
 func focus(dir : int = LEFT):
+	var newFocus
 	if disabled or not visible:
 		if dir == LEFT:
-			changeFocus(leftFallback, LEFT)
+			newFocus = leftFallback
 		elif dir == RIGHT:
-			changeFocus(rightFallback, RIGHT)
+			newFocus = rightFallback
 		elif dir == UP:
-			changeFocus(upFallback, UP)
+			newFocus = upFallback
 		elif dir == DOWN:
-			changeFocus(downFallback, DOWN)
+			newFocus = downFallback
+		
+		if is_instance_valid(newFocus):
+			changeFocus(newFocus, dir)
 		return
 	await get_tree().process_frame
 	focused = true

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dasumhhhc308s"]
+
+[ext_resource type="Script" uid="uid://cvmhuou1es7f3" path="res://Classes/CustomUI/MultiStageMenu/MultiStageMenu.gd" id="1_y5lec"]
+
+[node name="MultiStageMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y5lec")

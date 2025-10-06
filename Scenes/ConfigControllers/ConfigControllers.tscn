@@ -1,13 +1,34 @@
-[gd_scene load_steps=15 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=18 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_6tkn5"]
 [ext_resource type="PackedScene" uid="uid://c7eaajhtx0bon" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.tscn" id="3_2l8do"]
 [ext_resource type="Texture2D" uid="uid://diu5w75ahx5nc" path="res://Assets/UI/ButtonNormalBorder.png" id="3_heetp"]
+[ext_resource type="Script" uid="uid://d37o27scapfhv" path="res://Classes/CustomUI/MenuStage.gd" id="3_kwofx"]
 [ext_resource type="Texture2D" uid="uid://h0p6a5yhmkdp" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/A.png" id="4_heetp"]
 [ext_resource type="Texture2D" uid="uid://biqxgctcsq3sa" path="res://Assets/UI/ButtonPressedBorder.png" id="5_2l8do"]
 [ext_resource type="Texture2D" uid="uid://bayuuvrydd644" path="res://Classes/CustomUI/InputDisplayTexture/Buttons Pack/XBOX/RT.png" id="6_0rvxw"]
 [ext_resource type="Script" uid="uid://dvtnqg76q16sj" path="res://Common/CloneTexture.gd" id="7_2ntk4"]
+
+[sub_resource type="Resource" id="Resource_qas6s"]
+script = ExtResource("3_kwofx")
+invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
+visibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton"), NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons"), NodePath("ControlButtons")])
+enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton")])
+focusedNode = NodePath("ControlButtons/CancelButton")
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_em7n8"]
+script = ExtResource("3_kwofx")
+invisibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton")])
+visibleNodes = Array[NodePath]([NodePath("EditButtons"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton"), NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton"), NodePath("ControlButtons")])
+disabledNodes = Array[NodePath]([NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton")])
+enabledNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
+focusedNode = NodePath("ControlButtons/BackButton")
+transitionButtons = Dictionary[NodePath, StringName]({
+NodePath("ControlButtons/EditButton"): &"edit"
+})
+metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
 content_margin_left = 4.0
@@ -61,6 +82,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8fhsc")
 inputDisplayTexture = NodePath("EditButtons/PauseButton/HBoxContainer/PauseButtonTexture")
+stages = Dictionary[StringName, ExtResource("3_kwofx")]({
+&"edit": SubResource("Resource_qas6s"),
+&"main": SubResource("Resource_em7n8")
+})
+firstStage = &"main"
+metadata/_custom_type_script = "uid://cvmhuou1es7f3"
 
 [node name="EditButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -85,6 +112,7 @@ text = "Agarrar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../PauseButton")
@@ -115,6 +143,7 @@ text = "Saltar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../GrabButton")
@@ -145,6 +174,7 @@ text = "Pausar"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../JumpButton")
@@ -182,12 +212,12 @@ alignment = 1
 [node name="EditButton" parent="ControlButtons" node_paths=PackedStringArray("upSelect", "downSelect", "rightSelect", "upFallback", "downFallback", "rightFallback") instance=ExtResource("2_6tkn5")]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
 text = "EDITAR"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
-focused = true
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../BackButton")
 rightSelect = NodePath("../BackButton")
@@ -203,6 +233,7 @@ text = "VOLVER"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 focused = true
 upSelect = NodePath("../EditButton")
 downSelect = NodePath("../EditButton")
@@ -220,6 +251,7 @@ text = "CANCELAR"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../EditButton")
 rightSelect = NodePath("../../EditButtons/GrabButton")
@@ -236,6 +268,7 @@ text = "ACEPTAR"
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_frc6q")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
+disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 upSelect = NodePath("../BackButton")
 downSelect = NodePath("../EditButton")
 rightSelect = NodePath("../../EditButtons/GrabButton")
@@ -304,7 +337,6 @@ one_shot = true
 [connection signal="pressed" from="EditButtons/GrabButton" to="." method="_startedEditting" binds= ["grab"]]
 [connection signal="pressed" from="EditButtons/JumpButton" to="." method="_startedEditting" binds= ["jump"]]
 [connection signal="pressed" from="EditButtons/PauseButton" to="." method="_startedEditting" binds= ["pause"]]
-[connection signal="pressed" from="ControlButtons/EditButton" to="." method="startEditting"]
 [connection signal="pressed" from="ControlButtons/BackButton" to="." method="finish"]
 [connection signal="pressed" from="ControlButtons/CancelButton" to="." method="cancelChanges"]
 [connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="promptAcceptChanges"]

@@ -1024,7 +1024,7 @@ offset_right = 196.0
 theme_override_constants/separation = 19
 
 [node name="EditButton" parent="ControlsStage/ConfigControllers/ControlButtons" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxTexture_ak0sa")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ejbx")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")

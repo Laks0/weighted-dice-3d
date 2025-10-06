@@ -98,6 +98,7 @@ func transition(to : Stages):
 		$TransitionSFX.play()
 		if Controllers.isKeyboard(_controller):
 			keyboardStartedEdittingController.emit()
+		$ControlsStage/ConfigControllers.restart()
 	if stage == Stages.CONTROLLERS and Controllers.isKeyboard(_controller):
 		keyboardStoppedEdittingController.emit()
 	if screenOn:
