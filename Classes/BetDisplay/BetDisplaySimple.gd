@@ -56,6 +56,7 @@ func startBetting():
 	selectors.clear()
 	selected.clear()
 	
+	PlayerHandler.clearAllPlayersBets()
 	BetHandler.startRound()
 	
 	var candidates := BetHandler.getCandidates()

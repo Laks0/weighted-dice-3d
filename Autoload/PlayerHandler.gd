@@ -37,6 +37,9 @@ class Player:
 		_createBite("salute")
 		_createBite("victory")
 	
+	func clearAllBets():
+		bets.clear()
+	
 	func setBet(amount : int, candidate : int):
 		bets[candidate] = amount
 	
@@ -170,6 +173,10 @@ func resetAllPlayers():
 	for i in range(len(players)):
 		var p : Player = players[i]
 		players[i] = Player.new(p.name, p.inputController, p.id)
+
+func clearAllPlayersBets():
+	for p in players:
+		p.clearAllBets()
 
 func getSkinName(skin : Skins) -> String:
 	match skin:
