@@ -16,6 +16,11 @@ var _newEvents : Dictionary[String, InputEvent] = {
 func setControllerId(id : int):
 	controllerId = id
 	
+	for c in $EditButtons.get_children():
+		c.controller = id
+	for c in $ControlButtons.get_children():
+		c.controller = id
+	
 	_showSetBindings()
 
 func finish():

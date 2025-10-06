@@ -24,8 +24,6 @@ func startPause(controllerId : int):
 		$Unpause.play()
 		isPaused = false
 
-
-
 func endPause():
 	get_tree().set_pause(false)
 	visible = false
@@ -34,6 +32,7 @@ func startEditting():
 	await get_tree().process_frame
 	%Buttons.visible = false
 	%ConfigControllers.visible = true
+	%ConfigControllers.restart()
 
 func stopEditting():
 	await get_tree().process_frame

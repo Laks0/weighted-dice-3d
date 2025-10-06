@@ -166,7 +166,6 @@ mouse_target = true
 script = ExtResource("2_ryftk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-handle_input_locally = false
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
