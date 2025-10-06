@@ -42,7 +42,8 @@ func start(menu : Node):
 	await menu.get_tree().process_frame
 	await menu.get_tree().process_frame
 	
-	menu.get_node(focusedNode).focus()
+	if is_instance_valid(menu.get_node_or_null(focusedNode)):
+		menu.get_node(focusedNode).focus()
 	_updateTransitionButtons(transitionButtons)
 
 ## Pone en invisible todos los nodos en visibleNodes

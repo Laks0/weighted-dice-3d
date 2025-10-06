@@ -27,7 +27,6 @@ func _transitionTo(newStage : StringName) -> void:
 		_transitionTo(stages.keys()[0])
 
 func _setFirstStage(newVal : StringName):
-	if not Engine.is_editor_hint():
-		return
+	if Engine.is_editor_hint():
+		_transitionTo(firstStage)
 	firstStage = newVal
-	_transitionTo(firstStage)

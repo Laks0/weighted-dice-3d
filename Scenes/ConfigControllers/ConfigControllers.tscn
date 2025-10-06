@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dekyiuf4skj47"]
+[gd_scene load_steps=19 format=3 uid="uid://dekyiuf4skj47"]
 
 [ext_resource type="Script" uid="uid://dvahkxo8hm0q4" path="res://Scenes/ConfigControllers/ConfigControllers.gd" id="1_8fhsc"]
 [ext_resource type="PackedScene" uid="uid://kps6urduxyub" path="res://Classes/CustomUI/GamepadSelectButton/GamepadSelectButton.tscn" id="2_6tkn5"]
@@ -11,14 +11,19 @@
 [ext_resource type="Script" uid="uid://dvtnqg76q16sj" path="res://Common/CloneTexture.gd" id="7_2ntk4"]
 
 [sub_resource type="Resource" id="Resource_qas6s"]
+resource_local_to_scene = true
 script = ExtResource("3_kwofx")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
 visibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton"), NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons"), NodePath("ControlButtons")])
 enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton")])
 focusedNode = NodePath("ControlButtons/CancelButton")
+transitionButtons = Dictionary[NodePath, StringName]({
+NodePath("ControlButtons/AcceptButton"): &"warning"
+})
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="Resource" id="Resource_em7n8"]
+resource_local_to_scene = true
 script = ExtResource("3_kwofx")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton")])
 visibleNodes = Array[NodePath]([NodePath("EditButtons"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton"), NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton"), NodePath("ControlButtons")])
@@ -28,6 +33,12 @@ focusedNode = NodePath("ControlButtons/BackButton")
 transitionButtons = Dictionary[NodePath, StringName]({
 NodePath("ControlButtons/EditButton"): &"edit"
 })
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_kwofx"]
+resource_local_to_scene = true
+script = ExtResource("3_kwofx")
+visibleNodes = Array[NodePath]([NodePath("Warning")])
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbts"]
@@ -84,7 +95,8 @@ script = ExtResource("1_8fhsc")
 inputDisplayTexture = NodePath("EditButtons/PauseButton/HBoxContainer/PauseButtonTexture")
 stages = Dictionary[StringName, ExtResource("3_kwofx")]({
 &"edit": SubResource("Resource_qas6s"),
-&"main": SubResource("Resource_em7n8")
+&"main": SubResource("Resource_em7n8"),
+&"warning": SubResource("Resource_kwofx")
 })
 firstStage = &"main"
 metadata/_custom_type_script = "uid://cvmhuou1es7f3"
@@ -339,7 +351,6 @@ one_shot = true
 [connection signal="pressed" from="EditButtons/PauseButton" to="." method="_startedEditting" binds= ["pause"]]
 [connection signal="pressed" from="ControlButtons/BackButton" to="." method="finish"]
 [connection signal="pressed" from="ControlButtons/CancelButton" to="." method="cancelChanges"]
-[connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="promptAcceptChanges"]
 
 [editable path="EditButtons/GrabButton"]
 [editable path="EditButtons/JumpButton"]

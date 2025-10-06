@@ -14,23 +14,11 @@ var _newEvents : Dictionary[String, InputEvent] = {
 }
 
 func setControllerId(id : int):
-	for c : GamepadSelectButton in $EditButtons.get_children():
-		c.controller = id
-		c.unfocus()
-	for c : GamepadSelectButton in $ControlButtons.get_children():
-		c.controller = id
-		c.unfocus()
-	%BackButton.focus()
 	controllerId = id
 	
 	_showSetBindings()
 
 func finish():
-	for c : GamepadSelectButton in $EditButtons.get_children():
-		c.unfocus()
-	for c : GamepadSelectButton in $ControlButtons.get_children():
-		c.unfocus()
-	%BackButton.focus()
 	finished.emit()
 
 func _showSetBindings():
@@ -44,22 +32,14 @@ func _showTempBindings():
 	%PauseButtonTexture.setBinding(_newEvents["pause"], controllerId)
 
 func acceptChanges():
-	%AcceptButton.unfocus()
 	for a in _newEvents.keys():
 		Controllers.editEvent(a, controllerId, _newEvents[a])
 	await get_tree().physics_frame
 	finished.emit()
 
 func cancelChanges():
-	%CancelButton.unfocus()
 	_showSetBindings()
 	finished.emit()
-
-func promptAcceptChanges():
-	$ControlButtons.visible = false
-	$EditButtons.visible = false
-	
-	$Warning.visible = true
 
 var _waitingToEdit := false
 var _selectedAction := ""
@@ -94,14 +74,9 @@ func _input(event: InputEvent) -> void:
 	
 	if $Warning.visible:
 		if event.is_match(_newEvents["grab"]):
-			$Warning.visible = false
-			$ControlButtons.visible = true
-			$EditButtons.visible = true
 			acceptChanges()
 		if event.is_match(_newEvents["jump"]):
-			$Warning.visible = false
-			$ControlButtons.visible = true
-			$EditButtons.visible = true
+			cancelChanges()
 		return
 	
 	if not _waitingToEdit:

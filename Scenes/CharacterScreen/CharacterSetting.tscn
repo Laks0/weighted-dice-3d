@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=111 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://m2vhn7ptxtyr" path="res://Assets/SFX/fx_charscreen_kb_click.wav" id="19_2wrae"]
 [ext_resource type="AudioStream" uid="uid://fabm64l3dm57" path="res://Assets/SFX/playerReady.wav" id="19_8644k"]
 [ext_resource type="AudioStream" uid="uid://bog3mwwmuu5r4" path="res://Assets/SFX/fx_charscreen_kb_del.wav" id="20_fm0ag"]
+[ext_resource type="Script" uid="uid://d37o27scapfhv" path="res://Classes/CustomUI/MenuStage.gd" id="21_txlot"]
 [ext_resource type="AudioStream" uid="uid://cky8rdk03g83m" path="res://Assets/SFX/fx_charscreen_logout.wav" id="22_5vich"]
 [ext_resource type="AudioStream" uid="uid://11g1qael3234" path="res://Assets/SFX/fx_charscreen_login.wav" id="22_agqq6"]
 [ext_resource type="AudioStream" uid="uid://7607nmtjprmt" path="res://Assets/SFX/fx_charscreen_transition.wav" id="22_fm0ag"]
@@ -247,6 +248,31 @@ unicode = 98
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fm0ag"]
 pressed = true
+
+[sub_resource type="Resource" id="Resource_ooewt"]
+resource_local_to_scene = true
+script = ExtResource("21_txlot")
+invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
+visibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton"), NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons"), NodePath("ControlButtons")])
+enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton")])
+focusedNode = NodePath("ControlButtons/CancelButton")
+transitionButtons = Dictionary[NodePath, StringName]({
+NodePath("ControlButtons/AcceptButton"): &"warning"
+})
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_5jhap"]
+resource_local_to_scene = true
+script = ExtResource("21_txlot")
+invisibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton")])
+visibleNodes = Array[NodePath]([NodePath("EditButtons"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton"), NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton"), NodePath("ControlButtons")])
+disabledNodes = Array[NodePath]([NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton")])
+enabledNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
+focusedNode = NodePath("ControlButtons/BackButton")
+transitionButtons = Dictionary[NodePath, StringName]({
+NodePath("ControlButtons/EditButton"): &"edit"
+})
+metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjyro"]
 content_margin_left = 4.0
@@ -975,6 +1001,10 @@ offset_left = 25.0
 offset_top = 23.0
 offset_right = -25.0
 offset_bottom = -22.0
+stages = Dictionary[StringName, ExtResource("21_txlot")]({
+&"edit": SubResource("Resource_ooewt"),
+&"main": SubResource("Resource_5jhap")
+})
 
 [node name="EditButtons" parent="ControlsStage/ConfigControllers" index="0"]
 offset_left = -239.0

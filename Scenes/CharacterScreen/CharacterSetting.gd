@@ -31,6 +31,9 @@ func setController(arr : Array):
 		if not c is GamepadSelectButton:
 			continue
 		c.controller = _controller
+	
+	if not Controllers.isKeyboard(_controller):
+		%ControllersButton.enable()
 
 func activate(controller : int):
 	_controller = controller
@@ -110,8 +113,6 @@ func transition(to : Stages):
 	if to == Stages.READY:
 		$Ready.play()
 
-
-
 func onTransitionFrameChanged():
 	if $Transition.frame == 5:
 		stage = transitioning_stage
@@ -131,11 +132,11 @@ func onVirtualKeyboardDeleteCharacter():
 		playerName = playerName.erase(len(playerName)-1, 1)
 
 func onOtherKeyboardStartedEditting():
-	if Controllers.isKeyboard(_controller):
+	if stage == Stages.WAITING or Controllers.isKeyboard(_controller):
 		%ControllersButton.disable()
 
 func onOtherKeyboardStoppedEditting():
-	if Controllers.isKeyboard(_controller):
+	if stage == Stages.WAITING or Controllers.isKeyboard(_controller):
 		%ControllersButton.enable()
 
 func isActive():
