@@ -284,6 +284,7 @@ streams_count = 1
 stream_0/stream = ExtResource("41_1labf")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_63dgn"]
+random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("42_mr8r7")
 

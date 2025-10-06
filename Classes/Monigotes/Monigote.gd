@@ -169,8 +169,12 @@ func dance():
 func bounce(normal : Vector3):
 	movement.bounce(normal)
 
+var _isCollisionHorizontal := false
+
 func setCollisionHorizontal(direction : Vector2) -> void:
 	$CollisionShape3D.look_at(Vector3.DOWN, Vector3(direction.x,0,direction.y))
+	_isCollisionHorizontal = true
 
 func setCollisionVertical() -> void:
 	$CollisionShape3D.rotation = Vector3.ZERO
+	_isCollisionHorizontal = false

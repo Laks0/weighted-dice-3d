@@ -147,3 +147,6 @@ func _physics_process(delta):
 		
 	
 	mon.move_and_slide()
+	
+	if mon._isCollisionHorizontal:
+		mon.position.y = max(.3, mon.position.y)
