@@ -223,15 +223,6 @@ stageHandler = NodePath("..")
 multipleResCamera = NodePath("../MultipleResCamera")
 environment = NodePath("../WorldEnvironment")
 
-[node name="DirectionalLight3D" parent="SubViewport/StageHandler/Arena" index="4"]
-shadow_blur = 0.2
-shadow_caster_mask = 4294967263
-directional_shadow_mode = 1
-directional_shadow_split_1 = 0.401
-directional_shadow_fade_start = 0.911
-directional_shadow_max_distance = 19.5
-sky_mode = 1
-
 [node name="AudienceRow" parent="SubViewport/StageHandler/Arena/Audience" index="0"]
 curve = SubResource("Curve3D_vimpm")
 

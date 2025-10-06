@@ -57,7 +57,6 @@ ambient_light_source = 2
 ambient_light_color = Color(0.64589995, 0.15723294, 0.59788316, 1)
 reflected_light_source = 2
 tonemap_mode = 2
-ssao_enabled = true
 ssao_intensity = 3.6
 sdfgi_read_sky_light = false
 sdfgi_cascades = 2
