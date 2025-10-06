@@ -46,8 +46,12 @@ func currentStage() -> StageHandler.Stages:
 
 func _spawnMonigotes():
 	monigotes = PlayerHandler.instantiatePlayers()
+	
+	var startingPos = -WIDTH/2 + 1
+	var spaceBetweenMonigotes := (WIDTH - 2)/(monigotes.size()-1)
+	
 	for i in range(monigotes.size()):
-		monigotes[i].position = Vector3(-2 + i, 10, 2)
+		monigotes[i].position = Vector3(startingPos + spaceBetweenMonigotes*i, 10, 2)
 		monigotes[i].died.connect(onMonigoteDeath.bind(monigotes[i]))
 		add_child(monigotes[i])
 		monigotes[i].freeze()
@@ -56,6 +60,10 @@ func _spawnMonigotes():
 		tween.tween_interval(i*.2+.2)
 		tween.tween_property(monigotes[i], "position:y", 0, .1)
 		tween.tween_callback(monigotes[i].unfreeze)
+		
+		var stunTime := (monigotes.size()-1-i)*.2+.3+i*.07
+		var direction := Vector2.from_angle(randf() * 2*PI)
+		tween.tween_callback(monigotes[i].movement.stun.bind(stunTime, direction))
 
 func setWallsDisabled(val : bool) -> void:
 	for wallCollision in $Walls.get_children():
