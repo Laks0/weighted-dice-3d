@@ -96,7 +96,8 @@ func _setNewBet(betName : String):
 		if b.betName != betName:
 			continue
 		vars.onlyBet = b
-		break
+		return
+	LimboConsole.error("No hay apuestas con ese nombre")
 
 func _listBets():
 	for b : Bet in BetHandler.bets:
@@ -125,6 +126,8 @@ func _setOnlyEffect(effectName : String, dieNumber : int = 1):
 			if file.begins_with(effectName) and file.ends_with(".tscn"):
 				vars.onlyEffect = "res://Classes/Effects/" + dir + "/" + file
 				return
+	
+	LimboConsole.error("No hay ningún efecto con ese nombre")
 
 func _setBank(playerName : String, newBank : int):
 	var player := PlayerHandler.getPlayerByName(playerName)

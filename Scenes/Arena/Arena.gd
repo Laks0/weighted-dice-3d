@@ -44,11 +44,18 @@ func _process(delta):
 func currentStage() -> StageHandler.Stages:
 	return stageHandler.currentStage
 
-func recieveMonigotes(arr : Array[Monigote]) -> void:
-	monigotes = arr
-	for mon in monigotes:
-		mon.died.connect(onMonigoteDeath.bind(mon))
-		mon.arenaReady()
+func _spawnMonigotes():
+	monigotes = PlayerHandler.instantiatePlayers()
+	for i in range(monigotes.size()):
+		monigotes[i].position = Vector3(-2 + i, 10, 2)
+		monigotes[i].died.connect(onMonigoteDeath.bind(monigotes[i]))
+		add_child(monigotes[i])
+		monigotes[i].freeze()
+		monigotes[i].arenaReady()
+		var tween := create_tween()
+		tween.tween_interval(i*.2+.2)
+		tween.tween_property(monigotes[i], "position:y", 0, .1)
+		tween.tween_callback(monigotes[i].unfreeze)
 
 func setWallsDisabled(val : bool) -> void:
 	for wallCollision in $Walls.get_children():
@@ -69,9 +76,7 @@ func startArena():
 		cardAnimation.queue_free()
 		multipleResCamera.goToCamera($ArenaCamera)
 	
-	
-	for mon in monigotes:
-		mon.unfreeze()
+	_spawnMonigotes()
 	
 	if Debug.vars.dontStartGame:
 		return
@@ -132,10 +137,10 @@ func endGame(winnerMon : Monigote):
 	multipleResCamera.zoomTo(winnerMon.position)
 	await get_tree().create_timer(3).timeout
 	
+	clearArena()
 	stageFinished.emit(winnerId)
 
-## Reinicia la ronda actual solo teniendo en cuenta lo que le incumbe a la arena
-func restartArena():
+func clearArena():
 	$Effects.stopActiveEffect()
 	SoundtrackHandler.stopTrack()
 	environment.lightsOn() # Por si acaso
@@ -146,8 +151,6 @@ func restartArena():
 			mon.queue_free()
 	monigotes.clear()
 	gameRunning = false
-	
-	startArena()
 
 func dieRolled(n : int):
 	# Animación del nombre del efecto

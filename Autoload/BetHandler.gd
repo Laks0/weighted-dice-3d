@@ -83,6 +83,9 @@ func startRound() -> void:
 	currentBet.startRound()
 	pickedNewBet.emit()
 
+func resetRound() -> void:
+	currentBet.startRound()
+
 func getBetName() -> String:
 	return currentBet.betName
 

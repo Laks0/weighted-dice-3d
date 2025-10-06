@@ -89,39 +89,21 @@ func goToArena():
 	currentStage = Stages.TRANSITION
 	chipHolder.disownAllMonigotes()
 	arena.setTableRender(true)
-	
-	for mon in monigotes:
-		jumpMonigoteTo(mon, Vector3(mon.position.x, Globals.SPRITE_HEIGHT, 1.5))
-	
-	# Delay del monigote saltando antes de que cambie la cámara
-	await get_tree().create_timer(.1).timeout
+	arena.clearArena()
 	
 	await camera.goToCamera(arenaCamera, .4).finished
 	
 	chipHolder.visible = false
 	arena.setWallsDisabled(false)
-	arena.recieveMonigotes(monigotes)
 	
-	BetHandler.startGame(arena)
 	arena.startArena()
+	BetHandler.startGame(arena)
+	destroyMonigotes()
 	currentStage = Stages.ARENA
 	inArena.emit()
 
-
 func lobbyToArena():
-	for m : Monigote in monigotes:
-		m.freeze()
-		
-		# Hacemos el salto del último por separado para poder hacer un wait
-		if m == monigotes[0]:
-			continue
-		
-		jumpMonigoteTo(m, chipHolder.getPositionForMonigote(m.player.id)).finished.connect(
-			chipHolder.ownMonigote.bind(m)
-		)
-	
-	await jumpMonigoteTo(monigotes[0], chipHolder.getPositionForMonigote(monigotes[0].player.id)).finished
-	chipHolder.ownMonigote(monigotes[0])
+	destroyMonigotes()
 	
 	$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
 	$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))
@@ -178,17 +160,12 @@ func leaderboardToBet():
 func resetGame():
 	PlayerHandler.resetAllPlayers()
 	BetHandler.resetGame()
-	#arena.startNewGame()
-	#
-	#chipHolder.disownAllMonigotes()
-	#destroyMonigotes()
-	#createMonigotes()
-	#for mon in monigotes:
-		#chipHolder.ownMonigote(mon)
+	
 	get_tree().change_scene_to_file("res://Scenes/LoadingScreen/LoadingScreen.tscn")
 
 func restartRound():
-	$Arena.restartArena()
+	BetHandler.resetRound()
+	goToArena()
 
 ######################
 # Señal desde lobby #
