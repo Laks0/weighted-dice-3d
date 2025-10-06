@@ -29,6 +29,7 @@ func _onStart():
 	cubilete = cubileteScene.instantiate()
 	cubilete.position = Vector3(-10,0,0)
 	die.get_parent().add_child(cubilete)
+	die.tree_exited.connect(cubilete.queue_free)
 	
 	cubilete.connect("dieDrop", func():
 		die.position = cubilete.position + Vector3.DOWN
