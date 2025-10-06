@@ -17,9 +17,6 @@ invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePat
 visibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton"), NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons"), NodePath("ControlButtons")])
 enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton")])
 focusedNode = NodePath("ControlButtons/CancelButton")
-transitionButtons = Dictionary[NodePath, StringName]({
-NodePath("ControlButtons/AcceptButton"): &"warning"
-})
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="Resource" id="Resource_em7n8"]
@@ -102,6 +99,7 @@ firstStage = &"main"
 metadata/_custom_type_script = "uid://cvmhuou1es7f3"
 
 [node name="EditButtons" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -117,6 +115,7 @@ theme_override_constants/separation = 34
 alignment = 1
 
 [node name="GrabButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
@@ -128,10 +127,10 @@ disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
 upSelect = NodePath("../PauseButton")
-downSelect = NodePath("../JumpButton")
+downSelect = NodePath("../PauseButton")
 leftSelect = NodePath("../../ControlButtons/CancelButton")
 upFallback = NodePath("../PauseButton")
-downFallback = NodePath("../JumpButton")
+downFallback = NodePath("../PauseButton")
 
 [node name="HBoxContainer" parent="EditButtons/GrabButton" index="0"]
 theme_override_constants/separation = 14
@@ -148,6 +147,7 @@ type = 1
 _inputDisplayed = SubResource("InputEventJoypadMotion_em7n8")
 
 [node name="JumpButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
@@ -158,10 +158,10 @@ pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
-upSelect = NodePath("../GrabButton")
+upSelect = NodePath("../PauseButton")
 downSelect = NodePath("../PauseButton")
 leftSelect = NodePath("../../ControlButtons/CancelButton")
-upFallback = NodePath("../GrabButton")
+upFallback = NodePath("../PauseButton")
 downFallback = NodePath("../PauseButton")
 
 [node name="HBoxContainer" parent="EditButtons/JumpButton" index="0"]
@@ -179,6 +179,7 @@ type = 1
 _inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
 
 [node name="PauseButton" parent="EditButtons" node_paths=PackedStringArray("upSelect", "downSelect", "leftSelect", "upFallback", "downFallback") instance=ExtResource("2_6tkn5")]
+visible = false
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6mbts")
@@ -189,11 +190,11 @@ pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_6mbts")
 greyOnDisabled = false
 disabled = true
-upSelect = NodePath("../JumpButton")
-downSelect = NodePath("../GrabButton")
+upSelect = NodePath(".")
+downSelect = NodePath(".")
 leftSelect = NodePath("../../ControlButtons/CancelButton")
-upFallback = NodePath("../JumpButton")
-downFallback = NodePath("../GrabButton")
+upFallback = NodePath(".")
+downFallback = NodePath(".")
 
 [node name="HBoxContainer" parent="EditButtons/PauseButton" index="0"]
 theme_override_constants/separation = 14
@@ -210,6 +211,7 @@ type = 1
 _inputDisplayed = SubResource("InputEventJoypadButton_2ntk4")
 
 [node name="ControlButtons" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -351,6 +353,7 @@ one_shot = true
 [connection signal="pressed" from="EditButtons/PauseButton" to="." method="_startedEditting" binds= ["pause"]]
 [connection signal="pressed" from="ControlButtons/BackButton" to="." method="finish"]
 [connection signal="pressed" from="ControlButtons/CancelButton" to="." method="cancelChanges"]
+[connection signal="pressed" from="ControlButtons/AcceptButton" to="." method="_onAcceptButtonPressed"]
 
 [editable path="EditButtons/GrabButton"]
 [editable path="EditButtons/JumpButton"]

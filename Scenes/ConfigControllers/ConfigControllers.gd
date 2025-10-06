@@ -120,3 +120,11 @@ func _changeEvent(newEvent : InputEvent):
 		c.modulate.a = 1
 		if c.name.containsn(_selectedAction):
 			get_tree().create_timer(.01).timeout.connect(c.focus)
+
+func _onAcceptButtonPressed() -> void:
+	if not Controllers.isKeyboard(controllerId):
+		acceptChanges()
+	else:
+		await get_tree().physics_frame
+		await get_tree().physics_frame
+		_transitionTo(StringName("warning"))

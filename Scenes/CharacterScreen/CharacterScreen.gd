@@ -94,9 +94,10 @@ func _input(event):
 		return
 	
 	if event is InputEventKey:
-		if event.is_action_pressed("grab_mouse"):
+		if event.is_action_pressed("ui_ok_kb"):
 			_addPlayerSetting(Controllers.KB)
-		if event.is_action_pressed("grab_kb2"):
+		if event.is_action_pressed("ui_ok_kb2"):
 			_addPlayerSetting(Controllers.KB2)
 	if event is InputEventJoypadButton:
-		_addPlayerSetting(event.device)
+		if event.is_action_pressed("ui_ok_d%s"%event.device):
+			_addPlayerSetting(event.device)

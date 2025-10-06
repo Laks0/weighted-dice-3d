@@ -18,8 +18,8 @@ func _process(_delta: float) -> void:
 func _updateElements():
 	var waiting : Array[int] = get_parent().devicesWaiting
 	
-	mainKeyboardButtonDisplay.setBindingOnControllersAction("grab", Controllers.KB)
-	secondaryKeyboardButtonDisplay.setBindingOnControllersAction("grab", Controllers.KB2)
+	mainKeyboardButtonDisplay.setBindingOnControllersAction("ui_ok", Controllers.KB)
+	secondaryKeyboardButtonDisplay.setBindingOnControllersAction("ui_ok", Controllers.KB2)
 	mainKeyboardHint.visible = waiting.has(Controllers.KB)
 	secondaryKeyboardHint.visible = waiting.has(Controllers.KB2)
 	
@@ -29,11 +29,11 @@ func _updateElements():
 		if Controllers.getControllerType(id) == Controllers.ControllerType.XBOX:
 			hasXbox = true
 			
-			xboxButtonDisplay.setBindingOnControllersAction("grab", id)
+			xboxButtonDisplay.setBindingOnControllersAction("ui_ok", id)
 		elif Controllers.getControllerType(id) == Controllers.ControllerType.PS:
 			hasPS = true
 			
-			psButtonDisplay.setBindingOnControllersAction("grab", id)
+			psButtonDisplay.setBindingOnControllersAction("ui_ok", id)
 	
 	controllerHint.visible = hasXbox or hasPS
 	xboxButtonDisplay.visible = hasXbox

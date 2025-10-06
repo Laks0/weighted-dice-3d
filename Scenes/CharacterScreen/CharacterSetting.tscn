@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://d23vm7fpygfv7"]
+[gd_scene load_steps=112 format=3 uid="uid://d23vm7fpygfv7"]
 
 [ext_resource type="Script" uid="uid://cu2fp3dcfnqos" path="res://Scenes/CharacterScreen/CharacterSetting.gd" id="1_5if0m"]
 [ext_resource type="Texture2D" uid="uid://c4dr5xfhkwoow" path="res://Scenes/CharacterScreen/PantallasUICharSelect-Sheet.png" id="1_fgyrc"]
@@ -249,19 +249,16 @@ unicode = 98
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fm0ag"]
 pressed = true
 
-[sub_resource type="Resource" id="Resource_ooewt"]
+[sub_resource type="Resource" id="Resource_txlot"]
 resource_local_to_scene = true
 script = ExtResource("21_txlot")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
 visibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton"), NodePath("EditButtons/GrabButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/PauseButton"), NodePath("EditButtons"), NodePath("ControlButtons")])
 enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("EditButtons/JumpButton"), NodePath("EditButtons/GrabButton")])
 focusedNode = NodePath("ControlButtons/CancelButton")
-transitionButtons = Dictionary[NodePath, StringName]({
-NodePath("ControlButtons/AcceptButton"): &"warning"
-})
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
-[sub_resource type="Resource" id="Resource_5jhap"]
+[sub_resource type="Resource" id="Resource_ooewt"]
 resource_local_to_scene = true
 script = ExtResource("21_txlot")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton")])
@@ -272,6 +269,12 @@ focusedNode = NodePath("ControlButtons/BackButton")
 transitionButtons = Dictionary[NodePath, StringName]({
 NodePath("ControlButtons/EditButton"): &"edit"
 })
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_5jhap"]
+resource_local_to_scene = true
+script = ExtResource("21_txlot")
+visibleNodes = Array[NodePath]([NodePath("Warning")])
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjyro"]
@@ -1002,54 +1005,68 @@ offset_top = 23.0
 offset_right = -25.0
 offset_bottom = -22.0
 stages = Dictionary[StringName, ExtResource("21_txlot")]({
-&"edit": SubResource("Resource_ooewt"),
-&"main": SubResource("Resource_5jhap")
+&"edit": SubResource("Resource_txlot"),
+&"main": SubResource("Resource_ooewt"),
+&"warning": SubResource("Resource_5jhap")
 })
 
 [node name="EditButtons" parent="ControlsStage/ConfigControllers" index="0"]
+visible = true
 offset_left = -239.0
 offset_top = -93.0
 offset_right = -19.0
 offset_bottom = 93.0
 theme_override_constants/separation = 14
 
-[node name="GrabButton" parent="ControlsStage/ConfigControllers/EditButtons" index="0"]
+[node name="GrabButton" parent="ControlsStage/ConfigControllers/EditButtons" index="0" node_paths=PackedStringArray("downSelect", "downFallback")]
+visible = true
 custom_minimum_size = Vector2(220, 0)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_rjyro")
+downSelect = NodePath("../JumpButton")
+downFallback = NodePath("../JumpButton")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/GrabButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
 uppercase = true
 
-[node name="JumpButton" parent="ControlsStage/ConfigControllers/EditButtons" index="1"]
+[node name="JumpButton" parent="ControlsStage/ConfigControllers/EditButtons" index="1" node_paths=PackedStringArray("upSelect", "upFallback")]
+visible = true
 custom_minimum_size = Vector2(220, 0)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_rjyro")
+upSelect = NodePath("../GrabButton")
+upFallback = NodePath("../GrabButton")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/JumpButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
 uppercase = true
 
-[node name="PauseButton" parent="ControlsStage/ConfigControllers/EditButtons" index="2"]
+[node name="PauseButton" parent="ControlsStage/ConfigControllers/EditButtons" index="2" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback")]
+visible = true
 custom_minimum_size = Vector2(220, 0)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rjyro")
 normalTexture = SubResource("StyleBoxTexture_4ejbx")
 focusedTexture = SubResource("StyleBoxTexture_ak0sa")
 pressedTexture = SubResource("StyleBoxTexture_4ejbx")
 disabledTexture = SubResource("StyleBoxEmpty_rjyro")
+upSelect = NodePath("../JumpButton")
+downSelect = NodePath("../GrabButton")
+upFallback = NodePath("../JumpButton")
+downFallback = NodePath("../GrabButton")
 
 [node name="Label" parent="ControlsStage/ConfigControllers/EditButtons/PauseButton/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 38
 uppercase = true
 
 [node name="ControlButtons" parent="ControlsStage/ConfigControllers" index="1"]
+visible = true
 offset_right = 196.0
 theme_override_constants/separation = 19
 

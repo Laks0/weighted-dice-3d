@@ -34,7 +34,7 @@ func _in_game_process(_delta):
 	if !focused or !is_visible_in_tree():
 		return
 
-	if Input.is_action_just_pressed(actions["grab"]):
+	if Input.is_action_just_pressed(actions["ui_ok"]):
 		pressed.emit()
 		clickedTimer.start(pressTime)
 
