@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1u8x43c7ulq1"]
+[gd_scene load_steps=15 format=3 uid="uid://c1u8x43c7ulq1"]
 
 [ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_es5up"]
 [ext_resource type="Script" uid="uid://cxoh4s5kbi1d6" path="res://Scenes/PauseMenu/PauseMenu.gd" id="2_yc4es"]
@@ -9,7 +9,23 @@
 [ext_resource type="AudioStream" uid="uid://bfxaaxpty45aa" path="res://Assets/SFX/fx_menu_pause.wav" id="6_blrd7"]
 [ext_resource type="AudioStream" uid="uid://du6kyo2c8xwio" path="res://Assets/SFX/fx_menu_unpause.wav" id="7_x6lxg"]
 
-[sub_resource type="Resource" id="Resource_x6lxg"]
+[sub_resource type="Resource" id="Resource_joepv"]
+script = ExtResource("4_x6lxg")
+invisibleNodes = Array[NodePath]([NodePath("Menu/Buttons")])
+visibleNodes = Array[NodePath]([NodePath("Menu/ConfigControllers")])
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_yko1y"]
+script = ExtResource("4_x6lxg")
+invisibleNodes = Array[NodePath]([NodePath("Menu/ConfigControllers")])
+visibleNodes = Array[NodePath]([NodePath("Menu/Buttons")])
+focusedNode = NodePath("Menu/Buttons/Back")
+transitionButtons = Dictionary[NodePath, StringName]({
+NodePath("Menu/Buttons/EditControllersButton"): &"configControllers"
+})
+metadata/_custom_type_script = "uid://d37o27scapfhv"
+
+[sub_resource type="Resource" id="Resource_blrd7"]
 resource_local_to_scene = true
 script = ExtResource("4_x6lxg")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/EditButton"), NodePath("ControlButtons/BackButton")])
@@ -18,7 +34,7 @@ enabledNodes = Array[NodePath]([NodePath("EditButtons/PauseButton"), NodePath("E
 focusedNode = NodePath("ControlButtons/CancelButton")
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
-[sub_resource type="Resource" id="Resource_qr5tg"]
+[sub_resource type="Resource" id="Resource_x6lxg"]
 resource_local_to_scene = true
 script = ExtResource("4_x6lxg")
 invisibleNodes = Array[NodePath]([NodePath("ControlButtons/CancelButton"), NodePath("ControlButtons/AcceptButton")])
@@ -31,7 +47,7 @@ NodePath("ControlButtons/EditButton"): &"edit"
 })
 metadata/_custom_type_script = "uid://d37o27scapfhv"
 
-[sub_resource type="Resource" id="Resource_o66ro"]
+[sub_resource type="Resource" id="Resource_qr5tg"]
 resource_local_to_scene = true
 script = ExtResource("4_x6lxg")
 visibleNodes = Array[NodePath]([NodePath("Warning")])
@@ -58,6 +74,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_es5up")
 script = ExtResource("2_yc4es")
+stages = Dictionary[StringName, ExtResource("4_x6lxg")]({
+&"configControllers": SubResource("Resource_joepv"),
+&"main": SubResource("Resource_yko1y")
+})
+firstStage = &"main"
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -92,9 +113,9 @@ offset_left = 445.0
 offset_top = 93.0
 offset_right = -445.0
 stages = Dictionary[StringName, ExtResource("4_x6lxg")]({
-&"edit": SubResource("Resource_x6lxg"),
-&"main": SubResource("Resource_qr5tg"),
-&"warning": SubResource("Resource_o66ro")
+&"edit": SubResource("Resource_blrd7"),
+&"main": SubResource("Resource_x6lxg"),
+&"warning": SubResource("Resource_qr5tg")
 })
 
 [node name="PlayerName" type="Label" parent="Menu"]
@@ -124,13 +145,12 @@ offset_right = 32.0
 offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 64
 alignment = 1
 
-[node name="GamepadSelectButton" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("3_a2m5i")]
+[node name="EditControllersButton" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("3_a2m5i")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_pf7fp")
 text = "Editar controles"
-focused = true
 upSelect = NodePath("../Back")
 downSelect = NodePath("../Back")
 upFallback = NodePath("../Back")
@@ -138,11 +158,13 @@ downFallback = NodePath("../Back")
 
 [node name="Back" parent="Menu/Buttons" node_paths=PackedStringArray("upSelect", "downSelect", "upFallback", "downFallback") instance=ExtResource("3_a2m5i")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pf7fp")
 text = "Volver"
-upSelect = NodePath("../GamepadSelectButton")
-downSelect = NodePath("../GamepadSelectButton")
-upFallback = NodePath("../GamepadSelectButton")
-downFallback = NodePath("../GamepadSelectButton")
+focused = true
+upSelect = NodePath("../EditControllersButton")
+downSelect = NodePath("../EditControllersButton")
+upFallback = NodePath("../EditControllersButton")
+downFallback = NodePath("../EditControllersButton")
 
 [node name="Pause" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_blrd7")
@@ -155,5 +177,5 @@ volume_db = -6.0
 bus = &"SFX"
 
 [connection signal="finished" from="Menu/ConfigControllers" to="." method="stopEditting"]
-[connection signal="pressed" from="Menu/Buttons/GamepadSelectButton" to="." method="startEditting"]
+[connection signal="pressed" from="Menu/Buttons/EditControllersButton" to="." method="startEditting"]
 [connection signal="pressed" from="Menu/Buttons/Back" to="." method="endPause"]

@@ -22,6 +22,9 @@ func setControllerId(id : int):
 		c.controller = id
 	
 	_showSetBindings()
+	
+	for k in _newEvents.keys():
+		_newEvents[k] = Controllers.getEventsForAction(k, controllerId)[0]
 
 func finish():
 	finished.emit()
@@ -50,9 +53,6 @@ var _waitingToEdit := false
 var _selectedAction := ""
 
 func _startedEditting(action : String):
-	for k in _newEvents.keys():
-		_newEvents[k] = Controllers.getEventsForAction(k, controllerId)[0]
-	
 	_selectedAction = action
 	_waitingToEdit = true
 	
@@ -67,6 +67,8 @@ func _startedEditting(action : String):
 
 func _input(event: InputEvent) -> void:
 	if event.is_released():
+		return
+	if not visible:
 		return
 	
 	# LT y RT son movimientos de ejes, pero registran muchas veces entonces hay que

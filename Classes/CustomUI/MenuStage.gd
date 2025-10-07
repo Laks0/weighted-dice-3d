@@ -21,18 +21,22 @@ signal requestTransition(newStageName : StringName)
 var _menuParent : MultiStageMenu
 var _active := false
 
+func _unfocusVisibleRecursive(node : Control):
+	if node is GamepadSelectUI: node.unfocus()
+	
+	for c in node.get_children():
+		if not c is Control: continue
+		if c.visible: _unfocusVisibleRecursive(c)
+
 func start(menu : Node):
 	if _active:
-		return
-	if not is_instance_valid(menu):
 		return
 	_menuParent = menu
 	_active = true
 	for n in invisibleNodes:
 		menu.get_node(n).visible = false
 	for n in visibleNodes:
-		if menu.get_node(n) is GamepadSelectUI:
-			menu.get_node(n).unfocus()
+		_unfocusVisibleRecursive(menu.get_node(n))
 		menu.get_node(n).visible = true
 	for n in disabledNodes:
 		menu.get_node(n).disabled = true

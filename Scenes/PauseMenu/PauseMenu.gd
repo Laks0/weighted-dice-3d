@@ -1,4 +1,5 @@
-extends Control
+@tool
+extends MultiStageMenu
 
 var pausedController : int
 var isPaused : bool = false #Esto me resultó necesario para hacer los sonidos de pausa
@@ -23,21 +24,19 @@ func startPause(controllerId : int):
 	elif isPaused && !$Pause.playing:
 		$Unpause.play()
 		isPaused = false
+	
+	restart()
 
 func endPause():
 	get_tree().set_pause(false)
 	visible = false
 
 func startEditting():
-	await get_tree().process_frame
-	%Buttons.visible = false
-	%ConfigControllers.visible = true
+	_transitionTo("configControllers")
 	%ConfigControllers.restart()
 
 func stopEditting():
-	await get_tree().process_frame
-	%Buttons.visible = true
-	%ConfigControllers.visible = false
+	_transitionTo("main")
 
 func _ready():
 	visible = false
