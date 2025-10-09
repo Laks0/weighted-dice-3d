@@ -147,7 +147,7 @@ func leaderboardToBet():
 	
 	betDisplay.startBetting()
 	$NewBetShow.setDisplayBet(BetHandler.currentBet)
-	
+	$NewBetShow/SpotLight3D.visible = true
 	await $NewBetShow.startAnimation(camera)
 	
 	await get_tree().create_timer(10).timeout
@@ -159,7 +159,7 @@ func leaderboardToBet():
 	currentStage = Stages.BETTING
 	
 	await camera.goToCamera(betCamera).finished
-	
+	$NewBetShow/SpotLight3D.visible = false
 	inBetting.emit()
 
 func resetGame():

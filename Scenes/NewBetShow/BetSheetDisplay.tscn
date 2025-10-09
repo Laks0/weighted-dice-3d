@@ -66,7 +66,7 @@ offset_top = 129.0
 offset_right = 513.0
 offset_bottom = 392.0
 grow_horizontal = 2
-theme_override_constants/separation = 19
+theme_override_constants/separation = -11
 
 [node name="BetNameLabel" type="Label" parent="HBoxContainer2"]
 custom_minimum_size = Vector2(1000, 0)
@@ -82,6 +82,7 @@ uppercase = true
 [node name="BetNameDescription" type="Label" parent="HBoxContainer2"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
+theme_override_constants/line_spacing = -17
 theme_override_font_sizes/font_size = 72
 text = "La descrición de la apuesta que puede ser larga"
 horizontal_alignment = 1

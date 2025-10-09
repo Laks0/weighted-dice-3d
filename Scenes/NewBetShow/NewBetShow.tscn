@@ -22,7 +22,7 @@ slotAnimation = NodePath("TragaMonedas_INT_v2/AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 0.9814477, 0.19172871, 0, -0.19172871, 0.9814477, -0.0200544, 5.933774, 17.248842)
 
 [node name="Hoja" parent="TragaMonedas_INT_v2" index="1"]
-transform = Transform3D(0.6434035, 0, 0, 0, -2.8632128e-08, -0.48081023, 0, 0.65502673, -2.1016882e-08, 0.002562344, 1.683424, 1.533625)
+transform = Transform3D(0.6434035, 0, 0, 0, 0.64057624, -0.100436635, 0, 0.1368288, 0.4702031, 0.002562344, 0.40643954, 1.9826269)
 
 [node name="OverTexture" type="Sprite3D" parent="TragaMonedas_INT_v2/Hoja" index="0"]
 transform = Transform3D(0.19499998, 0, 0, 0, -1.1395348e-08, -0.19136406, 0, 0.26069516, -1.5523876e-08, 0, -0.01, 0)
@@ -37,6 +37,9 @@ size = Vector2i(1024, 768)
 
 [node name="BetSheetDisplay" parent="TragaMonedas_INT_v2/Hoja/SubViewport" instance=ExtResource("6_nmlvg")]
 
+[node name="Rueda1" parent="TragaMonedas_INT_v2" index="3"]
+transform = Transform3D(0.3050157, 0, 0, 0, -1, 1.509958e-07, 0, -1.509958e-07, -1, -0.7356677, 3.1204267, 0.86627924)
+
 [node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda1" index="0"]
 transform = Transform3D(0.978, 0, 0, 0, -0.2878459, -0.077128105, 0, 0.077128105, -0.2878459, -0.0010895729, -0.24979353, -0.9338913)
 shaded = true
@@ -44,7 +47,7 @@ render_priority = 1
 texture = ExtResource("4_htrxt")
 
 [node name="Rueda2" parent="TragaMonedas_INT_v2" index="4"]
-transform = Transform3D(0.3050157, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.002948284, 3.1204267, 0.86627924)
+transform = Transform3D(0.3050157, 0, 0, 0, -0.8660249, 0.5000006, 0, -0.5000006, -0.8660249, -0.002948284, 3.1204267, 0.86627924)
 
 [node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda2" index="0"]
 transform = Transform3D(0.978, 0, 0, 0, -0.21071783, -0.21071783, 0, 0.21071783, -0.21071783, -0.00016955193, -0.6832733, -0.68387675)
@@ -53,7 +56,7 @@ render_priority = 1
 texture = ExtResource("4_htrxt")
 
 [node name="Rueda3" parent="TragaMonedas_INT_v2" index="5"]
-transform = Transform3D(0.3050157, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.7341067, 3.1204267, 0.86627924)
+transform = Transform3D(0.3050157, 0, 0, 0, -0.5, 0.8660253, 0, -0.8660253, -0.5, 0.7341067, 3.1204267, 0.86627924)
 
 [node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda3" index="0"]
 transform = Transform3D(0.978, 0, 0, 0, -0.077128075, -0.2878459, 0, 0.2878459, -0.077128075, -0.00034976006, -0.933671, -0.2506181)

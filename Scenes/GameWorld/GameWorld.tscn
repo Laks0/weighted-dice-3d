@@ -295,8 +295,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21,
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/StageHandler/NewBetShow"]
 transform = Transform3D(1, 2.1855685e-08, 5.856215e-09, -2.1855685e-08, 0.86602545, 0.5, 5.8562115e-09, -0.5, 0.86602545, -9.536743e-07, 7.371884, 12.727475)
+visible = false
 light_color = Color(1, 1, 0.7764706, 1)
-light_energy = 14.082
+light_energy = 14.0
 light_bake_mode = 1
 spot_range = 17.4037
 spot_angle = 25.662882
