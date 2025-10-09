@@ -206,7 +206,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -14.615)
 lobbyOutAnimationPlayer = NodePath("../LobbyOutAnimationPlayer")
 
 [node name="LobbyCamera" type="Camera3D" parent="SubViewport/StageHandler/Lobby"]
-transform = Transform3D(1, 0, 0, 0, 0.514395, 0.857553, 0, -0.857553, 0.514395, 0, 8.9294, 1.45245)
+transform = Transform3D(1, 0, 0, 0, 0.3698609, 0.92908716, 0, -0.92908716, 0.3698609, 0, 8.576004, 3.510109)
 cull_mask = 3
 fov = 47.0
 
@@ -258,6 +258,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 visible = false
 light_color = Color(1, 1, 0.745098, 1)
 light_energy = 0.2
+directional_shadow_mode = 0
 
 [node name="MultipleResCamera" parent="SubViewport/StageHandler" node_paths=PackedStringArray("startCamera") instance=ExtResource("8_ahv6l")]
 unique_name_in_owner = true

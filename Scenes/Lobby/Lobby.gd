@@ -51,7 +51,7 @@ func _ready():
 		add_child(chip)
 		i += 1
 	
-	$Maletin/AnimationPlayer.play("MaletinAAction_001")
+	$Maletin/AnimationPlayer.play("Cube_003Action_002")
 	$Maletin/AudioStreamPlayer.stream = maletin_abre
 	$Maletin/AudioStreamPlayer.play()
 
@@ -60,4 +60,4 @@ func startExitAnimation():
 		wall.disabled = true
 	$Maletin/AudioStreamPlayer.stream = maletin_cierra
 	get_tree().create_timer(.5).timeout.connect($Maletin/AudioStreamPlayer.play)
-	$Maletin/AnimationPlayer.play_backwards("MaletinAAction_001")
+	$Maletin/AnimationPlayer.play_backwards("Cube_003Action_002")
