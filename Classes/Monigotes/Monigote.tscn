@@ -66,7 +66,7 @@ region = Rect2(32, 392, 32, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xk8un"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 5
 shader = ExtResource("7_tb5pk")
 shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 shader_parameter/borderAlpha = 0.98

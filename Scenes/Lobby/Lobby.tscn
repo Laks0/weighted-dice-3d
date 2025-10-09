@@ -102,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2
 render_priority = 2
 outline_render_priority = 1
 modulate = Color(1, 1, 0.8, 1)
-text = "SALTAR: N / - / Xbox A"
+text = "SALTAR: N / coma / Xbox X"
 font = ExtResource("7_i56w4")
 font_size = 102
 outline_size = 32
@@ -136,7 +136,7 @@ outline_render_priority = 1
 modulate = Color(1, 1, 0.8, 0.588235)
 outline_modulate = Color(0, 0, 0, 0.588235)
 text = "AGARRAR: 
-mantener B / Alt / Xbox X"
+mantener B / punto / Xbox A"
 font = ExtResource("7_i56w4")
 font_size = 97
 outline_size = 27
