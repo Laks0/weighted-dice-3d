@@ -12,6 +12,10 @@ func _init():
 	
 	betDescription = "¿Quién va a morir primero esta ronda?"
 	_resultTextSingular = "%s murió primero"
+	
+	_rowInDefaultSlotWheelImage = 1
+	
+	videoGuide.file = "res://Scenes/NewBetShow/BetGuides/BetGuide_PrimeroEnMorir.ogv"
 
 func hasWon(candidate : int) -> bool:
 	return candidate == _result

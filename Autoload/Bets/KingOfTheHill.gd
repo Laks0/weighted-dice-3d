@@ -17,6 +17,10 @@ func _init():
 	betDescription = "¿Quién va a permanecer más tiempo en la colina?"
 	_resultTextSingular = "%s fue el rey de la colina"
 	_resultTextPlural = "%s fueron reyes de la colina"
+	
+	_rowInDefaultSlotWheelImage = 4
+	
+	videoGuide.file = "res://Scenes/NewBetShow/BetGuides/BetGuide_ReyDeLaColina.ogv"
 
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():

@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://drq6epvfqxecn"]
+
+[ext_resource type="Script" uid="uid://dq57w4rj48u1k" path="res://Scenes/NewBetShow/NewBetShowScene.gd" id="1_c1e2c"]
+[ext_resource type="PackedScene" uid="uid://bps7i2jbm7ckb" path="res://Scenes/NewBetShow/TragaMonedas_V2.glb" id="2_42myg"]
+[ext_resource type="PackedScene" uid="uid://bev2k6edhn82r" path="res://Scenes/NewBetShow/TragaMonedas_INT_v2.glb" id="3_htrxt"]
+[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="4_htrxt"]
+[ext_resource type="PackedScene" uid="uid://c6md0pyqkipjm" path="res://Scenes/NewBetShow/BetSheetDisplay.tscn" id="6_nmlvg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ifejj"]
+viewport_path = NodePath("TragaMonedas_INT_v2/Hoja/SubViewport")
+
+[node name="NewBetShow" type="Node3D" node_paths=PackedStringArray("ruedas", "slotAnimation")]
+script = ExtResource("1_c1e2c")
+ruedas = [NodePath("TragaMonedas_INT_v2/Rueda1"), NodePath("TragaMonedas_INT_v2/Rueda2"), NodePath("TragaMonedas_INT_v2/Rueda3")]
+slotAnimation = NodePath("TragaMonedas_INT_v2/AnimationPlayer")
+
+[node name="TragaMonedas_V2" parent="." instance=ExtResource("2_42myg")]
+
+[node name="TragaMonedas_INT_v2" parent="." instance=ExtResource("3_htrxt")]
+
+[node name="Camera" parent="TragaMonedas_INT_v2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9814477, 0.19172871, 0, -0.19172871, 0.9814477, -0.0200544, 5.933774, 17.248842)
+
+[node name="Hoja" parent="TragaMonedas_INT_v2" index="1"]
+transform = Transform3D(0.6434035, 0, 0, 0, -2.8632128e-08, -0.48081023, 0, 0.65502673, -2.1016882e-08, 0.002562344, 1.683424, 1.533625)
+
+[node name="OverTexture" type="Sprite3D" parent="TragaMonedas_INT_v2/Hoja" index="0"]
+transform = Transform3D(0.19499998, 0, 0, 0, -1.1395348e-08, -0.19136406, 0, 0.26069516, -1.5523876e-08, 0, -0.01, 0)
+shaded = true
+texture = SubResource("ViewportTexture_ifejj")
+
+[node name="SubViewport" type="SubViewport" parent="TragaMonedas_INT_v2/Hoja" index="1"]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+size = Vector2i(1024, 768)
+
+[node name="BetSheetDisplay" parent="TragaMonedas_INT_v2/Hoja/SubViewport" instance=ExtResource("6_nmlvg")]
+
+[node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda1" index="0"]
+transform = Transform3D(0.978, 0, 0, 0, -0.2878459, -0.077128105, 0, 0.077128105, -0.2878459, -0.0010895729, -0.24979353, -0.9338913)
+shaded = true
+render_priority = 1
+texture = ExtResource("4_htrxt")
+
+[node name="Rueda2" parent="TragaMonedas_INT_v2" index="4"]
+transform = Transform3D(0.3050157, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.002948284, 3.1204267, 0.86627924)
+
+[node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda2" index="0"]
+transform = Transform3D(0.978, 0, 0, 0, -0.21071783, -0.21071783, 0, 0.21071783, -0.21071783, -0.00016955193, -0.6832733, -0.68387675)
+shaded = true
+render_priority = 1
+texture = ExtResource("4_htrxt")
+
+[node name="Rueda3" parent="TragaMonedas_INT_v2" index="5"]
+transform = Transform3D(0.3050157, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.7341067, 3.1204267, 0.86627924)
+
+[node name="WinnerSprite" type="Sprite3D" parent="TragaMonedas_INT_v2/Rueda3" index="0"]
+transform = Transform3D(0.978, 0, 0, 0, -0.077128075, -0.2878459, 0, 0.2878459, -0.077128075, -0.00034976006, -0.933671, -0.2506181)
+shaded = true
+render_priority = 1
+texture = ExtResource("4_htrxt")
+
+[node name="AnimationPlayer" parent="TragaMonedas_INT_v2" index="6"]
+speed_scale = 2.0
+
+[node name="FullViewCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99763536, 0.068729, 0, -0.068729, 0.99763536, -9.536743e-07, 3.2622628, 8.950668)
+fov = 47.0
+
+[node name="CloseUpCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9458534, 0.32459414, 0, -0.32459414, 0.9458534, 0, 4.213845, 4.655395)
+fov = 47.0
+
+[editable path="TragaMonedas_V2"]
+[editable path="TragaMonedas_INT_v2"]

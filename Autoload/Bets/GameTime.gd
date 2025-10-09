@@ -13,6 +13,10 @@ func _init():
 	
 	betDescription = "¿Cuánto va a durar esta ronda?"
 	_resultTextSingular = "La partida duró %s"
+	
+	_rowInDefaultSlotWheelImage = 0
+	
+	videoGuide.file = "res://Scenes/NewBetShow/BetGuides/BetGuide_TiempoDeJuego.ogv"
 
 func startRound():
 	times = [0,0,0]

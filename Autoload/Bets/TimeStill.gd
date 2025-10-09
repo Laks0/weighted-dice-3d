@@ -10,6 +10,10 @@ func _init():
 	betDescription = "¿Quién va a estar más tiempo sin moverse?"
 	_resultTextSingular = "%s estuvo más tiempo sin moverse"
 	_resultTextPlural   = "%s estuvieron más tiempo sin moverse"
+	
+	_rowInDefaultSlotWheelImage = 3
+	
+	videoGuide.file = ("res://Scenes/NewBetShow/BetGuides/BetGuide_TiempoQuieto.ogv")
 
 func arenaUpdate(delta):
 	for mon : Monigote in _arena.getLivingMonigotes():

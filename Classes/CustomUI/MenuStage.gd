@@ -43,10 +43,11 @@ func start(menu : Node):
 	for n in enabledNodes:
 		menu.get_node(n).disabled = false
 	
-	await menu.get_tree().process_frame
-	await menu.get_tree().process_frame
-	await menu.get_tree().process_frame
-	await menu.get_tree().process_frame
+	if not Engine.is_editor_hint():
+		await menu.get_tree().process_frame
+		await menu.get_tree().process_frame
+		await menu.get_tree().process_frame
+		await menu.get_tree().process_frame
 	
 	if is_instance_valid(menu.get_node_or_null(focusedNode)):
 		menu.get_node(focusedNode).focus()

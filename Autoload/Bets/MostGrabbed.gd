@@ -11,6 +11,10 @@ func _init():
 	betDescription = "¿Qué jugador va a ser el más agarrado por los demás esta ronda?"
 	_resultTextSingular = "%s fue el más agarrado"
 	_resultTextPlural   = "%s fueron los más agarrados"
+	
+	_rowInDefaultSlotWheelImage = 6
+	
+	videoGuide.file = ("res://Scenes/NewBetShow/BetGuides/BetGuide_MasAgarrado.ogv")
 
 func startGame(arena : Arena):
 	for mon : Monigote in arena.getLivingMonigotes():

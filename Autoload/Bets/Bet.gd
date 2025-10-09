@@ -61,6 +61,17 @@ enum ScoreType {
 
 var _scoreType = ScoreType.INT
 
+var _defaultSlotWheelImage := preload("res://Scenes/NewBetShow/photo_2025-10-08_15-25-11.jpg")
+var _rowInDefaultSlotWheelImage : int = 0
+
+var videoGuide := VideoStreamTheora.new()
+
+func getSlotWheelImage(column : int = 0) -> Texture2D:
+	var res := AtlasTexture.new()
+	res.atlas = _defaultSlotWheelImage
+	res.region = Rect2(144*column, 144*_rowInDefaultSlotWheelImage, 144, 144)
+	return res
+
 func _pickSecondaryPrize():
 	var pickablePlayers := PlayerHandler.getPlayersAlive()\
 		.filter(func (p : PlayerHandler.Player): return p.bank < _maxBank)

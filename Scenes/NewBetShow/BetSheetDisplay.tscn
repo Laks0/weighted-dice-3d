@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6md0pyqkipjm"]
+
+[ext_resource type="Theme" uid="uid://bnaa8nx0gbxlb" path="res://DefaultTheme.tres" id="1_e7yak"]
+[ext_resource type="Script" uid="uid://cjsenpcc7utjl" path="res://Scenes/NewBetShow/BetSheetDisplay.gd" id="2_6duj6"]
+[ext_resource type="Texture2D" uid="uid://bm8k0hgo7w4o6" path="res://Assets/IcoFran.png" id="2_lufqj"]
+
+[sub_resource type="Gradient" id="Gradient_e7yak"]
+colors = PackedColorArray(0.88, 0.8536, 0.748, 1, 0.6902573, 0.65316415, 0.4909873, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lufqj"]
+noise_type = 2
+frequency = 0.0014
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6duj6"]
+width = 1024
+height = 768
+noise = SubResource("FastNoiseLite_lufqj")
+color_ramp = SubResource("Gradient_e7yak")
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_lufqj"]
+file = "res://Scenes/NewBetShow/BetGuides/BetGuide_AgarrarElChanchito.ogv"
+
+[node name="BetSheetDisplay" type="TextureRect"]
+offset_right = 1.0
+offset_bottom = 1.0
+theme = ExtResource("1_e7yak")
+texture = SubResource("NoiseTexture2D_6duj6")
+script = ExtResource("2_6duj6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 546.0
+offset_bottom = 196.0
+scale = Vector2(0.56, 0.56)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lufqj")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lufqj")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lufqj")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 192
+text = " Apostamos A:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -513.0
+offset_top = 129.0
+offset_right = 513.0
+offset_bottom = 392.0
+grow_horizontal = 2
+theme_override_constants/separation = 19
+
+[node name="BetNameLabel" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = -27
+theme_override_font_sizes/font_size = 112
+text = "agarrar el chanchito"
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="BetNameDescription" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "La descrición de la apuesta que puede ser larga"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GuidePlayer" type="VideoStreamPlayer" parent="."]
+self_modulate = Color(1, 1, 1, 0.80784315)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 476.0
+offset_right = 1330.0
+offset_bottom = 1196.0
+scale = Vector2(0.35119796, 0.35119796)
+stream = SubResource("VideoStreamTheora_lufqj")
+autoplay = true
+loop = true

@@ -175,3 +175,6 @@ func arenaUpdate(delta):
 	if not betOngoing:
 		return
 	currentBet.arenaUpdate(delta)
+
+func getRandomBet() -> Bet:
+	return bets.pick_random()

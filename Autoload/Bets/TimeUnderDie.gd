@@ -10,6 +10,10 @@ func _init():
 	betDescription = "¿Quién va a estar más tiempo abajo del dado?"
 	_resultTextSingular = "%s estuvo más abajo del dado"
 	_resultTextPlural = "%s estuvieron más abajo del dado"
+	
+	_rowInDefaultSlotWheelImage = 8
+	
+	videoGuide.file = ("res://Scenes/NewBetShow/BetGuides/BetGuide_TiempoBajoElDado.ogv")
 
 func arenaUpdate(delta):
 	if not is_instance_valid(_arena.die):

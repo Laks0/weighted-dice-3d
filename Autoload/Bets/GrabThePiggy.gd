@@ -12,6 +12,10 @@ func _init():
 	betDescription = "¿Quién va a sacar más monedas del chanchito?"
 	_resultTextSingular = "%s sacó más del chanchito"
 	_resultTextPlural = "%s sacaron más del chanchito"
+	
+	_rowInDefaultSlotWheelImage = 2
+	
+	videoGuide.file = "res://Scenes/NewBetShow/BetGuides/BetGuide_AgarrarElChanchito.ogv"
 
 func startGame(arena : Arena):
 	crown = load("res://Assets/Bets/PiggyBank.tscn").instantiate()

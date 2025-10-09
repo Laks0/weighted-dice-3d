@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=26 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/GameWorld/StageHandler.gd" id="1_hrf5g"]
 [ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="1_v4p10"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bww4tl6fwi7k" path="res://Classes/BetHUD/BetHUD.tscn" id="10_8foli"]
 [ext_resource type="PackedScene" uid="uid://dij606wt530ut" path="res://Scenes/GameWorld/Camara.glb" id="12_q76ww"]
 [ext_resource type="Script" uid="uid://dqvifl2io4eoy" path="res://Common/Hover.gd" id="13_yresm"]
+[ext_resource type="PackedScene" uid="uid://drq6epvfqxecn" path="res://Scenes/NewBetShow/NewBetShow.tscn" id="15_l7hxi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q76ww"]
 shader = ExtResource("1_v4p10")
@@ -166,6 +167,7 @@ mouse_target = true
 script = ExtResource("2_ryftk")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
@@ -265,6 +267,7 @@ startGameAnimationTime = 0.2
 startCamera = NodePath("../Lobby/LobbyCamera")
 
 [node name="PauseMenu" parent="SubViewport/StageHandler" instance=ExtResource("9_obf4j")]
+visible = false
 
 [node name="BetHUD" parent="SubViewport/StageHandler" instance=ExtResource("10_8foli")]
 visible = false
@@ -286,6 +289,17 @@ frequency = 4.0
 
 [node name="PivoteCamara" parent="SubViewport/StageHandler/Camara2" index="1"]
 transform = Transform3D(1.3803834, 0.40242746, -4.6317155e-09, -0.3698726, 1.5018798, -3.5181323e-08, -4.2570463e-09, 3.5181323e-08, 1.5548605, -4.538849, 1.3251228, -3.9679844e-07)
+
+[node name="NewBetShow" parent="SubViewport/StageHandler" instance=ExtResource("15_l7hxi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 0, -12)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/StageHandler/NewBetShow"]
+transform = Transform3D(1, 2.1855685e-08, 5.856215e-09, -2.1855685e-08, 0.86602545, 0.5, 5.8562115e-09, -0.5, 0.86602545, -9.536743e-07, 7.371884, 12.727475)
+light_color = Color(1, 1, 0.7764706, 1)
+light_energy = 14.082
+light_bake_mode = 1
+spot_range = 17.4037
+spot_angle = 25.662882
 
 [connection signal="inArena" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="showBetName"]
 [connection signal="inLeaderboard" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="reset"]

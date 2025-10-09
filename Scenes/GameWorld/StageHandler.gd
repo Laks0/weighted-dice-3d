@@ -146,8 +146,13 @@ func leaderboardToBet():
 	betDisplay.position.y = betDisplayHeight
 	
 	betDisplay.startBetting()
+	$NewBetShow.setDisplayBet(BetHandler.currentBet)
 	
-	await betDisplay.showBetNameAnimation(camera)
+	await $NewBetShow.startAnimation(camera)
+	
+	await get_tree().create_timer(10).timeout
+	
+	#await betDisplay.showBetNameAnimation(camera)
 	
 	arena.setTableRender(true)
 	
