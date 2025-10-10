@@ -124,9 +124,11 @@ func pushAnimation():
 	var tween := mon.grabBody.create_tween()
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y).normalized()
 	var displacement := forcePercentage * .5
-	mon.grabBody.pauseEscapes()
+	if mon.grabBody is Monigote:
+		mon.grabBody.pauseEscapes()
 	tween.tween_property(mon.grabBody, "global_position", -displacement*dir3d, .05).as_relative()
 	tween.tween_interval(.2*forcePercentage)
 	tween.tween_property(mon.grabBody, "global_position", 2*displacement*dir3d, .025).as_relative()
 	tween.tween_callback(mon.push)
-	tween.tween_callback(mon.grabBody.resumeEscapes)
+	if mon.grabBody is Monigote:
+		tween.tween_callback(mon.grabBody.resumeEscapes)

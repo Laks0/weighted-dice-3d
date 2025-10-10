@@ -44,7 +44,7 @@ func _ready():
 		
 		var area : Area3D = $ChipAreas.get_child(id)
 		area.body_entered.connect(func (body):
-			if body != chip or body.grabbed:
+			if body != chip:
 				return
 			_isReady[id] = true
 			area.get_node("ReadyLabel").visible = true)
