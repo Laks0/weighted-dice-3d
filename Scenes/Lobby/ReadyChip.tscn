@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://1vsjqwkprn18"]
+[gd_scene load_steps=7 format=3 uid="uid://1vsjqwkprn18"]
 
 [ext_resource type="Script" uid="uid://gkc0htmbmget" path="res://Scenes/Lobby/ReadyChip.gd" id="1_jqs34"]
+[ext_resource type="PackedScene" uid="uid://c41m7jqool3bh" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplaySprite3D/InputDisplaySprite3D.tscn" id="2_10537"]
 [ext_resource type="PackedScene" uid="uid://cq5gqlwg77y81" path="res://Classes/BetDisplay/ficha_mesh.tscn" id="2_snnl7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ppffs"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nft4e"]
 resource_local_to_scene = true
@@ -15,6 +19,10 @@ collision_mask = 7
 script = ExtResource("1_jqs34")
 grabDistance = 0.4
 affectedByGravity = true
+
+[node name="InputDisplaySprite3d" parent="." instance=ExtResource("2_10537")]
+transform = Transform3D(0.7, 0, 0, 0, -3.059797e-08, 0.7, 0, -0.7, -3.059797e-08, -0.7961488, 0, 0)
+texture = SubResource("ViewportTexture_ppffs")
 
 [node name="FichaMesh" parent="." instance=ExtResource("2_snnl7")]
 transform = Transform3D(0.35, 0, 0, 0, 0.032, 0, 0, 0, 0.35, 0, 0, 0)
