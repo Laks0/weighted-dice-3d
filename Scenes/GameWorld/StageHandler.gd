@@ -146,6 +146,7 @@ func leaderboardToBet():
 	currentStage = Stages.BETTING
 	
 	await camera.goToCamera(betCamera).finished
+	$BetDisplaySimple._startOddsAnimations()
 	$NewBetShow/SpotLight3D.visible = false
 	inBetting.emit()
 

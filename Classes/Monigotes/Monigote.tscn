@@ -66,7 +66,7 @@ region = Rect2(32, 392, 32, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xk8un"]
 resource_local_to_scene = true
-render_priority = 1
+render_priority = 5
 shader = ExtResource("7_tb5pk")
 shader_parameter/spriteTexture = SubResource("AtlasTexture_i8m1s")
 shader_parameter/borderAlpha = 0.98
@@ -227,6 +227,8 @@ flatness = 0.88
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.5
 scale_curve = SubResource("CurveTexture_mr8r7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ck18g"]
@@ -290,7 +292,7 @@ stream_0/stream = ExtResource("42_mr8r7")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1xu7"]
 radius = 0.147903
-height = 0.70179963
+height = 0.602607
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7joh5"]
 particle_flag_rotate_y = true
@@ -425,7 +427,7 @@ _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://dn1v06eq7r2v0"
 
 [node name="BetSignalSprite" type="Sprite3D" parent="AnimatedSprite"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.07372, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.2833583, 0)
 visible = false
 layers = 3
 texture_filter = 0
@@ -433,12 +435,13 @@ render_priority = 1
 texture = ExtResource("19_0df27")
 
 [node name="PlayerName" type="Label3D" parent="AnimatedSprite"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.856028, 0.115458)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.88990265, 0.115458)
 visible = false
-render_priority = 2
-outline_render_priority = 1
+render_priority = 20
+outline_render_priority = 19
 text = "Juancho"
 font = ExtResource("21_xwq3q")
+font_size = 45
 
 [node name="HeadFloorParticles" type="GPUParticles3D" parent="AnimatedSprite"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.767073, 0.04573506)
@@ -461,7 +464,7 @@ script = ExtResource("21_d464q")
 
 [node name="RotationRaycastNoSignal" type="RayCast3D" parent="AnimatedSprite/Animations3D/Billboard"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-target_position = Vector3(0, 0.43, 0)
+target_position = Vector3(0, 0.535, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
@@ -469,7 +472,7 @@ debug_shape_thickness = 5
 [node name="RotationRaycastSignal" type="RayCast3D" parent="AnimatedSprite/Animations3D/Billboard"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 enabled = false
-target_position = Vector3(0, 0.79, 0)
+target_position = Vector3(0, 0.83, 0)
 collision_mask = 4
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
@@ -592,7 +595,7 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 trail_enabled = true
-trail_lifetime = 0.06
+trail_lifetime = 0.09999999999999999
 process_material = SubResource("ParticleProcessMaterial_63dgn")
 draw_pass_1 = SubResource("TubeTrailMesh_st7g8")
 
@@ -665,6 +668,7 @@ mon = NodePath("..")
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0104858875, 0)
 shape = SubResource("CapsuleShape3D_q1xu7")
 
 [node name="HurtTime" type="Timer" parent="."]

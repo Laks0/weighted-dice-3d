@@ -96,6 +96,8 @@ func removeChipDisplay(playerId : int) -> void:
 
 func _process(_delta):
 	for mon in ownedMonigotes:
+		if not is_instance_valid(mon):
+			continue
 		mon.position = getPositionForMonigote(mon.player.id)
 	
 	# Si tiene monigotes, muestra los valores de las fichas. No es lo más elegante pero anda
