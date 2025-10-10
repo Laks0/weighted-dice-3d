@@ -1,63 +1,82 @@
 extends Node3D
 class_name Briefcase
 
-# Señales que escucha el stageHandler
-@warning_ignore("unused_signal")
-signal monigoteReady(mon)
-@warning_ignore("unused_signal")
-signal monigoteUnready(mon)
+signal stageFinished
 
-@export var lobbyOutAnimationPlayer : AnimationPlayer
-@export var maxLobbyTime := 50.0
+@export var inputDisplayScene : PackedScene
 
-@export var buttonHintScene : PackedScene
 @export var maletin_abre : AudioStreamWAV
 @export var maletin_cierra : AudioStreamWAV
 
 @export var readyChipScene : PackedScene
 
-## Dada la lista de monigotes, los posiciona en el lobby (con posiciones globales)
-func positionMonigotes(mons : Array[Monigote]) -> void:
-	var xPos = -3
-	for m : Monigote in mons:
-		m.global_position = to_global(Vector3(xPos, Globals.SPRITE_HEIGHT, -8.5))
-		xPos += 1
-	
-	for mon : Monigote in mons:
-		var device = mon.player.inputController
-		mon.beenGrabbed.connect(func():
-			var hint :AnimatedSprite3D= buttonHintScene.instantiate()
-			
-			mon.add_child(hint)
-			hint.position = Vector3(0,1,0)
-			
-			if device == Controllers.KB:
-				hint.play("kb")
-			elif device == Controllers.KB2:
-				hint.play("kb_alt")
-			else:
-				hint.play("xbox")
-			
-			mon.escaped.connect(hint.queue_free)
-			mon.wasPushed.connect(hint.queue_free.unbind(3))
-		)
+@export var mainCamera : MultipleResCamera
+
+@export var _monigotePositions : Array[Marker3D]
+var _monigotes : Array[Monigote]
+var _isInsideBriefcase : Dictionary[int, bool]
+var _onPartitionsStage := true
 
 func _ready():
+	if Debug.vars.skipLobby:
+		await get_tree().physics_frame
+		end()
+		return
+	
+	_spawnMonigotes()
+	$Interior/AnimationPlayer.animation_finished.connect(func (_a):
+		$Interior/PlayerInsideDetector.monitoring = true
+		for mon in _monigotes:
+			mon.unfreeze())
+	
+	mainCamera.global_transform = $ExteriorCamera.global_transform
+	
 	var i = 0
 	for id in PlayerHandler.getPlayersAliveById():
 		var chip = readyChipScene.instantiate()
-		chip.position = Vector3(-3 + i, .3, -6)
+		chip.position = Vector3(0, .3, -2.5 + i)
 		chip.playerId = id
 		add_child(chip)
 		i += 1
 	
 	$Maletin/AnimationPlayer.play("Cube_003Action_002")
 	$Maletin/AudioStreamPlayer.stream = maletin_abre
-	$Maletin/AudioStreamPlayer.play()
+	mainCamera.global_transform = $ExteriorCamera.global_transform
+	$Interior/AnimationPlayer.play("RaisePartitions")
 
-func startExitAnimation():
-	for wall : CollisionShape3D in $Paredes.get_children():
-		wall.disabled = true
-	$Maletin/AudioStreamPlayer.stream = maletin_cierra
-	get_tree().create_timer(.5).timeout.connect($Maletin/AudioStreamPlayer.play)
-	$Maletin/AnimationPlayer.play_backwards("Cube_003Action_002")
+func _spawnMonigotes() -> void:
+	_monigotes = PlayerHandler.instantiatePlayers()
+	for i in range(_monigotes.size()):
+		var mon : Monigote = _monigotes[i]
+		add_child(mon)
+		mon.freeze()
+		mon.animatedSprite.showName()
+		_isInsideBriefcase[mon.player.id] = false
+		
+		var jumpHint :Sprite3D= inputDisplayScene.instantiate()
+		_monigotePositions[i].add_child(jumpHint)
+		var direction : float = sign((global_position - _monigotePositions[i].global_position).x)
+		jumpHint.position = Vector3(0,.1,-direction)
+		jumpHint.rotation.x = -PI/2
+		jumpHint.rotation.y = PI/2
+		jumpHint.setBindingOnControllersAction("jump", mon.player.inputController)
+
+func _physics_process(_delta: float) -> void:
+	if _onPartitionsStage and $Interior/AnimationPlayer.is_playing():
+		for i in range(_monigotes.size()):
+			_monigotes[i].global_position = _monigotePositions[i].global_position
+
+func _removePartitions():
+	_onPartitionsStage = false
+	await mainCamera.goToCamera($InteriorCamera).finished
+	$Interior.queue_free()
+
+func onBodyEnteredBriefcase(body: Node3D) -> void:
+	if body is Monigote:
+		_isInsideBriefcase[body.player.id] = true
+		if _isInsideBriefcase.values().all(func (v : bool): return v):
+			_removePartitions()
+
+func end():
+	stageFinished.emit()
+	queue_free()

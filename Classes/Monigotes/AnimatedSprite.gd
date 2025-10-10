@@ -52,13 +52,15 @@ func _ready():
 	
 	material_override.set_shader_parameter("outline_color", mon.player.color)
 
-func arenaReady():
-	onArena = true
-	var currentBet : Bet = BetHandler.currentBet
+func showName():
 	$PlayerName.visible = true
 	$PlayerName.text = mon.player.name
 	$PlayerName.modulate = mon.player.color
-	
+
+func arenaReady():
+	onArena = true
+	var currentBet : Bet = BetHandler.currentBet
+	showName()
 	if currentBet == null:
 		return
 	

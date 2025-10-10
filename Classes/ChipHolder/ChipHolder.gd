@@ -14,10 +14,10 @@ var ownedMonigotes : Array[Monigote] = []
 
 @export var camera : MultipleResCamera
 @export var worldEnvironment : WorldEnvironment
-@onready var skyMaterial :ShaderMaterial= worldEnvironment.environment.sky.sky_material
+#@onready var skyMaterial :ShaderMaterial= worldEnvironment.environment.sky.sky_material
 
-@onready var defaultSkyColor : Color = skyMaterial.get_shader_parameter("sky_color")
-@onready var defaultSkyRotation : float = skyMaterial.get_shader_parameter("rotation_strength")
+#@onready var defaultSkyColor : Color = skyMaterial.get_shader_parameter("sky_color")
+#@onready var defaultSkyRotation : float = skyMaterial.get_shader_parameter("rotation_strength")
 
 ## La diferencia entre la base de una pila y la posición en donde tiene que ir la ficha de bonus
 @export var positionDifferenceForBonusChip := Vector3(.5, .33, .5)
@@ -129,7 +129,7 @@ func startLeaderboardAnimation(winnerId):
 		
 		nextRound.connect(bonusChip.queue_free)
 	
-	setSkyRotationStrength(defaultSkyRotation*2)
+	#setSkyRotationStrength(defaultSkyRotation*2)
 
 	gameEnded = BetHandler.round == BetHandler.roundAmount or PlayerHandler.getPlayersAlive().size() == 1
 	
@@ -139,7 +139,7 @@ func startLeaderboardAnimation(winnerId):
 	else:
 		$RoundNumber.text = "GAME OVER"
 		$RoundNumber.modulate = Color.RED
-		skyMaterial.set_shader_parameter("speed", skySpeed)
+		#skyMaterial.set_shader_parameter("speed", skySpeed)
 	
 	await get_tree().create_timer(1).timeout
 	if BetHandler.round != 1:
@@ -231,7 +231,7 @@ func startLeaderboardAnimation(winnerId):
 	
 	if winners.size() == 1:
 		await camera.zoomTo(getPositionForMonigote(winner.id)).finished
-		goToSkyColor(winner.color)
+		#goToSkyColor(winner.color)
 			# Fade in texto de ganador
 		$WinnerLabel.text = "¡GANÓ %s!" % winner.name
 	else:
@@ -257,23 +257,23 @@ func startLeaderboardAnimation(winnerId):
 	$EndgameButtons.get_children()[0].focused = true
 	gameEnded = true
 
-func goToSkyColor(color : Color, alpha := .5, time := .5, instant := false):
-	if instant:
-		skyMaterial.set_shader_parameter("sky_color", color*alpha)
-		return
-	
-	create_tween().tween_method(func(c : Color):
-		skyMaterial.set_shader_parameter("sky_color", c)
-	,skyMaterial.get_shader_parameter("sky_color"), color*alpha, time)
-
-func setSkyRotationStrength(strength : float, time := .2, instant := false):
-	if instant:
-		skyMaterial.set_shader_parameter("rotation_strength", strength)
-		return
-	
-	create_tween().tween_method(func(s : float):
-		skyMaterial.set_shader_parameter("rotation_strength", s)
-	,skyMaterial.get_shader_parameter("rotation_strength"), strength, time)
+#func goToSkyColor(color : Color, alpha := .5, time := .5, instant := false):
+	#if instant:
+		#skyMaterial.set_shader_parameter("sky_color", color*alpha)
+		#return
+	#
+	#create_tween().tween_method(func(c : Color):
+		#skyMaterial.set_shader_parameter("sky_color", c)
+	#,skyMaterial.get_shader_parameter("sky_color"), color*alpha, time)
+#
+#func setSkyRotationStrength(strength : float, time := .2, instant := false):
+	#if instant:
+		#skyMaterial.set_shader_parameter("rotation_strength", strength)
+		#return
+	#
+	#create_tween().tween_method(func(s : float):
+		#skyMaterial.set_shader_parameter("rotation_strength", s)
+	#,skyMaterial.get_shader_parameter("rotation_strength"), strength, time)
 
 ## Agrega a todos los jugadores una cantidad de fichas decidida por llamar amountGetter en su id
 ## retorna el tween que agrega las fichas
@@ -312,9 +312,9 @@ func _input(event):
 ## TODO: Esta lógica no se puede quedar acá, habría que mover todo lo posible a StageHandler
 func goToNextRound() -> void:
 	if gameEnded:
-		skyMaterial.set_shader_parameter("speed", 1)
-		goToSkyColor(defaultSkyColor, 1, 0, true)
-		setSkyRotationStrength(defaultSkyRotation, 0, true)
+		#skyMaterial.set_shader_parameter("speed", 1)
+		#goToSkyColor(defaultSkyColor, 1, 0, true)
+		#setSkyRotationStrength(defaultSkyRotation, 0, true)
 		resetRequest.emit()
 		return
 		
@@ -324,11 +324,11 @@ func goToNextRound() -> void:
 	$BetResultsLabel.text = ""
 	$SurvivorLabel.text = ""
 	waitingToStart = false
-	setSkyRotationStrength(defaultSkyRotation)
+	#setSkyRotationStrength(defaultSkyRotation)
 
 func _on_reselect_characters_pressed():
-	skyMaterial.set_shader_parameter("speed", 1)
-	goToSkyColor(defaultSkyColor, 1, 0, true)
-	setSkyRotationStrength(defaultSkyRotation, 0, true)
+	#skyMaterial.set_shader_parameter("speed", 1)
+	#goToSkyColor(defaultSkyColor, 1, 0, true)
+	#setSkyRotationStrength(defaultSkyRotation, 0, true)
 	PlayerHandler.deleteAllPlayers()
 	get_tree().change_scene_to_file("res://Scenes/CharacterScreen/CharacterScreen.tscn")

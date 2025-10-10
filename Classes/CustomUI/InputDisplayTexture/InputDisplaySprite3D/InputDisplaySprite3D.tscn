@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c41m7jqool3bh"]
+
+[ext_resource type="PackedScene" uid="uid://c7eaajhtx0bon" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplayTexture.tscn" id="1_d7nf8"]
+[ext_resource type="Script" uid="uid://dhndvewvlay1m" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplaySprite3D/InputDisplaySprite3D.gd" id="1_kqcrr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d7nf8"]
+viewport_path = NodePath("SubViewport")
+
+[node name="InputDisplaySprite3d" type="Sprite3D"]
+texture_filter = 0
+render_priority = 1
+texture = SubResource("ViewportTexture_d7nf8")
+script = ExtResource("1_kqcrr")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(96, 96)
+
+[node name="InputDisplayTexture" parent="SubViewport" instance=ExtResource("1_d7nf8")]

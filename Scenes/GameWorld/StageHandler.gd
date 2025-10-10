@@ -39,12 +39,7 @@ func _ready():
 	# Las paredes de la arena tienen que empezar desabilitadas para poder tener monigotes fuera
 	arena.setWallsDisabled(true)
 	
-	createMonigotes()
-	lobby.positionMonigotes(monigotes)
-	lobby.monigoteReady.connect(onLobbyMonigoteReady)
-	
-	if Debug.vars.skipLobby:
-		lobbyToArena()
+	lobby.stageFinished.connect(goToArena)
 
 ## Crea los monigotes necesarios y los pone en Arena.
 ## IMPORTANTE: para evitar problemas de path, los monigotes siempre son hijos directos de Arena
@@ -83,8 +78,6 @@ func jumpMonigoteTo(monigote : Monigote, pos : Vector3) -> Tween:
 ###########################
 # Funciones de transición #
 ###########################
-## La transición para ir a la arena es la misma viniendo desde cualquier stage
-## Desde el lobby se llama en la animación de lobbyOut
 func goToArena():
 	currentStage = Stages.TRANSITION
 	chipHolder.disownAllMonigotes()
@@ -101,12 +94,6 @@ func goToArena():
 	destroyMonigotes()
 	currentStage = Stages.ARENA
 	inArena.emit()
-
-func lobbyToArena():
-	destroyMonigotes()
-	
-	$LobbyOutAnimationPlayer.play("LobbyOutAnimation")
-	$LobbyOutAnimationPlayer.animation_finished.connect(lobby.queue_free.unbind(1))
 
 ## Cuánto se mueve en y el bet display para que no moleste a la cámara del leaderboard
 var betDisplayDisplacement := -1.5
@@ -171,17 +158,3 @@ func resetGame():
 func restartRound():
 	BetHandler.resetRound()
 	goToArena()
-
-######################
-# Señal desde lobby #
-######################
-var lobbyMonigotesReady := 0
-func onLobbyMonigoteReady(mon : Monigote):
-	lobbyMonigotesReady += 1
-	
-	chipHolder.showChipDisplay(mon.player.id)
-	
-	if lobbyMonigotesReady < PlayerHandler.getPlayersAlive().size():
-		return
-	
-	lobbyToArena()

@@ -26,8 +26,8 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_5bfa3"]
 device = -1
-keycode = 44
-unicode = 44
+keycode = 46
+unicode = 46
 
 [node name="InputDisplayTexture" type="TextureRect"]
 custom_minimum_size = Vector2(48, 48)
