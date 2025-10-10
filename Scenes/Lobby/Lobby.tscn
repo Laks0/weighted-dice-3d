@@ -1200,6 +1200,15 @@ text = "El toto"
 font = ExtResource("8_1pw17")
 font_size = 66
 
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.397464, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
+font = ExtResource("8_1pw17")
+font_size = 66
+
 [node name="Area3D2" type="Area3D" parent="ChipAreas"]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -3.668122, 0, -1.7477415)
 
@@ -1213,6 +1222,15 @@ visible = false
 render_priority = 2
 outline_render_priority = 1
 text = "El toto"
+font = ExtResource("8_1pw17")
+font_size = 66
+
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.397464, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
 font = ExtResource("8_1pw17")
 font_size = 66
 
@@ -1232,6 +1250,15 @@ text = "El toto"
 font = ExtResource("8_1pw17")
 font_size = 66
 
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.397464, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
+font = ExtResource("8_1pw17")
+font_size = 66
+
 [node name="Area3D4" type="Area3D" parent="ChipAreas"]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.7205837, 0, 1.7283373)
 
@@ -1245,6 +1272,15 @@ visible = false
 render_priority = 2
 outline_render_priority = 1
 text = "El toto"
+font = ExtResource("8_1pw17")
+font_size = 66
+
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.4318304, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
 font = ExtResource("8_1pw17")
 font_size = 66
 
@@ -1264,6 +1300,15 @@ text = "El toto"
 font = ExtResource("8_1pw17")
 font_size = 66
 
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D5"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.4318304, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
+font = ExtResource("8_1pw17")
+font_size = 66
+
 [node name="Area3D6" type="Area3D" parent="ChipAreas"]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.6335216, 0, -1.8303071)
 
@@ -1277,6 +1322,15 @@ visible = false
 render_priority = 2
 outline_render_priority = 1
 text = "El toto"
+font = ExtResource("8_1pw17")
+font_size = 66
+
+[node name="ReadyLabel" type="Label3D" parent="ChipAreas/Area3D6"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.4318304, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
 font = ExtResource("8_1pw17")
 font_size = 66
 
