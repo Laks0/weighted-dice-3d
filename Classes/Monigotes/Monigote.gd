@@ -61,7 +61,17 @@ func _physics_process(_delta):
 func arenaReady():
 	$AnimatedSprite.arenaReady()
 
+var _escapesPaused := false
+
+func pauseEscapes():
+	_escapesPaused = true
+
+func resumeEscapes():
+	_escapesPaused = false
+
 func attemptEscape():
+	if _escapesPaused:
+		return
 	escapeMovements += 1
 	attemptedEscape.emit()
 	Input.start_joy_vibration(controller, .3, 0, .2)
