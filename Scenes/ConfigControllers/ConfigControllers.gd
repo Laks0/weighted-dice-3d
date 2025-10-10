@@ -110,6 +110,7 @@ func _input(event: InputEvent) -> void:
 	_changeEvent(event)
 
 func _changeEvent(newEvent : InputEvent):
+	$Select.play()
 	for action in _newEvents.keys():
 		if _newEvents[action] != null and _newEvents[action].is_match(newEvent, false):
 			_newEvents[action] = null
@@ -136,4 +137,5 @@ func _onAcceptButtonPressed() -> void:
 	else:
 		await get_tree().physics_frame
 		await get_tree().physics_frame
+		$Select.play()
 		_transitionTo(StringName("warning"))
