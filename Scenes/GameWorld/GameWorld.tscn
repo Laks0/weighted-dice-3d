@@ -155,7 +155,7 @@ fov = 47.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/StageHandler" node_paths=PackedStringArray("controllingLights")]
 environment = ExtResource("6_l7hxi")
 script = ExtResource("7_vvqcd")
-controllingLights = [NodePath("../Arena/DirectionalLight3D")]
+controllingLights = [null]
 
 [node name="GlobalLight" type="DirectionalLight3D" parent="SubViewport/StageHandler/WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.48156, 7)
@@ -210,6 +210,5 @@ spot_angle = 25.662882
 [connection signal="inLeaderboard" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="reset"]
 
 [editable path="SubViewport/StageHandler/Arena"]
-[editable path="SubViewport/StageHandler/Arena/Floor/Mesa"]
 [editable path="SubViewport/StageHandler/Camara"]
 [editable path="SubViewport/StageHandler/Camara2"]

@@ -70,6 +70,7 @@ region = Rect2(126, 231, 32, 32)
 [node name="AudienceMember" type="Sprite3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 layers = 32
+modulate = Color(0.6926399, 0.5304, 0.78, 1)
 billboard = 1
 texture_filter = 0
 render_priority = 1

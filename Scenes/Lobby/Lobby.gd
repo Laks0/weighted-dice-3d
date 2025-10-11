@@ -95,7 +95,8 @@ func _physics_process(_delta: float) -> void:
 func _removePartitions():
 	_onPartitionsStage = false
 	await mainCamera.goToCamera($InteriorCamera).finished
-	$Interior.queue_free()
+	if is_instance_valid($Interior):
+		$Interior.queue_free()
 
 func onBodyEnteredBriefcase(body: Node3D) -> void:
 	if body is Monigote:

@@ -1,6 +1,13 @@
-[gd_resource type="Environment" load_steps=10 format=3 uid="uid://dh2efkygayqvn"]
+[gd_resource type="Environment" load_steps=12 format=3 uid="uid://dh2efkygayqvn"]
 
 [ext_resource type="Shader" uid="uid://rhsfbkbknpc4" path="res://Scenes/Arena/SkyShader.gdshader" id="1_lbq3v"]
+
+[sub_resource type="Gradient" id="Gradient_eun35"]
+offsets = PackedFloat32Array(0.01, 0.085, 1)
+colors = PackedColorArray(0.0034266661, 0.0032, 0.01, 1, 0.08000002, 0.04, 0.1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0a8ub"]
+gradient = SubResource("Gradient_eun35")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nb83e"]
 noise_type = 0
@@ -54,7 +61,7 @@ background_energy_multiplier = 1.4
 sky = SubResource("Sky_uapgf")
 sky_custom_fov = 16.5
 ambient_light_source = 2
-ambient_light_color = Color(0.64589995, 0.15723294, 0.59788316, 1)
+ambient_light_color = Color(0.48886538, 0.27637923, 0.652964, 1)
 reflected_light_source = 1
 tonemap_mode = 1
 tonemap_exposure = 1.6
@@ -68,3 +75,5 @@ volumetric_fog_density = 0.0
 volumetric_fog_length = 105.94
 volumetric_fog_ambient_inject = 0.23
 volumetric_fog_sky_affect = 0.405
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_0a8ub")

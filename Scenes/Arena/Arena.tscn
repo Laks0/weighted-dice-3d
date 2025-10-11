@@ -1,12 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://ckp8t2lxcltg3"]
+[gd_scene load_steps=31 format=3 uid="uid://ckp8t2lxcltg3"]
 
 [ext_resource type="Script" uid="uid://2ovt3hbgjlvh" path="res://Scenes/Arena/Arena.gd" id="1_txoyd"]
 [ext_resource type="PackedScene" uid="uid://bu6wud186flga" path="res://Classes/Die/Die.tscn" id="2_gkaff"]
 [ext_resource type="PackedScene" uid="uid://darmjw342doj5" path="res://Scenes/Arena/Mesa.glb" id="3_h7err"]
 [ext_resource type="PackedScene" uid="uid://bnxn215f58sus" path="res://Scenes/Arena/CardShowAnimation/CardShowAnimation.tscn" id="3_wm28h"]
+[ext_resource type="LightmapGIData" uid="uid://w02vjkpiblns" path="res://Scenes/Arena/Arena.lmbake" id="4_ja8rw"]
 [ext_resource type="Script" uid="uid://dh3iem70qs4os" path="res://Scenes/Arena/EffectsManager.gd" id="4_rx763"]
 [ext_resource type="PackedScene" uid="uid://d1nh5obk35kds" path="res://Classes/Effects/ShakenAndStirred/ShakenAndStirredEffect.tscn" id="4_tqem7"]
 [ext_resource type="PackedScene" uid="uid://btb66ctn3yce2" path="res://Classes/Effects/OliveRoll/OliveRollEffect.tscn" id="5_ed70i"]
+[ext_resource type="PackedScene" uid="uid://0o3k7gn6inlb" path="res://Classes/Effects/FullHouse/Carta.glb" id="6_pioo0"]
 [ext_resource type="PackedScene" uid="uid://mbunjoeth1i7" path="res://Classes/Effects/ChipsAreDown/ChipsAreDownEffect.tscn" id="6_x3vxf"]
 [ext_resource type="PackedScene" uid="uid://bx1tfik0chsfl" path="res://Classes/Effects/Spikes/SpikesEffect.tscn" id="10_vf6cn"]
 [ext_resource type="PackedScene" uid="uid://cxjh4xet8soqm" path="res://Classes/Effects/GetTheBallRollingEffect/GetTheBallRollingEffect.tscn" id="11_7goy4"]
@@ -24,6 +26,8 @@ rough = true
 absorbent = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kbgdt"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_50kmb"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7a2co"]
 plane = Plane(0, 0, 1, 0)
@@ -95,8 +99,130 @@ physics_material_override = SubResource("PhysicsMaterial_k7w7e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_kbgdt")
 
-[node name="Mesa" parent="Floor" instance=ExtResource("3_h7err")]
-transform = Transform3D(-2.3009637e-08, 0, -0.52639914, 0, 0.52639914, 0, 0.52639914, 0, -2.3009637e-08, 0, -0.8096213, 0)
+[node name="LightmapGI" type="LightmapGI" parent="Floor"]
+quality = 2
+supersampling = true
+directional = true
+texel_scale = 0.5
+environment_mode = 3
+environment_custom_color = Color(0.40825167, 0.11270001, 0.49, 1)
+environment_custom_energy = 3.0
+camera_attributes = SubResource("CameraAttributesPractical_50kmb")
+generate_probes_subdiv = 0
+light_data = ExtResource("4_ja8rw")
+
+[node name="Mesa2" parent="Floor/LightmapGI" instance=ExtResource("3_h7err")]
+transform = Transform3D(-2.2729921e-08, 0, -0.52, 0, 0.52, 0, 0.52, 0, -2.2729921e-08, 0, -0.81, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Floor/LightmapGI"]
+transform = Transform3D(-0.8128366, -0.38544515, 0.43672514, 2.6456863e-09, 0.7497532, 0.66171765, -0.58249193, 0.53786826, -0.60942674, 5.417864, 4.85822, -3.9045172)
+visible = false
+light_color = Color(0.8887248, 0.7016899, 0.4009572, 1)
+light_energy = 10.0
+light_indirect_energy = 0.5
+light_bake_mode = 1
+spot_range = 47.177
+spot_attenuation = 0.4
+spot_angle = 40.0
+spot_angle_attenuation = 4.287088
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Floor/LightmapGI"]
+transform = Transform3D(-0.29555058, 0.8874886, -0.35357302, 0.0841764, 0.39285976, 0.9157377, 0.9516114, 0.24088432, -0.19081552, -4.953023, 4.85822, -2.9853115)
+visible = false
+light_color = Color(0.8887248, 0.7016899, 0.4009572, 1)
+light_energy = 10.0
+light_indirect_energy = 0.5
+light_bake_mode = 1
+spot_range = 47.177
+spot_attenuation = 0.4
+spot_angle = 40.0
+spot_angle_attenuation = 4.287088
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Floor/LightmapGI"]
+transform = Transform3D(-0.90604633, -0.23689666, -0.35065672, -0.022070952, -0.80104446, 0.5981978, -0.42260262, 0.54973423, 0.72055477, -4.508437, 5.024759, 1.2127566)
+visible = false
+light_color = Color(0.86, 0.58709335, 0.2752, 1)
+light_energy = 25.0
+light_indirect_energy = 0.5
+light_bake_mode = 1
+spot_range = 47.177
+spot_angle = 26.43
+spot_angle_attenuation = 4.287088
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Floor/LightmapGI"]
+transform = Transform3D(-0.8605431, 0.32226843, 0.39447272, -0.013072688, -0.7881383, 0.6153594, 0.50920993, 0.52438647, 0.68243986, 5.085308, 4.991718, 1.0995841)
+visible = false
+light_color = Color(0.86, 0.58709335, 0.2752, 1)
+light_energy = 25.0
+light_indirect_energy = 0.5
+light_bake_mode = 1
+spot_range = 47.177
+spot_angle = 26.43
+spot_angle_attenuation = 4.287088
+
+[node name="Carta" parent="Floor/LightmapGI" instance=ExtResource("6_pioo0")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -3.829843, 0.6582036, -3.4930725)
+
+[node name="Carta2" parent="Floor/LightmapGI" instance=ExtResource("6_pioo0")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -2.1515336, 0.6582036, -3.4930725)
+
+[node name="Carta3" parent="Floor/LightmapGI" instance=ExtResource("6_pioo0")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.22265732, 0.6582036, -3.4930725)
+
+[node name="Carta4" parent="Floor/LightmapGI" instance=ExtResource("6_pioo0")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.66824, 0.6582036, -3.4930725)
+
+[node name="Carta5" parent="Floor/LightmapGI" instance=ExtResource("6_pioo0")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.8177252, 0.6582036, -3.4930725)
+
+[node name="Node3D3" type="Node3D" parent="Floor/LightmapGI"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7207229, 0, 0)
+visible = false
+
+[node name="Node3D" type="Node3D" parent="Floor/LightmapGI/Node3D3"]
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Floor/LightmapGI/Node3D3/Node3D"]
+transform = Transform3D(0.4778175, -0.81128585, -0.33690622, -0.058654565, -0.41212788, 0.90923613, -0.8764988, -0.41468787, -0.24450749, -10.490497, 6.4461136, -7.6325173)
+light_color = Color(0.4913335, 0.13399999, 0.67, 1)
+light_energy = 10.0
+light_indirect_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 33.126
+spot_attenuation = 0.2
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Floor/LightmapGI/Node3D3/Node3D"]
+transform = Transform3D(-0.8764988, -0.41468778, -0.24450748, -0.058654565, -0.41212785, 0.90923613, -0.47781742, 0.8112859, 0.33690622, -10.490497, 6.4461136, 6.9779716)
+light_color = Color(0.4913335, 0.13399999, 0.67, 1)
+light_energy = 10.0
+light_indirect_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 33.126
+spot_attenuation = 0.2
+
+[node name="Node3D2" type="Node3D" parent="Floor/LightmapGI/Node3D3"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Floor/LightmapGI/Node3D3/Node3D2"]
+transform = Transform3D(0.4778175, -0.81128585, -0.33690622, -0.058654565, -0.41212788, 0.90923613, -0.8764988, -0.41468787, -0.24450749, -10.490497, 6.4461136, -7.6325173)
+light_color = Color(0.4913335, 0.13399999, 0.67, 1)
+light_energy = 10.0
+light_indirect_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 33.126
+spot_attenuation = 0.2
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Floor/LightmapGI/Node3D3/Node3D2"]
+transform = Transform3D(-0.8764988, -0.41468778, -0.24450748, -0.058654565, -0.41212785, 0.90923613, -0.47781742, 0.8112859, 0.33690622, -10.490497, 6.4461136, 6.9779716)
+light_color = Color(0.4913335, 0.13399999, 0.67, 1)
+light_energy = 10.0
+light_indirect_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 33.126
+spot_attenuation = 0.2
 
 [node name="Walls" type="StaticBody3D" parent="." groups=["Walls"]]
 visible = false
@@ -153,15 +279,15 @@ regularEffects = Array[PackedScene]([ExtResource("6_x3vxf"), ExtResource("12_v5p
 specialEffects = Array[PackedScene]([ExtResource("11_7goy4"), ExtResource("15_qr7s2")])
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.8088, -0.209616)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.8088, -0.209616)
 layers = 3
-light_color = Color(0.999998, 0.997464, 0.742191, 1)
+light_color = Color(0.96862745, 0.79607844, 0.9372549, 1)
+light_bake_mode = 0
 light_cull_mask = 4294967291
 shadow_enabled = true
-shadow_opacity = 0.66
 shadow_blur = 0.2
 shadow_caster_mask = 4294967263
-directional_shadow_mode = 1
+directional_shadow_mode = 0
 directional_shadow_split_1 = 0.401
 directional_shadow_fade_start = 0.911
 directional_shadow_max_distance = 19.5
@@ -236,5 +362,3 @@ curve = SubResource("Curve3D_am0bh")
 flipH = true
 
 [connection signal="gameStarted" from="." to="ChipDropper" method="onGameStarted"]
-
-[editable path="Floor/Mesa"]
