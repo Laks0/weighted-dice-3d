@@ -4,6 +4,7 @@ extends Control
 var dijoTimba := false
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	SoundtrackHandler.playTrack()
 	
 	var tween := create_tween().set_loops().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
