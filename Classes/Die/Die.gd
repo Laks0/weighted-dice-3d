@@ -78,15 +78,19 @@ func _on_area_3d_body_entered(body):
 var effectOdds : Array[float] = [.2, .2, .2, .2, .2]
 ## La probabilidad que se agrega cuando un efecto no es elegido
 var notChosenBonus := .05
+var _timesRolled = 0
 
 func pickNewEffect(oldEffect : int) -> int:
+	_timesRolled += 1
+	
 	if Debug.vars.onlyEffect != "":
 		return Debug.vars.onlyEffectNumber
 	
 	var result = oldEffect
 	var ceiling : float = effectOdds.reduce(func (accum, val): return accum + val)
 	while result == oldEffect:
-		if randf() < 1.0/invertedChanceOfSix:
+		# El efecto 6 solo puede salir a partir del tercer efecto
+		if _timesRolled > 3 and randf() < 1.0/invertedChanceOfSix:
 			result = 5
 			continue
 		
