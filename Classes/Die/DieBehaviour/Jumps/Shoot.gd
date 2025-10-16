@@ -1,7 +1,7 @@
 extends AnimationStep
 
 @export var pointer : MeshInstance3D
-@export var linePointer : MeshInstance3D
+@export var linePointer : Node3D
 
 @onready var root : AnimationStep = animationRoot()
 

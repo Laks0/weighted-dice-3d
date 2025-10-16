@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://5grbkmxqlcab"]
+[gd_scene load_steps=37 format=3 uid="uid://5grbkmxqlcab"]
 
 [ext_resource type="Script" uid="uid://dhb6kl72imaxp" path="res://Classes/Effects/GetTheBallRollingEffect/Ball8.gd" id="1_e3peu"]
 [ext_resource type="PackedScene" uid="uid://cbsytituebtbc" path="res://Classes/Effects/GetTheBallRollingEffect/Bola8.glb" id="2_e3sye"]
+[ext_resource type="PackedScene" uid="uid://crm0xhehm45a2" path="res://Classes/LinePointer/LinePointer.tscn" id="2_e06u1"]
 [ext_resource type="PackedScene" uid="uid://br1eurxdqpgpn" path="res://Classes/Effects/GetTheBallRollingEffect/PaloPool.glb" id="3_inj8a"]
 [ext_resource type="Script" uid="uid://bgicome1h4ftf" path="res://Classes/Effects/GetTheBallRollingEffect/DirectionTelegraph.gd" id="4_h8td1"]
 [ext_resource type="Shader" uid="uid://cmpsfevl7ajs4" path="res://addons/GPUTrail/shaders/trail.gdshader" id="5_au2xy"]
@@ -181,6 +182,7 @@ axis_lock_linear_y = true
 script = ExtResource("1_e3peu")
 initialForce = 70.0
 friction = 60.0
+linePointerScene = ExtResource("2_e06u1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
@@ -211,6 +213,9 @@ transform = Transform3D(0.675, 0, 0, 0, -0.207085, 0.642449, 0, -0.642449, -0.20
 collision_mask = 4
 script = ExtResource("4_h8td1")
 ballCollisionShape = NodePath("../CollisionShape3D")
+
+[node name="TelegraphLines" type="Node3D" parent="."]
+top_level = true
 
 [node name="TelegraphTrail" type="GPUParticles3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)

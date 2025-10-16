@@ -5,7 +5,7 @@ var targetMonigote : Monigote
 @export var time : float = 3
 
 @export var pointer : MeshInstance3D
-@export var linePointer : MeshInstance3D
+@export var linePointer : Node3D
 
 @onready var root = animationRoot()
 

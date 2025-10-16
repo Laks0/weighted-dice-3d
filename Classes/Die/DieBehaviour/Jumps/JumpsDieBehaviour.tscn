@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpk2ybry8qadp"]
+[gd_scene load_steps=8 format=3 uid="uid://cpk2ybry8qadp"]
 
 [ext_resource type="Script" uid="uid://cdygpnjyges8x" path="res://Classes/Die/DieBehaviour/Jumps/JumpsDieBehaviour.gd" id="2_13t55"]
 [ext_resource type="Script" uid="uid://k1sewwy5o5xr" path="res://Classes/Die/DieBehaviour/Jumps/Preparation.gd" id="3_ep4f8"]
 [ext_resource type="Script" uid="uid://50pohyi3dtns" path="res://Classes/Die/DieBehaviour/Jumps/Targeting.gd" id="4_sb34c"]
+[ext_resource type="PackedScene" uid="uid://crm0xhehm45a2" path="res://Classes/LinePointer/LinePointer.tscn" id="5_a2c7f"]
 [ext_resource type="Script" uid="uid://b0o5dd4c7ifrd" path="res://Classes/Die/DieBehaviour/Jumps/Shoot.gd" id="5_sb34c"]
-[ext_resource type="Shader" uid="uid://byh2yte6ywsju" path="res://Classes/Die/DieBehaviour/Jumps/TargetLineShader.gdshader" id="6_cakj5"]
-[ext_resource type="Script" uid="uid://duyhslovnj6a5" path="res://Classes/Die/DieBehaviour/Jumps/LinePointer.gd" id="7_yg35l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb34c"]
 
@@ -13,25 +12,6 @@
 material = SubResource("StandardMaterial3D_sb34c")
 inner_radius = 0.197
 outer_radius = 0.278
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cakj5"]
-render_priority = 0
-shader = ExtResource("6_cakj5")
-shader_parameter/size = 1.0
-shader_parameter/speed = 8.0
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/segment_length = 40.0
-shader_parameter/spacing = 0.045
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_yg35l"]
-material = SubResource("ShaderMaterial_cakj5")
-top_radius = 0.03
-bottom_radius = 0.03
-height = 1.0
-radial_segments = 8
-rings = 1
-cap_top = false
-cap_bottom = false
 
 [node name="JumpsDieBehaviour" type="Node3D"]
 script = ExtResource("2_13t55")
@@ -71,11 +51,7 @@ cast_shadow = 0
 mesh = SubResource("TorusMesh_sb34c")
 skeleton = NodePath("")
 
-[node name="LinePointer" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.268346, 0, 0, 0, 1, 0, 0, 0)
+[node name="LinePointer" parent="." instance=ExtResource("5_a2c7f")]
 visible = false
-mesh = SubResource("CylinderMesh_yg35l")
-skeleton = NodePath("")
-script = ExtResource("7_yg35l")
 
 [connection signal="timeout" from="Targeting/SwitchTimer" to="Targeting" method="pickNewMonigote"]

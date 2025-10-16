@@ -8,6 +8,8 @@ signal finished
 @export var friction : float = 10
 @export var timeBetweenBounces := .05
 
+@export var linePointerScene : PackedScene
+
 var pushesLeft : int
 
 var rollCounter = 0
@@ -103,15 +105,34 @@ func setTrajectory(points : Array[Ball8TrajectoryCalculator.BallTrajectoryPoint]
 	$TelegraphTrail.restart()
 	var tween := create_tween()
 	
-	for p in points:
+	for i in range(points.size()):
+		var line := linePointerScene.instantiate()
+		line.visible = false
+		line.setWidth(.1)
+		$TelegraphLines.add_child(line)
+		
+		var previousPoint := global_position
+		if i > 0:
+			previousPoint = points[i-1].position
+		
 		tween.tween_callback(func ():
-			$TrailSFX.playSFX(points.find(p))
-			var dir = $TelegraphTrail.to_local(p.position).normalized()
-			$TelegraphTrail.look_at(dir)
-			$TelegraphTrail.rotation.x -= PI/2
+			line.visible = true)
+		tween.tween_method(
+			line.point.bind(previousPoint),
+			previousPoint, points[i].position, .1
 		)
-		tween.tween_property($TelegraphTrail, "global_position", p.position, .1)
+		
+		tween.tween_callback(func ():
+			await get_tree().create_timer(.4).timeout
+			var t := create_tween()
+			t.tween_method(func (x : Vector3):
+				line.point(x, points[i].position),
+				previousPoint, points[i].position, .1)
+			t.tween_callback(line.queue_free))
+				
+		
 		tween.tween_interval(.05)
+	
 	tween.tween_interval(.5)
 	tween.tween_callback(func (): 
 		$TelegraphTrail.position = Vector3.ZERO

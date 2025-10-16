@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://crm0xhehm45a2"]
+
+[ext_resource type="Shader" uid="uid://byh2yte6ywsju" path="res://Classes/Die/DieBehaviour/Jumps/TargetLineShader.gdshader" id="1_aqaae"]
+[ext_resource type="Script" uid="uid://duyhslovnj6a5" path="res://Classes/LinePointer/LinePointer.gd" id="2_rpvt0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cakj5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_aqaae")
+shader_parameter/size = 1.0
+shader_parameter/speed = 8.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/segment_length = 40.0
+shader_parameter/spacing = 0.045
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yg35l"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_cakj5")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 1.0
+radial_segments = 8
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[node name="LinePointer" type="Node3D"]
+top_level = true
+script = ExtResource("2_rpvt0")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_yg35l")
+skeleton = NodePath("")
