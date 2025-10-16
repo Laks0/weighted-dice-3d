@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bu6wud186flga"]
+[gd_scene load_steps=19 format=3 uid="uid://bu6wud186flga"]
 
 [ext_resource type="Script" uid="uid://3uaup54yjfn2" path="res://Classes/Die/Die.gd" id="1_6qi4a"]
 [ext_resource type="PackedScene" uid="uid://blmsj12m7ansk" path="res://Classes/Die/DieSoundManager.tscn" id="4_vb2w7"]
@@ -40,10 +40,28 @@ collision_friction = 0.0
 collision_bounce = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmhk7"]
-albedo_color = Color(0.054902, 0.54902, 0, 1)
+albedo_color = Color(0.53333336, 0.61960787, 0.32156864, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dhs5y"]
 material = SubResource("StandardMaterial3D_bmhk7")
+
+[sub_resource type="Curve" id="Curve_vb2w7"]
+_data = [Vector2(0, 0), 0.0, 1.0723809, 0, 0, Vector2(0.8055555, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ljov1"]
+curve = SubResource("Curve_vb2w7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dh887"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ljov1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb2w7"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_gwi41"]
+material = SubResource("StandardMaterial3D_vb2w7")
+inner_radius = 1.59
+outer_radius = 1.6
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ijiam"]
 points = PackedVector3Array(-0.893276, -0.985924, -0.862587, 0.893277, 0.985925, 0.862588, 0.893276, 0.985924, -0.862587, -0.955132, 0.955132, -0.862669, -0.955132, -0.862669, 0.955132, 0.955132, -0.955132, 0.862669, 0.924803, -0.924803, -0.955707, -0.92482, 0.92482, 0.955725, 0.955132, 0.862669, 0.955132, -0.893273, 0.862583, -0.98592, 0.985896, 0.862562, -0.893444, -0.955132, -0.862669, -0.955132, 0.862561, -0.893443, 0.985895, -0.862558, -0.985891, 0.89344, 0.862559, 0.89344, -0.985892, -0.985896, 0.893444, 0.862562, -0.893276, 0.985924, 0.862587, 0.893273, -0.98592, -0.862583, -0.985896, -0.893444, -0.862562, -0.862559, -0.89344, -0.985892, 0.985896, -0.862562, 0.893444, 0.985892, -0.89344, -0.862559, -0.862561, 0.893443, 0.985895, -0.862562, 0.985896, -0.893444, -0.985895, -0.893443, 0.862561, -0.985895, 0.862561, -0.893443, 0.985937, 0.893288, 0.862405, 0.862562, 0.893444, 0.985896, -0.862562, -0.893444, 0.985896, 0.862561, -0.985895, 0.893443, 0.893273, -0.862583, -0.98592, 0.862669, 0.955132, 0.955132)
@@ -67,6 +85,7 @@ shape = SubResource("BoxShape3D_c2hqq")
 
 [node name="StompParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0258017, 0)
+top_level = true
 emitting = false
 amount = 15
 one_shot = true
@@ -74,8 +93,19 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ea82d")
 draw_pass_1 = SubResource("BoxMesh_dhs5y")
 
+[node name="ExpansiveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+top_level = true
+emitting = false
+amount = 3
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_dh887")
+draw_pass_1 = SubResource("TorusMesh_gwi41")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.61, 0, 0, 0, 0.6, 0, 0, 0)
 gi_mode = 0
 mesh = ExtResource("13_wyhdg")
 

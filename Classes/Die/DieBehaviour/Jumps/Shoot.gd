@@ -26,10 +26,11 @@ func start():
 	root.die.get_node("SoundManager").playTargetBurst()
 	positionTween.tween_property(die, "global_position", 
 		targetTweenPosition, .5)
+	positionTween.tween_callback(die.stompAnimation)
 	
 	await positionTween.finished
 	die.freeze = false
-	die.throw(die.global_position.direction_to(targetPosition) * finalDiceImpulseForce)
+	#die.throw(die.global_position.direction_to(targetPosition) * finalDiceImpulseForce)
 	pointer.visible = false
 	linePointer.visible = false
 	get_viewport().get_camera_3d().startShake(.2,.1)

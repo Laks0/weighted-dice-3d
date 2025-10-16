@@ -27,6 +27,10 @@ var hitting := false
 func _ready():
 	visible = false
 
+func _physics_process(_delta: float) -> void:
+	$StompParticles.global_position = global_position
+	$ExpansiveParticles.global_position = global_position
+
 func throw(impulse : Vector3):
 	apply_central_impulse(impulse)
 	var torque := Vector3(randf(), randf(), randf()).normalized()
@@ -117,3 +121,7 @@ func _onCurrentEffectFinished():
 
 func _onEffectStarted(effect : Effect):
 	$BehaviourHandler._onEffectStarted(effect)
+
+func stompAnimation():
+	$ExpansiveParticles.restart()
+	$StompParticles.restart()
