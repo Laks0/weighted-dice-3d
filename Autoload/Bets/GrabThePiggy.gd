@@ -6,7 +6,7 @@ func _init():
 	betType = BetType.ALL_PLAYERS
 	betName = "Agarrar el chanchito"
 	_scoreOrder = Order.ASCENDING
-	_scoreType = ScoreType.INT
+	_scoreType = ScoreType.MONEY
 	monigoteSignal = MonigoteSignal.CROWN
 	
 	betDescription = "¿Quién va a sacar más monedas del chanchito?"
@@ -23,7 +23,8 @@ func startGame(arena : Arena):
 	arena.add_child(crown)
 	
 	crown.coinOut.connect(func (holder : Monigote):
-		_scores[holder.player.id] += 1)
+		if holder is Monigote:
+			_scores[holder.player.id] += 1)
 	
 	super(arena)
 

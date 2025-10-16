@@ -17,9 +17,10 @@ curve = SubResource("Curve_owl41")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ra866"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
-spread = 20.915
+spread = 40.0
+flatness = 0.2
 initial_velocity_min = 2.0
-initial_velocity_max = 3.0
+initial_velocity_max = 5.0
 scale_min = 2.5
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_7c4h6")
@@ -37,7 +38,7 @@ height = 0.01
 streams_count = 1
 stream_0/stream = ExtResource("3_rmih4")
 
-[node name="PiggyBank" type="CharacterBody3D"]
+[node name="PiggyBank" type="CharacterBody3D" groups=["PiggyBank"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_jlkdb")
@@ -65,6 +66,17 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_ra866")
 draw_pass_1 = SubResource("CylinderMesh_v2eyl")
 
+[node name="CoinExplosionParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.13175845, 0)
+emitting = false
+amount = 260
+lifetime = 1.4000000000000001
+one_shot = true
+explosiveness = 0.1
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_ra866")
+draw_pass_1 = SubResource("CylinderMesh_v2eyl")
+
 [node name="CoinCooldown" type="Timer" parent="."]
 
 [node name="CoinSFX" type="AudioStreamPlayer3D" parent="."]
@@ -74,5 +86,6 @@ volume_db = -2.0
 bus = &"SFX"
 
 [connection signal="wasPushed" from="." to="." method="_on_was_pushed"]
+[connection signal="finished" from="CoinExplosionParticles" to="." method="_on_coin_explosion_particles_finished"]
 [connection signal="timeout" from="CoinCooldown" to="." method="onCoinCooldownTimeout"]
 [connection signal="finished" from="CoinSFX" to="." method="_on_coin_sfx_finished"]
