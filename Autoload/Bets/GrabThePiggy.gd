@@ -6,7 +6,6 @@ func _init():
 	betType = BetType.ALL_PLAYERS
 	betName = "Agarrar el chanchito"
 	_scoreOrder = Order.ASCENDING
-	_scoreType = ScoreType.MONEY
 	monigoteSignal = MonigoteSignal.CROWN
 	
 	betDescription = "¿Quién va a sacar más monedas del chanchito?"
@@ -32,3 +31,6 @@ func settle():
 	if is_instance_valid(crown):
 		crown.queue_free()
 	super()
+
+func getScoreText(candidate) -> String:
+	return "$" + str(int(_scores[candidate]))

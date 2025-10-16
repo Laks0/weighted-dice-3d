@@ -8,6 +8,7 @@ func _init():
 	betName = "Tiempo bajo el dado"
 	betType = BetType.ALL_PLAYERS
 	_scoreOrder = Order.ASCENDING
+	_scoreType = ScoreType.TIME
 	monigoteSignal = MonigoteSignal.CROWN
 	
 	betDescription = "¿Quién va a estar más tiempo abajo del dado?"
