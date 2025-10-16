@@ -29,6 +29,8 @@ func _physics_process(delta):
 		onGrabbing(delta)
 
 func attemptGrab():
+	if not mon.canGrab():
+		return
 	if not $GrabCooldown.is_stopped():
 		return
 	

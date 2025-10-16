@@ -24,6 +24,11 @@ func _ready():
 		return get_tree().get_nodes_in_group("Monigotes")\
 			.map(func(m : Monigote): return m.player.name)
 	)
+	LimboConsole.register_command(_hurtMonigote, "herirMonigote", "Herir a un monigote que exista, si no se pasa una skin se mata a todos")
+	LimboConsole.add_argument_autocomplete_source("herirMonigote", 1, func ():
+		return get_tree().get_nodes_in_group("Monigotes")\
+			.map(func(m : Monigote): return m.player.name)
+	)
 	
 	LimboConsole.register_command(newGame, "nuevaPartida", "Empieza una nueva partida generando una cantidad de jugadores")
 	
@@ -69,6 +74,17 @@ func _killMonigote(playerName : String = ""):
 		return
 	for m : Monigote in monigotes:
 		m.die()
+
+func _hurtMonigote(playerName : String = ""):
+	var monigotes := get_tree().get_nodes_in_group("Monigotes")
+	var aMatar := monigotes.filter(func(m : Monigote): 
+		return m.player.name == playerName)
+	
+	if aMatar.size() != 0:
+		aMatar[0].hurt()
+		return
+	for m : Monigote in monigotes:
+		m.hurt()
 
 func newGame(players : int, skipLobby := true, skipCards := true, dontStartGame := false):
 	PlayerHandler.deleteAllPlayers()

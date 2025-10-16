@@ -110,16 +110,15 @@ func hurt() -> bool:
 	if invincible or Debug.vars.inmortalMonigotes:
 		return false
 	
-	health -= 1
-	$BloodTrail.emitting = true
-	
 	if health <= 0:
+		return false
+	
+	health -= 1
+	
+	if health == 0:
 		die()
 	else:
 		wasHurt.emit()
-		Input.start_joy_vibration(controller, .4, .4, .2)
-	
-	makeInvincible()
 	
 	return true
 
@@ -130,14 +129,8 @@ func die():
 	if grabbing:
 		push()
 	
+	health = 0
 	emit_signal("died")
-	
-	%AnimatedSprite.visible = false
-	$DeathParticles.emitting = true
-	
-	Input.start_joy_vibration(controller, 1, 1, .4)
-	
-	$DeathParticles.connect("finished", queue_free)
 
 func stopMovement():
 	$Steps/LStep.stop()
@@ -149,7 +142,7 @@ func stopMovement():
 func resumeMovement():
 	movementStopped = false
 
-func makeInvincible():
+func startAfterHurtInvincibleTime():
 	invincible = true
 	$HurtTime.start()
 
@@ -157,7 +150,7 @@ func makeInvincible():
 func freeze():
 	movement.resetMovement()
 	stopMovement()
-	
+	stopGrabbing()
 	
 	set_process(false)
 	set_physics_process(false)
@@ -169,6 +162,7 @@ func freeze():
 	
 func unfreeze():
 	resumeMovement()
+	resumeGrabbing()
 	set_process(true)
 	set_physics_process(true)
 	movement.set_physics_process(true)

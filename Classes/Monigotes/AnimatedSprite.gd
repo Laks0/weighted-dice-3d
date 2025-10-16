@@ -78,8 +78,11 @@ var hasSignal := false
 @onready var _localLabelPosition = $PlayerName.position
 var _nameInLocalSpace := true
 
+func _getCurrentTexture() -> AtlasTexture:
+	return sprite_frames.get_frame_texture(animation, frame)
+
 func _process(delta):
-	material_override.set_shader_parameter("spriteTexture", sprite_frames.get_frame_texture(animation, frame))
+	material_override.set_shader_parameter("spriteTexture", _getCurrentTexture())
 	material_override.set_shader_parameter("modulate", modulate)
 	
 	modulate = mon.color
@@ -221,6 +224,11 @@ func setFeetLookingAt(dir2dToLookAt : Vector2, rotationPercentage : float, faceD
 	
 	play("Pushed")
 	frame = 2 if faceDown else 6
+
+func getHeadTexture() -> Texture2D:
+	var res := sprite_frames.get_frame_texture("Pushed", 6).duplicate()
+	res.region.size.y /= 2
+	return res
 
 enum Cardinal {E, NE, N, NW, W, SW, S, SE}
 
