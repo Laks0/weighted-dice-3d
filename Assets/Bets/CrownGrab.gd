@@ -31,8 +31,23 @@ func _on_coin_sfx_finished() -> void:
 		$CoinSFX.pitch_scale = randf_range(0.95, 1.1)
 
 func explode():
-	pass
+	$Sprite3D.visible = false
+	$CoinSFX.stop()
+	$CoinSFX.pitch_scale = 1
+	$CoinSFX.volume_db = -2
+	$CoinCooldown.stop()
+	$CoinExplosionParticles.emitting = true
+	for i in 25:
+		await get_tree().create_timer(.06).timeout
+		$CoinSFX.pitch_scale = randf_range(0.9,1.6)
+		$CoinSFX.play()
+		
+	
 
 
 func _on_was_pushed(_dir: Vector2, _factor: float, _pusher: Pushable) -> void:
 	_holder = null
+
+
+func _on_coin_explosion_particles_finished() -> void:
+	queue_free()

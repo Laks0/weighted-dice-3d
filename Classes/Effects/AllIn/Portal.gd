@@ -3,12 +3,15 @@ extends Area3D
 @export var atractAcceleration := 300
 
 var rayDir := Vector3(PI/100, 0, 0)
+var canAbsorbObjects := false
 
 func _enter_tree() -> void: #Asegurarse de empujar al chanchito si está cerca
 	for piggy in get_tree().get_nodes_in_group("PiggyBank"):
 		var distance = position.distance_to(piggy.position)
-		if distance < 3:
+		if distance < 3 && !piggy.grabbed:
 			piggy.velocity = position.direction_to(piggy.position)*18/clamp(distance, 1, 2.5)
+	await get_tree().create_timer(1).timeout
+	canAbsorbObjects = true
 
 func _process(delta):
 	rayDir.y += PI/4 * delta
@@ -40,7 +43,9 @@ func _on_animated_sprite_3d_animation_finished():
 func _on_body_entered(body):
 	if body is Monigote:
 		body.die()
-	if body is CrownGrab:
+	if body is CrownGrab && canAbsorbObjects:
+		var tween = create_tween()
+		tween.tween_property(body, "position", position, .5)
 		body.explode()
 
 func kill():
