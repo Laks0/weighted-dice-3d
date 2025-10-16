@@ -37,7 +37,7 @@ height = 0.01
 streams_count = 1
 stream_0/stream = ExtResource("3_rmih4")
 
-[node name="PiggyBank" type="CharacterBody3D"]
+[node name="PiggyBank" type="CharacterBody3D" groups=["PiggyBank"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_jlkdb")

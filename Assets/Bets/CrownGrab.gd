@@ -27,10 +27,11 @@ func _on_coin_sfx_finished() -> void:
 		if $CoinSFX.pitch_scale > 1.5:
 			$CoinSFX.pitch_scale = 1.5
 	else:
-		$CoinSFX.volume_db = -6
+		$CoinSFX.volume_db = -8
 		$CoinSFX.pitch_scale = randf_range(0.95, 1.1)
 
-
+func explode():
+	pass
 
 
 func _on_was_pushed(_dir: Vector2, _factor: float, _pusher: Pushable) -> void:
