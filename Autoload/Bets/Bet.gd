@@ -56,6 +56,7 @@ var _maxBank : int = 0
 enum ScoreType {
 	INT,
 	TIME,
+	MONEY,
 	CUSTOM
 }
 
@@ -194,5 +195,8 @@ func getScoreText(candidate) -> String:
 	
 	if _scoreType == ScoreType.TIME:
 		return "%.1f" % _scores[candidate]
+	
+	if _scoreType == ScoreType.MONEY:
+		return "$" + str(int(_scores[candidate]))
 	
 	return ""
