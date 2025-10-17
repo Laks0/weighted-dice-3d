@@ -80,10 +80,11 @@ func onGrabbing(delta : float):
 		pushAnimation()
 		return
 	
-	mon.grabBody.onBeingGrabbed.emit(mon.grabDir, forcePercentage, mon)
-	
-	if not Input.is_action_pressed(mon.actions.grab):
+	if not (Input.is_action_pressed(mon.actions.grab) or _pushAnimationRunning):
+		pushAnimation()
 		return
+	
+	mon.grabBody.onBeingGrabbed.emit(mon.grabDir, forcePercentage, mon)
 	
 	# Determina la fuerza dependiendo del tiempo
 	_curveSampleTime += delta
@@ -122,15 +123,19 @@ func onGrabAreaBodyEntered(body):
 	if mon.startGrab(body):
 		mon.emit_signal("grab", body)
 
+var _pushAnimationRunning := false
+
 func pushAnimation():
 	var tween := mon.grabBody.create_tween()
 	var dir3d := Vector3(mon.grabDir.x, 0, mon.grabDir.y).normalized()
 	var displacement := forcePercentage * .5
+	_pushAnimationRunning = true
 	if mon.grabBody is Monigote:
 		mon.grabBody.pauseEscapes()
 	tween.tween_property(mon.grabBody, "global_position", -displacement*dir3d, .05).as_relative()
 	tween.tween_interval(.2*forcePercentage)
 	tween.tween_property(mon.grabBody, "global_position", 2*displacement*dir3d, .025).as_relative()
 	tween.tween_callback(mon.push)
+	tween.tween_callback(func (): _pushAnimationRunning = false)
 	if mon.grabBody is Monigote:
 		tween.tween_callback(mon.grabBody.resumeEscapes)
