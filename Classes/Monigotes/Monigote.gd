@@ -132,6 +132,9 @@ func die():
 	health = 0
 	emit_signal("died")
 
+func isDead() -> bool:
+	return health <= 0
+
 func stopMovement():
 	$Steps/LStep.stop()
 	$Steps/RStep.stop()

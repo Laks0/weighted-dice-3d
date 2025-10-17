@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://1vsjqwkprn18"]
+[gd_scene load_steps=8 format=3 uid="uid://1vsjqwkprn18"]
 
 [ext_resource type="Script" uid="uid://gkc0htmbmget" path="res://Scenes/Lobby/ReadyChip.gd" id="1_jqs34"]
 [ext_resource type="PackedScene" uid="uid://c41m7jqool3bh" path="res://Classes/CustomUI/InputDisplayTexture/InputDisplaySprite3D/InputDisplaySprite3D.tscn" id="2_10537"]
 [ext_resource type="PackedScene" uid="uid://cq5gqlwg77y81" path="res://Classes/BetDisplay/ficha_mesh.tscn" id="2_snnl7"]
+[ext_resource type="PackedScene" uid="uid://j5k0g855uc38" path="res://Classes/BorderHintArea/BorderHintArea.tscn" id="4_ppffs"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ppffs"]
 viewport_path = NodePath("SubViewport")
@@ -30,3 +31,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nft4e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_tq8nx")
+
+[node name="PlayerHintDetection" parent="." node_paths=PackedStringArray("meshes", "pushable") instance=ExtResource("4_ppffs")]
+meshes = [NodePath("../FichaMesh")]
+pushable = NodePath("..")

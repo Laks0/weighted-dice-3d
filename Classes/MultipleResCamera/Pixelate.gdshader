@@ -4,7 +4,6 @@ render_mode unshaded, fog_disabled;
 uniform vec3 shadow_color : source_color = vec3(0.0);
 uniform float shadow_thickness = 2.0;
 
-uniform sampler2D transparent_texture : hint_default_transparent;
 uniform sampler2D white_border_texture : hint_default_transparent;
 
 vec2 getDepth(vec2 screen_pos, sampler2D depth_texture, mat4 inv_projection_matrix){
@@ -88,8 +87,6 @@ void fragment() {
 	depth_diff = smoothstep(0.5, 0.7, depth_diff) * .95;
 
 	ALBEDO = texture(SCREEN_TEXTURE, pixelated_uv).rgb;
-	vec4 ghost_overlay = texture(transparent_texture, pixelated_uv);
-	ALBEDO = mix(ALBEDO, ghost_overlay.rgb ,ghost_overlay.a);
 	vec3 final_shadow_color = shadow_color;
 	if (any_neighbour_in_white_border) {
 		final_shadow_color = vec3(1.0);

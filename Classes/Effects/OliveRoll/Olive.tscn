@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://8l23xyx2htpf"]
+[gd_scene load_steps=18 format=3 uid="uid://8l23xyx2htpf"]
 
 [ext_resource type="Script" uid="uid://cx3addr7idnl3" path="res://Classes/Effects/OliveRoll/Olive.gd" id="1_yhn61"]
 [ext_resource type="Texture2D" uid="uid://466i7kvr7oj7" path="res://Classes/Effects/OliveRoll/aceituna.png" id="2_8r2dk"]
 [ext_resource type="AudioStream" uid="uid://ba3m8jvebr6fg" path="res://Classes/Effects/OliveRoll/sfx_oliveshot.wav" id="3_fw7dq"]
 [ext_resource type="PackedScene" uid="uid://sdlmgjn7qmrw" path="res://Classes/Effects/OliveRoll/Aceituna.glb" id="4_wall5"]
+[ext_resource type="PackedScene" uid="uid://j5k0g855uc38" path="res://Classes/BorderHintArea/BorderHintArea.tscn" id="5_tp4s2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7f1p1"]
 atlas = ExtResource("2_8r2dk")
@@ -117,6 +118,10 @@ transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 0, 
 
 [node name="Sphere" parent="Aceituna" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_mm6rx")
+
+[node name="PlayerHintDetection" parent="." node_paths=PackedStringArray("meshes", "pushable") instance=ExtResource("5_tp4s2")]
+meshes = [NodePath("../Aceituna/Sphere_001"), NodePath("../Aceituna/Sphere")]
+pushable = NodePath("..")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 

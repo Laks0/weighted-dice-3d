@@ -58,7 +58,6 @@ func getBillboardTransformForScreenPos(screenPos : Vector2, zDistance : float) -
 	return Transform3D(newBasis, origin)
 
 func _process(_delta):
-	_updateSubviewportConfiguration(%GhostCamera, $GhostViewport, "Transparent3D")
 	_updateSubviewportConfiguration(%WhiteBorderCamera, $WhiteBorderViewport, "PossibleWhiteBorder")
 	
 	$OutlineMesh2.visible = Debug.vars["pixelate"]

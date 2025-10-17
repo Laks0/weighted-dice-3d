@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://j5k0g855uc38"]
+
+[ext_resource type="Script" uid="uid://cl478846blor" path="res://Classes/BorderHintArea/AreaPlayerDetection.gd" id="1_4l34f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4l34f"]
+radius = 1.5
+
+[node name="PlayerHintDetection" type="Area3D" groups=["PossibleWhiteBorder"]]
+script = ExtResource("1_4l34f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_4l34f")

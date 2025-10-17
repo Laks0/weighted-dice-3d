@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpdrpg3p4qn3t"]
+[gd_scene load_steps=23 format=3 uid="uid://bpdrpg3p4qn3t"]
 
 [ext_resource type="Script" uid="uid://brb5gkpqd4t4u" path="res://Scenes/GameWorld/StageHandler.gd" id="1_hrf5g"]
 [ext_resource type="Shader" uid="uid://nvi83umqwl1n" path="res://Scenes/GameWorld/PostProcessing.gdshader" id="1_v4p10"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dij606wt530ut" path="res://Scenes/GameWorld/Camara.glb" id="12_q76ww"]
 [ext_resource type="Script" uid="uid://dqvifl2io4eoy" path="res://Common/Hover.gd" id="13_yresm"]
 [ext_resource type="PackedScene" uid="uid://drq6epvfqxecn" path="res://Scenes/NewBetShow/NewBetShow.tscn" id="15_l7hxi"]
-[ext_resource type="PackedScene" uid="uid://8l23xyx2htpf" path="res://Classes/Effects/OliveRoll/Olive.tscn" id="16_vvqcd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q76ww"]
 shader = ExtResource("1_v4p10")
@@ -70,10 +69,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahv6l"]
-resource_local_to_scene = true
-albedo_color = Color(0.321569, 0.458824, 0.0784314, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 process_mode = 3
@@ -211,16 +206,6 @@ light_bake_mode = 1
 spot_range = 17.4037
 spot_angle = 25.662882
 
-[node name="Olive" parent="." groups=["PossibleWhiteBorder"] instance=ExtResource("16_vvqcd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0589674, 0.5530379, 0.9432411)
-
-[node name="Sphere" parent="Olive/Aceituna" index="0"]
-layers = 5
-surface_material_override/0 = SubResource("StandardMaterial3D_ahv6l")
-
-[node name="Sphere_001" parent="Olive/Aceituna" index="1"]
-layers = 5
-
 [connection signal="inArena" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="showBetName"]
 [connection signal="inLeaderboard" from="SubViewport/StageHandler" to="SubViewport/StageHandler/BetHUD" method="reset"]
 
@@ -228,5 +213,3 @@ layers = 5
 [editable path="SubViewport/StageHandler/Arena/Floor/Mesa"]
 [editable path="SubViewport/StageHandler/Camara"]
 [editable path="SubViewport/StageHandler/Camara2"]
-[editable path="Olive"]
-[editable path="Olive/Aceituna"]
