@@ -72,7 +72,7 @@ func addController(id : int):
 	
 	InputMap.add_action("grab_d%s" % id)
 	controllers[id]["grab"] = "grab_d%s" % id
-	addButtonToAction("grab_d%s" % id, JOY_BUTTON_A, id)
+	addStickToAction("grab_d%s" % id, JOY_AXIS_TRIGGER_RIGHT, 1, id)
 
 	InputMap.add_action("jump_d%s" % id)
 	controllers[id]["jump"] = "jump_d%s" % id

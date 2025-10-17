@@ -74,15 +74,15 @@ func setTableRender(val : bool) -> void:
 
 # Se llama para empezar la ronda de juego
 func startArena():
-	if BetHandler.round == 1 and not Debug.vars.skipCardAnimation:
-		multipleResCamera.goToCamera($CardsCamera, .1)
-		var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
-		cardAnimation.effects = effects
-		cardAnimation.environment = environment
-		add_child(cardAnimation)
-		await cardAnimation.animation_finished
-		cardAnimation.queue_free()
-		multipleResCamera.goToCamera($ArenaCamera)
+	#if BetHandler.round == 1 and not Debug.vars.skipCardAnimation:
+		#multipleResCamera.goToCamera($CardsCamera, .1)
+		#var cardAnimation : AnimationPlayer = cardShowAnimationScene.instantiate()
+		#cardAnimation.effects = effects
+		#cardAnimation.environment = environment
+		#add_child(cardAnimation)
+		#await cardAnimation.animation_finished
+		#cardAnimation.queue_free()
+		#multipleResCamera.goToCamera($ArenaCamera)
 	
 	_spawnMonigotes()
 	

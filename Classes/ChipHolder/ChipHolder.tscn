@@ -134,7 +134,7 @@ rightSelect = NodePath("../ReselectCharacters")
 leftFallback = NodePath("../ReselectCharacters")
 rightFallback = NodePath("../ReselectCharacters")
 
-[node name="Label" parent="EndgameButtons/PlayAgain" index="0"]
+[node name="Label" parent="EndgameButtons/PlayAgain/HBoxContainer" index="0"]
 text = "Volver a jugar"
 
 [node name="ReselectCharacters" parent="EndgameButtons" node_paths=PackedStringArray("leftSelect", "rightSelect", "leftFallback", "rightFallback") instance=ExtResource("6_c82te")]
@@ -146,7 +146,7 @@ rightSelect = NodePath(".")
 leftFallback = NodePath(".")
 rightFallback = NodePath(".")
 
-[node name="Label" parent="EndgameButtons/ReselectCharacters" index="0"]
+[node name="Label" parent="EndgameButtons/ReselectCharacters/HBoxContainer" index="0"]
 text = "Cambiar jugadores"
 
 [node name="WinnerLabel" type="Label" parent="."]

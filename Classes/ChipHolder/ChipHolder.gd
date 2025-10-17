@@ -307,7 +307,7 @@ func _input(event):
 		return
 
 	for player in PlayerHandler.getPlayersAlive():
-		if event.is_action(Controllers.getActions(player.inputController)["grab"]):
+		if event.is_action(Controllers.getActions(player.inputController)["ui_ok"]):
 			goToNextRound()
 			break
 
