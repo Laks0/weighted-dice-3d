@@ -58,10 +58,15 @@ func getBillboardTransformForScreenPos(screenPos : Vector2, zDistance : float) -
 	return Transform3D(newBasis, origin)
 
 func _process(_delta):
-	%GhostCamera.transform = transform
-	if get_tree().get_nodes_in_group("Transparent3D").is_empty():
-		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-	else:
-		$GhostViewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	_updateSubviewportConfiguration(%GhostCamera, $GhostViewport, "Transparent3D")
+	_updateSubviewportConfiguration(%WhiteBorderCamera, $WhiteBorderViewport, "PossibleWhiteBorder")
 	
 	$OutlineMesh2.visible = Debug.vars["pixelate"]
+
+func _updateSubviewportConfiguration(camera : Camera3D, subViewport : SubViewport, group : String):
+	camera.transform = transform
+	if get_tree().get_nodes_in_group(group).is_empty():
+		subViewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	else:
+		subViewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	

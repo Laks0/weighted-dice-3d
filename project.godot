@@ -60,6 +60,7 @@ folder_colors={
 Monigotes="El gripo con todos los monigotes"
 StageHandler="El grupo donde sólamente está el StageHandler"
 Transparent3D="El grupo para renderizar en el shader de pixel art cosas en 3D. GUARDA QUE ES COSTOSO"
+PossibleWhiteBorder="Para los nodos que es posible que se rendericen en la capa de bordes blancos"
 
 [input]
 
@@ -205,6 +206,7 @@ pause_kb2={
 
 3d_render/layer_1="Pixelated 3d"
 3d_render/layer_2="Transparent pixelated 3d"
+3d_render/layer_3="White border pixelated 3d"
 2d_physics/layer_1="a"
 
 [rendering]

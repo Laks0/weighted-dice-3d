@@ -5,6 +5,7 @@ uniform vec3 shadow_color : source_color = vec3(0.0);
 uniform float shadow_thickness = 2.0;
 
 uniform sampler2D transparent_texture : hint_default_transparent;
+uniform sampler2D white_border_texture : hint_default_transparent;
 
 vec2 getDepth(vec2 screen_pos, sampler2D depth_texture, mat4 inv_projection_matrix){
 	float raw_depth = texture(depth_texture, screen_pos)[0];
@@ -45,12 +46,16 @@ void fragment() {
 
 
 	vec3 normal = texture(NORMAL_TEXTURE, screen_pos).rgb * 2.0 - 1.0;
-
+	
+	bool any_neighbour_in_white_border = false;
+	
 	for (float x = -shadow_thickness; x <= shadow_thickness;x += 1.0){
 		for (float y = -shadow_thickness; y <= shadow_thickness; y += 1.0){
 			if ((x == 0.0 && y == 0.0) || (shadow_thickness*shadow_thickness < (x*x + y*y))){
 				continue;
 			}
+
+			any_neighbour_in_white_border = any_neighbour_in_white_border || texture(white_border_texture, screen_pos+vec2(x, y)*e).a > .0;
 
 			vec2 du_data = getDepth(screen_pos+1.0*vec2(x, y)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
 			vec2 dd_data = getDepth(screen_pos+0.5*vec2(x, y)*e, DEPTH_TEXTURE, INV_PROJECTION_MATRIX);
@@ -85,5 +90,9 @@ void fragment() {
 	ALBEDO = texture(SCREEN_TEXTURE, pixelated_uv).rgb;
 	vec4 ghost_overlay = texture(transparent_texture, pixelated_uv);
 	ALBEDO = mix(ALBEDO, ghost_overlay.rgb ,ghost_overlay.a);
-	ALBEDO = mix(ALBEDO, shadow_color, depth_diff);
+	vec3 final_shadow_color = shadow_color;
+	if (any_neighbour_in_white_border) {
+		final_shadow_color = vec3(1.0);
+	}
+	ALBEDO = mix(ALBEDO, final_shadow_color, depth_diff);
 }
