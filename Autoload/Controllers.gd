@@ -189,3 +189,11 @@ func singularInputToString(input : InputEvent) -> StringName:
 		return result.get_string() + " " + _getStickDirectionName(input.as_text())
 	
 	return input.as_text().split(" (")[0]
+
+func anyActionIsJustPressed(controllerId : int) -> bool:
+	for actionName in controllers[controllerId]:
+		if actionName == "pause":
+			continue
+		if Input.is_action_just_pressed(controllers[controllerId][actionName]):
+			return true
+	return false

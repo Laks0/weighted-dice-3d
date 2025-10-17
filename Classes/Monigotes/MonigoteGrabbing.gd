@@ -17,7 +17,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed(mon.actions.grab) and not mon.grabbed:
 		attemptGrab()
 	
-	if Input.is_action_just_pressed(mon.actions.jump) and mon.grabbed:
+	if mon.grabbed and Controllers.anyActionIsJustPressed(mon.controller):
 		mon.attemptEscape()
 	
 	var pointing := Controllers.getDirection(mon.controller).normalized()
