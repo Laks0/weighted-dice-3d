@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cl478846blor" path="res://Classes/BorderHintArea/AreaPlayerDetection.gd" id="1_4l34f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4l34f"]
-radius = 1.5
+radius = 1.0
 
 [node name="PlayerHintDetection" type="Area3D" groups=["PossibleWhiteBorder"]]
 script = ExtResource("1_4l34f")

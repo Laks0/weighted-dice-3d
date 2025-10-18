@@ -42,21 +42,8 @@ func _ready():
 		
 		_isReady[id] = false
 		
-		var area : Area3D = $ChipAreas.get_child(id)
-		area.body_entered.connect(func (body):
-			if body != chip:
-				return
-			_isReady[id] = true
-			area.get_node("ReadyLabel").visible = true)
-		area.body_exited.connect(func (body):
-			if body != chip:
-				return
-			_isReady[id] = false
-			area.get_node("ReadyLabel").visible = false)
-		var label : Label3D = area.get_node("PlayerName")
-		label.text = PlayerHandler.getPlayerById(id).name
-		label.modulate = PlayerHandler.getSkinColor(id)
-		label.visible = true
+		$ChipAreas.get_child(id).playerReady.connect(func (): _isReady[id] = true)
+		$ChipAreas.get_child(id).playerUnready.connect(func (): _isReady[id] = false)
 		
 		i += 1
 	

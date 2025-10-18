@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj3d1s276v42f"]
+
+[ext_resource type="FontFile" uid="uid://cdnb1m88vsvb7" path="res://Assets/GrapeSoda.ttf" id="1_3qr6t"]
+[ext_resource type="Script" uid="uid://56pgpvsucark" path="res://Scenes/Lobby/ReadyChipArea.gd" id="1_axw6d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pw17"]
+size = Vector3(1.4162598, 4.0269775, 1.3505859)
+
+[node name="ReadyChipArea" type="Area3D"]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+script = ExtResource("1_axw6d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5134888, 0)
+shape = SubResource("BoxShape3D_1pw17")
+
+[node name="PlayerName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+render_priority = 2
+outline_render_priority = 1
+text = "El toto"
+font = ExtResource("1_3qr6t")
+font_size = 66
+
+[node name="ReadyLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.397464, 0, 0)
+visible = false
+render_priority = 2
+outline_render_priority = 1
+text = "LISTO"
+font = ExtResource("1_3qr6t")
+font_size = 66
+
+[connection signal="body_entered" from="." to="." method="_onBodyEntered"]
+[connection signal="body_exited" from="." to="." method="_onBodyExited"]
